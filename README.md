@@ -1,10 +1,8 @@
-[fuckingjoshua.com](https://fuckingjoshua.com)
+[nulljosh.github.io](https://nulljosh.github.io)
 =============================================
 
-[and I run it.](https://www.youtube.com/watch?v=qbbQb9bEcDQ)
-
-Awesome Articles
----------------------
+Fun Encyclos
+-------------
 
 - [Qi](https://en.wikipedia.org/wiki/Qi) (Energy)
 - [Yin Yang](https://en.wikipedia.org/wiki/Yin_and_yang) (Balance)
