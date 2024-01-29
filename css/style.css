@@ -21,3 +21,11 @@ a {
 }
 
 a:hover{text-decoration: underline;}
+
+/* 1284×2778 pixels at 460ppi */
+@media only screen 
+    and (width: 430px) 
+    and (height: 932px) 
+    and (-webkit-device-pixel-ratio: 3) {
+        li {padding: 5px;}
+    }
