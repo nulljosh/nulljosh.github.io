@@ -1,7 +1,8 @@
 body {background-color: #f7f7f7;}
 
 
-h1 {
+h2 {
+    font-family: "Helvetica", sans-serif;
     text-align: center;
     margin-top: 30vh;
 }
