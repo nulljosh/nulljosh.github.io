@@ -1,2 +1,1 @@
 # nulljosh.github.io
-www
