@@ -12,7 +12,10 @@
 <style>
 :root{--bg-color:#fff;--text-color:#000;--text-secondary:#666;--text-tertiary:#333;--bg-secondary:#f8f9fa;--accent-color:#0074D9;--accent-hover:#004499;--border-color:#0074D9}
 body.dark-mode{--bg-color:#1a1a1a;--text-color:#e0e0e0;--text-secondary:#999;--text-tertiary:#ccc;--bg-secondary:#2a2a2a;--accent-color:#4A9EFF;--accent-hover:#7BB8FF;--border-color:#4A9EFF}
-body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Helvetica Neue',Helvetica,Arial,sans-serif;margin:0;padding:40px;background:var(--bg-color);color:var(--text-color);line-height:1.5;transition:background 0.3s ease,color 0.3s ease}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Helvetica Neue',Helvetica,Arial,sans-serif;margin:0;padding:40px;background:var(--bg-color);color:var(--text-color);line-height:1.5;transition:background 0.3s ease,color 0.3s ease;position:relative}
+.video-background{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;overflow:hidden}
+.video-background video{width:100%;height:100%;object-fit:cover;opacity:0.08}
+body.dark-mode .video-background video{opacity:0.1}
 a{color:var(--accent-color);transition:color 0.3s ease}
 a:hover{color:var(--accent-hover)}
 .container{max-width:750px;margin:0 auto}
@@ -48,6 +51,11 @@ body:not(.dark-mode) .snowflake{color:rgba(200,200,255,0.6)}
 </style>
 </head>
 <body>
+    <div class="video-background">
+        <video autoplay loop muted playsinline>
+            <source src="https://cdn.pixabay.com/video/2022/11/28/141358-776828090_large.mp4" type="video/mp4">
+        </video>
+    </div>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
         <svg id="sunIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="12" cy="12" r="5" fill="currentColor"/>
