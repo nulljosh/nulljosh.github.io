@@ -42,6 +42,9 @@ li{margin-bottom:3px}
 @keyframes heartbeat{0%{transform:scale(1)}10%{transform:scale(1.2)}20%{transform:scale(1)}30%{transform:scale(1.15)}40%{transform:scale(1)}100%{transform:scale(1)}}
 @media(max-width:768px){body{padding:20px}h1{font-size:20px}h2{font-size:16px}.links{gap:15px}.theme-toggle{top:10px;right:10px;width:45px;height:45px}}
 @media(max-width:480px){body{padding:15px}.container{max-width:100%}h1{font-size:18px;margin-bottom:15px}.contact{margin-bottom:20px}.section{margin-bottom:30px}}
+.snowflake{position:fixed;top:-10px;z-index:9999;user-select:none;pointer-events:none;color:rgba(255,255,255,0.8);animation:fall linear infinite}
+body:not(.dark-mode) .snowflake{color:rgba(200,200,255,0.6)}
+@keyframes fall{to{transform:translateY(100vh)}}
 </style>
 </head>
 <body>
@@ -270,6 +273,25 @@ li{margin-bottom:3px}
                 setTheme(e.matches ? 'dark' : 'light');
             }
         });
+
+        // Snow animation
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.innerHTML = '❄';
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.fontSize = (Math.random() * 10 + 10) + 'px';
+            snowflake.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            snowflake.style.opacity = Math.random() * 0.6 + 0.4;
+            document.body.appendChild(snowflake);
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 8000);
+        }
+
+        // Create snowflakes periodically
+        setInterval(createSnowflake, 200);
     </script>
 </body>
 </html>
