@@ -3,42 +3,377 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Joshua Trommel</title>
-<meta name="description" content="Experienced customer service and technical support professional in Langley, BC. Skilled in inventory management, mobile device repair, and restaurant operations.">
-<meta name="keywords" content="customer service, technical support, inventory management, mobile repair, iOS Android troubleshooting, hardware diagnostics, team leadership, workflow optimization, POS systems, food service, portfolio management, investment analysis, Langley BC Vancouver Abbotsford">
+<title>Joshua Trommel - Tech & Design</title>
+<meta name="description" content="Technical support specialist and designer in Vancouver, BC. Skilled in Apple device repair, web development, and creative solutions.">
+<meta name="keywords" content="technical support, web design, Apple specialist, portfolio management, Vancouver BC">
 <meta name="author" content="Joshua Trommel">
 <link rel="canonical" href="https://joshuatrommel.com">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
 <style>
-:root{--bg-color:#f8f9fa;--text-color:#2c3e50;--text-secondary:#7f8c8d;--text-tertiary:#34495e;--bg-secondary:rgba(255,255,255,0.7);--accent-color:#e74c3c;--accent-hover:#c0392b;--border-color:#e74c3c;--glass-bg:rgba(255,255,255,0.25)}
-body.dark-mode{--bg-color:#1a1d23;--text-color:#ecf0f1;--text-secondary:#95a5a6;--text-tertiary:#bdc3c7;--bg-secondary:rgba(44,62,80,0.3);--accent-color:#e74c3c;--accent-hover:#ff6b6b;--border-color:#e74c3c;--glass-bg:rgba(44,62,80,0.25)}
-body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Helvetica Neue',Helvetica,Arial,sans-serif;margin:0;padding:40px;background:var(--bg-color);color:var(--text-color);line-height:1.5;transition:background 0.3s ease,color 0.3s ease}
-a{color:var(--accent-color);transition:color 0.3s ease}
-a:hover{color:var(--accent-hover)}
-.container{max-width:750px;margin:0 auto}
-h1{font-size:24px;font-weight:normal;margin:0 0 20px 0}
-.contact{margin-bottom:30px;font-size:14px}
-.section{margin-bottom:40px}
-h2{font-size:18px;font-weight:normal;margin:0 0 15px 0}
-.job{margin-bottom:25px}
-.job-title{font-weight:bold;margin-bottom:5px}
-.company-date{font-size:14px;color:var(--text-secondary);margin-bottom:10px}
-.description{font-size:14px;margin-bottom:10px}
-ul{margin:0;padding-left:20px;font-size:14px}
-li{margin-bottom:3px}
-.links{margin-top:40px;display:flex;justify-content:center;align-items:center;gap:20px}
-.links a{color:var(--accent-color);text-decoration:none;display:inline-flex;align-items:center;transition:color 0.3s ease,transform 0.2s ease}
-.links a:hover{color:var(--accent-hover);transform:translateY(-2px)}
-.links a:focus{outline:2px solid var(--accent-color);outline-offset:2px;border-radius:4px}
-.links svg{width:24px;height:24px;vertical-align:middle}
-.footer{margin-top:30px;text-align:center;font-size:12px;color:var(--text-secondary)}
-.testimonial{background:var(--glass-bg);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:20px;border-left:4px solid var(--border-color);margin:15px 0;border-radius:12px;border:1px solid rgba(255,255,255,0.2);box-shadow:0 8px 32px rgba(0,0,0,0.1);transition:all 0.3s ease}.testimonial:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,0.15)}
-.testimonial blockquote{margin:0;font-style:italic;font-size:16px;line-height:1.6;color:var(--text-tertiary)}
-.theme-toggle{position:fixed;top:20px;right:20px;background:var(--glass-bg);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.3);border-radius:50%;width:50px;height:50px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s ease;z-index:1000;box-shadow:0 8px 32px rgba(0,0,0,0.1)}
-.theme-toggle:hover{transform:scale(1.1);box-shadow:0 12px 40px rgba(0,0,0,0.2)}
-.theme-toggle svg{width:24px;height:24px;fill:var(--accent-color);transition:fill 0.3s ease}
-@media(max-width:768px){body{padding:20px}h1{font-size:20px}h2{font-size:16px}.links{gap:15px}.theme-toggle{top:10px;right:10px;width:45px;height:45px}}
-@media(max-width:480px){body{padding:15px}.container{max-width:100%}h1{font-size:18px;margin-bottom:15px}.contact{margin-bottom:20px}.section{margin-bottom:30px}}
+html { scroll-behavior: smooth; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    background: linear-gradient(135deg, #fff4e6, #ffe4b3);
+    min-height: 100vh;
+    color: #2c1810;
+    line-height: 1.6;
+}
+
+body.dark-mode {
+    background: linear-gradient(135deg, #1a1d23, #2c3440);
+    color: #ecf0f1;
+}
+
+.container { max-width: 900px; margin: 0 auto; padding: 60px 40px; }
+
+/* Header */
+.header {
+    text-align: center;
+    padding: 60px 0;
+    margin-bottom: 40px;
+}
+
+.header h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #d4691b, #ff8c42);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.contact-info {
+    font-size: 1rem;
+    color: #5d4037;
+    margin-bottom: 20px;
+}
+
+body.dark-mode .contact-info { color: #bdc3c7; }
+
+.contact-info a {
+    color: #c0522b;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-weight: 500;
+}
+
+.contact-info a:hover { color: #d4691b; }
+
+.intro {
+    font-size: 1.2rem;
+    color: #5d4037;
+    max-width: 700px;
+    margin: 20px auto;
+    line-height: 1.7;
+}
+
+body.dark-mode .intro { color: #95a5a6; }
+
+/* Theme Toggle */
+.theme-toggle {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 105, 27, 0.3);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 1000;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle:hover { transform: scale(1.1); }
+
+body.dark-mode .theme-toggle {
+    background: rgba(44, 62, 80, 0.4);
+    border: 1px solid rgba(255, 140, 66, 0.3);
+}
+
+.theme-toggle svg {
+    width: 24px;
+    height: 24px;
+    fill: #d4691b;
+}
+
+/* Testimonial */
+.testimonial {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-left: 4px solid #d4691b;
+    border-radius: 15px;
+    margin: 40px 0;
+    transition: all 0.3s;
+}
+
+.testimonial:hover { transform: translateY(-2px); }
+
+body.dark-mode .testimonial {
+    background: rgba(44, 62, 80, 0.4);
+    border-left-color: #ff8c42;
+}
+
+.testimonial blockquote {
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    line-height: 1.7;
+}
+
+.testimonial cite {
+    font-size: 0.95rem;
+    color: #5d4037;
+}
+
+body.dark-mode .testimonial cite { color: #95a5a6; }
+
+/* Sections */
+.section {
+    margin-bottom: 60px;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #d4691b;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+body.dark-mode .section-title { color: #ff8c42; }
+
+/* Services Grid */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.service-card {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.3s;
+    border: 1px solid rgba(212, 105, 27, 0.2);
+}
+
+.service-card:hover { transform: translateY(-10px); }
+
+body.dark-mode .service-card {
+    background: rgba(44, 62, 80, 0.4);
+    border: 1px solid rgba(255, 140, 66, 0.2);
+}
+
+.service-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    color: #d4691b;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+body.dark-mode .service-card h3 { color: #ff8c42; }
+
+.service-card p {
+    color: #5d4037;
+    line-height: 1.6;
+}
+
+body.dark-mode .service-card p { color: #95a5a6; }
+
+/* Experience Cards */
+.experience-grid {
+    display: grid;
+    gap: 25px;
+}
+
+.job-card {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 15px;
+    border-left: 4px solid #d4691b;
+    transition: all 0.3s;
+}
+
+.job-card:hover { transform: translateX(5px); }
+
+body.dark-mode .job-card {
+    background: rgba(44, 62, 80, 0.4);
+    border-left-color: #ff8c42;
+}
+
+.job-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #d4691b;
+    margin-bottom: 8px;
+}
+
+body.dark-mode .job-title { color: #ff8c42; }
+
+.company-date {
+    font-size: 0.95rem;
+    color: #5d4037;
+    margin-bottom: 15px;
+}
+
+body.dark-mode .company-date { color: #95a5a6; }
+
+.company-date a {
+    color: #c0522b;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.company-date a:hover {
+    color: #d4691b;
+    text-decoration: underline;
+}
+
+.job-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.job-card li {
+    padding-left: 25px;
+    position: relative;
+    margin-bottom: 8px;
+    color: #5d4037;
+}
+
+body.dark-mode .job-card li { color: #bdc3c7; }
+
+.job-card li:before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: #d4691b;
+    font-weight: bold;
+}
+
+body.dark-mode .job-card li:before { color: #ff8c42; }
+
+/* Simple Lists */
+.simple-list {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 15px;
+}
+
+body.dark-mode .simple-list {
+    background: rgba(44, 62, 80, 0.4);
+}
+
+.simple-list ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.simple-list li {
+    padding-left: 25px;
+    position: relative;
+    margin-bottom: 12px;
+    color: #5d4037;
+}
+
+body.dark-mode .simple-list li { color: #bdc3c7; }
+
+.simple-list li:before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: #d4691b;
+    font-weight: bold;
+}
+
+body.dark-mode .simple-list li:before { color: #ff8c42; }
+
+.simple-list a {
+    color: #c0522b;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.simple-list a:hover {
+    color: #d4691b;
+    text-decoration: underline;
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 60px 0 40px;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+
+.social-links a:hover { transform: translateY(-5px); }
+
+body.dark-mode .social-links a {
+    background: rgba(44, 62, 80, 0.4);
+}
+
+.social-links svg {
+    width: 24px;
+    height: 24px;
+    fill: #d4691b;
+}
+
+body.dark-mode .social-links svg { fill: #ff8c42; }
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 40px 0;
+    color: #5d4037;
+    font-size: 1rem;
+    border-top: 1px solid rgba(212, 105, 27, 0.2);
+    margin-top: 60px;
+}
+
+body.dark-mode .footer {
+    color: #95a5a6;
+    border-top-color: rgba(255, 140, 66, 0.2);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .container { padding: 40px 20px; }
+    .header { padding: 40px 0; }
+    .services-grid { grid-template-columns: 1fr; }
+    .theme-toggle { top: 15px; right: 15px; width: 45px; height: 45px; }
+}
 </style>
 </head>
 <body>
@@ -51,159 +386,171 @@ li{margin-bottom:3px}
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         </svg>
     </button>
+
     <div class="container">
-        <h1>Joshua Trommel</h1>
-        
-        <div class="contact">
-            Langley, BC<br>
-            <a href="mailto:jatrommel@gmail.com">jatrommel@gmail.com</a><br>
-            <a href="tel:+17788462726">778-846-2726</a>
-        </div>
-
-        <div class="description">
-            Customer service professional with 10+ years fixing phones, computers, and keeping operations running smoothly. Good at troubleshooting problems, managing inventory, and ensuring customers have a positive experience.
-        </div>
-
-        <div class="section">
-            <div class="testimonial">
-                <blockquote>
-                    "Excellent session with Joshua who was personable, very knowledgeable and able to answer questions clearly. He arrived on time and used the time with me very constructively. Very happy with your service. Thank you."
-                </blockquote>
-                <cite>&mdash; Rita, Client</cite>
+        <header class="header">
+            <h1>Joshua Trommel</h1>
+            <div class="contact-info">
+                Langley, BC &nbsp;·&nbsp;
+                <a href="mailto:jatrommel@gmail.com">jatrommel@gmail.com</a> &nbsp;·&nbsp;
+                <a href="tel:+17788462726">778-846-2726</a>
             </div>
+            <p class="intro">
+                Technical specialist with 10+ years making technology work seamlessly for people. From fixing devices to building digital experiences, I focus on creating solutions that are reliable, intuitive, and built to last.
+            </p>
+        </header>
+
+        <div class="testimonial">
+            <blockquote>
+                "Excellent session with Joshua who was personable, very knowledgeable and able to answer questions clearly. He arrived on time and used the time with me very constructively. Very happy with your service. Thank you."
+            </blockquote>
+            <cite>&mdash; Rita, Client</cite>
         </div>
 
-        <div class="section">
-            <h2>Experience</h2>
-            
-            <div class="job">
-                <div class="job-title">Portfolio Manager</div>
-                <div class="company-date"><a href="https://heyitsmejosh.com/finn" target="_blank" rel="noopener noreferrer">Finn Capital</a> - Remote<br>2024 to Current</div>
+        <section class="section">
+            <h2 class="section-title">What I Do</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3>Technical Support</h3>
+                    <p>Expert troubleshooting for Apple devices and systems. From hardware repairs to software optimization, I make tech problems disappear.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3>Web Solutions</h3>
+                    <p>Custom websites and applications that look great and perform flawlessly. Fast, responsive, and built with modern standards.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">☁️</div>
+                    <h3>Cloud & Infrastructure</h3>
+                    <p>Scalable cloud solutions and performance optimization. Secure, efficient systems that grow with your needs.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3>Design & Branding</h3>
+                    <p>Clean, purposeful design that communicates your message. Visual identity and creative strategy that resonates.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Experience</h2>
+            <div class="experience-grid">
+                <div class="job-card">
+                    <div class="job-title">Portfolio Manager</div>
+                    <div class="company-date"><a href="https://heyitsmejosh.com/finn" target="_blank" rel="noopener noreferrer">Finn Capital</a> - Remote &nbsp;·&nbsp; 2024 to Present</div>
+                    <ul>
+                        <li>Manage tech-focused portfolio with custom-built tracking dashboard</li>
+                        <li>Real-time market data integration with live pricing and analytics</li>
+                        <li>Strategic positions in NVDA, GOOGL, SPY, HOOD with disciplined risk management</li>
+                    </ul>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-title">Mobile Consultant</div>
+                    <div class="company-date"><a href="https://macinhome.com" target="_blank" rel="noopener noreferrer">Macinhome</a> - Vancouver, BC &nbsp;·&nbsp; August 2017 to September 2020</div>
+                    <ul>
+                        <li>iPhone and iOS device repairs with focus on quality and customer satisfaction</li>
+                        <li>Built lasting client relationships through transparent communication</li>
+                        <li>Maintained detailed documentation for follow-up and service quality</li>
+                    </ul>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-title">Mac Specialist</div>
+                    <div class="company-date"><a href="https://www.simply.ca/" target="_blank" rel="noopener noreferrer">Simply Computing</a> - Abbotsford, BC &nbsp;·&nbsp; September 2018 to September 2019</div>
+                    <ul>
+                        <li>Advanced macOS diagnostics and hardware repair for Apple computers</li>
+                        <li>Complex troubleshooting for logic board, storage, and connectivity issues</li>
+                        <li>Clear technical consultations with honest repair estimates</li>
+                    </ul>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-title">Host</div>
+                    <div class="company-date">Ricky's Bar & Grill - Langley, BC &nbsp;·&nbsp; January 2017 to December 2019</div>
+                    <ul>
+                        <li>Guest experience management for high-volume dining environment</li>
+                        <li>Reservation systems and dining room flow optimization</li>
+                        <li>Team collaboration for seamless service during peak operations</li>
+                    </ul>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-title">Crew Member/Cook</div>
+                    <div class="company-date">McDonald's - Langley, BC &nbsp;·&nbsp; January 2015 to December 2016</div>
+                    <ul>
+                        <li>High-speed food service with consistent quality standards</li>
+                        <li>Drive-through efficiency achieving sub-5-minute service times</li>
+                        <li>Cross-trained across grill, assembly, and customer-facing roles</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Skills</h2>
+            <div class="simple-list">
                 <ul>
-                    <li>Manage tech portfolio in NVDA, GOOGL, SPY, HOOD with mobile-friendly tracker</li>
-                    <li>Built custom portfolio dashboard with live prices, pie charts, and budget tracking</li>
-                    <li>Focus on core mega-cap tech positions with SPY for broad market exposure</li>
+                    <li>Investment analysis and portfolio management</li>
+                    <li>iOS, macOS diagnostics and hardware repair</li>
+                    <li>Web development and cloud infrastructure</li>
+                    <li>Customer service and operations optimization</li>
+                    <li>Design systems and brand strategy</li>
                 </ul>
             </div>
+        </section>
 
-            <!-- <div class="job">
-                <div class="job-title">Customer Service/Stocking</div>
-                <div class="company-date"><a href="https://bcgaragedoors.ca" target="_blank" rel="noopener noreferrer">Best Choice Garage Doors Inc.</a> - Langley, BC<br>2021 to Current</div>
+        <section class="section">
+            <h2 class="section-title">Education</h2>
+            <div class="simple-list">
                 <ul>
-                    <li>Manage customer calls, scheduling, social media marketing, and digital advertising campaigns</li>
-                    <li>Built inventory tracking systems and streamlined operations to improve efficiency</li>
-                    <li>Train new staff on customer service protocols and workflow optimization</li>
-                </ul>
-            </div> -->
-
-            <div class="job">
-                <div class="job-title">Mobile Consultant</div>
-                <div class="company-date"><a href="https://macinhome.com" target="_blank" rel="noopener noreferrer">Macinhome</a> - Vancouver, BC<br>August 2017 to September 2020</div>
-                <ul>
-                    <li>Fixed iPhones and iOS devices - hardware and software troubleshooting</li>
-                    <li>Built solid client relationships through honest consultation and follow-through</li>
-                    <li>Kept detailed repair documentation for proper customer follow-ups</li>
+                    <li>University of Victoria, <a href="https://www.uvic.ca/undergraduate/programs/undergraduate-programs/pages/computer-science.php" target="_blank" rel="noopener noreferrer">BSc in Computer Science</a> (Expected 2030)</li>
+                    <li><a href="https://heyitsmejosh.com/school/" target="_blank" rel="noopener noreferrer">Langley Education Centre</a> (2024 to Present)</li>
+                    <li><a href="https://brookswoodsecondary.com" target="_blank" rel="noopener noreferrer">Brookswood Secondary School</a> (2012 to 2017)</li>
                 </ul>
             </div>
+        </section>
 
-            <div class="job">
-                <div class="job-title">Mac Specialist</div>
-                <div class="company-date"><a href="https://www.simply.ca/" target="_blank" rel="noopener noreferrer">Simply Computing</a> - Abbotsford, BC<br>September 2018 to September 2019</div>
-                <ul>
-                    <li>Specialized in macOS diagnostics, hardware repairs, and system optimization for Apple computers</li>
-                    <li>Executed complex troubleshooting procedures for logic board, storage, and peripheral connectivity issues</li>
-                    <li>Delivered technical consultations and repair estimates, maintaining transparency in service processes</li>
-                </ul>
-            </div>
-
-            <div class="job">
-                <div class="job-title">Host</div>
-                <div class="company-date">Ricky's Bar & Grill - Langley, BC<br>January 2017 to December 2019</div>
-                <ul>
-                    <li>Orchestrated guest experience management for high-volume upscale dining establishment</li>
-                    <li>Developed reservation optimization systems and dining room flow coordination</li>
-                    <li>Collaborated with kitchen and service teams to create memorable dining experiences and manage peak-hour operations</li>
-                </ul>
-            </div>
-
-            <div class="job">
-                <div class="job-title">Crew Member/Cook</div>
-                <div class="company-date">McDonald's - Langley, BC<br>January 2015 to December 2016</div>
-                <ul>
-                    <li>Executed high-speed food service operations while maintaining quality control standards</li>
-                    <li>Specialized in drive-through efficiency optimization, consistently achieving sub-5-minute service times</li>
-                    <li>Cross-trained in multiple stations including grill operations, order assembly and customer-facing service roles</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Skills</h2>
-            <ul>
-                <li>Investment analysis and tech portfolio management</li>
-                <li>Technical troubleshooting and device repair</li>
-                <li>Customer service and operations optimization</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>Education</h2>
-            <ul>
-                <li>University of Victoria, <a href="https://www.uvic.ca/undergraduate/programs/undergraduate-programs/pages/computer-science.php" target="_blank" rel="noopener noreferrer">BSc in Computer Science</a> (Expected 2030)</li>
-                <li><a href="https://heyitsmejosh.com/school/" target="_blank" rel="noopener noreferrer">Langley Education Centre</a> (2024 to Present)</li>
-                <li><a href="https://brookswoodsecondary.com" target="_blank" rel="noopener noreferrer">Brookswood Secondary School</a> (2012 to 2017)</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>Interests</h2>
-            <ul>
-                <li>Market psychology and behavioral finance trends</li>
-                <li>Emerging tech and startup ecosystems</li>
-                <li>System design and workflow automation</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>Projects</h2>
-
-            <div class="job">
-                <div class="job-title"><a href="https://autopilot-alpha.vercel.app/" target="_blank" rel="noopener noreferrer">bread</a></div>
+        <section class="section">
+            <h2 class="section-title">Projects</h2>
+            <div class="job-card">
+                <div class="job-title"><a href="https://heyitsmejosh.com/finn" target="_blank" rel="noopener noreferrer">Finn</a></div>
                 <div class="company-date">2026</div>
                 <ul>
-                    <li>High-alpha financial terminal with sub-10MB memory footprint</li>
-                    <li>Trading simulator with 64% win rate using Fibonacci position sizing</li>
-                    <li>Polymarket integration, Monte Carlo simulations, live news feed</li>
+                    <li>Personal finance dashboard with real-time portfolio tracking</li>
+                    <li>Budget analysis and spending insights with visual charts</li>
+                    <li>Mobile-optimized interface with dark mode support</li>
                 </ul>
             </div>
-        </div>
+        </section>
 
-        <div class="links">
-            <a href="https://github.com/nulljosh" target="_blank" rel="noopener noreferrer" aria-label="View Joshua's GitHub profile and code repositories">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <div class="social-links">
+            <a href="https://github.com/nulljosh" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                 </svg>
             </a>
-            <a href="https://twitter.com/nulljosh1" target="_blank" rel="noopener noreferrer" aria-label="Follow Joshua on Twitter for professional updates">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <a href="https://twitter.com/nulljosh1" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                <svg viewBox="0 0 24 24" fill="currentColor">
                     <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
                 </svg>
             </a>
         </div>
-        
-        <div class="footer">Made in Vancouver, BC</div>
+
+        <footer class="footer">
+            Made with &hearts; in Vancouver, BC
+        </footer>
     </div>
+
     <script>
         const themeToggle = document.getElementById('themeToggle');
         const sunIcon = document.getElementById('sunIcon');
         const moonIcon = document.getElementById('moonIcon');
 
-        // Check for saved theme preference or default to system preference
         const getPreferredTheme = () => {
             const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                return savedTheme;
-            }
+            if (savedTheme) return savedTheme;
             return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         };
 
@@ -220,19 +567,15 @@ li{margin-bottom:3px}
             localStorage.setItem('theme', theme);
         };
 
-        // Set initial theme
         setTheme(getPreferredTheme());
 
-        // Toggle theme on button click
         themeToggle.addEventListener('click', () => {
             const currentTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             setTheme(newTheme);
         });
 
-        // Listen for system theme changes
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-            // Only auto-switch if user hasn't manually set a preference
             if (!localStorage.getItem('theme')) {
                 setTheme(e.matches ? 'dark' : 'light');
             }
