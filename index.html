@@ -8,21 +8,67 @@
 <meta name="keywords" content="technical support, web design, Apple specialist, portfolio management, Vancouver BC">
 <meta name="author" content="Joshua Trommel">
 <link rel="canonical" href="https://joshuatrommel.com">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://joshuatrommel.com">
+<meta property="og:title" content="Joshua Trommel - Tech & Design">
+<meta property="og:description" content="Technical specialist with 10+ years making technology work seamlessly. Apple device repair, web development, and cloud solutions.">
+<meta property="og:image" content="https://joshuatrommel.com/og-image.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://joshuatrommel.com">
+<meta property="twitter:title" content="Joshua Trommel - Tech & Design">
+<meta property="twitter:description" content="Technical specialist with 10+ years making technology work seamlessly. Apple device repair, web development, and cloud solutions.">
+<meta property="twitter:image" content="https://joshuatrommel.com/og-image.jpg">
+<meta name="twitter:creator" content="@nulljosh1">
+
+<!-- Additional SEO -->
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">
+<meta name="theme-color" content="#d4691b" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#ff8c42" media="(prefers-color-scheme: dark)">
+
+<!-- Schema.org structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Joshua Trommel",
+  "url": "https://joshuatrommel.com",
+  "email": "jatrommel@gmail.com",
+  "telephone": "+17788462726",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Langley",
+    "addressRegion": "BC",
+    "addressCountry": "CA"
+  },
+  "jobTitle": "Portfolio Manager & Technical Specialist",
+  "sameAs": [
+    "https://github.com/nulljosh",
+    "https://twitter.com/nulljosh1",
+    "https://letterboxd.com/literallyjordan/"
+  ],
+  "knowsAbout": ["Technical Support", "Web Development", "Apple Devices", "Portfolio Management", "Cloud Infrastructure"]
+}
+</script>
 <style>
 html { scroll-behavior: smooth; }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
-    background: linear-gradient(135deg, #fff4e6, #ffe4b3);
+    background: linear-gradient(135deg, #fff8f0, #ffeccc);
     min-height: 100vh;
-    color: #2c1810;
+    color: #1a0f0a;
     line-height: 1.6;
 }
 
 body.dark-mode {
-    background: linear-gradient(135deg, #1a1d23, #2c3440);
-    color: #ecf0f1;
+    background: linear-gradient(135deg, #0f1419, #1a2028);
+    color: #f5f5f5;
 }
 
 .container { max-width: 900px; margin: 0 auto; padding: 60px 40px; }
@@ -46,35 +92,35 @@ body.dark-mode {
 
 .contact-info {
     font-size: 1rem;
-    color: #5d4037;
+    color: #3e2723;
     margin-bottom: 20px;
 }
 
-body.dark-mode .contact-info { color: #bdc3c7; }
+body.dark-mode .contact-info { color: #e0e0e0; }
 
 .contact-info a {
-    color: #c0522b;
+    color: #b8431f;
     text-decoration: none;
     transition: color 0.3s;
     font-weight: 500;
 }
 
-.contact-info a:visited { color: #c0522b; }
-.contact-info a:hover { color: #d4691b; }
+.contact-info a:visited { color: #b8431f; }
+.contact-info a:hover { color: #d4691b; text-decoration: underline; }
 
-body.dark-mode .contact-info a { color: #ff8c42; }
-body.dark-mode .contact-info a:visited { color: #ff8c42; }
-body.dark-mode .contact-info a:hover { color: #ffb366; }
+body.dark-mode .contact-info a { color: #ffa366; }
+body.dark-mode .contact-info a:visited { color: #ffa366; }
+body.dark-mode .contact-info a:hover { color: #ffb380; text-decoration: underline; }
 
 .intro {
     font-size: 1.2rem;
-    color: #5d4037;
+    color: #3e2723;
     max-width: 700px;
     margin: 20px auto;
     line-height: 1.7;
 }
 
-body.dark-mode .intro { color: #95a5a6; }
+body.dark-mode .intro { color: #d0d0d0; }
 
 /* Theme Toggle */
 .theme-toggle {
@@ -136,10 +182,10 @@ body.dark-mode .testimonial {
 
 .testimonial cite {
     font-size: 0.95rem;
-    color: #5d4037;
+    color: #3e2723;
 }
 
-body.dark-mode .testimonial cite { color: #95a5a6; }
+body.dark-mode .testimonial cite { color: #d0d0d0; }
 
 /* Sections */
 .section {
@@ -196,11 +242,11 @@ body.dark-mode .service-card {
 body.dark-mode .service-card h3 { color: #ff8c42; }
 
 .service-card p {
-    color: #5d4037;
+    color: #3e2723;
     line-height: 1.6;
 }
 
-body.dark-mode .service-card p { color: #95a5a6; }
+body.dark-mode .service-card p { color: #d0d0d0; }
 
 /* Experience Cards */
 .experience-grid {
@@ -251,28 +297,28 @@ body.dark-mode .job-title a:hover { color: #ffb366; }
 
 .company-date {
     font-size: 0.95rem;
-    color: #5d4037;
+    color: #3e2723;
     margin-bottom: 15px;
 }
 
-body.dark-mode .company-date { color: #95a5a6; }
+body.dark-mode .company-date { color: #d0d0d0; }
 
 .company-date a {
-    color: #c0522b;
+    color: #b8431f;
     text-decoration: none;
     font-weight: 500;
 }
 
-.company-date a:visited { color: #c0522b; }
+.company-date a:visited { color: #b8431f; }
 
 .company-date a:hover {
     color: #d4691b;
     text-decoration: underline;
 }
 
-body.dark-mode .company-date a { color: #ff8c42; }
-body.dark-mode .company-date a:visited { color: #ff8c42; }
-body.dark-mode .company-date a:hover { color: #ffb366; }
+body.dark-mode .company-date a { color: #ffa366; }
+body.dark-mode .company-date a:visited { color: #ffa366; }
+body.dark-mode .company-date a:hover { color: #ffb380; }
 
 .job-card ul {
     list-style: none;
@@ -283,10 +329,10 @@ body.dark-mode .company-date a:hover { color: #ffb366; }
     padding-left: 25px;
     position: relative;
     margin-bottom: 8px;
-    color: #5d4037;
+    color: #3e2723;
 }
 
-body.dark-mode .job-card li { color: #bdc3c7; }
+body.dark-mode .job-card li { color: #e0e0e0; }
 
 .job-card li:before {
     content: "▸";
@@ -319,10 +365,10 @@ body.dark-mode .simple-list {
     padding-left: 25px;
     position: relative;
     margin-bottom: 12px;
-    color: #5d4037;
+    color: #3e2723;
 }
 
-body.dark-mode .simple-list li { color: #bdc3c7; }
+body.dark-mode .simple-list li { color: #e0e0e0; }
 
 .simple-list li:before {
     content: "▸";
@@ -335,21 +381,21 @@ body.dark-mode .simple-list li { color: #bdc3c7; }
 body.dark-mode .simple-list li:before { color: #ff8c42; }
 
 .simple-list a {
-    color: #c0522b;
+    color: #b8431f;
     text-decoration: none;
     font-weight: 500;
 }
 
-.simple-list a:visited { color: #c0522b; }
+.simple-list a:visited { color: #b8431f; }
 
 .simple-list a:hover {
     color: #d4691b;
     text-decoration: underline;
 }
 
-body.dark-mode .simple-list a { color: #ff8c42; }
-body.dark-mode .simple-list a:visited { color: #ff8c42; }
-body.dark-mode .simple-list a:hover { color: #ffb366; }
+body.dark-mode .simple-list a { color: #ffa366; }
+body.dark-mode .simple-list a:visited { color: #ffa366; }
+body.dark-mode .simple-list a:hover { color: #ffb380; }
 
 /* Social Links */
 .social-links {
@@ -389,14 +435,14 @@ body.dark-mode .social-links svg { fill: #ff8c42; }
 .footer {
     text-align: center;
     padding: 40px 0;
-    color: #5d4037;
+    color: #3e2723;
     font-size: 1rem;
     border-top: 1px solid rgba(212, 105, 27, 0.2);
     margin-top: 60px;
 }
 
 body.dark-mode .footer {
-    color: #95a5a6;
+    color: #d0d0d0;
     border-top-color: rgba(255, 140, 66, 0.2);
 }
 
