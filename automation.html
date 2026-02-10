@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mac Automation Services - Joshua Trommel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1d1d1f;
+            background: #fbfbfd;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 15px 40px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .case-study {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+        }
+
+        .case-study h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+
+        .case-study-meta {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .meta-label {
+            font-size: 0.85rem;
+            color: #86868b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 5px;
+        }
+
+        .meta-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1d1d1f;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: #f5f5f7;
+            padding: 30px;
+            border-radius: 16px;
+        }
+
+        .feature-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #1d1d1f;
+        }
+
+        .feature-card p {
+            color: #515154;
+            font-size: 0.95rem;
+        }
+
+        .code-block {
+            background: #1d1d1f;
+            color: #00ff88;
+            padding: 30px;
+            border-radius: 12px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pricing-card.featured {
+            border: 3px solid #667eea;
+            position: relative;
+        }
+
+        .pricing-badge {
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #667eea;
+            margin: 20px 0;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: #86868b;
+        }
+
+        .pricing-features {
+            text-align: left;
+            margin: 30px 0;
+        }
+
+        .pricing-features li {
+            list-style: none;
+            padding: 10px 0;
+            border-bottom: 1px solid #f5f5f7;
+        }
+
+        .pricing-features li:before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: 700;
+            margin-right: 10px;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            border-radius: 20px;
+        }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-section p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .case-study {
+                padding: 30px 20px;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Mac Automation Services</h1>
+        <p>I build intelligent automation systems that save hours every day</p>
+        <a href="#contact" class="cta-button">Get Started →</a>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2 class="section-title">Featured Case Study</h2>
+            
+            <div class="case-study">
+                <h3>🎵 AI-Powered Music System</h3>
+                
+                <div class="case-study-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Timeline</span>
+                        <span class="meta-value">1 Day</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Commands Built</span>
+                        <span class="meta-value">25+</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Lines of Code</span>
+                        <span class="meta-value">~500</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Result</span>
+                        <span class="meta-value">Hands-free music</span>
+                    </div>
+                </div>
+
+                <p style="font-size: 1.1rem; margin-bottom: 30px;">
+                    Built a comprehensive Apple Music control system with intelligent auto-DJ that learns your taste, 
+                    queues similar tracks automatically, and creates smart playlists every 10 songs.
+                </p>
+
+                <h4 style="font-size: 1.5rem; margin: 30px 0 20px;">What It Does</h4>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>🎧 Auto-DJ</h4>
+                        <p>Monitors playback and queues similar tracks 20 seconds before each song ends</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>💾 Smart Playlists</h4>
+                        <p>Automatically creates playlists every 10 songs with session history</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>⭐ Rating System</h4>
+                        <p>Love tracks, set ratings, and the AI learns your preferences</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🔍 Discovery Mode</h4>
+                        <p>Finds hidden gems in your library you've never played</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>📊 Analytics</h4>
+                        <p>Top played songs, recent history, genre breakdowns</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🎙️ Voice Control</h4>
+                        <p>Natural language commands via terminal or messaging</p>
+                    </div>
+                </div>
+
+                <h4 style="font-size: 1.5rem; margin: 30px 0 20px;">Example Commands</h4>
+                
+                <div class="code-block">
+# Play any song from your library
+$ music play kid cudi
+
+# Get detailed track info
+$ music info
+
+# Love the current track
+$ music love
+
+# Find your top 25 most played
+$ music top 25
+
+# Play by genre
+$ music genre hip-hop
+
+# Start intelligent auto-DJ
+$ dj start
+🎧 Auto-DJ started
+📝 Will create smart playlists automatically
+
+# Check status
+$ dj status
+✅ Auto-DJ running (queued 15 tracks, created 2 playlists)
+                </div>
+
+                <h4 style="font-size: 1.5rem; margin: 30px 0 20px;">The Tech</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 10px 0; border-bottom: 1px solid #f5f5f7;">
+                        <strong>AppleScript</strong> - Deep Apple Music integration
+                    </li>
+                    <li style="padding: 10px 0; border-bottom: 1px solid #f5f5f7;">
+                        <strong>Bash</strong> - Command-line interface
+                    </li>
+                    <li style="padding: 10px 0; border-bottom: 1px solid #f5f5f7;">
+                        <strong>OpenClaw</strong> - AI agent orchestration
+                    </li>
+                    <li style="padding: 10px 0; border-bottom: 1px solid #f5f5f7;">
+                        <strong>Background Process</strong> - Auto-queuing daemon
+                    </li>
+                    <li style="padding: 10px 0;">
+                        <strong>Test Suite</strong> - 10+ automated test cases
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Services</h2>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Bronze</h3>
+                    <div class="price">$200</div>
+                    <p style="color: #86868b; margin-bottom: 20px;">Single automation</p>
+                    <ul class="pricing-features">
+                        <li>One workflow automation</li>
+                        <li>Email, calendar, or file system</li>
+                        <li>2-hour turnaround</li>
+                        <li>Basic documentation</li>
+                        <li>1 revision included</li>
+                    </ul>
+                    <a href="#contact" class="cta-button" style="margin-top: 20px;">Get Started</a>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <h3>Silver</h3>
+                    <div class="price">$500</div>
+                    <p style="color: #86868b; margin-bottom: 20px;">Multi-system automation</p>
+                    <ul class="pricing-features">
+                        <li>Complex workflow automation</li>
+                        <li>Multiple app integration</li>
+                        <li>1 week delivery</li>
+                        <li>Full documentation</li>
+                        <li>Unlimited revisions</li>
+                        <li>30-day support</li>
+                    </ul>
+                    <a href="#contact" class="cta-button" style="margin-top: 20px;">Get Started</a>
+                </div>
+
+                <div class="pricing-card">
+                    <h3>Gold</h3>
+                    <div class="price">$1,500</div>
+                    <p style="color: #86868b; margin-bottom: 20px;">Full workflow automation</p>
+                    <ul class="pricing-features">
+                        <li>Complete system overhaul</li>
+                        <li>AI agent integration</li>
+                        <li>2 week delivery</li>
+                        <li>Full documentation & training</li>
+                        <li>Unlimited revisions</li>
+                        <li>90-day support</li>
+                        <li>Monthly maintenance available</li>
+                    </ul>
+                    <a href="#contact" class="cta-button" style="margin-top: 20px;">Get Started</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="contact">
+            <div class="contact-section">
+                <h2>Ready to automate?</h2>
+                <p>Let's build something amazing together</p>
+                <a href="mailto:contact@heyitsmejosh.com" class="cta-button">
+                    contact@heyitsmejosh.com
+                </a>
+                <p style="margin-top: 30px; font-size: 0.9rem;">
+                    GitHub: <a href="https://github.com/nulljosh" style="color: white;">@nulljosh</a> | 
+                    Portfolio: <a href="https://heyitsmejosh.com" style="color: white;">heyitsmejosh.com</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
