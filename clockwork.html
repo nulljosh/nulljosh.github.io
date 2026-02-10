@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clockwork — Mac Automation Portfolio</title>
+    <meta name="description" content="Clockwork: A portfolio of intelligent macOS automation projects. Music control systems, auto-DJ, and workflow automation tools.">
+    <meta name="keywords" content="Mac automation, AppleScript, workflow, macOS tools, Joshua Trommel">
+    <meta name="author" content="Joshua Trommel">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #f5f5f7;
+            --surface: #ffffff;
+            --text: #1d1d1f;
+            --text-secondary: #86868b;
+            --accent: #0071e3;
+            --border: rgba(0, 0, 0, 0.08);
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0f0f11;
+                --surface: #1d1d1f;
+                --text: #f5f5f7;
+                --text-secondary: #a1a1a6;
+                --border: rgba(255, 255, 255, 0.1);
+                --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+                --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.6);
+            }
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+
+        .logo {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .tagline {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--accent);
+            text-decoration: none;
+            transition: opacity 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        nav a:hover {
+            opacity: 0.7;
+        }
+
+        nav a::after {
+            content: '↗';
+            font-size: 12px;
+        }
+
+        /* Projects Grid */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin: 80px 0;
+        }
+
+        .project-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+
+        .project-icon {
+            font-size: 28px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .project-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .project-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: auto;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            padding: 4px 8px;
+            background: var(--bg);
+            color: var(--text-secondary);
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        /* Hero accent line */
+        .accent-line {
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+            margin: 24px auto 0;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            margin-top: 100px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            font-size: 14px;
+            color: var(--accent);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.7;
+        }
+
+        .copyright {
+            font-size: 12px;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            header {
+                padding: 60px 0 40px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                font-size: 16px;
+            }
+
+            .projects {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .project-card {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Mac Automation Portfolio</div>
+            <h1>Clockwork</h1>
+            <div class="accent-line"></div>
+            <p class="tagline">Intelligent automation systems for macOS. Eliminate repetitive tasks with elegant, seamless workflows.</p>
+            <nav>
+                <a href="https://github.com/nulljosh/mac-automation-services" target="_blank">GitHub Repo</a>
+                <a href="https://heyitsmejosh.com" target="_blank">Main Site</a>
+            </nav>
+        </header>
+
+        <main class="projects">
+            <!-- Music Control System -->
+            <a href="https://github.com/nulljosh/mac-automation-services" target="_blank" class="project-card">
+                <span class="project-icon">🎵</span>
+                <h3>Music Control System</h3>
+                <p>Complete Apple Music automation with 25+ commands. Control playback, search, ratings, discovery, and analytics from the terminal.</p>
+                <div class="project-meta">
+                    <span class="tag">AppleScript</span>
+                    <span class="tag">Bash</span>
+                    <span class="tag">Terminal</span>
+                </div>
+            </a>
+
+            <!-- Auto-DJ -->
+            <a href="https://github.com/nulljosh/mac-automation-services" target="_blank" class="project-card">
+                <span class="project-icon">🎧</span>
+                <h3>Auto-DJ</h3>
+                <p>Intelligent background music queueing. Monitors playback, queues similar tracks, and creates smart playlists every 10 songs based on your taste.</p>
+                <div class="project-meta">
+                    <span class="tag">AppleScript</span>
+                    <span class="tag">Daemon</span>
+                    <span class="tag">AI Learning</span>
+                </div>
+            </a>
+
+            <!-- WikiScroll -->
+            <a href="https://github.com/nulljosh/wikiscroll" target="_blank" class="project-card">
+                <span class="project-icon">📖</span>
+                <h3>WikiScroll</h3>
+                <p>Infinite scroll through Wikipedia articles. Seamlessly browse and discover topics with automatic continuous loading.</p>
+                <div class="project-meta">
+                    <span class="tag">Vite</span>
+                    <span class="tag">React</span>
+                    <span class="tag">API</span>
+                </div>
+            </a>
+
+            <!-- Send Image Script -->
+            <a href="https://github.com/nulljosh/mac-automation-services" target="_blank" class="project-card">
+                <span class="project-icon">🖼️</span>
+                <h3>Send Image Script</h3>
+                <p>Automated image sharing utility. Quickly export and send images to multiple destinations with custom formatting and metadata.</p>
+                <div class="project-meta">
+                    <span class="tag">Bash</span>
+                    <span class="tag">Automation</span>
+                    <span class="tag">CLI</span>
+                </div>
+            </a>
+
+            <!-- Workflow Orchestration -->
+            <a href="https://github.com/nulljosh/mac-automation-services" target="_blank" class="project-card">
+                <span class="project-icon">⚙️</span>
+                <h3>Workflow Orchestration</h3>
+                <p>Multi-step automation systems. Chain together complex workflows that span multiple apps and services with intelligent error handling.</p>
+                <div class="project-meta">
+                    <span class="tag">OpenClaw</span>
+                    <span class="tag">AppleScript</span>
+                    <span class="tag">Integration</span>
+                </div>
+            </a>
+
+            <!-- Utility Scripts -->
+            <a href="https://github.com/nulljosh/mac-automation-services/tree/main/shortcuts" target="_blank" class="project-card">
+                <span class="project-icon">🔧</span>
+                <h3>Utility Scripts</h3>
+                <p>Collection of specialized automation tools including GitHub trending, etymology lookup, astrology data, and more quick utilities.</p>
+                <div class="project-meta">
+                    <span class="tag">Bash</span>
+                    <span class="tag">Shell</span>
+                    <span class="tag">Utilities</span>
+                </div>
+            </a>
+        </main>
+
+        <footer>
+            <div class="footer-links">
+                <a href="https://github.com/nulljosh" target="_blank">GitHub</a>
+                <a href="https://heyitsmejosh.com" target="_blank">Portfolio</a>
+                <a href="mailto:jatrommel@gmail.com">Email</a>
+            </div>
+            <p class="copyright">CLOCKWORK 2026 · MAC AUTOMATION</p>
+        </footer>
+    </div>
+</body>
+</html>
