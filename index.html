@@ -61,14 +61,14 @@ html { scroll-behavior: smooth; }
 
 body {
     font-family: var(--font-primary);
-    background: linear-gradient(135deg, var(--color-accent-5), var(--color-accent-3));
+    background: var(--color-accent-5);
     min-height: 100vh;
     color: var(--text-primary);
     line-height: 1.6;
 }
 
 body.dark-mode {
-    background: linear-gradient(135deg, var(--color-neutral-2), var(--color-neutral-1));
+    background: var(--color-neutral-2);
     color: var(--text-primary);
 }
 
@@ -85,10 +85,7 @@ body.dark-mode {
     font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: var(--font-weight-5);
     margin-bottom: var(--space-10);
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--color-primary);
 }
 
 .contact-info {
