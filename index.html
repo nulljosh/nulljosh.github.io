@@ -586,7 +586,9 @@ body.dark-mode .footer {
                     <div class="job-title"><a href="https://github.com/nulljosh/rise" target="_blank" rel="noopener noreferrer">rise</a></div>
                     <div class="company-date">2026</div>
                     <ul>
-                        <li>Trading simulator and prediction markets platform. Live on Vercel.</li>
+                        <li>Trading simulator and prediction markets platform with real-time data</li>
+                        <li>Built with Next.js and deployed live on Vercel</li>
+                        <li>Portfolio tracking, market visualization, and simulated order execution</li>
                     </ul>
                 </div>
 
@@ -594,7 +596,9 @@ body.dark-mode .footer {
                     <div class="job-title"><a href="https://github.com/nulljosh/wikiscroll" target="_blank" rel="noopener noreferrer">scroll</a></div>
                     <div class="company-date">2026</div>
                     <ul>
-                        <li>TikTok-style Wikipedia article scroller. Swipe through knowledge.</li>
+                        <li>TikTok-style infinite scroller for Wikipedia articles</li>
+                        <li>Fetches random articles via the Wikipedia API with smooth swipe navigation</li>
+                        <li>Mobile-first responsive design with reading time estimates</li>
                     </ul>
                 </div>
 
@@ -602,7 +606,9 @@ body.dark-mode .footer {
                     <div class="job-title"><a href="https://github.com/nulljosh/core" target="_blank" rel="noopener noreferrer">core</a></div>
                     <div class="company-date">2026</div>
                     <ul>
-                        <li>Nano transformer LLM built from scratch in PyTorch. Training pipeline, tokenizer, and inference.</li>
+                        <li>Nano transformer language model built from scratch in PyTorch</li>
+                        <li>Custom tokenizer, training pipeline, and text generation inference</li>
+                        <li>Implements attention mechanisms, positional encoding, and gradient optimization</li>
                     </ul>
                 </div>
 
@@ -610,7 +616,9 @@ body.dark-mode .footer {
                     <div class="job-title"><a href="https://github.com/nulljosh/tally" target="_blank" rel="noopener noreferrer">tally</a></div>
                     <div class="company-date">2026</div>
                     <ul>
-                        <li>BC Self-Serve benefits tracker. Monitors and displays government benefit status.</li>
+                        <li>BC Self-Serve government benefits tracker and status dashboard</li>
+                        <li>Monitors benefit applications and displays real-time status updates</li>
+                        <li>Built with Next.js and deployed on Vercel</li>
                     </ul>
                 </div>
 
@@ -618,7 +626,9 @@ body.dark-mode .footer {
                     <div class="job-title"><a href="https://github.com/nulljosh/jot" target="_blank" rel="noopener noreferrer">jot</a></div>
                     <div class="company-date">2026</div>
                     <ul>
-                        <li>Scripting language with a working interpreter. Turing complete, C-style syntax.</li>
+                        <li>Turing-complete scripting language with C-style syntax</li>
+                        <li>Hand-written lexer, recursive descent parser, and tree-walk interpreter</li>
+                        <li>Supports variables, control flow, functions, and closures</li>
                     </ul>
                 </div>
             </div></section>
@@ -648,8 +658,12 @@ body.dark-mode .footer {
             </a>
         </div>
 
-        <div style="text-align: center; margin-top: 20px; font-size: 14px; color: #5d4037;">
-            <span id="letterboxd-stats">6,552 films watched on Letterboxd</span>
+        <div style="text-align: center; margin-top: 20px; font-size: 14px; color: #5d4037; line-height: 2;">
+            <span id="letterboxd-stats">6,552 films watched on Letterboxd</span><br>
+            <span id="github-stats">loading commits...</span><br>
+            <span id="weather-stats">loading weather...</span><br>
+            <span id="coffee-stats"></span><br>
+            <span id="uptime-stats"></span>
         </div>
 
         <footer class="footer">
@@ -746,8 +760,74 @@ body.dark-mode .footer {
             }
         }
 
-        // Fetch stats on page load
+        // GitHub commit stats
+        async function updateGitHubStats() {
+            const el = document.getElementById('github-stats');
+            try {
+                const res = await fetch('https://api.github.com/users/nulljosh/events/public?per_page=100');
+                if (!res.ok) throw new Error();
+                const events = await res.json();
+                const pushEvents = events.filter(e => e.type === 'PushEvent');
+                const totalCommits = pushEvents.reduce((sum, e) => sum + (e.payload.commits ? e.payload.commits.length : 0), 0);
+                const latest = pushEvents.length > 0 && pushEvents[0].payload.commits
+                    ? pushEvents[0].payload.commits[pushEvents[0].payload.commits.length - 1].message
+                    : null;
+                let text = `${totalCommits} commits on GitHub recently`;
+                if (latest) text += ` · latest: "${latest.substring(0, 50)}"`;
+                el.textContent = text;
+            } catch { el.textContent = ''; }
+        }
+
+        // Weather
+        async function updateWeather() {
+            const el = document.getElementById('weather-stats');
+            try {
+                const res = await fetch('https://wttr.in/Langley,BC?format=%t+%C&m');
+                if (!res.ok) throw new Error();
+                const text = await res.text();
+                el.textContent = `${text.trim()} in Langley right now`;
+            } catch { el.textContent = ''; }
+        }
+
+        // Coffee estimate (avg 2.5/day since Jan 1)
+        function updateCoffee() {
+            const el = document.getElementById('coffee-stats');
+            const now = new Date();
+            const startOfYear = new Date(now.getFullYear(), 0, 1);
+            const dayOfYear = Math.floor((now - startOfYear) / (1000 * 60 * 60 * 24)) + 1;
+            const coffees = Math.round(dayOfYear * 2.5);
+            el.textContent = `~${coffees.toLocaleString()} coffees consumed in ${now.getFullYear()}`;
+        }
+
+        // Uptime (time since 5 AM today, or since midnight if before 5 AM)
+        function updateUptime() {
+            const el = document.getElementById('uptime-stats');
+            const now = new Date();
+            const hour = now.getHours();
+            const wakeHour = 5;
+            let awakeMs;
+            if (hour >= wakeHour) {
+                const wake = new Date(now);
+                wake.setHours(wakeHour, 0, 0, 0);
+                awakeMs = now - wake;
+            } else {
+                // up since yesterday 5 AM (night owl mode)
+                const wake = new Date(now);
+                wake.setDate(wake.getDate() - 1);
+                wake.setHours(wakeHour, 0, 0, 0);
+                awakeMs = now - wake;
+            }
+            const hours = Math.floor(awakeMs / (1000 * 60 * 60));
+            const mins = Math.floor((awakeMs % (1000 * 60 * 60)) / (1000 * 60));
+            el.textContent = `~${hours}h ${mins}m awake today`;
+        }
+
+        // Fetch all stats on page load
         updateLetterboxdStats();
+        updateGitHubStats();
+        updateWeather();
+        updateCoffee();
+        updateUptime();
     </script>
 </body>
 </html>
