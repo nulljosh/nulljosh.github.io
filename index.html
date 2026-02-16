@@ -825,10 +825,9 @@ body.dark-mode .footer {
         // Last blog post
         async function updateBlog() {
             const el = document.getElementById('blog-stats');
+            const feedUrl = 'https://heyitsmejosh.com/journal/feed.xml';
             try {
-                const proxyUrl = 'https://corsproxy.io/?';
-                const feedUrl = 'https://heyitsmejosh.com/journal/feed.xml';
-                const res = await fetch(proxyUrl + encodeURIComponent(feedUrl));
+                const res = await fetch(feedUrl);
                 if (!res.ok) throw new Error();
                 const xml = await res.text();
                 const parser = new DOMParser();
@@ -839,7 +838,21 @@ body.dark-mode .footer {
                     const link = entry.querySelector('link').getAttribute('href');
                     el.innerHTML = `last blog post: <a href="${link}" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">${title}</a>`;
                 } else { el.textContent = ''; }
-            } catch { el.textContent = ''; }
+            } catch {
+                try {
+                    const res = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(feedUrl));
+                    if (!res.ok) throw new Error();
+                    const xml = await res.text();
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(xml, 'text/xml');
+                    const entry = doc.querySelector('entry');
+                    if (entry) {
+                        const title = entry.querySelector('title').textContent;
+                        const link = entry.querySelector('link').getAttribute('href');
+                        el.innerHTML = `last blog post: <a href="${link}" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">${title}</a>`;
+                    } else { el.textContent = ''; }
+                } catch { el.textContent = ''; }
+            }
         }
 
         // Weather (Open-Meteo, free, no key)
