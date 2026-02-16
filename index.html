@@ -796,13 +796,13 @@ body.dark-mode .footer {
         async function updateWeather() {
             const el = document.getElementById('weather-stats');
             try {
-                const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=49.1044&longitude=-122.6614&current=temperature_2m,weather_code&timezone=America/Vancouver&temperature_unit=celsius');
+                const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=49.0667&longitude=-122.6667&current=temperature_2m,weather_code&timezone=America/Vancouver&temperature_unit=celsius');
                 if (!res.ok) throw new Error();
                 const data = await res.json();
                 const temp = Math.round(data.current.temperature_2m);
                 const codes = {0:'clear',1:'mostly clear',2:'partly cloudy',3:'overcast',45:'foggy',48:'foggy',51:'light drizzle',53:'drizzle',55:'heavy drizzle',61:'light rain',63:'rain',65:'heavy rain',71:'light snow',73:'snow',75:'heavy snow',80:'light showers',81:'showers',82:'heavy showers',95:'thunderstorm'};
                 const desc = codes[data.current.weather_code] || 'mixed';
-                el.textContent = `${temp}°C and ${desc} in Langley right now`;
+                el.textContent = `${temp}°C and ${desc} in Brookswood right now`;
             } catch { el.textContent = ''; }
         }
 
