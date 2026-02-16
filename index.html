@@ -799,14 +799,17 @@ body.dark-mode .footer {
             } catch { el.textContent = ''; }
         }
 
-        // Weather
+        // Weather (Open-Meteo, free, no key)
         async function updateWeather() {
             const el = document.getElementById('weather-stats');
             try {
-                const res = await fetch('https://wttr.in/Langley,BC?format=%t+%C&m');
+                const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=49.1044&longitude=-122.6614&current=temperature_2m,weather_code&timezone=America/Vancouver&temperature_unit=celsius');
                 if (!res.ok) throw new Error();
-                const text = await res.text();
-                el.textContent = `${text.trim()} in Langley right now`;
+                const data = await res.json();
+                const temp = Math.round(data.current.temperature_2m);
+                const codes = {0:'clear',1:'mostly clear',2:'partly cloudy',3:'overcast',45:'foggy',48:'foggy',51:'light drizzle',53:'drizzle',55:'heavy drizzle',61:'light rain',63:'rain',65:'heavy rain',71:'light snow',73:'snow',75:'heavy snow',80:'light showers',81:'showers',82:'heavy showers',95:'thunderstorm'};
+                const desc = codes[data.current.weather_code] || 'mixed';
+                el.textContent = `${temp}°C and ${desc} in Langley right now`;
             } catch { el.textContent = ''; }
         }
 
@@ -820,24 +823,20 @@ body.dark-mode .footer {
             el.textContent = `~${coffees.toLocaleString()} coffees consumed in ${now.getFullYear()}`;
         }
 
-        // Uptime (time since 5 AM today, or since midnight if before 5 AM)
+        // Uptime (6 AM - 10 PM schedule)
         function updateUptime() {
             const el = document.getElementById('uptime-stats');
             const now = new Date();
             const hour = now.getHours();
-            const wakeHour = 5;
-            let awakeMs;
-            if (hour >= wakeHour) {
-                const wake = new Date(now);
-                wake.setHours(wakeHour, 0, 0, 0);
-                awakeMs = now - wake;
-            } else {
-                // up since yesterday 5 AM (night owl mode)
-                const wake = new Date(now);
-                wake.setDate(wake.getDate() - 1);
-                wake.setHours(wakeHour, 0, 0, 0);
-                awakeMs = now - wake;
+            const wakeHour = 6;
+            const sleepHour = 22;
+            if (hour >= sleepHour || hour < wakeHour) {
+                el.textContent = 'probably sleeping right now';
+                return;
             }
+            const wake = new Date(now);
+            wake.setHours(wakeHour, 0, 0, 0);
+            const awakeMs = now - wake;
             const hours = Math.floor(awakeMs / (1000 * 60 * 60));
             const mins = Math.floor((awakeMs % (1000 * 60 * 60)) / (1000 * 60));
             el.textContent = `~${hours}h ${mins}m awake today`;
