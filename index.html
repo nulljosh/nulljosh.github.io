@@ -661,6 +661,7 @@ body.dark-mode .footer {
         <div style="text-align: center; margin-top: 20px; font-size: 14px; color: #5d4037; line-height: 2;">
             <span id="letterboxd-stats">6,552 films watched on Letterboxd</span><br>
             <span id="github-stats">loading commits...</span><br>
+            <span id="blog-stats">loading blog...</span><br>
             <span id="weather-stats">loading weather...</span><br>
             <span id="coffee-stats"></span><br>
             <span id="uptime-stats"></span>
@@ -778,6 +779,26 @@ body.dark-mode .footer {
             } catch { el.textContent = ''; }
         }
 
+        // Last blog post
+        async function updateBlog() {
+            const el = document.getElementById('blog-stats');
+            try {
+                const proxyUrl = 'https://corsproxy.io/?';
+                const feedUrl = 'https://heyitsmejosh.com/journal/feed.xml';
+                const res = await fetch(proxyUrl + encodeURIComponent(feedUrl));
+                if (!res.ok) throw new Error();
+                const xml = await res.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(xml, 'text/xml');
+                const entry = doc.querySelector('entry');
+                if (entry) {
+                    const title = entry.querySelector('title').textContent;
+                    const link = entry.querySelector('link').getAttribute('href');
+                    el.innerHTML = `last blog post: <a href="${link}" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">${title}</a>`;
+                } else { el.textContent = ''; }
+            } catch { el.textContent = ''; }
+        }
+
         // Weather
         async function updateWeather() {
             const el = document.getElementById('weather-stats');
@@ -825,6 +846,7 @@ body.dark-mode .footer {
         // Fetch all stats on page load
         updateLetterboxdStats();
         updateGitHubStats();
+        updateBlog();
         updateWeather();
         updateCoffee();
         updateUptime();
