@@ -1,27 +1,27 @@
 :root {
-  /* Primary Palette — minimal, accessible */
+  /* Liquid Glass — Apple-inspired */
   --color-primary: #1d1d1f;
-  --color-secondary: #e5e5e7;
+  --color-secondary: #f5f5f7;
   --color-accent-1: #1d1d1f;
-  --color-accent-2: #e5e5e7;
-  --color-accent-3: #a1a1a6;
+  --color-accent-2: #f5f5f7;
+  --color-accent-3: #86868b;
   --color-accent-4: #f5f5f7;
-  --color-accent-5: #fafafa;
+  --color-accent-5: #fbfbfd;
 
   /* Neutrals */
   --color-neutral-1: #1d1d1f;
-  --color-neutral-2: #141414;
+  --color-neutral-2: #0a0a0a;
   --color-neutral-3: #000000;
   --color-neutral-4: #d1d1d6;
-  --color-neutral-5: #6e6e73;
+  --color-neutral-5: #86868b;
 
   /* Text Colors */
   --text-primary: #1d1d1f;
-  --text-secondary: #6e6e73;
+  --text-secondary: #86868b;
 
   /* Typography */
-  --font-primary: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
-  --font-secondary: 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-primary: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+  --font-secondary: -apple-system, BlinkMacSystemFont, 'SF Pro Rounded', sans-serif;
 
   /* Font Weights */
   --font-weight-1: 300;
@@ -42,7 +42,7 @@
   --text-4xl: 2.25rem;
   --text-5xl: 3rem;
 
-  /* Spacing (4px base grid) */
+  /* Spacing */
   --space-0: 0;
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -62,26 +62,26 @@
   --space-16: 10rem;
 
   /* Border Radius */
-  --radius-sm: 0.25rem;
-  --radius: 0.75rem;
-  --radius-lg: 1rem;
+  --radius-sm: 0.375rem;
+  --radius: 1rem;
+  --radius-lg: 1.25rem;
   --radius-xl: 1.5rem;
   --radius-2xl: 2rem;
   --radius-full: 9999px;
 
-  /* Shadows */
-  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
-  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  /* Shadows — soft, layered */
+  --shadow-xs: 0 0.5px 1px rgba(0, 0, 0, 0.02);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.02);
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.06), 0 8px 32px rgba(0, 0, 0, 0.03);
+  --shadow-xl: 0 8px 32px rgba(0, 0, 0, 0.08), 0 16px 48px rgba(0, 0, 0, 0.04);
 
-  /* Glass Morphism */
-  --glass-bg-light: rgba(255, 255, 255, 0.7);
-  --glass-bg-dark: rgba(255, 255, 255, 0.05);
-  --glass-blur: blur(20px);
-  --glass-border-light: rgba(0, 0, 0, 0.06);
-  --glass-border-dark: rgba(255, 255, 255, 0.08);
+  /* Liquid Glass */
+  --glass-bg-light: rgba(255, 255, 255, 0.55);
+  --glass-bg-dark: rgba(255, 255, 255, 0.06);
+  --glass-blur: blur(40px) saturate(180%);
+  --glass-border-light: rgba(255, 255, 255, 0.6);
+  --glass-border-dark: rgba(255, 255, 255, 0.1);
 
   /* Transitions */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -92,5 +92,5 @@
 /* Dark mode overrides */
 body.dark-mode {
   --text-primary: #f5f5f7;
-  --text-secondary: #a1a1a6;
+  --text-secondary: #86868b;
 }
