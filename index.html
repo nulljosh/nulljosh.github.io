@@ -761,21 +761,14 @@ body.dark-mode .footer {
             }
         }
 
-        // GitHub commit stats
+        // GitHub public repos
         async function updateGitHubStats() {
             const el = document.getElementById('github-stats');
             try {
-                const res = await fetch('https://api.github.com/users/nulljosh/events/public?per_page=100');
+                const res = await fetch('https://api.github.com/users/nulljosh');
                 if (!res.ok) throw new Error();
-                const events = await res.json();
-                const pushEvents = events.filter(e => e.type === 'PushEvent');
-                const totalCommits = pushEvents.reduce((sum, e) => sum + (e.payload.commits ? e.payload.commits.length : 0), 0);
-                const latest = pushEvents.length > 0 && pushEvents[0].payload.commits
-                    ? pushEvents[0].payload.commits[pushEvents[0].payload.commits.length - 1].message
-                    : null;
-                let text = `${totalCommits} commits on GitHub recently`;
-                if (latest) text += ` · latest: "${latest.substring(0, 50)}"`;
-                el.textContent = text;
+                const data = await res.json();
+                el.textContent = `${data.public_repos} public repos on GitHub`;
             } catch { el.textContent = ''; }
         }
 
