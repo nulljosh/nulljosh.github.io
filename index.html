@@ -68,8 +68,12 @@ body {
 }
 
 body.dark-mode {
-    background: var(--color-neutral-2);
-    color: var(--text-primary);
+    background: #0a0a0a;
+    color: #f5f5f7;
+}
+
+body.dark-mode h1, body.dark-mode h2, body.dark-mode h3 {
+    color: #f5f5f7 !important;
 }
 
 .container { max-width: 860px; margin: 0 auto; padding: 60px 40px; }
@@ -88,7 +92,7 @@ body.dark-mode {
     color: var(--color-primary);
 }
 
-body.dark-mode .header h1 { color: var(--color-secondary); }
+body.dark-mode .header h1 { color: #f5f5f7 !important; }
 
 .contact-info {
     font-size: var(--text-base);
@@ -199,7 +203,7 @@ body.dark-mode .testimonial {
     text-align: center;
 }
 
-body.dark-mode .section-title { color: var(--color-secondary); }
+body.dark-mode .section-title { color: #f5f5f7 !important; }
 
 /* Services Grid */
 .services-grid {
