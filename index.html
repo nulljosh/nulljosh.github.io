@@ -897,7 +897,7 @@ body.dark-mode .footer {
             const wakeHour = 6;
             const sleepHour = 22;
             if (hour >= sleepHour || hour < wakeHour) {
-                el.textContent = 'probably sleeping right now';
+                el.textContent = 'probably sleeping right now. zzz...';
                 return;
             }
             const wake = new Date(now);
