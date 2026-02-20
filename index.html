@@ -569,41 +569,61 @@ body.dark-mode .footer-stat-value a:hover { color: var(--color-amber); }
 
 /* Contribution heatmap */
 .contribs-section {
-    padding: var(--space-11) 0 var(--space-10);
+    background: var(--glass-bg-light);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border-light);
+    border-radius: var(--radius-xl);
+    padding: var(--space-12) var(--space-11);
     text-align: center;
+    box-shadow: var(--shadow-md);
+    margin-bottom: var(--space-12);
+    overflow: hidden;
+}
+
+body.dark-mode .contribs-section {
+    background: var(--glass-bg-dark);
+    border: 1px solid var(--glass-border-dark);
 }
 
 .contribs-label {
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--color-amber);
     font-weight: 600;
-    margin-bottom: var(--space-7);
+    margin-bottom: var(--space-9);
+    display: block;
 }
 
 .contribs-grid {
     display: inline-grid;
-    grid-template-rows: repeat(7, 10px);
+    grid-template-rows: repeat(7, 12px);
     grid-auto-flow: column;
-    gap: 2px;
+    gap: 3px;
     overflow-x: auto;
     max-width: 100%;
 }
 
 .contribs-day {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     border-radius: 2px;
-    transition: opacity 0.15s;
+    transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.15s;
+    position: relative;
 }
 
-.contribs-day:hover { opacity: 0.7; cursor: default; }
+.contribs-day:hover {
+    transform: scale(1.5);
+    filter: brightness(1.25);
+    cursor: default;
+    z-index: 1;
+}
 
 .contribs-meta {
     font-size: var(--text-sm);
     color: var(--text-secondary);
-    margin-top: var(--space-5);
+    margin-top: var(--space-8);
 }
 
 /* Footer */
@@ -730,14 +750,6 @@ body.dark-mode .footer-stat-value a:hover { color: var(--color-amber); }
             </div>
         </section>
 
-        <!-- Testimonial — moved after Experience -->
-        <div class="testimonial">
-            <blockquote>
-                "Excellent session with Joshua who was personable, very knowledgeable and able to answer questions clearly. He arrived on time and used the time with me very constructively. Very happy with your service. Thank you."
-            </blockquote>
-            <cite>&mdash; Rita, Client</cite>
-        </div>
-
         <section class="section">
             <span class="section-label">Toolkit</span>
             <h2 class="section-title">Skills</h2>
@@ -763,6 +775,13 @@ body.dark-mode .footer-stat-value a:hover { color: var(--color-amber); }
                 </ul>
             </div>
         </section>
+
+        <div class="testimonial">
+            <blockquote>
+                "Excellent session with Joshua who was personable, very knowledgeable and able to answer questions clearly. He arrived on time and used the time with me very constructively. Very happy with your service. Thank you."
+            </blockquote>
+            <cite>&mdash; Rita, Client</cite>
+        </div>
 
         <section class="section">
             <span class="section-label">Built Things</span>
