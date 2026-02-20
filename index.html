@@ -7,22 +7,25 @@
 <meta name="description" content="Technical support specialist and designer in Vancouver, BC. Skilled in Apple device repair, web development, and creative solutions.">
 <meta name="keywords" content="technical support, web design, Apple specialist, portfolio management, Vancouver BC">
 <meta name="author" content="Joshua Trommel">
-<link rel="canonical" href="https://joshuatrommel.com">
+<link rel="canonical" href="https://heyitsmejosh.com">
 <link rel="stylesheet" href="design-tokens.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://joshuatrommel.com">
+<meta property="og:url" content="https://heyitsmejosh.com">
 <meta property="og:title" content="Joshua Trommel - Tech & Design">
 <meta property="og:description" content="Technical specialist with 10+ years making technology work seamlessly. Apple device repair, web development, and cloud solutions.">
-<meta property="og:image" content="https://joshuatrommel.com/og-image.jpg">
+<meta property="og:image" content="https://heyitsmejosh.com/og-image.jpg">
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://joshuatrommel.com">
+<meta property="twitter:url" content="https://heyitsmejosh.com">
 <meta property="twitter:title" content="Joshua Trommel - Tech & Design">
 <meta property="twitter:description" content="Technical specialist with 10+ years making technology work seamlessly. Apple device repair, web development, and cloud solutions.">
-<meta property="twitter:image" content="https://joshuatrommel.com/og-image.jpg">
+<meta property="twitter:image" content="https://heyitsmejosh.com/og-image.jpg">
 <meta name="twitter:creator" content="@nulljosh1">
 
 <!-- Additional SEO -->
@@ -37,7 +40,7 @@
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Joshua Trommel",
-  "url": "https://joshuatrommel.com",
+  "url": "https://heyitsmejosh.com",
   "email": "jatrommel@gmail.com",
   "telephone": "+17788462726",
   "address": {
@@ -58,6 +61,19 @@
 <style>
 html { scroll-behavior: smooth; }
 * { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Noise texture overlay */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+}
 
 body {
     font-family: var(--font-primary);
@@ -83,13 +99,36 @@ body.dark-mode h1, body.dark-mode h2, body.dark-mode h3 {
     text-align: center;
     padding: 60px 0 20px;
     margin-bottom: 20px;
+    position: relative;
+    overflow: visible;
+}
+
+/* Radial glow behind hero */
+.header::before {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 400px;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse at center, rgba(0, 113, 227, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+body.dark-mode .header::before {
+    background: radial-gradient(ellipse at center, rgba(0, 113, 227, 0.12) 0%, transparent 70%);
 }
 
 .header h1 {
+    font-family: var(--font-display);
+    font-style: italic;
     font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: var(--font-weight-5);
+    font-weight: 700;
     margin-bottom: var(--space-10);
     color: var(--color-primary);
+    letter-spacing: -0.02em;
 }
 
 body.dark-mode .header h1 { color: #f5f5f7 !important; }
@@ -108,11 +147,11 @@ body.dark-mode .header h1 { color: #f5f5f7 !important; }
 }
 
 .contact-info a:visited { color: var(--color-primary); }
-.contact-info a:hover { color: var(--color-secondary); text-decoration: underline; }
+.contact-info a:hover { color: var(--color-blue); text-decoration: underline; }
 
 body.dark-mode .contact-info a { color: var(--color-accent-3); }
 body.dark-mode .contact-info a:visited { color: var(--color-accent-3); }
-body.dark-mode .contact-info a:hover { color: var(--color-secondary); }
+body.dark-mode .contact-info a:hover { color: var(--color-amber); }
 
 .intro {
     font-size: var(--text-lg);
@@ -138,12 +177,12 @@ body.dark-mode .contact-info a:hover { color: var(--color-secondary); }
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     z-index: 1000;
     box-shadow: var(--shadow-sm);
 }
 
-.theme-toggle:hover { transform: scale(1.1); }
+.theme-toggle:hover { transform: scale(1.15); }
 
 body.dark-mode .theme-toggle {
     background: var(--glass-bg-dark);
@@ -158,24 +197,36 @@ body.dark-mode .theme-toggle {
 
 body.dark-mode .theme-toggle svg { fill: var(--color-secondary); }
 
+/* Section Labels */
+.section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-amber);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    display: block;
+}
+
 /* Testimonial */
 .testimonial {
     background: var(--glass-bg-light);
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
     padding: var(--space-11);
-    border-left: 3px solid var(--color-neutral-4);
+    border-left: 3px solid var(--color-amber);
     border-radius: var(--radius-lg);
     margin: var(--space-12) 0;
-    transition: all 0.3s;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     box-shadow: var(--shadow-sm);
 }
 
-.testimonial:hover { transform: translateY(-2px); }
+.testimonial:hover { transform: translateY(-4px); }
 
 body.dark-mode .testimonial {
     background: var(--glass-bg-dark);
-    border-left-color: rgba(255, 255, 255, 0.15);
+    border-left-color: var(--color-amber);
 }
 
 .testimonial blockquote {
@@ -183,6 +234,7 @@ body.dark-mode .testimonial {
     font-size: var(--text-lg);
     margin-bottom: var(--space-8);
     line-height: 1.7;
+    font-family: var(--font-display);
 }
 
 .testimonial cite {
@@ -190,17 +242,35 @@ body.dark-mode .testimonial {
     color: var(--text-secondary);
 }
 
+/* FadeUp animation */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
 /* Sections */
 .section {
     margin-bottom: 60px;
+    animation: fadeUp 0.6s ease forwards;
+    opacity: 0;
 }
 
+.section:nth-child(1) { animation-delay: 0.05s; }
+.section:nth-child(2) { animation-delay: 0.1s; }
+.section:nth-child(3) { animation-delay: 0.15s; }
+.section:nth-child(4) { animation-delay: 0.2s; }
+.section:nth-child(5) { animation-delay: 0.25s; }
+.section:nth-child(6) { animation-delay: 0.3s; }
+.section:nth-child(7) { animation-delay: 0.35s; }
+
 .section-title {
+    font-family: var(--font-display);
     font-size: var(--text-3xl);
-    font-weight: var(--font-weight-4);
+    font-weight: 700;
     color: var(--color-primary);
     margin-bottom: var(--space-11);
     text-align: center;
+    letter-spacing: -0.01em;
 }
 
 body.dark-mode .section-title { color: #f5f5f7 !important; }
@@ -220,7 +290,7 @@ body.dark-mode .section-title { color: #f5f5f7 !important; }
     padding: var(--space-12) var(--space-11);
     border-radius: var(--radius-xl);
     text-align: center;
-    transition: all 0.3s;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     border: 1px solid var(--glass-border-light);
     box-shadow: var(--shadow-md);
 }
@@ -264,11 +334,11 @@ body.dark-mode .service-card h3 { color: var(--color-secondary); }
     padding: var(--space-11);
     border-radius: var(--radius-lg);
     border-left: 3px solid var(--color-neutral-4);
-    transition: all 0.3s;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     box-shadow: var(--shadow-sm);
 }
 
-.job-card:hover { transform: translateX(5px); }
+.job-card:hover { transform: translateX(6px); }
 
 body.dark-mode .job-card {
     background: var(--glass-bg-dark);
@@ -290,7 +360,7 @@ body.dark-mode .job-card {
 .job-title a:visited { color: var(--color-primary); }
 
 .job-title a:hover {
-    color: var(--color-secondary);
+    color: var(--color-blue);
     text-decoration: underline;
 }
 
@@ -298,7 +368,7 @@ body.dark-mode .job-title { color: var(--color-secondary); }
 
 body.dark-mode .job-title a { color: var(--color-secondary); }
 body.dark-mode .job-title a:visited { color: var(--color-secondary); }
-body.dark-mode .job-title a:hover { color: var(--color-accent-3); }
+body.dark-mode .job-title a:hover { color: var(--color-amber); }
 
 .company-date {
     font-size: var(--text-sm);
@@ -315,13 +385,13 @@ body.dark-mode .job-title a:hover { color: var(--color-accent-3); }
 .company-date a:visited { color: var(--color-primary); }
 
 .company-date a:hover {
-    color: var(--color-secondary);
+    color: var(--color-blue);
     text-decoration: underline;
 }
 
 body.dark-mode .company-date a { color: var(--color-accent-3); }
 body.dark-mode .company-date a:visited { color: var(--color-accent-3); }
-body.dark-mode .company-date a:hover { color: var(--color-secondary); }
+body.dark-mode .company-date a:hover { color: var(--color-amber); }
 
 .job-card ul {
     list-style: none;
@@ -339,11 +409,11 @@ body.dark-mode .company-date a:hover { color: var(--color-secondary); }
     content: "▸";
     position: absolute;
     left: 0;
-    color: var(--color-primary);
+    color: var(--color-amber);
     font-weight: var(--font-weight-4);
 }
 
-body.dark-mode .job-card li:before { color: var(--color-secondary); }
+body.dark-mode .job-card li:before { color: var(--color-amber); }
 
 /* Simple Lists */
 .simple-list {
@@ -373,11 +443,11 @@ body.dark-mode .simple-list {
     content: "▸";
     position: absolute;
     left: 0;
-    color: var(--color-primary);
+    color: var(--color-amber);
     font-weight: var(--font-weight-4);
 }
 
-body.dark-mode .simple-list li:before { color: var(--color-secondary); }
+body.dark-mode .simple-list li:before { color: var(--color-amber); }
 
 .simple-list a {
     color: var(--color-primary);
@@ -388,13 +458,13 @@ body.dark-mode .simple-list li:before { color: var(--color-secondary); }
 .simple-list a:visited { color: var(--color-primary); }
 
 .simple-list a:hover {
-    color: var(--color-secondary);
+    color: var(--color-blue);
     text-decoration: underline;
 }
 
 body.dark-mode .simple-list a { color: var(--color-accent-3); }
 body.dark-mode .simple-list a:visited { color: var(--color-accent-3); }
-body.dark-mode .simple-list a:hover { color: var(--color-secondary); }
+body.dark-mode .simple-list a:hover { color: var(--color-amber); }
 
 /* Social Links */
 .social-links {
@@ -415,11 +485,11 @@ body.dark-mode .simple-list a:hover { color: var(--color-secondary); }
     -webkit-backdrop-filter: var(--glass-blur);
     border: 1px solid var(--glass-border-light);
     border-radius: var(--radius-full);
-    transition: all 0.3s;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     box-shadow: var(--shadow-xs);
 }
 
-.social-links a:hover { transform: translateY(-5px); }
+.social-links a:hover { transform: translateY(-6px) scale(1.08); }
 
 body.dark-mode .social-links a {
     background: var(--glass-bg-dark);
@@ -447,21 +517,65 @@ body.dark-mode .social-links svg { fill: var(--color-secondary); }
   animation: heartbeat 1.5s ease-in-out infinite;
 }
 
-/* Footer */
-.footer {
-    text-align: center;
-    padding: var(--space-12) 0;
-    color: var(--text-secondary);
-    font-size: var(--text-base);
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    margin-top: var(--space-13);
+/* Footer stats */
+.footer-divider {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    margin: var(--space-12) 0 var(--space-11);
 }
 
-body.dark-mode .footer {
+body.dark-mode .footer-divider {
     border-top-color: var(--glass-border-dark);
 }
 
-/* Mobile - Mobile-first responsive */
+.footer-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8) var(--space-6);
+    text-align: center;
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-11);
+}
+
+.footer-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.footer-stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-amber);
+    font-weight: 600;
+}
+
+.footer-stat-value {
+    font-size: var(--text-sm);
+    line-height: 1.4;
+}
+
+.footer-stat-value a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.footer-stat-value a:hover { color: var(--color-blue); }
+
+body.dark-mode .footer-stat-value a:hover { color: var(--color-amber); }
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: var(--space-12) 0 var(--space-8);
+    color: var(--text-secondary);
+    font-size: var(--text-base);
+}
+
+/* Mobile */
 @media (max-width: 768px) {
     .container { padding: 30px 20px; }
     .header { padding: 30px 0; margin-bottom: 20px; }
@@ -482,7 +596,8 @@ body.dark-mode .footer {
     .theme-toggle { top: var(--space-9); right: var(--space-9); width: 42px; height: 42px; }
     .social-links { gap: var(--space-9); margin: var(--space-11) 0 var(--space-10); }
     .social-links a { width: 44px; height: 44px; }
-    .footer { padding: var(--space-10) 0; margin-top: var(--space-11); font-size: var(--text-sm); }
+    .footer-stats { grid-template-columns: 1fr; gap: var(--space-6); }
+    .footer { padding: var(--space-10) 0 var(--space-8); font-size: var(--text-sm); }
 }
 
 @media (max-width: 400px) {
@@ -517,14 +632,8 @@ body.dark-mode .footer {
             </p>
         </header>
 
-        <div class="testimonial">
-            <blockquote>
-                "Excellent session with Joshua who was personable, very knowledgeable and able to answer questions clearly. He arrived on time and used the time with me very constructively. Very happy with your service. Thank you."
-            </blockquote>
-            <cite>&mdash; Rita, Client</cite>
-        </div>
-
         <section class="section">
+            <span class="section-label">Services</span>
             <h2 class="section-title">What I Do</h2>
             <div class="services-grid">
                 <div class="service-card">
@@ -547,6 +656,7 @@ body.dark-mode .footer {
         </section>
 
         <section class="section">
+            <span class="section-label">Work History</span>
             <h2 class="section-title">Experience</h2>
             <div class="experience-grid">
                 <div class="job-card">
@@ -578,32 +688,19 @@ body.dark-mode .footer {
                         <li>Clear technical consultations with honest repair estimates</li>
                     </ul>
                 </div>
-
-                <!--
-                <div class="job-card">
-                    <div class="job-title">Host</div>
-                    <div class="company-date">Ricky's Bar & Grill - Langley, BC &nbsp;·&nbsp; January 2017 to December 2019</div>
-                    <ul>
-                        <li>Guest experience management for high-volume dining environment</li>
-                        <li>Reservation systems and dining room flow optimization</li>
-                        <li>Team collaboration for seamless service during peak operations</li>
-                    </ul>
-                </div>
-
-                <div class="job-card">
-                    <div class="job-title">Crew Member/Cook</div>
-                    <div class="company-date">McDonald's - Langley, BC &nbsp;·&nbsp; January 2015 to December 2016</div>
-                    <ul>
-                        <li>High-speed food service with consistent quality standards</li>
-                        <li>Drive-through efficiency achieving sub-5-minute service times</li>
-                        <li>Cross-trained across grill, assembly, and customer-facing roles</li>
-                    </ul>
-                </div>
-                -->
             </div>
         </section>
 
+        <!-- Testimonial — moved after Experience -->
+        <div class="testimonial">
+            <blockquote>
+                "Excellent session with Joshua who was personable, very knowledgeable and able to answer questions clearly. He arrived on time and used the time with me very constructively. Very happy with your service. Thank you."
+            </blockquote>
+            <cite>&mdash; Rita, Client</cite>
+        </div>
+
         <section class="section">
+            <span class="section-label">Toolkit</span>
             <h2 class="section-title">Skills</h2>
             <div class="simple-list">
                 <ul>
@@ -617,6 +714,7 @@ body.dark-mode .footer {
         </section>
 
         <section class="section">
+            <span class="section-label">Background</span>
             <h2 class="section-title">Education</h2>
             <div class="simple-list">
                 <ul>
@@ -628,7 +726,8 @@ body.dark-mode .footer {
         </section>
 
         <section class="section">
-                        <h2 class="section-title">Projects</h2>
+            <span class="section-label">Built Things</span>
+            <h2 class="section-title">Projects</h2>
             <div class="experience-grid">
                 <div class="job-card">
                     <div class="job-title"><a href="https://rise-production.vercel.app/" target="_blank" rel="noopener noreferrer">rise</a></div>
@@ -641,7 +740,7 @@ body.dark-mode .footer {
                 </div>
 
                 <div class="job-card">
-                    <div class="job-title"><a href="https://github.com/nulljosh/wikiscroll" target="_blank" rel="noopener noreferrer">scroll</a></div>
+                    <div class="job-title"><a href="https://nulljosh.github.io/scroll" target="_blank" rel="noopener noreferrer">scroll</a></div>
                     <div class="company-date">2026</div>
                     <ul>
                         <li>TikTok-style infinite scroller for Wikipedia articles</li>
@@ -649,18 +748,6 @@ body.dark-mode .footer {
                         <li>Mobile-first responsive design with reading time estimates</li>
                     </ul>
                 </div>
-
-                <!--
-                <div class="job-card">
-                    <div class="job-title"><a href="https://github.com/nulljosh/core" target="_blank" rel="noopener noreferrer">core</a></div>
-                    <div class="company-date">2026</div>
-                    <ul>
-                        <li>Nano transformer language model built from scratch in PyTorch</li>
-                        <li>Custom tokenizer, training pipeline, and text generation inference</li>
-                        <li>Implements attention mechanisms, positional encoding, and gradient optimization</li>
-                    </ul>
-                </div>
-                -->
 
                 <div class="job-card">
                     <div class="job-title"><a href="https://tally-production.vercel.app" target="_blank" rel="noopener noreferrer">tally</a></div>
@@ -701,7 +788,8 @@ body.dark-mode .footer {
                         <li>Bytecode compiler and VM with interactive REPL</li>
                     </ul>
                 </div>
-            </div></section>
+            </div>
+        </section>
 
         <div class="social-links">
             <a href="https://github.com/nulljosh" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
@@ -728,17 +816,38 @@ body.dark-mode .footer {
             </a>
         </div>
 
-        <div style="text-align: center; margin-top: 20px; font-size: 14px; color: var(--text-secondary); line-height: 2;">
-            <span id="letterboxd-stats">6,552 films watched on Letterboxd</span><br>
-            <span id="github-stats">loading commits...</span><br>
-            <span id="blog-stats">loading blog...</span><br>
-            <span id="weather-stats">loading weather...</span><br>
-            <span id="coffee-stats"></span><br>
-            <span id="uptime-stats"></span>
+        <hr class="footer-divider">
+
+        <div class="footer-stats">
+            <div class="footer-stat">
+                <span class="footer-stat-label">Films</span>
+                <span class="footer-stat-value" id="letterboxd-stats">6,552 on Letterboxd</span>
+            </div>
+            <div class="footer-stat">
+                <span class="footer-stat-label">Code</span>
+                <span class="footer-stat-value" id="github-stats">loading...</span>
+            </div>
+            <div class="footer-stat">
+                <span class="footer-stat-label">Writing</span>
+                <span class="footer-stat-value" id="blog-stats">loading...</span>
+            </div>
+            <div class="footer-stat">
+                <span class="footer-stat-label">Weather</span>
+                <span class="footer-stat-value" id="weather-stats">loading...</span>
+            </div>
+            <div class="footer-stat">
+                <span class="footer-stat-label">Coffee</span>
+                <span class="footer-stat-value" id="coffee-stats"></span>
+            </div>
+            <div class="footer-stat">
+                <span class="footer-stat-label">Status</span>
+                <span class="footer-stat-value">Building rise + studying math at UVic</span>
+            </div>
         </div>
 
         <footer class="footer">
             Made with <span class="heartbeat">&hearts;</span> in Vancouver, BC
+            &nbsp;·&nbsp; &copy; 2026 Joshua Trommel &nbsp;·&nbsp; <a href="https://github.com/nulljosh/nulljosh.github.io/blob/main/LICENSE" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">MIT</a>
         </footer>
     </div>
 
@@ -784,12 +893,11 @@ body.dark-mode .footer {
         async function updateLetterboxdStats() {
             const CACHE_KEY = 'letterboxd_stats';
             const CACHE_TIMESTAMP_KEY = 'letterboxd_stats_timestamp';
-            const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours
+            const CACHE_DURATION = 24 * 60 * 60 * 1000;
             const LETTERBOXD_USER = 'literallyjordan';
             const statsElement = document.getElementById('letterboxd-stats');
 
             try {
-                // Check cache
                 const cachedStats = localStorage.getItem(CACHE_KEY);
                 const cachedTimestamp = localStorage.getItem(CACHE_TIMESTAMP_KEY);
                 const now = Date.now();
@@ -799,26 +907,18 @@ body.dark-mode .footer {
                     return;
                 }
 
-                // Fetch fresh data using CORS proxy
                 const proxyUrl = 'https://corsproxy.io/?';
                 const letterboxdUrl = `https://letterboxd.com/${LETTERBOXD_USER}/`;
                 const response = await fetch(proxyUrl + encodeURIComponent(letterboxdUrl));
 
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
                 const html = await response.text();
-
-                // Parse film count from profile page
-                // Look for pattern like: "6,552 films"
                 const match = html.match(/([0-9,]+)\s+films?/i);
 
                 if (match && match[1]) {
                     const filmCount = match[1];
-                    const statsText = `${filmCount} films watched on Letterboxd`;
-
-                    // Update UI and cache
+                    const statsText = `${filmCount} on Letterboxd`;
                     statsElement.textContent = statsText;
                     localStorage.setItem(CACHE_KEY, statsText);
                     localStorage.setItem(CACHE_TIMESTAMP_KEY, now.toString());
@@ -827,7 +927,6 @@ body.dark-mode .footer {
                 }
             } catch (error) {
                 console.warn('Failed to fetch Letterboxd stats:', error);
-                // Keep existing static text as fallback
             }
         }
 
@@ -838,16 +937,16 @@ body.dark-mode .footer {
                 const res = await fetch('https://api.github.com/users/nulljosh');
                 if (!res.ok) throw new Error();
                 const data = await res.json();
-                el.textContent = `${data.public_repos} public repos on GitHub`;
-            } catch { el.textContent = ''; }
+                el.textContent = `${data.public_repos} public repos`;
+            } catch { el.textContent = 'github.com/nulljosh'; }
         }
 
         // Last blog post
         async function updateBlog() {
             const el = document.getElementById('blog-stats');
             const feedUrl = 'https://heyitsmejosh.com/journal/feed.xml';
-            try {
-                const res = await fetch(feedUrl);
+            const tryFetch = async (url) => {
+                const res = await fetch(url);
                 if (!res.ok) throw new Error();
                 const xml = await res.text();
                 const parser = new DOMParser();
@@ -856,21 +955,14 @@ body.dark-mode .footer {
                 if (entry) {
                     const title = entry.querySelector('title').textContent;
                     const link = entry.querySelector('link').getAttribute('href');
-                    el.innerHTML = `last blog post: <a href="${link}" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">${title}</a>`;
-                } else { el.textContent = ''; }
+                    el.innerHTML = `<a href="${link}" target="_blank" rel="noopener">${title}</a>`;
+                }
+            };
+            try {
+                await tryFetch(feedUrl);
             } catch {
                 try {
-                    const res = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(feedUrl));
-                    if (!res.ok) throw new Error();
-                    const xml = await res.text();
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(xml, 'text/xml');
-                    const entry = doc.querySelector('entry');
-                    if (entry) {
-                        const title = entry.querySelector('title').textContent;
-                        const link = entry.querySelector('link').getAttribute('href');
-                        el.innerHTML = `last blog post: <a href="${link}" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">${title}</a>`;
-                    } else { el.textContent = ''; }
+                    await tryFetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(feedUrl));
                 } catch { el.textContent = ''; }
             }
         }
@@ -883,22 +975,9 @@ body.dark-mode .footer {
                 if (!res.ok) throw new Error();
                 const data = await res.json();
                 const temp = Math.round(data.current.temperature_2m);
-                const conditions = {0:'super sunny',1:'mostly sunny',2:'partly cloudy',3:'pretty grey',45:'foggy as hell',48:'foggy as hell',51:'spitting',53:'drizzling',55:'drizzling pretty good',61:'lightly raining',63:'raining',65:'pouring rain',71:'lightly snowing',73:'snowing',75:'dumping snow',80:'showery',81:'showery',82:'bucketing down',95:'stormy'};
-                function getTempDesc(t) {
-                    if (t <= -10) return 'brutally cold';
-                    if (t <= 0)   return 'below freezing';
-                    if (t <= 5)   return 'pretty cold';
-                    if (t <= 10)  return 'kinda cold';
-                    if (t <= 15)  return 'kinda chilly';
-                    if (t <= 18)  return 'mild';
-                    if (t <= 22)  return 'nice out';
-                    if (t <= 27)  return 'warm';
-                    if (t <= 32)  return 'hot';
-                    return 'scorching';
-                }
-                const tempDesc = getTempDesc(temp);
-                const condDesc = conditions[data.current.weather_code] || 'kinda mixed';
-                el.textContent = `${tempDesc} and ${condDesc} in Brookswood`;
+                const conditions = {0:'sunny',1:'mostly sunny',2:'partly cloudy',3:'grey',45:'foggy',48:'foggy',51:'spitting',53:'drizzling',55:'drizzling',61:'lightly raining',63:'raining',65:'pouring',71:'lightly snowing',73:'snowing',75:'dumping snow',80:'showery',81:'showery',82:'bucketing',95:'stormy'};
+                const condDesc = conditions[data.current.weather_code] || 'mixed';
+                el.textContent = `${temp}°C, ${condDesc} in Brookswood`;
             } catch { el.textContent = ''; }
         }
 
@@ -909,35 +988,14 @@ body.dark-mode .footer {
             const startOfYear = new Date(now.getFullYear(), 0, 1);
             const dayOfYear = Math.floor((now - startOfYear) / (1000 * 60 * 60 * 24)) + 1;
             const coffees = Math.round(dayOfYear * 2.5);
-            el.textContent = `~${coffees.toLocaleString()} coffees consumed in ${now.getFullYear()}`;
+            el.textContent = `~${coffees.toLocaleString()} in ${now.getFullYear()}`;
         }
 
-        // Uptime (6 AM - 10 PM schedule)
-        function updateUptime() {
-            const el = document.getElementById('uptime-stats');
-            const now = new Date();
-            const hour = now.getHours();
-            const wakeHour = 6;
-            const sleepHour = 22;
-            if (hour >= sleepHour || hour < wakeHour) {
-                el.textContent = 'probably sleeping right now. zzz...';
-                return;
-            }
-            const wake = new Date(now);
-            wake.setHours(wakeHour, 0, 0, 0);
-            const awakeMs = now - wake;
-            const hours = Math.floor(awakeMs / (1000 * 60 * 60));
-            const mins = Math.floor((awakeMs % (1000 * 60 * 60)) / (1000 * 60));
-            el.textContent = `~${hours}h ${mins}m awake today`;
-        }
-
-        // Fetch all stats on page load
         updateLetterboxdStats();
         updateGitHubStats();
         updateBlog();
         updateWeather();
         updateCoffee();
-        updateUptime();
     </script>
 </body>
 </html>
