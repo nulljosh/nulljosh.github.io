@@ -1063,9 +1063,22 @@ body.dark-mode .footer-stat-value a:hover { color: var(--color-amber); }
                 if (!res.ok) throw new Error();
                 const data = await res.json();
                 const temp = Math.round(data.current.temperature_2m);
-                const conditions = {0:'sunny',1:'mostly sunny',2:'partly cloudy',3:'grey',45:'foggy',48:'foggy',51:'spitting',53:'drizzling',55:'drizzling',61:'lightly raining',63:'raining',65:'pouring',71:'lightly snowing',73:'snowing',75:'dumping snow',80:'showery',81:'showery',82:'bucketing',95:'stormy'};
-                const condDesc = conditions[data.current.weather_code] || 'mixed';
-                el.textContent = `${temp}°C, ${condDesc} in Brookswood`;
+                const conditions = {0:'super sunny',1:'mostly sunny',2:'partly cloudy',3:'pretty grey',45:'foggy as hell',48:'foggy as hell',51:'spitting',53:'drizzling',55:'drizzling pretty good',61:'lightly raining',63:'raining',65:'pouring rain',71:'lightly snowing',73:'snowing',75:'dumping snow',80:'showery',81:'showery',82:'bucketing down',95:'stormy'};
+                function getTempDesc(t) {
+                    if (t <= -10) return 'brutally cold';
+                    if (t <= 0)   return 'below freezing';
+                    if (t <= 5)   return 'pretty cold';
+                    if (t <= 10)  return 'kinda cold';
+                    if (t <= 15)  return 'kinda chilly';
+                    if (t <= 18)  return 'mild';
+                    if (t <= 22)  return 'nice out';
+                    if (t <= 27)  return 'warm';
+                    if (t <= 32)  return 'hot';
+                    return 'scorching';
+                }
+                const tempDesc = getTempDesc(temp);
+                const condDesc = conditions[data.current.weather_code] || 'kinda mixed';
+                el.textContent = `${tempDesc} and ${condDesc} in Brookswood`;
             } catch { el.textContent = ''; }
         }
 
