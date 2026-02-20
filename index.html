@@ -1081,10 +1081,8 @@ body.dark-mode .footer-stat-value a:hover { color: var(--color-amber); }
                 themeToggle.addEventListener('click', buildGrid);
                 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', buildGrid);
 
-                const thisYear = new Date().getFullYear().toString();
-                const total = (data.total[thisYear] || 0) + (data.total[(+thisYear - 1).toString()] || 0);
-                const thisYearCount = data.total[thisYear] || 0;
-                meta.textContent = `${thisYearCount.toLocaleString()} contributions in ${thisYear}`;
+                const totalContribs = contribs.reduce((sum, d) => sum + d.count, 0);
+                meta.textContent = `${totalContribs.toLocaleString()} contributions in the last year`;
             } catch {
                 document.getElementById('contribs-section').style.display = 'none';
             }
