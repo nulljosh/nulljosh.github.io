@@ -567,6 +567,45 @@ body.dark-mode .footer-divider {
 
 body.dark-mode .footer-stat-value a:hover { color: var(--color-amber); }
 
+/* Contribution heatmap */
+.contribs-section {
+    padding: var(--space-11) 0 var(--space-10);
+    text-align: center;
+}
+
+.contribs-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-amber);
+    font-weight: 600;
+    margin-bottom: var(--space-7);
+}
+
+.contribs-grid {
+    display: inline-grid;
+    grid-template-rows: repeat(7, 10px);
+    grid-auto-flow: column;
+    gap: 2px;
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+.contribs-day {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    transition: opacity 0.15s;
+}
+
+.contribs-day:hover { opacity: 0.7; cursor: default; }
+
+.contribs-meta {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin-top: var(--space-5);
+}
+
 /* Footer */
 .footer {
     text-align: center;
@@ -845,6 +884,14 @@ body.dark-mode .footer-stat-value a:hover { color: var(--color-amber); }
             </div>
         </div>
 
+        <hr class="footer-divider">
+
+        <div class="contribs-section" id="contribs-section">
+            <div class="contribs-label">Contributions</div>
+            <div id="contribs-grid" class="contribs-grid"></div>
+            <div class="contribs-meta" id="contribs-meta"></div>
+        </div>
+
         <footer class="footer">
             Made with <span class="heartbeat">&hearts;</span> in Vancouver, BC
             &nbsp;·&nbsp; &copy; 2026 Joshua Trommel &nbsp;·&nbsp; <a href="https://github.com/nulljosh/nulljosh.github.io/blob/main/LICENSE" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">MIT</a>
@@ -996,6 +1043,54 @@ body.dark-mode .footer-stat-value a:hover { color: var(--color-amber); }
         updateBlog();
         updateWeather();
         updateCoffee();
+
+        // GitHub contribution heatmap
+        async function renderContributions() {
+            const isDark = () => document.body.classList.contains('dark-mode');
+            const COLORS_LIGHT = ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39'];
+            const COLORS_DARK  = ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'];
+
+            try {
+                const res = await fetch('https://github-contributions-api.jogruber.de/v4/nulljosh?y=last');
+                const data = await res.json();
+                const grid = document.getElementById('contribs-grid');
+                const meta = document.getElementById('contribs-meta');
+
+                const contribs = data.contributions;
+                const firstDay = new Date(contribs[0].date).getDay();
+
+                const buildGrid = () => {
+                    grid.innerHTML = '';
+                    const colors = isDark() ? COLORS_DARK : COLORS_LIGHT;
+                    for (let i = 0; i < firstDay; i++) {
+                        const cell = document.createElement('div');
+                        cell.className = 'contribs-day';
+                        cell.style.background = colors[0];
+                        grid.appendChild(cell);
+                    }
+                    contribs.forEach(({ date, count, level }) => {
+                        const cell = document.createElement('div');
+                        cell.className = 'contribs-day';
+                        cell.style.background = colors[level];
+                        cell.title = `${count} on ${date}`;
+                        grid.appendChild(cell);
+                    });
+                };
+
+                buildGrid();
+                themeToggle.addEventListener('click', buildGrid);
+                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', buildGrid);
+
+                const thisYear = new Date().getFullYear().toString();
+                const total = (data.total[thisYear] || 0) + (data.total[(+thisYear - 1).toString()] || 0);
+                const thisYearCount = data.total[thisYear] || 0;
+                meta.textContent = `${thisYearCount.toLocaleString()} contributions in ${thisYear}`;
+            } catch {
+                document.getElementById('contribs-section').style.display = 'none';
+            }
+        }
+
+        renderContributions();
     </script>
 </body>
 </html>
