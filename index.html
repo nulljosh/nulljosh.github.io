@@ -658,94 +658,101 @@ body.dark-mode .footer-stat-value a:hover { color: var(--color-amber); }
 
 /* Teenage Engineering inspired branch skin */
 body.te-mode {
-    --te-bg: #efeee8;
-    --te-panel: #f6f5f1;
-    --te-ink: #121212;
-    --te-muted: #5a5a56;
-    --te-line: #181818;
-    --te-accent: #ff5b2e;
-    --te-accent-2: #e7ff4f;
-    font-family: 'IBM Plex Mono', 'DM Sans', monospace;
-    background: linear-gradient(#f2f1ec 0 40%, #ecebe4 40% 100%);
-    color: var(--te-ink);
+    font-family: 'IBM Plex Mono', 'DM Sans', monospace !important;
+    background: #efeee8 !important;
+    color: #121212 !important;
 }
 body.te-mode::before { opacity: 0.06; }
 body.te-mode .container { max-width: 980px; }
+
+/* Force all text dark */
+body.te-mode,
+body.te-mode *:not(svg):not(path) {
+    color: #121212 !important;
+}
+body.te-mode .contact-info,
+body.te-mode .intro,
+body.te-mode .company-date { color: #444 !important; }
+body.te-mode .footer-stat-label { color: #666 !important; }
+
+/* Header */
 body.te-mode .header { text-align: left; padding-top: 20px; }
 body.te-mode .header::before { display: none; }
 body.te-mode .header h1 {
-    font-family: 'IBM Plex Mono', monospace;
-    font-style: normal;
+    font-family: 'IBM Plex Mono', monospace !important;
+    font-style: normal !important;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     font-weight: 700;
-    color: var(--te-ink);
+    color: #000 !important;
 }
-body.te-mode .intro,
-body.te-mode .contact-info { color: #3a3a36; }
-body.te-mode p, body.te-mode li, body.te-mode span, body.te-mode div { color: #1a1a18; line-height: 1.7; }
-body.te-mode .service-card, body.te-mode .job-card, body.te-mode .testimonial { background: #f6f5f1; color: #1a1a18; }
-body.te-mode .service-card p, body.te-mode .job-card li { font-size: 0.95rem; color: #1a1a18; }
-body.te-mode .service-card h3, body.te-mode .job-title { color: #000; }
-body.te-mode .company-date { color: #444; }
-body.te-mode .footer, body.te-mode .footer * { color: #333; }
-body.te-mode .footer-stat-label { color: #666; }
-body.te-mode .footer-stat-value, body.te-mode .footer-stat-value a { color: #1a1a18; }
-body.te-mode .contribs-label, body.te-mode .contribs-meta { color: #333; }
-body.te-mode .section-title { color: #000; }
-body.te-mode blockquote, body.te-mode cite { color: #1a1a18; }
+
+/* Cards + panels */
 body.te-mode .section,
 body.te-mode .testimonial,
 body.te-mode .service-card,
 body.te-mode .job-card,
 body.te-mode .contribs-section {
-    background: var(--te-panel);
-    border: 2px solid var(--te-line);
-    border-radius: 14px;
-    box-shadow: 4px 4px 0 #000;
+    background: #f6f5f1 !important;
+    border: 2px solid #181818 !important;
+    border-radius: 14px !important;
+    box-shadow: 4px 4px 0 #000 !important;
 }
+
+/* Typography */
 body.te-mode h2,
 body.te-mode h3,
-body.te-mode .section-label {
-    font-family: 'IBM Plex Mono', monospace;
+body.te-mode .section-label,
+body.te-mode .section-title {
+    font-family: 'IBM Plex Mono', monospace !important;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--te-ink);
+    color: #000 !important;
 }
 body.te-mode .section-label {
-    background: var(--te-accent-2);
+    background: #e7ff4f !important;
     display: inline-block;
     padding: 4px 8px;
-    border: 2px solid var(--te-line);
+    border: 2px solid #181818;
     border-radius: 999px;
+    color: #000 !important;
 }
-body.te-mode a { color: var(--te-ink); text-decoration-thickness: 2px; }
-body.te-mode a:hover { color: var(--te-accent); }
+body.te-mode p, body.te-mode li { line-height: 1.7; font-size: 0.95rem; }
+
+/* Links */
+body.te-mode a { color: #121212 !important; text-decoration-thickness: 2px; }
+body.te-mode a:hover { color: #ff5b2e !important; }
+
+/* Theme toggle */
 body.te-mode .theme-toggle {
-    border-radius: 10px;
-    border: 2px solid var(--te-line);
-    background: var(--te-panel);
-    box-shadow: 3px 3px 0 #000;
+    border-radius: 10px !important;
+    border: 2px solid #181818 !important;
+    background: #f6f5f1 !important;
+    box-shadow: 3px 3px 0 #000 !important;
 }
-body.te-mode .theme-toggle svg { fill: var(--te-ink); }
+body.te-mode .theme-toggle svg { fill: #121212 !important; }
+
+/* Operator badge */
 body.te-mode .header h1::after {
     content: ' OPERATOR MODE';
     font-size: 0.24em;
-    background: var(--te-accent);
-    color: #fff;
+    background: #ff5b2e;
+    color: #fff !important;
     padding: 6px 10px;
     border-radius: 999px;
     margin-left: 14px;
     vertical-align: middle;
 }
-/* TE mobile-first overrides */
+
+/* Mobile-first */
 @media (max-width: 768px) {
     body.te-mode .header h1 { font-size: 1.6rem; }
     body.te-mode .header h1::after { display: block; margin: 10px 0 0 0; font-size: 0.5em; }
     body.te-mode .section,
     body.te-mode .service-card,
-    body.te-mode .job-card { box-shadow: 3px 3px 0 #000; border-width: 1.5px; }
+    body.te-mode .job-card { box-shadow: 3px 3px 0 #000 !important; border-width: 1.5px !important; }
     body.te-mode .container { padding: 20px 16px; }
+    body.te-mode p, body.te-mode li { font-size: 0.9rem; }
 }
 </style>
 </head>
