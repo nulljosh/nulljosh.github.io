@@ -152,8 +152,8 @@ body.dark-mode .contact-info a:hover { color: #ff5b2e; }
     background: var(--glass-bg-light);
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--glass-border-light);
-    border-radius: var(--radius-full);
+    border: 2px solid rgba(0,0,0,0.12);
+    border-radius: 10px;
     width: 50px;
     height: 50px;
     display: flex;
@@ -162,14 +162,15 @@ body.dark-mode .contact-info a:hover { color: #ff5b2e; }
     cursor: pointer;
     transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     z-index: 1000;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
 }
 
 .theme-toggle:hover { transform: scale(1.15); }
 
 body.dark-mode .theme-toggle {
-    background: var(--glass-bg-dark);
-    border: 1px solid var(--glass-border-dark);
+    background: #181614;
+    border: 2px solid rgba(232,230,224,0.22);
+    box-shadow: 3px 3px 0 rgba(232,230,224,0.12);
 }
 
 .theme-toggle svg {
@@ -210,7 +211,7 @@ body.dark-mode .section-label {
     border-top: 2px solid rgba(0,0,0,0.1);
     border-right: 2px solid rgba(0,0,0,0.1);
     border-bottom: 2px solid rgba(0,0,0,0.1);
-    border-radius: var(--radius-lg);
+    border-radius: 10px;
     margin: var(--space-12) 0;
     transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
@@ -219,12 +220,13 @@ body.dark-mode .section-label {
 .testimonial:hover { transform: translateY(-4px); }
 
 body.dark-mode .testimonial {
-    background: var(--glass-bg-dark);
+    background: #181614;
+    backdrop-filter: none;
     border-left-color: #e7ff4f;
-    border-top-color: rgba(232,230,224,0.12);
-    border-right-color: rgba(232,230,224,0.12);
-    border-bottom-color: rgba(232,230,224,0.12);
-    box-shadow: 4px 4px 0 rgba(232,230,224,0.12);
+    border-top-color: rgba(232,230,224,0.22);
+    border-right-color: rgba(232,230,224,0.22);
+    border-bottom-color: rgba(232,230,224,0.22);
+    box-shadow: 4px 4px 0 rgba(232,230,224,0.15);
 }
 
 .testimonial blockquote {
@@ -287,7 +289,7 @@ body.dark-mode .section-title { color: #f5f5f7 !important; }
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
     padding: var(--space-12) var(--space-11);
-    border-radius: var(--radius-xl);
+    border-radius: 12px;
     text-align: left;
     transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     border: 2px solid rgba(0,0,0,0.12);
@@ -297,9 +299,10 @@ body.dark-mode .section-title { color: #f5f5f7 !important; }
 .service-card:hover { transform: translateY(-10px); }
 
 body.dark-mode .service-card {
-    background: var(--glass-bg-dark);
-    border: 2px solid rgba(232,230,224,0.18);
-    box-shadow: 4px 4px 0 rgba(232,230,224,0.12);
+    background: #181614;
+    backdrop-filter: none;
+    border: 2px solid rgba(232,230,224,0.22);
+    box-shadow: 4px 4px 0 rgba(232,230,224,0.15);
 }
 
 .service-icon {
@@ -335,11 +338,11 @@ body.dark-mode .service-card h3 { color: var(--color-secondary); }
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
     padding: var(--space-11);
-    border-radius: var(--radius-lg);
+    border-radius: 10px;
     border-left: 3px solid #e7ff4f;
-    border-top: 2px solid rgba(0,0,0,0.08);
-    border-right: 2px solid rgba(0,0,0,0.08);
-    border-bottom: 2px solid rgba(0,0,0,0.08);
+    border-top: 2px solid rgba(0,0,0,0.1);
+    border-right: 2px solid rgba(0,0,0,0.1);
+    border-bottom: 2px solid rgba(0,0,0,0.1);
     transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
 }
@@ -347,12 +350,13 @@ body.dark-mode .service-card h3 { color: var(--color-secondary); }
 .job-card:hover { transform: translateX(6px); }
 
 body.dark-mode .job-card {
-    background: var(--glass-bg-dark);
+    background: #181614;
+    backdrop-filter: none;
     border-left-color: #e7ff4f;
-    border-top-color: rgba(232,230,224,0.12);
-    border-right-color: rgba(232,230,224,0.12);
-    border-bottom-color: rgba(232,230,224,0.12);
-    box-shadow: 4px 4px 0 rgba(232,230,224,0.12);
+    border-top-color: rgba(232,230,224,0.22);
+    border-right-color: rgba(232,230,224,0.22);
+    border-bottom-color: rgba(232,230,224,0.22);
+    box-shadow: 4px 4px 0 rgba(232,230,224,0.15);
 }
 
 .job-title {
@@ -433,15 +437,16 @@ body.dark-mode .job-card li:before { color: #e7ff4f; }
     background: var(--glass-bg-light);
     backdrop-filter: var(--glass-blur);
     padding: var(--space-11);
-    border-radius: var(--radius-lg);
+    border-radius: 10px;
     border: 2px solid rgba(0,0,0,0.1);
     box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
 }
 
 body.dark-mode .simple-list {
-    background: var(--glass-bg-dark);
-    border-color: rgba(232,230,224,0.18);
-    box-shadow: 4px 4px 0 rgba(232,230,224,0.12);
+    background: #181614;
+    backdrop-filter: none;
+    border-color: rgba(232,230,224,0.22);
+    box-shadow: 4px 4px 0 rgba(232,230,224,0.15);
 }
 
 .simple-list ul {
