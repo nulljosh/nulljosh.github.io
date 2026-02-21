@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="design-tokens.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=DM+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
@@ -197,6 +197,55 @@ body.dark-mode .theme-toggle {
 }
 
 body.dark-mode .theme-toggle svg { fill: var(--color-secondary); }
+
+/* Skin Toggle (TE mode) */
+.skin-toggle {
+    position: fixed;
+    top: var(--space-11);
+    left: var(--space-11);
+    background: var(--glass-bg-light);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border-light);
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 1000;
+    box-shadow: var(--shadow-sm);
+    color: var(--color-primary);
+}
+
+.skin-toggle:hover { transform: scale(1.15); }
+
+body.dark-mode .skin-toggle {
+    background: var(--glass-bg-dark);
+    border: 1px solid var(--glass-border-dark);
+    color: var(--color-secondary);
+}
+
+body.te-mode .skin-toggle {
+    background: #e7ff4f !important;
+    border: 2px solid #181818 !important;
+    color: #121212 !important;
+    box-shadow: 3px 3px 0 #000 !important;
+    border-radius: 10px !important;
+}
+
+body.te-mode.dark-mode .skin-toggle {
+    background: #e7ff4f !important;
+    border: 2px solid rgba(232,230,224,0.4) !important;
+    box-shadow: 3px 3px 0 rgba(232,230,224,0.2) !important;
+}
+
+@media (max-width: 768px) {
+    .skin-toggle { top: var(--space-9); left: var(--space-9); width: 42px; height: 42px; font-size: 0.6rem; }
+}
 
 /* Section Labels */
 .section-label {
@@ -655,9 +704,145 @@ body.dark-mode .footer-stat-value a:hover { color: var(--color-amber); }
     .contact-info { display: flex; flex-direction: column; gap: 4px; }
     .services-grid { gap: var(--space-9); }
 }
+
+/* Teenage Engineering inspired branch skin */
+body.te-mode {
+    font-family: 'IBM Plex Mono', 'DM Sans', monospace !important;
+    background: #efeee8 !important;
+    color: #121212 !important;
+}
+body.te-mode::before { opacity: 0.06; }
+body.te-mode .container { max-width: 980px; }
+
+/* Force all text dark */
+body.te-mode,
+body.te-mode *:not(svg):not(path) {
+    color: #121212 !important;
+}
+body.te-mode .contact-info,
+body.te-mode .intro,
+body.te-mode .company-date { color: #444 !important; }
+body.te-mode .footer-stat-label { color: #666 !important; }
+
+/* Header */
+body.te-mode .header { text-align: left; padding-top: 20px; }
+body.te-mode .header::before { display: none; }
+body.te-mode .header h1 {
+    font-family: 'IBM Plex Mono', monospace !important;
+    font-style: normal !important;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    color: #000 !important;
+}
+
+/* Cards + panels */
+body.te-mode .section,
+body.te-mode .testimonial,
+body.te-mode .service-card,
+body.te-mode .job-card,
+body.te-mode .contribs-section {
+    background: #f6f5f1 !important;
+    border: 2px solid #181818 !important;
+    border-radius: 14px !important;
+    box-shadow: 4px 4px 0 #000 !important;
+}
+
+/* Typography */
+body.te-mode h2,
+body.te-mode h3,
+body.te-mode .section-label,
+body.te-mode .section-title {
+    font-family: 'IBM Plex Mono', monospace !important;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #000 !important;
+}
+body.te-mode .section-label {
+    background: #e7ff4f !important;
+    display: inline-block;
+    padding: 4px 8px;
+    border: 2px solid #181818;
+    border-radius: 999px;
+    color: #000 !important;
+}
+body.te-mode p, body.te-mode li { line-height: 1.7; font-size: 0.95rem; }
+
+/* Links */
+body.te-mode a { color: #121212 !important; text-decoration-thickness: 2px; }
+body.te-mode a:hover { color: #ff5b2e !important; }
+
+/* Theme toggle */
+body.te-mode .theme-toggle {
+    border-radius: 10px !important;
+    border: 2px solid #181818 !important;
+    background: #f6f5f1 !important;
+    box-shadow: 3px 3px 0 #000 !important;
+}
+body.te-mode .theme-toggle svg { fill: #121212 !important; }
+
+
+/* TE dark mode — all !important to override light mode rules */
+body.te-mode.dark-mode {
+    background: #131210 !important;
+    color: #e8e6e0 !important;
+}
+body.te-mode.dark-mode,
+body.te-mode.dark-mode *:not(svg):not(path) {
+    color: #c8c4bc !important;
+}
+body.te-mode.dark-mode .header h1,
+body.te-mode.dark-mode h2,
+body.te-mode.dark-mode h3,
+body.te-mode.dark-mode .section-title,
+body.te-mode.dark-mode .job-title { color: #e8e6e0 !important; }
+body.te-mode.dark-mode .contact-info,
+body.te-mode.dark-mode .intro { color: #a8a49c !important; }
+body.te-mode.dark-mode .section,
+body.te-mode.dark-mode .service-card,
+body.te-mode.dark-mode .job-card,
+body.te-mode.dark-mode .testimonial,
+body.te-mode.dark-mode .simple-list,
+body.te-mode.dark-mode .contribs-section {
+    background: #1c1b18 !important;
+    border-color: rgba(232,230,224,0.3) !important;
+    box-shadow: 4px 4px 0 rgba(232,230,224,0.2) !important;
+}
+body.te-mode.dark-mode .section-label {
+    background: #e7ff4f !important;
+    color: #121212 !important;
+    border-color: rgba(232,230,224,0.4) !important;
+}
+body.te-mode.dark-mode .theme-toggle {
+    background: #1c1b18 !important;
+    border-color: rgba(232,230,224,0.3) !important;
+    box-shadow: 3px 3px 0 rgba(232,230,224,0.2) !important;
+}
+body.te-mode.dark-mode .social-links a {
+    background: #1c1b18 !important;
+    border: 2px solid rgba(232,230,224,0.3) !important;
+}
+body.te-mode.dark-mode .social-links svg { fill: #e8e6e0 !important; }
+body.te-mode.dark-mode .footer-divider { border-top-color: rgba(232,230,224,0.12) !important; }
+body.te-mode.dark-mode a { color: #c8c4bc !important; }
+body.te-mode.dark-mode a:hover { color: #ff5b2e !important; }
+
+/* TE mobile */
+@media (max-width: 768px) {
+    body.te-mode .header h1 { font-size: 1.6rem; }
+    body.te-mode .section,
+    body.te-mode .service-card,
+    body.te-mode .job-card { box-shadow: 3px 3px 0 #000; border-width: 1.5px; }
+    body.te-mode.dark-mode .section,
+    body.te-mode.dark-mode .service-card,
+    body.te-mode.dark-mode .job-card { box-shadow: 3px 3px 0 #e8e6e0; }
+    body.te-mode .container { padding: 20px 16px; }
+    body.te-mode p, body.te-mode li { font-size: 0.9rem; }
+}
 </style>
 </head>
 <body>
+    <button class="skin-toggle" id="skinToggle" aria-label="Toggle TE mode">TE</button>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
         <svg id="sunIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="12" cy="12" r="5" fill="currentColor"/>
@@ -792,6 +977,22 @@ body.dark-mode .footer-stat-value a:hover { color: var(--color-amber); }
                 <div class="service-card">
                     <h3>Trevor Project</h3>
                     <p>Crisis intervention and suicide prevention for LGBTQ+ youth. 24/7 support via phone, text, and chat.</p>
+                </div>
+                <div class="service-card">
+                    <h3>UNICEF</h3>
+                    <p>Works in over 190 countries to protect children's rights, provide humanitarian aid, and ensure every child has access to health, education, and safety.</p>
+                </div>
+                <div class="service-card">
+                    <h3>UNRWA</h3>
+                    <p>United Nations agency providing essential services — education, health care, and emergency relief — to Palestinian refugees across the Middle East and Gaza.</p>
+                </div>
+                <div class="service-card">
+                    <h3>MAP (Medical Aid for Palestinians)</h3>
+                    <p>Delivers health and medical care to Palestinians affected by conflict, occupation, and displacement. Operating since 1984.</p>
+                </div>
+                <div class="service-card">
+                    <h3>PCRF (Palestine Children's Relief Fund)</h3>
+                    <p>Provides free medical care and humanitarian aid to children throughout the Middle East, regardless of nationality, religion, or gender.</p>
                 </div>
             </div>
         </section>
@@ -951,6 +1152,19 @@ body.dark-mode .footer-stat-value a:hover { color: var(--color-amber); }
     </div>
 
     <script>
+        const skinToggle = document.getElementById('skinToggle');
+        const initSkin = () => {
+            const skin = localStorage.getItem('skin') || 'default';
+            if (skin === 'te') document.body.classList.add('te-mode');
+            else document.body.classList.remove('te-mode');
+        };
+        const toggleSkin = () => {
+            const isTE = document.body.classList.toggle('te-mode');
+            localStorage.setItem('skin', isTE ? 'te' : 'default');
+        };
+        initSkin();
+        skinToggle.addEventListener('click', toggleSkin);
+
         const themeToggle = document.getElementById('themeToggle');
         const sunIcon = document.getElementById('sunIcon');
         const moonIcon = document.getElementById('moonIcon');
