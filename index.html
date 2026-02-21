@@ -198,6 +198,55 @@ body.dark-mode .theme-toggle {
 
 body.dark-mode .theme-toggle svg { fill: var(--color-secondary); }
 
+/* Skin Toggle (TE mode) */
+.skin-toggle {
+    position: fixed;
+    top: var(--space-11);
+    left: var(--space-11);
+    background: var(--glass-bg-light);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border-light);
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 1000;
+    box-shadow: var(--shadow-sm);
+    color: var(--color-primary);
+}
+
+.skin-toggle:hover { transform: scale(1.15); }
+
+body.dark-mode .skin-toggle {
+    background: var(--glass-bg-dark);
+    border: 1px solid var(--glass-border-dark);
+    color: var(--color-secondary);
+}
+
+body.te-mode .skin-toggle {
+    background: #e7ff4f !important;
+    border: 2px solid #181818 !important;
+    color: #121212 !important;
+    box-shadow: 3px 3px 0 #000 !important;
+    border-radius: 10px !important;
+}
+
+body.te-mode.dark-mode .skin-toggle {
+    background: #e7ff4f !important;
+    border: 2px solid rgba(232,230,224,0.4) !important;
+    box-shadow: 3px 3px 0 rgba(232,230,224,0.2) !important;
+}
+
+@media (max-width: 768px) {
+    .skin-toggle { top: var(--space-9); left: var(--space-9); width: 42px; height: 42px; font-size: 0.6rem; }
+}
+
 /* Section Labels */
 .section-label {
     font-size: 0.75rem;
@@ -792,7 +841,8 @@ body.te-mode.dark-mode a:hover { color: #ff5b2e !important; }
 }
 </style>
 </head>
-<body class="te-mode">
+<body>
+    <button class="skin-toggle" id="skinToggle" aria-label="Toggle TE mode">TE</button>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
         <svg id="sunIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="12" cy="12" r="5" fill="currentColor"/>
@@ -1102,6 +1152,19 @@ body.te-mode.dark-mode a:hover { color: #ff5b2e !important; }
     </div>
 
     <script>
+        const skinToggle = document.getElementById('skinToggle');
+        const initSkin = () => {
+            const skin = localStorage.getItem('skin') || 'default';
+            if (skin === 'te') document.body.classList.add('te-mode');
+            else document.body.classList.remove('te-mode');
+        };
+        const toggleSkin = () => {
+            const isTE = document.body.classList.toggle('te-mode');
+            localStorage.setItem('skin', isTE ? 'te' : 'default');
+        };
+        initSkin();
+        skinToggle.addEventListener('click', toggleSkin);
+
         const themeToggle = document.getElementById('themeToggle');
         const sunIcon = document.getElementById('sunIcon');
         const moonIcon = document.getElementById('moonIcon');
