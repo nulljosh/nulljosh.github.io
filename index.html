@@ -682,7 +682,9 @@ body.te-mode .header h1 {
     color: var(--te-ink);
 }
 body.te-mode .intro,
-body.te-mode .contact-info { color: var(--te-muted); }
+body.te-mode .contact-info { color: #3a3a36; }
+body.te-mode p, body.te-mode li { color: #2a2a26; line-height: 1.7; }
+body.te-mode .service-card p { font-size: 0.95rem; }
 body.te-mode .section,
 body.te-mode .testimonial,
 body.te-mode .service-card,
@@ -726,6 +728,15 @@ body.te-mode .header h1::after {
     border-radius: 999px;
     margin-left: 14px;
     vertical-align: middle;
+}
+/* TE mobile-first overrides */
+@media (max-width: 768px) {
+    body.te-mode .header h1 { font-size: 1.6rem; }
+    body.te-mode .header h1::after { display: block; margin: 10px 0 0 0; font-size: 0.5em; }
+    body.te-mode .section,
+    body.te-mode .service-card,
+    body.te-mode .job-card { box-shadow: 3px 3px 0 #000; border-width: 1.5px; }
+    body.te-mode .container { padding: 20px 16px; }
 }
 </style>
 </head>
@@ -864,6 +875,22 @@ body.te-mode .header h1::after {
                 <div class="service-card">
                     <h3>Trevor Project</h3>
                     <p>Crisis intervention and suicide prevention for LGBTQ+ youth. 24/7 support via phone, text, and chat.</p>
+                </div>
+                <div class="service-card">
+                    <h3>UNICEF</h3>
+                    <p>Works in over 190 countries to protect children's rights, provide humanitarian aid, and ensure every child has access to health, education, and safety.</p>
+                </div>
+                <div class="service-card">
+                    <h3>UNRWA</h3>
+                    <p>United Nations agency providing essential services — education, health care, and emergency relief — to Palestinian refugees across the Middle East and Gaza.</p>
+                </div>
+                <div class="service-card">
+                    <h3>MAP (Medical Aid for Palestinians)</h3>
+                    <p>Delivers health and medical care to Palestinians affected by conflict, occupation, and displacement. Operating since 1984.</p>
+                </div>
+                <div class="service-card">
+                    <h3>PCRF (Palestine Children's Relief Fund)</h3>
+                    <p>Provides free medical care and humanitarian aid to children throughout the Middle East, regardless of nationality, religion, or gender.</p>
                 </div>
             </div>
         </section>
