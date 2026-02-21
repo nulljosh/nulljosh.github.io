@@ -489,6 +489,51 @@ body.dark-mode .simple-list a { color: var(--color-accent-3); }
 body.dark-mode .simple-list a:visited { color: var(--color-accent-3); }
 body.dark-mode .simple-list a:hover { color: #ff5b2e; }
 
+/* Project Health */
+.project-health-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-8);
+}
+
+.project-health-card {
+    background: rgba(231, 255, 79, 0.18);
+    border: 2px solid rgba(0, 0, 0, 0.18);
+    border-radius: 10px;
+    padding: var(--space-9);
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.project-health-name {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: var(--text-base);
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #121212;
+}
+
+.project-health-state {
+    margin-top: var(--space-4);
+    font-size: var(--text-sm);
+    color: #1f2937;
+    line-height: 1.45;
+}
+
+body.dark-mode .project-health-card {
+    background: rgba(231, 255, 79, 0.12);
+    border-color: rgba(232, 230, 224, 0.38);
+    box-shadow: 3px 3px 0 rgba(232, 230, 224, 0.16);
+}
+
+body.dark-mode .project-health-name {
+    color: #f5f5f7;
+}
+
+body.dark-mode .project-health-state {
+    color: #e5e7eb;
+}
+
 /* Social Links */
 .social-links {
     display: flex;
@@ -664,6 +709,7 @@ body.dark-mode .contribs-label { color: #e7ff4f; }
     .section-title { font-size: var(--text-2xl); margin-bottom: var(--space-10); }
     .services-grid { grid-template-columns: 1fr; gap: var(--space-10); }
     .service-card { padding: var(--space-10) var(--space-9); }
+    .project-health-grid { grid-template-columns: 1fr; }
     .service-card h3 { font-size: var(--text-lg); }
     .service-icon { font-size: 2rem; margin-bottom: var(--space-8); }
     .job-card { padding: var(--space-10); }
@@ -843,6 +889,29 @@ body.dark-mode .contribs-label { color: #e7ff4f; }
         </section>
 
         <section class="section">
+            <span class="section-label">Now Shipping</span>
+            <h2 class="section-title">Project Health</h2>
+            <div class="project-health-grid">
+                <div class="project-health-card">
+                    <div class="project-health-name">rise</div>
+                    <p class="project-health-state">Active: trading simulator and prediction markets features shipping in weekly iterations.</p>
+                </div>
+                <div class="project-health-card">
+                    <div class="project-health-name">tally</div>
+                    <p class="project-health-state">Active: service reliability and BC benefits workflow automation updates in production.</p>
+                </div>
+                <div class="project-health-card">
+                    <div class="project-health-name">core</div>
+                    <p class="project-health-state">Active: shared auth, data contracts, and deployment plumbing used across current apps.</p>
+                </div>
+                <div class="project-health-card">
+                    <div class="project-health-name">health-tracker</div>
+                    <p class="project-health-state">Active: metrics capture and progress summaries aligned with daily journal ship notes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
             <span class="section-label">Built Things</span>
             <h2 class="section-title">Projects</h2>
             <div class="experience-grid">
@@ -978,7 +1047,7 @@ body.dark-mode .contribs-label { color: #e7ff4f; }
             </div>
             <div class="footer-stat">
                 <span class="footer-stat-label">Status</span>
-                <span class="footer-stat-value">Building rise + studying math at UVic</span>
+                <span class="footer-stat-value">Shipping rise, tally, core, and health-tracker; journal sync updated February 21, 2026.</span>
             </div>
         </div>
 
