@@ -85,7 +85,7 @@ body {
 }
 
 body.dark-mode {
-    background: #0a0a0a;
+    background: #0c0c0c;
     color: #f5f5f7;
 }
 
@@ -152,7 +152,7 @@ body.dark-mode .header h1 { color: #f5f5f7 !important; }
 
 body.dark-mode .contact-info a { color: var(--color-accent-3); }
 body.dark-mode .contact-info a:visited { color: var(--color-accent-3); }
-body.dark-mode .contact-info a:hover { color: var(--color-amber); }
+body.dark-mode .contact-info a:hover { color: #ff5b2e; }
 
 .intro {
     font-size: var(--text-lg);
@@ -381,7 +381,7 @@ body.dark-mode .job-title { color: var(--color-secondary); }
 
 body.dark-mode .job-title a { color: var(--color-secondary); }
 body.dark-mode .job-title a:visited { color: var(--color-secondary); }
-body.dark-mode .job-title a:hover { color: var(--color-amber); }
+body.dark-mode .job-title a:hover { color: #ff5b2e; }
 
 .company-date {
     font-size: var(--text-sm);
@@ -404,7 +404,7 @@ body.dark-mode .job-title a:hover { color: var(--color-amber); }
 
 body.dark-mode .company-date a { color: var(--color-accent-3); }
 body.dark-mode .company-date a:visited { color: var(--color-accent-3); }
-body.dark-mode .company-date a:hover { color: var(--color-amber); }
+body.dark-mode .company-date a:hover { color: #ff5b2e; }
 
 .job-card ul {
     list-style: none;
@@ -477,7 +477,7 @@ body.dark-mode .simple-list li:before { color: #e7ff4f; }
 
 body.dark-mode .simple-list a { color: var(--color-accent-3); }
 body.dark-mode .simple-list a:visited { color: var(--color-accent-3); }
-body.dark-mode .simple-list a:hover { color: var(--color-amber); }
+body.dark-mode .simple-list a:hover { color: #ff5b2e; }
 
 /* Social Links */
 .social-links {
@@ -565,6 +565,8 @@ body.dark-mode .footer-divider {
     font-weight: 600;
 }
 
+body.dark-mode .footer-stat-label { color: #e7ff4f; }
+
 .footer-stat-value {
     font-size: var(--text-sm);
     line-height: 1.4;
@@ -578,7 +580,7 @@ body.dark-mode .footer-divider {
 
 .footer-stat-value a:hover { color: var(--color-blue); }
 
-body.dark-mode .footer-stat-value a:hover { color: var(--color-amber); }
+body.dark-mode .footer-stat-value a:hover { color: #ff5b2e; }
 
 /* Contribution heatmap */
 .contribs-section {
@@ -596,6 +598,8 @@ body.dark-mode .footer-stat-value a:hover { color: var(--color-amber); }
     margin-bottom: var(--space-9);
     display: block;
 }
+
+body.dark-mode .contribs-label { color: #e7ff4f; }
 
 .contribs-grid {
     display: inline-grid;
@@ -668,140 +672,6 @@ body.dark-mode .footer-stat-value a:hover { color: var(--color-amber); }
     .services-grid { gap: var(--space-9); }
 }
 
-/* Teenage Engineering inspired branch skin */
-body.te-mode {
-    font-family: 'IBM Plex Mono', 'DM Sans', monospace !important;
-    background: #efeee8 !important;
-    color: #121212 !important;
-}
-body.te-mode::before { opacity: 0.06; }
-body.te-mode .container { max-width: 980px; }
-
-/* Force all text dark */
-body.te-mode,
-body.te-mode *:not(svg):not(path) {
-    color: #121212 !important;
-}
-body.te-mode .contact-info,
-body.te-mode .intro,
-body.te-mode .company-date { color: #444 !important; }
-body.te-mode .footer-stat-label { color: #666 !important; }
-
-/* Header */
-body.te-mode .header { text-align: left; padding-top: 20px; }
-body.te-mode .header::before { display: none; }
-body.te-mode .header h1 {
-    font-family: 'IBM Plex Mono', monospace !important;
-    font-style: normal !important;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-weight: 700;
-    color: #000 !important;
-}
-
-/* Cards + panels */
-body.te-mode .section,
-body.te-mode .testimonial,
-body.te-mode .service-card,
-body.te-mode .job-card,
-body.te-mode .contribs-section {
-    background: #f6f5f1 !important;
-    border: 2px solid #181818 !important;
-    border-radius: 14px !important;
-    box-shadow: 4px 4px 0 #000 !important;
-}
-
-/* Typography */
-body.te-mode h2,
-body.te-mode h3,
-body.te-mode .section-label,
-body.te-mode .section-title {
-    font-family: 'IBM Plex Mono', monospace !important;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #000 !important;
-}
-body.te-mode .section-label {
-    background: #e7ff4f !important;
-    display: inline-block;
-    padding: 4px 8px;
-    border: 2px solid #181818;
-    border-radius: 999px;
-    color: #000 !important;
-}
-body.te-mode p, body.te-mode li { line-height: 1.7; font-size: 0.95rem; }
-
-/* Links */
-body.te-mode a { color: #121212 !important; text-decoration-thickness: 2px; }
-body.te-mode a:hover { color: #ff5b2e !important; }
-
-/* Theme toggle */
-body.te-mode .theme-toggle {
-    border-radius: 10px !important;
-    border: 2px solid #181818 !important;
-    background: #f6f5f1 !important;
-    box-shadow: 3px 3px 0 #000 !important;
-}
-body.te-mode .theme-toggle svg { fill: #121212 !important; }
-
-
-/* TE dark mode — all !important to override light mode rules */
-body.te-mode.dark-mode {
-    background: #131210 !important;
-    color: #e8e6e0 !important;
-}
-body.te-mode.dark-mode,
-body.te-mode.dark-mode *:not(svg):not(path) {
-    color: #c8c4bc !important;
-}
-body.te-mode.dark-mode .header h1,
-body.te-mode.dark-mode h2,
-body.te-mode.dark-mode h3,
-body.te-mode.dark-mode .section-title,
-body.te-mode.dark-mode .job-title { color: #e8e6e0 !important; }
-body.te-mode.dark-mode .contact-info,
-body.te-mode.dark-mode .intro { color: #a8a49c !important; }
-body.te-mode.dark-mode .section,
-body.te-mode.dark-mode .service-card,
-body.te-mode.dark-mode .job-card,
-body.te-mode.dark-mode .testimonial,
-body.te-mode.dark-mode .simple-list,
-body.te-mode.dark-mode .contribs-section {
-    background: #1c1b18 !important;
-    border-color: rgba(232,230,224,0.3) !important;
-    box-shadow: 4px 4px 0 rgba(232,230,224,0.2) !important;
-}
-body.te-mode.dark-mode .section-label {
-    background: #e7ff4f !important;
-    color: #121212 !important;
-    border-color: rgba(232,230,224,0.4) !important;
-}
-body.te-mode.dark-mode .theme-toggle {
-    background: #1c1b18 !important;
-    border-color: rgba(232,230,224,0.3) !important;
-    box-shadow: 3px 3px 0 rgba(232,230,224,0.2) !important;
-}
-body.te-mode.dark-mode .social-links a {
-    background: #1c1b18 !important;
-    border: 2px solid rgba(232,230,224,0.3) !important;
-}
-body.te-mode.dark-mode .social-links svg { fill: #e8e6e0 !important; }
-body.te-mode.dark-mode .footer-divider { border-top-color: rgba(232,230,224,0.12) !important; }
-body.te-mode.dark-mode a { color: #c8c4bc !important; }
-body.te-mode.dark-mode a:hover { color: #ff5b2e !important; }
-
-/* TE mobile */
-@media (max-width: 768px) {
-    body.te-mode .header h1 { font-size: 1.6rem; }
-    body.te-mode .section,
-    body.te-mode .service-card,
-    body.te-mode .job-card { box-shadow: 3px 3px 0 #000; border-width: 1.5px; }
-    body.te-mode.dark-mode .section,
-    body.te-mode.dark-mode .service-card,
-    body.te-mode.dark-mode .job-card { box-shadow: 3px 3px 0 #e8e6e0; }
-    body.te-mode .container { padding: 20px 16px; }
-    body.te-mode p, body.te-mode li { font-size: 0.9rem; }
-}
 </style>
 </head>
 <body>
