@@ -655,6 +655,78 @@ body.dark-mode .footer-stat-value a:hover { color: var(--color-amber); }
     .contact-info { display: flex; flex-direction: column; gap: 4px; }
     .services-grid { gap: var(--space-9); }
 }
+
+/* Teenage Engineering inspired branch skin */
+body.te-mode {
+    --te-bg: #efeee8;
+    --te-panel: #f6f5f1;
+    --te-ink: #121212;
+    --te-muted: #5a5a56;
+    --te-line: #181818;
+    --te-accent: #ff5b2e;
+    --te-accent-2: #e7ff4f;
+    font-family: 'IBM Plex Mono', 'DM Sans', monospace;
+    background: linear-gradient(#f2f1ec 0 40%, #ecebe4 40% 100%);
+    color: var(--te-ink);
+}
+body.te-mode::before { opacity: 0.06; }
+body.te-mode .container { max-width: 980px; }
+body.te-mode .header { text-align: left; padding-top: 20px; }
+body.te-mode .header::before { display: none; }
+body.te-mode .header h1 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    color: var(--te-ink);
+}
+body.te-mode .intro,
+body.te-mode .contact-info { color: var(--te-muted); }
+body.te-mode .section,
+body.te-mode .testimonial,
+body.te-mode .service-card,
+body.te-mode .job-card,
+body.te-mode .contribs-section {
+    background: var(--te-panel);
+    border: 2px solid var(--te-line);
+    border-radius: 14px;
+    box-shadow: 4px 4px 0 #000;
+}
+body.te-mode h2,
+body.te-mode h3,
+body.te-mode .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--te-ink);
+}
+body.te-mode .section-label {
+    background: var(--te-accent-2);
+    display: inline-block;
+    padding: 4px 8px;
+    border: 2px solid var(--te-line);
+    border-radius: 999px;
+}
+body.te-mode a { color: var(--te-ink); text-decoration-thickness: 2px; }
+body.te-mode a:hover { color: var(--te-accent); }
+body.te-mode .theme-toggle {
+    border-radius: 10px;
+    border: 2px solid var(--te-line);
+    background: var(--te-panel);
+    box-shadow: 3px 3px 0 #000;
+}
+body.te-mode .theme-toggle svg { fill: var(--te-ink); }
+body.te-mode .header h1::after {
+    content: ' OPERATOR MODE';
+    font-size: 0.24em;
+    background: var(--te-accent);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 999px;
+    margin-left: 14px;
+    vertical-align: middle;
+}
 </style>
 </head>
 <body class="te-mode">
