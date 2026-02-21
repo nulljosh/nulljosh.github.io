@@ -733,52 +733,50 @@ body.te-mode .theme-toggle {
 body.te-mode .theme-toggle svg { fill: #121212 !important; }
 
 
-/* TE dark mode */
+/* TE dark mode — all !important to override light mode rules */
 body.te-mode.dark-mode {
-    background: linear-gradient(#131210 0 40%, #0e0d0b 40% 100%);
-    color: #e8e6e0;
-    --te-panel: #1c1b18;
-    --te-ink: #e8e6e0;
-    --te-line: #e8e6e0;
-    --text-primary: #e8e6e0;
-    --text-secondary: #a8a49c;
+    background: #131210 !important;
+    color: #e8e6e0 !important;
 }
+body.te-mode.dark-mode,
+body.te-mode.dark-mode *:not(svg):not(path) {
+    color: #c8c4bc !important;
+}
+body.te-mode.dark-mode .header h1,
+body.te-mode.dark-mode h2,
+body.te-mode.dark-mode h3,
+body.te-mode.dark-mode .section-title,
+body.te-mode.dark-mode .job-title { color: #e8e6e0 !important; }
+body.te-mode.dark-mode .contact-info,
+body.te-mode.dark-mode .intro { color: #a8a49c !important; }
 body.te-mode.dark-mode .section,
 body.te-mode.dark-mode .service-card,
 body.te-mode.dark-mode .job-card,
 body.te-mode.dark-mode .testimonial,
 body.te-mode.dark-mode .simple-list,
 body.te-mode.dark-mode .contribs-section {
-    background: #1c1b18;
-    border-color: #e8e6e0;
-    box-shadow: 4px 4px 0 #e8e6e0;
+    background: #1c1b18 !important;
+    border-color: rgba(232,230,224,0.3) !important;
+    box-shadow: 4px 4px 0 rgba(232,230,224,0.2) !important;
 }
-body.te-mode.dark-mode h2,
-body.te-mode.dark-mode h3,
-body.te-mode.dark-mode .section-title,
-body.te-mode.dark-mode .job-title,
-body.te-mode.dark-mode .header h1 { color: #e8e6e0 !important; }
-body.te-mode.dark-mode p,
-body.te-mode.dark-mode li,
-body.te-mode.dark-mode blockquote,
-body.te-mode.dark-mode cite { color: #c8c4bc !important; }
-body.te-mode.dark-mode .company-date { color: #a8a49c; }
-body.te-mode.dark-mode .footer,
-body.te-mode.dark-mode .footer * { color: #a8a49c !important; }
-body.te-mode.dark-mode a { color: #e8e6e0; }
-body.te-mode.dark-mode a:hover { color: #ff5b2e; }
-body.te-mode.dark-mode .theme-toggle {
-    background: #1c1b18;
-    border-color: #e8e6e0;
-    box-shadow: 3px 3px 0 #e8e6e0;
-}
-body.te-mode.dark-mode .theme-toggle svg { fill: #e8e6e0 !important; }
 body.te-mode.dark-mode .section-label {
-    background: #e7ff4f;
-    color: #121212;
-    border-color: #e8e6e0;
+    background: #e7ff4f !important;
+    color: #121212 !important;
+    border-color: rgba(232,230,224,0.4) !important;
 }
-body.te-mode.dark-mode .footer-divider { border-top-color: rgba(232,230,224,0.15); }
+body.te-mode.dark-mode .theme-toggle {
+    background: #1c1b18 !important;
+    border-color: rgba(232,230,224,0.3) !important;
+    box-shadow: 3px 3px 0 rgba(232,230,224,0.2) !important;
+}
+body.te-mode.dark-mode .social-links a {
+    background: #1c1b18 !important;
+    border: 2px solid rgba(232,230,224,0.3) !important;
+}
+body.te-mode.dark-mode .social-links svg { fill: #e8e6e0 !important; }
+body.te-mode.dark-mode .footer-divider { border-top-color: rgba(232,230,224,0.12) !important; }
+body.te-mode.dark-mode a { color: #c8c4bc !important; }
+body.te-mode.dark-mode a:hover { color: #ff5b2e !important; }
 
 /* TE mobile */
 @media (max-width: 768px) {
