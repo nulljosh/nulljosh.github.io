@@ -112,3 +112,144 @@ graph TD
   <text x="178" y="379" font-size="9" fill="#64748b">docs</text>
 </svg>
 ```
+
+
+## Growth Roadmap (BCGD -> $1B playbook)
+
+This is the execution plan to turn BCGD from a site redesign into a vertical AI ops company.
+
+### Phase 1: Revenue Wedge (0-90 days)
+- Keep BCGD site as conversion engine (calls + quote requests)
+- Add AI call handling + after-hours booking via Callie
+- Add missed-call text-back automation + follow-up workflows
+- Instrument funnel metrics: calls, booked jobs, close rate, revenue per lead
+
+Target:
+- 1 live customer workflow that clearly increases booked jobs
+- Weekly ROI report for owner/operators
+
+### Phase 2: Productize (3-9 months)
+- Convert custom automations into a repeatable product package
+- Core modules: intake, scheduling, reminders, quote follow-up, reactivation
+- Add CRM + calendar + payment integrations
+- Price on outcomes (booked jobs / recovered revenue), not "AI features"
+
+Target:
+- 10-30 paying local/regional customers
+- Clear retention and reference case studies
+
+### Phase 3: Scale Vertical (9-24 months)
+- Expand across home services (garage doors -> HVAC/plumbing/electrical)
+- Build onboarding playbooks + partner/agency channel
+- Use conversation + conversion data to improve model behavior per vertical
+
+Target:
+- 7-figure ARR with strong retention
+- Moat = workflow graph + proprietary ops data
+
+### Phase 4: Platform (24+ months)
+- Multi-vertical AI ops platform for SMB service businesses
+- Unified command center: calls, messages, appointments, collections, analytics
+- Add compliance, audit logs, and enterprise controls
+
+Target:
+- 8-9 figure ARR trajectory
+- Position for sustained compounding or strategic exit
+
+## 12-Week Build Plan (No-Fluff)
+
+Week 1-2
+- Ship conversion-focused BCGD pages + tracking baseline
+- Define KPI dashboard (leads, bookings, close rate, no-show rate)
+
+Week 3-4
+- Deploy Callie-powered phone workflow (after-hours + overflow)
+- Add basic safety rails and error alerts
+
+Week 5-6
+- Add follow-up automations (SMS reminders, missed-call recovery)
+- Start A/B tests on booking CTA flows
+
+Week 7-8
+- Integrate scheduling + CRM sync
+- Generate weekly ROI summaries automatically
+
+Week 9-10
+- Harden reliability (failure retries, runbooks, monitoring)
+- Package setup docs for repeatable onboarding
+
+Week 11-12
+- Pilot with additional service businesses
+- Capture case studies and tighten pricing model
+
+## Success Metrics
+- Time-to-first-booking improvement
+- Missed-call recovery rate
+- Booking conversion rate
+- Cost per booked job
+- Net revenue retained/expanded per account
+
+## What this README roadmap changes
+- BCGD is no longer just a visual redesign project.
+- It becomes the first deployable vertical template for an AI-powered service-business operating system.
+
+
+## BCGD Scaling Stack (Apps + Automation)
+
+To scale BCGD into an ops platform, build these modules as connected apps/services:
+
+### 1) AI Phone Ops (Callie)
+- 24/7 inbound call handling
+- After-hours overflow handling
+- Emergency triage routing
+- Voicemail-to-action extraction
+
+### 2) Automated Scheduling
+- Real-time slot booking from calls/SMS/web forms
+- Tech dispatch assignment rules (area, skill, urgency)
+- Reschedule + cancellation automation
+- Calendar sync (owner + field techs)
+
+### 3) Lead Capture + Qualification App
+- Quote intake form with structured problem fields
+- Instant lead scoring (hot/warm/cold)
+- Auto-prioritize emergency/high-value jobs
+- Duplicate lead merging
+
+### 4) Follow-Up Engine
+- Missed-call text-back flows
+- Quote follow-up sequences (day 0/1/3/7)
+- Appointment reminder + confirmation flows
+- No-show recovery automations
+
+### 5) Job Pipeline Dashboard
+- Stages: New -> Qualified -> Booked -> Completed -> Invoiced -> Paid
+- Bottleneck alerts (stalled quotes, no-response leads)
+- Team and individual conversion metrics
+
+### 6) Payments + Collections Automation
+- Deposit links + invoice reminders
+- Outstanding balance nudges
+- Failed payment retry workflows
+- Revenue recovery reporting
+
+### 7) Customer Reactivation App
+- Seasonal campaigns (maintenance checks)
+- "Haven't serviced in 12+ months" reactivation list
+- One-click campaign launch by service area
+
+### 8) Owner Command Center
+- Daily digest: booked jobs, missed calls, at-risk quotes
+- Weekly ROI summary: cost per booking, close rate, recovered revenue
+- Live ops alerts for failures
+
+## Recommended Build Order (for real scaling)
+1. AI Phone Ops + Scheduling
+2. Follow-Up Engine
+3. Job Pipeline Dashboard
+4. Payments/Collections
+5. Reactivation
+6. Owner Command Center unification
+
+## Outcome
+This turns BCGD from a brochure site into a full service-business operating system: calls -> bookings -> jobs -> cash collection, mostly automated.
