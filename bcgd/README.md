@@ -184,64 +184,186 @@ The positioning is "autopilot for your business" not "here's another dashboard."
 - Target CAC: $500-$800 (referral-heavy, demo-driven)
 - LTV:CAC ratio of 7-12x is exceptional
 
-### Phase 1: Proof of Life (0-90 days)
+### The Trust Ladder
 
-**Goal:** Get BCGD running on the full stack. Generate a single undeniable metric: "X missed calls recovered, worth $Y in booked jobs."
+The entire roadmap hinges on one thing: Brian letting you touch his phone line. That's the endgame. But a 30-year tradesperson is not going to hand over his livelihood to his kid's AI project on day one. You earn it in layers. Each layer proves value, builds confidence, and unlocks the next.
 
-Concrete deliverables:
-1. **Callie answers BCGD's overflow/after-hours calls.** Not a demo. Real calls from real customers. Callie triages (emergency vs. routine), captures details (address, door type, symptom), and books into Brian's calendar.
-2. **Missed-call text-back.** Every unanswered call gets an immediate SMS: "Hey, this is BC Garage Doors. Sorry we missed you -- what's going on with your door?" Simple. Recovers 20-30% of lost calls.
-3. **Appointment reminders.** Day-before and morning-of SMS. Reduces no-shows by 30-50%.
-4. **Weekly owner digest.** Brian gets a text every Sunday: calls received, calls missed, calls recovered, jobs booked, revenue attributed. One screen. No login.
+```
+Website + SEO  -->  Social Media  -->  Call Tracking Data  -->  Phone Overflow  -->  Full Autopilot
+  (low risk)        (visible wins)      (proof of problem)     (trust earned)      (product ready)
+```
 
-**What you are NOT building:**
-- A dashboard
-- A CRM
-- An app
-- Anything Brian has to log into
+Every phase below follows this progression. Nothing gets skipped.
 
-The entire interface is phone calls and text messages. That's the insight most SaaS companies miss about this market segment.
+---
 
-### Phase 2: Second Customer (90-180 days)
+### Phase 0: Prove You're Useful (Now -- Week 0-4)
 
-**Goal:** Prove it works for someone who isn't your dad.
+**Goal:** Take over website and social media. Deliver visible results Brian can see without changing how he works at all. Zero disruption to his business.
 
-Find one more home service business in the Lower Mainland. Ideally a different vertical (plumber, locksmith, HVAC) to prove cross-vertical portability. Offer it free for 90 days in exchange for full access to their call data and permission to use them as a case study.
+**Website:**
+- Deploy the redesigned site (heyitsmejosh.com/bcgd) as a staging preview. Show Brian the before/after side-by-side.
+- Optimize the existing bcgaragedoors.ca for SEO: local keywords ("garage door repair Langley", "emergency garage door Surrey"), meta descriptions, schema markup (LocalBusiness JSON-LD), image alt text.
+- Claim and optimize Google Business Profile: consistent NAP (name/address/phone), service categories, business hours, photos of truck/team/jobs, respond to every review.
+- Add click-to-call tracking on the website. Even before Twilio, a simple Google Analytics event on the phone number link tells you how many people tap "Call" from the site.
+- Fix any broken links, missing images, or mobile issues on the current site.
 
-Deliverables:
-1. **Onboarding playbook.** Document exactly what it takes to get a new business live. Twilio number setup, call forwarding config, business hours, service menu, pricing context for the AI.
-2. **Vertical-agnostic prompt templates.** The AI needs to know garage door symptoms vs. plumbing symptoms. Build a structured "business profile" format that captures: services offered, common problems, pricing ranges, emergency criteria, service area, scheduling constraints.
-3. **Retention data.** Does the second customer keep using it after the free period? If yes, you have a product. If no, you have a project.
+**Social media:**
+- Take over Instagram, Facebook, and Google Business posts. Brian does not want to do this himself.
+- Content calendar: 3-4 posts/week. Mix of:
+  - Job photos (before/after spring replacements, cable repairs). Brian texts you a photo, you post it.
+  - Seasonal tips ("Winter is coming -- here's how to keep your garage door from freezing shut")
+  - Customer review highlights (screenshot a Google review, overlay on branded template)
+  - "Day in the life" content (Brian on a call, parts on the truck, driving to a job)
+  - Safety warnings ("Never try to replace a garage door spring yourself. Here's why.")
+- Respond to every comment, DM, and review within 24 hours.
+- Cross-post tips to local community Facebook groups (Langley, Surrey, Burnaby groups). Free distribution.
 
-### Phase 3: Revenue (6-12 months)
+**Weekly report:**
+- Every Sunday, text Brian a one-screen summary: website visits, social media reach, new Google reviews this week, any DMs/comments that need his attention.
+- This trains Brian to expect and rely on your reporting. It becomes the container for call data later.
 
-**Goal:** 10 paying customers, $2K+/mo MRR.
+**What this earns you:** Brian sees his online presence improving. He gets compliments from customers ("saw your post on Facebook"). He starts forwarding you job photos without being asked. He trusts you with the public face of his business.
 
-Distribution channels (ranked by expected ROI):
-1. **Brian's referral network.** Every tradesperson knows other tradespeople. Brian knows the HVAC guy, the plumber, the electrician. Warm intros are worth 10x cold outreach. Offer Brian a referral fee.
-2. **Google Business Profile outreach.** Search "garage door repair [city]" or "plumber [city]" across BC. Every listing with a phone number that goes to voicemail after 5 PM is a prospect. Call them. "Hey, I noticed your phone goes to voicemail at night. We built a system that answers for you and books jobs while you sleep. Can I show you?"
-3. **Local trade associations.** BC trades have associations, Facebook groups, supply house communities. One talk at a LiftMaster dealer meetup could generate 5-10 leads.
-4. **Case study content.** "BC Garage Doors recovered $X in missed calls in 90 days" -- turn that into a one-pager, a short video, a Google ad landing page.
+---
 
-**Pricing at this stage:**
+### Phase 1: Instrument the Funnel (Weeks 4-8)
+
+**Goal:** Get hard data on where money is leaking. Set up call tracking so you can quantify missed calls and lost revenue.
+
+**Call tracking:**
+- Set up a Twilio tracking number that forwards to Brian's phone. Transparent -- same ring, same experience for Brian. The number just logs metadata first.
+- Track every inbound call: timestamp, duration, answered/missed, caller ID, time to answer.
+- After two weeks, generate the first call report: "You got 47 calls last week. You missed 14 of them. 9 were during business hours (on another job). 5 were after 6 PM. That's potentially $2,000-$4,000 in lost revenue."
+- The data makes the case for you. You don't have to convince Brian that missed calls are a problem. You show him the numbers.
+
+**Google Ads / Local Service Ads:**
+- Set up a small Google Ads campaign ($10-20/day) targeting high-intent keywords: "garage door repair near me", "emergency garage door Langley", "broken garage door spring."
+- Local Service Ads (LSAs) are even better for this vertical -- pay-per-lead, Google Guaranteed badge, shows above regular ads. Requires license/insurance verification (Brian has both).
+- Track cost per lead and cost per booked job. Even a small campaign generates data on conversion rates.
+
+**Review automation (manual first):**
+- After Brian completes a job, send the customer a text: "Thanks for choosing BC Garage Doors! If you had a good experience, a Google review helps us a lot: [link]"
+- Do this manually for now (Brian texts you "just finished at 123 Main St", you send the review request). Automate later.
+- Target: push from 128 reviews toward 200. Every review compounds SEO ranking and conversion rate.
+
+**Referral program:**
+- Simple: past customers get $25 off their next service for every referral that books. Print cards Brian can leave at every job.
+- Track referrals manually at first. The point is proving the channel works before automating it.
+
+**What this earns you:** Brian sees the call data. He sees the missed calls quantified in dollars. He starts saying "yeah I know I miss calls when I'm on a job." That's the opening for Phase 2.
+
+---
+
+### Phase 2: Missed-Call Recovery (Weeks 8-14)
+
+**Goal:** Recover lost calls without changing how Brian works. He still answers his phone the same way. You just catch what he drops.
+
+This is the trust inflection point. Everything before this was marketing and reporting. Now you're touching the customer interaction.
+
+**Missed-call text-back:**
+- When Brian doesn't answer within 4 rings, the Twilio system sends an immediate SMS to the caller: "Hey, this is BC Garage Doors. Sorry we missed your call -- what's going on with your door? We'll get back to you within 30 minutes."
+- The response comes to you (or to Brian's phone as a forwarded text). Brian calls them back at his pace.
+- This is the lowest-risk phone automation. Brian still makes the callback. The system just buys him time and captures the lead before they call a competitor.
+- Measure: what % of text-back leads convert to callbacks, and what % of callbacks convert to bookings.
+
+**After-hours capture:**
+- Calls after 6 PM and before 7 AM get a different text: "BC Garage Doors here. We're currently closed but we'll call you first thing in the morning. If this is an emergency, reply URGENT and we'll get someone out tonight."
+- URGENT replies trigger an alert to Brian's phone immediately. Everything else queues for morning.
+- This alone could recover 5-10 calls/week that currently go to voicemail and never call back.
+
+**Appointment reminders:**
+- When Brian books a job, he texts you the details (or you pull from a shared calendar). Day-before and morning-of, the customer gets an SMS: "Reminder: BC Garage Doors is coming tomorrow between 10-12. Reply C to confirm or R to reschedule."
+- Reduces no-shows by 30-50%. Brian notices immediately because fewer wasted drives.
+
+**What this earns you:** Brian sees customers responding to the text-backs. He sees fewer no-shows. He sees the weekly report showing "14 missed calls recovered, 8 booked, estimated $2,800 in revenue you would have lost." Now he's ready for Callie.
+
+---
+
+### Phase 3: Callie on the Phone (Weeks 14-22)
+
+**Goal:** AI answers overflow calls live. Not a voicemail replacement -- an actual conversation that triages and books.
+
+**Callie overflow deployment:**
+- Callie answers calls Brian doesn't pick up within 4 rings (same trigger as text-back, but now it's a live voice instead of SMS).
+- Callie's script: greet as BC Garage Doors, ask what's wrong with the door, ask for address and best callback time, confirm urgency level, promise Brian will call back or offer to book a time slot directly.
+- Constrained action space: Callie can book into available calendar slots and quote price ranges ("spring replacements typically run $250-$400, the technician will confirm exact pricing on-site"). Callie cannot make commitments outside defined parameters.
+- Safety rails: if the caller asks something Callie can't handle, immediate warm transfer to Brian's cell with context summary via text.
+
+**Start with after-hours only:**
+- Deploy Callie on after-hours calls first. Lower stakes -- these calls currently go to voicemail anyway. Any conversion is pure upside.
+- After 2 weeks of clean after-hours handling, expand to daytime overflow (Brian on another job, driving, etc.).
+
+**Quote follow-up sequences:**
+- If Brian gives a quote but the customer doesn't book within 24 hours, automated SMS sequence kicks in:
+  - Day 1: "Hey, just checking in -- still need that spring replaced? We've got availability this week."
+  - Day 3: "Quick follow-up on your garage door repair. Happy to answer any questions."
+  - Day 7: "Last note -- your quote for [service] is still valid. Book anytime at [link] or call us."
+- 15-25% of unbooked quotes convert with follow-up. That's free revenue from leads Brian already spent time quoting.
+
+**Post-job review generation:**
+- After every completed job: "Thanks for choosing BC Garage Doors! How'd we do? Leave a quick review: [Google review link]"
+- Automate fully now. Brian completes job -> system sends review request within 2 hours.
+- Target: 300+ Google reviews within 6 months. Massive SEO and trust signal.
+
+**Weekly owner digest (upgraded):**
+- Brian's Sunday text now includes: calls received, calls answered by Callie, jobs booked by Callie, missed-call recoveries, new reviews, quote follow-up conversions, total revenue attributed to the system.
+- One screen. No login. No dashboard. Just results.
+
+**What you are NOT building at this stage:**
+- A dashboard or CRM
+- An app Brian has to download
+- Anything that requires Brian to change his workflow
+
+The entire interface remains phone calls and text messages. That's the insight most SaaS companies miss about this market segment.
+
+---
+
+### Phase 4: Second Customer + Productize (Months 6-12)
+
+**Goal:** Prove it works for someone who isn't your dad. Package the system for repeatable deployment.
+
+**Finding customer #2:**
+- Use Brian's network first. Every tradesperson knows other tradespeople. Brian knows the HVAC guy, the plumber, the electrician. Warm intros are worth 10x cold outreach. Offer Brian a referral fee.
+- If warm intros stall, cold-call 5 service businesses whose Google listing shows they close at 5 PM. Call them at 6 PM. When you get voicemail, you have your pitch: "I just called your business and got voicemail. That's a lost customer. I built a system that would have answered that call and booked a job. Want to see it?"
+- Offer free 90-day pilot in exchange for full access to call data and permission to use them as a case study.
+- Pick a different vertical (plumber, locksmith, HVAC) to prove cross-vertical portability.
+
+**Onboarding playbook:**
+- Document exactly what it takes to get a new business live: Twilio number setup, call forwarding config, business hours, service menu, pricing context, emergency criteria, service area, scheduling constraints.
+- Build a structured "business profile" format the AI consumes. The AI needs to know garage door symptoms vs. plumbing symptoms. This becomes the vertical template system.
+- Target: onboard a new customer in under 48 hours.
+
+**Pricing (first external customer):**
 - $199/mo flat for core (phone + SMS + scheduling + reminders)
 - $299/mo for full (adds follow-up sequences, collections nudges, reactivation campaigns)
 - No contracts. Month-to-month. These customers hate being locked in.
 - Performance bonus: optional 10% of recovered revenue (overdue invoice collections) -- aligns incentives
 
-### Phase 4: Productize (12-24 months)
+**Retention test:** Does the second customer keep using it after the free period? If yes, you have a product. If no, you have a project.
 
-**Goal:** Self-serve onboarding, multi-vertical, 50-100 customers, $10K-$25K MRR.
+---
 
-This is where it transitions from "Josh manually sets up each customer" to "customer signs up on a website and is live in 24 hours."
+### Phase 5: Revenue (Months 12-24)
 
-Key infrastructure:
-1. **Multi-tenant ops engine.** Each customer gets their own Twilio number, prompt configuration, calendar integration, and reporting. All running on shared infrastructure.
-2. **Business profile builder.** Web form or guided call where the owner describes their business, services, pricing, hours, and the system generates the AI configuration automatically.
-3. **Self-serve dashboard (minimal).** Not a full SaaS dashboard. Just: weekly stats, billing, and a "pause/resume" toggle. The owner should never need to open this more than once a month.
-4. **Vertical playbooks.** Garage doors, HVAC, plumbing, electrical, locksmith, appliance repair. Each vertical gets tuned prompts, common problem taxonomies, and pricing context. This is where the data flywheel kicks in -- every conversation trains the next one.
+**Goal:** 10 paying customers, $2K+/mo MRR, proven cross-vertical.
 
-### Phase 5: Scale or Exit (24+ months)
+**Distribution channels (ranked by expected ROI):**
+1. **Brian's referral network + customer #2's network.** Warm intros compound. Every happy customer knows 3-5 other tradespeople.
+2. **Google Business Profile outreach.** Search "garage door repair [city]" or "plumber [city]" across BC. Every listing with a phone number that goes to voicemail after 5 PM is a prospect.
+3. **Local trade associations.** BC trades have associations, Facebook groups, supply house communities. One talk at a LiftMaster dealer meetup could generate 5-10 leads.
+4. **Case study content.** "BC Garage Doors recovered $X in missed calls in 90 days" -- one-pager, short video, Google ad landing page.
+5. **Local Service Ads management as upsell.** Offer to manage their Google Ads + LSAs as a bolt-on. You already have the conversion data to optimize spend.
+
+**Multi-tenant infrastructure:**
+- Each customer gets their own Twilio number, prompt configuration, calendar integration, and reporting. All running on shared infrastructure.
+- Business profile builder: web form or guided call where the owner describes their business, and the system generates the AI configuration automatically.
+- Self-serve dashboard (minimal): weekly stats, billing, and a "pause/resume" toggle. The owner should never need to open this more than once a month.
+- Vertical playbooks: garage doors, HVAC, plumbing, electrical, locksmith, appliance repair. Each vertical gets tuned prompts, common problem taxonomies, and pricing context.
+
+---
+
+### Phase 6: Scale or Exit (24+ months)
 
 At $25K+ MRR with strong retention (>90% monthly) and proven cross-vertical portability, you have optionality:
 
@@ -294,61 +416,46 @@ The workflow graph (call -> triage -> book -> remind -> complete -> invoice -> c
 
 You are closer to a launchable product than most funded startups. The gap is not technology -- it's wiring Callie into BCGD's real phone line and measuring what happens.
 
-### 12-Week Execution Plan
+### Success Metrics (by Phase)
 
-**Weeks 1-2: Instrument the baseline.**
-- Get BCGD's current call volume data. How many calls/day? How many go to voicemail? What hours? Pull from Telus/carrier if possible, or just have Brian track manually for two weeks.
-- Set up call tracking number (Twilio) that forwards to Brian's phone. Log every call: time, duration, answered/missed, outcome.
-- Baseline metrics: calls/day, answer rate, booking rate, average ticket, revenue/week.
+**Phase 0 (website + socials):**
+- Website traffic increase > 50% over baseline
+- Social media posting cadence: 3-4x/week sustained
+- Google Business Profile fully optimized (photos, hours, categories, responses)
+- Brian forwards you job photos unprompted (trust signal)
 
-**Weeks 3-4: Deploy Callie on overflow.**
-- Configure Callie to answer calls that Brian doesn't pick up within 4 rings.
-- Callie's job: greet, capture problem description, capture address, capture urgency, promise callback. "Brian will call you back within 30 minutes."
-- Simultaneously: missed-call text-back. Every unanswered call gets an SMS within 60 seconds.
-- Start measuring: recovery rate (% of missed calls that convert to bookings).
+**Phase 1 (call tracking + ads):**
+- Call tracking live, 2+ weeks of baseline data
+- Missed call rate quantified (expect 25-40%)
+- Google reviews pushed from 128 toward 175+
+- Google Ads/LSA campaign live, cost per lead measured
 
-**Weeks 5-6: Direct booking.**
-- Upgrade Callie from "capture and callback" to "book directly into calendar."
-- Integrate with Google Calendar or simple slot system. Callie offers available time windows.
-- Add appointment confirmation SMS (immediate) and reminder SMS (day-before, morning-of).
-- Measure: no-show rate before vs. after reminders.
+**Phase 2 (missed-call recovery):**
+- Missed-call text-back recovery rate > 25%
+- After-hours capture rate > 40% (vs. 0% currently)
+- No-show rate reduction > 30% from appointment reminders
+- Brian says "yeah this is actually useful" (trust inflection)
 
-**Weeks 7-8: Follow-up sequences.**
-- Quote follow-up: if Brian gives a quote but the customer doesn't book, automated SMS at day 1, day 3, day 7. "Hey, just checking in -- still need that spring replaced? We've got a slot open Thursday."
-- Post-job follow-up: "Thanks for choosing BC Garage Doors. How'd we do?" with a Google review link. Pump the review count from 128 toward 200.
-- Measure: quote-to-booking conversion rate improvement.
+**Phase 3 (Callie on phone):**
+- Callie handles 50+ calls/month without escalation issues
+- Quote follow-up converts 15-25% of unbooked quotes
+- Google reviews reach 250+
+- Total system-attributed revenue > $3,000/month
+- Brian would pay $200/mo to keep it: yes/no
 
-**Weeks 9-10: Compile results.**
-- 8 weeks of data. Build the case study.
-- Format: "BCGD deployed AI ops in 8 weeks. Results: X% more calls answered, Y missed calls recovered ($Z revenue), W% fewer no-shows, V new Google reviews."
-- Build a one-page pitch doc for the next customer.
+**Phase 4 (second customer):**
+- Onboard time < 48 hours
+- Works for a different vertical without major rework
+- Second customer willing to pay after free pilot
 
-**Weeks 11-12: Second customer outreach.**
-- Use Brian's network. "Hey, do you know a plumber/HVAC guy who misses calls?"
-- Offer free 90-day pilot. Full transparency on what you're measuring.
-- If you can't get a warm intro, cold-call 5 service businesses whose Google listing shows they close at 5 PM. Call them at 6 PM. When you get voicemail, you have your pitch: "I just called your business and got voicemail. That's a lost customer. I built a system that would have answered that call and booked a job. Want to see it?"
-
-### Success Metrics (Revised)
-
-**Phase 1 (single customer):**
-- Missed call recovery rate > 25%
-- Appointment no-show rate reduction > 30%
-- Incremental revenue attributed to system > $2,000/month
-- Brian's NPS: "would you pay $200/mo to keep this?" -- yes/no
-
-**Phase 2 (second customer):**
-- Time to onboard < 48 hours
-- System works for a different vertical without major rework
-- Second customer willing to pay after free trial
-
-**Phase 3 (revenue):**
+**Phase 5 (revenue):**
 - 10+ paying customers
 - Monthly churn < 5%
 - MRR > $2,000
 - CAC < $500 (mostly referral-driven)
 
-**Phase 4 (product):**
-- Self-serve onboarding (no manual setup per customer)
+**Phase 6 (scale):**
+- Self-serve onboarding
 - 3+ verticals supported
 - 50+ customers
 - MRR > $10,000
