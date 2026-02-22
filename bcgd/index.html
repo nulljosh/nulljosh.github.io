@@ -559,12 +559,8 @@
             max-width: 1080px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 16px;
-        }
-
-        .why-choose-grid {
-            grid-template-columns: repeat(5, 1fr);
         }
 
         .value-card {
@@ -784,11 +780,12 @@
 
         .about-team-card img {
             width: 100%;
-            height: 100%;
+            height: auto;
+            max-height: 400px;
             object-fit: cover;
+            object-position: center top;
             border-radius: calc(var(--card-radius) - 4px);
             display: block;
-            min-height: 240px;
         }
 
         /* ========== PROCESS ========== */
@@ -959,7 +956,7 @@
         /* ========== TIPS ========== */
         .tips-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 16px;
         }
 
@@ -1773,26 +1770,8 @@
         }
 
         /* ========== RESPONSIVE ========== */
-        @media (max-width: 1200px) {
-            .why-choose-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
         @media (max-width: 1024px) {
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .reviews-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
             .smart-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .blog-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
@@ -1840,7 +1819,7 @@
                 font-size: 30px;
             }
 
-            .values-grid, .why-choose-grid {
+            .values-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
@@ -2143,7 +2122,7 @@
                 <h2 class="section-title">Why Families Across the Lower Mainland Choose Us</h2>
                 <p class="section-subtitle">When it comes to garage door repair, homeowners want someone they can count on -- not someone trying to upsell or confuse them.</p>
             </div>
-            <div class="values-grid why-choose-grid">
+            <div class="values-grid">
                 <div class="value-card">
                     <div class="value-icon">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
