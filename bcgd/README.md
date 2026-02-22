@@ -1,292 +1,142 @@
-# BC Garage Doors (BCGD) - Project & Growth Plan
+# BC Garage Doors (BCGD) - Growth Plan
 
-Modern redesign of [bcgaragedoors.ca](https://bcgaragedoors.ca) and the launchpad for an AI-powered service-business operating system.
+Modern redesign of [bcgaragedoors.ca](https://bcgaragedoors.ca) and launchpad for a service-business automation platform.
 
 Live site: [heyitsmejosh.com/bcgd](https://heyitsmejosh.com/bcgd/)
 
----
+## What this is
 
-## What this project actually is
+BCGD has two layers:
 
-BCGD is not just a website redesign.
+1. Conversion website (now)
+- High-intent local landing experience
+- Emergency-first call/quote paths
+- Trust stack (30 years local, reviews, proof)
 
-It has 2 layers:
-
-1) Conversion website (today)
-- High-intent local landing page
-- Emergency-first CTA paths (call now, fast quote)
-- Trust stack (family-owned, reviews, local coverage)
-- Service pages/sections that convert traffic to booked jobs
-
-2) Service ops automation product (buildout)
+2. Service ops system (next)
 - AI phone handling (after-hours + overflow)
-- Automated scheduling + dispatch
-- Quote follow-up + reminder sequences
-- Job pipeline visibility (lead -> booked -> completed -> paid)
-- Payment reminders + collections workflows
+- Scheduling + dispatch automation
+- Quote follow-up + reminders
+- Lead-to-paid pipeline visibility
+- Payment reminders + reactivation
 
-The website is the wedge. The product is the compounding engine.
+The site is the wedge. The system is the compounding engine.
 
----
+## Goal and reality
 
-## Business target and reality
+Goal: build toward a billion-dollar outcome.
 
-Target: build toward a business with billion-dollar valuation potential.
+Reality:
+- One local operator alone won’t reach $1B.
+- The path is proving ROI at BCGD, then packaging and scaling the same operating system across many service businesses.
 
-Important reality:
-- $1B valuation does not come from one local garage door company alone.
-- $1B comes from turning this into a repeatable software + automation platform for many service businesses.
+## Step-by-step path (simple)
 
-So the strategy is:
-- Prove ROI on BCGD first
-- Productize the workflow
-- Scale across home-service verticals
+Starting point:
+- 30-year trusted business
+- Immediate target: drive to $1M+ annual revenue faster
 
-## Simple step-by-step path (from estimate now to platform)
+Step 1: Win the estimate moment
+- Primary CTA: book estimate now
+- Minimal form + fast confirmation
+- Clear response SLA
 
-Start position:
-- BCGD is a 30-year local business with trust and real service demand.
-- Immediate goal: drive to $1M+ annual revenue with tighter lead capture + faster response.
+Step 2: Promote proof
+- Lead with 30-year credibility
+- Real jobs, photos, reviews
+- Tight conversion copy
 
-Step 1 - Win the estimate moment (now)
-- Make estimate booking the primary action across site, calls, and messages.
-- Reduce friction: name, phone, service type, preferred time, done.
-- Add instant confirmation + "we'll contact you in X minutes" expectation.
+Step 3: Tight local growth loop
+- Fast response on every lead
+- Missed-call recovery automation
+- Every lead tracked in pipeline
 
-Step 2 - Promote the 30-year proof
-- Lead with: "30 years serving Langley + Lower Mainland" as social proof.
-- Use real jobs, reviews, and before/after photos to increase trust.
-- Turn trust into conversion: stronger headline, faster call-to-action, fewer distractions.
+Step 4: Productize internal tools
+- Apps for lead inbox, scheduling, pipeline, payments
+- Reuse system for websites, newsletters, and customer comms
+- Add natural-language commands for operators
 
-Step 3 - Tighten local growth loop
-- Website captures high-intent traffic.
-- Calls/messages are answered fast (human first, AI overflow).
-- Missed calls trigger automatic callback + follow-up.
-- Every estimate request enters pipeline with status tracking.
+Step 5: Sell the playbook
+- Done-for-you setup + monthly ops fee
+- Repeatable templates and workflows
 
-Step 4 - Productize internal tools
-- Build internal apps that run operations: lead inbox, scheduling board, job pipeline, payment follow-up.
-- Reuse the same system for websites, newsletters, and customer communications.
-- Add natural-language control for operators ("book this", "follow up all pending quotes", "send reminder newsletter").
+Step 6: Scale platform
+- Multi-account system
+- AI calls + websites + newsletters + ops layer
+- Expand to adjacent verticals (HVAC, plumbing, electrical, roofing)
 
-Step 5 - Sell the playbook
-- Package what works into a repeatable offer for similar home-service businesses.
-- Offer done-for-you setup + monthly automation operations.
-- Standardize templates, scripts, and workflows to lower delivery cost.
+## Top 6 builds next (fastest path to cash)
 
-Step 6 - Scale to SaaS + services OS
-- Multi-account platform for apps, websites, newsletters, and AI call handling.
-- Natural-language operating layer across all client operations.
-- Expand by vertical (HVAC/plumbing/electrical/etc.) once ROI is repeatable.
+1) Estimate Funnel Engine
+- One-click estimate CTA across site, SMS, missed-call flows
+- KPI: lead -> estimate-booked conversion
 
-North star:
-- First: make one great local company materially better.
-- Then: make the operating system portable.
-- Then: compound distribution and data into platform scale.
+2) Missed-Call Recovery Autopilot
+- Auto SMS + callback queue + follow-up after missed calls
+- KPI: missed-call recovery rate
 
----
+3) AI Receptionist + Call Triage (Callie)
+- After-hours/overflow handling, emergency priority
+- KPI: calls answered rate, booking rate from calls
 
-## Core thesis
+4) Job Pipeline App (Lead -> Paid)
+- Single ops view for status, owner, next action
+- KPI: lead -> booked time, booked -> paid time
 
-Service businesses lose huge money on:
-- Missed calls
-- Slow follow-ups
-- Scheduling friction
-- Quote leakage
-- Poor collections flow
+5) Follow-up + Newsletter Engine
+- Quote reminders + seasonal reactivation campaigns
+- KPI: quote close rate, reactivation revenue
 
-If we automate these reliably, we increase:
-- Bookings
-- Revenue per lead
-- Speed to cash
-- Owner visibility
+6) Natural-Language Ops Layer
+- Commands like “book this” / “follow up pending quotes”
+- KPI: ops time saved, error reduction
 
-And that creates a product people pay for monthly.
+## Realistic but bullish timeline
 
----
+- Week 1: Estimate Funnel + baseline analytics
+- Week 2: Missed-Call Recovery
+- Weeks 3-4: AI Receptionist (after-hours first)
+- Weeks 5-6: Job Pipeline v1
+- Week 7: Follow-up + Newsletter v1
+- Week 8: Natural-Language Ops v1
 
-## Product roadmap (from site to platform)
+90-day targets:
+- 20-35% faster response time
+- 10-20% lift in lead -> booked conversion
+- 15-25% lift in missed-call recovery
+- 1 repeatable package sold to a second local operator
 
-### Phase 1 - Conversion + Capture (0-90 days)
-Goal: turn traffic and calls into measurable booked jobs.
+## Go-to-market
 
-Build:
-- Fast quote flow (minimal fields)
-- Emergency routing UX
-- Click-to-call and missed-call recovery hooks
-- Event tracking for funnel analytics
+Stage A: BCGD proof case
+- Show measurable before/after lift
 
-KPIs:
-- Lead -> booked conversion rate
-- Missed-call callback rate
-- Time to first response
+Stage B: Nearby operators
+- Sell same system in Lower Mainland
 
-### Phase 2 - AI Phone + Scheduling (3-6 months)
-Goal: stop revenue leakage from phone + scheduling gaps.
-
-Build:
-- AI call handling for overflow/after-hours
-- Intent extraction (emergency vs non-emergency)
-- Calendar booking automation
-- Dispatch logic by service area + urgency
-
-KPIs:
-- Calls answered rate
-- Booking rate from inbound calls
-- Average response latency
-
-### Phase 3 - Follow-up + Pipeline (6-12 months)
-Goal: improve close rate and reduce drop-off.
-
-Build:
-- Quote follow-up sequences (day 0/1/3/7)
-- Appointment reminders + no-show recovery
-- Pipeline dashboard (new, qualified, booked, completed, invoiced, paid)
-
-KPIs:
-- Quote close rate
-- No-show rate
-- Days from lead to booked
-
-### Phase 4 - Payments + Reactivation (12-18 months)
-Goal: accelerate cash collection and revive dormant customers.
-
-Build:
-- Invoice reminder automation
-- Failed-payment retries
-- Seasonal maintenance/reactivation campaigns
-
-KPIs:
-- Days sales outstanding (DSO)
-- Recovery revenue
-- Reactivation rate
-
-### Phase 5 - Productization for other businesses (18-30 months)
-Goal: move from one business system to multi-account SaaS/automation platform.
-
-Build:
-- Multi-tenant architecture
-- Self-serve onboarding + templates
-- Integrations (Twilio, calendar, CRM, payments)
-- Role-based dashboards
-
-KPIs:
-- MRR/ARR
-- Churn
-- Net revenue retention
-- CAC payback
-
-### Phase 6 - Vertical expansion (30+ months)
-Goal: scale beyond garage doors into adjacent home-service categories.
-
-Targets:
-- HVAC
-- Plumbing
-- Electrical
-- Roofing
-- General contractors
-
-Moat:
-- Workflow/IP compounding
-- Vertical conversation + conversion data
-- Proven ROI playbooks by niche
-
----
-
-## Go-to-market plan
-
-### Stage A: local proof
-- Start with BCGD as flagship case study
-- Prove clear revenue lift from automation
-- Document before/after metrics
-
-### Stage B: nearby operators
-- Sell to similar businesses in Lower Mainland
-- Offer setup + monthly automation fee
-- Keep deployment tight and repeatable
-
-### Stage C: packaged offering
-- Turn services into productized plans:
-  - Starter (phone + booking)
-  - Growth (follow-up + pipeline)
-  - Pro (payments + reactivation + analytics)
-
----
+Stage C: Productized plans
+- Starter: phone + booking
+- Growth: follow-up + pipeline
+- Pro: payments + reactivation + analytics
 
 ## Revenue model
 
-Hybrid pricing (best for this market):
-- Setup fee (implementation)
+Hybrid:
+- Setup fee
 - Monthly platform fee
-- Optional performance fee tied to outcomes
+- Optional performance fee
 
-Why hybrid:
-- Setup covers onboarding labor
-- Monthly creates compounding recurring revenue
-- Performance aligns incentives with client ROI
+## Operating rules
 
----
-
-## Operating system (how we execute)
-
-Weekly rhythm:
-- Ship one conversion or ops improvement
-- Review funnel and booking metrics
-- Remove one friction point from customer journey
-- Add one automation rule with measurable impact
-
-Monthly rhythm:
-- KPI review + roadmap adjustment
-- Reliability hardening
-- Case study capture
-
-Non-negotiables:
 - No feature without KPI tie-in
-- No vanity design work without conversion impact
-- Fast iteration, but with measurable outcomes
-
----
-
-## Risks and mitigations
-
-Risk: overbuilding tech before proving demand
-- Mitigation: revenue-first milestones and pilot constraints
-
-Risk: fragile automations
-- Mitigation: logging, retries, alerting, runbooks
-
-Risk: poor adoption by owners/teams
-- Mitigation: simple UX, clear ROI dashboards, white-glove onboarding
-
-Risk: dilution of focus
-- Mitigation: BCGD as wedge, then expand only after playbook is repeatable
-
----
-
-## 90-day execution checklist
-
-- [ ] Instrument full funnel analytics on site
-- [ ] Launch fast quote and emergency-intent path
-- [ ] Deploy AI call triage for after-hours/overflow
-- [ ] Sync bookings into calendar workflow
-- [ ] Ship missed-call recovery sequence
-- [ ] Publish first ROI case study from BCGD
-
-Definition of success for 90 days:
-- Measurable increase in booked jobs
-- Faster response times
-- At least one repeatable automation package ready to sell
-
----
+- Ship weekly improvements tied to conversion or cash speed
+- Reliability matters: logging, retries, alerts, runbooks
 
 ## Repo scope
 
-Current repo path: `nulljosh.github.io/bcgd/`
+Path: `nulljosh.github.io/bcgd/`
 
-Contains:
-- `index.html` - production marketing site
-- `img/` - visual assets
-- `README.md` - project and business plan (this file)
-- `LICENSE` - MIT license
-
-This repo is the public front-end wedge. Product/automation systems can live in separate service repos and integrate via APIs/webhooks.
+- `index.html` - production site
+- `img/` - assets
+- `README.md` - this plan
+- `LICENSE` - MIT
