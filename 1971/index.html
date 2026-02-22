@@ -5,439 +5,380 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WTF Happened in 1971?</title>
     <meta name="description" content="Data visualization exploring the economic shift that began in 1971 when the US abandoned the gold standard.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-primary: #000000;
-            --bg-secondary: rgba(28, 28, 30, 0.72);
-            --bg-tertiary: rgba(44, 44, 46, 0.64);
-            --text-primary: #ffffff;
-            --text-secondary: rgba(235, 235, 245, 0.6);
-            --text-tertiary: rgba(235, 235, 245, 0.3);
-            --accent: #ff453a;
-            --accent-glow: rgba(255, 69, 58, 0.3);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --glass-highlight: rgba(255, 255, 255, 0.05);
-        }
-
-        [data-theme="light"] {
-            --bg-primary: #f5f5f7;
-            --bg-secondary: rgba(255, 255, 255, 0.72);
-            --bg-tertiary: rgba(242, 242, 247, 0.64);
-            --text-primary: #1d1d1f;
-            --text-secondary: rgba(60, 60, 67, 0.6);
-            --text-tertiary: rgba(60, 60, 67, 0.3);
-            --accent: #ff3b30;
-            --accent-glow: rgba(255, 59, 48, 0.2);
-            --glass-border: rgba(0, 0, 0, 0.06);
-            --glass-highlight: rgba(0, 0, 0, 0.02);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(2deg); }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes shimmer {
-            0% { background-position: -1000px 0; }
-            100% { background-position: 1000px 0; }
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-            transition: background 0.3s ease;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100vh;
-            background: 
-                radial-gradient(circle at 20% 50%, var(--accent-glow) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, var(--accent-glow) 0%, transparent 50%);
-            opacity: 0.3;
+            inset: 0;
             z-index: -1;
             pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 256px 256px;
         }
 
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #fbfbfd;
+            color: #1d1d1f;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body.dark-mode { background: #0c0c0c; color: #f5f5f7; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container { max-width: 980px; margin: 0 auto; padding: 60px 40px; }
+
+        /* Theme Toggle */
         .theme-toggle {
             position: fixed;
-            top: 2rem;
-            right: 2rem;
-            z-index: 1000;
-            background: var(--bg-secondary);
+            top: 3rem;
+            right: 3rem;
+            background: rgba(255,255,255,0.55);
             backdrop-filter: blur(40px) saturate(180%);
             -webkit-backdrop-filter: blur(40px) saturate(180%);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 0.75rem 1.25rem;
-            cursor: pointer;
+            border: 2px solid rgba(0,0,0,0.12);
+            border-radius: 10px;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--text-primary);
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.1),
-                inset 0 1px 0 var(--glass-highlight);
-            transition: all 0.3s ease;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 1000;
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
         }
 
-        .theme-toggle:hover {
-            transform: translateY(-2px);
-            box-shadow: 
-                0 12px 40px rgba(0, 0, 0, 0.15),
-                inset 0 1px 0 var(--glass-highlight);
+        .theme-toggle:hover { transform: scale(1.15); }
+
+        body.dark-mode .theme-toggle {
+            background: #181614;
+            border: 2px solid rgba(232,230,224,0.22);
+            box-shadow: 3px 3px 0 rgba(232,230,224,0.12);
         }
 
-        header {
-            position: relative;
-            padding: 8rem 2rem 6rem;
-            text-align: center;
-            background: var(--bg-secondary);
-            backdrop-filter: blur(40px) saturate(180%);
-            -webkit-backdrop-filter: blur(40px) saturate(180%);
-            border-bottom: 1px solid var(--glass-border);
-            overflow: hidden;
+        .theme-toggle svg { width: 22px; height: 22px; fill: #1d1d1f; }
+        body.dark-mode .theme-toggle svg { fill: #f5f5f7; }
+
+        /* Header */
+        .header {
+            text-align: left;
+            padding: 40px 0 20px;
+            margin-bottom: 20px;
+            animation: fadeUp 0.6s ease forwards;
         }
 
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, 
-                transparent, 
-                var(--accent), 
-                transparent
-            );
-            opacity: 0.5;
+        .section-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 700;
+            display: inline-block;
+            background: #e7ff4f;
+            color: #121212;
+            padding: 3px 10px;
+            border: 2px solid #181818;
+            border-radius: 999px;
+            margin-bottom: 0.75rem;
         }
+
+        body.dark-mode .section-label { border-color: rgba(232,230,224,0.4); }
 
         h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: 800;
-            background: linear-gradient(135deg, 
-                var(--text-primary) 0%, 
-                var(--accent) 100%
-            );
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-            letter-spacing: -0.03em;
-            animation: fadeInUp 0.8s ease;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #1d1d1f;
+            margin-bottom: 0.75rem;
         }
 
+        body.dark-mode h1 { color: #f5f5f7; }
+
         .subtitle {
-            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            font-weight: 400;
-            animation: fadeInUp 0.8s ease 0.1s backwards;
+            font-size: 1.125rem;
+            color: #86868b;
+            max-width: 700px;
+            line-height: 1.7;
         }
 
         .year-display {
+            font-family: 'IBM Plex Mono', monospace;
             font-size: clamp(4rem, 12vw, 8rem);
-            font-weight: 900;
-            color: var(--accent);
-            opacity: 0.1;
+            font-weight: 700;
+            color: #e7ff4f;
+            opacity: 0.15;
             letter-spacing: 0.5rem;
             margin-top: 1rem;
-            animation: float 6s ease-in-out infinite;
+            text-transform: uppercase;
         }
 
-        main {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 3rem 1.5rem;
+        /* Sections */
+        .section {
+            margin-bottom: 60px;
+            animation: fadeUp 0.6s ease forwards;
+            opacity: 0;
         }
 
-        .glass-card {
-            background: var(--bg-secondary);
+        .section:nth-child(1) { animation-delay: 0.05s; }
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.15s; }
+        .section:nth-child(4) { animation-delay: 0.2s; }
+        .section:nth-child(5) { animation-delay: 0.25s; }
+
+        .section-title {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #1d1d1f;
+            margin-bottom: 1.5rem;
+        }
+
+        body.dark-mode .section-title { color: #f5f5f7; }
+
+        /* Cards */
+        .card {
+            background: rgba(255,255,255,0.55);
             backdrop-filter: blur(40px) saturate(180%);
             -webkit-backdrop-filter: blur(40px) saturate(180%);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 2.5rem;
-            margin-bottom: 3rem;
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.1),
-                inset 0 1px 0 var(--glass-highlight);
-            position: relative;
-            overflow: hidden;
-            animation: fadeInUp 0.8s ease;
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid rgba(0,0,0,0.12);
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .glass-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                var(--glass-highlight),
-                transparent
-            );
-            transition: left 0.5s ease;
+        .card:hover { transform: translateY(-4px); }
+
+        body.dark-mode .card {
+            background: #181614;
+            backdrop-filter: none;
+            border: 2px solid rgba(232,230,224,0.28);
+            box-shadow: 4px 4px 0 rgba(232,230,224,0.18);
         }
 
-        .glass-card:hover::before {
-            left: 100%;
-        }
-
-        .glass-card h2 {
-            color: var(--accent);
-            margin-bottom: 1rem;
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-
-        .glass-card p {
-            color: var(--text-secondary);
+        .card p {
+            color: #86868b;
             line-height: 1.8;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
         }
 
+        .card p strong { color: #1d1d1f; }
+        body.dark-mode .card p strong { color: #f5f5f7; }
+
+        /* Chart Grid */
         .chart-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
         }
 
         .chart-card {
-            background: var(--bg-tertiary);
+            background: rgba(255,255,255,0.55);
             backdrop-filter: blur(40px) saturate(180%);
             -webkit-backdrop-filter: blur(40px) saturate(180%);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
+            border: 2px solid rgba(0,0,0,0.12);
+            border-radius: 10px;
             padding: 1.5rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
         }
 
-        .chart-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
+        .chart-card:hover { transform: translateY(-10px); }
 
-        .chart-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: var(--accent);
-            box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.2),
-                0 0 0 1px var(--accent),
-                inset 0 1px 0 var(--glass-highlight);
-        }
-
-        .chart-card:hover::after {
-            opacity: 1;
+        body.dark-mode .chart-card {
+            background: #181614;
+            backdrop-filter: none;
+            border: 2px solid rgba(232,230,224,0.28);
+            box-shadow: 4px 4px 0 rgba(232,230,224,0.18);
         }
 
         .chart-card h3 {
-            color: var(--text-primary);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.125rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #1d1d1f;
             margin-bottom: 0.5rem;
-            font-size: 1.3rem;
-            font-weight: 600;
-            letter-spacing: -0.01em;
         }
 
+        body.dark-mode .chart-card h3 { color: #f5f5f7; }
+
         .chart-card p {
-            color: var(--text-secondary);
+            color: #86868b;
             font-size: 0.95rem;
             margin-bottom: 1.25rem;
             line-height: 1.6;
         }
 
+        .chart-card a {
+            color: #1d1d1f;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .chart-card a:hover { color: #0071e3; text-decoration: underline; }
+        body.dark-mode .chart-card a { color: #86868b; }
+        body.dark-mode .chart-card a:hover { color: #ff5b2e; }
+
         .chart-card img {
             width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
-            transition: transform 0.3s ease;
+            border-radius: 8px;
+            border: 1px solid rgba(0,0,0,0.08);
         }
 
-        .chart-card:hover img {
-            transform: scale(1.05);
-        }
+        body.dark-mode .chart-card img { border-color: rgba(232,230,224,0.12); }
 
+        /* Book Section */
         .book-section {
-            background: linear-gradient(135deg, 
-                var(--bg-secondary) 0%, 
-                var(--bg-tertiary) 100%
-            );
+            background: rgba(255,255,255,0.55);
             backdrop-filter: blur(40px) saturate(180%);
             -webkit-backdrop-filter: blur(40px) saturate(180%);
-            border: 1px solid var(--glass-border);
-            border-radius: 32px;
-            padding: 4rem 3rem;
-            margin: 4rem 0;
-            box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.15),
-                inset 0 1px 0 var(--glass-highlight);
-            position: relative;
-            overflow: hidden;
+            border: 2px solid rgba(0,0,0,0.12);
+            border-radius: 10px;
+            padding: 3rem 2.5rem;
+            margin: 60px 0;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+            border-left: 3px solid #e7ff4f;
         }
 
-        .book-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            opacity: 0.3;
-            pointer-events: none;
+        body.dark-mode .book-section {
+            background: #181614;
+            backdrop-filter: none;
+            border: 2px solid rgba(232,230,224,0.28);
+            border-left: 3px solid #e7ff4f;
+            box-shadow: 4px 4px 0 rgba(232,230,224,0.18);
         }
 
         .book-section h2 {
-            color: var(--accent);
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            margin-bottom: 1.5rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: clamp(1.5rem, 4vw, 1.875rem);
             font-weight: 700;
-            letter-spacing: -0.02em;
-            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #1d1d1f;
+            margin-bottom: 1rem;
         }
 
+        body.dark-mode .book-section h2 { color: #f5f5f7; }
+
+        .book-section > p { color: #86868b; font-size: 1.05rem; }
+
         .book-quote {
-            font-size: 1.3rem;
             font-style: italic;
-            color: var(--text-primary);
-            padding: 2rem;
-            border-left: 4px solid var(--accent);
-            background: var(--bg-primary);
-            border-radius: 16px;
-            margin: 2rem 0;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            font-size: 1.125rem;
+            color: #1d1d1f;
+            padding: 1.5rem 2rem;
+            border-left: 3px solid #e7ff4f;
+            background: rgba(0,0,0,0.02);
+            border-radius: 8px;
+            margin: 1.5rem 0;
             line-height: 1.8;
-            position: relative;
+        }
+
+        body.dark-mode .book-quote {
+            color: #f5f5f7;
+            background: rgba(255,255,255,0.03);
         }
 
         .key-points {
             list-style: none;
-            margin-top: 2rem;
+            margin-top: 1.5rem;
         }
 
         .key-points li {
-            padding: 1.5rem;
-            margin: 1rem 0;
-            background: var(--bg-tertiary);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 16px;
-            border-left: 3px solid var(--accent);
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
+            padding: 1.25rem 1.5rem;
+            padding-left: 2rem;
+            margin: 0.75rem 0;
+            background: rgba(0,0,0,0.02);
+            border-radius: 8px;
+            border-left: 3px solid #e7ff4f;
+            color: #86868b;
             position: relative;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .key-points li:hover {
-            transform: translateX(8px);
-            border-left-color: var(--accent);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        .key-points li:hover { transform: translateX(6px); }
+
+        body.dark-mode .key-points li { background: rgba(255,255,255,0.03); }
+
+        .key-points li:before {
+            content: ">";
+            position: absolute;
+            left: 1.5rem;
+            display: none;
         }
 
         .key-points strong {
-            color: var(--accent);
-            font-weight: 600;
+            font-family: 'IBM Plex Mono', monospace;
+            color: #1d1d1f;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.02em;
         }
 
-        footer {
-            background: var(--bg-secondary);
-            backdrop-filter: blur(40px) saturate(180%);
-            -webkit-backdrop-filter: blur(40px) saturate(180%);
-            padding: 3rem 2rem;
+        body.dark-mode .key-points strong { color: #e7ff4f; }
+
+        /* Footer */
+        .footer {
             text-align: center;
-            margin-top: 6rem;
-            border-top: 1px solid var(--glass-border);
-        }
-
-        footer p {
-            color: var(--text-secondary);
-            margin: 0.5rem 0;
+            padding: 4rem 0 2rem;
+            color: #86868b;
             font-size: 0.95rem;
         }
 
-        footer a {
-            color: var(--accent);
+        .footer a {
+            color: #1d1d1f;
             text-decoration: none;
             font-weight: 500;
-            transition: opacity 0.3s ease;
         }
 
-        footer a:hover {
-            opacity: 0.7;
-        }
+        .footer a:hover { color: #0071e3; text-decoration: underline; }
+        body.dark-mode .footer a { color: #86868b; }
+        body.dark-mode .footer a:hover { color: #ff5b2e; }
 
+        .footer p { margin: 0.5rem 0; }
+
+        /* Mobile */
         @media (max-width: 768px) {
-            .theme-toggle {
-                top: 1rem;
-                right: 1rem;
-                padding: 0.6rem 1rem;
-                font-size: 0.85rem;
-            }
+            body::before { display: none; }
+            .container { padding: 30px 20px; }
+            .header { padding: 30px 0; margin-bottom: 20px; }
+            h1 { font-size: 2rem; }
+            .section { margin-bottom: 35px; }
+            .chart-grid { grid-template-columns: 1fr; gap: 20px; }
+            .chart-card:hover { transform: none; }
+            .card:hover { transform: none; }
+            .book-section { padding: 2rem 1.5rem; }
+            .theme-toggle { top: 1rem; right: 1rem; width: 42px; height: 42px; }
+        }
 
-            header {
-                padding: 6rem 1.5rem 4rem;
-            }
-
-            .glass-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .book-section {
-                padding: 2.5rem 1.5rem;
-            }
-
-            .chart-grid {
-                gap: 1.5rem;
-            }
+        @media (max-width: 400px) {
+            .container { padding: 20px 16px; }
+            h1 { font-size: 1.75rem; }
         }
 
         @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
+            *, *::before, *::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
@@ -445,151 +386,169 @@
         }
     </style>
 </head>
-<body data-theme="dark">
-    <button class="theme-toggle" onclick="toggleTheme()">
-        <span id="theme-icon">☀️</span>
-        <span id="theme-text">Light</span>
+<body>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <svg id="sunIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="5" fill="currentColor"/>
+            <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1m17.66-5.66l-4.24 4.24m-6.36 0L3.34 6.34m17.32 11.32l-4.24-4.24m-6.36 0l-4.24 4.24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <svg id="moonIcon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="display:none">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
     </button>
 
-    <header>
-        <h1>WTF Happened in 1971?</h1>
-        <p class="subtitle">When American prosperity broke</p>
-        <div class="year-display">1971</div>
-    </header>
+    <div class="container">
+        <header class="header">
+            <span class="section-label">Economics</span>
+            <h1>WTF Happened in 1971?</h1>
+            <p class="subtitle">In August 1971, Nixon severed the dollar from gold. Nearly every chart measuring American prosperity shows a break point right there.</p>
+            <div class="year-display">1971</div>
+        </header>
 
-    <main>
-        <section class="glass-card">
-            <h2>The Year Everything Changed</h2>
-            <p>In August 1971, President Nixon ended the Bretton Woods system, severing the dollar's link to gold. This single decision unleashed a cascade of economic changes that fundamentally altered American life.</p>
-            <p style="margin-top: 1rem;"><strong style="color: var(--text-primary);">The data speaks for itself:</strong> Nearly every chart measuring American prosperity shows a dramatic shift around 1971. Wages flatlined. Inequality soared. Housing became unaffordable. The American Dream began its slow death.</p>
+        <section class="section">
+            <span class="section-label">Context</span>
+            <h2 class="section-title">The Year Everything Changed</h2>
+            <div class="card">
+                <p>The Bretton Woods system tied the dollar to gold at $35/oz. When Nixon killed it, the US gained the ability to print without constraint. Wages flatlined. Inequality soared. Housing became unaffordable. The American Dream began its slow death.</p>
+                <p style="margin-top: 1rem;"><strong>The data speaks for itself.</strong></p>
+            </div>
         </section>
 
-        <div class="chart-grid">
-            <div class="chart-card">
-                <h3>Productivity vs Wages</h3>
-                <p>Productivity continued rising, but wages stopped following</p>
-                <img src="images/chart1.jpg" alt="Productivity vs Wages" loading="lazy">
+        <section class="section">
+            <span class="section-label">Data</span>
+            <h2 class="section-title">The Charts</h2>
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Productivity vs Wages</h3>
+                    <p>Productivity continued rising, but wages stopped following</p>
+                    <img src="images/chart1.jpg" alt="Productivity vs Wages" loading="lazy">
+                </div>
+
+                <div class="chart-card">
+                    <h3>Income Inequality</h3>
+                    <p>Top 1% income share exploded after 1971</p>
+                    <img src="images/chart2.png" alt="Income Inequality" loading="lazy">
+                </div>
+
+                <div class="chart-card">
+                    <h3>Housing Affordability</h3>
+                    <p>Median home price vs median income diverged</p>
+                    <img src="images/chart3.png" alt="Housing Affordability" loading="lazy">
+                </div>
+
+                <div class="chart-card">
+                    <h3>Dollar Purchasing Power</h3>
+                    <p>The dollar lost 85% of its value since 1971</p>
+                    <img src="images/chart4.jpg" alt="Dollar Purchasing Power" loading="lazy">
+                </div>
+
+                <div class="chart-card">
+                    <h3>Economic Indicators</h3>
+                    <p>Multiple data points showing the 1971 inflection</p>
+                    <img src="images/chart5.png" alt="Economic Indicators" loading="lazy">
+                </div>
+
+                <div class="chart-card">
+                    <h3>Explore More</h3>
+                    <p>Dive deeper into the data at <a href="https://wtfhappenedin1971.com" target="_blank">wtfhappenedin1971.com</a></p>
+                    <div style="padding: 4rem 0; text-align: center; color: #86868b; font-size: 1.5rem; font-family: 'IBM Plex Mono', monospace;">$ > _</div>
+                </div>
             </div>
-
-            <div class="chart-card">
-                <h3>Income Inequality</h3>
-                <p>Top 1% income share exploded after 1971</p>
-                <img src="images/chart2.png" alt="Income Inequality" loading="lazy">
-            </div>
-
-            <div class="chart-card">
-                <h3>Housing Affordability</h3>
-                <p>Median home price vs median income diverged</p>
-                <img src="images/chart3.png" alt="Housing Affordability" loading="lazy">
-            </div>
-
-            <div class="chart-card">
-                <h3>Dollar Purchasing Power</h3>
-                <p>The dollar lost 85% of its value since 1971</p>
-                <img src="images/chart4.jpg" alt="Dollar Purchasing Power" loading="lazy">
-            </div>
-
-            <div class="chart-card">
-                <h3>Economic Indicators</h3>
-                <p>Multiple data points showing the 1971 inflection</p>
-                <img src="images/chart5.png" alt="Economic Indicators" loading="lazy">
-            </div>
-
-            <div class="chart-card">
-                <h3>Explore More</h3>
-                <p>Dive deeper into the data at <a href="https://wtfhappenedin1971.com" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 600;">wtfhappenedin1971.com</a></p>
-                <div style="padding: 4rem 0; text-align: center; color: var(--text-tertiary); font-size: 3rem;">📊</div>
-            </div>
-        </div>
-
-        <section class="book-section">
-            <h2>A Generation of Sociopaths</h2>
-            <p style="color: var(--text-secondary); font-size: 1.1rem;">Bruce Cannon Gibney's controversial thesis: The Baby Boomer generation's self-serving policies created these trends.</p>
-
-            <div class="book-quote">
-                "The Boomers inherited a rich, dynamic country and have gradually bankrupted it. They habitually cut their own taxes and borrow money without any concern for future burdens. They've spent virtually all our money and assets on themselves and in the process have left a financial disaster for their children."
-            </div>
-
-            <ul class="key-points">
-                <li><strong>1971: Gold Standard Abandoned</strong> — Enabled unlimited money printing to fund present consumption at future expense</li>
-                <li><strong>1980s: Tax Cuts for Wealthy</strong> — Reagan-era policies shifted burden to working class while enriching top earners</li>
-                <li><strong>Deregulation</strong> — Removed guardrails that prevented corporate abuse and financial crises</li>
-                <li><strong>Student Debt Explosion</strong> — Made education unaffordable, saddling younger generations with debt Boomers never faced</li>
-                <li><strong>Environmental Neglect</strong> — Kicked climate costs down to children and grandchildren</li>
-            </ul>
-
-            <p style="margin-top: 2rem; color: var(--text-secondary); font-size: 1.05rem;">The data suggests Gibney may have a point. Every major policy shift benefited Boomers at the expense of future generations. <strong style="color: var(--text-primary);">The charts don't lie.</strong></p>
         </section>
 
-        <section class="glass-card">
-            <h2>Why This Matters</h2>
-            <p>Understanding what happened in 1971 helps explain:</p>
-            <ul style="margin-top: 1.5rem; padding-left: 2rem; color: var(--text-secondary); line-height: 2;">
-                <li>Why millennials and Gen Z can't afford homes</li>
-                <li>Why wages feel stagnant despite "economic growth"</li>
-                <li>Why college is unaffordable</li>
-                <li>Why retirement seems impossible</li>
-                <li>Why political polarization has increased</li>
-            </ul>
-            <p style="margin-top: 1.5rem; font-size: 1.2rem;"><strong style="color: var(--accent);">The data doesn't lie. Something fundamental changed in 1971.</strong></p>
-        </section>
-    </main>
+        <section class="section">
+            <div class="book-section">
+                <span class="section-label">Reading</span>
+                <h2>A Generation of Sociopaths</h2>
+                <p>Bruce Cannon Gibney's thesis: The Baby Boomer generation's self-serving policies created these trends.</p>
 
-    <footer>
-        <p>Data sources: Federal Reserve, US Census, Bureau of Labor Statistics</p>
-        <p>Inspired by <a href="https://wtfhappenedin1971.com" target="_blank">WTFHappenedin1971.com</a> and "A Generation of Sociopaths" by Bruce Cannon Gibney</p>
-        <p style="margin-top: 1.5rem;">
-            <a href="https://github.com/nulljosh/1971" target="_blank">View on GitHub</a>
-        </p>
-    </footer>
+                <div class="book-quote">
+                    "The Boomers inherited a rich, dynamic country and have gradually bankrupted it. They habitually cut their own taxes and borrow money without any concern for future burdens. They've spent virtually all our money and assets on themselves and in the process have left a financial disaster for their children."
+                </div>
+
+                <ul class="key-points">
+                    <li><strong>1971: Gold Standard Abandoned</strong> -- Enabled unlimited money printing to fund present consumption at future expense</li>
+                    <li><strong>1980s: Tax Cuts for Wealthy</strong> -- Reagan-era policies shifted burden to working class while enriching top earners</li>
+                    <li><strong>Deregulation</strong> -- Removed guardrails that prevented corporate abuse and financial crises</li>
+                    <li><strong>Student Debt Explosion</strong> -- Made education unaffordable, saddling younger generations with debt Boomers never faced</li>
+                    <li><strong>Environmental Neglect</strong> -- Kicked climate costs down to children and grandchildren</li>
+                </ul>
+
+                <p style="margin-top: 1.5rem;">The data suggests Gibney may have a point. Every major policy shift benefited Boomers at the expense of future generations. <strong style="color: #1d1d1f;">The charts don't lie.</strong></p>
+            </div>
+        </section>
+
+        <section class="section">
+            <span class="section-label">Impact</span>
+            <h2 class="section-title">Why This Matters</h2>
+            <div class="card">
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="padding-left: 25px; position: relative; margin-bottom: 0.75rem; color: #86868b;"><span style="position: absolute; left: 0; color: #d4a843; font-weight: 600;">></span> Millennials and Gen Z can't afford homes</li>
+                    <li style="padding-left: 25px; position: relative; margin-bottom: 0.75rem; color: #86868b;"><span style="position: absolute; left: 0; color: #d4a843; font-weight: 600;">></span> Wages feel stagnant despite "economic growth"</li>
+                    <li style="padding-left: 25px; position: relative; margin-bottom: 0.75rem; color: #86868b;"><span style="position: absolute; left: 0; color: #d4a843; font-weight: 600;">></span> College is unaffordable</li>
+                    <li style="padding-left: 25px; position: relative; margin-bottom: 0.75rem; color: #86868b;"><span style="position: absolute; left: 0; color: #d4a843; font-weight: 600;">></span> Retirement seems impossible</li>
+                    <li style="padding-left: 25px; position: relative; margin-bottom: 0.75rem; color: #86868b;"><span style="position: absolute; left: 0; color: #d4a843; font-weight: 600;">></span> Political polarization has increased</li>
+                </ul>
+                <p style="margin-top: 1.5rem; font-size: 1.1rem;"><strong>Something fundamental changed in 1971.</strong></p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>Data sources: Federal Reserve, US Census, Bureau of Labor Statistics</p>
+            <p>Inspired by <a href="https://wtfhappenedin1971.com" target="_blank">WTFHappenedin1971.com</a> and "A Generation of Sociopaths" by Bruce Cannon Gibney</p>
+            <p style="margin-top: 1.5rem;">
+                <a href="https://github.com/nulljosh/nulljosh.github.io" target="_blank">View on GitHub</a>
+            </p>
+        </footer>
+    </div>
 
     <script>
-        function toggleTheme() {
-            const body = document.body;
-            const currentTheme = body.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            body.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            
-            const icon = document.getElementById('theme-icon');
-            const text = document.getElementById('theme-text');
-            
-            if (newTheme === 'dark') {
-                icon.textContent = '☀️';
-                text.textContent = 'Light';
-            } else {
-                icon.textContent = '🌙';
-                text.textContent = 'Dark';
-            }
-        }
+        const themeToggle = document.getElementById('themeToggle');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
 
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        document.body.setAttribute('data-theme', savedTheme);
-        if (savedTheme === 'light') {
-            document.getElementById('theme-icon').textContent = '🌙';
-            document.getElementById('theme-text').textContent = 'Dark';
-        }
-
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+        const getPreferredTheme = () => {
+            const saved = localStorage.getItem('theme-1971');
+            if (saved) return saved;
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         };
 
+        const setTheme = (theme) => {
+            if (theme === 'dark') {
+                document.body.classList.add('dark-mode');
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            } else {
+                document.body.classList.remove('dark-mode');
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            }
+            localStorage.setItem('theme-1971', theme);
+        };
+
+        setTheme(getPreferredTheme());
+
+        themeToggle.addEventListener('click', () => {
+            const current = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+            setTheme(current === 'dark' ? 'light' : 'dark');
+        });
+
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme-1971')) {
+                setTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+
+        // Scroll reveal
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
+            entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    entry.target.style.animationDelay = `${index * 0.1}s`;
-                    entry.target.classList.add('fade-in');
+                    entry.target.style.opacity = '1';
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
 
-        document.querySelectorAll('.chart-card, .glass-card').forEach((el) => {
-            observer.observe(el);
-        });
+        document.querySelectorAll('.section').forEach((el) => observer.observe(el));
     </script>
 </body>
 </html>
