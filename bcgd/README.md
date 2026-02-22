@@ -42,6 +42,48 @@ So the strategy is:
 - Productize the workflow
 - Scale across home-service verticals
 
+## Simple step-by-step path (from estimate now to platform)
+
+Start position:
+- BCGD is a 30-year local business with trust and real service demand.
+- Immediate goal: drive to $1M+ annual revenue with tighter lead capture + faster response.
+
+Step 1 - Win the estimate moment (now)
+- Make estimate booking the primary action across site, calls, and messages.
+- Reduce friction: name, phone, service type, preferred time, done.
+- Add instant confirmation + "we'll contact you in X minutes" expectation.
+
+Step 2 - Promote the 30-year proof
+- Lead with: "30 years serving Langley + Lower Mainland" as social proof.
+- Use real jobs, reviews, and before/after photos to increase trust.
+- Turn trust into conversion: stronger headline, faster call-to-action, fewer distractions.
+
+Step 3 - Tighten local growth loop
+- Website captures high-intent traffic.
+- Calls/messages are answered fast (human first, AI overflow).
+- Missed calls trigger automatic callback + follow-up.
+- Every estimate request enters pipeline with status tracking.
+
+Step 4 - Productize internal tools
+- Build internal apps that run operations: lead inbox, scheduling board, job pipeline, payment follow-up.
+- Reuse the same system for websites, newsletters, and customer communications.
+- Add natural-language control for operators ("book this", "follow up all pending quotes", "send reminder newsletter").
+
+Step 5 - Sell the playbook
+- Package what works into a repeatable offer for similar home-service businesses.
+- Offer done-for-you setup + monthly automation operations.
+- Standardize templates, scripts, and workflows to lower delivery cost.
+
+Step 6 - Scale to SaaS + services OS
+- Multi-account platform for apps, websites, newsletters, and AI call handling.
+- Natural-language operating layer across all client operations.
+- Expand by vertical (HVAC/plumbing/electrical/etc.) once ROI is repeatable.
+
+North star:
+- First: make one great local company materially better.
+- Then: make the operating system portable.
+- Then: compound distribution and data into platform scale.
+
 ---
 
 ## Core thesis
@@ -245,5 +287,6 @@ Contains:
 - `index.html` - production marketing site
 - `img/` - visual assets
 - `README.md` - project and business plan (this file)
+- `LICENSE` - MIT license
 
 This repo is the public front-end wedge. Product/automation systems can live in separate service repos and integrate via APIs/webhooks.
