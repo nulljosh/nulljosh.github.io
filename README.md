@@ -13,6 +13,10 @@ Joshua Trommel's portfolio site.
 - `rise/` — trading sim static export
 - `bread/` — recipe app
 
+## Design
+
+Minimal type-only aesthetic inspired by [Noah Dunnagan's nd.mt](https://x.com/noahdunnagan/status/1891193273389019406). No cards, no glass, no blur. System fonts, 640px max-width, animated underline links, view-transition theme toggle.
+
 ## Setup
 
 Just HTML/CSS/JS. Push to `main` and GitHub Pages deploys automatically.
