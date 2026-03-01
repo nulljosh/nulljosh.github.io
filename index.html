@@ -863,7 +863,7 @@ footer a:hover { color: var(--text-primary); }
                 const firstDay = new Date(contribs[0].date).getDay();
 
                 const buildGrid = () => {
-                    grid.innerHTML = '';
+                    while (grid.firstChild) grid.removeChild(grid.firstChild);
                     const colors = isDark() ? COLORS_DARK : COLORS_LIGHT;
                     for (let i = 0; i < firstDay; i++) {
                         const cell = document.createElement('div');
