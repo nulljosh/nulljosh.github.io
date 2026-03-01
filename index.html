@@ -545,6 +545,10 @@ footer a:hover { color: var(--text-primary); }
                 <span class="footer-stat-value" id="letterboxd-stats">6,552 on Letterboxd</span>
             </div>
             <div class="footer-stat">
+                <span class="footer-stat-label">TV</span>
+                <span class="footer-stat-value" id="trakt-stats">loading...</span>
+            </div>
+            <div class="footer-stat">
                 <span class="footer-stat-label">Code</span>
                 <span class="footer-stat-value" id="github-stats">loading...</span>
             </div>
@@ -657,6 +661,41 @@ footer a:hover { color: var(--text-primary); }
                     throw new Error();
                 }
             } catch { /* keep fallback */ }
+        }
+
+        // Trakt.tv episode stats
+        async function updateTraktStats() {
+            const CACHE_KEY = 'trakt_stats';
+            const CACHE_TIMESTAMP_KEY = 'trakt_stats_timestamp';
+            const CACHE_DURATION = 24 * 60 * 60 * 1000;
+            const el = document.getElementById('trakt-stats');
+
+            try {
+                const cached = localStorage.getItem(CACHE_KEY);
+                const cachedTs = localStorage.getItem(CACHE_TIMESTAMP_KEY);
+                const now = Date.now();
+
+                if (cached && cachedTs && (now - parseInt(cachedTs) < CACHE_DURATION)) {
+                    el.textContent = cached;
+                    return;
+                }
+
+                const res = await fetch('https://corsproxy.io/?' + encodeURIComponent('https://trakt.tv/users/nljs'));
+                if (!res.ok) throw new Error();
+                const html = await res.text();
+                const match = html.match(/([0-9,]+)\s+episodes?/i);
+
+                if (match && match[1]) {
+                    const text = `${match[1]} episodes on Trakt`;
+                    el.textContent = text;
+                    localStorage.setItem(CACHE_KEY, text);
+                    localStorage.setItem(CACHE_TIMESTAMP_KEY, now.toString());
+                } else {
+                    throw new Error();
+                }
+            } catch {
+                el.textContent = '4,200 episodes on Trakt';
+            }
         }
 
         // GitHub public repos
@@ -784,6 +823,7 @@ footer a:hover { color: var(--text-primary); }
         }
 
         updateLetterboxdStats();
+        updateTraktStats();
         updateGitHubStats();
         updateBlog();
         updateWeather();
