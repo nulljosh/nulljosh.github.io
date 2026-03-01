@@ -514,7 +514,7 @@ footer a:hover { color: var(--text-primary); }
             <h2>Education</h2>
             <ul class="plain">
                 <li><a href="https://www.uvic.ca/undergraduate/programs/undergraduate-programs/pages/computer-science.php" target="_blank" rel="noopener noreferrer">University of Victoria</a>, BSc in Computer Science (Expected 2030)</li>
-                <li><a href="https://heyitsmejosh.com/school/" target="_blank" rel="noopener noreferrer">Langley Education Centre</a> (2024 - Present)</li>
+                <li>Langley Education Centre (2024 - Present)</li>
                 <li><a href="https://brookswoodsecondary.com" target="_blank" rel="noopener noreferrer">Brookswood Secondary School</a> (2012 - 2017)</li>
             </ul>
         </section>
@@ -533,6 +533,7 @@ footer a:hover { color: var(--text-primary); }
                 <li><a href="https://twitter.com/nulljosh1" target="_blank" rel="noopener noreferrer">Twitter</a></li>
                 <li><a href="https://heyitsmejosh.com/journal/" target="_blank" rel="noopener noreferrer">Blog</a></li>
                 <li><a href="https://letterboxd.com/literallyjordan/" target="_blank" rel="noopener noreferrer">Letterboxd</a></li>
+                <li><a href="https://trakt.tv/users/nljs" target="_blank" rel="noopener noreferrer">Trakt</a></li>
             </ul>
         </section>
 
@@ -726,7 +727,7 @@ footer a:hover { color: var(--text-primary); }
             const now = new Date();
             const startOfYear = new Date(now.getFullYear(), 0, 1);
             const dayOfYear = Math.floor((now - startOfYear) / (1000 * 60 * 60 * 24)) + 1;
-            el.textContent = `~${Math.round(dayOfYear * 2.5).toLocaleString()} in ${now.getFullYear()}`;
+            el.textContent = `~${Math.round(dayOfYear * 2.5).toLocaleString()} cups in ${now.getFullYear()}`;
         }
 
         // Trakt.tv recently watched
