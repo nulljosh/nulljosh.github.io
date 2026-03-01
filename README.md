@@ -1,4 +1,7 @@
-# nulljosh.github.io
+<div align="center">
+  <img src="icon.svg" width="120" />
+  <h1>nulljosh.github.io</h1>
+</div>
 
 Joshua Trommel's portfolio site.
 
