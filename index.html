@@ -3,33 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Joshua Trommel - Tech & Design</title>
-<meta name="description" content="Technical support specialist and designer in Vancouver, BC. Skilled in Apple device repair, web development, and creative solutions.">
+<title>Joshua Trommel</title>
+<meta name="description" content="Software engineer and builder in Langley, BC. Training neural nets from scratch, building financial terminals, and designing programming languages.">
 <meta name="keywords" content="technical support, web design, Apple specialist, portfolio management, Vancouver BC">
 <meta name="author" content="Joshua Trommel">
-<link rel="canonical" href="https://joshuatrommel.com">
-<link rel="stylesheet" href="design-tokens.css">
+<link rel="canonical" href="https://heyitsmejosh.com">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://joshuatrommel.com">
-<meta property="og:title" content="Joshua Trommel - Tech & Design">
-<meta property="og:description" content="Technical specialist with 10+ years making technology work seamlessly. Apple device repair, web development, and cloud solutions.">
-<meta property="og:image" content="https://joshuatrommel.com/og-image.jpg">
+<meta property="og:url" content="https://heyitsmejosh.com">
+<meta property="og:title" content="Joshua Trommel">
+<meta property="og:description" content="Software engineer building financial terminals, neural nets, and programming languages from scratch.">
+<meta property="og:image" content="https://heyitsmejosh.com/og-image.jpg">
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://joshuatrommel.com">
-<meta property="twitter:title" content="Joshua Trommel - Tech & Design">
-<meta property="twitter:description" content="Technical specialist with 10+ years making technology work seamlessly. Apple device repair, web development, and cloud solutions.">
-<meta property="twitter:image" content="https://joshuatrommel.com/og-image.jpg">
+<meta property="twitter:url" content="https://heyitsmejosh.com">
+<meta property="twitter:title" content="Joshua Trommel">
+<meta property="twitter:description" content="Software engineer building financial terminals, neural nets, and programming languages from scratch.">
+<meta property="twitter:image" content="https://heyitsmejosh.com/og-image.jpg">
 <meta name="twitter:creator" content="@nulljosh1">
 
-<!-- Additional SEO -->
+<!-- SEO -->
 <meta name="robots" content="index, follow">
 <meta name="googlebot" content="index, follow">
-<meta name="theme-color" content="#431407" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#d8b4fe" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 
 <!-- Schema.org structured data -->
 <script type="application/ld+json">
@@ -37,7 +36,7 @@
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Joshua Trommel",
-  "url": "https://joshuatrommel.com",
+  "url": "https://heyitsmejosh.com",
   "email": "jatrommel@gmail.com",
   "telephone": "+17788462726",
   "address": {
@@ -46,624 +45,583 @@
     "addressRegion": "BC",
     "addressCountry": "CA"
   },
-  "jobTitle": "Portfolio Manager & Technical Specialist",
+  "jobTitle": "Software Engineer",
   "sameAs": [
     "https://github.com/nulljosh",
     "https://twitter.com/nulljosh1",
     "https://letterboxd.com/literallyjordan/"
   ],
-  "knowsAbout": ["Technical Support", "Web Development", "Apple Devices", "Portfolio Management", "Cloud Infrastructure"]
+  "knowsAbout": ["Software Engineering", "Machine Learning", "Systems Programming", "Programming Language Design", "Web Development"]
 }
 </script>
+<meta name="view-transition" content="same-origin">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1/dist/fonts/geist-sans/style.min.css">
 <style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f5f7;
+    --text-primary: #111111;
+    --text-secondary: #636366;
+    --text-tertiary: #636366;
+    --text-quaternary: #98989d;
+    --border: #c5c5ca;
+    --link: #0a84ff;
+    --accent: #0a84ff;
+}
+
+[data-theme="dark"] {
+    --bg-primary: #000000;
+    --bg-secondary: #111111;
+    --text-primary: #f5f5f7;
+    --text-secondary: #98989d;
+    --text-tertiary: #c5c5ca;
+    --text-quaternary: #636366;
+    --border: rgba(255,255,255,0.06);
+    --link: #0a84ff;
+    --accent: #0a84ff;
+}
+
 html { scroll-behavior: smooth; }
-* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: var(--font-primary);
-    background: linear-gradient(135deg, var(--color-accent-5), var(--color-accent-3));
-    min-height: 100vh;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-weight: 300;
+    background: var(--bg-primary);
     color: var(--text-primary);
     line-height: 1.6;
+    min-height: 100dvh;
+    transition: background 0.3s, color 0.3s;
+    -webkit-font-smoothing: antialiased;
 }
 
-body.dark-mode {
-    background: linear-gradient(135deg, var(--color-neutral-2), var(--color-neutral-1));
-    color: var(--text-primary);
+.container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 4rem clamp(1.25rem, 5vw, 3rem) 3rem;
 }
-
-.container { max-width: 900px; margin: 0 auto; padding: 60px 40px; }
 
 /* Header */
-.header {
-    text-align: center;
-    padding: 60px 0;
-    margin-bottom: 40px;
+header {
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s cubic-bezier(.16,1,.3,1) forwards;
 }
 
-.header h1 {
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: var(--font-weight-5);
-    margin-bottom: var(--space-10);
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+header .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
 }
 
-.contact-info {
-    font-size: var(--text-base);
-    color: var(--text-secondary);
-    margin-bottom: var(--space-10);
+h1 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.035em;
 }
-
-.contact-info a {
-    color: var(--color-primary);
-    text-decoration: none;
-    transition: color 0.3s;
-    font-weight: var(--font-weight-2);
-}
-
-.contact-info a:visited { color: var(--color-primary); }
-.contact-info a:hover { color: var(--color-secondary); text-decoration: underline; }
 
 .intro {
-    font-size: var(--text-lg);
     color: var(--text-secondary);
-    max-width: 700px;
-    margin: var(--space-10) auto;
+    font-size: 0.9375rem;
     line-height: 1.7;
+    margin-bottom: 0.5rem;
 }
 
-/* Theme Toggle */
+.intro a {
+    color: var(--link);
+    text-decoration: none;
+    position: relative;
+}
+
+/* Shared animated underline for all inline links */
+.intro a::after,
+.items li a::after,
+.plain li a::after,
+.links li a::after,
+.footer-stat-value a::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--link);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.intro a:hover::after,
+.items li a:hover::after,
+.plain li a:hover::after,
+.links li a:hover::after,
+.footer-stat-value a:hover::after { width: 100%; }
+
+/* Theme toggle */
 .theme-toggle {
-    position: fixed;
-    top: var(--space-11);
-    right: var(--space-11);
-    background: var(--glass-bg-light);
-    backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--glass-border-light);
-    border-radius: var(--radius-full);
-    width: 50px;
-    height: 50px;
+    background: var(--bg-secondary);
+    border: none;
+    cursor: pointer;
+    padding: 0.375rem 0.625rem;
+    border-radius: 28px;
+    color: var(--text-secondary);
+    transition: color 0.2s, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     display: flex;
     align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s;
-    z-index: 1000;
-    box-shadow: var(--shadow-sm);
 }
 
-.theme-toggle:hover { transform: scale(1.1); }
-
-body.dark-mode .theme-toggle {
-    background: var(--glass-bg-dark);
-    border: 1px solid var(--glass-border-dark);
-}
+.theme-toggle:hover { color: var(--text-primary); transform: scale(1.05); }
 
 .theme-toggle svg {
-    width: var(--space-10);
-    height: var(--space-10);
-    fill: var(--color-primary);
+    width: 18px;
+    height: 18px;
 }
 
-body.dark-mode .theme-toggle svg { fill: var(--color-secondary); }
+/* Sections */
+section {
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+section:nth-child(1) { animation-delay: 0.1s; }
+section:nth-child(2) { animation-delay: 0.2s; }
+section:nth-child(3) { animation-delay: 0.3s; }
+section:nth-child(4) { animation-delay: 0.4s; }
+section:nth-child(5) { animation-delay: 0.5s; }
+section:nth-child(6) { animation-delay: 0.6s; }
+section:nth-child(7) { animation-delay: 0.7s; }
+section:nth-child(8) { animation-delay: 0.8s; }
+
+.testimonial {
+    opacity: 0;
+    animation: fadeUp 0.8s cubic-bezier(.16,1,.3,1) 0.5s forwards;
+}
+
+.footer-stats {
+    opacity: 0;
+    animation: fadeUp 0.8s cubic-bezier(.16,1,.3,1) 0.6s forwards;
+}
+
+.contribs-section {
+    opacity: 0;
+    animation: fadeUp 0.8s cubic-bezier(.16,1,.3,1) 0.7s forwards;
+}
+
+h2 {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+/* Item lists */
+.items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.items li {
+    padding: 0.75rem 1rem;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.items li:hover {
+    transform: translateY(-2px);
+}
+
+.items li strong {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.items li a {
+    color: var(--link);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+}
+
+/* Plain list (skills, education) */
+.plain {
+    list-style: none;
+}
+
+.plain li {
+    padding: 0.25rem 0;
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+}
+
+.plain li a {
+    color: var(--link);
+    text-decoration: none;
+    position: relative;
+}
+
+/* Links section */
+.links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+}
+
+.links li a {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    position: relative;
+    background: var(--bg-secondary);
+    padding: 0.375rem 0.875rem;
+    border-radius: 28px;
+    display: inline-block;
+    transition: background .15s, color 0.2s, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.links li a:hover { color: var(--link); transform: translateY(-2px); }
 
 /* Testimonial */
 .testimonial {
-    background: var(--glass-bg-light);
-    backdrop-filter: var(--glass-blur);
-    padding: var(--space-11);
-    border-left: 4px solid var(--color-primary);
-    border-radius: var(--radius);
-    margin: var(--space-12) 0;
-    transition: all 0.3s;
-}
-
-.testimonial:hover { transform: translateY(-2px); }
-
-body.dark-mode .testimonial {
-    background: var(--glass-bg-dark);
-    border-left-color: var(--color-secondary);
+    margin: 2.5rem 0;
+    padding: 1.25rem;
+    background: var(--bg-secondary);
+    border-radius: 12px;
 }
 
 .testimonial blockquote {
     font-style: italic;
-    font-size: var(--text-lg);
-    margin-bottom: var(--space-8);
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
     line-height: 1.7;
+    margin-bottom: 0.5rem;
 }
 
 .testimonial cite {
-    font-size: var(--text-sm);
+    font-size: 0.8125rem;
     color: var(--text-secondary);
+    font-style: normal;
 }
 
-/* Sections */
-.section {
-    margin-bottom: 60px;
+/* Divider */
+hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2rem 0;
 }
 
-.section-title {
-    font-size: var(--text-3xl);
-    font-weight: var(--font-weight-4);
-    color: var(--color-primary);
-    margin-bottom: var(--space-11);
-    text-align: center;
-}
-
-body.dark-mode .section-title { color: var(--color-secondary); }
-
-/* Services Grid */
-.services-grid {
+/* Footer stats */
+.footer-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
 }
 
-.service-card {
-    background: var(--glass-bg-light);
-    backdrop-filter: var(--glass-blur);
-    padding: var(--space-12) var(--space-11);
-    border-radius: var(--radius-lg);
-    text-align: center;
-    transition: all 0.3s;
-    border: 1px solid var(--glass-border-light);
-}
-
-.service-card:hover { transform: translateY(-10px); }
-
-body.dark-mode .service-card {
-    background: var(--glass-bg-dark);
-    border: 1px solid var(--glass-border-dark);
-}
-
-.service-icon {
-    font-size: 3rem;
-    margin-bottom: var(--space-10);
-}
-
-.service-card h3 {
-    font-size: var(--text-2xl);
-    color: var(--color-primary);
-    margin-bottom: var(--space-9);
-    font-weight: var(--font-weight-4);
-}
-
-body.dark-mode .service-card h3 { color: var(--color-secondary); }
-
-.service-card p {
-    color: var(--text-secondary);
-    line-height: 1.6;
-}
-
-/* Experience Cards */
-.experience-grid {
-    display: grid;
-    gap: 25px;
-}
-
-.job-card {
-    background: var(--glass-bg-light);
-    backdrop-filter: var(--glass-blur);
-    padding: var(--space-11);
-    border-radius: var(--radius);
-    border-left: 4px solid var(--color-primary);
-    transition: all 0.3s;
-}
-
-.job-card:hover { transform: translateX(5px); }
-
-body.dark-mode .job-card {
-    background: var(--glass-bg-dark);
-    border-left-color: var(--color-secondary);
-}
-
-.job-title {
-    font-size: var(--text-xl);
-    font-weight: var(--font-weight-4);
-    color: var(--color-primary);
-    margin-bottom: var(--space-7);
-}
-
-.job-title a {
-    color: var(--color-primary);
-    text-decoration: none;
-}
-
-.job-title a:visited { color: var(--color-primary); }
-
-.job-title a:hover {
-    color: var(--color-secondary);
-    text-decoration: underline;
-}
-
-body.dark-mode .job-title { color: var(--color-secondary); }
-
-body.dark-mode .job-title a { color: var(--color-secondary); }
-body.dark-mode .job-title a:visited { color: var(--color-secondary); }
-body.dark-mode .job-title a:hover { color: var(--color-accent-3); }
-
-.company-date {
-    font-size: var(--text-sm);
-    color: var(--text-secondary);
-    margin-bottom: var(--space-9);
-}
-
-.company-date a {
-    color: var(--color-primary);
-    text-decoration: none;
-    font-weight: var(--font-weight-2);
-}
-
-.company-date a:visited { color: var(--color-primary); }
-
-.company-date a:hover {
-    color: var(--color-secondary);
-    text-decoration: underline;
-}
-
-.job-card ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-.job-card li {
-    padding-left: 25px;
-    position: relative;
-    margin-bottom: var(--space-7);
-    color: var(--text-secondary);
-}
-
-.job-card li:before {
-    content: "▸";
-    position: absolute;
-    left: 0;
-    color: var(--color-primary);
-    font-weight: var(--font-weight-4);
-}
-
-body.dark-mode .job-card li:before { color: var(--color-secondary); }
-
-/* Simple Lists */
-.simple-list {
-    background: var(--glass-bg-light);
-    backdrop-filter: var(--glass-blur);
-    padding: var(--space-11);
-    border-radius: var(--radius);
-}
-
-body.dark-mode .simple-list {
-    background: var(--glass-bg-dark);
-}
-
-.simple-list ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-.simple-list li {
-    padding-left: 25px;
-    position: relative;
-    margin-bottom: var(--space-8);
-    color: var(--text-secondary);
-}
-
-.simple-list li:before {
-    content: "▸";
-    position: absolute;
-    left: 0;
-    color: var(--color-primary);
-    font-weight: var(--font-weight-4);
-}
-
-body.dark-mode .simple-list li:before { color: var(--color-secondary); }
-
-.simple-list a {
-    color: var(--color-primary);
-    text-decoration: none;
-    font-weight: var(--font-weight-2);
-}
-
-.simple-list a:visited { color: var(--color-primary); }
-
-.simple-list a:hover {
-    color: var(--color-secondary);
-    text-decoration: underline;
-}
-
-/* Social Links */
-.social-links {
+.footer-stat {
     display: flex;
-    justify-content: center;
-    gap: var(--space-11);
-    margin: var(--space-13) 0 var(--space-12);
+    flex-direction: column;
+    gap: 2px;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
 }
 
-.social-links a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    background: var(--glass-bg-light);
-    backdrop-filter: var(--glass-blur);
-    border-radius: var(--radius-full);
-    transition: all 0.3s;
+.footer-stat-label {
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    font-weight: 500;
 }
 
-.social-links a:hover { transform: translateY(-5px); }
-
-body.dark-mode .social-links a {
-    background: var(--glass-bg-dark);
+.footer-stat-value {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
 }
 
-.social-links svg {
-    width: var(--space-10);
-    height: var(--space-10);
-    fill: var(--color-primary);
+.footer-stat-value a {
+    color: var(--link);
+    text-decoration: none;
+    position: relative;
 }
 
-body.dark-mode .social-links svg { fill: var(--color-secondary); }
+/* Contribution heatmap */
+.contribs-section {
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.contribs-label {
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+.contribs-grid {
+    display: inline-grid;
+    grid-template-rows: repeat(7, 10px);
+    grid-auto-flow: column;
+    gap: 2px;
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+.contribs-day {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+}
+
+.contribs-day:hover {
+    transform: scale(1.6);
+    cursor: default;
+    z-index: 1;
+}
+
+.contribs-meta {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    margin-top: 0.75rem;
+}
+
+/* Badge */
+.badge {
+    background: rgba(255,255,255,0.06);
+    border-radius: 99px;
+    padding: 2px 10px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--text-quaternary);
+    display: inline-block;
+    margin-left: 0.5rem;
+}
+
+[data-theme="dark"] .badge {
+    background: rgba(255,255,255,0.06);
+}
+
+:root:not([data-theme="dark"]) .badge {
+    background: rgba(0,0,0,0.04);
+}
 
 /* Footer */
-.footer {
-    text-align: center;
-    padding: var(--space-12) 0;
+footer {
+    font-size: 0.8125rem;
     color: var(--text-secondary);
-    font-size: var(--text-base);
-    border-top: 1px solid var(--glass-border-light);
-    margin-top: var(--space-13);
+    padding: 1rem 0 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s cubic-bezier(.16,1,.3,1) 0.8s forwards;
 }
 
-body.dark-mode .footer {
-    border-top-color: var(--glass-border-dark);
+footer a {
+    color: var(--text-secondary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
 }
 
-/* Mobile - Mobile-first responsive */
-@media (max-width: 768px) {
-    .container { padding: var(--space-12) var(--space-10); }
-    .header { padding: var(--space-12) 0; }
-    .services-grid { grid-template-columns: 1fr; gap: var(--space-10); }
-    .theme-toggle { top: var(--space-9); right: var(--space-9); width: 45px; height: 45px; }
-    .social-links { gap: var(--space-10); }
+footer a:hover { color: var(--text-primary); }
+
+@media (min-width: 480px) {
+    .footer-stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 640px) {
+    .footer-stats { grid-template-columns: repeat(3, 1fr); }
 }
 </style>
 </head>
 <body>
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-        <svg id="sunIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="12" r="5" fill="currentColor"/>
-            <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1m17.66-5.66l-4.24 4.24m-6.36 0L3.34 6.34m17.32 11.32l-4.24-4.24m-6.36 0l-4.24 4.24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <svg id="moonIcon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="display:none">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-        </svg>
-    </button>
-
     <div class="container">
-        <header class="header">
-            <h1>Joshua Trommel</h1>
-            <div class="contact-info">
-                Langley, BC &nbsp;·&nbsp;
-                <a href="mailto:jatrommel@gmail.com">jatrommel@gmail.com</a> &nbsp;·&nbsp;
-                <a href="tel:+17788462726">778-846-2726</a>
+        <header>
+            <div class="top-row">
+                <h1>Joshua Trommel</h1>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <svg id="sunIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                    <svg id="moonIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
             </div>
             <p class="intro">
-                Technical specialist with 10+ years making technology work seamlessly for people. From fixing devices to building digital experiences, I focus on creating solutions that are reliable, intuitive, and built to last.
+                Software engineer training neural nets from scratch. Building financial terminals, programming languages, and systems tools. Based in Langley, BC.
+                <a href="mailto:jatrommel@gmail.com">jatrommel@gmail.com</a> /
+                <a href="tel:+17788462726">778-846-2726</a>
             </p>
         </header>
+
+        <section>
+            <h2>Projects</h2>
+            <ul class="items">
+                <li><a href="https://opticon.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Opticon</a> -- Map-first financial terminal with live stock tickers, personal finance dashboard, and integrated data feeds.</li>
+                <li><a href="https://tally.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Tally</a> -- BC benefits tracker and self-serve scraper with grade checker and school transcript tools.</li>
+                <li><a href="https://dose-psi.vercel.app/" target="_blank" rel="noopener noreferrer">Dose</a> -- Health tracker with substance logging, drug interactions, periodic table, and biometrics.</li>
+                <li><a href="https://spark.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Spark</a> -- Idea-sharing platform with auth, posts, and voting.</li>
+                <li><a href="https://github.com/nulljosh/arthur" target="_blank" rel="noopener noreferrer">Arthur</a> -- Nano transformer LLM built from scratch in PyTorch with a C99 inference engine. <a href="https://github.com/nulljosh/arthur#readme" target="_blank" rel="noopener noreferrer">[docs]</a></li>
+                <li><a href="https://rabbit-lyart.vercel.app" target="_blank" rel="noopener noreferrer">Rabbit</a> -- Web search engine with mind-map visualization powered by React Flow.</li>
+                <li><a href="https://github.com/nulljosh/brief" target="_blank" rel="noopener noreferrer">Brief</a> -- Legal case analyzer for research and case management.</li>
+                <li><a href="https://github.com/nulljosh/jung" target="_blank" rel="noopener noreferrer">Jung</a> -- Programming language with Carl Jung-themed keywords. C99 bytecode VM.</li>
+                <li><a href="https://heyitsmejosh.com/bcgd/" target="_blank" rel="noopener noreferrer">BCGD</a> -- Website for BC Garage Doors, a family-owned garage door repair service in Langley, BC.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Systems</h2>
+            <ul class="items">
+                <li><a href="https://github.com/nulljosh/systems" target="_blank" rel="noopener noreferrer">Shell</a> -- Unix shell in C99 with pipes, redirects, job control, and signal handling. 845 LOC.</li>
+                <li><a href="https://github.com/nulljosh/systems" target="_blank" rel="noopener noreferrer">Debugger</a> -- ptrace-based debugger in C++ with breakpoints, single-step, register and memory inspection.</li>
+                <li><a href="https://github.com/nulljosh/systems" target="_blank" rel="noopener noreferrer">Text Editor</a> -- Terminal text editor built with Python curses. File I/O, line numbers, status bar.</li>
+                <li><a href="https://github.com/nulljosh/systems" target="_blank" rel="noopener noreferrer">nullC</a> -- C compiler with lexer, parser, and x86-64 code generation. 3952 LOC.</li>
+            </ul>
+        </section>
+
+        <section id="trakt-section">
+            <h2>Watching</h2>
+            <div id="trakt-watching"></div>
+        </section>
+
+        <section>
+            <h2>Services</h2>
+            <ul class="items">
+                <li><strong>Software Engineering</strong> -- Full-stack web apps, React, Node, serverless. Auth, payments, real-time data.</li>
+                <li><strong>Machine Learning</strong> -- Training transformers from scratch. C99 inference engine. Autonomous agents.</li>
+                <li><strong>Systems Programming</strong> -- OS, compiler, container runtime, shell, debugger. C, Rust, ARM64.</li>
+                <li><strong>Language Design</strong> -- Custom programming languages with bytecode VMs, lexers, parsers.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Experience</h2>
+            <ul class="items">
+                <li><strong>Mobile Consultant</strong> -- <a href="https://macinhome.com" target="_blank" rel="noopener noreferrer">Macinhome</a>, Vancouver, BC. Aug 2017 - Sep 2020</li>
+                <li><strong>Mac Specialist</strong> -- <a href="https://www.simply.ca/" target="_blank" rel="noopener noreferrer">Simply Computing</a>, Abbotsford, BC. Sep 2018 - Sep 2019</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Skills</h2>
+            <ul class="plain">
+                <li>Full-stack web development (React, Next.js, Node, Vercel)</li>
+                <li>Machine learning and neural network implementation</li>
+                <li>Systems programming (C, Rust, ARM64 assembly)</li>
+                <li>Programming language design and implementation</li>
+                <li>iOS development (SwiftUI, Xcode)</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Education</h2>
+            <ul class="plain">
+                <li><a href="https://www.uvic.ca/undergraduate/programs/undergraduate-programs/pages/computer-science.php" target="_blank" rel="noopener noreferrer">University of Victoria</a>, BSc in Computer Science (Expected 2030)</li>
+                <li>Langley Education Centre (2024 - Present)</li>
+                <li><a href="https://brookswoodsecondary.com" target="_blank" rel="noopener noreferrer">Brookswood Secondary School</a> (2012 - 2017)</li>
+            </ul>
+        </section>
 
         <div class="testimonial">
             <blockquote>
                 "Excellent session with Joshua who was personable, very knowledgeable and able to answer questions clearly. He arrived on time and used the time with me very constructively. Very happy with your service. Thank you."
             </blockquote>
-            <cite>&mdash; Rita, Client</cite>
+            <cite>Rita, Client</cite>
         </div>
 
-        <section class="section">
-            <h2 class="section-title">What I Do</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">💻</div>
-                    <h3>Technical Support</h3>
-                    <p>Expert troubleshooting for Apple devices and systems. From hardware repairs to software optimization, I make tech problems disappear.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🌐</div>
-                    <h3>Web Solutions</h3>
-                    <p>Custom websites and applications that look great and perform flawlessly. Fast, responsive, and built with modern standards.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">☁️</div>
-                    <h3>Cloud & Infrastructure</h3>
-                    <p>Scalable cloud solutions and performance optimization. Secure, efficient systems that grow with your needs.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🎨</div>
-                    <h3>Design & Branding</h3>
-                    <p>Clean, purposeful design that communicates your message. Visual identity and creative strategy that resonates.</p>
-                </div>
-            </div>
+        <section>
+            <h2>Links</h2>
+            <ul class="links">
+                <li><a href="https://github.com/nulljosh" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                <li><a href="https://twitter.com/nulljosh1" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+                <li><a href="https://heyitsmejosh.com/journal/" target="_blank" rel="noopener noreferrer">Blog</a></li>
+                <li><a href="https://letterboxd.com/literallyjordan/" target="_blank" rel="noopener noreferrer">Letterboxd</a></li>
+                <li><a href="https://trakt.tv/users/nljs" target="_blank" rel="noopener noreferrer">Trakt</a></li>
+            </ul>
         </section>
 
-        <section class="section">
-            <h2 class="section-title">Experience</h2>
-            <div class="experience-grid">
-                <div class="job-card">
-                    <div class="job-title">Portfolio Manager</div>
-                    <div class="company-date"><a href="https://heyitsmejosh.com/finn" target="_blank" rel="noopener noreferrer">Finn Capital</a> - Remote &nbsp;·&nbsp; 2024 to Present</div>
-                    <ul>
-                        <li>Manage tech-focused portfolio with custom-built tracking dashboard</li>
-                        <li>Real-time market data integration with live pricing and analytics</li>
-                        <li>Strategic positions in NVDA, GOOGL, SPY, HOOD with disciplined risk management</li>
-                    </ul>
-                </div>
+        <hr>
 
-                <div class="job-card">
-                    <div class="job-title">Mobile Consultant</div>
-                    <div class="company-date"><a href="https://macinhome.com" target="_blank" rel="noopener noreferrer">Macinhome</a> - Vancouver, BC &nbsp;·&nbsp; August 2017 to September 2020</div>
-                    <ul>
-                        <li>iPhone and iOS device repairs with focus on quality and customer satisfaction</li>
-                        <li>Built lasting client relationships through transparent communication</li>
-                        <li>Maintained detailed documentation for follow-up and service quality</li>
-                    </ul>
-                </div>
-
-                <div class="job-card">
-                    <div class="job-title">Mac Specialist</div>
-                    <div class="company-date"><a href="https://www.simply.ca/" target="_blank" rel="noopener noreferrer">Simply Computing</a> - Abbotsford, BC &nbsp;·&nbsp; September 2018 to September 2019</div>
-                    <ul>
-                        <li>Advanced macOS diagnostics and hardware repair for Apple computers</li>
-                        <li>Complex troubleshooting for logic board, storage, and connectivity issues</li>
-                        <li>Clear technical consultations with honest repair estimates</li>
-                    </ul>
-                </div>
-
-                <div class="job-card">
-                    <div class="job-title">Host</div>
-                    <div class="company-date">Ricky's Bar & Grill - Langley, BC &nbsp;·&nbsp; January 2017 to December 2019</div>
-                    <ul>
-                        <li>Guest experience management for high-volume dining environment</li>
-                        <li>Reservation systems and dining room flow optimization</li>
-                        <li>Team collaboration for seamless service during peak operations</li>
-                    </ul>
-                </div>
-
-                <div class="job-card">
-                    <div class="job-title">Crew Member/Cook</div>
-                    <div class="company-date">McDonald's - Langley, BC &nbsp;·&nbsp; January 2015 to December 2016</div>
-                    <ul>
-                        <li>High-speed food service with consistent quality standards</li>
-                        <li>Drive-through efficiency achieving sub-5-minute service times</li>
-                        <li>Cross-trained across grill, assembly, and customer-facing roles</li>
-                    </ul>
-                </div>
+        <div class="footer-stats">
+            <div class="footer-stat">
+                <span class="footer-stat-label">Films</span>
+                <span class="footer-stat-value" id="letterboxd-stats">6,552 on Letterboxd</span>
             </div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title">Skills</h2>
-            <div class="simple-list">
-                <ul>
-                    <li>Investment analysis and portfolio management</li>
-                    <li>iOS, macOS diagnostics and hardware repair</li>
-                    <li>Web development and cloud infrastructure</li>
-                    <li>Customer service and operations optimization</li>
-                    <li>Design systems and brand strategy</li>
-                </ul>
+            <div class="footer-stat">
+                <span class="footer-stat-label">TV</span>
+                <span class="footer-stat-value" id="trakt-stats">9,102 episodes on Trakt</span>
             </div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title">Education</h2>
-            <div class="simple-list">
-                <ul>
-                    <li>University of Victoria, <a href="https://www.uvic.ca/undergraduate/programs/undergraduate-programs/pages/computer-science.php" target="_blank" rel="noopener noreferrer">BSc in Computer Science</a> (Expected 2030)</li>
-                    <li><a href="https://heyitsmejosh.com/school/" target="_blank" rel="noopener noreferrer">Langley Education Centre</a> (2024 to Present)</li>
-                    <li><a href="https://brookswoodsecondary.com" target="_blank" rel="noopener noreferrer">Brookswood Secondary School</a> (2012 to 2017)</li>
-                </ul>
+            <div class="footer-stat">
+                <span class="footer-stat-label">Code</span>
+                <span class="footer-stat-value" id="github-stats">loading...</span>
             </div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title">Projects</h2>
-            <div class="experience-grid">
-                <div class="job-card">
-                    <div class="job-title"><a href="https://heyitsmejosh.com/finn" target="_blank" rel="noopener noreferrer">Finn</a></div>
-                    <div class="company-date">2026</div>
-                    <ul>
-                        <li>Personal finance dashboard with real-time portfolio tracking</li>
-                        <li>Budget analysis and spending insights with visual charts</li>
-                        <li>Mobile-optimized interface with dark mode support</li>
-                    </ul>
-                </div>
-
-                <div class="job-card">
-                    <div class="job-title"><a href="https://bread-alpha.vercel.app/" target="_blank" rel="noopener noreferrer">Bread</a></div>
-                    <div class="company-date">2026</div>
-                    <ul>
-                        <li>Live prediction markets dashboard with Monte Carlo simulations</li>
-                        <li>Trading simulator with 61 assets including stocks, indices, and crypto</li>
-                        <li>High-performance architecture optimized for low latency and efficiency</li>
-                    </ul>
-                </div>
-
-                <div class="job-card">
-                    <div class="job-title"><a href="https://heyitsmejosh.com/wikiscroll/" target="_blank" rel="noopener noreferrer">WikiScroll</a></div>
-                    <div class="company-date">2026</div>
-                    <ul>
-                        <li>TikTok-style interface for browsing Wikipedia articles</li>
-                        <li>Infinite scroll with random article discovery</li>
-                        <li>Mobile-first design with swipe navigation</li>
-                    </ul>
-                </div>
-
-                <div class="job-card">
-                    <div class="job-title"><a href="https://github.com/nulljosh/nullC" target="_blank" rel="noopener noreferrer">nullC</a></div>
-                    <div class="company-date">2026</div>
-                    <ul>
-                        <li>Minimal C compiler written in C from scratch</li>
-                        <li>Complete lexer with tokenization for all C constructs</li>
-                        <li>Parser in progress targeting x86-64 assembly generation</li>
-                    </ul>
-                </div>
-
-                <div class="job-card">
-                    <div class="job-title"><a href="https://github.com/nulljosh/nuLLM" target="_blank" rel="noopener noreferrer">nuLLM</a></div>
-                    <div class="company-date">2026</div>
-                    <ul>
-                        <li>Production-ready transformer LLM built from scratch in 500 lines</li>
-                        <li>Full attention mechanisms with multi-head support and autoregressive training</li>
-                        <li>Educational tool demonstrating core concepts from "Attention Is All You Need"</li>
-                    </ul>
-                </div>
-
-                <div class="job-card">
-                    <div class="job-title"><a href="https://github.com/nulljosh/jot" target="_blank" rel="noopener noreferrer">jot</a></div>
-                    <div class="company-date">2026</div>
-                    <ul>
-                        <li>Turing-complete scripting language with working interpreter</li>
-                        <li>Functions, arrays, control flow, and standard library</li>
-                        <li>Built-in HTTP server for request handling and web applications</li>
-                    </ul>
-                </div>
+            <div class="footer-stat">
+                <span class="footer-stat-label">Writing</span>
+                <span class="footer-stat-value" id="blog-stats">loading...</span>
             </div>
-        </section>
-
-        <div class="social-links">
-            <a href="https://github.com/nulljosh" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                </svg>
-            </a>
-            <a href="https://twitter.com/nulljosh1" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                </svg>
-            </a>
-            <a href="https://heyitsmejosh.com/journal/" target="_blank" rel="noopener noreferrer" aria-label="Blog">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19 2H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h4l3 3 3-3h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-6 14H7v-2h6v2zm2-4H7V10h8v2zm0-4H7V6h8v2z"/>
-                </svg>
-            </a>
-            <a href="https://letterboxd.com/literallyjordan/" target="_blank" rel="noopener noreferrer" aria-label="Letterboxd" title="6,552 films watched">
-                <svg viewBox="0 0 500 500" fill="currentColor">
-                    <circle cx="125" cy="250" r="125" fill-opacity="0.5"/>
-                    <circle cx="375" cy="250" r="125" fill-opacity="0.5"/>
-                    <path d="M250 375 C 195 375 150 330 150 275 C 150 220 195 175 250 175 C 305 175 350 220 350 275 C 350 330 305 375 250 375 Z"/>
-                </svg>
-            </a>
+            <div class="footer-stat">
+                <span class="footer-stat-label">Weather</span>
+                <span class="footer-stat-value" id="weather-stats">loading...</span>
+            </div>
+            <div class="footer-stat">
+                <span class="footer-stat-label">Coffee</span>
+                <span class="footer-stat-value" id="coffee-stats">2,847 cups in 2026</span>
+            </div>
+            <div class="footer-stat">
+                <span class="footer-stat-label">Status</span>
+                <span class="footer-stat-value">Training neural nets from scratch</span>
+            </div>
         </div>
 
-        <div style="text-align: center; margin-top: 20px; font-size: 14px; color: #5d4037;">
-            <span id="letterboxd-stats">6,552 films watched on Letterboxd</span>
+        <hr>
+
+        <div class="contribs-section" id="contribs-section">
+            <span class="contribs-label">Contributions</span>
+            <div id="contribs-grid" class="contribs-grid"></div>
+            <div class="contribs-meta" id="contribs-meta"></div>
         </div>
 
-        <footer class="footer">
-            Made with &hearts; in Vancouver, BC
+        <footer>
+            &copy; 2026 Joshua Trommel &middot;
+            <a href="https://github.com/nulljosh/nulljosh.github.io/blob/main/LICENSE" target="_blank" rel="noopener">MIT</a>
+            <span class="badge">v2026</span>
         </footer>
     </div>
 
@@ -672,92 +630,323 @@ body.dark-mode .footer {
         const sunIcon = document.getElementById('sunIcon');
         const moonIcon = document.getElementById('moonIcon');
 
-        const getPreferredTheme = () => {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) return savedTheme;
+        function getPreferredTheme() {
+            const saved = localStorage.getItem('theme');
+            if (saved) return saved;
             return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        };
+        }
 
-        const setTheme = (theme) => {
-            if (theme === 'dark') {
-                document.body.classList.add('dark-mode');
-                sunIcon.style.display = 'none';
-                moonIcon.style.display = 'block';
-            } else {
-                document.body.classList.remove('dark-mode');
-                sunIcon.style.display = 'block';
-                moonIcon.style.display = 'none';
+        function setTheme(theme, animate) {
+            function apply() {
+                if (theme === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    sunIcon.style.display = 'none';
+                    moonIcon.style.display = 'block';
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                    sunIcon.style.display = 'block';
+                    moonIcon.style.display = 'none';
+                }
+                localStorage.setItem('theme', theme);
             }
-            localStorage.setItem('theme', theme);
-        };
 
-        setTheme(getPreferredTheme());
+            if (animate && document.startViewTransition) {
+                document.startViewTransition(apply);
+            } else {
+                apply();
+            }
+        }
+
+        setTheme(getPreferredTheme(), false);
 
         themeToggle.addEventListener('click', () => {
-            const currentTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            setTheme(newTheme);
+            const current = document.documentElement.hasAttribute('data-theme') ? 'dark' : 'light';
+            setTheme(current === 'dark' ? 'light' : 'dark', true);
         });
 
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
             if (!localStorage.getItem('theme')) {
-                setTheme(e.matches ? 'dark' : 'light');
+                setTheme(e.matches ? 'dark' : 'light', true);
             }
         });
 
-        // Letterboxd stats fetcher
+        // Letterboxd stats
         async function updateLetterboxdStats() {
             const CACHE_KEY = 'letterboxd_stats';
             const CACHE_TIMESTAMP_KEY = 'letterboxd_stats_timestamp';
-            const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours
+            const CACHE_DURATION = 24 * 60 * 60 * 1000;
             const LETTERBOXD_USER = 'literallyjordan';
-            const statsElement = document.getElementById('letterboxd-stats');
+            const el = document.getElementById('letterboxd-stats');
 
             try {
-                // Check cache
-                const cachedStats = localStorage.getItem(CACHE_KEY);
-                const cachedTimestamp = localStorage.getItem(CACHE_TIMESTAMP_KEY);
+                const cached = localStorage.getItem(CACHE_KEY);
+                const cachedTs = localStorage.getItem(CACHE_TIMESTAMP_KEY);
                 const now = Date.now();
 
-                if (cachedStats && cachedTimestamp && (now - parseInt(cachedTimestamp) < CACHE_DURATION)) {
-                    statsElement.textContent = cachedStats;
+                if (cached && cachedTs && (now - parseInt(cachedTs) < CACHE_DURATION)) {
+                    el.textContent = cached;
                     return;
                 }
 
-                // Fetch fresh data using CORS proxy
-                const proxyUrl = 'https://corsproxy.io/?';
-                const letterboxdUrl = `https://letterboxd.com/${LETTERBOXD_USER}/`;
-                const response = await fetch(proxyUrl + encodeURIComponent(letterboxdUrl));
-
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-
-                const html = await response.text();
-
-                // Parse film count from profile page
-                // Look for pattern like: "6,552 films"
+                const res = await fetch('https://corsproxy.io/?' + encodeURIComponent(`https://letterboxd.com/${LETTERBOXD_USER}/`));
+                if (!res.ok) throw new Error();
+                const html = await res.text();
                 const match = html.match(/([0-9,]+)\s+films?/i);
 
                 if (match && match[1]) {
-                    const filmCount = match[1];
-                    const statsText = `${filmCount} films watched on Letterboxd`;
-
-                    // Update UI and cache
-                    statsElement.textContent = statsText;
-                    localStorage.setItem(CACHE_KEY, statsText);
+                    const text = `${match[1]} on Letterboxd`;
+                    el.textContent = text;
+                    localStorage.setItem(CACHE_KEY, text);
                     localStorage.setItem(CACHE_TIMESTAMP_KEY, now.toString());
                 } else {
-                    throw new Error('Could not parse film count');
+                    throw new Error();
                 }
-            } catch (error) {
-                console.warn('Failed to fetch Letterboxd stats:', error);
-                // Keep existing static text as fallback
+            } catch (e) { console.warn('Letterboxd stats failed:', e); }
+        }
+
+        // Trakt.tv episode stats via API
+        async function updateTraktStats() {
+            const CACHE_KEY = 'trakt_stats';
+            const CACHE_TIMESTAMP_KEY = 'trakt_stats_timestamp';
+            const CACHE_DURATION = 24 * 60 * 60 * 1000;
+            const el = document.getElementById('trakt-stats');
+
+            const cached = localStorage.getItem(CACHE_KEY);
+            const cachedTs = localStorage.getItem(CACHE_TIMESTAMP_KEY);
+            const now = Date.now();
+
+            if (cached && cachedTs && (now - parseInt(cachedTs) < CACHE_DURATION)) {
+                el.textContent = cached;
+                return;
+            }
+
+            try {
+                const res = await fetch('https://api.trakt.tv/users/nljs/stats', {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'trakt-api-version': '2',
+                        'trakt-api-key': '7701cfa6ab16986a3cce333ef21cc55c6334e3368f211f1debb646603e26ccb5'
+                    }
+                });
+                if (!res.ok) throw new Error();
+                const data = await res.json();
+                const episodes = data.episodes.watched.toLocaleString();
+                const text = `${episodes} episodes on Trakt`;
+                el.textContent = text;
+                localStorage.setItem(CACHE_KEY, text);
+                localStorage.setItem(CACHE_TIMESTAMP_KEY, now.toString());
+            } catch (e) {
+                console.warn('Trakt stats failed:', e);
+                el.textContent = '9,102 episodes on Trakt';
             }
         }
 
-        // Fetch stats on page load
+        // GitHub public repos
+        async function updateGitHubStats() {
+            const el = document.getElementById('github-stats');
+            try {
+                const res = await fetch('https://api.github.com/users/nulljosh');
+                if (!res.ok) throw new Error();
+                const data = await res.json();
+                el.textContent = `${data.public_repos} public repos`;
+            } catch (e) { console.warn('GitHub stats failed:', e); el.textContent = 'github.com/nulljosh'; }
+        }
+
+        // Last blog post
+        async function updateBlog() {
+            const el = document.getElementById('blog-stats');
+            const feedUrl = 'https://heyitsmejosh.com/journal/feed.xml';
+            const tryFetch = async (url) => {
+                const res = await fetch(url);
+                if (!res.ok) throw new Error();
+                const xml = await res.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(xml, 'text/xml');
+                const entry = doc.querySelector('entry');
+                if (entry) {
+                    const title = entry.querySelector('title').textContent;
+                    const link = entry.querySelector('link').getAttribute('href');
+                    const a = document.createElement('a');
+                    a.href = link;
+                    a.textContent = title;
+                    a.target = '_blank';
+                    a.rel = 'noopener';
+                    el.textContent = '';
+                    el.appendChild(a);
+                }
+            };
+            try {
+                await tryFetch(feedUrl);
+            } catch (e) {
+                console.warn('Blog feed failed:', e);
+                try {
+                    await tryFetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(feedUrl));
+                } catch (e) { console.warn('Blog feed failed:', e); el.textContent = ''; }
+            }
+        }
+
+        // Weather
+        async function updateWeather() {
+            const el = document.getElementById('weather-stats');
+            try {
+                const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=49.0667&longitude=-122.6667&current=temperature_2m,weather_code&timezone=America/Vancouver&temperature_unit=celsius');
+                if (!res.ok) throw new Error();
+                const data = await res.json();
+                const temp = Math.round(data.current.temperature_2m);
+                const conditions = {
+                    0: 'super sunny',
+                    1: 'mostly sunny',
+                    2: 'partly cloudy',
+                    3: 'pretty grey',
+                    45: 'foggy as hell',
+                    48: 'foggy as hell',
+                    51: 'spitting',
+                    53: 'drizzling',
+                    55: 'drizzling pretty good',
+                    61: 'lightly raining',
+                    63: 'raining',
+                    65: 'pouring rain',
+                    71: 'lightly snowing',
+                    73: 'snowing',
+                    75: 'dumping snow',
+                    80: 'showery',
+                    81: 'showery',
+                    82: 'bucketing down',
+                    95: 'stormy'
+                };
+                function getTempDesc(t) {
+                    if (t <= -10) return 'brutally cold';
+                    if (t <= 0)   return 'below freezing';
+                    if (t <= 5)   return 'pretty cold';
+                    if (t <= 10)  return 'kinda cold';
+                    if (t <= 15)  return 'kinda chilly';
+                    if (t <= 18)  return 'mild';
+                    if (t <= 22)  return 'nice out';
+                    if (t <= 27)  return 'warm';
+                    if (t <= 32)  return 'hot';
+                    return 'scorching';
+                }
+                el.textContent = `${getTempDesc(temp)} and ${conditions[data.current.weather_code] || 'kinda mixed'} in Brookswood`;
+            } catch (e) { console.warn('Weather failed:', e); el.textContent = ''; }
+        }
+
+        // Coffee estimate
+        function updateCoffee() {
+            const el = document.getElementById('coffee-stats');
+            const now = new Date();
+            const startOfYear = new Date(now.getFullYear(), 0, 1);
+            const dayOfYear = Math.floor((now - startOfYear) / (1000 * 60 * 60 * 24)) + 1;
+            el.textContent = `~${Math.round(dayOfYear * 2.5).toLocaleString()} cups in ${now.getFullYear()}`;
+        }
+
+        // Trakt.tv recently watched
+        async function updateTrakt() {
+            const section = document.getElementById('trakt-section');
+            const el = document.getElementById('trakt-watching');
+            try {
+                const res = await fetch('https://corsproxy.io/?' + encodeURIComponent('https://trakt.tv/users/nljs'));
+                if (!res.ok) throw new Error();
+                const html = await res.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const items = doc.querySelectorAll('.posters .grid-item');
+                const watched = [];
+                items.forEach(item => {
+                    if (watched.length >= 6) return;
+                    const titleEl = item.querySelector('.titles h3, .titles .main-title-sxe, meta[content]');
+                    const yearEl = item.querySelector('.titles .year, .titles span');
+                    let title = '';
+                    let year = '';
+                    if (titleEl) title = titleEl.textContent.trim();
+                    if (!title) {
+                        const meta = item.querySelector('[data-title]');
+                        if (meta) title = meta.getAttribute('data-title');
+                    }
+                    if (!title) {
+                        const alt = item.querySelector('img[alt]');
+                        if (alt) title = alt.getAttribute('alt');
+                    }
+                    if (yearEl) year = yearEl.textContent.trim().replace(/[()]/g, '');
+                    if (title) watched.push({ title, year });
+                });
+                if (watched.length === 0) {
+                    const fallbackMatches = html.match(/data-title="([^"]+)"/g);
+                    if (fallbackMatches) {
+                        fallbackMatches.slice(0, 6).forEach(m => {
+                            const t = m.match(/data-title="([^"]+)"/);
+                            if (t) watched.push({ title: t[1], year: '' });
+                        });
+                    }
+                }
+                if (watched.length === 0) throw new Error('No items found');
+                const ul = document.createElement('ul');
+                ul.className = 'plain';
+                watched.forEach(({ title, year }) => {
+                    const li = document.createElement('li');
+                    li.textContent = year ? `${title} (${year})` : title;
+                    ul.appendChild(li);
+                });
+                el.appendChild(ul);
+            } catch (e) {
+                console.warn('Trakt recently watched failed:', e);
+                section.style.display = 'none';
+            }
+        }
+
         updateLetterboxdStats();
+        updateTraktStats();
+        updateGitHubStats();
+        updateBlog();
+        updateWeather();
+        updateCoffee();
+        updateTrakt();
+
+        // GitHub contribution heatmap
+        async function renderContributions() {
+            const isDark = () => document.documentElement.hasAttribute('data-theme');
+            const COLORS_LIGHT = ['#ebedf0', '#b6d7ff', '#6db3ff', '#0a84ff', '#0060c0'];
+            const COLORS_DARK  = ['#111111', '#0a2744', '#0a4a7f', '#0a6abf', '#0a84ff'];
+
+            try {
+                const res = await fetch('https://github-contributions-api.jogruber.de/v4/nulljosh?y=last');
+                const data = await res.json();
+                const grid = document.getElementById('contribs-grid');
+                const meta = document.getElementById('contribs-meta');
+
+                const contribs = data.contributions;
+                const firstDay = new Date(contribs[0].date).getDay();
+
+                const buildGrid = () => {
+                    while (grid.firstChild) grid.removeChild(grid.firstChild);
+                    const colors = isDark() ? COLORS_DARK : COLORS_LIGHT;
+                    for (let i = 0; i < firstDay; i++) {
+                        const cell = document.createElement('div');
+                        cell.className = 'contribs-day';
+                        cell.style.background = colors[0];
+                        grid.appendChild(cell);
+                    }
+                    contribs.forEach(({ date, count, level }) => {
+                        const cell = document.createElement('div');
+                        cell.className = 'contribs-day';
+                        cell.style.background = colors[level];
+                        cell.title = `${count} on ${date}`;
+                        grid.appendChild(cell);
+                    });
+                };
+
+                buildGrid();
+                themeToggle.addEventListener('click', () => setTimeout(buildGrid, 50));
+                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', buildGrid);
+
+                const total = contribs.reduce((sum, d) => sum + d.count, 0);
+                meta.textContent = `${total.toLocaleString()} contributions in the last year`;
+            } catch (e) {
+                console.warn('Contributions heatmap failed:', e);
+                document.getElementById('contribs-section').style.display = 'none';
+            }
+        }
+
+        renderContributions();
     </script>
 </body>
 </html>
