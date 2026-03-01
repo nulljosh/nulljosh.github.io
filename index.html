@@ -311,7 +311,7 @@ hr {
 /* Footer stats */
 .footer-stats {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: 1rem 0.5rem;
     margin-bottom: 2rem;
 }
@@ -418,7 +418,14 @@ footer a:hover { color: var(--text-primary); }
 /* Mobile */
 @media (max-width: 640px) {
     .container { padding: 3rem 1.25rem 2rem; }
-    .footer-stats { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 480px) {
+    .footer-stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 640px) {
+    .footer-stats { grid-template-columns: repeat(3, 1fr); }
 }
 </style>
 </head>
@@ -546,7 +553,7 @@ footer a:hover { color: var(--text-primary); }
             </div>
             <div class="footer-stat">
                 <span class="footer-stat-label">TV</span>
-                <span class="footer-stat-value" id="trakt-stats">4,200 episodes on Trakt</span>
+                <span class="footer-stat-value" id="trakt-stats">9,102 episodes on Trakt</span>
             </div>
             <div class="footer-stat">
                 <span class="footer-stat-label">Code</span>
@@ -660,15 +667,14 @@ footer a:hover { color: var(--text-primary); }
                 } else {
                     throw new Error();
                 }
-            } catch { /* keep fallback */ }
+            } catch (e) { console.warn('Letterboxd stats failed:', e); }
         }
 
-        // Trakt.tv episode stats (Trakt blocks CORS proxies, hardcoded with background upgrade attempt)
+        // Trakt.tv episode stats via API
         async function updateTraktStats() {
             const CACHE_KEY = 'trakt_stats';
             const CACHE_TIMESTAMP_KEY = 'trakt_stats_timestamp';
             const CACHE_DURATION = 24 * 60 * 60 * 1000;
-            const FALLBACK = '4,200 episodes on Trakt';
             const el = document.getElementById('trakt-stats');
 
             const cached = localStorage.getItem(CACHE_KEY);
@@ -680,22 +686,25 @@ footer a:hover { color: var(--text-primary); }
                 return;
             }
 
-            el.textContent = FALLBACK;
-
             try {
-                const controller = new AbortController();
-                setTimeout(() => controller.abort(), 5000);
-                const res = await fetch('https://corsproxy.io/?' + encodeURIComponent('https://trakt.tv/users/nljs'), { signal: controller.signal });
-                if (!res.ok) return;
-                const html = await res.text();
-                const match = html.match(/([0-9,]+)\s+episodes?/i);
-                if (match && match[1]) {
-                    const text = `${match[1]} episodes on Trakt`;
-                    el.textContent = text;
-                    localStorage.setItem(CACHE_KEY, text);
-                    localStorage.setItem(CACHE_TIMESTAMP_KEY, now.toString());
-                }
-            } catch { /* keep fallback */ }
+                const res = await fetch('https://api.trakt.tv/users/nljs/stats', {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'trakt-api-version': '2',
+                        'trakt-api-key': '7701cfa6ab16986a3cce333ef21cc55c6334e3368f211f1debb646603e26ccb5'
+                    }
+                });
+                if (!res.ok) throw new Error();
+                const data = await res.json();
+                const episodes = data.episodes.watched.toLocaleString();
+                const text = `${episodes} episodes on Trakt`;
+                el.textContent = text;
+                localStorage.setItem(CACHE_KEY, text);
+                localStorage.setItem(CACHE_TIMESTAMP_KEY, now.toString());
+            } catch (e) {
+                console.warn('Trakt stats failed:', e);
+                el.textContent = '9,102 episodes on Trakt';
+            }
         }
 
         // GitHub public repos
@@ -706,7 +715,7 @@ footer a:hover { color: var(--text-primary); }
                 if (!res.ok) throw new Error();
                 const data = await res.json();
                 el.textContent = `${data.public_repos} public repos`;
-            } catch { el.textContent = 'github.com/nulljosh'; }
+            } catch (e) { console.warn('GitHub stats failed:', e); el.textContent = 'github.com/nulljosh'; }
         }
 
         // Last blog post
@@ -723,15 +732,22 @@ footer a:hover { color: var(--text-primary); }
                 if (entry) {
                     const title = entry.querySelector('title').textContent;
                     const link = entry.querySelector('link').getAttribute('href');
-                    el.innerHTML = `<a href="${link}" target="_blank" rel="noopener">${title}</a>`;
+                    const a = document.createElement('a');
+                    a.href = link;
+                    a.textContent = title;
+                    a.target = '_blank';
+                    a.rel = 'noopener';
+                    el.textContent = '';
+                    el.appendChild(a);
                 }
             };
             try {
                 await tryFetch(feedUrl);
-            } catch {
+            } catch (e) {
+                console.warn('Blog feed failed:', e);
                 try {
                     await tryFetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(feedUrl));
-                } catch { el.textContent = ''; }
+                } catch (e) { console.warn('Blog feed failed:', e); el.textContent = ''; }
             }
         }
 
@@ -757,7 +773,7 @@ footer a:hover { color: var(--text-primary); }
                     return 'scorching';
                 }
                 el.textContent = `${getTempDesc(temp)} and ${conditions[data.current.weather_code] || 'kinda mixed'} in Brookswood`;
-            } catch { el.textContent = ''; }
+            } catch (e) { console.warn('Weather failed:', e); el.textContent = ''; }
         }
 
         // Coffee estimate
@@ -817,7 +833,8 @@ footer a:hover { color: var(--text-primary); }
                     ul.appendChild(li);
                 });
                 el.appendChild(ul);
-            } catch {
+            } catch (e) {
+                console.warn('Trakt recently watched failed:', e);
                 section.style.display = 'none';
             }
         }
@@ -869,7 +886,8 @@ footer a:hover { color: var(--text-primary); }
 
                 const total = contribs.reduce((sum, d) => sum + d.count, 0);
                 meta.textContent = `${total.toLocaleString()} contributions in the last year`;
-            } catch {
+            } catch (e) {
+                console.warn('Contributions heatmap failed:', e);
                 document.getElementById('contribs-section').style.display = 'none';
             }
         }
