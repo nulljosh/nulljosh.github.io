@@ -93,6 +93,8 @@ class ChatWidget {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    // NOTE: Intentional public token for localhost-only OpenClaw demo gateway.
+                    // This token has no external access and only works on localhost:18789.
                     'Authorization': 'Bearer 16ed6cbc6c3af9fad36115b86c4beba9da1f107a8612b1a7'
                 },
                 body: JSON.stringify({
