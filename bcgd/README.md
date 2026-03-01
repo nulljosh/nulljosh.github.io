@@ -1,8 +1,14 @@
-# BC Garage Doors (BCGD) - Growth Plan
+<div align="center">
+
+# BC Garage Doors (BCGD)
+
+<img src="icon.svg" alt="BCGD" width="120" />
 
 Modern redesign of [bcgaragedoors.ca](https://bcgaragedoors.ca) and launchpad for a service-business automation platform.
 
-Live site: [heyitsmejosh.com/bcgd](https://heyitsmejosh.com/bcgd/)
+[heyitsmejosh.com/bcgd](https://heyitsmejosh.com/bcgd/)
+
+</div>
 
 ## What this is
 
