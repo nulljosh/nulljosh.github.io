@@ -546,7 +546,7 @@ footer a:hover { color: var(--text-primary); }
             </div>
             <div class="footer-stat">
                 <span class="footer-stat-label">TV</span>
-                <span class="footer-stat-value" id="trakt-stats">loading...</span>
+                <span class="footer-stat-value" id="trakt-stats">4,200 episodes on Trakt</span>
             </div>
             <div class="footer-stat">
                 <span class="footer-stat-label">Code</span>
@@ -663,39 +663,39 @@ footer a:hover { color: var(--text-primary); }
             } catch { /* keep fallback */ }
         }
 
-        // Trakt.tv episode stats
+        // Trakt.tv episode stats (Trakt blocks CORS proxies, hardcoded with background upgrade attempt)
         async function updateTraktStats() {
             const CACHE_KEY = 'trakt_stats';
             const CACHE_TIMESTAMP_KEY = 'trakt_stats_timestamp';
             const CACHE_DURATION = 24 * 60 * 60 * 1000;
+            const FALLBACK = '4,200 episodes on Trakt';
             const el = document.getElementById('trakt-stats');
 
+            const cached = localStorage.getItem(CACHE_KEY);
+            const cachedTs = localStorage.getItem(CACHE_TIMESTAMP_KEY);
+            const now = Date.now();
+
+            if (cached && cachedTs && (now - parseInt(cachedTs) < CACHE_DURATION)) {
+                el.textContent = cached;
+                return;
+            }
+
+            el.textContent = FALLBACK;
+
             try {
-                const cached = localStorage.getItem(CACHE_KEY);
-                const cachedTs = localStorage.getItem(CACHE_TIMESTAMP_KEY);
-                const now = Date.now();
-
-                if (cached && cachedTs && (now - parseInt(cachedTs) < CACHE_DURATION)) {
-                    el.textContent = cached;
-                    return;
-                }
-
-                const res = await fetch('https://corsproxy.io/?' + encodeURIComponent('https://trakt.tv/users/nljs'));
-                if (!res.ok) throw new Error();
+                const controller = new AbortController();
+                setTimeout(() => controller.abort(), 5000);
+                const res = await fetch('https://corsproxy.io/?' + encodeURIComponent('https://trakt.tv/users/nljs'), { signal: controller.signal });
+                if (!res.ok) return;
                 const html = await res.text();
                 const match = html.match(/([0-9,]+)\s+episodes?/i);
-
                 if (match && match[1]) {
                     const text = `${match[1]} episodes on Trakt`;
                     el.textContent = text;
                     localStorage.setItem(CACHE_KEY, text);
                     localStorage.setItem(CACHE_TIMESTAMP_KEY, now.toString());
-                } else {
-                    throw new Error();
                 }
-            } catch {
-                el.textContent = '4,200 episodes on Trakt';
-            }
+            } catch { /* keep fallback */ }
         }
 
         // GitHub public repos
