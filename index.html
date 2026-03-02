@@ -124,7 +124,12 @@ h1 {
     position: relative;
 }
 
-.intro a::after {
+/* Shared animated underline for all inline links */
+.intro a::after,
+.items li a::after,
+.plain li a::after,
+.links li a::after,
+.footer-stat-value a::after {
     content: '';
     position: absolute;
     bottom: -1px;
@@ -135,7 +140,11 @@ h1 {
     transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.intro a:hover::after { width: 100%; }
+.intro a:hover::after,
+.items li a:hover::after,
+.plain li a:hover::after,
+.links li a:hover::after,
+.footer-stat-value a:hover::after { width: 100%; }
 
 /* Theme toggle */
 .theme-toggle {
@@ -207,19 +216,6 @@ h3 {
     position: relative;
 }
 
-.items li a::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: var(--text-primary);
-    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.items li a:hover::after { width: 100%; }
-
 /* Plain list (skills, education) */
 .plain {
     list-style: none;
@@ -237,19 +233,6 @@ h3 {
     position: relative;
 }
 
-.plain li a::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: var(--text-primary);
-    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.plain li a:hover::after { width: 100%; }
-
 /* Links section */
 .links {
     display: flex;
@@ -265,18 +248,6 @@ h3 {
     position: relative;
 }
 
-.links li a::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: var(--text-primary);
-    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.links li a:hover::after { width: 100%; }
 .links li a:hover { color: var(--text-primary); }
 
 /* Testimonial */
@@ -341,19 +312,6 @@ hr {
     text-decoration: none;
     position: relative;
 }
-
-.footer-stat-value a::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: var(--text-primary);
-    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.footer-stat-value a:hover::after { width: 100%; }
 
 /* Contribution heatmap */
 .contribs-section {
@@ -485,7 +443,7 @@ footer a:hover { color: var(--text-primary); }
 
         <section id="trakt-section">
             <h2>Watching</h2>
-            <div id="trakt-stats"></div>
+            <div id="trakt-watching"></div>
         </section>
 
         <section>
@@ -596,14 +554,14 @@ footer a:hover { color: var(--text-primary); }
         const sunIcon = document.getElementById('sunIcon');
         const moonIcon = document.getElementById('moonIcon');
 
-        const getPreferredTheme = () => {
+        function getPreferredTheme() {
             const saved = localStorage.getItem('theme');
             if (saved) return saved;
             return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        };
+        }
 
-        const setTheme = (theme, animate) => {
-            const apply = () => {
+        function setTheme(theme, animate) {
+            function apply() {
                 if (theme === 'dark') {
                     document.documentElement.setAttribute('data-theme', 'dark');
                     sunIcon.style.display = 'none';
@@ -614,14 +572,14 @@ footer a:hover { color: var(--text-primary); }
                     moonIcon.style.display = 'none';
                 }
                 localStorage.setItem('theme', theme);
-            };
+            }
 
             if (animate && document.startViewTransition) {
                 document.startViewTransition(apply);
             } else {
                 apply();
             }
-        };
+        }
 
         setTheme(getPreferredTheme(), false);
 
@@ -759,7 +717,27 @@ footer a:hover { color: var(--text-primary); }
                 if (!res.ok) throw new Error();
                 const data = await res.json();
                 const temp = Math.round(data.current.temperature_2m);
-                const conditions = {0:'super sunny',1:'mostly sunny',2:'partly cloudy',3:'pretty grey',45:'foggy as hell',48:'foggy as hell',51:'spitting',53:'drizzling',55:'drizzling pretty good',61:'lightly raining',63:'raining',65:'pouring rain',71:'lightly snowing',73:'snowing',75:'dumping snow',80:'showery',81:'showery',82:'bucketing down',95:'stormy'};
+                const conditions = {
+                    0: 'super sunny',
+                    1: 'mostly sunny',
+                    2: 'partly cloudy',
+                    3: 'pretty grey',
+                    45: 'foggy as hell',
+                    48: 'foggy as hell',
+                    51: 'spitting',
+                    53: 'drizzling',
+                    55: 'drizzling pretty good',
+                    61: 'lightly raining',
+                    63: 'raining',
+                    65: 'pouring rain',
+                    71: 'lightly snowing',
+                    73: 'snowing',
+                    75: 'dumping snow',
+                    80: 'showery',
+                    81: 'showery',
+                    82: 'bucketing down',
+                    95: 'stormy'
+                };
                 function getTempDesc(t) {
                     if (t <= -10) return 'brutally cold';
                     if (t <= 0)   return 'below freezing';
@@ -788,7 +766,7 @@ footer a:hover { color: var(--text-primary); }
         // Trakt.tv recently watched
         async function updateTrakt() {
             const section = document.getElementById('trakt-section');
-            const el = document.getElementById('trakt-stats');
+            const el = document.getElementById('trakt-watching');
             try {
                 const res = await fetch('https://corsproxy.io/?' + encodeURIComponent('https://trakt.tv/users/nljs'));
                 if (!res.ok) throw new Error();

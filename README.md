@@ -10,8 +10,6 @@ Joshua Trommel's portfolio site.
 ## What's here
 
 - `index.html` — main portfolio
-- `automation.html` — automation showcase
-- `clockwork.html` — clockwork demo
 - `bcgd/` — BC Garage Doors redesign ([live](https://heyitsmejosh.com/bcgd/))
 - `rise/` — trading sim static export
 - `bread/` — recipe app
