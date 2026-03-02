@@ -28,7 +28,7 @@
 <meta name="robots" content="index, follow">
 <meta name="googlebot" content="index, follow">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#121215" media="(prefers-color-scheme: dark)">
 
 <!-- Schema.org structured data -->
 <script type="application/ld+json">
@@ -61,19 +61,21 @@
 :root {
     --bg-primary: #ffffff;
     --bg-secondary: #f5f5f5;
-    --text-primary: #171717;
+    --text-primary: #111111;
     --text-secondary: #737373;
-    --border: #e5e5e5;
-    --link: #171717;
+    --border: #e8e8f4;
+    --link: #5e5ce6;
+    --accent: #5e5ce6;
 }
 
 [data-theme="dark"] {
-    --bg-primary: #0a0a0a;
-    --bg-secondary: #171717;
-    --text-primary: #fafafa;
-    --text-secondary: #a3a3a3;
-    --border: #262626;
-    --link: #fafafa;
+    --bg-primary: #121215;
+    --bg-secondary: #1e1e24;
+    --text-primary: #e8e8f4;
+    --text-secondary: #bbbbc4;
+    --border: #2a2a30;
+    --link: #7b79f0;
+    --accent: #7b79f0;
 }
 
 html { scroll-behavior: smooth; }
@@ -106,8 +108,8 @@ header .top-row {
 }
 
 h1 {
-    font-size: 1.25rem;
-    font-weight: 500;
+    font-size: 1.5rem;
+    font-weight: 600;
     letter-spacing: -0.02em;
 }
 
@@ -119,7 +121,7 @@ h1 {
 }
 
 .intro a {
-    color: var(--text-primary);
+    color: var(--accent);
     text-decoration: none;
     position: relative;
 }
@@ -136,7 +138,7 @@ h1 {
     left: 0;
     width: 0;
     height: 1px;
-    background: var(--text-primary);
+    background: var(--accent);
     transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -210,7 +212,7 @@ h3 {
 }
 
 .items li a {
-    color: var(--text-primary);
+    color: var(--accent);
     text-decoration: none;
     font-weight: 500;
     position: relative;
@@ -228,7 +230,7 @@ h3 {
 }
 
 .plain li a {
-    color: var(--text-primary);
+    color: var(--accent);
     text-decoration: none;
     position: relative;
 }
@@ -248,7 +250,7 @@ h3 {
     position: relative;
 }
 
-.links li a:hover { color: var(--text-primary); }
+.links li a:hover { color: var(--accent); }
 
 /* Testimonial */
 .testimonial {
@@ -308,7 +310,7 @@ hr {
 }
 
 .footer-stat-value a {
-    color: var(--text-primary);
+    color: var(--accent);
     text-decoration: none;
     position: relative;
 }
@@ -828,8 +830,8 @@ footer a:hover { color: var(--text-primary); }
         // GitHub contribution heatmap
         async function renderContributions() {
             const isDark = () => document.documentElement.hasAttribute('data-theme');
-            const COLORS_LIGHT = ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39'];
-            const COLORS_DARK  = ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'];
+            const COLORS_LIGHT = ['#ebedf0', '#d8d6f9', '#b1adee', '#8a85e3', '#5e5ce6'];
+            const COLORS_DARK  = ['#161b22', '#1e1b3d', '#3330a0', '#5e5ce6', '#7b79f0'];
 
             try {
                 const res = await fetch('https://github-contributions-api.jogruber.de/v4/nulljosh?y=last');
