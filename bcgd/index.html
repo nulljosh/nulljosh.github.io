@@ -8,6 +8,7 @@
     <title>BC Garage Doors | Trusted Garage Door Repair in Langley, BC</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after {
             margin: 0;
@@ -16,27 +17,28 @@
         }
 
         :root {
-            --glass-bg: rgba(55, 75, 70, 0.75);
-            --glass-bg-heavy: rgba(55, 75, 70, 0.9);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --glass-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
-            --glass-shadow-hover: 0 2px 8px rgba(0, 0, 0, 0.2);
+            --glass-bg: rgba(255, 255, 255, 0.04);
+            --glass-bg-heavy: rgba(255, 255, 255, 0.07);
+            --glass-border: rgba(255, 255, 255, 0.06);
+            --glass-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+            --glass-shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.5);
             --blur: blur(20px);
             --blur-heavy: blur(40px);
-            --page-bg: #2b2b2b;
-            --text-primary: #f0f0f0;
-            --text-secondary: #b8b8b8;
-            --text-tertiary: #7a7a7a;
-            --apple-blue: #4a8f7f;
-            --apple-blue-hover: #3d7a6b;
-            --apple-green: #28a745;
-            --apple-red: #dc3545;
-            --border-color: rgba(255, 255, 255, 0.1);
-            --accent-sage: #8aab9e;
-            --header-bg: #7a9e91;
+            --page-bg: #000000;
+            --bg-secondary: #111111;
+            --text-primary: #f5f5f7;
+            --text-secondary: #98989d;
+            --text-tertiary: #636366;
+            --apple-blue: #0a84ff;
+            --apple-blue-hover: #0077ed;
+            --apple-green: #30d158;
+            --apple-red: #ff453a;
+            --border-color: rgba(255, 255, 255, 0.06);
+            --accent-sage: #0a84ff;
+            --header-bg: #111111;
             --section-padding: 60px 0;
-            --card-radius: 8px;
-            --small-radius: 6px;
+            --card-radius: 12px;
+            --small-radius: 8px;
         }
 
         html {
@@ -46,27 +48,17 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
-            font-weight: 400;
+            font-weight: 300;
             letter-spacing: 0;
             color: var(--text-primary);
-            background-color: #2d2520;
+            background-color: #000000;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
 
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.35;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='60'%3E%3Cdefs%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.005 0.25' numOctaves='6' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='1.5' intercept='-0.3'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3C/defs%3E%3Crect width='300' height='60' fill='%23201a15'/%3E%3Crect width='300' height='60' filter='url(%23g)' opacity='0.7'/%3E%3Crect y='0' width='300' height='1' fill='%23151010' opacity='0.6'/%3E%3Crect y='12' width='300' height='1' fill='%23151010' opacity='0.4'/%3E%3Crect y='24' width='300' height='1' fill='%23151010' opacity='0.5'/%3E%3Crect y='36' width='300' height='1' fill='%23151010' opacity='0.3'/%3E%3Crect y='48' width='300' height='1' fill='%23151010' opacity='0.6'/%3E%3Crect y='59' width='300' height='1' fill='%23151010' opacity='0.45'/%3E%3C/svg%3E");
-            background-repeat: repeat;
-        }
 
         body > * {
             position: relative;
@@ -164,13 +156,13 @@
 
         .header-cta--filled {
             color: white;
-            background: #2d5c50;
-            border: 2px solid #2d5c50;
+            background: #0a84ff;
+            border: 2px solid #0a84ff;
         }
 
         .header-cta--filled:hover {
-            background: #234a40;
-            border-color: #234a40;
+            background: #0077ed;
+            border-color: #0077ed;
         }
 
         .header-cta svg {
@@ -209,7 +201,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(35, 30, 25, 0.97);
+            background: rgba(0, 0, 0, 0.97);
             backdrop-filter: var(--blur-heavy);
             -webkit-backdrop-filter: var(--blur-heavy);
             z-index: 1001;
@@ -326,7 +318,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(35,30,25,0.7);
+            background: rgba(0,0,0,0.65);
         }
 
         .hero-inner {
@@ -587,7 +579,7 @@
         }
 
         .value-icon svg {
-            color: var(--accent-sage);
+            color: var(--apple-blue);
         }
 
         .value-card h3 {
@@ -643,8 +635,8 @@
             margin-top: 12px;
             font-size: 12px;
             font-weight: 500;
-            color: var(--accent-sage);
-            background: rgba(74,143,127,0.2);
+            color: var(--apple-blue);
+            background: rgba(10,132,255,0.12);
             padding: 4px 10px;
             border-radius: 6px;
         }
@@ -976,14 +968,14 @@
             flex-shrink: 0;
             width: 36px;
             height: 36px;
-            background: rgba(74,143,127,0.2);
+            background: rgba(10,132,255,0.12);
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 15px;
             font-weight: 700;
-            color: var(--accent-sage);
+            color: var(--apple-blue);
         }
 
         .tip-card h3 {
@@ -1040,8 +1032,8 @@
             margin-top: 8px;
             font-size: 12px;
             font-weight: 500;
-            color: var(--accent-sage);
-            background: rgba(74,143,127,0.2);
+            color: var(--apple-blue);
+            background: rgba(10,132,255,0.12);
             padding: 4px 10px;
             border-radius: 6px;
         }
@@ -1244,7 +1236,7 @@
         .cta-banner {
             padding: 80px 24px;
             text-align: center;
-            background: rgba(74,143,127,0.06);
+            background: rgba(10,132,255,0.05);
         }
 
         .cta-banner h2 {
@@ -1264,7 +1256,7 @@
         /* ========== FOOTER ========== */
         .footer {
             padding: 48px 24px 24px;
-            background: rgba(20, 18, 15, 0.6);
+            background: #111111;
             border-top: 1px solid rgba(255,255,255,0.06);
         }
 
@@ -1455,9 +1447,9 @@
             font-size: 14px;
             padding: 6px 12px;
             border-bottom: none;
-            background: rgba(74,143,127,0.15);
+            background: rgba(10,132,255,0.12);
             border-radius: 6px;
-            color: var(--accent-sage);
+            color: var(--apple-blue);
         }
 
         .special-badge--centered {
@@ -1548,7 +1540,7 @@
             left: 0;
             right: 0;
             z-index: 9998;
-            background: var(--apple-green);
+            background: #0a84ff;
             padding: 14px 24px;
             text-align: center;
         }
@@ -1644,7 +1636,7 @@
 
         /* ========== SMART SCHEDULING ========== */
         .smart-scheduling {
-            background: rgba(74, 143, 127, 0.08);
+            background: rgba(10, 132, 255, 0.05);
         }
 
         .smart-grid {
@@ -1922,6 +1914,11 @@
                 padding: 8px 16px;
                 font-size: 14px;
             }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
