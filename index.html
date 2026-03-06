@@ -38,7 +38,7 @@
   "name": "Joshua Trommel",
   "url": "https://heyitsmejosh.com",
   "email": "jatrommel@gmail.com",
-  "telephone": "+17788462726",
+  "telephone": "+17782014533",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Langley",
@@ -57,13 +57,14 @@
 <meta name="view-transition" content="same-origin">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1/dist/fonts/geist-sans/style.min.css">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<!-- AOS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
-}
 
 :root {
     --bg-primary: #ffffff;
@@ -108,37 +109,64 @@ body {
     padding: 4rem clamp(1.25rem, 5vw, 3rem) 3rem;
 }
 
-/* Header */
+/* Hero header - centered */
 header {
-    margin-bottom: 3rem;
-    opacity: 0;
-    animation: fadeUp 0.8s cubic-bezier(.16,1,.3,1) forwards;
+    margin-bottom: 3.5rem;
+    text-align: center;
 }
 
 header .top-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
+    position: relative;
 }
 
 h1 {
-    font-size: 1.25rem;
+    font-size: clamp(1.5rem, 4vw, 1.75rem);
     font-weight: 600;
-    letter-spacing: -0.035em;
+    letter-spacing: -0.04em;
+}
+
+.theme-toggle {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--bg-secondary);
+    border: none;
+    cursor: pointer;
+    padding: 0.375rem 0.625rem;
+    border-radius: 28px;
+    color: var(--text-secondary);
+    transition: color 0.2s, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    align-items: center;
+}
+
+.theme-toggle:hover { color: var(--text-primary); transform: translateY(-50%) scale(1.08); }
+
+.theme-toggle svg {
+    width: 18px;
+    height: 18px;
 }
 
 .intro {
     color: var(--text-secondary);
-    font-size: 0.9375rem;
-    line-height: 1.7;
+    font-size: clamp(0.9375rem, 2.5vw, 1.0625rem);
+    line-height: 1.75;
     margin-bottom: 0.5rem;
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .intro a {
     color: var(--link);
     text-decoration: none;
     position: relative;
+    transition: color 0.2s;
 }
 
 /* Shared animated underline for all inline links */
@@ -163,55 +191,9 @@ h1 {
 .links li a:hover::after,
 .footer-stat-value a:hover::after { width: 100%; }
 
-/* Theme toggle */
-.theme-toggle {
-    background: var(--bg-secondary);
-    border: none;
-    cursor: pointer;
-    padding: 0.375rem 0.625rem;
-    border-radius: 28px;
-    color: var(--text-secondary);
-    transition: color 0.2s, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-    display: flex;
-    align-items: center;
-}
-
-.theme-toggle:hover { color: var(--text-primary); transform: scale(1.05); }
-
-.theme-toggle svg {
-    width: 18px;
-    height: 18px;
-}
-
 /* Sections */
 section {
     margin-bottom: 2.5rem;
-    opacity: 0;
-    animation: fadeUp 0.8s cubic-bezier(.16,1,.3,1) forwards;
-}
-
-section:nth-child(1) { animation-delay: 0.1s; }
-section:nth-child(2) { animation-delay: 0.2s; }
-section:nth-child(3) { animation-delay: 0.3s; }
-section:nth-child(4) { animation-delay: 0.4s; }
-section:nth-child(5) { animation-delay: 0.5s; }
-section:nth-child(6) { animation-delay: 0.6s; }
-section:nth-child(7) { animation-delay: 0.7s; }
-section:nth-child(8) { animation-delay: 0.8s; }
-
-.testimonial {
-    opacity: 0;
-    animation: fadeUp 0.8s cubic-bezier(.16,1,.3,1) 0.5s forwards;
-}
-
-.footer-stats {
-    opacity: 0;
-    animation: fadeUp 0.8s cubic-bezier(.16,1,.3,1) 0.6s forwards;
-}
-
-.contribs-section {
-    opacity: 0;
-    animation: fadeUp 0.8s cubic-bezier(.16,1,.3,1) 0.7s forwards;
 }
 
 h2 {
@@ -247,7 +229,7 @@ h3 {
     color: var(--text-secondary);
     background: var(--bg-secondary);
     border-radius: 12px;
-    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s;
 }
 
 .items li:hover {
@@ -264,6 +246,14 @@ h3 {
     text-decoration: none;
     font-weight: 500;
     position: relative;
+}
+
+.items li .fa-icon {
+    color: var(--text-quaternary);
+    margin-right: 0.5rem;
+    width: 1.125rem;
+    text-align: center;
+    font-size: 0.875rem;
 }
 
 /* Plain list (skills, education) */
@@ -299,11 +289,17 @@ h3 {
     background: var(--bg-secondary);
     padding: 0.375rem 0.875rem;
     border-radius: 28px;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
     transition: background .15s, color 0.2s, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .links li a:hover { color: var(--link); transform: translateY(-2px); }
+
+.links li a i {
+    font-size: 0.8125rem;
+}
 
 /* Testimonial */
 .testimonial {
@@ -311,6 +307,11 @@ h3 {
     padding: 1.25rem;
     background: var(--bg-secondary);
     border-radius: 12px;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.testimonial:hover {
+    transform: translateY(-1px);
 }
 
 .testimonial blockquote {
@@ -349,6 +350,11 @@ hr {
     background: var(--bg-secondary);
     border-radius: 12px;
     padding: 0.75rem 1rem;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.footer-stat:hover {
+    transform: translateY(-1px);
 }
 
 .footer-stat-label {
@@ -416,33 +422,11 @@ hr {
     margin-top: 0.75rem;
 }
 
-/* Badge */
-.badge {
-    background: rgba(255,255,255,0.06);
-    border-radius: 99px;
-    padding: 2px 10px;
-    font-size: 12px;
-    letter-spacing: 0.06em;
-    color: var(--text-quaternary);
-    display: inline-block;
-    margin-left: 0.5rem;
-}
-
-[data-theme="dark"] .badge {
-    background: rgba(255,255,255,0.06);
-}
-
-:root:not([data-theme="dark"]) .badge {
-    background: rgba(0,0,0,0.04);
-}
-
 /* Footer */
 footer {
     font-size: 0.8125rem;
     color: var(--text-secondary);
     padding: 1rem 0 2rem;
-    opacity: 0;
-    animation: fadeUp 0.8s cubic-bezier(.16,1,.3,1) 0.8s forwards;
 }
 
 footer a {
@@ -464,7 +448,7 @@ footer a:hover { color: var(--text-primary); }
 </head>
 <body>
     <div class="container">
-        <header>
+        <header class="animate__animated animate__fadeIn">
             <div class="top-row">
                 <h1>Joshua Trommel</h1>
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
@@ -487,51 +471,50 @@ footer a:hover { color: var(--text-primary); }
             <p class="intro">
                 Software engineer training neural nets from scratch. Building financial terminals, programming languages, and systems tools. Based in Langley, BC.
                 <a href="mailto:jatrommel@gmail.com">jatrommel@gmail.com</a> /
-                <a href="tel:+17788462726">778-846-2726</a>
+                <a href="tel:+17782014533">778-201-4533</a>
             </p>
         </header>
 
-        <section>
+        <section data-aos="fade-up">
             <h2>Projects</h2>
             <ul class="items">
-                <li><a href="https://opticon.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Opticon</a> -- Map-first financial terminal with live stock tickers, personal finance dashboard, and integrated data feeds.</li>
-                <li><a href="https://tally.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Tally</a> -- BC benefits tracker and self-serve scraper with grade checker and school transcript tools.</li>
-                <li><a href="https://dose-psi.vercel.app/" target="_blank" rel="noopener noreferrer">Dose</a> -- Health tracker with substance logging, drug interactions, periodic table, and biometrics.</li>
-                <li><a href="https://spark.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Spark</a> -- Idea-sharing platform with auth, posts, and voting.</li>
-                <li><a href="https://github.com/nulljosh/arthur" target="_blank" rel="noopener noreferrer">Arthur</a> -- Nano transformer LLM built from scratch in PyTorch with a C99 inference engine. <a href="https://github.com/nulljosh/arthur#readme" target="_blank" rel="noopener noreferrer">[docs]</a></li>
-                <li><a href="https://rabbit-lyart.vercel.app" target="_blank" rel="noopener noreferrer">Rabbit</a> -- Web search engine with mind-map visualization powered by React Flow.</li>
-                <li><a href="https://github.com/nulljosh/brief" target="_blank" rel="noopener noreferrer">Brief</a> -- Legal case analyzer for research and case management.</li>
-                <li><a href="https://github.com/nulljosh/jung" target="_blank" rel="noopener noreferrer">Jung</a> -- Programming language with Carl Jung-themed keywords. C99 bytecode VM.</li>
-                <li><a href="https://heyitsmejosh.com/bcgd/" target="_blank" rel="noopener noreferrer">BCGD</a> -- Website for BC Garage Doors, a family-owned garage door repair service in Langley, BC.</li>
+                <li><i class="fa-solid fa-chart-line fa-icon"></i><a href="https://opticon.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Opticon</a> -- Map-first financial terminal with live stock tickers, personal finance dashboard, and integrated data feeds.</li>
+                <li><i class="fa-solid fa-calculator fa-icon"></i><a href="https://tally.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Tally</a> -- BC benefits tracker and self-serve scraper with grade checker and school transcript tools.</li>
+                <li><i class="fa-solid fa-lightbulb fa-icon"></i><a href="https://spark.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Spark</a> -- Idea-sharing platform with auth, posts, and voting.</li>
+                <li><i class="fa-solid fa-brain fa-icon"></i><a href="https://arthur-prod.vercel.app" target="_blank" rel="noopener noreferrer">Arthur</a> -- Nano transformer LLM built from scratch in PyTorch with a C99 inference engine. <a href="https://github.com/nulljosh/arthur#readme" target="_blank" rel="noopener noreferrer">[docs]</a></li>
+                <li><i class="fa-solid fa-language fa-icon"></i><a href="https://lingo.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Lingo</a> -- Language and skill learning platform with 40+ topics, spaced repetition, and speech recognition. Duolingo-inspired.</li>
             </ul>
         </section>
 
-        <section>
+        <section data-aos="fade-up" data-aos-delay="50">
             <h2>Systems</h2>
             <ul class="items">
-                <li><a href="https://github.com/nulljosh/systems" target="_blank" rel="noopener noreferrer">Shell</a> -- Unix shell in C99 with pipes, redirects, job control, and signal handling. 845 LOC.</li>
-                <li><a href="https://github.com/nulljosh/systems" target="_blank" rel="noopener noreferrer">Debugger</a> -- ptrace-based debugger in C++ with breakpoints, single-step, register and memory inspection.</li>
-                <li><a href="https://github.com/nulljosh/systems" target="_blank" rel="noopener noreferrer">Text Editor</a> -- Terminal text editor built with Python curses. File I/O, line numbers, status bar.</li>
-                <li><a href="https://github.com/nulljosh/systems" target="_blank" rel="noopener noreferrer">nullC</a> -- C compiler with lexer, parser, and x86-64 code generation. 3952 LOC.</li>
+                <li><i class="fa-solid fa-microchip fa-icon"></i><a href="https://github.com/nulljosh/systems/tree/main/nullC" target="_blank" rel="noopener noreferrer">nullC</a> -- C compiler with lexer, parser, and ARM64 code generation. Built from scratch.</li>
+                <li><i class="fa-solid fa-server fa-icon"></i><a href="https://github.com/nulljosh/systems/tree/main/NullOS" target="_blank" rel="noopener noreferrer">NullOS</a> -- Custom x86 OS in C and ASM. Boots in QEMU. No GRUB, no libc, raw metal.</li>
+                <li><i class="fa-solid fa-terminal fa-icon"></i><a href="https://github.com/nulljosh/systems/tree/main/shell" target="_blank" rel="noopener noreferrer">Shell</a> -- Unix shell in C99 with pipes, redirects, job control, and signal handling.</li>
+                <li><i class="fa-solid fa-chart-bar fa-icon"></i><a href="https://github.com/nulljosh/systems/tree/main/profiler" target="_blank" rel="noopener noreferrer">Profiler</a> -- CPU profiler for Python + C with sampling, flame graphs, memory tracking, and call graphs.</li>
+                <li><i class="fa-solid fa-box fa-icon"></i><a href="https://github.com/nulljosh/systems/tree/main/container-runtime" target="_blank" rel="noopener noreferrer">Container Runtime</a> -- Minimal Linux container runtime in Rust with namespaces, cgroups v2, and pivot_root isolation.</li>
+                <li><i class="fa-solid fa-bug fa-icon"></i><a href="https://github.com/nulljosh/systems/tree/main/debugger" target="_blank" rel="noopener noreferrer">Debugger</a> -- ptrace-based debugger in C++ with breakpoints, single-step, register and memory inspection.</li>
+                <li><i class="fa-solid fa-magnifying-glass fa-icon"></i><a href="https://github.com/nulljosh/systems/tree/main/static-analyzer" target="_blank" rel="noopener noreferrer">Static Analyzer</a> -- Python source code analyzer with pluggable rules for unused imports, dead code, and variable shadowing.</li>
             </ul>
         </section>
 
-        <section id="trakt-section">
+        <section id="trakt-section" data-aos="fade-up" data-aos-delay="100">
             <h2>Watching</h2>
             <div id="trakt-watching"></div>
         </section>
 
-        <section>
+        <section data-aos="fade-up">
             <h2>Services</h2>
             <ul class="items">
-                <li><strong>Software Engineering</strong> -- Full-stack web apps, React, Node, serverless. Auth, payments, real-time data.</li>
-                <li><strong>Machine Learning</strong> -- Training transformers from scratch. C99 inference engine. Autonomous agents.</li>
-                <li><strong>Systems Programming</strong> -- OS, compiler, container runtime, shell, debugger. C, Rust, ARM64.</li>
-                <li><strong>Language Design</strong> -- Custom programming languages with bytecode VMs, lexers, parsers.</li>
+                <li><i class="fa-solid fa-code fa-icon"></i><strong>Software Engineering</strong> -- Production web apps end-to-end. React, Node, serverless, auth, payments, real-time data, PWA.</li>
+                <li><i class="fa-solid fa-robot fa-icon"></i><strong>Machine Learning</strong> -- Transformer architectures trained from scratch. Custom C99 inference. Autonomous agent pipelines.</li>
+                <li><i class="fa-solid fa-gears fa-icon"></i><strong>Systems Programming</strong> -- Compilers, operating systems, container runtimes, shells, debuggers. C, Rust, ARM64 assembly.</li>
+                <li><i class="fa-solid fa-pen-nib fa-icon"></i><strong>Language Design</strong> -- Custom programming languages with bytecode VMs, hand-written lexers and recursive-descent parsers.</li>
             </ul>
         </section>
 
-        <section>
+        <section data-aos="fade-up">
             <h2>Experience</h2>
             <ul class="items">
                 <li><strong>Mobile Consultant</strong> -- <a href="https://macinhome.com" target="_blank" rel="noopener noreferrer">Macinhome</a>, Vancouver, BC. Aug 2017 - Sep 2020</li>
@@ -539,18 +522,18 @@ footer a:hover { color: var(--text-primary); }
             </ul>
         </section>
 
-        <section>
+        <section data-aos="fade-up">
             <h2>Skills</h2>
             <ul class="plain">
-                <li>Full-stack web development (React, Next.js, Node, Vercel)</li>
-                <li>Machine learning and neural network implementation</li>
-                <li>Systems programming (C, Rust, ARM64 assembly)</li>
-                <li>Programming language design and implementation</li>
-                <li>iOS development (SwiftUI, Xcode)</li>
+                <li>Full-stack web development -- React, Next.js, Node.js, Vercel, serverless, PWA, auth systems</li>
+                <li>Machine learning -- training transformers from scratch, custom tokenizers, C inference engines</li>
+                <li>Systems programming -- C99, Rust, ARM64 assembly, ptrace, ELF, raw syscalls</li>
+                <li>Programming language design -- lexers, parsers, bytecode compilers, stack-based VMs</li>
+                <li>iOS development -- SwiftUI, @Observable, xcodegen, Keychain auth, cookie sessions</li>
             </ul>
         </section>
 
-        <section>
+        <section data-aos="fade-up">
             <h2>Education</h2>
             <ul class="plain">
                 <li><a href="https://www.uvic.ca/undergraduate/programs/undergraduate-programs/pages/computer-science.php" target="_blank" rel="noopener noreferrer">University of Victoria</a>, BSc in Computer Science (Expected 2030)</li>
@@ -559,34 +542,34 @@ footer a:hover { color: var(--text-primary); }
             </ul>
         </section>
 
-        <div class="testimonial">
+        <div class="testimonial" data-aos="fade-up">
             <blockquote>
                 "Excellent session with Joshua who was personable, very knowledgeable and able to answer questions clearly. He arrived on time and used the time with me very constructively. Very happy with your service. Thank you."
             </blockquote>
             <cite>Rita, Client</cite>
         </div>
 
-        <section>
+        <section data-aos="fade-up">
             <h2>Links</h2>
             <ul class="links">
-                <li><a href="https://github.com/nulljosh" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-                <li><a href="https://twitter.com/nulljosh1" target="_blank" rel="noopener noreferrer">Twitter</a></li>
-                <li><a href="https://heyitsmejosh.com/journal/" target="_blank" rel="noopener noreferrer">Blog</a></li>
-                <li><a href="https://letterboxd.com/literallyjordan/" target="_blank" rel="noopener noreferrer">Letterboxd</a></li>
-                <li><a href="https://trakt.tv/users/nljs" target="_blank" rel="noopener noreferrer">Trakt</a></li>
+                <li><a href="https://github.com/nulljosh" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a></li>
+                <li><a href="https://twitter.com/nulljosh1" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i> Twitter</a></li>
+                <li><a href="https://heyitsmejosh.com/journal/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-pen"></i> Blog</a></li>
+                <li><a href="https://letterboxd.com/literallyjordan/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-film"></i> Letterboxd</a></li>
+                <li><a href="https://trakt.tv/users/nljs" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-tv"></i> Trakt</a></li>
             </ul>
         </section>
 
         <hr>
 
-        <div class="footer-stats">
+        <div class="footer-stats" data-aos="fade-up">
             <div class="footer-stat">
                 <span class="footer-stat-label">Films</span>
-                <span class="footer-stat-value" id="letterboxd-stats">6,552 on Letterboxd</span>
+                <span class="footer-stat-value" id="letterboxd-stats">loading...</span>
             </div>
             <div class="footer-stat">
                 <span class="footer-stat-label">TV</span>
-                <span class="footer-stat-value" id="trakt-stats">9,102 episodes on Trakt</span>
+                <span class="footer-stat-value" id="trakt-stats">loading...</span>
             </div>
             <div class="footer-stat">
                 <span class="footer-stat-label">Code</span>
@@ -612,20 +595,27 @@ footer a:hover { color: var(--text-primary); }
 
         <hr>
 
-        <div class="contribs-section" id="contribs-section">
+        <div class="contribs-section" id="contribs-section" data-aos="fade-up">
             <span class="contribs-label">Contributions</span>
             <div id="contribs-grid" class="contribs-grid"></div>
             <div class="contribs-meta" id="contribs-meta"></div>
         </div>
 
         <footer>
-            &copy; 2026 Joshua Trommel &middot;
-            <a href="https://github.com/nulljosh/nulljosh.github.io/blob/main/LICENSE" target="_blank" rel="noopener">MIT</a>
-            <span class="badge">v2026</span>
+            &copy; 2026 Joshua Trommel
         </footer>
     </div>
 
+    <!-- AOS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
+        AOS.init({
+            duration: 700,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 40
+        });
+
         const themeToggle = document.getElementById('themeToggle');
         const sunIcon = document.getElementById('sunIcon');
         const moonIcon = document.getElementById('moonIcon');
@@ -737,7 +727,6 @@ footer a:hover { color: var(--text-primary); }
                 localStorage.setItem(CACHE_TIMESTAMP_KEY, now.toString());
             } catch (e) {
                 console.warn('Trakt stats failed:', e);
-                el.textContent = '9,102 episodes on Trakt';
             }
         }
 
