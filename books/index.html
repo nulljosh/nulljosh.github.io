@@ -13,18 +13,21 @@
 
         html { overflow-x: hidden; }
 
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
-            background: #f5f5f7;
-            color: #1d1d1f;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+            background: #ffffff;
+            color: #18181b;
             line-height: 1.6;
             overflow-x: hidden;
             transition: background 0.3s, color 0.3s;
         }
 
         body.dark {
-            background: #0a0a0a;
-            color: #f5f5f7;
+            background: #09090b;
+            color: #f4f4f5;
         }
 
         .container {
@@ -47,12 +50,12 @@
 
         .subtitle {
             font-size: 21px;
-            color: #6e6e73;
+            color: #71717a;
             font-weight: 400;
         }
 
         body.dark .subtitle {
-            color: #86868b;
+            color: #a1a1aa;
         }
 
         .card {
@@ -72,7 +75,7 @@
         }
 
         body.dark .card {
-            background: rgba(28,28,30,0.9);
+            background: rgba(24,24,27,0.9);
             border: 1px solid rgba(255,255,255,0.08);
             box-shadow: 0 8px 24px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2);
         }
@@ -83,7 +86,7 @@
 
         .book {
             padding: 24px 0;
-            border-bottom: 1px solid #d2d2d7;
+            border-bottom: 1px solid #d4d4d8;
         }
 
         .book:last-child {
@@ -104,7 +107,7 @@
         .rank {
             font-size: 32px;
             font-weight: 600;
-            color: #d2d2d7;
+            color: #d4d4d8;
             min-width: 50px;
         }
 
@@ -119,12 +122,12 @@
         }
 
         .book-title a {
-            color: #431407;
+            color: #18181b;
             text-decoration: none;
         }
 
         body.dark .book-title a {
-            color: #0a84ff;
+            color: #60A5FA;
         }
 
         .book-title a:hover {
@@ -133,12 +136,12 @@
 
         .author {
             font-size: 17px;
-            color: #6e6e73;
+            color: #71717a;
             margin-bottom: 8px;
         }
 
         body.dark .author {
-            color: #86868b;
+            color: #a1a1aa;
         }
 
         .rating {
@@ -154,21 +157,21 @@
         }
 
         .reviews {
-            color: #86868b;
+            color: #a1a1aa;
         }
 
         body.dark .reviews {
-            color: #6e6e73;
+            color: #71717a;
         }
 
         .notes {
             font-size: 15px;
-            color: #6e6e73;
+            color: #71717a;
             margin-top: 8px;
         }
 
         body.dark .notes {
-            color: #86868b;
+            color: #a1a1aa;
         }
 
         .top-section {
@@ -188,7 +191,7 @@
         }
 
         body.dark .top-section {
-            background: rgba(28,28,30,0.9);
+            background: rgba(24,24,27,0.9);
             border: 1px solid rgba(255,255,255,0.08);
             box-shadow: 0 8px 24px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2);
         }
@@ -210,26 +213,26 @@
         .top-section li {
             margin-bottom: 12px;
             font-size: 17px;
-            color: #1d1d1f;
+            color: #18181b;
         }
 
         body.dark .top-section li {
-            color: #f5f5f7;
+            color: #f4f4f5;
         }
 
         .badge {
             display: inline-block;
-            background: #f5f5f7;
+            background: #f4f4f5;
             padding: 2px 8px;
             border-radius: 4px;
             font-size: 12px;
-            color: #6e6e73;
+            color: #71717a;
             margin-left: 6px;
         }
 
         body.dark .badge {
-            background: rgba(118,118,128,0.24);
-            color: #86868b;
+            background: rgba(39,39,42,0.8);
+            color: #a1a1aa;
         }
 
         .toggle {
@@ -248,7 +251,7 @@
             justify-content: center;
             box-shadow: 0 2px 12px rgba(0,0,0,0.15);
             transition: all 0.2s;
-            color: #1d1d1f;
+            color: #18181b;
         }
 
         .toggle svg {
@@ -262,7 +265,7 @@
         }
 
         body.dark .toggle {
-            background: rgba(58,58,60,1);
+            background: rgba(39,39,42,1);
             box-shadow: 0 2px 12px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.2);
             color: #ffffff;
         }

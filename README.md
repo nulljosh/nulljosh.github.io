@@ -3,6 +3,8 @@
   <h1>nulljosh.github.io</h1>
 </div>
 
+![version](https://img.shields.io/badge/version-v1.0.0-blue)
+
 Joshua Trommel's portfolio site.
 
 ## Architecture
@@ -28,3 +30,17 @@ Minimal type-only aesthetic inspired by [Noah Dunnagan's nd.mt](https://x.com/no
 Just HTML/CSS/JS. Push to `main` and GitHub Pages deploys automatically.
 
 Custom domain via `CNAME` -> `heyitsmejosh.com`
+
+## Roadmap
+
+- [ ] Project showcase section
+- [ ] Resume/CV page
+- [ ] Dark mode toggle
+- [ ] Blog integration (link to journal)
+- [ ] Analytics (privacy-respecting)
+
+## Quick Commands
+- `./scripts/simplify.sh` - normalize project structure
+- `./scripts/monetize.sh . --write` - generate monetization plan (if available)
+- `./scripts/audit.sh .` - run fast project audit (if available)
+- `./scripts/ship.sh .` - run checks and ship (if available)

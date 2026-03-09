@@ -25,3 +25,9 @@ git push origin main   # GitHub Pages auto-deploys
 
 ## Status
 Production/live. Minor updates only.
+
+## Quick Commands
+- `./scripts/simplify.sh`
+- `./scripts/monetize.sh . --write`
+- `./scripts/audit.sh .`
+- `./scripts/ship.sh .`
