@@ -1,33 +1,26 @@
-# nulljosh.github.io - Claude Notes
+# Claude Notes
 
-## Overview
-Portfolio site. Live at heyitsmejosh.com.
+## Project
 
-## Structure
-Static HTML/CSS/JS. GitHub Pages hosting.
+Static personal site for `heyitsmejosh.com`.
 
-### Subdirectories
-- **bcgd/** - BC Game Dev project page
-- **books/** - Book collection / reading list
-- **scroll/** - Scroll-based interactive page
-- **1971/** - 1971 project page
+## Important files
 
-## Deploy
-```bash
-cd ~/Documents/Code/nulljosh.github.io
-git push origin main   # GitHub Pages auto-deploys
-```
+- `index.html` - main homepage
+- `design-tokens.css` - shared tokens
+- `chat.js` - client-side behavior
+- `CNAME` - custom domain
 
-## Local Preview
-```bash
-# just open index.html -- no build step
-```
+## Directories
 
-## Status
-Production/live. Minor updates only.
+- `bcgd/`
+- `books/`
+- `scroll/`
+- `1971/`
 
-## Quick Commands
-- `./scripts/simplify.sh`
-- `./scripts/monetize.sh . --write`
-- `./scripts/audit.sh .`
-- `./scripts/ship.sh .`
+## Working rules
+
+- No build step
+- Preview by opening `index.html`
+- Deploy by pushing to `main`
+- Keep edits lightweight unless asked otherwise
