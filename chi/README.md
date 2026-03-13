@@ -7,7 +7,7 @@
 
 Feng Shui room analyzer PWA. Upload room photos, get Five Elements scoring.
 
-GitHub: https://github.com/nulljosh/chi
+GitHub: https://github.com/nulljosh/nulljosh.github.io/tree/main/chi
 
 ## Stack
 - React 18 + Vite
