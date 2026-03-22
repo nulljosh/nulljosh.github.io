@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Joshua Trommel</title>
-<meta name="description" content="Software engineer and builder in Langley, BC. Training neural nets from scratch, building financial terminals, and designing programming languages.">
-<meta name="keywords" content="technical support, web design, Apple specialist, portfolio management, Vancouver BC">
+<meta name="description" content="Software engineer in Langley, BC. Building financial terminals, training neural nets from scratch, writing compilers and operating systems, and designing programming languages.">
+<meta name="keywords" content="software engineer, full-stack developer, iOS developer, machine learning, systems programming, Vancouver BC">
 <meta name="author" content="Joshua Trommel">
 <link rel="canonical" href="https://heyitsmejosh.com">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -15,14 +15,14 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://heyitsmejosh.com">
 <meta property="og:title" content="Joshua Trommel">
-<meta property="og:description" content="Software engineer building financial terminals, neural nets, and programming languages from scratch.">
+<meta property="og:description" content="Software engineer building financial terminals, neural nets, compilers, and programming languages from scratch.">
 <meta property="og:image" content="https://heyitsmejosh.com/og-image.jpg">
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://heyitsmejosh.com">
 <meta property="twitter:title" content="Joshua Trommel">
-<meta property="twitter:description" content="Software engineer building financial terminals, neural nets, and programming languages from scratch.">
+<meta property="twitter:description" content="Software engineer building financial terminals, neural nets, compilers, and programming languages from scratch.">
 <meta property="twitter:image" content="https://heyitsmejosh.com/og-image.jpg">
 <meta name="twitter:creator" content="@nulljosh1">
 
@@ -52,7 +52,7 @@
     "https://twitter.com/nulljosh1",
     "https://letterboxd.com/literallyjordan/"
   ],
-  "knowsAbout": ["Software Engineering", "Web Development", "Mobile Development", "Cloud Infrastructure"]
+  "knowsAbout": ["Software Engineering", "Machine Learning", "Systems Programming", "Language Design", "Web Development", "Mobile Development", "Cloud Infrastructure"]
 }
 </script>
 <meta name="view-transition" content="same-origin">
@@ -603,7 +603,7 @@ footer a:hover { opacity: 0.5; }
                 </button>
             </div>
             <p class="intro">
-                Software engineer building financial terminals, programming languages, and systems tools. Based in Langley, BC.
+                Software engineer building financial terminals, neural nets, compilers, and programming languages from scratch. Based in Langley, BC.
                 <a href="mailto:jatrommel@gmail.com">jatrommel@gmail.com</a> /
                 <a href="tel:+17782014533">778-201-4533</a>
             </p>
@@ -612,8 +612,15 @@ footer a:hover { opacity: 0.5; }
         <section class="fade-up">
             <span class="section-label">Projects</span>
             <ul class="items">
-                <li><a href="https://opticon.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Opticon</a><span class="live-dot" title="Live"></span> -- Financial terminal for markets and macro with live data feeds across web, iOS, and Mac.</li>
-                <li><a href="https://tally.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Tally</a><span class="live-dot" title="Live"></span> -- BC benefits tracker with self-serve scraping, student tools, and a native iOS companion app.</li>
+                <li><a href="https://arthur.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Arthur</a><span class="live-dot" title="Live"></span> -- From-scratch transformer LLM. 65M parameters, mixture-of-experts, PyTorch training with C99 inference engine.</li>
+                <li><a href="https://opticon.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Opticon</a><span class="live-dot" title="Live"></span> -- Financial terminal for markets, macro, and prediction markets. Live data feeds across web, iOS, and Mac.</li>
+                <li><a href="https://spark.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Spark</a><span class="live-dot" title="Live"></span> -- Idea-sharing platform with auth, posts, and voting. Supabase backend with a native iOS companion.</li>
+                <li><a href="https://tally.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Tally</a><span class="live-dot" title="Live"></span> -- BC benefits tracker and self-serve scraper with student tools and a native iOS companion app.</li>
+                <li><a href="https://dose.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Dose</a><span class="live-dot" title="Live"></span> -- Health tracker for drugs, vitamins, and biometrics. 200+ substances, daily check-ins, iOS with HealthKit.</li>
+                <li><a href="https://lingo.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Lingo</a><span class="live-dot" title="Live"></span> -- Language learning app covering 39 subjects with 330+ questions.</li>
+                <li><strong>Jot</strong> -- Custom programming language with a bytecode VM, hand-written lexer, and recursive-descent parser.</li>
+                <li><strong>Systems</strong> -- Monorepo: C compiler targeting ARM64, operating system, shell, debugger, profiler, container runtime. C, Rust, and assembly.</li>
+                <li><strong>Browser</strong> -- Native macOS and iOS web browser built on WebKit. Content blocker, reader mode, crash recovery.</li>
             </ul>
         </section>
 
@@ -624,20 +631,9 @@ footer a:hover { opacity: 0.5; }
                 <li><strong>Mobile Development</strong> -- Native iOS and macOS apps with SwiftUI. Companion apps that integrate with web backends.</li>
                 <li><strong>Cloud Infrastructure</strong> -- Vercel, serverless APIs, CI/CD pipelines, database design, caching, and deployment automation.</li>
                 <li><strong>Product Design</strong> -- Turning ideas into shipped products. UI/UX, user research, iteration from prototype to production.</li>
-                <!-- COMMENTED OUT: revisit when we go deeper on these
-                <li>
-                    <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 014 4c0 1.95-1.4 3.58-3.25 3.93L12 10V8a2 2 0 10-2-2H8a4 4 0 014-4z"/><path d="M12 10v4"/><circle cx="12" cy="18" r="4"/><path d="M8 18h-4"/><path d="M20 18h-4"/></svg>
-                    <span class="item-text"><strong>Machine Learning</strong> -- Transformer architectures trained from scratch. Custom C99 inference. Autonomous agent pipelines.</span>
-                </li>
-                <li>
-                    <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9c.26.604.852 1 1.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
-                    <span class="item-text"><strong>Systems Programming</strong> -- Compilers, operating systems, container runtimes, shells, debuggers. C, Rust, ARM64 assembly.</span>
-                </li>
-                <li>
-                    <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                    <span class="item-text"><strong>Language Design</strong> -- Custom programming languages with bytecode VMs, hand-written lexers and recursive-descent parsers.</span>
-                </li>
-                -->
+                <li><strong>Machine Learning</strong> -- Transformer architectures trained from scratch. Custom C99 inference. Autonomous agent pipelines.</li>
+                <li><strong>Systems Programming</strong> -- Compilers, operating systems, container runtimes, shells, debuggers. C, Rust, ARM64 assembly.</li>
+                <li><strong>Language Design</strong> -- Custom programming languages with bytecode VMs, hand-written lexers and recursive-descent parsers.</li>
             </ul>
         </section>
 
@@ -656,11 +652,9 @@ footer a:hover { opacity: 0.5; }
                 <li>Mobile -- I ship native iOS and macOS apps that connect cleanly with the web products.</li>
                 <li>Infrastructure -- Serverless, CI/CD, databases, and deployment automation.</li>
                 <li>Product -- I turn ideas into shipped software, from first sketch to production.</li>
-                <!-- COMMENTED OUT: revisit later
                 <li>Systems work -- I spend a lot of time close to the metal in C and Rust.</li>
-                <li>Programming languages -- I've built a couple of languages just to see how far I could take them.</li>
+                <li>Programming languages -- I have built a couple of languages just to see how far I could take them.</li>
                 <li>Machine learning -- I like building models myself and understanding how they work under the hood.</li>
-                -->
             </ul>
         </section>
 
