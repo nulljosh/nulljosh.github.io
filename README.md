@@ -1,25 +1,32 @@
+<img src="icon.svg" width="80">
+
 # nulljosh.github.io
 
-Personal site and small static project hub for [heyitsmejosh.com](https://heyitsmejosh.com).
+![version](https://img.shields.io/badge/version-v2.0.0-blue)
 
-## Repo layout
+Personal site and project hub at [heyitsmejosh.com](https://heyitsmejosh.com).
 
-- `index.html` - main homepage
-- `bcgd/` - BC Garage Doors page
-- `books/` - reading tracker
-- `scroll/` - scroll experiment
-- `1971/` - history project
+## Projects
+
+| Path | Description |
+|------|-------------|
+| `/` | Homepage |
+| `1971/` | History project |
+| `bcgd/` | BC Garage Doors landing page |
+| `books/` | Reading tracker |
+| `brief/` | Article summarizer |
+| `chi/` | Room calculator |
+| `notes/` | Personal reference site |
+| `scroll/` | Scroll feed experiment |
 
 ## Stack
 
-Static HTML, CSS, and JavaScript. No build step.
+Static HTML, CSS, JavaScript. No build step. Geist font family.
 
 ## Deploy
 
-Push to `main`. GitHub Pages deploys automatically.
+Push to `main`. GitHub Pages deploys via Actions. Custom domain via `CNAME`.
 
-The custom domain is configured through `CNAME`.
+## License
 
-## Local preview
-
-Open `index.html` directly in a browser.
+MIT 2026 Joshua Trommel
