@@ -13,13 +13,13 @@ All notes in one place.
 - [ ] Test Spark iOS on iPhone
 - [ ] Test Tally iOS on iPhone
 - [ ] Add health grading to Dose iOS
-- [ ] Bump Opticon, Spark, Tally, and Dose iOS
+- [ ] Bump Monica, Spark, Tally, and Dose iOS
 - [ ] Start Rabbit, Portfolio, Journal, and Dashboard iOS
 - [x] Standardize CLAUDE.md across all repos
 - [x] Consolidate repos (23 standalone + 4 monorepos)
 
 ### Tier 2: Features
-- [ ] Add events, flights, news, sports, maps, and nav to Opticon
+- [ ] Add events, flights, news, sports, maps, and nav to Monica
 - [ ] Expand Tally reports and sync iOS Notes contacts
 - [ ] Import iOS health data into Dose
 - [ ] Reorder Dose entries by relevance
@@ -73,7 +73,7 @@ All notes in one place.
 
 ## Timeline (2026-2030)
 
-- **Now (Mar 2026)**: Active projects are Opticon, Tally, Spark, OpenClaw, and Dose. 23 repos. About $7K debt.
+- **Now (Mar 2026)**: Active projects are Monica, Tally, Spark, OpenClaw, and Dose. 23 repos. About $7K debt.
 - **Spring 2026**: Prepare for college, save for a MacBook, car, and dog, and apply for UVIC transfer
 - **Sep 2026 - Apr 2027**: College transfer year, CS + Math, 3.0+ GPA
 - **Sep 2027**: Transfer to UVIC CS (2nd year)

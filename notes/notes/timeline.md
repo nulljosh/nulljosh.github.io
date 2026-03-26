@@ -1,16 +1,16 @@
 # Timeline -- Mar 2026 to 2030
 
 ## Now (Mar 2026)
-- **Active projects**: Opticon (financial terminal), Tally (benefits tracker), Spark (idea platform), OpenClaw (AI gateway), Dose (health app)
+- **Active projects**: Monica (personal intelligence platform), Tally (benefits tracker), Spark (idea platform), OpenClaw (AI gateway), Dose (health app)
 - **Infrastructure**: 23 repos, Vercel deployments live, Supabase integrated (Spark)
-- **iOS**: Companion apps for Opticon, Spark, Tally, Dose
+- **iOS**: Companion apps for Monica, Spark, Tally, Dose
 - **Finance**: ~$1000 Bell debt, ~$1000 Telus debt, $5000 Visa
 
 ## Spring 2026 (Mar-May)
 - College prep + applications
 - Save for MacBook + car + dog
 - Submit UVIC transfer app (Apr 15 deadline for May entry, Sep 30 for Jan 2027)
-- Ship Opticon v3 (Stripe tiers live), Dose v2, iOS companion apps to TestFlight
+- Ship Monica v5 (Stripe tiers live), Dose v2, iOS companion apps to TestFlight
 
 ## Sep 2026 - Apr 2027
 - College transfer year: CS + Math courses
@@ -29,7 +29,7 @@
 
 ## May - Aug 2029
 - Job search, apply to software roles
-- Continue side projects (Opticon, OpenClaw)
+- Continue side projects (Monica, OpenClaw)
 
 ## Sep 2029
 - Target: first full-time software role or grad school application (UVIC MSc CS, UBC, SFU)
