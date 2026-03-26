@@ -20,7 +20,7 @@ Personal notes repo. Converted from PDF brain dumps, maintained as markdown.
 ./scripts/simplify.sh
 ```
 ## Roadmap
-- [ ] Add search across notes and pages
+- [x] Add search across notes and pages
 - [ ] Introduce automated link checking for internal references
 - [ ] Add a lightweight build step for generating a static index
 ## Changelog

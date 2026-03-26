@@ -277,6 +277,51 @@
   .file-list li:nth-child(7) .file-row { animation-delay: 0.24s; }
   .file-list li:nth-child(8) .file-row { animation-delay: 0.28s; }
 
+  /* Search */
+  .search-bar {
+    position: relative;
+    margin-bottom: 1.25rem;
+  }
+
+  .search-bar input {
+    width: 100%;
+    padding: 0.625rem 1rem 0.625rem 2.25rem;
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 0.875rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .search-bar input::placeholder { color: var(--text-tertiary); }
+  .search-bar input:focus { border-color: var(--blue); }
+
+  .search-bar svg {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+    stroke: var(--text-tertiary);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .file-list li.hidden { display: none; }
+  .no-results {
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+    padding: 1rem 0;
+    display: none;
+  }
+  .no-results.visible { display: block; }
+
   @media (max-width: 480px) {
     .file-meta { display: none; }
     .file-desc { white-space: normal; }
@@ -293,6 +338,12 @@
   </header>
 
   <div class="section-label">Files</div>
+
+  <div class="search-bar">
+    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" id="searchInput" placeholder="Search notes..." autocomplete="off">
+  </div>
+  <div class="no-results" id="noResults">No matching notes.</div>
 
   <ul class="file-list">
     <li><a href="pages/health.html" class="file-row animate__animated animate__fadeInUp" data-cat="health">
@@ -379,5 +430,25 @@
   </footer>
 </div>
 <script src="assets/js/theme-toggle.js"></script>
+<script>
+(function() {
+  var input = document.getElementById('searchInput');
+  var items = document.querySelectorAll('.file-list li');
+  var noResults = document.getElementById('noResults');
+  input.addEventListener('input', function() {
+    var q = this.value.toLowerCase().trim();
+    var visible = 0;
+    items.forEach(function(li) {
+      var name = li.querySelector('.file-name');
+      var desc = li.querySelector('.file-desc');
+      var text = ((name ? name.textContent : '') + ' ' + (desc ? desc.textContent : '')).toLowerCase();
+      var match = !q || text.indexOf(q) !== -1;
+      li.classList.toggle('hidden', !match);
+      if (match) visible++;
+    });
+    noResults.classList.toggle('visible', visible === 0);
+  });
+})();
+</script>
 </body>
 </html>
