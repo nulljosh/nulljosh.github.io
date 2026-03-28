@@ -63,7 +63,6 @@
 <!-- Fonts -->
 <link rel="preload" href="fonts/Geist-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/Geist-Medium.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/Geist-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
 
 <style>
 @font-face {
@@ -80,13 +79,7 @@
     font-style: normal;
     font-display: swap;
 }
-@font-face {
-    font-family: 'Geist';
-    src: url('fonts/Geist-SemiBold.woff2') format('woff2');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
+
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
@@ -406,12 +399,15 @@ hr {
     transform: translateY(-2px);
 }
 
-.footer-stat-label {
+.stat-label {
     font-size: 0.6875rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--text-tertiary);
     font-weight: 500;
+}
+
+.footer-stat-label {
     display: flex;
     align-items: center;
     gap: 0;
@@ -452,11 +448,6 @@ hr {
 }
 
 .contribs-label {
-    font-size: 0.6875rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-tertiary);
-    font-weight: 500;
     margin-bottom: 0.75rem;
     display: block;
 }
@@ -464,7 +455,6 @@ hr {
 .contribs-scroll {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x proximity;
     max-width: 100%;
     position: relative;
     mask-image: linear-gradient(to right, transparent 0, black 8px, black calc(100% - 8px), transparent 100%);
@@ -637,7 +627,6 @@ footer a:hover { opacity: 0.5; }
     .intro, .items li, .plain li, .footer-stat-value { color: #333; }
     .items li a, .links li a, .intro a, .footer-stat-value a { color: #000; text-decoration: underline; }
     a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.75em; color: #666; word-break: break-all; }
-    .links li a::after { content: " (" attr(href) ")"; font-size: 0.75em; color: #666; }
     hr { border-color: #ccc; }
     .footer-stats { grid-template-columns: repeat(3, 1fr); }
     .items li, .footer-stat { border-color: #ddd; }
@@ -847,27 +836,27 @@ footer a:hover { opacity: 0.5; }
 
         <div class="footer-stats fade-up">
             <div class="footer-stat">
-                <span class="footer-stat-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg> Films</span>
+                <span class="stat-label footer-stat-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg> Films</span>
                 <span class="footer-stat-value" id="letterboxd-stats"><span class="skeleton" style="width:100px"></span></span>
             </div>
             <div class="footer-stat">
-                <span class="footer-stat-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg> TV</span>
+                <span class="stat-label footer-stat-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg> TV</span>
                 <span class="footer-stat-value" id="trakt-stats"><span class="skeleton" style="width:110px"></span></span>
             </div>
             <div class="footer-stat">
-                <span class="footer-stat-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> Code</span>
+                <span class="stat-label footer-stat-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> Code</span>
                 <span class="footer-stat-value" id="github-stats"><span class="skeleton" style="width:90px"></span></span>
             </div>
             <div class="footer-stat">
-                <span class="footer-stat-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/></svg> Writing</span>
+                <span class="stat-label footer-stat-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/></svg> Writing</span>
                 <span class="footer-stat-value" id="blog-stats"><span class="skeleton" style="width:130px"></span></span>
             </div>
             <div class="footer-stat">
-                <span class="footer-stat-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 00-5 0v11.26a4.5 4.5 0 105 0z"/></svg> Weather</span>
+                <span class="stat-label footer-stat-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 00-5 0v11.26a4.5 4.5 0 105 0z"/></svg> Weather</span>
                 <span class="footer-stat-value" id="weather-stats"><span class="skeleton" style="width:160px"></span></span>
             </div>
             <div class="footer-stat">
-                <span class="footer-stat-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg> Coffee</span>
+                <span class="stat-label footer-stat-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg> Coffee</span>
                 <span class="footer-stat-value" id="coffee-stats"><span class="skeleton" style="width:100px"></span></span>
             </div>
         </div>
@@ -875,7 +864,7 @@ footer a:hover { opacity: 0.5; }
         <hr>
 
         <div class="contribs-section fade-up" id="contribs-section">
-            <span class="contribs-label">Contributions</span>
+            <span class="stat-label contribs-label">Contributions</span>
             <div class="contribs-scroll">
                 <div id="contribs-grid" class="contribs-grid"></div>
             </div>
@@ -951,6 +940,7 @@ footer a:hover { opacity: 0.5; }
 
         // Animate counting numbers
         function animateCounter(el, target, suffix) {
+            el.textContent = '';
             if (!('IntersectionObserver' in window)) {
                 el.textContent = target.toLocaleString() + suffix;
                 return;
@@ -976,25 +966,27 @@ footer a:hover { opacity: 0.5; }
             observer.observe(el);
         }
 
+        // Stat caching helpers
+        var DAY_MS = 24 * 60 * 60 * 1000;
+        function getCached(key, duration) {
+            var val = localStorage.getItem(key);
+            var ts = localStorage.getItem(key + '_ts');
+            if (val && ts && (Date.now() - parseInt(ts) < duration)) return val;
+            return null;
+        }
+        function setCached(key, value) {
+            localStorage.setItem(key, value);
+            localStorage.setItem(key + '_ts', Date.now().toString());
+        }
+
         // Letterboxd stats
         async function updateLetterboxdStats() {
-            var CACHE_KEY = 'letterboxd_stats';
-            var CACHE_TIMESTAMP_KEY = 'letterboxd_stats_timestamp';
-            var CACHE_DURATION = 24 * 60 * 60 * 1000;
-            var LETTERBOXD_USER = 'literallyjordan';
             var el = document.getElementById('letterboxd-stats');
+            var cached = getCached('letterboxd', DAY_MS);
+            if (cached) { el.textContent = cached; return; }
 
             try {
-                var cached = localStorage.getItem(CACHE_KEY);
-                var cachedTs = localStorage.getItem(CACHE_TIMESTAMP_KEY);
-                var now = Date.now();
-
-                if (cached && cachedTs && (now - parseInt(cachedTs) < CACHE_DURATION)) {
-                    el.textContent = cached;
-                    return;
-                }
-
-                var profileUrl = 'https://letterboxd.com/' + LETTERBOXD_USER + '/';
+                var profileUrl = 'https://letterboxd.com/literallyjordan/';
                 var proxies = [
                     'https://api.allorigins.win/raw?url=' + encodeURIComponent(profileUrl),
                     'https://corsproxy.io/?' + encodeURIComponent(profileUrl),
@@ -1011,19 +1003,17 @@ footer a:hover { opacity: 0.5; }
                         html = await res.text();
                         break;
                     } catch (proxyErr) {
+                        clearTimeout(timeout);
                         continue;
                     }
                 }
                 if (!html) throw new Error('All proxies failed');
                 var match = html.match(/([0-9,]+)\s+films?/i);
-
                 if (match && match[1]) {
                     var num = parseInt(match[1].replace(/,/g, ''));
                     var text = match[1] + ' on Letterboxd';
-                    el.textContent = '';
                     animateCounter(el, num, ' on Letterboxd');
-                    localStorage.setItem(CACHE_KEY, text);
-                    localStorage.setItem(CACHE_TIMESTAMP_KEY, now.toString());
+                    setCached('letterboxd', text);
                 } else {
                     throw new Error('No film count found');
                 }
@@ -1035,19 +1025,9 @@ footer a:hover { opacity: 0.5; }
 
         // Trakt.tv episode stats via API
         async function updateTraktStats() {
-            var CACHE_KEY = 'trakt_stats';
-            var CACHE_TIMESTAMP_KEY = 'trakt_stats_timestamp';
-            var CACHE_DURATION = 24 * 60 * 60 * 1000;
             var el = document.getElementById('trakt-stats');
-
-            var cached = localStorage.getItem(CACHE_KEY);
-            var cachedTs = localStorage.getItem(CACHE_TIMESTAMP_KEY);
-            var now = Date.now();
-
-            if (cached && cachedTs && (now - parseInt(cachedTs) < CACHE_DURATION)) {
-                el.textContent = cached;
-                return;
-            }
+            var cached = getCached('trakt', DAY_MS);
+            if (cached) { el.textContent = cached; return; }
 
             try {
                 var res = await fetch('https://api.trakt.tv/users/nljs/stats', {
@@ -1061,10 +1041,8 @@ footer a:hover { opacity: 0.5; }
                 var data = await res.json();
                 var episodes = data.episodes.watched;
                 var text = episodes.toLocaleString() + ' episodes on Trakt';
-                el.textContent = '';
                 animateCounter(el, episodes, ' episodes on Trakt');
-                localStorage.setItem(CACHE_KEY, text);
-                localStorage.setItem(CACHE_TIMESTAMP_KEY, now.toString());
+                setCached('trakt', text);
             } catch (e) {
                 console.warn('Trakt stats failed:', e);
                 el.textContent = '-- episodes on Trakt';
@@ -1074,12 +1052,16 @@ footer a:hover { opacity: 0.5; }
         // GitHub public repos
         async function updateGitHubStats() {
             var el = document.getElementById('github-stats');
+            var cached = getCached('github', DAY_MS);
+            if (cached) { el.textContent = cached; return; }
+
             try {
                 var res = await fetch('https://api.github.com/users/nulljosh');
                 if (!res.ok) throw new Error();
                 var data = await res.json();
-                el.textContent = '';
+                var text = data.public_repos + ' public repos';
                 animateCounter(el, data.public_repos, ' public repos');
+                setCached('github', text);
             } catch (e) {
                 console.warn('GitHub stats failed:', e);
                 el.textContent = '-- public repos';
@@ -1119,9 +1101,13 @@ footer a:hover { opacity: 0.5; }
             }
         }
 
-        // Weather
+        // Weather (1h cache -- changes more often than other stats)
         async function updateWeather() {
+            var HOUR_MS = 60 * 60 * 1000;
             var el = document.getElementById('weather-stats');
+            var cached = getCached('weather', HOUR_MS);
+            if (cached) { el.textContent = cached; return; }
+
             try {
                 var res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=49.0667&longitude=-122.6667&current=temperature_2m,weather_code&timezone=America/Vancouver&temperature_unit=celsius');
                 if (!res.ok) throw new Error();
@@ -1147,7 +1133,9 @@ footer a:hover { opacity: 0.5; }
                     if (t <= 32)  return 'hot';
                     return 'scorching';
                 }
-                el.textContent = getTempDesc(temp) + ' and ' + (conditions[data.current.weather_code] || 'kinda mixed') + ' in Brookswood';
+                var text = getTempDesc(temp) + ' and ' + (conditions[data.current.weather_code] || 'kinda mixed') + ' in Brookswood';
+                el.textContent = text;
+                setCached('weather', text);
             } catch (e) { console.warn('Weather failed:', e); el.textContent = '--'; }
         }
 
@@ -1158,7 +1146,6 @@ footer a:hover { opacity: 0.5; }
             var startOfYear = new Date(now.getFullYear(), 0, 1);
             var dayOfYear = Math.floor((now - startOfYear) / (1000 * 60 * 60 * 24)) + 1;
             var cups = Math.round(dayOfYear * 2.5);
-            el.textContent = '';
             animateCounter(el, cups, ' cups in ' + now.getFullYear());
         }
 
@@ -1171,7 +1158,10 @@ footer a:hover { opacity: 0.5; }
             var COLORS_DARK = ['#1a1a1a', '#333', '#555', '#888', '#bbb'];
 
             try {
-                var res = await fetch('https://github-contributions-api.jogruber.de/v4/nulljosh?y=last');
+                var controller = new AbortController();
+                var timeout = setTimeout(function() { controller.abort(); }, 10000);
+                var res = await fetch('https://github-contributions-api.jogruber.de/v4/nulljosh?y=last', { signal: controller.signal });
+                clearTimeout(timeout);
                 var data = await res.json();
                 var grid = document.getElementById('contribs-grid');
                 var meta = document.getElementById('contribs-meta');
@@ -1215,7 +1205,6 @@ footer a:hover { opacity: 0.5; }
                 }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
                 var total = contribs.reduce(function(sum, d) { return sum + d.count; }, 0);
-                meta.textContent = '';
                 animateCounter(meta, total, ' contributions in the last year');
             } catch (e) {
                 console.warn('Contributions heatmap failed:', e);
