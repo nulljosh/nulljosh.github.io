@@ -1045,7 +1045,7 @@ footer a:hover { opacity: 0.5; }
         }
 
         updateCoffee();
-        Promise.all([updateLetterboxdStats(), updateTraktStats(), updateGitHubStats(), updateBlog(), updateWeather()]);
+        Promise.all([updateLetterboxdStats(), updateTraktStats(), updateGitHubStats(), updateBlog(), updateWeather()]).catch(function() {});
 
         // GitHub contribution heatmap
         async function renderContributions() {
@@ -1061,6 +1061,7 @@ footer a:hover { opacity: 0.5; }
                 var contribs = data.contributions;
                 var firstDay = new Date(contribs[0].date).getDay();
                 var cells = [];
+                var levels = [];
 
                 var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
                 var colors = isDark ? COLORS_DARK : COLORS_LIGHT;
@@ -1070,9 +1071,9 @@ footer a:hover { opacity: 0.5; }
                     cell.className = 'contribs-day';
                     cell.style.background = colors[0];
                     cell.style.animationDelay = (cellIndex * 0.5) + 'ms';
-                    cell.dataset.level = '0';
                     grid.appendChild(cell);
                     cells.push(cell);
+                    levels.push(0);
                     cellIndex++;
                 }
                 contribs.forEach(function(c) {
@@ -1081,9 +1082,9 @@ footer a:hover { opacity: 0.5; }
                     cell.style.background = colors[c.level];
                     cell.title = c.count + ' on ' + c.date;
                     cell.style.animationDelay = (cellIndex * 0.5) + 'ms';
-                    cell.dataset.level = c.level;
                     grid.appendChild(cell);
                     cells.push(cell);
+                    levels.push(c.level);
                     cellIndex++;
                 });
 
@@ -1091,7 +1092,7 @@ footer a:hover { opacity: 0.5; }
                 new MutationObserver(function() {
                     var newColors = document.documentElement.getAttribute('data-theme') === 'dark' ? COLORS_DARK : COLORS_LIGHT;
                     for (var j = 0; j < cells.length; j++) {
-                        cells[j].style.background = newColors[parseInt(cells[j].dataset.level)];
+                        cells[j].style.background = newColors[levels[j]];
                     }
                 }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
