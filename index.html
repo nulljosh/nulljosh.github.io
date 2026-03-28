@@ -55,11 +55,38 @@
   "knowsAbout": ["Software Engineering", "Machine Learning", "Systems Programming", "Language Design", "Web Development", "Mobile Development", "Cloud Infrastructure"]
 }
 </script>
+<meta property="og:locale" content="en_CA">
+<meta property="og:site_name" content="Joshua Trommel">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <meta name="view-transition" content="same-origin">
 
 <!-- Fonts -->
+<link rel="preload" href="fonts/Geist-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Geist-Medium.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Geist-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
 
 <style>
+@font-face {
+    font-family: 'Geist';
+    src: url('fonts/Geist-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Geist';
+    src: url('fonts/Geist-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Geist';
+    src: url('fonts/Geist-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
@@ -68,7 +95,7 @@
     --text-secondary: rgba(0,0,0,0.5);
     --text-tertiary: rgba(0,0,0,0.3);
     --border: rgba(0,0,0,0.1);
-    --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
+    --font: 'Geist', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
     --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
@@ -90,6 +117,7 @@ body {
     line-height: 1.6;
     min-height: 100dvh;
     -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .container {
@@ -213,6 +241,7 @@ section {
 
 .items li {
     padding: 0.875rem 0;
+    min-height: 44px;
     font-size: 0.9375rem;
     line-height: 1.7;
     color: var(--text-secondary);
@@ -308,7 +337,8 @@ section {
     display: inline-flex;
     align-items: center;
     gap: 0;
-    padding: 0.375rem 0;
+    padding: 0.5rem 0;
+    min-height: 44px;
     transition: opacity 0.4s ease-out, transform 0.2s var(--spring);
 }
 
@@ -434,6 +464,7 @@ hr {
 .contribs-scroll {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
     max-width: 100%;
     position: relative;
     mask-image: linear-gradient(to right, transparent 0, black 8px, black calc(100% - 8px), transparent 100%);
@@ -595,6 +626,22 @@ footer a:hover { opacity: 0.5; }
     .contribs-day { opacity: 1; animation: none; }
     .live-dot { animation: none; opacity: 0.4; }
     .fade-up { opacity: 1; transform: none; transition: none; }
+}
+
+/* Print */
+@media print {
+    body { background: #fff; color: #000; font-size: 11pt; }
+    .container { max-width: 100%; padding: 0; }
+    .theme-toggle, .skip-link, .contribs-section, .skeleton, .live-dot { display: none !important; }
+    h1 { font-size: 24pt; }
+    .intro, .items li, .plain li, .footer-stat-value { color: #333; }
+    .items li a, .links li a, .intro a, .footer-stat-value a { color: #000; text-decoration: underline; }
+    a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.75em; color: #666; word-break: break-all; }
+    .links li a::after { content: " (" attr(href) ")"; font-size: 0.75em; color: #666; }
+    hr { border-color: #ccc; }
+    .footer-stats { grid-template-columns: repeat(3, 1fr); }
+    .items li, .footer-stat { border-color: #ddd; }
+    section { page-break-inside: avoid; }
 }
 </style>
 </head>
@@ -982,7 +1029,7 @@ footer a:hover { opacity: 0.5; }
                 }
             } catch (e) {
                 console.warn('Letterboxd stats failed:', e);
-                el.textContent = 'films on Letterboxd';
+                el.textContent = '-- films on Letterboxd';
             }
         }
 
@@ -1020,7 +1067,7 @@ footer a:hover { opacity: 0.5; }
                 localStorage.setItem(CACHE_TIMESTAMP_KEY, now.toString());
             } catch (e) {
                 console.warn('Trakt stats failed:', e);
-                el.textContent = '';
+                el.textContent = '-- episodes on Trakt';
             }
         }
 
@@ -1035,7 +1082,7 @@ footer a:hover { opacity: 0.5; }
                 animateCounter(el, data.public_repos, ' public repos');
             } catch (e) {
                 console.warn('GitHub stats failed:', e);
-                el.textContent = 'github.com/nulljosh';
+                el.textContent = '-- public repos';
             }
         }
 
@@ -1068,7 +1115,7 @@ footer a:hover { opacity: 0.5; }
                 console.warn('Blog feed failed:', e);
                 try {
                     await tryFetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(feedUrl));
-                } catch (e) { console.warn('Blog feed failed:', e); el.textContent = ''; }
+                } catch (e) { console.warn('Blog feed failed:', e); el.textContent = '--'; }
             }
         }
 
@@ -1101,7 +1148,7 @@ footer a:hover { opacity: 0.5; }
                     return 'scorching';
                 }
                 el.textContent = getTempDesc(temp) + ' and ' + (conditions[data.current.weather_code] || 'kinda mixed') + ' in Brookswood';
-            } catch (e) { console.warn('Weather failed:', e); el.textContent = ''; }
+            } catch (e) { console.warn('Weather failed:', e); el.textContent = '--'; }
         }
 
         // Coffee estimate
