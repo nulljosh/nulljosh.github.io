@@ -7,9 +7,8 @@ Static personal site for `heyitsmejosh.com`.
 ## Important files
 
 - `index.html` - main homepage
-- `design-tokens.css` - shared tokens
-- `chat.js` - client-side behavior
 - `CNAME` - custom domain
+- `og-image.jpg` - social share card
 
 ## Directories
 

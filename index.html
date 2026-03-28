@@ -69,6 +69,7 @@
     --text-tertiary: rgba(0,0,0,0.3);
     --border: rgba(0,0,0,0.1);
     --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
+    --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 [data-theme="dark"] {
@@ -140,7 +141,7 @@ h1 {
     padding: 0;
     border-radius: 50%;
     color: var(--text-secondary);
-    transition: color 0.4s ease-out, border-color 0.4s ease-out;
+    transition: color 0.4s ease-out, border-color 0.4s ease-out, transform 0.2s var(--spring);
     display: flex;
     align-items: center;
     width: 32px;
@@ -152,6 +153,7 @@ h1 {
 .theme-toggle:hover {
     color: var(--text);
     border-color: var(--text-tertiary);
+    transform: scale(1.1);
 }
 
 .theme-toggle svg {
@@ -215,7 +217,7 @@ section {
     line-height: 1.7;
     color: var(--text-secondary);
     border-bottom: 1px solid var(--border);
-    transition: opacity 0.4s ease-out;
+    transition: opacity 0.4s ease-out, transform 0.2s var(--spring);
     display: block;
 }
 
@@ -225,6 +227,7 @@ section {
 
 .items li:hover {
     opacity: 0.6;
+    transform: translateX(4px);
 }
 
 .items li strong {
@@ -306,37 +309,16 @@ section {
     align-items: center;
     gap: 0;
     padding: 0.375rem 0;
-    transition: opacity 0.4s ease-out;
+    transition: opacity 0.4s ease-out, transform 0.2s var(--spring);
 }
 
 .links li a:hover {
     opacity: 0.5;
+    transform: translateY(-2px);
 }
 
 .links li a svg {
     display: none;
-}
-
-/* Testimonial */
-.testimonial {
-    margin: clamp(3rem, 6vw, 4rem) 0;
-    padding: 0;
-}
-
-.testimonial blockquote {
-    font-style: italic;
-    font-size: clamp(1.0625rem, 2vw, 1.1875rem);
-    color: var(--text-secondary);
-    line-height: 1.8;
-    margin-bottom: 0.75rem;
-    font-weight: 300;
-}
-
-.testimonial cite {
-    font-size: 0.8125rem;
-    color: var(--text-tertiary);
-    font-style: normal;
-    font-weight: 400;
 }
 
 /* Divider */
@@ -382,7 +364,7 @@ hr {
     gap: 2px;
     padding: 0.75rem 0;
     border-bottom: 1px solid var(--border);
-    transition: opacity 0.4s ease-out;
+    transition: opacity 0.4s ease-out, transform 0.2s var(--spring);
 }
 
 .footer-stat:first-child {
@@ -391,6 +373,7 @@ hr {
 
 .footer-stat:hover {
     opacity: 0.6;
+    transform: translateY(-2px);
 }
 
 .footer-stat-label {
@@ -469,7 +452,7 @@ hr {
     width: 10px;
     height: 10px;
     border-radius: 2px;
-    transition: transform 0.15s ease-out;
+    transition: transform 0.2s var(--spring);
     position: relative;
     opacity: 0;
     animation: cell-fade 0.3s ease forwards;
@@ -520,9 +503,10 @@ footer a:hover { opacity: 0.5; }
 
 /* Touch device overrides */
 @media (hover: none) {
-    .items li:hover { opacity: 1; }
-    .footer-stat:hover { opacity: 1; }
-    .links li a:hover { opacity: 1; }
+    .items li:hover { opacity: 1; transform: none; }
+    .footer-stat:hover { opacity: 1; transform: none; }
+    .links li a:hover { opacity: 1; transform: none; }
+    .theme-toggle:hover { transform: none; }
     .contribs-day:hover { transform: none; }
 }
 
@@ -530,6 +514,41 @@ footer a:hover { opacity: 0.5; }
 @media (max-width: 374px) {
     h1 { font-size: 2.25rem; }
     .links { gap: 0.25rem 1rem; }
+}
+
+/* Project showcase */
+.project-showcase {
+    display: grid;
+    grid-template-columns: 1.4fr 0.6fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    align-items: end;
+}
+
+.device-frame {
+    text-align: center;
+}
+
+.device-frame svg {
+    width: 100%;
+    height: auto;
+}
+
+.device-label {
+    font-size: 0.6875rem;
+    color: var(--text-tertiary);
+    margin-top: 0.5rem;
+    display: block;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+@media (max-width: 480px) {
+    .project-showcase {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+    }
 }
 
 /* Skip to content */
@@ -611,6 +630,86 @@ footer a:hover { opacity: 0.5; }
 
         <section class="fade-up">
             <span class="section-label">Projects</span>
+            <div class="project-showcase">
+                <div class="device-frame">
+                    <svg viewBox="0 0 400 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Laptop frame -->
+                        <rect x="40" y="8" width="320" height="200" rx="8" fill="var(--border)" stroke="var(--text-tertiary)" stroke-width="1"/>
+                        <rect x="48" y="16" width="304" height="184" rx="4" fill="var(--bg)"/>
+                        <!-- Screen content: dashboard layout -->
+                        <!-- Sidebar -->
+                        <rect x="48" y="16" width="64" height="184" rx="4" fill="var(--border)" opacity="0.5"/>
+                        <rect x="56" y="28" width="40" height="4" rx="2" fill="var(--text-tertiary)"/>
+                        <rect x="56" y="40" width="32" height="3" rx="1.5" fill="var(--text-tertiary)" opacity="0.5"/>
+                        <rect x="56" y="50" width="36" height="3" rx="1.5" fill="var(--text-tertiary)" opacity="0.5"/>
+                        <rect x="56" y="60" width="28" height="3" rx="1.5" fill="var(--text-tertiary)" opacity="0.5"/>
+                        <rect x="56" y="70" width="34" height="3" rx="1.5" fill="var(--text-tertiary)" opacity="0.5"/>
+                        <!-- Main content area -->
+                        <rect x="120" y="24" width="80" height="5" rx="2.5" fill="var(--text)" opacity="0.6"/>
+                        <rect x="120" y="34" width="48" height="3" rx="1.5" fill="var(--text-tertiary)" opacity="0.5"/>
+                        <!-- Chart area -->
+                        <rect x="120" y="46" width="224" height="80" rx="4" fill="var(--border)" opacity="0.3"/>
+                        <polyline points="128,110 160,90 180,100 210,70 240,85 270,60 300,75 336,55" stroke="var(--text)" stroke-width="1.5" fill="none" opacity="0.4"/>
+                        <!-- Cards row -->
+                        <rect x="120" y="134" width="68" height="56" rx="4" fill="var(--border)" opacity="0.3"/>
+                        <rect x="128" y="142" width="32" height="3" rx="1.5" fill="var(--text-tertiary)" opacity="0.5"/>
+                        <rect x="128" y="152" width="44" height="8" rx="2" fill="var(--text)" opacity="0.3"/>
+                        <rect x="196" y="134" width="68" height="56" rx="4" fill="var(--border)" opacity="0.3"/>
+                        <rect x="204" y="142" width="28" height="3" rx="1.5" fill="var(--text-tertiary)" opacity="0.5"/>
+                        <rect x="204" y="152" width="40" height="8" rx="2" fill="var(--text)" opacity="0.3"/>
+                        <rect x="272" y="134" width="72" height="56" rx="4" fill="var(--border)" opacity="0.3"/>
+                        <rect x="280" y="142" width="36" height="3" rx="1.5" fill="var(--text-tertiary)" opacity="0.5"/>
+                        <rect x="280" y="152" width="48" height="8" rx="2" fill="var(--text)" opacity="0.3"/>
+                        <!-- Laptop base -->
+                        <path d="M20 208 L40 208 L40 216 Q40 220 44 220 L356 220 Q360 220 360 216 L360 208 L380 208 L380 224 Q380 232 372 232 L28 232 Q20 232 20 224 Z" fill="var(--border)" stroke="var(--text-tertiary)" stroke-width="1"/>
+                        <rect x="160" y="222" width="80" height="4" rx="2" fill="var(--text-tertiary)" opacity="0.3"/>
+                    </svg>
+                    <span class="device-label">Monica</span>
+                </div>
+                <div class="device-frame">
+                    <svg viewBox="0 0 140 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Phone frame -->
+                        <rect x="4" y="4" width="132" height="272" rx="20" fill="var(--border)" stroke="var(--text-tertiary)" stroke-width="1"/>
+                        <rect x="12" y="12" width="116" height="256" rx="14" fill="var(--bg)"/>
+                        <!-- Notch -->
+                        <rect x="44" y="12" width="52" height="12" rx="6" fill="var(--border)"/>
+                        <!-- Screen content: health tracker -->
+                        <rect x="20" y="32" width="56" height="5" rx="2.5" fill="var(--text)" opacity="0.6"/>
+                        <rect x="20" y="42" width="36" height="3" rx="1.5" fill="var(--text-tertiary)" opacity="0.5"/>
+                        <!-- Pill cards -->
+                        <rect x="20" y="54" width="100" height="28" rx="6" fill="var(--border)" opacity="0.3"/>
+                        <circle cx="34" cy="68" r="6" fill="var(--text-tertiary)" opacity="0.3"/>
+                        <rect x="46" y="62" width="40" height="3" rx="1.5" fill="var(--text)" opacity="0.4"/>
+                        <rect x="46" y="70" width="56" height="3" rx="1.5" fill="var(--text-tertiary)" opacity="0.3"/>
+                        <rect x="20" y="88" width="100" height="28" rx="6" fill="var(--border)" opacity="0.3"/>
+                        <circle cx="34" cy="102" r="6" fill="var(--text-tertiary)" opacity="0.3"/>
+                        <rect x="46" y="96" width="48" height="3" rx="1.5" fill="var(--text)" opacity="0.4"/>
+                        <rect x="46" y="104" width="36" height="3" rx="1.5" fill="var(--text-tertiary)" opacity="0.3"/>
+                        <rect x="20" y="122" width="100" height="28" rx="6" fill="var(--border)" opacity="0.3"/>
+                        <circle cx="34" cy="136" r="6" fill="var(--text-tertiary)" opacity="0.3"/>
+                        <rect x="46" y="130" width="44" height="3" rx="1.5" fill="var(--text)" opacity="0.4"/>
+                        <rect x="46" y="138" width="52" height="3" rx="1.5" fill="var(--text-tertiary)" opacity="0.3"/>
+                        <!-- Divider -->
+                        <line x1="20" y1="160" x2="120" y2="160" stroke="var(--border)" stroke-width="1"/>
+                        <!-- Stats section -->
+                        <rect x="20" y="168" width="40" height="3" rx="1.5" fill="var(--text-tertiary)" opacity="0.5"/>
+                        <rect x="20" y="178" width="100" height="40" rx="6" fill="var(--border)" opacity="0.2"/>
+                        <rect x="28" y="186" width="24" height="10" rx="2" fill="var(--text)" opacity="0.2"/>
+                        <rect x="28" y="200" width="16" height="3" rx="1.5" fill="var(--text-tertiary)" opacity="0.3"/>
+                        <rect x="60" y="186" width="24" height="10" rx="2" fill="var(--text)" opacity="0.15"/>
+                        <rect x="60" y="200" width="20" height="3" rx="1.5" fill="var(--text-tertiary)" opacity="0.3"/>
+                        <rect x="92" y="186" width="20" height="10" rx="2" fill="var(--text)" opacity="0.1"/>
+                        <rect x="92" y="200" width="16" height="3" rx="1.5" fill="var(--text-tertiary)" opacity="0.3"/>
+                        <!-- Bottom nav dots -->
+                        <circle cx="58" cy="254" r="2" fill="var(--text-tertiary)" opacity="0.3"/>
+                        <circle cx="70" cy="254" r="2" fill="var(--text)" opacity="0.4"/>
+                        <circle cx="82" cy="254" r="2" fill="var(--text-tertiary)" opacity="0.3"/>
+                        <!-- Home indicator -->
+                        <rect x="46" y="262" width="48" height="4" rx="2" fill="var(--text-tertiary)" opacity="0.3"/>
+                    </svg>
+                    <span class="device-label">Dose</span>
+                </div>
+            </div>
             <ul class="items">
                 <li><a href="https://monica.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Monica</a><span class="live-dot" title="Live"></span> -- Personal intelligence platform (v3.3.0). Real-time markets, macro indicators, news, prediction markets, wildfires, daily briefs. Web, iOS, watchOS, and Mac.</li>
                 <li><a href="https://spark.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Spark</a><span class="live-dot" title="Live"></span> -- Idea-sharing platform with auth, posts, and voting. Supabase backend with a native iOS companion.</li>
@@ -618,62 +717,30 @@ footer a:hover { opacity: 0.5; }
                 <li><a href="https://dose.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Dose</a><span class="live-dot" title="Live"></span> -- Health tracker for drugs, vitamins, and biometrics. 200+ substances, daily check-ins. iOS with HealthKit.</li>
                 <li><a href="https://lingo.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Lingo</a><span class="live-dot" title="Live"></span> -- Language learning app. 39 subjects, 330+ questions.</li>
                 <li><a href="https://arthur.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Arthur</a> -- From-scratch transformer LLM. 65M params, BPE tokenizer, Flash Attention. Loss: 0.0115. PyTorch training, C99 inference.</li>
-                <li><a href="https://github.com/nulljosh/systems" target="_blank" rel="noopener noreferrer">Jot</a> -- Custom programming language. Bytecode VM, hand-written lexer, recursive-descent parser. C99.</li>
+                <li><a href="https://github.com/nulljosh/systems/tree/main/jot" target="_blank" rel="noopener noreferrer">Jot</a> -- Custom programming language. Bytecode VM, hand-written lexer, recursive-descent parser. C99.</li>
                 <li><a href="https://github.com/nulljosh/systems" target="_blank" rel="noopener noreferrer">Systems</a> -- Monorepo. C compiler, OS, shell, debugger, text editor, container runtime. C/C++/ASM/Rust.</li>
-                <li><a href="https://github.com/nulljosh/apps" target="_blank" rel="noopener noreferrer">Nimble</a> -- Native macOS instant answers app. DuckDuckGo and Wikipedia. SwiftUI.</li>
+                <li><a href="https://github.com/nulljosh/apps/tree/main/nimble" target="_blank" rel="noopener noreferrer">Nimble</a> -- Native macOS instant answers app. DuckDuckGo and Wikipedia. SwiftUI.</li>
                 <li><a href="https://github.com/nulljosh/bots" target="_blank" rel="noopener noreferrer">Bots</a> -- AI phone calls, food ordering, compass. Node.js.</li>
             </ul>
         </section>
 
         <section class="fade-up">
-            <span class="section-label">Services</span>
-            <ul class="items">
-                <li><strong>Web Applications</strong> -- Full-stack React, Node, serverless. Auth, payments, real-time data, progressive web apps.</li>
-                <li><strong>Mobile Development</strong> -- Native iOS and macOS apps with SwiftUI. Companion apps that integrate with web backends.</li>
-                <li><strong>Cloud Infrastructure</strong> -- Vercel, serverless APIs, CI/CD pipelines, database design, caching, and deployment automation.</li>
-                <li><strong>Product Design</strong> -- Turning ideas into shipped products. UI/UX, user research, iteration from prototype to production.</li>
-                <li><strong>Machine Learning</strong> -- Transformer architectures trained from scratch. Custom C99 inference. Autonomous agent pipelines.</li>
-                <li><strong>Systems Programming</strong> -- Compilers, operating systems, container runtimes, shells, debuggers. C, Rust, ARM64 assembly.</li>
-                <li><strong>Language Design</strong> -- Custom programming languages with bytecode VMs, hand-written lexers and recursive-descent parsers.</li>
-            </ul>
-        </section>
-
-        <section class="fade-up">
-            <span class="section-label">Experience</span>
-            <ul class="items">
-                <li><strong>Mobile Consultant</strong> -- <a href="https://macinhome.com" target="_blank" rel="noopener noreferrer">Macinhome</a>, Vancouver, BC. Aug 2017 - Sep 2020</li>
-                <li><strong>Mac Specialist</strong> -- <a href="https://www.simply.ca/" target="_blank" rel="noopener noreferrer">Simply Computing</a>, Abbotsford, BC. Sep 2018 - Sep 2019</li>
-            </ul>
-        </section>
-
-        <section class="fade-up">
-            <span class="section-label">Skills</span>
+            <span class="section-label">Currently</span>
             <ul class="plain">
-                <li>Web apps -- I build products end to end, from the UI to the backend.</li>
-                <li>Mobile -- I ship native iOS and macOS apps that connect cleanly with the web products.</li>
-                <li>Infrastructure -- Serverless, CI/CD, databases, and deployment automation.</li>
-                <li>Product -- I turn ideas into shipped software, from first sketch to production.</li>
-                <li>Systems work -- I spend a lot of time close to the metal in C and Rust.</li>
-                <li>Programming languages -- I have built a couple of languages just to see how far I could take them.</li>
-                <li>Machine learning -- I like building models myself and understanding how they work under the hood.</li>
+                <li>Completing university prerequisites at Langley Education Centre for UVic Computer Science</li>
+                <li>Training Arthur on a larger corpus with improved attention mechanisms</li>
+                <li>Building watchOS and Mac support for Monica</li>
             </ul>
         </section>
 
         <section class="fade-up">
-            <span class="section-label">Education</span>
-            <ul class="plain">
-                <li><a href="https://www.uvic.ca/undergraduate/programs/undergraduate-programs/pages/computer-science.php" target="_blank" rel="noopener noreferrer">University of Victoria</a>, BSc in Computer Science (Expected 2030)</li>
-                <li>Langley Education Centre (2024 - Present)</li>
-                <li><a href="https://brookswoodsecondary.com" target="_blank" rel="noopener noreferrer">Brookswood Secondary School</a> (2012 - 2017)</li>
+            <span class="section-label">Background</span>
+            <ul class="items">
+                <li><strong>BSc Computer Science</strong> -- <a href="https://www.uvic.ca/undergraduate/programs/undergraduate-programs/pages/computer-science.php" target="_blank" rel="noopener noreferrer">University of Victoria</a>. Currently completing prerequisites at Langley Education Centre. Expected 2030.</li>
+                <li><strong>Independent Engineering</strong> -- Full-time self-directed software work since 2020. Everything in the projects section above.</li>
+                <li><strong>Apple Retail</strong> -- <a href="https://macinhome.com" target="_blank" rel="noopener noreferrer">Macinhome</a> and <a href="https://www.simply.ca/" target="_blank" rel="noopener noreferrer">Simply Computing</a>, Vancouver area. 2017-2020.</li>
             </ul>
         </section>
-
-        <div class="testimonial fade-up">
-            <blockquote>
-                Excellent session with Joshua who was personable, very knowledgeable and able to answer questions clearly. He arrived on time and used the time with me very constructively. Very happy with your service. Thank you.
-            </blockquote>
-            <cite>Rita, Client</cite>
-        </div>
 
         <section class="fade-up">
             <span class="section-label">Links</span>
