@@ -340,9 +340,6 @@ section {
     transform: translateY(-2px);
 }
 
-.links li a svg {
-    display: none;
-}
 
 /* Divider */
 hr {
@@ -410,12 +407,15 @@ hr {
 .footer-stat-label {
     display: flex;
     align-items: center;
-    gap: 0;
+    gap: 0.375rem;
 }
 
 .footer-stat-label svg {
-    display: none;
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
 }
+
 
 .footer-stat-value {
     font-size: 0.875rem;
@@ -790,7 +790,7 @@ footer a:hover { opacity: 0.5; }
                 </div>
             </div>
             <ul class="items">
-                <li><a href="https://monica.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Monica</a><span class="live-dot" title="Live"></span> -- Personal intelligence platform. Real-time markets, macro indicators, news, prediction markets, wildfires, person indexer, daily briefs. Web, iOS, watchOS, and Mac.</li>
+                <li><a href="https://monica.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Monica</a><span class="live-dot" title="Live"></span> -- Personal intelligence platform. Markets, macro, news, and daily briefs. Web, iOS, watchOS, and Mac.</li>
                 <li><a href="https://spark.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Spark</a><span class="live-dot" title="Live"></span> -- Idea-sharing platform with auth, posts, and voting. Supabase backend with a native iOS companion.</li>
                 <li><a href="https://tally.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Tally</a><span class="live-dot" title="Live"></span> -- BC benefits tracker and self-serve scraper. Web and iOS.</li>
                 <li><a href="https://dose.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Dose</a><span class="live-dot" title="Live"></span> -- Health tracker for drugs, vitamins, and biometrics. 200+ substances, daily check-ins. iOS with HealthKit.</li>
@@ -801,8 +801,8 @@ footer a:hover { opacity: 0.5; }
         <section class="fade-up">
             <span class="section-label">Currently</span>
             <ul class="plain">
-                <li>Completing university prerequisites at Langley Education Centre for UVic Computer Science</li>
-                <li>Stabilizing Monica for next major release -- tightening features, squashing bugs</li>
+                <li>Finishing university prerequisites for UVic Computer Science</li>
+                <li>Stabilizing Monica for next major release</li>
             </ul>
         </section>
 
@@ -818,11 +818,11 @@ footer a:hover { opacity: 0.5; }
         <section class="fade-up">
             <span class="section-label">Links</span>
             <ul class="links">
-                <li><a href="https://github.com/nulljosh" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub</a></li>
-                <li><a href="https://twitter.com/nulljosh1" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> Twitter</a></li>
-                <li><a href="https://journal.heyitsmejosh.com" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg> Blog</a></li>
-                <li><a href="https://letterboxd.com/literallyjordan/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/><line x1="17" y1="17" x2="22" y2="17"/></svg> Letterboxd</a></li>
-                <li><a href="https://trakt.tv/users/nljs" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg> Trakt</a></li>
+                <li><a href="https://github.com/nulljosh" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                <li><a href="https://twitter.com/nulljosh1" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+                <li><a href="https://journal.heyitsmejosh.com" target="_blank" rel="noopener noreferrer">Blog</a></li>
+                <li><a href="https://letterboxd.com/literallyjordan/" target="_blank" rel="noopener noreferrer">Letterboxd</a></li>
+                <li><a href="https://trakt.tv/users/nljs" target="_blank" rel="noopener noreferrer">Trakt</a></li>
             </ul>
         </section>
 
