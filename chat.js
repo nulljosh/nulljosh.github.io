@@ -63,7 +63,7 @@ class ChatWidget {
     }
 
     addWelcomeMessage() {
-        this.addMessage('ai', 'Hey! Give me feedback on this page and I\'ll update it live. 🚀');
+        this.addMessage('ai', 'Hey! Give me feedback on this page and I\'ll update it live.');
     }
 
     addMessage(type, text) {

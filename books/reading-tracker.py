@@ -37,7 +37,7 @@ def add_book(title, page=0):
         "total_pages": book.get("number_of_pages_median", 0)
     })
     save_data(data)
-    print(f"✓ Added: {book['title']}")
+    print(f"Added: {book['title']}")
 
 def update_page(title, page):
     """Update current page"""
@@ -46,7 +46,7 @@ def update_page(title, page):
         if title.lower() in book["title"].lower():
             book["page"] = page
             save_data(data)
-            print(f"✓ {book['title']}: page {page}")
+            print(f"{book['title']}: page {page}")
             return
     print("Book not found in reading list")
 
