@@ -2,7 +2,7 @@
 
 ## Project
 
-Static personal site for `heyitsmejosh.com`. v2.2.0.
+Static personal site for `heyitsmejosh.com`. v2.2.1.
 
 ## Important files
 
