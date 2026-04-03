@@ -4,3 +4,4 @@ __pycache__/
 private/
 _site/
 node_modules/
+*.profraw
