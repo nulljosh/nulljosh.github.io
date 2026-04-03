@@ -2,7 +2,7 @@
 
 # nulljosh.github.io
 
-![version](https://img.shields.io/badge/version-v2.2.1-blue)
+![version](https://img.shields.io/badge/version-v3.0.0-blue)
 
 Personal site and project hub at [heyitsmejosh.com](https://heyitsmejosh.com).
 
