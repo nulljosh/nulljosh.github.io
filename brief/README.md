@@ -14,10 +14,10 @@ Legal case analyzer. Describe a complaint in plain language, and the analysis en
 
 ## Stack
 
-- **Vite 7** — dev server and build tool
-- **Vanilla JavaScript** — no framework, ES modules
-- **animate.css** — entrance/exit animations
-- **Apple Liquid Glass** — frosted glass cards, backdrop-filter blur, dark theme
+- **Vite 7**  --  dev server and build tool
+- **Vanilla JavaScript**  --  no framework, ES modules
+- **animate.css**  --  entrance/exit animations
+- **Apple Liquid Glass**  --  frosted glass cards, backdrop-filter blur, dark theme
 
 ## Project Structure
 

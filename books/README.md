@@ -24,7 +24,7 @@ Open `index.html` in your browser to view the interactive rankings with a beauti
 
 ```svg
 <svg viewBox="0 0 680 420" width="680" height="420" xmlns="http://www.w3.org/2000/svg" style="font-family:monospace;background:#f8fafc;border-radius:12px">
-  <text x="340" y="28" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e293b">books — Goodreads Book Rankings</text>
+  <text x="340" y="28" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e293b">books  --  Goodreads Book Rankings</text>
 
   <!-- Root node -->
   <rect x="265" y="48" width="150" height="36" rx="8" fill="#0071e3"/>

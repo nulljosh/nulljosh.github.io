@@ -6,9 +6,9 @@ Updated: March 4, 2026
 
 ## RANKING METHODOLOGY
 Books are scored using a weighted algorithm:
-- **Rating** (50%) — Goodreads average out of 5
-- **Volume** (25%) — Log-scaled review count (more reviews = more reliable signal)
-- **Relevance** (25%) — Cultural impact, timelessness, and subject importance
+- **Rating** (50%)  --  Goodreads average out of 5
+- **Volume** (25%)  --  Log-scaled review count (more reviews = more reliable signal)
+- **Relevance** (25%)  --  Cultural impact, timelessness, and subject importance
 
 ---
 
@@ -56,7 +56,7 @@ Books are scored using a weighted algorithm:
 
 ### 11. [The Big Short](https://www.goodreads.com/book/show/26889576-the-big-short) by Michael Lewis
 **Rating:** 4.30/5 | **Reviews:** 171,922
-**Notes:** Inside the financial crisis. Lewis at his best — vivid characters exposing Wall Street's fraud.
+**Notes:** Inside the financial crisis. Lewis at his best  --  vivid characters exposing Wall Street's fraud.
 
 ### 12. [Basic Economics](https://www.goodreads.com/book/show/3023.Basic_Economics) by Thomas Sowell
 **Rating:** 4.27/5 | **Reviews:** 10,000+
@@ -200,7 +200,7 @@ Books are scored using a weighted algorithm:
 
 ### 47. [This Is Your Mind on Plants](https://www.goodreads.com/book/show/56015498-this-is-your-mind-on-plants) by Michael Pollan
 **Rating:** 3.87/5 | **Reviews:** 34,090
-**Notes:** Opium, caffeine, mescaline — our relationship with psychoactive plants.
+**Notes:** Opium, caffeine, mescaline  --  our relationship with psychoactive plants.
 
 ### 48. [The Contrarian](https://www.goodreads.com/book/show/59055308-the-contrarian) by Max Chafkin
 **Rating:** 3.88/5 | **Reviews:** 3,000+
@@ -248,7 +248,7 @@ Books are scored using a weighted algorithm:
 
 ### 59. [Hubris Maximus](https://www.goodreads.com/book/show/216041530-hubris-maximus) by Faiz Siddiqui
 **Rating:** 3.62/5 | **Reviews:** 374
-**Notes:** Elon Musk's quest for power — from Tesla to Twitter to government.
+**Notes:** Elon Musk's quest for power  --  from Tesla to Twitter to government.
 
 ### 60. [Life After Google](https://www.goodreads.com/book/show/32073021-life-after-google) by George Gilder
 **Rating:** 3.55/5 | **Reviews:** 2,361
@@ -265,7 +265,7 @@ Books are scored using a weighted algorithm:
 ---
 
 ## BOOKS NOT FOUND ON GOODREADS
-- **Feeding the Machine** (attributed to David Hawkins — no match found)
+- **Feeding the Machine** (attributed to David Hawkins  --  no match found)
 - **So You Want to Go to Greenland** by Elizabeth Buchanan
 
 ---
