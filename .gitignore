@@ -1,0 +1,11 @@
+.DS_Store
+.vercel
+__pycache__/
+private/
+_site/
+node_modules/
+*.profraw
+.env
+.env.local
+.env.*.local
+.env.production

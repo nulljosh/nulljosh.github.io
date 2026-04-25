@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" font-family="-apple-system, system-ui, sans-serif">
+  <defs>
+    <style>
+      .box { fill: #1a1a1a; stroke: #0071e3; stroke-width: 2; }
+      .label { fill: #e0e0e0; font-size: 13px; text-anchor: middle; }
+      .sub { fill: #888; font-size: 10px; text-anchor: middle; }
+      .arrow { stroke: #666; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="200" fill="#111"/>
+
+  <!-- User Input -->
+  <rect x="20" y="70" width="120" height="50" rx="8" class="box"/>
+  <text x="80" y="92" class="label">User Input</text>
+  <text x="80" y="108" class="sub">case description</text>
+
+  <line x1="142" y1="95" x2="178" y2="95" class="arrow"/>
+
+  <!-- Case Analyzer -->
+  <rect x="180" y="70" width="140" height="50" rx="8" class="box"/>
+  <text x="250" y="92" class="label">Case Analyzer</text>
+  <text x="250" y="108" class="sub">pattern matching</text>
+
+  <line x1="322" y1="95" x2="358" y2="95" class="arrow"/>
+
+  <!-- Legal Knowledge -->
+  <rect x="360" y="70" width="140" height="50" rx="8" class="box"/>
+  <text x="430" y="92" class="label">Legal Knowledge</text>
+  <text x="430" y="108" class="sub">5 practice areas</text>
+
+  <line x1="502" y1="95" x2="538" y2="95" class="arrow"/>
+
+  <!-- Report Generator -->
+  <rect x="540" y="70" width="140" height="50" rx="8" class="box"/>
+  <text x="610" y="92" class="label">Report</text>
+  <text x="610" y="108" class="sub">analysis + citations</text>
+
+  <line x1="682" y1="95" x2="718" y2="95" class="arrow"/>
+
+  <!-- Output -->
+  <rect x="720" y="70" width="60" height="50" rx="8" class="box"/>
+  <text x="750" y="92" class="label">UI</text>
+  <text x="750" y="108" class="sub">Glass</text>
+</svg>

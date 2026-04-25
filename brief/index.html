@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Law AI - Know Your Rights</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2696;</text></svg>" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="hero animate__animated animate__fadeIn">
+        <h1 class="headline">Do You Have a Case?</h1>
+        <p class="subline">Describe your situation in plain language. Our AI analyzes the legal landscape and helps you understand your options.</p>
+      </header>
+
+      <main>
+        <section id="input-section" class="animate__animated animate__fadeInUp">
+          <div class="glass-card input-card">
+            <textarea id="complaint" placeholder="Tell us what happened. Be as detailed as possible -- who was involved, what occurred, when and where it happened, and how it affected you." rows="8"></textarea>
+            <div class="input-footer">
+              <span id="char-count" class="char-count">0 characters</span>
+              <button id="analyze-btn" class="btn-primary" disabled>Analyze My Case</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="results-section" class="hidden">
+          <!-- Rendered by JS -->
+        </section>
+      </main>
+
+      <footer class="site-footer animate__animated animate__fadeIn animate__delay-1s">
+        <p>This tool provides general legal information, not legal advice. Consult a licensed attorney for your specific situation.</p>
+      </footer>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
