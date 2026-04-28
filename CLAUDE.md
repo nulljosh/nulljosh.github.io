@@ -23,7 +23,6 @@ Static personal site for `heyitsmejosh.com`. v3.0.0.
 - `fonts/` - Geist woff2 font files
 - `notes/` - personal reference site (styled HTML, theme toggle)
 - `scripts/` - maintenance scripts
-- `scroll/` - scroll feed experiment
 
 ## Live API integrations
 
