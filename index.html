@@ -520,7 +520,7 @@ async function loadTV() {
   var c = getCached('trakt', DAY_MS); if (c) { el.textContent = c; return; }
   try {
     var r = await fetch('https://api.trakt.tv/users/nljs/stats', {
-      headers:{'Content-Type':'application/json','trakt-api-version':'2','trakt-api-key':'7701cfa6ab16986a3cce333ef21cc55c6334e3368f211f1debb646603e26ccb5'},
+      headers:{'Content-Type':'application/json','trakt-api-version':'2','trakt-api-key':'TRAKT_KEY_REMOVED'},
       signal:mkSignal(6000)
     });
     if (!r.ok) throw 0;
