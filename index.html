@@ -519,13 +519,10 @@ async function loadTV() {
   var el = document.getElementById('stat-tv');
   var c = getCached('trakt', DAY_MS); if (c) { el.textContent = c; return; }
   try {
-    var r = await fetch('https://api.trakt.tv/users/nljs/stats', {
-      headers:{'Content-Type':'application/json','trakt-api-version':'2','trakt-api-key':'TRAKT_KEY_REMOVED'},
-      signal:mkSignal(6000)
-    });
+    var r = await fetch('/api/trakt', {signal:mkSignal(6000)});
     if (!r.ok) throw 0;
     var d = await r.json();
-    var n = d.episodes.watched, txt = n.toLocaleString()+' episodes on Trakt';
+    var n = d.episodes, txt = n.toLocaleString()+' episodes on Trakt';
     animateCount(el, n, ' episodes on Trakt'); setCached('trakt', txt);
   } catch(e) { el.textContent = '— on Trakt'; }
 }
