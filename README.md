@@ -27,6 +27,10 @@ Static HTML, CSS, JavaScript. No build step. Geist font family (woff2, `font-dis
 
 Push to `main`. GitHub Pages deploys via Actions. Custom domain via `CNAME`.
 
+## Roadmap
+- [ ] Fix Trakt API key — set TRAKT_API_KEY in Vercel env (trakt.tv → Settings → API → copy key → `vercel env add TRAKT_API_KEY production` → `vercel --prod`)
+- [ ] Set Vercel API token for iOS app (vercel.com/account/tokens → create token → wire to claude-usage-ios)
+
 ## License
 
 MIT 2026 Joshua Trommel
