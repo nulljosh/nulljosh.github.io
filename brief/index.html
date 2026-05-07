@@ -1,38 +1,330 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Law AI - Know Your Rights</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2696;</text></svg>" />
-  </head>
-  <body>
-    <div id="app">
-      <header class="hero animate__animated animate__fadeIn">
-        <h1 class="headline">Do You Have a Case?</h1>
-        <p class="subline">Describe your situation in plain language. Our AI analyzes the legal landscape and helps you understand your options.</p>
-      </header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Charter Rights Claim — Settlement Analysis</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <style>
+    :root {
+      --bg: #1a1a2e;
+      --surface: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.12);
+      --text: #f5f5f7;
+      --muted: rgba(255,255,255,0.55);
+      --accent: #0071e3;
+      --green: #30d158;
+      --red: #ff453a;
+      --radius: 16px;
+      --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh; padding: 24px 16px; }
+    .container { max-width: 800px; margin: 0 auto; }
 
-      <main>
-        <section id="input-section" class="animate__animated animate__fadeInUp">
-          <div class="glass-card input-card">
-            <textarea id="complaint" placeholder="Tell us what happened. Be as detailed as possible -- who was involved, what occurred, when and where it happened, and how it affected you." rows="8"></textarea>
-            <div class="input-footer">
-              <span id="char-count" class="char-count">0 characters</span>
-              <button id="analyze-btn" class="btn-primary" disabled>Analyze My Case</button>
-            </div>
-          </div>
-        </section>
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 20px;
+      transition: transform 0.2s var(--spring), box-shadow 0.2s ease;
+    }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
 
-        <section id="results-section" class="hidden">
-          <!-- Rendered by JS -->
-        </section>
-      </main>
+    .label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 16px; }
+    section { margin-bottom: 28px; }
 
-      <footer class="site-footer animate__animated animate__fadeIn animate__delay-1s">
-        <p>This tool provides general legal information, not legal advice. Consult a licensed attorney for your specific situation.</p>
-      </footer>
-    </div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+    .hero { text-align: center; padding: 48px 0 36px; }
+    .hero h1 { font-size: clamp(1.6rem, 5vw, 2.4rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; }
+    .hero p { color: var(--muted); font-size: clamp(0.9rem, 2.5vw, 1rem); max-width: 520px; margin: 0 auto; }
+
+    .status-card { display: flex; align-items: center; gap: 16px; }
+    .strength-bar-wrap { flex: 1; height: 8px; background: rgba(255,255,255,0.1); border-radius: 100px; overflow: hidden; }
+    .strength-bar { height: 100%; width: 88%; background: linear-gradient(90deg, var(--accent), var(--green)); border-radius: 100px; }
+    .strength-badge {
+      background: rgba(48,209,88,0.15); color: var(--green);
+      border: 1px solid rgba(48,209,88,0.3); border-radius: 100px;
+      padding: 4px 14px; font-size: 0.8rem; font-weight: 600; white-space: nowrap;
+    }
+
+    .breach-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+    @media (min-width: 600px) { .breach-grid { grid-template-columns: 1fr 1fr; } }
+    .breach-card { padding: 16px 20px; }
+    .section-tag {
+      display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; background: rgba(0,113,227,0.18); color: var(--accent);
+      border: 1px solid rgba(0,113,227,0.3); border-radius: 100px; padding: 2px 10px; margin-bottom: 10px;
+    }
+    .breach-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
+    .breach-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; margin-bottom: 8px; }
+    .authority { font-size: 0.75rem; color: rgba(255,255,255,0.35); font-style: italic; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+    th { text-align: left; color: var(--muted); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; padding: 0 0 10px; border-bottom: 1px solid var(--border); }
+    td { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); vertical-align: top; }
+    td:first-child { font-weight: 500; padding-right: 16px; width: 40%; }
+    td:last-child { color: var(--muted); font-size: 0.82rem; }
+    .damages-range { margin-top: 14px; font-size: 0.875rem; color: var(--muted); }
+    .damages-range strong { color: var(--green); font-size: 1rem; }
+
+    .tag-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { background: rgba(255,255,255,0.07); border: 1px solid var(--border); border-radius: 100px; padding: 4px 14px; font-size: 0.8rem; color: var(--muted); }
+
+    .checklist { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .checklist li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.875rem; line-height: 1.4; }
+    .checklist input[type="checkbox"] { margin-top: 2px; flex-shrink: 0; accent-color: var(--accent); width: 16px; height: 16px; cursor: pointer; }
+
+    .call-prep ol { list-style: none; counter-reset: q; display: flex; flex-direction: column; gap: 10px; }
+    .call-prep li { counter-increment: q; display: flex; gap: 12px; font-size: 0.875rem; line-height: 1.4; color: var(--muted); }
+    .call-prep li::before {
+      content: counter(q); flex-shrink: 0; width: 22px; height: 22px;
+      background: rgba(0,113,227,0.15); color: var(--accent); border-radius: 100px;
+      font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 1px;
+    }
+    .call-number { display: inline-block; font-weight: 600; color: var(--accent); font-size: 0.875rem; margin-bottom: 12px; }
+
+    details { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); margin-bottom: 28px; }
+    summary { padding: 18px 20px; font-size: 0.95rem; font-weight: 600; cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; user-select: none; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: '+'; font-size: 1.2rem; color: var(--muted); }
+    details[open] summary::after { content: '-'; }
+    .brief-body { padding: 0 20px 24px; border-top: 1px solid var(--border); }
+    .brief-body h2 { font-size: 1rem; margin-top: 24px; margin-bottom: 8px; }
+    .brief-body h3 { font-size: 0.9rem; font-weight: 600; color: var(--muted); margin-top: 16px; margin-bottom: 6px; }
+    .brief-body p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 10px; }
+    .brief-body table { margin-top: 10px; margin-bottom: 16px; }
+    .brief-body th, .brief-body td { font-size: 0.82rem; }
+    .brief-body ol, .brief-body ul { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+    .brief-body li { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+
+    footer { text-align: center; color: var(--muted); font-size: 0.8rem; padding: 24px 0 8px; border-top: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header class="hero animate__animated animate__fadeIn">
+      <p class="label">BC Charter Rights Claim</p>
+      <h1>Settlement Analysis</h1>
+      <p>Police misconduct — warrantless entry, arbitrary detention, excessive force, forced medication, solitary confinement. Pre-litigation.</p>
+    </header>
+
+    <section class="animate__animated animate__fadeInUp">
+      <div class="card status-card">
+        <div style="flex:1">
+          <div class="label">Case Strength</div>
+          <div class="strength-bar-wrap"><div class="strength-bar"></div></div>
+        </div>
+        <span class="strength-badge">Strong — Multiple Breaches</span>
+      </div>
+    </section>
+
+    <section class="animate__animated animate__fadeInUp animate__delay-1s">
+      <div class="label">Charter Breaches</div>
+      <div class="breach-grid">
+
+        <div class="card breach-card">
+          <span class="section-tag">s.8</span>
+          <h3>Unlawful Entry</h3>
+          <p>Police entered a private dwelling without a warrant and without consent. No exigent circumstances existed. A wellness call provides no authority for warrantless entry.</p>
+          <div class="authority">R. v. Feeney [1997] 2 SCR 13</div>
+        </div>
+
+        <div class="card breach-card">
+          <span class="section-tag">s.9</span>
+          <h3>Arbitrary Detention</h3>
+          <p>Detained without lawful grounds. Walking away from officers on a wellness call is not grounds for arrest or restraint. The detention was arbitrary from inception.</p>
+          <div class="authority">R. v. Grant [2009] 2 SCR 353</div>
+        </div>
+
+        <div class="card breach-card">
+          <span class="section-tag">s.7</span>
+          <h3>Excessive Force</h3>
+          <p>Officers knelt on the subject's back causing inability to breathe. Unjustifiable under any lawful arrest scenario. PTSD documented as a direct result.</p>
+          <div class="authority">Elmardy v. Toronto Police Services Board, 2019 ONSC 2931</div>
+        </div>
+
+        <div class="card breach-card">
+          <span class="section-tag">s.7</span>
+          <h3>Forced Medication</h3>
+          <p>Medicated without consent. Competent adults have an absolute right to refuse medical treatment. Constitutes both a Charter breach and the tort of battery.</p>
+          <div class="authority">Fleming v. Ontario [2019] SCC</div>
+        </div>
+
+        <div class="card breach-card">
+          <span class="section-tag">s.7 + s.12</span>
+          <h3>Solitary Confinement</h3>
+          <p>Overnight solitary following an unlawful arrest, without charge and without access to counsel. Cruel and unusual treatment.</p>
+          <div class="authority">No charge laid. No counsel access.</div>
+        </div>
+
+        <div class="card breach-card">
+          <span class="section-tag" style="background:rgba(255,69,58,0.15);color:var(--red);border-color:rgba(255,69,58,0.3)">Punitive</span>
+          <h3>Egregious Conduct</h3>
+          <p>Not a good-faith mistake. Officers on a helping wellness call escalated to forcible entry, physical restraint, forced medication, and solitary confinement.</p>
+          <div class="authority">Supports award of punitive damages</div>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="card">
+        <div class="label">Damages Claimed</div>
+        <h2>Settlement Estimate</h2>
+        <table>
+          <thead><tr><th>Head of Damages</th><th>Basis</th></tr></thead>
+          <tbody>
+            <tr><td>General (non-pecuniary)</td><td>Pain, suffering, loss of dignity, PTSD</td></tr>
+            <tr><td>Charter damages s.24(1)</td><td>Compensatory deterrence for each breach</td></tr>
+            <tr><td>Punitive</td><td>Egregious, bad-faith conduct by state actors</td></tr>
+            <tr><td>Special</td><td>Treatment costs, medications, lost income</td></tr>
+            <tr><td>Aggravated</td><td>Deliberate and planned nature of violations</td></tr>
+          </tbody>
+        </table>
+        <div class="damages-range">Estimated range: <strong>$100,000–$250,000</strong> &nbsp;|&nbsp; Timeline: 2–3 years</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="card">
+        <div class="label">Key Authorities</div>
+        <div class="tag-list">
+          <span class="tag">R. v. Feeney [1997] 2 SCR 13</span>
+          <span class="tag">Ward v. Vancouver (City) [2010] 2 SCR 28</span>
+          <span class="tag">Elmardy v. TPSB 2019 ONSC</span>
+          <span class="tag">Fleming v. Ontario [2019] SCC</span>
+          <span class="tag">R. v. Grant [2009] 2 SCR 353</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="card">
+        <div class="label">Evidence Checklist</div>
+        <h2>Gather Before the Lawyer Call</h2>
+        <ul class="checklist">
+          <li><input type="checkbox"> Date, time, and address of the incident</li>
+          <li><input type="checkbox"> Names or badge numbers of attending officers (FOIPPA request)</li>
+          <li><input type="checkbox"> Name of police department and detachment</li>
+          <li><input type="checkbox"> Who made the wellness call (name, relationship, reason)</li>
+          <li><input type="checkbox"> Medical records documenting PTSD diagnosis</li>
+          <li><input type="checkbox"> Medical records documenting forced medication (drug, who, date)</li>
+          <li><input type="checkbox"> Photos of physical injuries</li>
+          <li><input type="checkbox"> Names and contact info of witnesses</li>
+          <li><input type="checkbox"> Communications (texts, calls) around the time of incident</li>
+          <li><input type="checkbox"> Discharge/release paperwork from the facility</li>
+          <li><input type="checkbox"> Any criminal charges laid (if none, document that)</li>
+          <li><input type="checkbox"> Hospital or detention facility name</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="call-prep">
+      <div class="card">
+        <div class="label">Call Prep</div>
+        <span class="call-number">1-800-663-1919</span>
+        <ol>
+          <li>Do I have grounds for a s.8, s.7, and s.9 Charter claim under Feeney?</li>
+          <li>What is the limitation period in BC for a Charter damages claim? (likely 2 years)</li>
+          <li>Do I file in BC Supreme Court or Federal Court?</li>
+          <li>Can I get interim relief or an injunction on my police file?</li>
+          <li>Is a FOIPPA request the right mechanism to get officer names and incident reports?</li>
+          <li>Do I need an expert witness for the PTSD damages component?</li>
+          <li>What is your fee structure — contingency or hourly?</li>
+          <li>Have you handled police misconduct Charter cases in BC before?</li>
+        </ol>
+      </div>
+    </section>
+
+    <details>
+      <summary>Full Case Brief</summary>
+      <div class="brief-body">
+        <h2>1. Statement of Facts</h2>
+        <p>Police attended the residence on a wellness call — a request to check on a person's wellbeing, not to investigate a crime. Officers entered the dwelling without a warrant and without consent. No probable cause for a criminal investigation existed at the time of entry.</p>
+        <p>Upon encountering the subject, officers pursued him after he walked away. Walking away from police during a non-criminal wellness check does not constitute flight, does not create reasonable grounds for arrest, and does not authorize the use of force.</p>
+        <p>Officers physically restrained the subject by kneeling on his back, causing inability to breathe. He was then transported and forcibly medicated without consent. He was held in solitary confinement overnight.</p>
+        <p>The subject has documented PTSD as a direct result of this incident, which he has identified as the most traumatic event of his life.</p>
+
+        <h2>2. Grounds of Action</h2>
+        <h3>Ground 1 — Unlawful Entry (s.8 Charter)</h3>
+        <p>The Supreme Court held in <em>R. v. Feeney [1997] 2 SCR 13</em> that the common law rule permitting warrantless entry into a dwelling to effect an arrest is inconsistent with s.8. A Feeney warrant is required before police may enter a private home. A wellness call provides no basis for warrantless entry. The subject did not consent. No exigent circumstances existed.</p>
+        <h3>Ground 2 — Arbitrary Detention (s.9 Charter)</h3>
+        <p>The wellness call provided no authority to detain, arrest, or restrain. Walking away from officers on a wellness call is not grounds for arrest. The detention was arbitrary — it lacked a legal basis from inception.</p>
+        <h3>Ground 3 — Excessive Force / Security of the Person (s.7 Charter)</h3>
+        <p>Officers knelt on the subject's back, causing him to be unable to breathe. This goes beyond any force justifiable even in a lawful arrest scenario, and is categorically unjustifiable given the unlawful nature of the detention. <em>Elmardy v. TPSB, 2019 ONSC 2931</em> — excessive force during arrest resulted in significant Charter damages.</p>
+        <h3>Ground 4 — Forced Medication / Bodily Autonomy (s.7 Charter)</h3>
+        <p>The subject was medicated without consent. Competent adults have an absolute right to refuse medical treatment under s.7. Forcible medication without consent and without a lawful court order constitutes both a Charter breach and the tort of battery.</p>
+        <h3>Ground 5 — Solitary Confinement (s.7 and s.12 Charter)</h3>
+        <p>Overnight solitary confinement following an unlawful arrest, without charge and without access to counsel, violates the right to liberty (s.7) and the right not to be subjected to cruel and unusual treatment (s.12).</p>
+        <h3>Ground 6 — Punitive / Egregious Conduct</h3>
+        <p>The conduct was not a good-faith mistake. Officers attended on a wellness call and escalated to forcible entry, physical restraint, forced medication, and solitary confinement. The pattern of conduct is egregious and supports an award of punitive damages.</p>
+
+        <h2>3. Applicable Law</h2>
+        <table>
+          <thead><tr><th>Case</th><th>Principle</th></tr></thead>
+          <tbody>
+            <tr><td>R. v. Feeney [1997] 2 SCR 13</td><td>Warrantless entry into dwelling violates s.8; Feeney warrant required</td></tr>
+            <tr><td>Ward v. Vancouver (City) [2010] 2 SCR 28</td><td>Framework for Charter damages under s.24(1)</td></tr>
+            <tr><td>Elmardy v. TPSB, 2019 ONSC</td><td>Excessive force + Charter violations = significant damages award</td></tr>
+            <tr><td>Fleming v. Ontario [2019] SCC</td><td>s.7 protects against state actions restricting bodily autonomy</td></tr>
+            <tr><td>R. v. Grant [2009] 2 SCR 353</td><td>Test for s.9 arbitrary detention</td></tr>
+          </tbody>
+        </table>
+
+        <h2>4. Damages Claimed</h2>
+        <table>
+          <thead><tr><th>Head of Damages</th><th>Basis</th></tr></thead>
+          <tbody>
+            <tr><td>General (non-pecuniary)</td><td>Pain, suffering, loss of dignity, PTSD</td></tr>
+            <tr><td>Charter damages (s.24(1))</td><td>Compensatory deterrence for each breach</td></tr>
+            <tr><td>Punitive damages</td><td>Egregious, bad-faith conduct by state actors</td></tr>
+            <tr><td>Special damages</td><td>Out-of-pocket costs (treatment, medications, lost income)</td></tr>
+            <tr><td>Aggravated damages</td><td>Deliberate and planned nature of the rights violations</td></tr>
+          </tbody>
+        </table>
+        <p><strong>Estimated range: $100,000–$250,000 &nbsp;|&nbsp; Timeline: 2–3 years</strong></p>
+
+        <h2>5. Evidence Checklist</h2>
+        <ul>
+          <li>Date, time, and address of the incident</li>
+          <li>Names or badge numbers of attending officers (FOIPPA request to police department)</li>
+          <li>Name of police department and detachment</li>
+          <li>Who made the wellness call (name, relationship, reason)</li>
+          <li>Medical records documenting PTSD diagnosis</li>
+          <li>Medical records documenting forced medication (what drug, who administered, date)</li>
+          <li>Any photos of physical injuries</li>
+          <li>Names and contact info of witnesses</li>
+          <li>Any communications (texts, calls) around the time of the incident</li>
+          <li>Discharge/release paperwork from the facility</li>
+          <li>Any criminal charges laid (if none, document that)</li>
+          <li>Hospital or detention facility name</li>
+        </ul>
+
+        <h2>6. Call Prep — 1-800-663-1919</h2>
+        <ol>
+          <li>Do I have grounds for a s.8, s.7, and s.9 Charter claim under Feeney?</li>
+          <li>What is the limitation period in BC for a Charter damages claim? (likely 2 years)</li>
+          <li>Do I file in BC Supreme Court or Federal Court?</li>
+          <li>Can I get interim relief or an injunction on my police file?</li>
+          <li>Is a FOIPPA request the right mechanism to get officer names and incident reports?</li>
+          <li>Do I need an expert witness for the PTSD damages component?</li>
+          <li>What is your fee structure — contingency or hourly?</li>
+          <li>Have you handled police misconduct Charter cases in BC before?</li>
+        </ol>
+
+        <p style="margin-top:20px;font-size:0.8rem;color:rgba(255,255,255,0.3)"><em>This document is not legal advice. It is a factual and legal summary prepared for the purpose of instructing counsel.</em></p>
+      </div>
+    </details>
+
+    <footer>
+      <p>Not legal advice. Prepared for the purpose of instructing counsel. Jurisdiction: British Columbia, Canada.</p>
+    </footer>
+
+  </div>
+</body>
 </html>
