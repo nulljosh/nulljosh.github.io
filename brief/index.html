@@ -3,517 +3,520 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Two Daryls Case</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Two Daryls Case</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; min-height: 100vh; }
     :root {
-      --bg: #0e0e14; --surface: #16161f; --border: rgba(255,255,255,0.08);
-      --text: rgba(255,255,255,0.88); --muted: rgba(255,255,255,0.35); --mid: rgba(255,255,255,0.55);
-      --accent: #0a84ff; --warn: #ff9f0a; --danger: #ff453a; --green: #30d158;
+      --bg: #0b0b10; --surface: #14141c; --surface-2: #1a1a24;
+      --border: rgba(255,255,255,0.07); --border-strong: rgba(255,255,255,0.13);
+      --text: rgba(255,255,255,0.92); --mid: rgba(255,255,255,0.58); --muted: rgba(255,255,255,0.36);
+      --accent: #6ea8ff; --accent-soft: rgba(110,168,255,0.14);
+      --warn: #ffb340; --danger: #ff6b6b; --green: #4ade80;
+      --sans: 'Inter Tight', -apple-system, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, monospace;
       --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    @media (prefers-color-scheme: light) {
-      :root {
-        --bg: #f2f2f7; --surface: #fff; --border: rgba(0,0,0,0.09);
-        --text: rgba(0,0,0,0.85); --muted: rgba(0,0,0,0.35); --mid: rgba(0,0,0,0.52);
-        --accent: #007aff; --warn: #d97706; --danger: #dc2626; --green: #34c759;
-      }
+    body[data-theme="paper"] {
+      --bg: #f4f1ea; --surface: #fbf9f4; --surface-2: #ffffff;
+      --border: rgba(0,0,0,0.08); --border-strong: rgba(0,0,0,0.16);
+      --text: #1a1814; --mid: rgba(0,0,0,0.6); --muted: rgba(0,0,0,0.4);
+      --accent: #2c5fcc; --accent-soft: rgba(44,95,204,0.1);
+      --warn: #b86200; --danger: #b91c1c; --green: #15803d;
     }
-    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', -apple-system, sans-serif; padding: 28px 18px 60px; min-height: 100vh; }
-    .page { max-width: 440px; margin: 0 auto; }
-    .label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; padding-left: 2px; }
-    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 16px; margin-bottom: 10px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); transition: transform 0.2s var(--spring), box-shadow 0.2s ease; }
-    .card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
-    .divider { height: 1px; background: var(--border); margin: 14px 0; }
-    .mt { margin-top: 20px; }
+    body {
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(110,168,255,0.07), transparent 60%),
+                  radial-gradient(900px 500px at -10% 90%, rgba(255,107,107,0.05), transparent 60%),
+                  var(--bg);
+      color: var(--text); font-family: var(--sans); -webkit-font-smoothing: antialiased;
+      transition: background 0.3s, color 0.3s;
+    }
+    .page { max-width: 460px; margin: 0 auto; padding: 0 18px 80px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 18px; }
+    .section { margin-top: 28px; }
+    .section-hd { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; padding: 0 4px; }
+    .lbl { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    .hint { font-size: 10px; font-family: var(--mono); color: var(--muted); }
 
-    .hero { text-align: center; padding: 36px 0 28px; }
-    .hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
-    .hero-number { font-size: clamp(48px, 16vw, 80px); font-weight: 700; line-height: 1; }
-    .hero-sub { font-size: 13px; color: var(--muted); margin-top: 10px; line-height: 1.6; }
-    .hero-deadline { font-size: 12px; color: var(--muted); margin-top: 8px; }
-    .hero-deadline span { color: var(--danger); font-weight: 600; }
+    /* Hero */
+    .hero { padding: 32px 4px 8px; }
+    .hero-nav { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+    .hero-logo { width: 24px; height: 24px; border-radius: 6px; background: var(--text); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: var(--bg); letter-spacing: -0.04em; flex-shrink: 0; }
+    .hero-app { font-size: 13px; font-weight: 600; }
+    .hero-spacer { flex: 1; }
+    .hero-id { font-size: 10px; color: var(--muted); font-family: var(--mono); letter-spacing: 0.05em; }
+    .theme-btn { background: none; border: 1px solid var(--border); border-radius: 100px; padding: 4px 10px; font-size: 10px; color: var(--muted); cursor: pointer; font-family: var(--sans); transition: border-color 0.15s; }
+    .hero-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .hero-title { font-size: clamp(21px, 5.5vw, 27px); font-weight: 700; line-height: 1.08; letter-spacing: -0.025em; margin-bottom: 8px; }
+    .hero-sub { font-size: 13px; color: var(--mid); margin-bottom: 22px; line-height: 1.5; }
+    .hero-cards { display: grid; grid-template-columns: 1.4fr 1fr; gap: 8px; margin-bottom: 22px; }
+    .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 16px 18px; }
+    .stat-lbl { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .stat-lbl.danger { color: var(--danger); }
+    .stat-val { font-size: 28px; font-weight: 700; letter-spacing: -0.03em; }
+    .stat-val.sm { font-size: 20px; }
+    .stat-sub { font-size: 11px; color: var(--mid); margin-top: 4px; font-family: var(--mono); }
+    .stat-sub.muted { color: var(--muted); }
 
-    .lawyer-name { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
-    .lawyer-sub { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
-    .lawyer-bio { font-size: 12px; color: var(--mid); line-height: 1.6; margin-bottom: 14px; }
-    .appt-note { font-size: 12px; color: var(--warn); font-weight: 600; border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; margin-bottom: 12px; }
-    .call-btn { display: block; text-align: center; background: var(--accent); color: #fff; font-size: 14px; font-weight: 700; padding: 13px; border-radius: 10px; text-decoration: none; transition: transform 0.2s var(--spring); }
-    .call-btn:hover { transform: translateY(-2px); }
+    /* Tabs */
+    .tabs { display: flex; gap: 4px; padding: 4px; background: var(--surface); border: 1px solid var(--border); border-radius: 100px; }
+    .tab-btn { flex: 1; padding: 9px 14px; border-radius: 100px; border: none; background: transparent; color: var(--mid); font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: var(--sans); }
+    .tab-btn.active { background: var(--text); color: var(--bg); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
 
-    .scenario { margin-bottom: 16px; }
-    .scenario:last-child { margin-bottom: 0; }
-    .scenario-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 7px; }
-    .scenario-name { font-size: 13px; font-weight: 500; line-height: 1.3; flex: 1; }
-    .scenario-right { text-align: right; flex-shrink: 0; }
-    .scenario-amt { font-size: 14px; font-weight: 700; }
-    .scenario-pct { font-size: 11px; font-weight: 600; margin-top: 1px; }
-    .bar-track { height: 5px; background: var(--border); border-radius: 100px; overflow: hidden; }
-    .bar-fill { height: 100%; border-radius: 100px; width: 0; transition: width 0.9s ease; }
-    .s1 .bar-fill { background: var(--text); } .s1 .scenario-amt, .s1 .scenario-pct { color: var(--text); }
-    .s2 .bar-fill { background: var(--accent); } .s2 .scenario-amt, .s2 .scenario-pct { color: var(--accent); }
-    .s3 .bar-fill { background: var(--muted); } .s3 .scenario-amt, .s3 .scenario-pct { color: var(--mid); }
-    .s4 .bar-fill { background: var(--danger); } .s4 .scenario-amt, .s4 .scenario-pct { color: var(--danger); }
+    /* Facts */
+    .facts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 14px; }
+    .fact-k { font-size: 9.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .fact-v { font-size: 13px; font-weight: 600; }
 
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .grid-key { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
-    .grid-val { font-size: 13px; font-weight: 600; }
-    .val-warn { color: var(--warn); } .val-danger { color: var(--danger); }
+    /* Grounds accordion */
+    .grounds { display: flex; flex-direction: column; gap: 6px; }
+    .ground { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; cursor: pointer; transition: border-color 0.15s; }
+    .ground.open { border-color: var(--border-strong); }
+    .ground-hd { display: flex; align-items: center; gap: 14px; padding: 16px 18px; }
+    .ground-n { font-family: var(--mono); font-size: 11px; color: var(--muted); width: 18px; flex-shrink: 0; }
+    .ground-info { flex: 1; min-width: 0; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+    .ground-title { font-size: 14px; font-weight: 600; }
+    .ground-sec { font-size: 10.5px; font-family: var(--mono); color: var(--muted); }
+    .ground-val { font-size: 13px; font-weight: 700; flex-shrink: 0; }
+    .ground-body { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
+    .ground.open .ground-body { max-height: 260px; }
+    .ground-inner { padding: 0 18px 18px 50px; }
+    .ground-desc { font-size: 12.5px; color: var(--mid); line-height: 1.55; margin-bottom: 10px; }
+    .ground-cite { font-size: 11px; font-family: var(--mono); color: var(--muted); padding: 6px 10px; background: var(--surface-2); border-radius: 6px; display: inline-block; }
 
-    .arg { margin-bottom: 14px; } .arg:last-child { margin-bottom: 0; }
-    .arg-title { font-size: 13px; font-weight: 600; margin-bottom: 3px; }
-    .arg-desc { font-size: 12px; color: var(--mid); line-height: 1.5; }
+    /* Scenarios */
+    .scenario { padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .scenario:first-child { padding-top: 0; }
+    .scenario:last-child { border-bottom: none; padding-bottom: 0; }
+    .sc-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+    .sc-name { font-size: 13px; font-weight: 600; }
+    .sc-desc { font-size: 12px; color: var(--mid); margin-top: 2px; line-height: 1.4; }
+    .sc-right { text-align: right; flex-shrink: 0; }
+    .sc-amt { font-size: 14px; font-weight: 700; }
+    .sc-pct { font-size: 11px; color: var(--muted); font-family: var(--mono); }
+    .bar-track { height: 4px; background: var(--border); border-radius: 100px; overflow: hidden; margin-top: 10px; }
+    .bar-fill { height: 100%; border-radius: 100px; width: 0; transition: width 1s cubic-bezier(0.22, 1, 0.36, 1); }
 
-    .tl { display: flex; flex-direction: column; }
-    .tl-item { display: flex; gap: 12px; }
-    .tl-left { display: flex; flex-direction: column; align-items: center; width: 14px; flex-shrink: 0; }
-    .tl-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mid); flex-shrink: 0; margin-top: 4px; }
-    .tl-dot.g { background: var(--accent); } .tl-dot.a { background: var(--warn); } .tl-dot.r { background: var(--danger); }
-    .tl-line { width: 1px; flex: 1; background: var(--border); margin: 4px 0; min-height: 14px; }
+    /* Damages */
+    .dm-row { display: flex; justify-content: space-between; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--border); }
+    .dm-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .dm-k { font-size: 13px; font-weight: 600; flex: 0 0 45%; }
+    .dm-v { font-size: 12px; color: var(--mid); text-align: right; flex: 1; line-height: 1.4; }
+    .dm-total { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: baseline; }
+    .dm-total-lbl { font-size: 11px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; }
+    .dm-total-val { font-size: 18px; font-weight: 800; color: var(--green); letter-spacing: -0.02em; }
+
+    /* Lawyer */
+    .lawyer { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; }
+    .lawyer-top { padding: 20px; display: flex; gap: 14px; }
+    .lawyer-av { width: 52px; height: 52px; border-radius: 10px; background: var(--surface-2); border: 1px solid var(--border-strong); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: var(--text); }
+    .lawyer-info { flex: 1; }
+    .lawyer-name { font-size: 16px; font-weight: 700; }
+    .lawyer-sub { font-size: 12px; color: var(--mid); margin-top: 2px; }
+    .lawyer-tags { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+    .ltag { font-size: 10.5px; font-weight: 600; padding: 3px 8px; border-radius: 100px; background: var(--accent-soft); color: var(--accent); }
+    .lawyer-bot { padding: 0 20px 20px; }
+    .call-btn { display: flex; align-items: center; justify-content: space-between; background: var(--text); color: var(--bg); padding: 13px 18px; border-radius: 12px; text-decoration: none; font-size: 14px; font-weight: 700; transition: transform 0.2s var(--spring); }
+    .call-btn:hover { transform: translateY(-1px); }
+    .call-sub { font-family: var(--mono); font-size: 11px; opacity: 0.6; }
+
+    /* Timeline */
+    .tl-item { display: flex; gap: 14px; }
+    .tl-left { display: flex; flex-direction: column; align-items: center; width: 12px; flex-shrink: 0; }
+    .tl-dot { width: 9px; height: 9px; border-radius: 50%; margin-top: 4px; flex-shrink: 0; background: var(--mid); }
+    .tl-dot.tnow { background: var(--danger); box-shadow: 0 0 0 4px rgba(255,107,107,0.2); }
+    .tl-dot.twarn { background: var(--warn); }
+    .tl-dot.tgood { background: var(--green); }
+    .tl-dot.tdanger { background: var(--danger); }
+    .tl-line { width: 1px; flex: 1; background: var(--border); margin: 4px 0; min-height: 18px; }
+    .tl-body { flex: 1; padding-bottom: 18px; }
+    .tl-item:last-child .tl-body { padding-bottom: 0; }
     .tl-item:last-child .tl-line { display: none; }
-    .tl-body { padding-bottom: 16px; flex: 1; } .tl-item:last-child .tl-body { padding-bottom: 0; }
-    .tl-when { font-size: 10px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
-    .tl-title { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+    .tl-when { font-size: 9.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+    .tl-title { font-size: 13.5px; font-weight: 600; margin-bottom: 3px; }
     .tl-desc { font-size: 12px; color: var(--mid); line-height: 1.5; }
 
-    .pj-entry { font-size: 13px; color: var(--mid); line-height: 1.6; padding-bottom: 12px; border-bottom: 1px solid var(--border); margin-bottom: 12px; }
-    .pj-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    /* Checklist */
+    .cl-meta { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+    .cl-hint { font-size: 12px; color: var(--mid); }
+    .cl-count { font-size: 11px; font-family: var(--mono); color: var(--muted); }
+    .cl-prog { height: 3px; background: var(--border); border-radius: 100px; overflow: hidden; margin-bottom: 8px; }
+    .cl-bar { height: 100%; background: var(--green); border-radius: 100px; transition: width 0.4s ease; }
+    .cl-item { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; }
+    .cl-item:last-child { border-bottom: none; }
+    .cl-box { width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid var(--border-strong); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+    .cl-box.done { background: var(--accent); border-color: var(--accent); }
+    .cl-label { flex: 1; font-size: 13px; font-weight: 500; transition: all 0.15s; }
+    .cl-label.done { color: var(--muted); text-decoration: line-through; }
+    .cl-pri { font-size: 9.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .cl-pri.now { color: var(--danger); }
+    .cl-pri.soon { color: var(--warn); }
 
-    .checklist-item { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; }
-    .checklist-item:last-child { border-bottom: none; }
-    .check-box { width: 17px; height: 17px; border-radius: 4px; border: 1.5px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: background 0.15s, border-color 0.15s; }
-    .check-box.checked { background: var(--accent); border-color: var(--accent); }
-    .check-label { font-size: 13px; font-weight: 500; flex: 1; transition: color 0.15s; }
-    .check-label.done { color: var(--muted); text-decoration: line-through; }
-    .check-priority { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; flex-shrink: 0; }
+    /* Script */
+    .script-hd { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+    .script-title { font-size: 13px; font-weight: 600; }
+    .copy-btn { background: transparent; color: var(--accent); border: 1px solid var(--border-strong); padding: 5px 12px; border-radius: 100px; font-size: 11px; font-weight: 600; cursor: pointer; transition: all 0.15s; font-family: var(--sans); }
+    .copy-btn.copied { background: var(--green); border-color: var(--green); color: var(--bg); }
+    .script-text { font-size: 12.5px; color: var(--mid); line-height: 1.65; white-space: pre-wrap; max-height: 200px; overflow-y: auto; padding-right: 4px; }
 
-    .toggle-row { display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; }
-    .toggle-label { font-size: 14px; font-weight: 600; }
-    .toggle-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
-    .toggle-icon { width: 22px; height: 22px; border-radius: 50%; background: var(--border); display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--muted); transition: transform 0.25s ease; flex-shrink: 0; }
-    .toggle-icon.open { transform: rotate(180deg); }
-    .collapsible { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
-    .collapsible.visible { max-height: 8000px; }
-    .collapsible-inner { margin-top: 14px; }
+    /* Journal */
+    .j-entry { padding-bottom: 14px; margin-bottom: 14px; border-bottom: 1px solid var(--border); }
+    .j-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .j-date { font-size: 9.5px; font-family: var(--mono); color: var(--muted); margin-bottom: 6px; letter-spacing: 0.05em; }
+    .j-text { font-size: 13px; color: var(--mid); line-height: 1.6; }
 
-    .script-text { font-size: 13px; line-height: 1.7; color: var(--mid); background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 14px; white-space: pre-wrap; }
-    .copy-btn { margin-top: 8px; width: 100%; padding: 10px; background: transparent; border: 1px solid var(--border); border-radius: 10px; color: var(--accent); font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.15s; }
-    .copy-btn:hover { background: rgba(10,132,255,0.08); }
-
-    table { width: 100%; border-collapse: collapse; }
-    th { text-align: left; color: var(--muted); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; padding: 0 0 10px; border-bottom: 1px solid var(--border); }
-    td { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; font-size: 13px; }
-    td:first-child { font-weight: 600; padding-right: 12px; width: 42%; }
-    td:last-child { color: var(--mid); font-size: 12px; }
-    .damages-range { margin-top: 14px; font-size: 13px; color: var(--muted); }
-    .damages-range strong { color: var(--green); font-size: 15px; }
-
-    .tag-list { display: flex; flex-wrap: wrap; gap: 8px; }
-    .tag { background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 100px; padding: 4px 12px; font-size: 12px; color: var(--mid); }
-
-    .brief-inner { border-top: 1px solid var(--border); padding-top: 14px; }
-    .brief-inner h2 { font-size: 13px; font-weight: 700; margin-top: 20px; margin-bottom: 6px; }
-    .brief-inner h2:first-child { margin-top: 0; }
-    .brief-inner h3 { font-size: 12px; font-weight: 600; color: var(--mid); margin-top: 14px; margin-bottom: 4px; }
-    .brief-inner p { font-size: 12px; color: var(--mid); line-height: 1.6; margin-bottom: 8px; }
-    .brief-inner table { margin: 8px 0 12px; }
-    .brief-inner th, .brief-inner td { font-size: 11px; }
-    .brief-inner ol, .brief-inner ul { padding-left: 18px; display: flex; flex-direction: column; gap: 5px; }
-    .brief-inner li { font-size: 12px; color: var(--mid); line-height: 1.5; }
-    .brief-disclaimer { margin-top: 16px; font-size: 11px; color: rgba(255,255,255,0.22); font-style: italic; }
-
-    .cta { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
-    .cta-lbl { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 3px; }
-    .cta-num { font-size: 18px; font-weight: 700; }
-    .cta-info { font-size: 11px; color: var(--muted); margin-top: 2px; }
-    .cta-badge { background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 100px; white-space: nowrap; flex-shrink: 0; }
+    footer { margin-top: 40px; padding: 20px 4px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; }
+    .ft { font-size: 10px; font-family: var(--mono); color: var(--muted); }
   </style>
 </head>
-<body>
+<body data-theme="dark">
 <div class="page">
 
-  <div class="hero">
-    <div class="hero-eyebrow">Two Daryls Case</div>
-    <div class="hero-number">$150k</div>
-    <div class="hero-sub">Most likely settlement range.<br>$300k+ possible with strong evidence and formal PTSD diagnosis.</div>
-    <div class="hero-deadline">Limitation deadline: <span>August 2026</span></div>
-  </div>
-
-  <div class="label">Your lawyer</div>
-  <div class="card">
-    <div class="lawyer-name">Paul G. Kent</div>
-    <div class="lawyer-sub">KSW Lawyers &middot; #200-8661 201 St, Langley BC &middot; Near Willowbrook</div>
-    <div class="lawyer-bio">33 years trial experience. Has sued RCMP and police forces for excessive force, false arrest, and false imprisonment. Has set legal precedent in police misconduct cases. Your exact case type.</div>
-    <div class="appt-note">By appointment only. Call to book for Friday or next week.</div>
-    <a href="tel:6045917321" class="call-btn">604-591-7321</a>
-  </div>
-
-  <div class="label mt">Outcome scenarios</div>
-  <div class="card">
-    <div class="scenario s1">
-      <div class="scenario-row">
-        <div class="scenario-name">Best case. PTSD formally documented, punitive granted.</div>
-        <div class="scenario-right"><div class="scenario-amt">$300k+</div><div class="scenario-pct">10%</div></div>
+  <header class="hero">
+    <div class="hero-nav">
+      <div class="hero-logo">B</div>
+      <div class="hero-app">Brief</div>
+      <div class="hero-spacer"></div>
+      <button class="theme-btn" id="themeBtn">paper</button>
+      <div class="hero-id">CASE-0001</div>
+    </div>
+    <div class="hero-eyebrow">Matter</div>
+    <div class="hero-title">Trommel v. Attorney General of Canada</div>
+    <div class="hero-sub">Charter violations arising from a warrantless wellness-call entry. British Columbia, Canada.</div>
+    <div class="hero-cards">
+      <div class="stat-card">
+        <div class="stat-lbl">Likely settlement</div>
+        <div class="stat-val">$150,000</div>
+        <div class="stat-sub">$100,000&ndash;$250,000</div>
       </div>
-      <div class="bar-track"><div class="bar-fill" data-w="10"></div></div>
-    </div>
-    <div class="divider"></div>
-    <div class="scenario s2">
-      <div class="scenario-row">
-        <div class="scenario-name">Strong case. Charter violations proven, good lawyer.</div>
-        <div class="scenario-right"><div class="scenario-amt">$150&ndash;250k</div><div class="scenario-pct">30%</div></div>
-      </div>
-      <div class="bar-track"><div class="bar-fill" data-w="30"></div></div>
-    </div>
-    <div class="divider"></div>
-    <div class="scenario s3">
-      <div class="scenario-row">
-        <div class="scenario-name">Most likely. Solid settlement, evidence chain complete.</div>
-        <div class="scenario-right"><div class="scenario-amt">$75&ndash;150k</div><div class="scenario-pct">45%</div></div>
-      </div>
-      <div class="bar-track"><div class="bar-fill" data-w="45"></div></div>
-    </div>
-    <div class="divider"></div>
-    <div class="scenario s4">
-      <div class="scenario-row">
-        <div class="scenario-name">Limitation passed or evidence insufficient.</div>
-        <div class="scenario-right"><div class="scenario-amt">$0</div><div class="scenario-pct">15%</div></div>
-      </div>
-      <div class="bar-track"><div class="bar-fill" data-w="15"></div></div>
-    </div>
-  </div>
-
-  <div class="label mt">Case details</div>
-  <div class="card">
-    <div class="grid">
-      <div><div class="grid-key">Date</div><div class="grid-val">August 2024 (approx)</div></div>
-      <div><div class="grid-key">Time</div><div class="grid-val">~11:00 AM</div></div>
-      <div><div class="grid-key">Department</div><div class="grid-val">Langley RCMP, Brookswood</div></div>
-      <div><div class="grid-key">Defendant</div><div class="grid-val">AG of Canada</div></div>
-      <div><div class="grid-key">Officers</div><div class="grid-val">Daryl + D. Ryl (2)</div></div>
-      <div><div class="grid-key">Witness</div><div class="grid-val">Father, in kitchen</div></div>
-      <div><div class="grid-key">Diagnosis</div><div class="grid-val val-warn">In therapy. Formal Dx needed.</div></div>
-      <div><div class="grid-key">Aftercare</div><div class="grid-val val-danger">None. Walked home 1hr alone.</div></div>
-    </div>
-  </div>
-
-  <div class="label mt">Legal arguments</div>
-  <div class="card">
-    <div class="arg"><div class="arg-title">Unlawful Entry &mdash; s.8 Charter</div><div class="arg-desc">No warrant. No exigent circumstances. Chasing someone who legally walked away is not grounds for forced entry. <em>R. v. Feeney [1997] 2 SCR 13</em> requires a Feeney warrant.</div></div>
-    <div class="divider"></div>
-    <div class="arg"><div class="arg-title">Arbitrary Detention &mdash; s.9 Charter</div><div class="arg-desc">No lawful grounds. Walking away during a wellness call is not flight. Detention was arbitrary from inception. <em>R. v. Grant [2009] 2 SCR 353.</em></div></div>
-    <div class="divider"></div>
-    <div class="arg"><div class="arg-title">Pretextual Questioning</div><div class="arg-desc">Tattoo questions used to lower guard before pivoting to personal questions. Suggests predetermined agenda, not a genuine wellness call.</div></div>
-    <div class="divider"></div>
-    <div class="arg"><div class="arg-title">Excessive Force &mdash; s.7 Charter</div><div class="arg-desc">Knelt on back. Winded, unable to breathe. No crime committed. Aggravated assault causing bodily harm. <em>Elmardy v. TPSB, 2019 ONSC 2931.</em></div></div>
-    <div class="divider"></div>
-    <div class="arg"><div class="arg-title">Forced Medication &amp; Solitary &mdash; ss.7, 12</div><div class="arg-desc">Involuntary antipsychotics and overnight solitary. Bodily autonomy violation and cruel and unusual treatment. <em>Fleming v. Ontario [2019] SCC.</em></div></div>
-    <div class="divider"></div>
-    <div class="arg"><div class="arg-title">Negligent Crisis Response</div><div class="arg-desc">Subject posed no threat and ran toward his father. Protocol requires de-escalation. Officers used physical force instead.</div></div>
-    <div class="divider"></div>
-    <div class="arg"><div class="arg-title">Abandonment of Duty of Care</div><div class="arg-desc">Released from psychiatric hold with zero aftercare. Walked home alone for one hour following a state-initiated involuntary admission.</div></div>
-  </div>
-
-  <div class="label mt">Case timeline</div>
-  <div class="card">
-    <div class="tl">
-      <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Now</div><div class="tl-title">Call Paul Kent. Book appointment.</div><div class="tl-desc">604-591-7321. Ask for Paul G. Kent. Request in-person at Langley office.</div></div></div>
-      <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Month 1&ndash;2</div><div class="tl-title">Evidence gathering</div><div class="tl-desc">Police report, hospital records, body cam footage, formal PTSD diagnosis, OPCC complaint.</div></div></div>
-      <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Month 2&ndash;4</div><div class="tl-title">Claim filed</div><div class="tl-desc">Lawyer files civil claim before August 2026 deadline. Clock stops here.</div></div></div>
-      <div class="tl-item"><div class="tl-left"><div class="tl-dot a"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Month 6&ndash;18</div><div class="tl-title">Discovery and negotiation</div><div class="tl-desc">Evidence exchanged. Settlement talks begin. Federal government typically prefers to settle quietly.</div></div></div>
-      <div class="tl-item"><div class="tl-left"><div class="tl-dot g"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Month 12&ndash;24</div><div class="tl-title">Settlement (most likely)</div><div class="tl-desc">Roughly 80% of cases settle before trial. Lump sum payment, confidentiality agreement.</div></div></div>
-      <div class="tl-item"><div class="tl-left"><div class="tl-dot r"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Year 2&ndash;4</div><div class="tl-title">Trial (if no settlement)</div><div class="tl-desc">Rare. Longer, higher risk, potentially higher payout. Paul Kent has over 100 trials.</div></div></div>
-    </div>
-  </div>
-
-  <div class="label mt">Pain journal &mdash; May 6 2026</div>
-  <div class="card">
-    <div class="pj-entry">No good days since August 2024. Every day is affected without exception.</div>
-    <div class="pj-entry">Wakes with stomach aches and night sweats daily. Coping mechanisms developed as a direct result of the trauma.</div>
-    <div class="pj-entry">Nightmares with recurring themes for years, significantly worsened in intensity since the incident.</div>
-    <div class="pj-entry">Incident replays on loop daily. Functioning prior to August 2024. Significantly affected since.</div>
-    <div class="pj-entry">Family relationships permanently damaged as a direct result of how police handled the incident.</div>
-    <div class="pj-entry">Autistic neurological response (echolalia, automatic CNS reactions) was misread as a threat. This was a medical situation requiring de-escalation, not force.</div>
-  </div>
-
-  <div class="label mt">Evidence checklist</div>
-  <div class="card">
-    <div style="font-size:12px;color:var(--muted);margin-bottom:14px">Tap to check off. Complete before the appointment.</div>
-    <div id="checklist"></div>
-  </div>
-
-  <div class="label mt">Call script</div>
-  <div class="card">
-    <div class="toggle-row" id="scriptToggle">
-      <div><div class="toggle-label">What to say on the call</div><div class="toggle-sub">Paul G. Kent &middot; KSW Lawyers &middot; 604-591-7321</div></div>
-      <div class="toggle-icon" id="scriptIcon">&#9660;</div>
-    </div>
-    <div class="collapsible" id="scriptBody">
-      <div class="collapsible-inner">
-        <div class="script-text" id="scriptText">"Hi, I am looking to speak with a civil litigator regarding a case against the RCMP.
-
-In August 2024, at approximately 11am, RCMP responded to a wellness call at my home in Langley. I was experiencing a mental health crisis and posed no threat to others. BC crisis response protocol requires de-escalation in these circumstances.
-
-I answered questions at the door, then tried to walk away, which is my legal right. Two officers, one named Daryl and one with the initial D. (last name Ryl or similar), pursued me inside without consent. I ran toward my father who was in the kitchen. Officers followed, physically restrained me, and knelt on my back. I was winded and unable to breathe, consistent with aggravated assault causing bodily harm. My father witnessed the entire incident.
-
-I was arrested, taken to a psychiatric facility overnight, forcibly medicated, and placed in solitary confinement before being released the next morning with no aftercare. I walked home alone.
-
-I have suffered significant PTSD since, which is documented and currently being treated in therapy. I also believe the initial questioning was pretextual. Officers used casual conversation to lower my guard before pivoting to personal questions, suggesting a predetermined agenda inconsistent with a genuine wellness call.
-
-This constitutes unlawful entry, excessive force, battery, negligent crisis response, abandonment of duty of care, and Charter violations under sections 7, 8, 9, and 12. The defendant would be the Attorney General of Canada given RCMP involvement.
-
-The 2-year limitation period expires August 2026. I need to move quickly. Are you able to help?"</div>
-        <button class="copy-btn" id="copyBtn">Copy script</button>
+      <div class="stat-card">
+        <div class="stat-lbl danger">Limitation</div>
+        <div class="stat-val sm">Aug 2026</div>
+        <div class="stat-sub muted" id="daysLeft"></div>
       </div>
     </div>
-  </div>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="case">Case</button>
+      <button class="tab-btn" data-tab="money">Money</button>
+      <button class="tab-btn" data-tab="actions">Actions</button>
+    </div>
+  </header>
 
-  <div class="label mt">Damages claimed</div>
-  <div class="card">
-    <table>
-      <thead><tr><th>Head of Damages</th><th>Basis</th></tr></thead>
-      <tbody>
-        <tr><td>General (non-pecuniary)</td><td>Pain, suffering, loss of dignity, PTSD</td></tr>
-        <tr><td>Charter damages s.24(1)</td><td>Compensatory deterrence for each breach</td></tr>
-        <tr><td>Punitive</td><td>Egregious, bad-faith conduct by state actors</td></tr>
-        <tr><td>Special</td><td>Treatment costs, medications, lost income</td></tr>
-        <tr><td>Aggravated</td><td>Deliberate and planned nature of violations</td></tr>
-      </tbody>
-    </table>
-    <div class="damages-range">Estimated range: <strong>$100,000&ndash;$250,000</strong> &nbsp;|&nbsp; Timeline: 2&ndash;3 years</div>
-  </div>
+  <main>
 
-  <div class="label mt">Per-violation value</div>
-  <div class="card">
-    <div style="font-size:12px;color:var(--muted);margin-bottom:16px">Each ground is assessed separately under s.24(1). Courts don't simply add them &mdash; there's overlap &mdash; but each violation adds independent weight. Figures based on comparable Canadian judgments.</div>
-
-    <div class="scenario">
-      <div class="scenario-row">
-        <div class="scenario-name">Excessive Force &mdash; s.7<div style="font-size:11px;color:var(--muted);font-weight:400;margin-top:2px">Kneeling on back, unable to breathe. No crime committed. <em>Elmardy</em> awarded $75k for comparable restraint.</div></div>
-        <div class="scenario-right"><div class="scenario-amt" style="color:var(--danger)">$30&ndash;75k</div><div class="scenario-pct" style="color:var(--danger)">Strongest ground</div></div>
+    <!-- CASE -->
+    <div class="tab-panel active" id="panel-case">
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Facts</div></div>
+        <div class="card">
+          <div class="facts-grid">
+            <div><div class="fact-k">Date</div><div class="fact-v">August 2024 (approx)</div></div>
+            <div><div class="fact-k">Time</div><div class="fact-v">~11:00 AM</div></div>
+            <div><div class="fact-k">Location</div><div class="fact-v">Langley, BC</div></div>
+            <div><div class="fact-k">Department</div><div class="fact-v">Langley RCMP, Brookswood</div></div>
+            <div><div class="fact-k">Defendant</div><div class="fact-v">AG of Canada</div></div>
+            <div><div class="fact-k">Officers</div><div class="fact-v">Daryl + D. Ryl</div></div>
+            <div><div class="fact-k">Witness</div><div class="fact-v">Father, in kitchen</div></div>
+            <div><div class="fact-k">Status</div><div class="fact-v">Pre-litigation</div></div>
+          </div>
+        </div>
       </div>
-      <div class="bar-track"><div class="bar-fill" data-w="100" style="background:var(--danger)"></div></div>
-    </div>
-    <div class="divider"></div>
 
-    <div class="scenario">
-      <div class="scenario-row">
-        <div class="scenario-name">Punitive / Egregious Conduct<div style="font-size:11px;color:var(--muted);font-weight:400;margin-top:2px">Wellness call escalated to entry, restraint, forced meds, solitary. Helping role weaponized.</div></div>
-        <div class="scenario-right"><div class="scenario-amt" style="color:var(--warn)">$25&ndash;75k</div><div class="scenario-pct" style="color:var(--warn)">If bad faith proven</div></div>
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Legal grounds</div><div class="hint">tap to expand</div></div>
+        <div class="grounds" id="grounds-case">
+          <div class="ground open" data-id="force">
+            <div class="ground-hd"><div class="ground-n">01</div><div class="ground-info"><div class="ground-title">Excessive Force</div><div class="ground-sec">s.7</div></div><div class="ground-val" style="color:var(--danger)">$30&ndash;75k</div></div>
+            <div class="ground-body"><div class="ground-inner"><div class="ground-desc">Officers knelt on subject's back. Winded, unable to breathe. No crime committed. Aggravated assault causing bodily harm.</div><div class="ground-cite">Elmardy v. TPSB, 2019 ONSC 2931</div></div></div>
+          </div>
+          <div class="ground" data-id="punitive">
+            <div class="ground-hd"><div class="ground-n">02</div><div class="ground-info"><div class="ground-title">Punitive Conduct</div><div class="ground-sec">&mdash;</div></div><div class="ground-val" style="color:var(--warn)">$25&ndash;75k</div></div>
+            <div class="ground-body"><div class="ground-inner"><div class="ground-desc">Wellness call escalated to forced entry, restraint, forced medication, solitary. A helping role weaponized.</div><div class="ground-cite">Egregious, bad-faith state action</div></div></div>
+          </div>
+          <div class="ground" data-id="ptsd">
+            <div class="ground-hd"><div class="ground-n">03</div><div class="ground-info"><div class="ground-title">PTSD General</div><div class="ground-sec">&mdash;</div></div><div class="ground-val" style="color:var(--warn)">$25&ndash;75k</div></div>
+            <div class="ground-body"><div class="ground-inner"><div class="ground-desc">Every day affected since August 2024. Documented in therapy. Formal diagnosis pending.</div><div class="ground-cite">Pain &amp; suffering, loss of dignity</div></div></div>
+          </div>
+          <div class="ground" data-id="meds">
+            <div class="ground-hd"><div class="ground-n">04</div><div class="ground-info"><div class="ground-title">Forced Medication</div><div class="ground-sec">s.7</div></div><div class="ground-val" style="color:var(--accent)">$20&ndash;40k</div></div>
+            <div class="ground-body"><div class="ground-inner"><div class="ground-desc">Involuntary antipsychotics. Absolute right to refuse treatment. Charter breach + battery tort.</div><div class="ground-cite">Fleming v. Ontario [2019] SCC</div></div></div>
+          </div>
+          <div class="ground" data-id="entry">
+            <div class="ground-hd"><div class="ground-n">05</div><div class="ground-info"><div class="ground-title">Unlawful Entry</div><div class="ground-sec">s.8</div></div><div class="ground-val" style="color:var(--accent)">$15&ndash;35k</div></div>
+            <div class="ground-body"><div class="ground-inner"><div class="ground-desc">No Feeney warrant. No exigent circumstances. Highest-tier s.8 breach: entry into a dwelling.</div><div class="ground-cite">R. v. Feeney [1997] 2 SCR 13</div></div></div>
+          </div>
+          <div class="ground" data-id="detain">
+            <div class="ground-hd"><div class="ground-n">06</div><div class="ground-info"><div class="ground-title">Arbitrary Detention</div><div class="ground-sec">s.9</div></div><div class="ground-val" style="color:var(--mid)">$15&ndash;30k</div></div>
+            <div class="ground-body"><div class="ground-inner"><div class="ground-desc">No grounds. Walking away during wellness call is not flight. Held overnight without charge.</div><div class="ground-cite">R. v. Grant [2009] 2 SCR 353</div></div></div>
+          </div>
+          <div class="ground" data-id="solitary">
+            <div class="ground-hd"><div class="ground-n">07</div><div class="ground-info"><div class="ground-title">Solitary Confinement</div><div class="ground-sec">ss.7,12</div></div><div class="ground-val" style="color:var(--mid)">$10&ndash;25k</div></div>
+            <div class="ground-body"><div class="ground-inner"><div class="ground-desc">Overnight, no charge, no counsel. Cruel and unusual treatment under s.12.</div><div class="ground-cite">Ward v. Vancouver [2010]</div></div></div>
+          </div>
+        </div>
       </div>
-      <div class="bar-track"><div class="bar-fill" data-w="95" style="background:var(--warn)"></div></div>
-    </div>
-    <div class="divider"></div>
 
-    <div class="scenario">
-      <div class="scenario-row">
-        <div class="scenario-name">PTSD &mdash; General Damages<div style="font-size:11px;color:var(--muted);font-weight:400;margin-top:2px">Every day affected since August 2024. Documented in therapy. No good days without exception.</div></div>
-        <div class="scenario-right"><div class="scenario-amt" style="color:var(--warn)">$25&ndash;75k</div><div class="scenario-pct" style="color:var(--warn)">Needs formal Dx</div></div>
-      </div>
-      <div class="bar-track"><div class="bar-fill" data-w="95" style="background:var(--warn)"></div></div>
-    </div>
-    <div class="divider"></div>
-
-    <div class="scenario">
-      <div class="scenario-row">
-        <div class="scenario-name">Forced Medication &mdash; s.7<div style="font-size:11px;color:var(--muted);font-weight:400;margin-top:2px">Involuntary antipsychotics. Absolute right to refuse treatment. Charter breach + battery tort. <em>Fleming.</em></div></div>
-        <div class="scenario-right"><div class="scenario-amt" style="color:var(--accent)">$20&ndash;40k</div><div class="scenario-pct" style="color:var(--accent)">s.7 + battery</div></div>
-      </div>
-      <div class="bar-track"><div class="bar-fill" data-w="53" style="background:var(--accent)"></div></div>
-    </div>
-    <div class="divider"></div>
-
-    <div class="scenario">
-      <div class="scenario-row">
-        <div class="scenario-name">Unlawful Entry &mdash; s.8<div style="font-size:11px;color:var(--muted);font-weight:400;margin-top:2px">No Feeney warrant. No exigent circumstances. Home entry is the highest tier s.8 breach. <em>R. v. Feeney.</em></div></div>
-        <div class="scenario-right"><div class="scenario-amt" style="color:var(--accent)">$15&ndash;35k</div><div class="scenario-pct" style="color:var(--accent)">s.8 breach</div></div>
-      </div>
-      <div class="bar-track"><div class="bar-fill" data-w="47" style="background:var(--accent)"></div></div>
-    </div>
-    <div class="divider"></div>
-
-    <div class="scenario">
-      <div class="scenario-row">
-        <div class="scenario-name">Arbitrary Detention &mdash; s.9<div style="font-size:11px;color:var(--muted);font-weight:400;margin-top:2px">No grounds. Walking away during wellness call is not flight. Overnight without charge. <em>R. v. Grant.</em></div></div>
-        <div class="scenario-right"><div class="scenario-amt" style="color:var(--mid)">$15&ndash;30k</div><div class="scenario-pct" style="color:var(--mid)">s.9 breach</div></div>
-      </div>
-      <div class="bar-track"><div class="bar-fill" data-w="40" style="background:var(--mid)"></div></div>
-    </div>
-    <div class="divider"></div>
-
-    <div class="scenario">
-      <div class="scenario-row">
-        <div class="scenario-name">Solitary Confinement &mdash; ss.7, 12<div style="font-size:11px;color:var(--muted);font-weight:400;margin-top:2px">Overnight. No charge, no counsel. s.12 cruel and unusual treatment.</div></div>
-        <div class="scenario-right"><div class="scenario-amt" style="color:var(--mid)">$10&ndash;25k</div><div class="scenario-pct" style="color:var(--mid)">s.12 breach</div></div>
-      </div>
-      <div class="bar-track"><div class="bar-fill" data-w="33" style="background:var(--mid)"></div></div>
-    </div>
-
-    <div class="divider"></div>
-    <div style="display:flex;justify-content:space-between;align-items:baseline;padding-top:2px">
-      <div style="font-size:12px;color:var(--muted)">Gross before overlap deduction</div>
-      <div style="font-size:15px;font-weight:700;color:var(--green)">$140&ndash;355k</div>
-    </div>
-    <div style="font-size:11px;color:var(--muted);margin-top:5px">Courts reduce for overlap between grounds. Net range: $100&ndash;250k &mdash; consistent with the estimate above.</div>
-  </div>
-
-  <div class="label mt">Key authorities</div>
-  <div class="card">
-    <div class="tag-list">
-      <span class="tag">R. v. Feeney [1997] 2 SCR 13</span>
-      <span class="tag">Ward v. Vancouver (City) [2010] 2 SCR 28</span>
-      <span class="tag">Elmardy v. TPSB 2019 ONSC</span>
-      <span class="tag">Fleming v. Ontario [2019] SCC</span>
-      <span class="tag">R. v. Grant [2009] 2 SCR 353</span>
-    </div>
-  </div>
-
-  <div class="label mt">Full case brief</div>
-  <div class="card">
-    <div class="toggle-row" id="briefToggle">
-      <div class="toggle-label">Charter Rights Brief</div>
-      <div class="toggle-icon" id="briefIcon">&#9660;</div>
-    </div>
-    <div class="collapsible" id="briefBody">
-      <div class="collapsible-inner">
-        <div class="brief-inner">
-          <h2>1. Statement of Facts</h2>
-          <p>Police attended on a wellness call. Officers entered without a warrant and without consent. No probable cause for a criminal investigation existed.</p>
-          <p>Walking away from police during a non-criminal wellness check does not constitute flight and does not authorize the use of force.</p>
-          <p>Officers physically restrained the subject by kneeling on his back. He was transported, forcibly medicated without consent, and held in solitary confinement overnight. Documented PTSD resulted.</p>
-          <h2>2. Grounds of Action</h2>
-          <h3>Ground 1 &mdash; Unlawful Entry (s.8)</h3>
-          <p><em>R. v. Feeney [1997] 2 SCR 13</em>: warrantless entry into a dwelling violates s.8. A Feeney warrant is required. A wellness call provides no basis. No exigent circumstances existed.</p>
-          <h3>Ground 2 &mdash; Arbitrary Detention (s.9)</h3>
-          <p>No lawful grounds to detain. Walking away is not flight. Detention arbitrary from inception. <em>R. v. Grant [2009] 2 SCR 353.</em></p>
-          <h3>Ground 3 &mdash; Excessive Force (s.7)</h3>
-          <p>Kneeling on subject's back causing inability to breathe. Unjustifiable under any scenario. <em>Elmardy v. TPSB, 2019 ONSC 2931</em> &mdash; significant Charter damages for excessive force.</p>
-          <h3>Ground 4 &mdash; Forced Medication (s.7)</h3>
-          <p>Medicated without consent. Absolute right to refuse treatment under s.7. Charter breach and tort of battery. <em>Fleming v. Ontario [2019] SCC.</em></p>
-          <h3>Ground 5 &mdash; Solitary Confinement (ss.7, 12)</h3>
-          <p>Overnight solitary following unlawful arrest, without charge and without counsel. Violates liberty (s.7) and prohibits cruel and unusual treatment (s.12).</p>
-          <h3>Ground 6 &mdash; Punitive / Egregious Conduct</h3>
-          <p>Not a good-faith mistake. Escalation from wellness call to forcible entry, restraint, forced medication, and solitary supports punitive damages.</p>
-          <h2>3. Applicable Law</h2>
-          <table>
-            <thead><tr><th>Case</th><th>Principle</th></tr></thead>
-            <tbody>
-              <tr><td>R. v. Feeney [1997]</td><td>Warrantless dwelling entry violates s.8</td></tr>
-              <tr><td>Ward v. Vancouver [2010]</td><td>Charter damages framework s.24(1)</td></tr>
-              <tr><td>Elmardy 2019 ONSC</td><td>Excessive force = significant Charter damages</td></tr>
-              <tr><td>Fleming v. Ontario [2019]</td><td>s.7 protects bodily autonomy</td></tr>
-              <tr><td>R. v. Grant [2009]</td><td>Test for arbitrary detention s.9</td></tr>
-            </tbody>
-          </table>
-          <h2>4. Call Prep &mdash; 1-800-663-1919</h2>
-          <ol>
-            <li>Do I have grounds for a s.8, s.7, and s.9 Charter claim under Feeney?</li>
-            <li>What is the limitation period in BC for a Charter damages claim?</li>
-            <li>Do I file in BC Supreme Court or Federal Court?</li>
-            <li>Can I get interim relief or an injunction on my police file?</li>
-            <li>Is a FOIPPA request the right mechanism to get officer names and incident reports?</li>
-            <li>Do I need an expert witness for the PTSD damages component?</li>
-            <li>What is your fee structure &mdash; contingency or hourly?</li>
-            <li>Have you handled police misconduct Charter cases in BC before?</li>
-          </ol>
-          <p class="brief-disclaimer">Not legal advice. Prepared for the purpose of instructing counsel. Jurisdiction: British Columbia, Canada.</p>
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Pain journal</div></div>
+        <div class="card">
+          <div class="j-entry"><div class="j-date">MAY 6 2026</div><div class="j-text">No good days since August 2024. Every day is affected without exception.</div></div>
+          <div class="j-entry"><div class="j-date">MAY 5 2026</div><div class="j-text">Wakes with stomach aches and night sweats daily. Coping mechanisms developed in direct response to the trauma.</div></div>
+          <div class="j-entry"><div class="j-date">MAY 3 2026</div><div class="j-text">Nightmares with recurring themes. Worsened in intensity since the incident.</div></div>
+          <div class="j-entry"><div class="j-date">MAY 1 2026</div><div class="j-text">Incident replays on loop daily. Functioning prior to August 2024. Significantly affected since.</div></div>
+          <div class="j-entry"><div class="j-date">APR 28 2026</div><div class="j-text">Family relationships permanently damaged as a direct result of how police handled the incident.</div></div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="cta">
-    <div>
-      <div class="cta-lbl">Call tomorrow. Book in person.</div>
-      <div class="cta-num">604-591-7321</div>
-      <div class="cta-info">Paul G. Kent &middot; KSW Lawyers &middot; Langley BC</div>
+    <!-- MONEY -->
+    <div class="tab-panel" id="panel-money">
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Outcome scenarios</div></div>
+        <div class="card">
+          <div class="scenario">
+            <div class="sc-row"><div><div class="sc-name">Best case</div><div class="sc-desc">PTSD formally documented, punitive granted.</div></div><div class="sc-right"><div class="sc-amt" style="color:var(--green)">$300k+</div><div class="sc-pct">10%</div></div></div>
+            <div class="bar-track"><div class="bar-fill" data-w="10" style="background:var(--green);transition-delay:0ms"></div></div>
+          </div>
+          <div class="scenario">
+            <div class="sc-row"><div><div class="sc-name">Strong</div><div class="sc-desc">Charter violations proven, good lawyer.</div></div><div class="sc-right"><div class="sc-amt" style="color:var(--accent)">$150&ndash;250k</div><div class="sc-pct">30%</div></div></div>
+            <div class="bar-track"><div class="bar-fill" data-w="30" style="background:var(--accent);transition-delay:120ms"></div></div>
+          </div>
+          <div class="scenario">
+            <div class="sc-row"><div><div class="sc-name">Most likely</div><div class="sc-desc">Solid settlement, evidence chain complete.</div></div><div class="sc-right"><div class="sc-amt" style="color:var(--mid)">$75&ndash;150k</div><div class="sc-pct">45%</div></div></div>
+            <div class="bar-track"><div class="bar-fill" data-w="45" style="background:var(--mid);transition-delay:240ms"></div></div>
+          </div>
+          <div class="scenario">
+            <div class="sc-row"><div><div class="sc-name">Worst</div><div class="sc-desc">Limitation passed or evidence insufficient.</div></div><div class="sc-right"><div class="sc-amt" style="color:var(--danger)">$0</div><div class="sc-pct">15%</div></div></div>
+            <div class="bar-track"><div class="bar-fill" data-w="15" style="background:var(--danger);transition-delay:360ms"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Per-violation value</div><div class="hint">tap to expand</div></div>
+        <div class="grounds" id="grounds-money">
+          <div class="ground open" data-id="force2">
+            <div class="ground-hd"><div class="ground-n">01</div><div class="ground-info"><div class="ground-title">Excessive Force</div><div class="ground-sec">s.7</div></div><div class="ground-val" style="color:var(--danger)">$30&ndash;75k</div></div>
+            <div class="ground-body"><div class="ground-inner"><div class="ground-desc">Officers knelt on subject's back. Winded, unable to breathe. No crime committed. Aggravated assault causing bodily harm.</div><div class="ground-cite">Elmardy v. TPSB, 2019 ONSC 2931</div></div></div>
+          </div>
+          <div class="ground" data-id="punitive2">
+            <div class="ground-hd"><div class="ground-n">02</div><div class="ground-info"><div class="ground-title">Punitive Conduct</div><div class="ground-sec">&mdash;</div></div><div class="ground-val" style="color:var(--warn)">$25&ndash;75k</div></div>
+            <div class="ground-body"><div class="ground-inner"><div class="ground-desc">Wellness call escalated to forced entry, restraint, forced medication, solitary. A helping role weaponized.</div><div class="ground-cite">Egregious, bad-faith state action</div></div></div>
+          </div>
+          <div class="ground" data-id="ptsd2">
+            <div class="ground-hd"><div class="ground-n">03</div><div class="ground-info"><div class="ground-title">PTSD General</div><div class="ground-sec">&mdash;</div></div><div class="ground-val" style="color:var(--warn)">$25&ndash;75k</div></div>
+            <div class="ground-body"><div class="ground-inner"><div class="ground-desc">Every day affected since August 2024. Documented in therapy. Formal diagnosis pending.</div><div class="ground-cite">Pain &amp; suffering, loss of dignity</div></div></div>
+          </div>
+          <div class="ground" data-id="meds2">
+            <div class="ground-hd"><div class="ground-n">04</div><div class="ground-info"><div class="ground-title">Forced Medication</div><div class="ground-sec">s.7</div></div><div class="ground-val" style="color:var(--accent)">$20&ndash;40k</div></div>
+            <div class="ground-body"><div class="ground-inner"><div class="ground-desc">Involuntary antipsychotics. Absolute right to refuse treatment. Charter breach + battery tort.</div><div class="ground-cite">Fleming v. Ontario [2019] SCC</div></div></div>
+          </div>
+          <div class="ground" data-id="entry2">
+            <div class="ground-hd"><div class="ground-n">05</div><div class="ground-info"><div class="ground-title">Unlawful Entry</div><div class="ground-sec">s.8</div></div><div class="ground-val" style="color:var(--accent)">$15&ndash;35k</div></div>
+            <div class="ground-body"><div class="ground-inner"><div class="ground-desc">No Feeney warrant. No exigent circumstances. Highest-tier s.8 breach: entry into a dwelling.</div><div class="ground-cite">R. v. Feeney [1997] 2 SCR 13</div></div></div>
+          </div>
+          <div class="ground" data-id="detain2">
+            <div class="ground-hd"><div class="ground-n">06</div><div class="ground-info"><div class="ground-title">Arbitrary Detention</div><div class="ground-sec">s.9</div></div><div class="ground-val" style="color:var(--mid)">$15&ndash;30k</div></div>
+            <div class="ground-body"><div class="ground-inner"><div class="ground-desc">No grounds. Walking away during wellness call is not flight. Held overnight without charge.</div><div class="ground-cite">R. v. Grant [2009] 2 SCR 353</div></div></div>
+          </div>
+          <div class="ground" data-id="solitary2">
+            <div class="ground-hd"><div class="ground-n">07</div><div class="ground-info"><div class="ground-title">Solitary Confinement</div><div class="ground-sec">ss.7,12</div></div><div class="ground-val" style="color:var(--mid)">$10&ndash;25k</div></div>
+            <div class="ground-body"><div class="ground-inner"><div class="ground-desc">Overnight, no charge, no counsel. Cruel and unusual treatment under s.12.</div><div class="ground-cite">Ward v. Vancouver [2010]</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Damages claimed</div></div>
+        <div class="card">
+          <div class="dm-row"><div class="dm-k">General (non-pecuniary)</div><div class="dm-v">Pain, suffering, loss of dignity, PTSD</div></div>
+          <div class="dm-row"><div class="dm-k">Charter damages s.24(1)</div><div class="dm-v">Compensatory deterrence per breach</div></div>
+          <div class="dm-row"><div class="dm-k">Punitive</div><div class="dm-v">Egregious, bad-faith state action</div></div>
+          <div class="dm-row"><div class="dm-k">Special</div><div class="dm-v">Treatment, medications, lost income</div></div>
+          <div class="dm-row"><div class="dm-k">Aggravated</div><div class="dm-v">Deliberate nature of violations</div></div>
+          <div class="dm-total">
+            <div class="dm-total-lbl">Net range</div>
+            <div class="dm-total-val">$100&ndash;250k</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="cta-badge">Appointment</div>
-  </div>
+
+    <!-- ACTIONS -->
+    <div class="tab-panel" id="panel-actions">
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Your lawyer</div></div>
+        <div class="lawyer">
+          <div class="lawyer-top">
+            <div class="lawyer-av">PK</div>
+            <div class="lawyer-info">
+              <div class="lawyer-name">Paul G. Kent</div>
+              <div class="lawyer-sub">KSW Lawyers &middot; Langley BC</div>
+              <div class="lawyer-tags">
+                <span class="ltag">33 yrs trial</span>
+                <span class="ltag">Sued RCMP</span>
+                <span class="ltag">Set precedent</span>
+              </div>
+            </div>
+          </div>
+          <div class="lawyer-bot">
+            <a href="tel:6045917321" class="call-btn">
+              <span>Call 604-591-7321</span>
+              <span class="call-sub">by appt only</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Timeline</div></div>
+        <div class="card">
+          <div class="tl-item"><div class="tl-left"><div class="tl-dot tnow"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Now</div><div class="tl-title">Call Paul Kent</div><div class="tl-desc">604-591-7321. Book Friday or next week. In-person at Langley.</div></div></div>
+          <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Month 1&ndash;2</div><div class="tl-title">Evidence gathering</div><div class="tl-desc">Police report, hospital records, body cam, formal PTSD Dx, OPCC complaint.</div></div></div>
+          <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Month 2&ndash;4</div><div class="tl-title">Claim filed</div><div class="tl-desc">Civil claim filed before August 2026 deadline. Clock stops.</div></div></div>
+          <div class="tl-item"><div class="tl-left"><div class="tl-dot twarn"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Month 6&ndash;18</div><div class="tl-title">Discovery &amp; negotiation</div><div class="tl-desc">Evidence exchanged. Settlement talks begin. Federal AG typically prefers quiet settlement.</div></div></div>
+          <div class="tl-item"><div class="tl-left"><div class="tl-dot tgood"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Month 12&ndash;24</div><div class="tl-title">Settlement</div><div class="tl-desc">&#x2248;80% of cases settle before trial. Lump sum + confidentiality.</div></div></div>
+          <div class="tl-item"><div class="tl-left"><div class="tl-dot tdanger"></div></div><div class="tl-body"><div class="tl-when">Year 2&ndash;4</div><div class="tl-title">Trial (if no settlement)</div><div class="tl-desc">Rare. Longer, riskier, potentially higher payout. Kent has 100+ trials.</div></div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Evidence checklist</div></div>
+        <div class="card">
+          <div class="cl-meta">
+            <div class="cl-hint">Before the appointment.</div>
+            <div class="cl-count" id="clCount">0/11</div>
+          </div>
+          <div class="cl-prog"><div class="cl-bar" id="clBar" style="width:0%"></div></div>
+          <div id="checklist">
+            <div class="cl-item" data-i="0"><div class="cl-box"></div><div class="cl-label">Call Paul Kent &mdash; book appointment</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="1"><div class="cl-box"></div><div class="cl-label">Formal PTSD diagnosis &mdash; in writing</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="2"><div class="cl-box"></div><div class="cl-label">Body cam footage requested from RCMP</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="3"><div class="cl-box"></div><div class="cl-label">Police report &mdash; both Daryls full names</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="4"><div class="cl-box"></div><div class="cl-label">Hospital discharge records</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="5"><div class="cl-box"></div><div class="cl-label">Pain journal &mdash; daily entries</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="6"><div class="cl-box"></div><div class="cl-label">OPCC complaint filed</div><div class="cl-pri soon">soon</div></div>
+            <div class="cl-item" data-i="7"><div class="cl-box"></div><div class="cl-label">Father witness statement documented</div><div class="cl-pri soon">soon</div></div>
+            <div class="cl-item" data-i="8"><div class="cl-box"></div><div class="cl-label">Exact date in August 2024 confirmed</div><div class="cl-pri soon">soon</div></div>
+            <div class="cl-item" data-i="9"><div class="cl-box"></div><div class="cl-label">Hospital name confirmed</div><div class="cl-pri soon">soon</div></div>
+            <div class="cl-item" data-i="10"><div class="cl-box"></div><div class="cl-label">Career &amp; personality impact documented</div><div class="cl-pri soon">soon</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Call script</div></div>
+        <div class="card">
+          <div class="script-hd">
+            <div class="script-title">What to say</div>
+            <button class="copy-btn" id="copyBtn">Copy</button>
+          </div>
+          <div class="script-text" id="scriptText"></div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="ft">brief &middot; not legal advice</div>
+    <div class="ft">BC, Canada</div>
+  </footer>
 
 </div>
 <script>
-const ITEMS = [
-  { label: 'Call Paul Kent — book appointment', priority: 'high', color: 'var(--danger)' },
-  { label: 'Formal PTSD diagnosis — ask therapist in writing', priority: 'high', color: 'var(--danger)' },
-  { label: 'Body cam footage requested from RCMP', priority: 'high', color: 'var(--danger)' },
-  { label: 'Police report — both Daryls full names', priority: 'high', color: 'var(--danger)' },
-  { label: 'Hospital discharge records', priority: 'high', color: 'var(--danger)' },
-  { label: 'Pain journal — daily entries', priority: 'high', color: 'var(--danger)' },
-  { label: 'OPCC complaint filed', priority: 'medium', color: 'var(--warn)' },
-  { label: 'Father witness statement documented', priority: 'medium', color: 'var(--warn)' },
-  { label: 'Exact date in August 2024 confirmed', priority: 'medium', color: 'var(--warn)' },
-  { label: 'Hospital name confirmed', priority: 'medium', color: 'var(--warn)' },
-  { label: 'Career and personality impact documented', priority: 'medium', color: 'var(--warn)' },
-];
+const CHECK_SVG = '<svg width="10" height="8" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const TOTAL = 11;
+const SCRIPT = "Hi, I am looking to speak with a civil litigator regarding a case against the RCMP.\n\nIn August 2024, at approximately 11am, RCMP responded to a wellness call at my home in Langley. I was experiencing a mental health crisis and posed no threat. BC crisis response protocol requires de-escalation in these circumstances.\n\nI answered questions at the door, then tried to walk away — my legal right. Two officers, one named Daryl and one with the initial D. (last name Ryl or similar), pursued me inside without consent. I ran toward my father in the kitchen. Officers followed, restrained me, and knelt on my back. I was unable to breathe — consistent with aggravated assault causing bodily harm. My father witnessed the entire incident.\n\nI was arrested, taken to a psychiatric facility overnight, forcibly medicated, placed in solitary confinement, and released the next morning with no aftercare. I walked home alone.\n\nI have suffered significant PTSD since, documented and currently being treated. I also believe the initial questioning was pretextual.\n\nThis constitutes unlawful entry, excessive force, battery, negligent crisis response, abandonment of duty of care, and Charter violations under sections 7, 8, 9, and 12. The defendant would be the Attorney General of Canada given RCMP involvement.\n\nThe 2-year limitation period expires August 2026. Are you able to help?";
 
-function makeCheckSVG() {
-  const ns = 'http://www.w3.org/2000/svg';
-  const svg = document.createElementNS(ns, 'svg');
-  svg.setAttribute('width', '9'); svg.setAttribute('height', '7');
-  svg.setAttribute('viewBox', '0 0 9 7'); svg.setAttribute('fill', 'none');
-  const path = document.createElementNS(ns, 'path');
-  path.setAttribute('d', 'M1 3.5L3 5.5L8 1');
-  path.setAttribute('stroke', 'white'); path.setAttribute('stroke-width', '1.5');
-  path.setAttribute('stroke-linecap', 'round'); path.setAttribute('stroke-linejoin', 'round');
-  svg.appendChild(path);
-  return svg;
+// Days remaining
+(function() {
+  const d = Math.ceil((new Date('2026-08-31') - new Date().setHours(0,0,0,0)) / 86400000);
+  document.getElementById('daysLeft').textContent = d + ' days remaining';
+})();
+
+// Bars (Money tab)
+function animateBars() {
+  document.querySelectorAll('.bar-fill').forEach(function(b) { b.style.width = b.dataset.w + '%'; });
 }
 
-function buildChecklist() {
-  const saved = JSON.parse(localStorage.getItem('checklist2') || '{}');
-  const container = document.getElementById('checklist');
-  ITEMS.forEach((item, i) => {
-    const row = document.createElement('div');
-    row.className = 'checklist-item';
-
-    const box = document.createElement('div');
-    box.className = 'check-box' + (saved[i] ? ' checked' : '');
-    if (saved[i]) box.appendChild(makeCheckSVG());
-
-    const lbl = document.createElement('div');
-    lbl.className = 'check-label' + (saved[i] ? ' done' : '');
-    lbl.textContent = item.label;
-
-    const pri = document.createElement('div');
-    pri.className = 'check-priority';
-    pri.style.color = item.color;
-    pri.textContent = item.priority;
-
-    row.append(box, lbl, pri);
-    row.addEventListener('click', () => {
-      saved[i] = !saved[i];
-      localStorage.setItem('checklist2', JSON.stringify(saved));
-      box.classList.toggle('checked', saved[i]);
-      lbl.classList.toggle('done', saved[i]);
-      box.replaceChildren();
-      if (saved[i]) box.appendChild(makeCheckSVG());
+// Accordion
+document.querySelectorAll('.grounds').forEach(function(container) {
+  container.querySelectorAll('.ground').forEach(function(card) {
+    card.addEventListener('click', function() {
+      var isOpen = card.classList.contains('open');
+      container.querySelectorAll('.ground').forEach(function(c) { c.classList.remove('open'); });
+      if (!isOpen) card.classList.add('open');
     });
-    container.appendChild(row);
   });
+});
+
+// Tabs
+document.querySelectorAll('.tab-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+    document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
+    btn.classList.add('active');
+    document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+    if (btn.dataset.tab === 'money') { setTimeout(animateBars, 80); }
+  });
+});
+
+// Checklist
+var done = {};
+try { done = JSON.parse(localStorage.getItem('brief.checklist') || '{}'); } catch(e) {}
+
+function updateProgress() {
+  var count = Object.values(done).filter(Boolean).length;
+  document.getElementById('clCount').textContent = count + '/' + TOTAL;
+  document.getElementById('clBar').style.width = ((count / TOTAL) * 100) + '%';
 }
 
-function makeToggle(toggleId, bodyId, iconId) {
-  document.getElementById(toggleId).addEventListener('click', () => {
-    document.getElementById(bodyId).classList.toggle('visible');
-    document.getElementById(iconId).classList.toggle('open');
+document.querySelectorAll('.cl-item').forEach(function(row) {
+  var i = row.dataset.i;
+  var box = row.querySelector('.cl-box');
+  var lbl = row.querySelector('.cl-label');
+  function render() {
+    if (done[i]) {
+      box.classList.add('done');
+      box.innerHTML = CHECK_SVG;
+      lbl.classList.add('done');
+    } else {
+      box.classList.remove('done');
+      box.innerHTML = '';
+      lbl.classList.remove('done');
+    }
+  }
+  render();
+  row.addEventListener('click', function() {
+    done[i] = !done[i];
+    localStorage.setItem('brief.checklist', JSON.stringify(done));
+    render();
+    updateProgress();
   });
-}
+});
+updateProgress();
 
-window.addEventListener('load', () => {
-  buildChecklist();
-  setTimeout(() => {
-    document.querySelectorAll('.bar-fill').forEach(b => { b.style.width = b.dataset.w + '%'; });
-  }, 200);
-  makeToggle('scriptToggle', 'scriptBody', 'scriptIcon');
-  makeToggle('briefToggle', 'briefBody', 'briefIcon');
-  document.getElementById('copyBtn').addEventListener('click', () => {
-    navigator.clipboard.writeText(document.getElementById('scriptText').textContent).then(() => {
-      const btn = document.getElementById('copyBtn');
-      btn.textContent = 'Copied';
-      setTimeout(() => { btn.textContent = 'Copy script'; }, 2000);
-    });
+// Theme
+document.getElementById('themeBtn').addEventListener('click', function() {
+  var body = document.body;
+  var isDark = body.dataset.theme === 'dark';
+  body.dataset.theme = isDark ? 'paper' : 'dark';
+  this.textContent = isDark ? 'dark' : 'paper';
+});
+
+// Script
+document.getElementById('scriptText').textContent = SCRIPT;
+document.getElementById('copyBtn').addEventListener('click', function() {
+  var btn = this;
+  navigator.clipboard.writeText(SCRIPT).then(function() {
+    btn.textContent = 'Copied';
+    btn.classList.add('copied');
+    setTimeout(function() { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
   });
 });
 </script>
