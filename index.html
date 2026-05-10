@@ -362,7 +362,6 @@ footer a:hover { opacity:0.5; }
 
   <div class="footer-stats fade-up">
     <div class="footer-stat"><span class="stat-label">Films</span><span class="stat-val" id="stat-films"><span class="skel" style="width:80px"></span></span></div>
-    <div class="footer-stat"><span class="stat-label">TV</span><span class="stat-val" id="stat-tv"><span class="skel" style="width:90px"></span></span></div>
     <div class="footer-stat"><span class="stat-label">Code</span><span class="stat-val" id="stat-code"><span class="skel" style="width:60px"></span></span></div>
     <div class="footer-stat"><span class="stat-label">Writing</span><span class="stat-val" id="stat-blog"><span class="skel" style="width:110px"></span></span></div>
     <div class="footer-stat"><span class="stat-label">Weather</span><span class="stat-val" id="stat-weather"><span class="skel" style="width:130px"></span></span></div>
@@ -510,18 +509,6 @@ async function loadFilms() {
   el.textContent = '— on Letterboxd';
 }
 
-async function loadTV() {
-  var el = document.getElementById('stat-tv');
-  var c = getCached('trakt', DAY_MS); if (c) { el.textContent = c; return; }
-  try {
-    var r = await fetch('/api/trakt', {signal:mkSignal(6000)});
-    if (!r.ok) throw 0;
-    var d = await r.json();
-    var n = d.episodes, txt = n.toLocaleString()+' episodes on Trakt';
-    animateCount(el, n, ' episodes on Trakt'); setCached('trakt', txt);
-  } catch(e) { el.textContent = '— on Trakt'; }
-}
-
 async function loadCode() {
   var el = document.getElementById('stat-code');
   var c = getCached('gh', DAY_MS); if (c) { el.textContent = c; return; }
@@ -576,7 +563,7 @@ function loadCoffee() {
 }
 
 loadCoffee();
-Promise.all([loadFilms(),loadTV(),loadCode(),loadBlog(),loadWeather()]);
+Promise.all([loadFilms(),loadCode(),loadBlog(),loadWeather()]);
 setTimeout(function(){ document.querySelectorAll('.skel').forEach(function(s){ s.parentElement.textContent='—'; }); }, 14000);
 
 // ─── Heatmap ──────────────────────────────────────────────────────────────────
