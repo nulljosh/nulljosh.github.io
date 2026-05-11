@@ -325,9 +325,14 @@ footer a:hover { opacity:0.5; }
     <!-- Full list -->
     <ul class="items">
       <li><a href="https://epiphany.heyitsmejosh.com" target="_blank" rel="noopener">Epiphany</a><span class="dot"></span>&nbsp;— Personal intelligence platform. Markets, macro, news, portfolio tracking, and AI-generated daily briefs. Web, iOS, watchOS, and Mac.</li>
-      <li><a href="https://dose.heyitsmejosh.com" target="_blank" rel="noopener">Dose</a><span class="dot"></span>&nbsp;— Health tracker for supplements, medications, and biometrics. 200+ substances, daily check-ins, HealthKit sync. iOS.</li>
-      <li><a href="https://tally.heyitsmejosh.com" target="_blank" rel="noopener">Tally</a><span class="dot"></span>&nbsp;— BC benefits eligibility tracker and self-serve scraper. Checks MSP, CERB, BCSC, and 20+ provincial programs. Web and iOS.</li>
       <li><a href="https://cadence.heyitsmejosh.com" target="_blank" rel="noopener">Cadence</a><span class="dot"></span>&nbsp;— Code progress tracker. Pulls real git log from every repo. 365-day heatmap, commit charts, per-project breakdowns. Web, iOS, and macOS.</li>
+      <li><a href="https://wiretext.heyitsmejosh.com" target="_blank" rel="noopener">Wiretext</a><span class="dot"></span>&nbsp;— Unicode wireframe design tool. Draw interfaces with text characters — boxes, grids, connectors, and annotations. Web, iOS, and macOS.</li>
+      <li><a href="https://life.heyitsmejosh.com" target="_blank" rel="noopener">Life</a><span class="dot"></span>&nbsp;— Personal life tracker. Daily logging, goals, habits, and pattern analysis. Web and iOS.</li>
+      <li><a href="https://dose.heyitsmejosh.com" target="_blank" rel="noopener">Dose</a><span class="dot"></span>&nbsp;— Health tracker for supplements, medications, and biometrics. 200+ substances, daily check-ins, HealthKit sync. iOS.</li>
+      <li><a href="https://grapher.heyitsmejosh.com" target="_blank" rel="noopener">Grapher</a><span class="dot"></span>&nbsp;— Desmos-style graphing calculator. Cartesian and polar plots, function analysis, real-time rendering. Web.</li>
+      <li><a href="https://fuse.heyitsmejosh.com" target="_blank" rel="noopener">Fuse</a><span class="dot"></span>&nbsp;— Personal timeline and countdown tracker. iCal sync, custom event sources, AES-encrypted source URLs. Web.</li>
+      <li><a href="https://nyc.heyitsmejosh.com" target="_blank" rel="noopener">NYC</a><span class="dot"></span>&nbsp;— Times Square city simulator. Build and balance a district — zoning, traffic, budget, population. Web.</li>
+      <li><a href="https://tally.heyitsmejosh.com" target="_blank" rel="noopener">Tally</a><span class="dot"></span>&nbsp;— BC benefits eligibility tracker and self-serve scraper. Checks MSP, CERB, BCSC, and 20+ provincial programs. Web and iOS.</li>
     </ul>
   </section>
 
@@ -527,13 +532,13 @@ async function loadTV() {
 
 async function loadCode() {
   var el = document.getElementById('stat-code');
-  var c = getCached('gh3', DAY_MS); if (c) { el.textContent = c; return; }
+  var c = getCached('gh_v1', DAY_MS); if (c) { el.textContent = c; return; }
   try {
     var r = await fetch('https://api.github.com/users/nulljosh', {signal:mkSignal(6000)});
     if (!r.ok) throw 0;
     var d = await r.json();
     var txt = d.public_repos+' public repos';
-    animateCount(el, d.public_repos, ' public repos'); setCached('gh3', txt);
+    animateCount(el, d.public_repos, ' public repos'); setCached('gh_v1', txt);
   } catch(e) { el.textContent = '— repos'; }
 }
 
