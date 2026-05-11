@@ -6,179 +6,7 @@
   <title>Two Daryls Case</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; min-height: 100vh; }
-    :root {
-      --bg: #0b0b10; --surface: #14141c; --surface-2: #1a1a24;
-      --border: rgba(255,255,255,0.07); --border-strong: rgba(255,255,255,0.13);
-      --text: rgba(255,255,255,0.92); --mid: rgba(255,255,255,0.58); --muted: rgba(255,255,255,0.36);
-      --accent: #6ea8ff; --accent-soft: rgba(110,168,255,0.14);
-      --warn: #ffb340; --danger: #ff6b6b; --green: #4ade80;
-      --sans: 'Inter Tight', -apple-system, sans-serif;
-      --mono: 'JetBrains Mono', ui-monospace, monospace;
-      --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    body[data-theme="paper"] {
-      --bg: #f4f1ea; --surface: #fbf9f4; --surface-2: #ffffff;
-      --border: rgba(0,0,0,0.08); --border-strong: rgba(0,0,0,0.16);
-      --text: #1a1814; --mid: rgba(0,0,0,0.6); --muted: rgba(0,0,0,0.4);
-      --accent: #2c5fcc; --accent-soft: rgba(44,95,204,0.1);
-      --warn: #b86200; --danger: #b91c1c; --green: #15803d;
-    }
-    body {
-      background: radial-gradient(1200px 600px at 80% -10%, rgba(110,168,255,0.07), transparent 60%),
-                  radial-gradient(900px 500px at -10% 90%, rgba(255,107,107,0.05), transparent 60%),
-                  var(--bg);
-      color: var(--text); font-family: var(--sans); -webkit-font-smoothing: antialiased;
-      transition: background 0.3s, color 0.3s;
-    }
-    .page { max-width: 460px; margin: 0 auto; padding: 0 18px 80px; }
-    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 18px; }
-    .section { margin-top: 28px; }
-    .section-hd { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; padding: 0 4px; }
-    .lbl { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
-    .hint { font-size: 10px; font-family: var(--mono); color: var(--muted); }
-
-    /* Hero */
-    .hero { padding: 32px 4px 8px; }
-    .hero-nav { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; }
-    .hero-logo { width: 24px; height: 24px; border-radius: 6px; background: var(--text); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: var(--bg); letter-spacing: -0.04em; flex-shrink: 0; }
-    .hero-app { font-size: 13px; font-weight: 600; }
-    .hero-spacer { flex: 1; }
-    .hero-id { font-size: 10px; color: var(--muted); font-family: var(--mono); letter-spacing: 0.05em; }
-    .theme-btn { background: none; border: 1px solid var(--border); border-radius: 100px; padding: 4px 10px; font-size: 10px; color: var(--muted); cursor: pointer; font-family: var(--sans); transition: border-color 0.15s; }
-    .hero-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-    .hero-title { font-size: clamp(21px, 5.5vw, 27px); font-weight: 700; line-height: 1.08; letter-spacing: -0.025em; margin-bottom: 8px; }
-    .hero-sub { font-size: 13px; color: var(--mid); margin-bottom: 22px; line-height: 1.5; }
-    .hero-cards { display: grid; grid-template-columns: 1.4fr 1fr; gap: 8px; margin-bottom: 22px; }
-    .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 16px 18px; }
-    .stat-lbl { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-    .stat-lbl.danger { color: var(--danger); }
-    .stat-val { font-size: 28px; font-weight: 700; letter-spacing: -0.03em; }
-    .stat-val.sm { font-size: 20px; }
-    .stat-sub { font-size: 11px; color: var(--mid); margin-top: 4px; font-family: var(--mono); }
-    .stat-sub.muted { color: var(--muted); }
-
-    /* Tabs */
-    .tabs { display: flex; gap: 4px; padding: 4px; background: var(--surface); border: 1px solid var(--border); border-radius: 100px; }
-    .tab-btn { flex: 1; padding: 9px 14px; border-radius: 100px; border: none; background: transparent; color: var(--mid); font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: var(--sans); }
-    .tab-btn.active { background: var(--text); color: var(--bg); }
-    .tab-panel { display: none; }
-    .tab-panel.active { display: block; }
-
-    /* Facts */
-    .facts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 14px; }
-    .fact-k { font-size: 9.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-    .fact-v { font-size: 13px; font-weight: 600; }
-
-    /* Grounds accordion */
-    .grounds { display: flex; flex-direction: column; gap: 6px; }
-    .ground { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; cursor: pointer; transition: border-color 0.15s; }
-    .ground.open { border-color: var(--border-strong); }
-    .ground-hd { display: flex; align-items: center; gap: 14px; padding: 16px 18px; }
-    .ground-n { font-family: var(--mono); font-size: 11px; color: var(--muted); width: 18px; flex-shrink: 0; }
-    .ground-info { flex: 1; min-width: 0; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
-    .ground-title { font-size: 14px; font-weight: 600; }
-    .ground-sec { font-size: 10.5px; font-family: var(--mono); color: var(--muted); }
-    .ground-val { font-size: 13px; font-weight: 700; flex-shrink: 0; }
-    .ground-body { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
-    .ground.open .ground-body { max-height: 260px; }
-    .ground-inner { padding: 0 18px 18px 50px; }
-    .ground-desc { font-size: 12.5px; color: var(--mid); line-height: 1.55; margin-bottom: 10px; }
-    .ground-cite { font-size: 11px; font-family: var(--mono); color: var(--muted); padding: 6px 10px; background: var(--surface-2); border-radius: 6px; display: inline-block; }
-
-    /* Scenarios */
-    .scenario { padding: 14px 0; border-bottom: 1px solid var(--border); }
-    .scenario:first-child { padding-top: 0; }
-    .scenario:last-child { border-bottom: none; padding-bottom: 0; }
-    .sc-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-    .sc-name { font-size: 13px; font-weight: 600; }
-    .sc-desc { font-size: 12px; color: var(--mid); margin-top: 2px; line-height: 1.4; }
-    .sc-right { text-align: right; flex-shrink: 0; }
-    .sc-amt { font-size: 14px; font-weight: 700; }
-    .sc-pct { font-size: 11px; color: var(--muted); font-family: var(--mono); }
-    .bar-track { height: 4px; background: var(--border); border-radius: 100px; overflow: hidden; margin-top: 10px; }
-    .bar-fill { height: 100%; border-radius: 100px; width: 0; transition: width 1s cubic-bezier(0.22, 1, 0.36, 1); }
-
-    /* Damages */
-    .dm-row { display: flex; justify-content: space-between; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--border); }
-    .dm-row:last-child { border-bottom: none; padding-bottom: 0; }
-    .dm-k { font-size: 13px; font-weight: 600; flex: 0 0 45%; }
-    .dm-v { font-size: 12px; color: var(--mid); text-align: right; flex: 1; line-height: 1.4; }
-    .dm-total { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: baseline; }
-    .dm-total-lbl { font-size: 11px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; }
-    .dm-total-val { font-size: 18px; font-weight: 800; color: var(--green); letter-spacing: -0.02em; }
-
-    /* Lawyer */
-    .lawyer { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; }
-    .lawyer-top { padding: 20px; display: flex; gap: 14px; }
-    .lawyer-av { width: 52px; height: 52px; border-radius: 10px; background: var(--surface-2); border: 1px solid var(--border-strong); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: var(--text); }
-    .lawyer-info { flex: 1; }
-    .lawyer-name { font-size: 16px; font-weight: 700; }
-    .lawyer-sub { font-size: 12px; color: var(--mid); margin-top: 2px; }
-    .lawyer-tags { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
-    .ltag { font-size: 10.5px; font-weight: 600; padding: 3px 8px; border-radius: 100px; background: var(--accent-soft); color: var(--accent); }
-    .lawyer-bot { padding: 0 20px 20px; }
-    .call-btn { display: flex; align-items: center; justify-content: space-between; background: var(--text); color: var(--bg); padding: 13px 18px; border-radius: 12px; text-decoration: none; font-size: 14px; font-weight: 700; transition: transform 0.2s var(--spring); }
-    .call-btn:hover { transform: translateY(-1px); }
-    .call-sub { font-family: var(--mono); font-size: 11px; opacity: 0.6; }
-
-    /* Timeline */
-    .tl-item { display: flex; gap: 14px; }
-    .tl-left { display: flex; flex-direction: column; align-items: center; width: 12px; flex-shrink: 0; }
-    .tl-dot { width: 9px; height: 9px; border-radius: 50%; margin-top: 4px; flex-shrink: 0; background: var(--mid); }
-    .tl-dot.tnow { background: var(--danger); box-shadow: 0 0 0 4px rgba(255,107,107,0.2); }
-    .tl-dot.twarn { background: var(--warn); }
-    .tl-dot.tgood { background: var(--green); }
-    .tl-dot.tdanger { background: var(--danger); }
-    .tl-line { width: 1px; flex: 1; background: var(--border); margin: 4px 0; min-height: 18px; }
-    .tl-body { flex: 1; padding-bottom: 18px; }
-    .tl-item:last-child .tl-body { padding-bottom: 0; }
-    .tl-item:last-child .tl-line { display: none; }
-    .tl-when { font-size: 9.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
-    .tl-title { font-size: 13.5px; font-weight: 600; margin-bottom: 3px; }
-    .tl-desc { font-size: 12px; color: var(--mid); line-height: 1.5; }
-
-    /* Checklist */
-    .cl-meta { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
-    .cl-hint { font-size: 12px; color: var(--mid); }
-    .cl-count { font-size: 11px; font-family: var(--mono); color: var(--muted); }
-    .cl-prog { height: 3px; background: var(--border); border-radius: 100px; overflow: hidden; margin-bottom: 8px; }
-    .cl-bar { height: 100%; background: var(--green); border-radius: 100px; transition: width 0.4s ease; }
-    .cl-item { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; }
-    .cl-item:last-child { border-bottom: none; }
-    .cl-box { width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid var(--border-strong); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
-    .cl-box.done { background: var(--accent); border-color: var(--accent); }
-    .cl-label { flex: 1; font-size: 13px; font-weight: 500; transition: all 0.15s; }
-    .cl-label.done { color: var(--muted); text-decoration: line-through; }
-    .cl-pri { font-size: 9.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
-    .cl-pri.now { color: var(--danger); }
-    .cl-pri.soon { color: var(--warn); }
-
-    /* Script */
-    .script-hd { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
-    .script-title { font-size: 13px; font-weight: 600; }
-    .copy-btn { background: transparent; color: var(--accent); border: 1px solid var(--border-strong); padding: 5px 12px; border-radius: 100px; font-size: 11px; font-weight: 600; cursor: pointer; transition: all 0.15s; font-family: var(--sans); }
-    .copy-btn.copied { background: var(--green); border-color: var(--green); color: var(--bg); }
-    .script-text { font-size: 12.5px; color: var(--mid); line-height: 1.65; white-space: pre-wrap; max-height: 200px; overflow-y: auto; padding-right: 4px; }
-
-    /* Journal */
-    .j-entry { padding-bottom: 14px; margin-bottom: 14px; border-bottom: 1px solid var(--border); }
-    .j-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-    .j-date { font-size: 9.5px; font-family: var(--mono); color: var(--muted); margin-bottom: 6px; letter-spacing: 0.05em; }
-    .j-text { font-size: 13px; color: var(--mid); line-height: 1.6; }
-
-    footer { margin-top: 40px; padding: 20px 4px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; }
-    .ft { font-size: 10px; font-family: var(--mono); color: var(--muted); }
-
-    @media (min-width: 768px) {
-      .page { max-width: 1020px; display: grid; grid-template-columns: 280px 1fr; gap: 0 52px; padding: 0 52px 80px; align-items: start; }
-      .hero { position: sticky; top: 0; padding-top: 48px; grid-row: 1 / 3; }
-      main { grid-column: 2; padding-top: 48px; }
-      footer { grid-column: 2; margin-top: 24px; }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body data-theme="dark">
 <div class="page">
@@ -246,7 +74,7 @@
           </div>
           <div class="ground" data-id="ptsd">
             <div class="ground-hd"><div class="ground-n">03</div><div class="ground-info"><div class="ground-title">PTSD General</div><div class="ground-sec">&mdash;</div></div><div class="ground-val" style="color:var(--warn)">$25&ndash;75k</div></div>
-            <div class="ground-body"><div class="ground-inner"><div class="ground-desc">Every day affected since August 2024. Documented in therapy. Formal diagnosis pending.</div><div class="ground-cite">Pain &amp; suffering, loss of dignity</div></div></div>
+            <div class="ground-body"><div class="ground-inner"><div class="ground-desc">Every day affected since August 2024. Formal PTSD assessment underway as of May 2026. Clinical documentation building. Diagnosis expected to confirm causation to incident.</div><div class="ground-cite">Pain &amp; suffering, loss of dignity</div></div></div>
           </div>
           <div class="ground" data-id="meds">
             <div class="ground-hd"><div class="ground-n">04</div><div class="ground-info"><div class="ground-title">Forced Medication</div><div class="ground-sec">s.7</div></div><div class="ground-val" style="color:var(--accent)">$20&ndash;40k</div></div>
@@ -270,6 +98,7 @@
       <div class="section">
         <div class="section-hd"><div class="lbl">Pain journal</div></div>
         <div class="card">
+          <div class="j-entry"><div class="j-date">MAY 10 2026</div><div class="j-text">Started PTSD therapy today. Formal assessment underway — building the clinical paper trail. First session directly connected current symptoms to the August 2024 incident.</div></div>
           <div class="j-entry"><div class="j-date">MAY 6 2026</div><div class="j-text">No good days since August 2024. Every day is affected without exception.</div></div>
           <div class="j-entry"><div class="j-date">MAY 5 2026</div><div class="j-text">Wakes with stomach aches and night sweats daily. Coping mechanisms developed in direct response to the trauma.</div></div>
           <div class="j-entry"><div class="j-date">MAY 3 2026</div><div class="j-text">Nightmares with recurring themes. Worsened in intensity since the incident.</div></div>
@@ -316,7 +145,7 @@
           </div>
           <div class="ground" data-id="ptsd2">
             <div class="ground-hd"><div class="ground-n">03</div><div class="ground-info"><div class="ground-title">PTSD General</div><div class="ground-sec">&mdash;</div></div><div class="ground-val" style="color:var(--warn)">$25&ndash;75k</div></div>
-            <div class="ground-body"><div class="ground-inner"><div class="ground-desc">Every day affected since August 2024. Documented in therapy. Formal diagnosis pending.</div><div class="ground-cite">Pain &amp; suffering, loss of dignity</div></div></div>
+            <div class="ground-body"><div class="ground-inner"><div class="ground-desc">Every day affected since August 2024. Formal PTSD assessment underway as of May 2026. Clinical documentation building. Diagnosis expected to confirm causation to incident.</div><div class="ground-cite">Pain &amp; suffering, loss of dignity</div></div></div>
           </div>
           <div class="ground" data-id="meds2">
             <div class="ground-hd"><div class="ground-n">04</div><div class="ground-info"><div class="ground-title">Forced Medication</div><div class="ground-sec">s.7</div></div><div class="ground-val" style="color:var(--accent)">$20&ndash;40k</div></div>
@@ -383,7 +212,7 @@
         <div class="section-hd"><div class="lbl">Timeline</div></div>
         <div class="card">
           <div class="tl-item"><div class="tl-left"><div class="tl-dot tnow"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Now</div><div class="tl-title">Call Paul Kent</div><div class="tl-desc">604-591-7321. Book Friday or next week. In-person at Langley.</div></div></div>
-          <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Month 1&ndash;2</div><div class="tl-title">Evidence gathering</div><div class="tl-desc">Police report, hospital records, body cam, formal PTSD Dx, OPCC complaint.</div></div></div>
+          <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Month 1&ndash;2</div><div class="tl-title">Evidence gathering</div><div class="tl-desc">Police report, hospital records, body cam, formal PTSD Dx (in progress), OPCC complaint.</div></div></div>
           <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Month 2&ndash;4</div><div class="tl-title">Claim filed</div><div class="tl-desc">Civil claim filed before August 2026 deadline. Clock stops.</div></div></div>
           <div class="tl-item"><div class="tl-left"><div class="tl-dot twarn"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Month 6&ndash;18</div><div class="tl-title">Discovery &amp; negotiation</div><div class="tl-desc">Evidence exchanged. Settlement talks begin. Federal AG typically prefers quiet settlement.</div></div></div>
           <div class="tl-item"><div class="tl-left"><div class="tl-dot tgood"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Month 12&ndash;24</div><div class="tl-title">Settlement</div><div class="tl-desc">&#x2248;80% of cases settle before trial. Lump sum + confidentiality.</div></div></div>
@@ -396,21 +225,22 @@
         <div class="card">
           <div class="cl-meta">
             <div class="cl-hint">Before the appointment.</div>
-            <div class="cl-count" id="clCount">0/11</div>
+            <div class="cl-count" id="clCount">0/12</div>
           </div>
           <div class="cl-prog"><div class="cl-bar" id="clBar" style="width:0%"></div></div>
           <div id="checklist">
             <div class="cl-item" data-i="0"><div class="cl-box"></div><div class="cl-label">Call Paul Kent &mdash; book appointment</div><div class="cl-pri now">now</div></div>
-            <div class="cl-item" data-i="1"><div class="cl-box"></div><div class="cl-label">Formal PTSD diagnosis &mdash; in writing</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="1"><div class="cl-box"></div><div class="cl-label">PTSD assessment started (therapy) &mdash; get Dx letter</div><div class="cl-pri now">now</div></div>
             <div class="cl-item" data-i="2"><div class="cl-box"></div><div class="cl-label">Body cam footage requested from RCMP</div><div class="cl-pri now">now</div></div>
             <div class="cl-item" data-i="3"><div class="cl-box"></div><div class="cl-label">Police report &mdash; both Daryls full names</div><div class="cl-pri now">now</div></div>
             <div class="cl-item" data-i="4"><div class="cl-box"></div><div class="cl-label">Hospital discharge records</div><div class="cl-pri now">now</div></div>
             <div class="cl-item" data-i="5"><div class="cl-box"></div><div class="cl-label">Pain journal &mdash; daily entries</div><div class="cl-pri now">now</div></div>
-            <div class="cl-item" data-i="6"><div class="cl-box"></div><div class="cl-label">OPCC complaint filed</div><div class="cl-pri soon">soon</div></div>
-            <div class="cl-item" data-i="7"><div class="cl-box"></div><div class="cl-label">Father witness statement documented</div><div class="cl-pri soon">soon</div></div>
-            <div class="cl-item" data-i="8"><div class="cl-box"></div><div class="cl-label">Exact date in August 2024 confirmed</div><div class="cl-pri soon">soon</div></div>
-            <div class="cl-item" data-i="9"><div class="cl-box"></div><div class="cl-label">Hospital name confirmed</div><div class="cl-pri soon">soon</div></div>
-            <div class="cl-item" data-i="10"><div class="cl-box"></div><div class="cl-label">Career &amp; personality impact documented</div><div class="cl-pri soon">soon</div></div>
+            <div class="cl-item" data-i="6"><div class="cl-box"></div><div class="cl-label">Therapist letter confirming PTSD &amp; causation</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="7"><div class="cl-box"></div><div class="cl-label">OPCC complaint filed</div><div class="cl-pri soon">soon</div></div>
+            <div class="cl-item" data-i="8"><div class="cl-box"></div><div class="cl-label">Father witness statement documented</div><div class="cl-pri soon">soon</div></div>
+            <div class="cl-item" data-i="9"><div class="cl-box"></div><div class="cl-label">Exact date in August 2024 confirmed</div><div class="cl-pri soon">soon</div></div>
+            <div class="cl-item" data-i="10"><div class="cl-box"></div><div class="cl-label">Hospital name confirmed</div><div class="cl-pri soon">soon</div></div>
+            <div class="cl-item" data-i="11"><div class="cl-box"></div><div class="cl-label">Career &amp; personality impact documented</div><div class="cl-pri soon">soon</div></div>
           </div>
         </div>
       </div>
@@ -423,6 +253,7 @@
             <button class="copy-btn" id="copyBtn">Copy</button>
           </div>
           <div class="script-text" id="scriptText"></div>
+          <button class="export-btn" id="exportBtn">Export PDF</button>
         </div>
       </div>
     </div>
@@ -435,97 +266,6 @@
   </footer>
 
 </div>
-<script>
-const CHECK_SVG = '<svg width="10" height="8" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-const TOTAL = 11;
-const SCRIPT = "Hi, I am looking to speak with a civil litigator regarding a case against the RCMP.\n\nIn August 2024, at approximately 11am, RCMP responded to a wellness call at my home in Langley. I was experiencing a mental health crisis and posed no threat. BC crisis response protocol requires de-escalation in these circumstances.\n\nI answered questions at the door, then tried to walk away — my legal right. Two officers, one named Daryl and one with the initial D. (last name Ryl or similar), pursued me inside without consent. I ran toward my father in the kitchen. Officers followed, restrained me, and knelt on my back. I was unable to breathe — consistent with aggravated assault causing bodily harm. My father witnessed the entire incident.\n\nI was arrested, taken to a psychiatric facility overnight, forcibly medicated, placed in solitary confinement, and released the next morning with no aftercare. I walked home alone.\n\nI have suffered significant PTSD since, documented and currently being treated. I also believe the initial questioning was pretextual.\n\nThis constitutes unlawful entry, excessive force, battery, negligent crisis response, abandonment of duty of care, and Charter violations under sections 7, 8, 9, and 12. The defendant would be the Attorney General of Canada given RCMP involvement.\n\nThe 2-year limitation period expires August 2026. Are you able to help?";
-
-// Days remaining
-(function() {
-  const d = Math.ceil((new Date('2026-08-31') - new Date().setHours(0,0,0,0)) / 86400000);
-  document.getElementById('daysLeft').textContent = d + ' days remaining';
-})();
-
-// Bars (Money tab)
-function animateBars() {
-  document.querySelectorAll('.bar-fill').forEach(function(b) { b.style.width = b.dataset.w + '%'; });
-}
-
-// Accordion
-document.querySelectorAll('.grounds').forEach(function(container) {
-  container.querySelectorAll('.ground').forEach(function(card) {
-    card.addEventListener('click', function() {
-      var isOpen = card.classList.contains('open');
-      container.querySelectorAll('.ground').forEach(function(c) { c.classList.remove('open'); });
-      if (!isOpen) card.classList.add('open');
-    });
-  });
-});
-
-// Tabs
-document.querySelectorAll('.tab-btn').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
-    document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
-    btn.classList.add('active');
-    document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
-    if (btn.dataset.tab === 'money') { setTimeout(animateBars, 80); }
-  });
-});
-
-// Checklist
-var done = {};
-try { done = JSON.parse(localStorage.getItem('brief.checklist') || '{}'); } catch(e) {}
-
-function updateProgress() {
-  var count = Object.values(done).filter(Boolean).length;
-  document.getElementById('clCount').textContent = count + '/' + TOTAL;
-  document.getElementById('clBar').style.width = ((count / TOTAL) * 100) + '%';
-}
-
-document.querySelectorAll('.cl-item').forEach(function(row) {
-  var i = row.dataset.i;
-  var box = row.querySelector('.cl-box');
-  var lbl = row.querySelector('.cl-label');
-  function render() {
-    if (done[i]) {
-      box.classList.add('done');
-      box.innerHTML = CHECK_SVG;
-      lbl.classList.add('done');
-    } else {
-      box.classList.remove('done');
-      box.innerHTML = '';
-      lbl.classList.remove('done');
-    }
-  }
-  render();
-  row.addEventListener('click', function() {
-    done[i] = !done[i];
-    localStorage.setItem('brief.checklist', JSON.stringify(done));
-    render();
-    updateProgress();
-  });
-});
-updateProgress();
-
-// Theme
-document.getElementById('themeBtn').addEventListener('click', function() {
-  var body = document.body;
-  var isDark = body.dataset.theme === 'dark';
-  body.dataset.theme = isDark ? 'paper' : 'dark';
-  this.textContent = isDark ? 'dark' : 'paper';
-});
-
-// Script
-document.getElementById('scriptText').textContent = SCRIPT;
-document.getElementById('copyBtn').addEventListener('click', function() {
-  var btn = this;
-  navigator.clipboard.writeText(SCRIPT).then(function() {
-    btn.textContent = 'Copied';
-    btn.classList.add('copied');
-    setTimeout(function() { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
-  });
-});
-</script>
+<script src="script.js"></script>
 </body>
 </html>
