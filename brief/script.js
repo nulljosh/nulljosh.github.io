@@ -61,7 +61,7 @@ renderGrounds('grounds-money', '2');
 (function() {
   var saved = localStorage.getItem('brief.theme') || 'dark';
   document.body.dataset.theme = saved;
-  document.getElementById('themeBtn').textContent = saved === 'dark' ? 'paper' : 'dark';
+  document.getElementById('themeBtn').textContent = saved === 'dark' ? 'Light' : 'Dark';
 })();
 
 // Days remaining
@@ -135,7 +135,7 @@ document.getElementById('themeBtn').addEventListener('click', function() {
   var body = document.body;
   var isDark = body.dataset.theme === 'dark';
   body.dataset.theme = isDark ? 'paper' : 'dark';
-  this.textContent = isDark ? 'dark' : 'paper';
+  this.textContent = isDark ? 'Dark' : 'Light';
   localStorage.setItem('brief.theme', body.dataset.theme);
 });
 
