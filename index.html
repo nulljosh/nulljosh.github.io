@@ -527,13 +527,13 @@ async function loadTV() {
 
 async function loadCode() {
   var el = document.getElementById('stat-code');
-  var c = getCached('gh', DAY_MS); if (c) { el.textContent = c; return; }
+  var c = getCached('gh3', DAY_MS); if (c) { el.textContent = c; return; }
   try {
     var r = await fetch('https://api.github.com/users/nulljosh', {signal:mkSignal(6000)});
     if (!r.ok) throw 0;
     var d = await r.json();
     var txt = d.public_repos+' public repos';
-    animateCount(el, d.public_repos, ' public repos'); setCached('gh', txt);
+    animateCount(el, d.public_repos, ' public repos'); setCached('gh3', txt);
   } catch(e) { el.textContent = '— repos'; }
 }
 
