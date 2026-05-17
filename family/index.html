@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <base href="/family/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Brief">
+  <meta name="theme-color" content="#100e0b">
+  <title>Trommel v. Trommel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=1">
+</head>
+<body data-theme="dark">
+
+<div class="page">
+
+  <header class="hero">
+    <div class="hero-nav">
+      <div class="hero-app">Brief</div>
+      <div class="hero-spacer"></div>
+      <button class="theme-btn" id="themeBtn">Light</button>
+      <div class="hero-id">CASE-0002</div>
+    </div>
+    <div class="hero-title">Trommel v. Trommel</div>
+    <div class="hero-sub">Family tort &mdash; appropriation of personality, IIMS, parental negligence, battery. British Columbia, Canada.</div>
+
+    <div class="deadline-banner">
+      <div class="dl-top">
+        <div class="dl-label">Limitation Window</div>
+        <div class="dl-days" id="daysLeft">&mdash; days</div>
+      </div>
+      <div class="dl-date">Discovery: May 2026 &middot; Basic limit: May 2028 &middot; File before May 1, 2028</div>
+      <div class="dl-track">
+        <div class="dl-fill" id="dlFill"></div>
+        <div class="dl-now" id="dlNow"></div>
+      </div>
+      <div class="dl-anchors">
+        <span>Discovery &middot; May 2026</span>
+        <span>Deadline &middot; May 2028</span>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-lbl">Damages stack</div>
+      <div class="stat-val">$400k</div>
+      <div class="stat-sub">conservative &middot; $1.15M strong &middot; $300k&ndash;$600k likely settlement</div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="case">Case</button>
+      <button class="tab-btn" data-tab="money">Money</button>
+      <button class="tab-btn" data-tab="actions">Actions</button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- CASE -->
+    <div class="tab-panel active" id="panel-case">
+      <div class="next-action">
+        <div class="na-lbl">Next action</div>
+        <div class="na-title">Find a civil litigation lawyer &mdash; tort specialist, not Charter</div>
+        <div class="na-row">
+          <a href="tel:18006631919" class="na-call">1-800-663-1919</a>
+          <span class="na-note">Law Society BC referral</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Facts</div></div>
+        <div class="card">
+          <div class="facts-grid">
+            <div><div class="fact-k">Plaintiff</div><div class="fact-v">Joshua Trommel</div></div>
+            <div><div class="fact-k">Defendants</div><div class="fact-v">Brian Trommel (father), Christine Trommel (mother)</div></div>
+            <div><div class="fact-k">Jurisdiction</div><div class="fact-v">BC Supreme Court</div></div>
+            <div><div class="fact-k">Location</div><div class="fact-v">Langley, BC</div></div>
+            <div><div class="fact-k">Status</div><div class="fact-v">Pre-litigation</div></div>
+            <div><div class="fact-k">Discovery</div><div class="fact-v">May 2026</div></div>
+            <div style="grid-column:1/-1"><div class="fact-k">Core claim</div><div class="fact-v">Appropriation of personality (business likeness), intentional infliction of mental suffering, parental negligence, battery (non-consensual surgery), wrongful eviction into homelessness</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Incident timeline</div></div>
+        <div class="card">
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot tdanger"></div><div class="tl-line"></div></div>
+            <div class="tl-body">
+              <div class="tl-when">Infancy</div>
+              <div class="tl-title">Non-consensual circumcision</div>
+              <div class="tl-desc">Irreversible surgery performed without capacity for consent. Limitation suspended during minority (BC Limitation Act s.16). Clock started at age 19 (~2019). Discoverability argument: wrong not understood as actionable until 2026.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot tdanger"></div><div class="tl-line"></div></div>
+            <div class="tl-body">
+              <div class="tl-when">Age 10 (approx. 2010)</div>
+              <div class="tl-title">Police called during emotional distress</div>
+              <div class="tl-desc">Parents called police on Joshua for crying. Mental health crisis weaponized as a control mechanism. Part of the IIMS pattern of conduct.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot tdanger"></div><div class="tl-line"></div></div>
+            <div class="tl-body">
+              <div class="tl-when">Age ~10&ndash;15</div>
+              <div class="tl-title">5 years of forced hockey</div>
+              <div class="tl-desc">Joshua enrolled in organized hockey against his will for approximately 5 years with no positive outcomes &mdash; no goals scored. Parental control imposed over recreational choices. Contributes to psychological harm narrative.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot tdanger"></div><div class="tl-line"></div></div>
+            <div class="tl-body">
+              <div class="tl-when">Age 15 (approx. 2015)</div>
+              <div class="tl-title">Police called during emotional distress (repeat)</div>
+              <div class="tl-desc">Second documented instance of police being called for crying. Pattern of conduct established across multiple years. Supports IIMS and parental negligence heads.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot twarn"></div><div class="tl-line"></div></div>
+            <div class="tl-body">
+              <div class="tl-when">Unknown &mdash; recent</div>
+              <div class="tl-title">Likeness used on business vehicles</div>
+              <div class="tl-desc">Brian Trommel used Joshua's face and image on family business trucks and advertising materials. Commercial exploitation of a family member's likeness without consent. Ongoing tort &mdash; 2-year clock runs from last use or from discovery.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot twarn"></div><div class="tl-line"></div></div>
+            <div class="tl-body">
+              <div class="tl-when">Unknown &mdash; recent</div>
+              <div class="tl-title">Eviction into homelessness</div>
+              <div class="tl-desc">Brian Trommel evicted Joshua from the family home. Joshua became homeless. This was his only shelter. Breach of parental duty. Subsequent: Joshua wrote a bad Yelp review about the family business. Brian tracked him to a parking lot &mdash; prioritized the review over his homeless son's welfare.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot twarn"></div><div class="tl-line"></div></div>
+            <div class="tl-body">
+              <div class="tl-when">Unknown &mdash; recent</div>
+              <div class="tl-title">Parking lot confrontation while homeless</div>
+              <div class="tl-desc">Brian Trommel located Joshua in a parking lot while Joshua was homeless. The confrontation was about a Yelp review &mdash; not about Joshua's welfare. Outrageous conduct forming the centerpiece of IIMS.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot tnow"></div></div>
+            <div class="tl-body">
+              <div class="tl-when">May 2026</div>
+              <div class="tl-title">Discovery + active legal pursuit</div>
+              <div class="tl-desc">Joshua first understood these acts as actionable legal wrongs. Contacted multiple lawyers. Discoverability date established. 2-year basic period begins. Ultimate limitation: 15 years from each act (most childhood acts already past 15-year ultimate &mdash; discoverability is the only viable route).</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Legal grounds</div><div class="hint">tap to expand</div></div>
+        <div class="grounds" id="grounds-case"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Limitation analysis</div></div>
+        <div class="card">
+          <div style="font-size:11px;font-family:var(--mono);color:var(--text);line-height:1.85;">
+            <div style="margin-bottom:12px;color:var(--warn);font-weight:700">This case involves multiple incidents across 20+ years. Limitation is the primary defense defendants will use.</div>
+            <div style="margin-bottom:8px"><span style="color:var(--text);font-weight:700">Childhood acts (age 10, 15, infancy):</span><br>BC Limitation Act s.16 suspends limitation during minority. Clock started at 19 (~2019). Basic 2-year expired ~2021. <span style="color:var(--danger)">These are dead on basic limitation.</span> Viable only via: (1) s.8(1)(d) discoverability &mdash; first knew of claim May 2026; (2) s.21 ultimate limit &mdash; 15 years from act &mdash; most already past 15 years.</div>
+            <div style="margin-bottom:8px"><span style="color:var(--text);font-weight:700">Likeness/appropriation:</span><br>Ongoing tort if still in commercial use. 2-year clock from last use date or from discovery. <span style="color:var(--green)">Strongest head on limitation.</span></div>
+            <div style="margin-bottom:8px"><span style="color:var(--text);font-weight:700">Eviction + parking lot:</span><br>2-year from incident. If within 2024&ndash;2026, basic limitation still open. If earlier, discoverability argument applies.</div>
+            <div style="color:var(--warn);font-weight:700">Strategy: lead with likeness (cleanest limitation) + IIMS from recent acts. Use childhood incidents as context for damages and causation &mdash; not as separate causes of action unless discoverability argument holds.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Pain journal</div><button class="j-add-btn" id="jAddBtn">+ Entry</button></div>
+        <div class="card">
+          <div class="j-form" id="jForm" style="display:none">
+            <input class="j-date-input" id="jDateInput" type="date">
+            <textarea class="j-textarea" id="jTextarea" placeholder="What happened today..."></textarea>
+            <div class="j-form-row">
+              <button class="j-save-btn" id="jSaveBtn">Save</button>
+              <button class="j-cancel-btn" id="jCancelBtn">Cancel</button>
+            </div>
+          </div>
+          <div id="journal-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MONEY -->
+    <div class="tab-panel" id="panel-money">
+      <div class="next-action">
+        <div class="na-lbl">Next action</div>
+        <div class="na-title">Photograph all business vehicles &mdash; establish ongoing likeness use</div>
+        <div class="na-row">
+          <span class="na-note">Strongest evidence &mdash; get timestamps</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Outcome scenarios</div></div>
+        <div class="card">
+          <div class="scenario">
+            <div class="sc-row"><div><div class="sc-name">Best case</div><div class="sc-desc">Full trial, all heads viable, punitive granted. Parents settle to avoid judgment against them personally.</div></div><div class="sc-right"><div class="sc-amt" style="color:var(--green)">$1.5&ndash;2M</div><div class="sc-pct">10%</div></div></div>
+            <div class="bar-track"><div class="bar-fill" data-w="10" style="background:var(--green);"></div></div>
+          </div>
+          <div class="scenario">
+            <div class="sc-row"><div><div class="sc-name">Strong</div><div class="sc-desc">Likeness + IIMS both survive limitation. Settlement with real leverage.</div></div><div class="sc-right"><div class="sc-amt" style="color:var(--warn)">$700k&ndash;1.2M</div><div class="sc-pct">25%</div></div></div>
+            <div class="bar-track"><div class="bar-fill" data-w="25" style="background:var(--warn);"></div></div>
+          </div>
+          <div class="scenario">
+            <div class="sc-row"><div><div class="sc-name">Most likely</div><div class="sc-desc">Likeness + recent IIMS survive. Childhood claims used for damages context only. Parents negotiate quietly.</div></div><div class="sc-right"><div class="sc-amt" style="color:var(--mid)">$300k&ndash;600k</div><div class="sc-pct">45%</div></div></div>
+            <div class="bar-track"><div class="bar-fill" data-w="45" style="background:var(--mid);"></div></div>
+          </div>
+          <div class="scenario">
+            <div class="sc-row"><div><div class="sc-name">Worst</div><div class="sc-desc">Limitation kills most claims. Parents have assets in the home, not liquid. Settlement minimal.</div></div><div class="sc-right"><div class="sc-amt" style="color:var(--danger)">$0&ndash;100k</div><div class="sc-pct">20%</div></div></div>
+            <div class="bar-track"><div class="bar-fill" data-w="20" style="background:var(--danger);"></div></div>
+          </div>
+          <div style="margin-top:14px;padding:10px;background:var(--surface-2);border-radius:8px;font-size:11px;font-family:var(--mono);color:var(--muted);line-height:1.6;">Private defendants (not government) &middot; No Charter damages &middot; Parents own $1M+ home (assets available for enforcement) &middot; Likeness = strongest head (ongoing, cleanest limitation) &middot; IIMS requires pattern proof &middot; Childhood claims may be limitation-barred unless discoverability holds</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Per-head damages stack</div></div>
+        <div id="dmg-stack-card"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Asset enforcement</div></div>
+        <div class="card">
+          <div style="font-size:11px;font-family:var(--mono);color:var(--text);line-height:1.85;">
+            Unlike CASE-0001 (government defendant — deep pockets by definition), this case is against private individuals. Enforcing a judgment matters.<br><br>
+            <span style="color:var(--green)">Known assets:</span> Primary residence ($1M+ Langley home, owned per recordings). Family business (trucks, equipment, revenue). Retirement savings (defendants are ~60, retired).<br><br>
+            <span style="color:var(--warn)">Key question for counsel:</span> Is the home in both parents' names? Is the business incorporated? Is equity accessible for judgment enforcement in BC? A judgment against parents can be registered against the home title (BC Law and Equity Act).<br><br>
+            <span style="color:var(--muted)">Family home exemption:</span> BC does not have a homestead exemption for judgment debtors in the same way some US states do. A registered judgment can force a sale if they do not pay.
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Per-violation value</div><div class="hint">tap to expand</div></div>
+        <div class="grounds" id="grounds-money"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Damages claimed</div></div>
+        <div class="card">
+          <div class="dm-row"><div class="dm-k">General (non-pecuniary)</div><div class="dm-v">Pain, suffering, PTSD, loss of dignity</div></div>
+          <div class="dm-row"><div class="dm-k">Appropriation of personality</div><div class="dm-v">Commercial value of likeness used without consent</div></div>
+          <div class="dm-row"><div class="dm-k">IIMS</div><div class="dm-v">Intentional infliction of mental suffering &mdash; pattern of conduct</div></div>
+          <div class="dm-row"><div class="dm-k">Battery</div><div class="dm-v">Non-consensual bodily modification</div></div>
+          <div class="dm-row"><div class="dm-k">Lost earning capacity</div><div class="dm-v">Age 26, 35+ working years. PTSD caused by home environment contributed to inability to maintain employment.</div></div>
+          <div class="dm-row"><div class="dm-k">Special</div><div class="dm-v">Treatment, therapy, homelessness costs</div></div>
+          <div class="dm-row"><div class="dm-k">Punitive</div><div class="dm-v">Parking lot confrontation, ongoing likeness use after eviction — egregious conduct</div></div>
+          <div class="dm-total">
+            <div class="dm-total-lbl">Net range</div>
+            <div class="dm-total-val">$300k&ndash;$1.15M</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="tab-panel" id="panel-actions">
+      <div class="next-action">
+        <div class="na-lbl">Next action</div>
+        <div class="na-title">Law Society referral &mdash; ask for a civil tort / personal injury specialist</div>
+        <div class="na-row">
+          <a href="tel:18006631919" class="na-call">1-800-663-1919</a>
+          <span class="na-note">Law Society of BC</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Lawyers</div></div>
+        <div class="lawyer" data-lawyer-id="law-society">
+          <div class="lawyer-top">
+            <div class="lawyer-av">LS</div>
+            <div class="lawyer-info">
+              <div class="lawyer-name">Law Society of BC</div>
+              <div class="lawyer-sub">Lawyer Referral Service &middot; 30-min free consult, then $25</div>
+              <div class="lawyer-tags">
+                <span class="ltag good">Civil tort referrals</span>
+                <span class="ltag good">Find the right specialist</span>
+                <span class="ltag">Not yet contacted</span>
+              </div>
+            </div>
+          </div>
+          <div class="lawyer-bot">
+            <a href="tel:18006631919" class="call-btn">
+              <span>1-800-663-1919</span>
+            </a>
+          </div>
+        </div>
+        <div class="lawyer" style="margin-top:10px" data-lawyer-id="bccla">
+          <div class="lawyer-top">
+            <div class="lawyer-av">BC</div>
+            <div class="lawyer-info">
+              <div class="lawyer-name">BCCLA Referral Line</div>
+              <div class="lawyer-sub">BC Civil Liberties Association</div>
+              <div class="lawyer-tags">
+                <span class="ltag good">Free referrals</span>
+                <span class="ltag good">Civil rights</span>
+                <span class="ltag good">Knows civil tort lawyers</span>
+                <span class="ltag">Not yet contacted</span>
+              </div>
+            </div>
+          </div>
+          <div class="lawyer-bot">
+            <a href="tel:6046872919" class="call-btn">
+              <span>604-687-2919</span>
+            </a>
+            <a href="https://bccla.org" target="_blank" rel="noopener" class="call-btn" style="margin-top:8px;background:var(--surface-2);color:var(--text)">
+              <span>bccla.org</span>
+            </a>
+          </div>
+        </div>
+        <div class="lawyer" style="margin-top:10px" data-lawyer-id="slater-vecchio">
+          <div class="lawyer-top">
+            <div class="lawyer-av">SV</div>
+            <div class="lawyer-info">
+              <div class="lawyer-name">Slater Vecchio LLP</div>
+              <div class="lawyer-sub">Vancouver BC &middot; Civil litigation, personal injury</div>
+              <div class="lawyer-tags">
+                <span class="ltag good">Tort claims</span>
+                <span class="ltag good">Personal injury</span>
+                <span class="ltag">Not yet contacted</span>
+              </div>
+            </div>
+          </div>
+          <div class="lawyer-bot">
+            <a href="https://slatervecchio.com" target="_blank" rel="noopener" class="call-btn" style="background:var(--surface-2);color:var(--text)">
+              <span>slatervecchio.com</span>
+            </a>
+          </div>
+        </div>
+        <div class="lawyer" style="margin-top:10px" data-lawyer-id="harper-grey">
+          <div class="lawyer-top">
+            <div class="lawyer-av">HG</div>
+            <div class="lawyer-info">
+              <div class="lawyer-name">Harper Grey LLP</div>
+              <div class="lawyer-sub">Vancouver BC &middot; Civil litigation</div>
+              <div class="lawyer-tags">
+                <span class="ltag good">Civil tort</span>
+                <span class="ltag good">Intentional torts</span>
+                <span class="ltag">Not yet contacted</span>
+              </div>
+            </div>
+          </div>
+          <div class="lawyer-bot">
+            <a href="https://harpergrey.com" target="_blank" rel="noopener" class="call-btn" style="background:var(--surface-2);color:var(--text)">
+              <span>harpergrey.com</span>
+            </a>
+          </div>
+        </div>
+        <div class="lawyer" style="margin-top:10px" data-lawyer-id="watson-goepel">
+          <div class="lawyer-top">
+            <div class="lawyer-av">WG</div>
+            <div class="lawyer-info">
+              <div class="lawyer-name">Watson Goepel LLP</div>
+              <div class="lawyer-sub">Vancouver BC &middot; Civil litigation</div>
+              <div class="lawyer-tags">
+                <span class="ltag good">Civil tort</span>
+                <span class="ltag good">Limitation Act experience</span>
+                <span class="ltag">Not yet contacted</span>
+              </div>
+            </div>
+          </div>
+          <div class="lawyer-bot">
+            <a href="https://watsongoepel.com" target="_blank" rel="noopener" class="call-btn" style="background:var(--surface-2);color:var(--text)">
+              <span>watsongoepel.com</span>
+            </a>
+          </div>
+        </div>
+        <div class="lawyer" style="margin-top:10px" data-lawyer-id="note-charter">
+          <div class="lawyer-top">
+            <div class="lawyer-av">!</div>
+            <div class="lawyer-info">
+              <div class="lawyer-name">Note: Different specialty than CASE-0001</div>
+              <div class="lawyer-sub">Charter / RCMP lawyers are not the right fit here</div>
+              <div class="lawyer-tags">
+                <span class="ltag urgent">This case = civil tort, NOT Charter</span>
+              </div>
+            </div>
+          </div>
+          <div class="lawyer-bot">
+            <div style="font-size:11px;font-family:var(--mono);color:var(--muted);line-height:1.6;">CASE-0001 lawyers (KSW, DLA, Arvay Finlay) specialize in government/Charter liability. This case is private tort law against individuals. Different practice area. Ask CASE-0001 lawyers for civil tort referrals &mdash; they may know who to call.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Strategy</div></div>
+        <div class="card">
+          <div style="font-size:13px;color:var(--text);line-height:1.65;">Lead with the likeness claim. It is the cleanest, has the strongest limitation argument (ongoing tort), and is provable with photographs. Build from there.</div>
+          <div style="margin-top:12px;font-size:11px;font-family:var(--mono);color:var(--warn);line-height:1.6;font-weight:700;">Do not file anything until you have counsel. Admissions in pre-retainer communications (voicemails, texts, social media) can be used against you. Clean up your digital footprint before filing.</div>
+          <div style="margin-top:12px;font-size:11px;font-family:var(--mono);color:var(--muted);line-height:1.8;">Priority actions:<br>1. Photograph every vehicle, truck, or material with your face on it — with timestamps<br>2. Screenshot any online presence (website, social, Google My Business) with your image<br>3. Document the homelessness period — dates, locations, anyone who witnessed it<br>4. Record any ongoing contact with parents (keep it minimal and factual)<br>5. Do NOT confront parents about the lawsuit before filing</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Timeline</div></div>
+        <div class="card">
+          <div class="tl-item"><div class="tl-left"><div class="tl-dot tnow"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Now</div><div class="tl-title">Find civil tort counsel</div><div class="tl-desc">Law Society referral: 1-800-663-1919. Ask specifically for tort / intentional harm / appropriation of personality experience.</div></div></div>
+          <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Week 1&ndash;2</div><div class="tl-title">Evidence gathering</div><div class="tl-desc">Photograph vehicles. Screenshot online materials. Document dates of all incidents as precisely as possible. Gather any texts, emails, or voicemails from parents.</div></div></div>
+          <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Month 1&ndash;2</div><div class="tl-title">Limitation analysis with counsel</div><div class="tl-desc">Lawyer must assess which claims survive limitation. Discoverability argument must be formally documented. Pin May 2026 as the discovery date.</div></div></div>
+          <div class="tl-item"><div class="tl-left"><div class="tl-dot twarn"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Month 2&ndash;6</div><div class="tl-title">Demand letter</div><div class="tl-desc">Without-prejudice demand to both defendants outlining claims, limitation basis, and settlement figure. Sets the clock ticking on negotiations.</div></div></div>
+          <div class="tl-item"><div class="tl-left"><div class="tl-dot tgood"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Month 6&ndash;18</div><div class="tl-title">File or settle</div><div class="tl-desc">Most civil cases settle once a lawyer is retained and a demand letter is delivered. Parents likely prefer to avoid litigation over family matters becoming public record.</div></div></div>
+          <div class="tl-item"><div class="tl-left"><div class="tl-dot tdanger"></div></div><div class="tl-body"><div class="tl-when">May 1, 2028</div><div class="tl-title">Hard deadline</div><div class="tl-desc">2-year basic limitation from May 2026 discovery. Must file or have a compelling discoverability argument before this date.</div></div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Evidence checklist</div></div>
+        <div class="card">
+          <div class="cl-meta">
+            <div class="cl-hint">Before the first lawyer meeting.</div>
+            <div class="cl-count" id="clCount">0/12</div>
+          </div>
+          <div class="cl-prog"><div class="cl-bar" id="clBar" style="width:0%"></div></div>
+          <div id="checklist">
+            <div class="cl-item" data-i="0"><div class="cl-box"></div><div class="cl-label">Photograph all vehicles / materials with your face or likeness on them (with timestamps)</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="1"><div class="cl-box"></div><div class="cl-label">Screenshot online presence (website, social, Google My Business) using your image</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="2"><div class="cl-box"></div><div class="cl-label">Write a precise timeline of the homelessness period (dates, locations, anyone who saw it)</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="3"><div class="cl-box"></div><div class="cl-label">Locate and preserve any texts, emails, or voicemails from parents re: eviction, parking lot, Yelp</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="4"><div class="cl-box"></div><div class="cl-label">Find or reconstruct the Yelp review and any response from your father</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="5"><div class="cl-box"></div><div class="cl-label">Document approximate dates of police calls at ages 10 and 15 (any incident numbers, witnesses)</div><div class="cl-pri soon">soon</div></div>
+            <div class="cl-item" data-i="6"><div class="cl-box"></div><div class="cl-label">Identify any witnesses to the homelessness period or parking lot confrontation</div><div class="cl-pri soon">soon</div></div>
+            <div class="cl-item" data-i="7"><div class="cl-box"></div><div class="cl-label">Get therapy/medical records documenting psychological harm from family environment (separate from RCMP)</div><div class="cl-pri soon">soon</div></div>
+            <div class="cl-item" data-i="8"><div class="cl-box"></div><div class="cl-label">Research family business name, registration, revenue (public BC Corporate Registry: bcregistry.gov.bc.ca)</div><div class="cl-pri soon">soon</div></div>
+            <div class="cl-item" data-i="9"><div class="cl-box"></div><div class="cl-label">Pin discoverability date: formal written record that May 2026 = when you understood these as legal claims</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="10"><div class="cl-box"></div><div class="cl-label">Contact Law Society BC referral (1-800-663-1919) for a civil tort specialist</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="11"><div class="cl-box"></div><div class="cl-label">Audit all digital footprint (social media, public posts) for anything that could be used against you</div><div class="cl-pri soon">soon</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Call script</div></div>
+        <div class="card">
+          <div class="script-hd">
+            <div class="script-title">Law Society referral prep</div>
+            <button class="copy-btn" id="copyBtn">Copy</button>
+          </div>
+          <div class="script-text" id="scriptText"></div>
+          <button class="export-btn" id="exportBtn">Export PDF</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Risks &mdash; what defendants will attack</div></div>
+        <div class="card">
+          <div style="font-size:12px;color:var(--text);line-height:1.65;">
+            <div style="margin-bottom:10px"><span style="color:var(--danger);font-weight:700">Limitation (kill shot).</span> Defendants will file to strike on limitation. Every childhood claim is vulnerable. The discoverability argument must be documented, specific, and contemporaneous. A court will ask: when exactly did you first understand you had a legal remedy? May 2026 must be supported by evidence.</div>
+            <div style="margin-bottom:10px"><span style="color:var(--warn);font-weight:700">IIMS evidentiary bar.</span> Intentional infliction of mental suffering requires proving the conduct was calculated to harm AND caused a recognized psychiatric illness. Defendants will argue their acts were reasonable parenting. Need expert psychiatric evidence connecting the harm to specific acts.</div>
+            <div style="margin-bottom:10px"><span style="color:var(--warn);font-weight:700">Likeness consent.</span> Defendants may argue implied consent &mdash; Joshua knew about the business and didn't object at the time. Counter: any consent given as a minor is invalid. Document when the use began relative to age.</div>
+            <div style="margin-bottom:10px"><span style="color:var(--warn);font-weight:700">Causation splitting.</span> PTSD has two potential causes: RCMP incident (CASE-0001) and family environment. Defendants will argue all PTSD is from RCMP. Need psychiatric expert who can attribute portion of harm to each cause independently.</div>
+            <div><span style="color:var(--warn);font-weight:700">Battery (circumcision).</span> Novel argument in Canada. No appellate authority directly on point. Defendants will argue parental consent is valid. High-risk, high-reward. Include as supplementary, not lead claim.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Drafts</div></div>
+        <div class="card">
+          <details style="margin-bottom:10px">
+            <summary style="cursor:pointer;font-size:12px;font-weight:700;color:var(--text);padding:6px 0;">Outreach email &mdash; civil lawyer template</summary>
+            <div style="margin-top:8px;">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+                <div style="font-size:10px;font-family:var(--mono);color:var(--muted);">Subject: Civil Consultation &mdash; Appropriation of Personality / IIMS &mdash; Trommel</div>
+                <button class="copy-btn" id="emailCopyBtn">Copy</button>
+              </div>
+              <div style="font-size:11px;font-family:var(--mono);color:var(--mid);line-height:1.75;white-space:pre-wrap;padding:10px;background:var(--surface-2);border-radius:8px;" id="emailTemplateText">Hi [Name],
+
+My name is Joshua Trommel. I'm seeking a civil litigation lawyer with experience in intentional torts and/or appropriation of personality claims in BC.
+
+I have potential claims against my parents arising from:
+
+1. Commercial use of my face and likeness on family business vehicles and advertising without consent — an ongoing appropriation of personality tort under BC Privacy Act and common law.
+
+2. Intentional infliction of mental suffering — a documented pattern of conduct including eviction into homelessness, police weaponized against me during emotional distress in my youth, and a parking lot confrontation while I was homeless that prioritized a Yelp review over my welfare.
+
+3. Parental negligence contributing to documented PTSD.
+
+I have a separate Charter claim proceeding against the Attorney General of Canada (RCMP) and understand the limitation issues in both cases.
+
+Discovery date: May 2026. Basic limitation expires May 2028.
+
+I am available for a consultation at your earliest convenience.
+
+Thank you,
+Joshua Trommel
+778-201-4533</div>
+            </div>
+          </details>
+          <details>
+            <summary style="cursor:pointer;font-size:12px;font-weight:700;color:var(--text);padding:6px 0;">Demand letter &mdash; skeleton</summary>
+            <div style="font-size:11px;font-family:var(--mono);color:var(--mid);line-height:1.7;white-space:pre-wrap;padding:8px 0 4px;">Without prejudice — for settlement purposes only
+
+To: Brian Trommel and Christine Trommel
+
+1. Appropriation of personality: Commercial use of Joshua Trommel's face and likeness on family business vehicles and materials. BC Privacy Act s.3 + common law. Ongoing tort.
+
+2. Intentional infliction of mental suffering: [dates of acts — eviction, parking lot, police weaponization]. Calculated to harm. Documented PTSD resulted.
+
+3. Parental negligence: Breach of duty of care. Causation to PTSD, lost earning capacity, homelessness period.
+
+4. Battery: Circumcision in infancy without capacity for consent. Discoverability: understood as actionable wrong May 2026.
+
+5. Damages: General, special, aggravated, punitive. Range $X–$Y.
+
+6. Limitation: Discovery May 2026 under s.8(1)(d). Likeness claim ongoing.
+
+7. Offer: Open 30 days. Then file.
+
+Note: File ONLY when evidence substantially assembled and counsel retained.</div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="ft">brief &middot; not legal advice</div>
+    <div class="ft">BC, Canada &middot; CASE-0002</div>
+  </footer>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="script.js?v=2"></script>
+</body>
+</html>
