@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Two Daryls Case</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=6">
+</head>
+<body data-theme="dark">
+<div class="page">
+
+  <header class="hero">
+    <div class="hero-nav">
+      <div class="hero-logo">B</div>
+      <div class="hero-app">Brief</div>
+      <div class="hero-spacer"></div>
+      <button class="theme-btn" id="themeBtn">paper</button>
+      <div class="hero-id">CASE-0001</div>
+    </div>
+    <div class="hero-eyebrow">Matter</div>
+    <div class="hero-title">Trommel v. Attorney General of Canada</div>
+    <div class="hero-sub">Charter violations arising from a warrantless wellness-call entry. British Columbia, Canada.</div>
+    <div class="hero-cards">
+      <div class="stat-card">
+        <div class="stat-lbl">Likely settlement</div>
+        <div class="stat-val">$250,000</div>
+        <div class="stat-sub">$200,000&ndash;$350,000</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-lbl danger">Limitation</div>
+        <div class="stat-val sm">Aug 2026</div>
+        <div class="stat-sub muted" id="daysLeft"></div>
+      </div>
+    </div>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="case">Case</button>
+      <button class="tab-btn" data-tab="money">Money</button>
+      <button class="tab-btn" data-tab="actions">Actions</button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- CASE -->
+    <div class="tab-panel active" id="panel-case">
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Facts</div></div>
+        <div class="card">
+          <div class="facts-grid">
+            <div><div class="fact-k">Date</div><div class="fact-v">August 2024 (approx)</div></div>
+            <div><div class="fact-k">Time</div><div class="fact-v">~11:00 AM</div></div>
+            <div><div class="fact-k">Location</div><div class="fact-v">Langley, BC</div></div>
+            <div><div class="fact-k">Department</div><div class="fact-v">Langley RCMP, Brookswood</div></div>
+            <div><div class="fact-k">Defendant</div><div class="fact-v">AG of Canada</div></div>
+            <div><div class="fact-k">Officers</div><div class="fact-v">Daryl + D. Ryl</div></div>
+            <div><div class="fact-k">Witness</div><div class="fact-v">Father, in kitchen</div></div>
+            <div><div class="fact-k">Status</div><div class="fact-v">Pre-litigation</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Legal grounds</div><div class="hint">tap to expand</div></div>
+        <div class="grounds" id="grounds-case"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Pain journal</div></div>
+        <div class="card">
+          <div class="j-entry"><div class="j-date">MAY 10 2026</div><div class="j-text">Started PTSD therapy today. Formal assessment underway — building the clinical paper trail. First session directly connected current symptoms to the August 2024 incident.</div></div>
+          <div class="j-entry"><div class="j-date">MAY 6 2026</div><div class="j-text">No good days since August 2024. Every day is affected without exception.</div></div>
+          <div class="j-entry"><div class="j-date">MAY 5 2026</div><div class="j-text">Wakes with stomach aches and night sweats daily. Coping mechanisms developed in direct response to the trauma.</div></div>
+          <div class="j-entry"><div class="j-date">MAY 3 2026</div><div class="j-text">Nightmares with recurring themes. Worsened in intensity since the incident.</div></div>
+          <div class="j-entry"><div class="j-date">MAY 1 2026</div><div class="j-text">Incident replays on loop daily. Functioning prior to August 2024. Significantly affected since.</div></div>
+          <div class="j-entry"><div class="j-date">APR 28 2026</div><div class="j-text">Family relationships permanently damaged as a direct result of how police handled the incident.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MONEY -->
+    <div class="tab-panel" id="panel-money">
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Outcome scenarios</div></div>
+        <div class="card">
+          <div class="scenario">
+            <div class="sc-row"><div><div class="sc-name">Best case</div><div class="sc-desc">Formal PTSD Dx confirmed, punitive granted, goes to trial.</div></div><div class="sc-right"><div class="sc-amt" style="color:var(--green)">$600&ndash;800k</div><div class="sc-pct">10%</div></div></div>
+            <div class="bar-track"><div class="bar-fill" data-w="10" style="background:var(--green);transition-delay:0ms"></div></div>
+          </div>
+          <div class="scenario">
+            <div class="sc-row"><div><div class="sc-name">Strong</div><div class="sc-desc">Charter violations proven, settled before trial.</div></div><div class="sc-right"><div class="sc-amt" style="color:var(--accent)">$400&ndash;550k</div><div class="sc-pct">30%</div></div></div>
+            <div class="bar-track"><div class="bar-fill" data-w="30" style="background:var(--accent);transition-delay:120ms"></div></div>
+          </div>
+          <div class="scenario">
+            <div class="sc-row"><div><div class="sc-name">Most likely</div><div class="sc-desc">Solid settlement. Federal AG settles quietly.</div></div><div class="sc-right"><div class="sc-amt" style="color:var(--mid)">$200&ndash;350k</div><div class="sc-pct">45%</div></div></div>
+            <div class="bar-track"><div class="bar-fill" data-w="45" style="background:var(--mid);transition-delay:240ms"></div></div>
+          </div>
+          <div class="scenario">
+            <div class="sc-row"><div><div class="sc-name">Worst</div><div class="sc-desc">Limitation passed or evidence insufficient.</div></div><div class="sc-right"><div class="sc-amt" style="color:var(--danger)">$0</div><div class="sc-pct">15%</div></div></div>
+            <div class="bar-track"><div class="bar-fill" data-w="15" style="background:var(--danger);transition-delay:360ms"></div></div>
+          </div>
+          <div style="margin-top:14px;padding:10px;background:var(--surface-2);border-radius:8px;font-size:11px;font-family:var(--mono);color:var(--muted);line-height:1.6;">8 stacked Charter/tort breaches &middot; 21+ months documented PTSD &middot; Positional asphyxia risk &middot; Forced antipsychotics (Fleming v. Ontario) &middot; Unlawful dwelling entry, highest-tier s.8 (Feeney) &middot; No underlying crime &mdash; bad-faith threshold met &middot; Degen v. Min. Public Safety 2023 BCSC: $317k (Surrey RCMP, force + PTSD &mdash; floor for this head alone) &middot; Mona Wang v. AG Canada (2021, confidential): BC RCMP wellness check, face-down dragging, settled to suppress precedent &middot; Future earning capacity not yet priced in tool &mdash; at age 26 this is a large separate head</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Per-violation value</div><div class="hint">tap to expand</div></div>
+        <div class="grounds" id="grounds-money"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Damages claimed</div></div>
+        <div class="card">
+          <div class="dm-row"><div class="dm-k">General (non-pecuniary)</div><div class="dm-v">Pain, suffering, loss of dignity, PTSD</div></div>
+          <div class="dm-row"><div class="dm-k">Charter damages s.24(1)</div><div class="dm-v">Compensatory deterrence per breach</div></div>
+          <div class="dm-row"><div class="dm-k">Punitive</div><div class="dm-v">Egregious, bad-faith state action</div></div>
+          <div class="dm-row"><div class="dm-k">Future earning capacity</div><div class="dm-v">Age 26 — 35+ working years. PTSD impact on capacity. Degen (age 53): $132k. Higher at 26.</div></div>
+          <div class="dm-row"><div class="dm-k">Special</div><div class="dm-v">Treatment, medications, lost income</div></div>
+          <div class="dm-row"><div class="dm-k">Aggravated</div><div class="dm-v">Deliberate nature of violations</div></div>
+          <div class="dm-total">
+            <div class="dm-total-lbl">Net range</div>
+            <div class="dm-total-val">$200&ndash;600k</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="tab-panel" id="panel-actions">
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Lawyers</div></div>
+        <div class="lawyer">
+          <div class="lawyer-top">
+            <div class="lawyer-av">PK</div>
+            <div class="lawyer-info">
+              <div class="lawyer-name">Paul G. Kent-Snowsell</div>
+              <div class="lawyer-sub">Lindsay Kenney LLP &middot; Langley BC &middot; Primary</div>
+              <div class="lawyer-tags">
+                <span class="ltag">33 yrs trial</span>
+                <span class="ltag">Sued RCMP</span>
+                <span class="ltag" style="background:rgba(255,179,64,0.14);color:var(--warn)">Calling &mdash; callback pending</span>
+              </div>
+            </div>
+          </div>
+          <div class="lawyer-bot">
+            <a href="tel:6048885811" class="call-btn">
+              <span>604-888-5811</span>
+              <span class="call-sub">by appt only</span>
+            </a>
+            <a href="mailto:pkent-snowsell@lklaw.ca" class="call-btn" style="margin-top:8px;background:var(--surface2)">
+              <span>pkent-snowsell@lklaw.ca</span>
+            </a>
+          </div>
+        </div>
+        <div class="lawyer" style="margin-top:10px">
+          <div class="lawyer-top">
+            <div class="lawyer-av">CW</div>
+            <div class="lawyer-info">
+              <div class="lawyer-name">Cameron Ward</div>
+              <div class="lawyer-sub">Vancouver BC &middot; 40+ yrs</div>
+              <div class="lawyer-tags">
+                <span class="ltag">Ward v. Vancouver SCC</span>
+                <span class="ltag">Charter &amp; police misconduct</span>
+                <span class="ltag" style="background:var(--surface2);color:var(--muted)">Not yet contacted</span>
+              </div>
+            </div>
+          </div>
+          <div class="lawyer-bot">
+            <a href="https://cameronward.com" target="_blank" rel="noopener" class="call-btn" style="background:var(--surface2)">
+              <span>cameronward.com</span>
+            </a>
+          </div>
+        </div>
+        <div class="lawyer" style="margin-top:10px">
+          <div class="lawyer-top">
+            <div class="lawyer-av">KL</div>
+            <div class="lawyer-info">
+              <div class="lawyer-name">Klein Lawyers</div>
+              <div class="lawyer-sub">Vancouver BC</div>
+              <div class="lawyer-tags">
+                <span class="ltag">RCMP class actions</span>
+                <span class="ltag">Federal court</span>
+                <span class="ltag" style="background:var(--surface2);color:var(--muted)">Not yet contacted</span>
+              </div>
+            </div>
+          </div>
+          <div class="lawyer-bot">
+            <a href="https://callkleinlawyers.com" target="_blank" rel="noopener" class="call-btn" style="background:var(--surface2)">
+              <span>callkleinlawyers.com</span>
+            </a>
+          </div>
+        </div>
+        <div class="lawyer" style="margin-top:10px">
+          <div class="lawyer-top">
+            <div class="lawyer-av">BC</div>
+            <div class="lawyer-info">
+              <div class="lawyer-name">BCCLA Referral Line</div>
+              <div class="lawyer-sub">BC Civil Liberties Association</div>
+              <div class="lawyer-tags">
+                <span class="ltag">Free referrals</span>
+                <span class="ltag">Civil rights</span>
+                <span class="ltag" style="background:var(--surface2);color:var(--muted)">Not yet contacted</span>
+              </div>
+            </div>
+          </div>
+          <div class="lawyer-bot">
+            <a href="tel:6046872919" class="call-btn">
+              <span>604-687-2919</span>
+              <span class="call-sub">referral line</span>
+            </a>
+            <a href="https://bccla.org" target="_blank" rel="noopener" class="call-btn" style="margin-top:8px;background:var(--surface2)">
+              <span>bccla.org</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Strategy</div></div>
+        <div class="card">
+          <div style="font-size:13px;color:var(--text);line-height:1.65;">Contact at least 3 lawyers before committing to any one. Compare retainer structures &mdash; contingency terms vary significantly. Do not sign until all consultations are complete.</div>
+          <div style="margin-top:12px;font-size:11px;font-family:var(--mono);color:var(--muted);line-height:1.6;">Limitation: Aug 2026 &mdash; a claim can be filed before locking in counsel.</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Timeline</div></div>
+        <div class="card">
+          <div class="tl-item"><div class="tl-left"><div class="tl-dot tnow"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Now</div><div class="tl-title">Call Paul Kent-Snowsell</div><div class="tl-desc">604-888-5811. Book Friday or next week. In-person at Langley.</div></div></div>
+          <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Month 1&ndash;2</div><div class="tl-title">Evidence gathering</div><div class="tl-desc">Police report, hospital records, body cam, formal PTSD Dx (in progress), OPCC complaint.</div></div></div>
+          <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Month 2&ndash;4</div><div class="tl-title">Claim filed</div><div class="tl-desc">Civil claim filed before August 2026 deadline. Clock stops.</div></div></div>
+          <div class="tl-item"><div class="tl-left"><div class="tl-dot twarn"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Month 6&ndash;18</div><div class="tl-title">Discovery &amp; negotiation</div><div class="tl-desc">Evidence exchanged. Settlement talks begin. Federal AG typically prefers quiet settlement.</div></div></div>
+          <div class="tl-item"><div class="tl-left"><div class="tl-dot tgood"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Month 12&ndash;24</div><div class="tl-title">Settlement</div><div class="tl-desc">&#x2248;80% of cases settle before trial. Lump sum + confidentiality.</div></div></div>
+          <div class="tl-item"><div class="tl-left"><div class="tl-dot tdanger"></div></div><div class="tl-body"><div class="tl-when">Year 2&ndash;4</div><div class="tl-title">Trial (if no settlement)</div><div class="tl-desc">Rare. Longer, riskier, potentially higher payout. Kent has 100+ trials.</div></div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Evidence checklist</div></div>
+        <div class="card">
+          <div class="cl-meta">
+            <div class="cl-hint">Before the appointment.</div>
+            <div class="cl-count" id="clCount">0/12</div>
+          </div>
+          <div class="cl-prog"><div class="cl-bar" id="clBar" style="width:0%"></div></div>
+          <div id="checklist">
+            <div class="cl-item" data-i="0"><div class="cl-box"></div><div class="cl-label">Call Paul Kent-Snowsell &mdash; book appointment</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="1"><div class="cl-box"></div><div class="cl-label">PTSD assessment started (therapy) &mdash; get Dx letter</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="2"><div class="cl-box"></div><div class="cl-label">Body cam footage requested from RCMP</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="3"><div class="cl-box"></div><div class="cl-label">Police report &mdash; both Daryls full names</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="4"><div class="cl-box"></div><div class="cl-label">Hospital discharge records</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="5"><div class="cl-box"></div><div class="cl-label">Pain journal &mdash; daily entries</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="6"><div class="cl-box"></div><div class="cl-label">Therapist letter confirming PTSD &amp; causation</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="7"><div class="cl-box"></div><div class="cl-label">OPCC complaint filed</div><div class="cl-pri soon">soon</div></div>
+            <div class="cl-item" data-i="8"><div class="cl-box"></div><div class="cl-label">Father witness statement documented</div><div class="cl-pri soon">soon</div></div>
+            <div class="cl-item" data-i="9"><div class="cl-box"></div><div class="cl-label">Exact date in August 2024 confirmed</div><div class="cl-pri soon">soon</div></div>
+            <div class="cl-item" data-i="10"><div class="cl-box"></div><div class="cl-label">Hospital name confirmed</div><div class="cl-pri soon">soon</div></div>
+            <div class="cl-item" data-i="11"><div class="cl-box"></div><div class="cl-label">Career &amp; personality impact documented</div><div class="cl-pri soon">soon</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Call script</div></div>
+        <div class="card">
+          <div class="script-hd">
+            <div class="script-title">What to say</div>
+            <button class="copy-btn" id="copyBtn">Copy</button>
+          </div>
+          <div class="script-text" id="scriptText"></div>
+          <button class="export-btn" id="exportBtn">Export PDF</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="ft">brief &middot; not legal advice</div>
+    <div class="ft">BC, Canada</div>
+  </footer>
+
+</div>
+<script src="script.js?v=6"></script>
+</body>
+</html>
