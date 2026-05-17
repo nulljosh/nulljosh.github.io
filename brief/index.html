@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <base href="/brief/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Brief">
+  <meta name="theme-color" content="#100e0b">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <title>Two Daryls Case</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=24">
+</head>
+<body data-theme="dark">
+
+<div id="auth-overlay">
+  <div class="auth-card">
+    <div class="auth-title">Brief</div>
+    <div class="auth-sub">Trommel v. AG Canada &middot; private</div>
+    <div id="auth-step-email">
+      <form id="auth-form">
+        <input class="auth-input" id="auth-email" type="email" placeholder="Email" autocomplete="email">
+        <button class="auth-btn" type="submit">Send sign-in link</button>
+        <div class="auth-err" id="auth-err"></div>
+      </form>
+    </div>
+    <div id="auth-step-sent" style="display:none">
+      <div class="auth-sent">Link sent</div>
+      <div class="auth-sent-sub">Check your email and click the link to sign in.</div>
+    </div>
+    <div class="auth-footer">not legal advice</div>
+  </div>
+</div>
+
+<div class="page">
+
+  <header class="hero">
+    <div class="hero-nav">
+      <div class="hero-app">Brief</div>
+      <div class="hero-spacer"></div>
+      <button class="theme-btn" id="themeBtn">paper</button>
+      <div class="hero-id">CASE-0001</div>
+    </div>
+    <div class="hero-title">Trommel v. Attorney General of Canada</div>
+    <div class="hero-sub">Charter violations arising from a warrantless wellness-call entry. British Columbia, Canada.</div>
+
+    <div class="deadline-banner">
+      <div class="dl-top">
+        <div class="dl-label">Limitation Deadline</div>
+        <div class="dl-days" id="daysLeft">&mdash; days</div>
+      </div>
+      <div class="dl-date">Basic limit: Aug 1, 2025 &middot; Ultimate: Aug 1, 2038</div>
+      <div class="dl-track">
+        <div class="dl-fill" id="dlFill"></div>
+        <div class="dl-now" id="dlNow"></div>
+      </div>
+      <div class="dl-anchors">
+        <span>Incident &middot; Aug 2023</span>
+        <span>Ultimate: Aug 2038</span>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-lbl">Damages stack</div>
+      <div class="stat-val">$1.14M</div>
+      <div class="stat-sub">conservative &middot; $2.25M strong &middot; $800k&ndash;$1.2M likely settlement</div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="case">Case</button>
+      <button class="tab-btn" data-tab="money">Money</button>
+      <button class="tab-btn" data-tab="actions">Actions</button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- CASE -->
+    <div class="tab-panel active" id="panel-case">
+      <div class="next-action">
+        <div class="na-lbl">Next action</div>
+        <div class="na-title">Active outreach &mdash; awaiting callbacks</div>
+        <div class="na-row">
+          <a href="tel:6045917321" class="na-call">604-591-7321</a>
+          <span class="na-note"></span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Facts</div></div>
+        <div class="card">
+          <div class="facts-grid">
+            <div><div class="fact-k">Date</div><div class="fact-v">August 1, 2023</div></div>
+            <div><div class="fact-k">Time</div><div class="fact-v">~11:00 AM</div></div>
+            <div><div class="fact-k">Location</div><div class="fact-v">Langley, BC</div></div>
+            <div><div class="fact-k">Department</div><div class="fact-v">Langley RCMP, Brookswood</div></div>
+            <div><div class="fact-k">Defendant</div><div class="fact-v">AG of Canada</div></div>
+            <div><div class="fact-k">Officers</div><div class="fact-v">Daryl + D. Ryl</div></div>
+            <div><div class="fact-k">Witness</div><div class="fact-v">Father, in kitchen</div></div>
+            <div><div class="fact-k">Status</div><div class="fact-v">Pre-litigation</div></div>
+            <div style="grid-column:1/-1"><div class="fact-k">Wrist injury</div><div class="fact-v">Pre-existing fracture aggravated by prone restraint &mdash; additional physical harm head</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Witnesses</div></div>
+        <div id="witnesses-list"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Legal grounds</div><div class="hint">tap to expand</div></div>
+        <div class="grounds" id="grounds-case"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Pain journal</div><button class="j-add-btn" id="jAddBtn">+ Entry</button></div>
+        <div class="card">
+          <div class="j-form" id="jForm" style="display:none">
+            <input class="j-date-input" id="jDateInput" type="date">
+            <textarea class="j-textarea" id="jTextarea" placeholder="What happened today..."></textarea>
+            <div class="j-form-row">
+              <button class="j-save-btn" id="jSaveBtn">Save</button>
+              <button class="j-cancel-btn" id="jCancelBtn">Cancel</button>
+            </div>
+          </div>
+          <div id="journal-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MONEY -->
+    <div class="tab-panel" id="panel-money">
+      <div class="next-action">
+        <div class="na-lbl">Next action</div>
+        <div class="na-title">Active outreach &mdash; awaiting callbacks</div>
+        <div class="na-row">
+          <a href="tel:6045917321" class="na-call">604-591-7321</a>
+          <span class="na-note"></span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Outcome scenarios</div></div>
+        <div class="card">
+          <div class="scenario">
+            <div class="sc-row"><div><div class="sc-name">Best case</div><div class="sc-desc">Full trial, all heads, Ward functions maximally triggered, punitive granted.</div></div><div class="sc-right"><div class="sc-amt" style="color:var(--green)">$2&ndash;3M</div><div class="sc-pct">15%</div></div></div>
+            <div class="bar-track"><div class="bar-fill" data-w="15" style="background:var(--green);transition-delay:0ms"></div></div>
+          </div>
+          <div class="scenario">
+            <div class="sc-row"><div><div class="sc-name">Strong</div><div class="sc-desc">Settlement with silence premium, evidence fully assembled.</div></div><div class="sc-right"><div class="sc-amt" style="color:var(--warn)">$1.2&ndash;1.8M</div><div class="sc-pct">30%</div></div></div>
+            <div class="bar-track"><div class="bar-fill" data-w="30" style="background:var(--warn);transition-delay:120ms"></div></div>
+          </div>
+          <div class="scenario">
+            <div class="sc-row"><div><div class="sc-name">Most likely</div><div class="sc-desc">AG settles to suppress precedent. Confidentiality clause standard.</div></div><div class="sc-right"><div class="sc-amt" style="color:var(--mid)">$800k&ndash;1.2M</div><div class="sc-pct">40%</div></div></div>
+            <div class="bar-track"><div class="bar-fill" data-w="40" style="background:var(--mid);transition-delay:240ms"></div></div>
+          </div>
+          <div class="scenario">
+            <div class="sc-row"><div><div class="sc-name">Worst</div><div class="sc-desc">Limitation fails OR settles early without leverage.</div></div><div class="sc-right"><div class="sc-amt" style="color:var(--danger)">$0&ndash;350k</div><div class="sc-pct">15%</div></div></div>
+            <div class="bar-track"><div class="bar-fill" data-w="15" style="background:var(--danger);transition-delay:360ms"></div></div>
+          </div>
+          <div style="margin-top:14px;padding:10px;background:var(--surface-2);border-radius:8px;font-size:11px;font-family:var(--mono);color:var(--muted);line-height:1.6;">8 stacked Charter/tort breaches &middot; 21+ months documented PTSD &middot; Positional asphyxia risk &middot; Forced antipsychotics (Fleming v. Ontario) &middot; Unlawful dwelling entry, highest-tier s.8 (Feeney) &middot; No underlying crime &mdash; bad-faith threshold met &middot; Degen v. Min. Public Safety 2023 BCSC: $317k (Surrey RCMP, force + PTSD &mdash; floor for this head alone) &middot; Mona Wang v. AG Canada (2021, confidential): settled to suppress precedent &middot; $1M+ realistic median &middot; $2&ndash;3M trial ceiling</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Per-head damages stack</div></div>
+        <div id="dmg-stack-card"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Silence premium</div></div>
+        <div class="card">
+          <div style="font-size:11px;font-family:var(--mono);color:var(--text);line-height:1.85;">
+            The AG settles confidentially to suppress precedent, avoid press, kill discovery, and resolve before trial. This is a structural incentive &mdash; not just case-strength pricing.<br><br>
+            Each public-ready evidence piece raises the premium. Every press-capable lawyer contact, every FOI/ATIP disclosure, every Charter ground formally pleaded increases the AG's internal cost of keeping this quiet.<br><br>
+            <span style="color:var(--warn)">Baseline:</span> Mona Wang v. AG Canada (2021) &mdash; BC RCMP wellness check, settled confidentially.<br>
+            <span style="color:var(--green)">This case:</span> Mona Wang + no underlying crime + dwelling entry + forced antipsychotic medication. Silence premium stacks accordingly.
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Ward framework</div></div>
+        <div class="card">
+          <div style="font-size:11px;font-family:var(--mono);color:var(--text);line-height:1.85;">
+            <em>Vancouver (City) v. Ward</em>, 2010 SCC 27: Charter damages under s.24(1) serve three functions &mdash; <span style="color:var(--warn)">compensation</span>, <span style="color:var(--warn)">vindication</span>, and <span style="color:var(--warn)">deterrence</span>.<br><br>
+            This fact pattern triggers all three maximally: no underlying crime, dwelling entry, forced medication, prolonged detention, documented PTSD.<br><br>
+            When all three Ward functions are engaged at maximum, courts assess damages globally rather than per-head (indivisible injury, <em>cf. Henry v. BC</em>). Global assessment routinely exceeds the arithmetic sum of stacked heads.
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Scale &middot; comparable awards</div></div>
+        <div class="card" id="dmg-scale-card"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Per-violation value</div><div class="hint">tap to expand</div></div>
+        <div class="grounds" id="grounds-money"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Damages claimed</div></div>
+        <div class="card">
+          <div class="dm-row"><div class="dm-k">General (non-pecuniary)</div><div class="dm-v">Pain, suffering, loss of dignity, PTSD</div></div>
+          <div class="dm-row"><div class="dm-k">Charter damages s.24(1)</div><div class="dm-v">Compensatory deterrence per breach</div></div>
+          <div class="dm-row"><div class="dm-k">Punitive</div><div class="dm-v">Egregious, bad-faith state action</div></div>
+          <div class="dm-row"><div class="dm-k">Future earning capacity</div><div class="dm-v">Age 26, 35+ working years. Non-linear age multiplier: Degen was 53; plaintiff is 26 &mdash; discount rates favor younger plaintiff significantly. Vocational economist quantification likely pushes this head $400k+.</div></div>
+          <div class="dm-row"><div class="dm-k">Special</div><div class="dm-v">Treatment, medications, lost income</div></div>
+          <div class="dm-row"><div class="dm-k">Aggravated</div><div class="dm-v">Deliberate nature of violations</div></div>
+          <div class="dm-total">
+            <div class="dm-total-lbl">Net range</div>
+            <div class="dm-total-val">$800k&ndash;$2M (median $1M+)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="tab-panel" id="panel-actions">
+      <div class="next-action">
+        <div class="na-lbl">Next action</div>
+        <div class="na-title">Active outreach &mdash; awaiting callbacks</div>
+        <div class="na-row">
+          <a href="tel:6045917321" class="na-call">604-591-7321</a>
+          <span class="na-note"></span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Lawyers</div></div>
+        <div class="lawyer" data-lawyer-id="paul-kent">
+          <div class="lawyer-top">
+            <div class="lawyer-av">PK</div>
+            <div class="lawyer-info">
+              <div class="lawyer-name">Paul G. Kent-Snowsell</div>
+              <div class="lawyer-sub">Kane Shannon &amp; Weiler (KSW) &middot; Surrey BC &middot; Of Counsel</div>
+              <div class="lawyer-tags">
+                <span class="ltag good">33 yrs trial</span>
+                <span class="ltag good">Sued RCMP</span>
+                <span class="ltag good">Voicemail left</span>
+              </div>
+            </div>
+          </div>
+          <div class="lawyer-bot">
+            <a href="tel:6045917321" class="call-btn">
+              <span>604-591-7321</span>
+            </a>
+            <a href="mailto:pgkent@kswlawyers.ca" class="call-btn" style="margin-top:8px;background:var(--surface-2);color:var(--text)">
+              <span>pgkent@kswlawyers.ca</span>
+            </a>
+          </div>
+        </div>
+        <div class="lawyer" style="margin-top:10px" data-lawyer-id="cameron-ward">
+          <div class="lawyer-top">
+            <div class="lawyer-av">CW</div>
+            <div class="lawyer-info">
+              <div class="lawyer-name">Cameron Ward</div>
+              <div class="lawyer-sub">Vancouver BC &middot; 40+ yrs</div>
+              <div class="lawyer-tags">
+                <span class="ltag good">Ward v. Vancouver SCC</span>
+                <span class="ltag good">Charter &amp; police misconduct</span>
+                <span class="ltag">Not yet contacted</span>
+              </div>
+            </div>
+          </div>
+          <div class="lawyer-bot">
+            <a href="https://cameronward.com" target="_blank" rel="noopener" class="call-btn" style="background:var(--surface-2);color:var(--text)">
+              <span>cameronward.com</span>
+            </a>
+          </div>
+        </div>
+        <div class="lawyer" style="margin-top:10px" data-lawyer-id="arvay-finlay">
+          <div class="lawyer-top">
+            <div class="lawyer-av">AF</div>
+            <div class="lawyer-info">
+              <div class="lawyer-name">Arvay Finlay LLP</div>
+              <div class="lawyer-sub">Vancouver BC</div>
+              <div class="lawyer-tags">
+                <span class="ltag good">Fairy Creek RCMP class action</span>
+                <span class="ltag good">Charter ss.2/7/8/9</span>
+                <span class="ltag">Not yet contacted</span>
+              </div>
+            </div>
+          </div>
+          <div class="lawyer-bot">
+            <a href="tel:6046969828" class="call-btn">
+              <span>604-696-9828</span>
+            </a>
+            <a href="https://arvayfinlay.ca" target="_blank" rel="noopener" class="call-btn" style="margin-top:8px;background:var(--surface-2);color:var(--text)">
+              <span>arvayfinlay.ca</span>
+            </a>
+          </div>
+        </div>
+        <div class="lawyer" style="margin-top:10px" data-lawyer-id="klein-lawyers">
+          <div class="lawyer-top">
+            <div class="lawyer-av">KL</div>
+            <div class="lawyer-info">
+              <div class="lawyer-name">Klein Lawyers</div>
+              <div class="lawyer-sub">Vancouver BC</div>
+              <div class="lawyer-tags">
+                <span class="ltag good">RCMP class actions</span>
+                <span class="ltag good">Federal court</span>
+                <span class="ltag">Not yet contacted</span>
+              </div>
+            </div>
+          </div>
+          <div class="lawyer-bot">
+            <a href="https://callkleinlawyers.com" target="_blank" rel="noopener" class="call-btn" style="background:var(--surface-2);color:var(--text)">
+              <span>callkleinlawyers.com</span>
+            </a>
+          </div>
+        </div>
+        <div class="lawyer" style="margin-top:10px" data-lawyer-id="bccla">
+          <div class="lawyer-top">
+            <div class="lawyer-av">BC</div>
+            <div class="lawyer-info">
+              <div class="lawyer-name">BCCLA Referral Line</div>
+              <div class="lawyer-sub">BC Civil Liberties Association</div>
+              <div class="lawyer-tags">
+                <span class="ltag good">Free referrals</span>
+                <span class="ltag good">Civil rights</span>
+                <span class="ltag">Not yet contacted</span>
+              </div>
+            </div>
+          </div>
+          <div class="lawyer-bot">
+            <a href="tel:6046872919" class="call-btn">
+              <span>604-687-2919</span>
+              <span class="call-sub">referral line</span>
+            </a>
+            <a href="https://bccla.org" target="_blank" rel="noopener" class="call-btn" style="margin-top:8px;background:var(--surface-2);color:var(--text)">
+              <span>bccla.org</span>
+            </a>
+          </div>
+        </div>
+        <div class="lawyer" style="margin-top:10px" data-lawyer-id="dla-law">
+          <div class="lawyer-top">
+            <div class="lawyer-av">DL</div>
+            <div class="lawyer-info">
+              <div class="lawyer-name">DLA Law (Dosanjh Ladner Arora)</div>
+              <div class="lawyer-sub">Vancouver BC</div>
+              <div class="lawyer-tags">
+                <span class="ltag good">Police Misconduct practice</span>
+                <span class="ltag good">Wrongful arrest</span>
+                <span class="ltag good">Email sent</span>
+              </div>
+            </div>
+          </div>
+          <div class="lawyer-bot">
+            <a href="tel:6043276381" class="call-btn">
+              <span>604-327-6381</span>
+            </a>
+            <a href="mailto:Ingrid@dlalaw.ca" class="call-btn" style="margin-top:8px;background:var(--surface-2);color:var(--text)">
+              <span>Ingrid@dlalaw.ca</span>
+            </a>
+          </div>
+        </div>
+        <div class="lawyer" style="margin-top:10px" data-lawyer-id="mcquarrie-hunter">
+          <div class="lawyer-top">
+            <div class="lawyer-av">MH</div>
+            <div class="lawyer-info">
+              <div class="lawyer-name">McQuarrie Hunter LLP</div>
+              <div class="lawyer-sub">Surrey BC</div>
+              <div class="lawyer-tags">
+                <span class="ltag good">BC Limitation Act</span>
+                <span class="ltag good">Discoverability / s.18</span>
+                <span class="ltag good">Voicemail left</span>
+              </div>
+            </div>
+          </div>
+          <div class="lawyer-bot">
+            <a href="tel:6045817001" class="call-btn">
+              <span>604-581-7001</span>
+            </a>
+          </div>
+        </div>
+        <div class="lawyer" style="margin-top:10px" data-lawyer-id="sean-hern">
+          <div class="lawyer-top">
+            <div class="lawyer-av">SH</div>
+            <div class="lawyer-info">
+              <div class="lawyer-name">Sean Hern Law Corporation</div>
+              <div class="lawyer-sub">Vancouver BC &middot; formerly Farris LLP</div>
+              <div class="lawyer-tags">
+                <span class="ltag good">Commercial litigation</span>
+                <span class="ltag good">Pro bono</span>
+                <span class="ltag good">BC FOI/Privacy Assoc.</span>
+                <span class="ltag">Not yet contacted</span>
+              </div>
+            </div>
+          </div>
+          <div class="lawyer-bot">
+            <a href="tel:6046849151" class="call-btn">
+              <span>604-684-9151</span>
+            </a>
+          </div>
+        </div>
+        <div class="lawyer" style="margin-top:10px" data-lawyer-id="pivot-legal">
+          <div class="lawyer-top">
+            <div class="lawyer-av">PL</div>
+            <div class="lawyer-info">
+              <div class="lawyer-name">Pivot Legal</div>
+              <div class="lawyer-sub">Vancouver BC &middot; Backup / referrals</div>
+              <div class="lawyer-tags">
+                <span class="ltag good">Referral source</span>
+                <span class="ltag">Not yet contacted</span>
+              </div>
+            </div>
+          </div>
+          <div class="lawyer-bot">
+            <a href="tel:6042559700" class="call-btn">
+              <span>604-255-9700</span>
+            </a>
+          </div>
+        </div>
+        <div class="lawyer" style="margin-top:10px" data-lawyer-id="aitken-robertson">
+          <div class="lawyer-top">
+            <div class="lawyer-av">AR</div>
+            <div class="lawyer-info">
+              <div class="lawyer-name">Aitken Robertson</div>
+              <div class="lawyer-sub">Vancouver BC</div>
+              <div class="lawyer-tags">
+                <span class="ltag good">Police negligence</span>
+                <span class="ltag good">Charter civil litigation</span>
+                <span class="ltag fail">Phone out of order</span>
+              </div>
+            </div>
+          </div>
+          <div class="lawyer-bot">
+            <a href="tel:6043251155" class="call-btn" style="background:var(--surface-2);color:var(--muted)">
+              <span>604-325-1155</span>
+              <span class="call-sub">phone out of order</span>
+            </a>
+          </div>
+        </div>
+        <div class="lawyer" style="margin-top:10px" data-lawyer-id="cba-bc">
+          <div class="lawyer-top">
+            <div class="lawyer-av">CB</div>
+            <div class="lawyer-info">
+              <div class="lawyer-name">Canadian Bar Association BC</div>
+              <div class="lawyer-sub">Lawyer Referral Service</div>
+              <div class="lawyer-tags">
+                <span class="ltag good">Free referrals</span>
+                <span class="ltag urgent">No answer</span>
+              </div>
+            </div>
+          </div>
+          <div class="lawyer-bot">
+            <a href="tel:6046873221" class="call-btn">
+              <span>604-687-3221</span>
+            </a>
+            <a href="mailto:info@cbabc.org" class="call-btn" style="margin-top:8px;background:var(--surface-2);color:var(--text)">
+              <span>info@cbabc.org</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Strategy</div></div>
+        <div class="card">
+          <div style="font-size:13px;color:var(--text);line-height:1.65;">Contact at least 3 lawyers before committing to any one. Compare retainer structures &mdash; contingency terms vary significantly. Do not sign until all consultations are complete.</div>
+          <div style="margin-top:12px;font-size:11px;font-family:var(--mono);color:var(--warn);line-height:1.6;font-weight:700;">Basic 2-yr limit expired Aug 1, 2025 &mdash; claim survives on discoverability (s.8(1)(d)) and PTSD incapacity (s.18). Therapy start May 2026 supports both. Ultimate deadline: Aug 1, 2038. File as soon as counsel confirms.</div>
+          <div style="margin-top:12px;font-size:11px;font-family:var(--mono);color:var(--muted);line-height:1.8;"><span style="color:var(--warn);font-weight:700">Voicemails not working &mdash; switch to EMAIL.</span><br><br>Email first:<br>1. Cameron Ward &mdash; cameronward.com &mdash; <span style="color:var(--green)">EMAIL</span> &mdash; he is the Ward in Ward v. Vancouver<br>2. DLA Law &mdash; Ingrid@dlalaw.ca &mdash; <span style="color:var(--green)">EMAIL</span> &mdash; follow up<br>3. Arvay Finlay &mdash; arvayfinlay.ca &mdash; <span style="color:var(--green)">EMAIL</span><br>4. Klein Lawyers &mdash; callkleinlawyers.com &mdash; <span style="color:var(--green)">EMAIL</span><br><br>Call also viable:<br>5. Paul Kent-Snowsell &mdash; KSW &mdash; 604-591-7321<br>6. McQuarrie Hunter LLP &mdash; 604-581-7001<br>7. Sean Hern Law Corp &mdash; 604-684-9151<br>8. BCCLA Referral Line &mdash; 604-687-2919<br>9. Pivot Legal &mdash; 604-255-9700<br>10. CBA BC &mdash; 604-687-3221 / info@cbabc.org</div>
+          <div style="margin-top:12px;font-size:11px;font-family:var(--mono);color:var(--mid);line-height:1.7;">Be expensive to fight quietly. Each press-capable lawyer contact, each documented evidence piece, each Charter ground formally pleaded raises the AG's internal cost of suppressing this case publicly.</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Timeline</div></div>
+        <div class="card">
+          <div class="tl-item"><div class="tl-left"><div class="tl-dot tnow"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Now</div><div class="tl-title">Call Paul Kent-Snowsell</div><div class="tl-desc">604-888-5811. Book Friday or next week. In-person at Langley.</div></div></div>
+          <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Month 1&ndash;2</div><div class="tl-title">Evidence gathering</div><div class="tl-desc">Police report, hospital records, body cam, formal PTSD Dx (in progress), OPCC complaint.</div></div></div>
+          <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Month 2&ndash;4</div><div class="tl-title">Claim filed</div><div class="tl-desc">Basic deadline expired Aug 1, 2025. If discoverability argument succeeds, file immediately &mdash; every day increases risk.</div></div></div>
+          <div class="tl-item"><div class="tl-left"><div class="tl-dot twarn"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Month 6&ndash;18</div><div class="tl-title">Discovery &amp; negotiation</div><div class="tl-desc">Evidence exchanged. Settlement talks begin. Federal AG typically prefers quiet settlement.</div></div></div>
+          <div class="tl-item"><div class="tl-left"><div class="tl-dot tgood"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-when">Month 12&ndash;24</div><div class="tl-title">Settlement</div><div class="tl-desc">&#x2248;80% of cases settle before trial. Lump sum + confidentiality.</div></div></div>
+          <div class="tl-item"><div class="tl-left"><div class="tl-dot tdanger"></div></div><div class="tl-body"><div class="tl-when">Year 2&ndash;4</div><div class="tl-title">Trial (if no settlement)</div><div class="tl-desc">Rare. Longer, riskier, potentially higher payout. Kent has 100+ trials.</div></div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Evidence checklist</div></div>
+        <div class="card">
+          <div class="cl-meta">
+            <div class="cl-hint">Before the appointment.</div>
+            <div class="cl-count" id="clCount">0/14</div>
+          </div>
+          <div class="cl-prog"><div class="cl-bar" id="clBar" style="width:0%"></div></div>
+          <div id="checklist">
+            <div class="cl-item" data-i="0"><div class="cl-box"></div><div class="cl-label">Call Paul Kent-Snowsell &mdash; book appointment</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="1"><div class="cl-box"></div><div class="cl-label">PTSD assessment started (therapy) &mdash; get Dx letter</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="2"><div class="cl-box"></div><div class="cl-label">Body cam footage requested from RCMP</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="3"><div class="cl-box"></div><div class="cl-label">Police report &mdash; both Daryls full names</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="4"><div class="cl-box"></div><div class="cl-label">Hospital discharge records</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="5"><div class="cl-box"></div><div class="cl-label">Pain journal &mdash; daily entries</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="6"><div class="cl-box"></div><div class="cl-label">Therapist letter confirming PTSD &amp; causation</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="7"><div class="cl-box"></div><div class="cl-label">CRCC complaint filed (RCMP is federal &mdash; not OPCC, which is BC municipal only)</div><div class="cl-pri soon">soon</div></div>
+            <div class="cl-item" data-i="8"><div class="cl-box"></div><div class="cl-label">Father witness statement documented</div><div class="cl-pri soon">soon</div></div>
+            <div class="cl-item" data-i="9"><div class="cl-box"></div><div class="cl-label">Incident date confirmed: August 1, 2023 (File #2023-25586)</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="10"><div class="cl-box"></div><div class="cl-label">Hospital name confirmed</div><div class="cl-pri soon">soon</div></div>
+            <div class="cl-item" data-i="11"><div class="cl-box"></div><div class="cl-label">Career &amp; personality impact documented</div><div class="cl-pri soon">soon</div></div>
+            <div class="cl-item" data-i="12"><div class="cl-box"></div><div class="cl-label">Therapist letter: PTSD Dx + period of incapacity re: this claim + causation to Aug 1, 2023</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="13"><div class="cl-box"></div><div class="cl-label">Pin discovery date: when you first understood a civil Charter claim was an appropriate remedy</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="14"><div class="cl-box"></div><div class="cl-label">ATIP filed with RCMP &mdash; officer names, notebooks (Form 1624), BWC footage, File #2023-25586</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="15"><div class="cl-box"></div><div class="cl-label">FOI filed with E-Comm 9-1-1 BC &mdash; 911 audio + CAD notes (neutralizes Godoy scope argument)</div><div class="cl-pri now">now</div></div>
+            <div class="cl-item" data-i="16"><div class="cl-box"></div><div class="cl-label">Email outreach sent to: Cameron Ward, Arvay Finlay, Klein Lawyers, BCCLA &mdash; email, don&rsquo;t call</div><div class="cl-pri now">now</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Call script</div></div>
+        <div class="card">
+          <div class="script-hd">
+            <div class="script-title">Callback prep</div>
+            <button class="copy-btn" id="copyBtn">Copy</button>
+          </div>
+          <div class="script-text" id="scriptText"></div>
+          <button class="export-btn" id="exportBtn">Export PDF</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Risks &mdash; what AG will attack</div></div>
+        <div class="card">
+          <div style="font-size:12px;color:var(--text);line-height:1.65;">
+            <div style="margin-bottom:10px"><span style="color:var(--danger);font-weight:700">Limitation (kill shot).</span> Rule 9-5 strike likely. s.8(1)(d) discoverability + s.18 incapacity must both be argued. Anything showing 2023&ndash;2025 functional capacity (taxes, leases, employment, banking, driving) hurts s.18.</div>
+            <div style="margin-bottom:10px"><span style="color:var(--warn);font-weight:700">Godoy doorway.</span> <em>R v. Godoy</em> [1999] 1 SCR 311 gives 911-wellness entry authority. Counter-attack is scope &mdash; entry to verify safety, not detain/medicate. The 911 call audio defines the doorway size.</div>
+            <div style="margin-bottom:10px"><span style="color:var(--warn);font-weight:700">MHA s.28 apprehension.</span> If lawful, forced-medication ground weakens. Father&rsquo;s &ldquo;answering well&hellip; not violent&rdquo; testimony is the linchpin against s.28 threshold.</div>
+            <div style="margin-bottom:10px"><span style="color:var(--warn);font-weight:700">Causation / baseline.</span> AG hires their own forensic psychiatrist; will subpoena pre-2023 GP records looking for alternative causes.</div>
+            <div><span style="color:var(--warn);font-weight:700">Self-rep admissions.</span> Audit every email, complaint, social post you wrote pre-retainer for inconsistencies before disclosure.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Evidence gaps &mdash; not yet on checklist</div></div>
+        <div class="card">
+          <div style="font-size:11px;font-family:var(--mono);color:var(--text);line-height:1.85">
+            &middot; 911 call audio + CAD notes (E-Comm 9-1-1 BC FOI)<br>
+            &middot; RCMP officer notebooks Form 1624 (ATIP)<br>
+            &middot; BCEHS paramedic ePCR<br>
+            &middot; Mental Health Act Form 4 / Form 1 (hospital)<br>
+            &middot; Pharmacy records post-incident<br>
+            &middot; Pre-incident GP records 2022 &ndash; Jul 2023 (baseline)<br>
+            &middot; Income records / T4s 2022&ndash;2026<br>
+            &middot; Photos &mdash; injuries, dwelling damage<br>
+            &middot; Pre-retainer comms audit (admissions check)<br>
+            <br>
+            <span style="color:var(--warn);font-weight:700">Note:</span> existing checklist item &ldquo;OPCC complaint&rdquo; should be <span style="color:var(--green);font-weight:700">CRCC</span>. RCMP is federal &mdash; OPCC handles BC municipal only.
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Drafts</div><div class="hint">tap to expand</div></div>
+        <div class="card">
+          <details style="margin-bottom:10px">
+            <summary style="cursor:pointer;font-size:12px;font-weight:700;color:var(--text);padding:6px 0;">Outreach email &mdash; standard template</summary>
+            <div style="margin-top:8px;">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+                <div style="font-size:10px;font-family:var(--mono);color:var(--muted);">Subject: Civil Consultation &mdash; Wellness Call / RCMP Charter Claim &mdash; Trommel</div>
+                <button class="copy-btn" id="emailCopyBtn">Copy</button>
+              </div>
+              <div style="font-size:11px;font-family:var(--mono);color:var(--mid);line-height:1.75;white-space:pre-wrap;padding:10px;background:var(--surface-2);border-radius:8px;" id="emailTemplateText">Hi [Name],
+
+My name is Joshua Trommel. I'm reaching out because I have a potential civil claim arising from a warrantless wellness-call entry by Langley RCMP (Brookswood detachment) in August 2023.
+
+The incident involved unlawful entry into my home, excessive force, arbitrary detention, forced antipsychotic medication, and overnight solitary confinement, all without charge. I have been in therapy since May 2026 and am pursuing a formal PTSD diagnosis. The basic 2-year limitation expired August 2025; the claim survives on discoverability and PTSD-based incapacity under the BC Limitation Act.
+
+I've put together a detailed case brief here for your review:
+https://heyitsmejosh.com/brief
+
+It covers the alleged Charter breaches (ss. 7, 8, 9, 12), relevant case law, estimated damages, and a full timeline. Based on your background, including prior RCMP litigation and precedent-setting work, I believe you'd be well-suited for this matter.
+
+I'd like to book an in-person consultation at your earliest convenience. Please let me know your availability.
+
+Thank you,
+Joshua Trommel
+778-201-4533</div>
+            </div>
+          </details>
+          <details style="margin-bottom:10px">
+            <summary style="cursor:pointer;font-size:12px;font-weight:700;color:var(--text);padding:6px 0;">CRCC complaint &mdash; skeleton</summary>
+            <div style="font-size:11px;font-family:var(--mono);color:var(--mid);line-height:1.7;white-space:pre-wrap;padding:8px 0 4px;">To: Civilian Review and Complaints Commission for the RCMP
+Re: Langley RCMP (Brookswood), File #2023-25586
+Complainant: Joshua Trommel
+Incident: August 1, 2023, ~11:00 AM, Langley BC
+
+Conduct complained of:
+1. Warrantless entry into private dwelling on non-criminal wellness call.
+2. Prone restraint by kneeling on back &mdash; respiratory distress.
+3. Apprehension absent lawful MHA s.28 grounds.
+4. No s.10(b) Charter caution.
+5. Forcible antipsychotic medication without consent.
+6. Overnight solitary confinement, no charge.
+7. Discharge with no aftercare, no family notification.
+
+Witness: Father &mdash; written statement available.
+Relief: investigation, officer identification, notebooks, BWC, formal disposition.
+
+Strategic: file AFTER Paul reviews. CRCC findings non-binding but persuasive. Does NOT toll limitation.</div>
+          </details>
+
+          <details style="margin-bottom:10px">
+            <summary style="cursor:pointer;font-size:12px;font-weight:700;color:var(--text);padding:6px 0;">FOI / ATIP &mdash; 4 requests</summary>
+            <div style="font-size:11px;font-family:var(--mono);color:var(--mid);line-height:1.7;white-space:pre-wrap;padding:8px 0 4px;">1. RCMP ATIP &mdash; officer names + badges, notebooks (Form 1624), General Occurrence Report, BWC, PRIME-BC entries, MHA forms generated. File #2023-25586.
+
+2. E-Comm 9-1-1 BC FOI &mdash; 911 audio, CAD notes, RCMP&harr;dispatch comms for Aug 1, 2023.
+
+3. BCEHS Privacy Office &mdash; ePCR, dispatch logs, paramedic narratives for any attendance Aug 1, 2023.
+
+4. Hospital ROI &mdash; full chart Aug 1&ndash;2, 2023: ER triage, admission notes, MD orders, MAR, restraint records, MHA Form 4/Form 1, nursing notes, discharge, incident reports.</div>
+          </details>
+
+          <details style="margin-bottom:10px">
+            <summary style="cursor:pointer;font-size:12px;font-weight:700;color:var(--text);padding:6px 0;">Demand letter &mdash; skeleton</summary>
+            <div style="font-size:11px;font-family:var(--mono);color:var(--mid);line-height:1.7;white-space:pre-wrap;padding:8px 0 4px;">Without prejudice &mdash; for settlement purposes only
+
+1. Parties: Trommel v. Crown in right of Canada (RCMP).
+2. Facts: ~2 paragraph summary.
+3. Causes: Charter ss.7, 8, 9, 10(b), 12; battery; false imprisonment; IIMS; negligent investigation (Hill v. Hamilton-Wentworth 2007 SCC 41).
+4. Damages: general, Charter (Ward), aggravated, punitive, future earning capacity, special. Range $X&ndash;$Y.
+5. Limitation: discovery May 11, 2026 (s.8(1)(d)); alt. s.18.
+6. Offer: open 30 days. ~70&ndash;80% of mid-case estimate. Then file.
+7. Confidentiality: standard on terms; resist NDA on underlying facts (cf. Mona Wang).
+
+Route: AG Canada via DOJ Vancouver Regional Office. File ONLY when evidence substantially gathered.</div>
+          </details>
+
+          <details>
+            <summary style="cursor:pointer;font-size:12px;font-weight:700;color:var(--text);padding:6px 0;">Extra questions for Paul (11&ndash;18)</summary>
+            <div style="font-size:11px;font-family:var(--mono);color:var(--mid);line-height:1.85;padding:8px 0 4px;">11. CRCC complaint &mdash; before or after civil claim?<br>
+12. Recommended forensic psychiatrist for retroactive incapacity opinion?<br>
+13. Plead individual officers as named defendants, or AG only?<br>
+14. Will you cite Mona Wang v. AG Canada (2021, confidential) to opposing counsel?<br>
+15. Godoy counter-narrative if 911 call shows real safety concern?<br>
+16. CCD v. AG BC (BCSC May 2025) &mdash; decision update? Wait for it before filing?<br>
+17. Cost-shift exposure if we lose at trial (BC SC costs follow event)?<br>
+18. BCCLA or other civil-liberties org funding/support?</div>
+          </details>
+
+          <div style="margin-top:12px;font-size:10px;font-family:var(--mono);color:var(--muted);line-height:1.6">Full drafts: <code>next-steps-drafts.md</code> in repo. Nothing here sent without Paul&rsquo;s sign-off.</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hd"><div class="lbl">Callback log</div></div>
+        <div class="card">
+          <div style="font-size:11px;font-family:var(--mono);color:var(--muted);line-height:1.9;">Record after each lawyer call:<br>— Limitation verdict (viable / not viable / needs more info)<br>— Fee structure (contingency % / hourly rate)<br>— Their assessment of May 11, 2026 as s.8(d) discovery date<br>— Next step they recommended<br>— Will they take the case? (Y / N / maybe)<br>— Referral to another lawyer?</div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="ft">brief &middot; not legal advice</div>
+    <div class="ft">BC, Canada</div>
+  </footer>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="script.js?v=23"></script>
+<script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/brief/sw.js'); }</script>
+</body>
+</html>
