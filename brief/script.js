@@ -1,602 +1,838 @@
-const TOTAL = 17;
+// ===== SUPABASE AUTH =====
+const SB_URL = 'https://tjsxsqlxjmanwvmywwvw.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRqc3hzcWx4am1hbnd2bXl3d3Z3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0OTc0MDEsImV4cCI6MjA4NjA3MzQwMX0.LphLfho3wdQC20MhtcnBpzQUNuBoTOobrugQbNGxc68';
+const ALLOWED_EMAIL = 'jatrommel@gmail.com';
+const _sb = supabase.createClient(SB_URL, SB_KEY);
+let _userId = null;
 
-var MAX_K = 500;
-function parseHighK(val) {
-  var m = val.match(/(\d+)k?\s*$/i);
-  return m ? parseInt(m[1]) : 0;
-}
-
-function renderGrounds(containerId, suffix, GROUNDS) {
-  var container = document.getElementById(containerId);
-  GROUNDS.forEach(function(g, i) {
-    var wrap = document.createElement('div');
-    wrap.className = 'ground' + (g.open ? ' open' : '');
-    wrap.dataset.id = g.id + suffix;
-
-    var hd = document.createElement('div'); hd.className = 'ground-hd';
-    var n = document.createElement('div'); n.className = 'ground-n';
-    n.textContent = String(i + 1).padStart(2, '0');
-    var info = document.createElement('div'); info.className = 'ground-info';
-    var t = document.createElement('div'); t.className = 'ground-title'; t.textContent = g.title;
-    var s = document.createElement('div'); s.className = 'ground-sec'; s.textContent = g.sec;
-    info.appendChild(t); info.appendChild(s);
-    var v = document.createElement('div'); v.className = 'ground-val'; v.style.color = g.color; v.textContent = g.val;
-    hd.appendChild(n); hd.appendChild(info); hd.appendChild(v);
-
-    var mag = document.createElement('div'); mag.className = 'ground-mag';
-    var magFill = document.createElement('div'); magFill.className = 'ground-mag-fill';
-    var highK = parseHighK(g.val);
-    magFill.dataset.w = ((highK / MAX_K) * 100).toFixed(1);
-    magFill.style.background = g.color;
-    if (g.open) { magFill.style.width = magFill.dataset.w + '%'; }
-    mag.appendChild(magFill);
-
-    var body = document.createElement('div'); body.className = 'ground-body';
-    var inner = document.createElement('div'); inner.className = 'ground-inner';
-    var desc = document.createElement('div'); desc.className = 'ground-desc'; desc.textContent = g.desc;
-    var cite = document.createElement('div'); cite.className = 'ground-cite'; cite.textContent = g.cite;
-    inner.appendChild(desc); inner.appendChild(cite);
-    body.appendChild(inner);
-
-    wrap.appendChild(hd);
-    wrap.appendChild(mag);
-    wrap.appendChild(body);
-    container.appendChild(wrap);
-  });
-
-  document.getElementById(containerId).querySelectorAll('.ground').forEach(function(card) {
-    card.addEventListener('click', function() {
-      var isOpen = card.classList.contains('open');
-      document.getElementById(containerId).querySelectorAll('.ground').forEach(function(c) { c.classList.remove('open'); });
-      if (!isOpen) {
-        card.classList.add('open');
-        card.querySelectorAll('.ground-mag-fill').forEach(function(f) { f.style.width = f.dataset.w + '%'; });
-      }
-    });
-  });
-}
-
-function renderDamageScale(sections) {
-  var card = document.getElementById('dmg-scale-card');
-  if (!card) return;
-  var MAX = 1000;
-  function pct(k) { return (k / MAX * 100).toFixed(2) + '%'; }
-
-  var label = document.createElement('div');
-  label.style.cssText = 'font-size:10px;font-family:var(--mono);color:var(--muted);margin-bottom:14px;letter-spacing:0.08em;text-transform:uppercase;';
-  label.textContent = 'Canadian scale (CAD) — global ceiling below';
-
-  var wrap = document.createElement('div');
-  wrap.style.cssText = 'position:relative;height:24px;';
-  var track = document.createElement('div');
-  track.style.cssText = 'position:absolute;left:0;right:0;top:10px;height:4px;background:var(--border);border-radius:100px;';
-  var range = document.createElement('div');
-  range.style.cssText = 'position:absolute;top:10px;height:4px;background:var(--green);opacity:0.4;border-radius:100px;left:' + pct(500) + ';width:' + (800-500)/MAX*100 + '%;';
-  [{k:55,color:'var(--muted)'},{k:130,color:'var(--muted)'},{k:317,color:'var(--warn)'},{k:350,color:'var(--warn)'},{k:650,color:'var(--green)'}].forEach(function(m) {
-    var dot = document.createElement('div');
-    dot.style.cssText = 'position:absolute;top:5px;left:' + pct(m.k) + ';transform:translateX(-50%);width:10px;height:10px;border-radius:50%;background:' + m.color + ';border:2px solid var(--bg);';
-    wrap.appendChild(dot);
-  });
-  wrap.appendChild(track);
-  wrap.appendChild(range);
-
-  var ends = document.createElement('div');
-  ends.style.cssText = 'display:flex;justify-content:space-between;font-size:9px;font-family:var(--mono);color:var(--muted);margin-top:6px;margin-bottom:14px;';
-  var e0 = document.createElement('span'); e0.textContent = '$0';
-  var e1 = document.createElement('span'); e1.textContent = '$1M CAD';
-  ends.appendChild(e0); ends.appendChild(e1);
-
-  var legend = document.createElement('div');
-  legend.style.cssText = 'display:flex;flex-direction:column;gap:14px;';
-  sections.forEach(function(section) {
-    var sec = document.createElement('div');
-    var hdr = document.createElement('div');
-    hdr.style.cssText = 'font-size:9px;font-family:var(--mono);color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:7px;padding-bottom:4px;border-bottom:1px solid var(--border);';
-    hdr.textContent = section.header;
-    sec.appendChild(hdr);
-    var rows = document.createElement('div');
-    rows.style.cssText = 'display:flex;flex-direction:column;gap:6px;';
-    section.cases.forEach(function(c) {
-      var row = document.createElement('div');
-      row.style.cssText = 'display:flex;justify-content:space-between;align-items:baseline;gap:8px;';
-      var left = document.createElement('div');
-      left.style.cssText = 'min-width:0;flex:1;overflow:hidden;';
-      var lbl = document.createElement('span');
-      lbl.style.cssText = 'font-size:10px;font-family:var(--mono);color:' + c.color + ';white-space:nowrap;text-overflow:ellipsis;overflow:hidden;display:block;';
-      lbl.textContent = c.label;
-      left.appendChild(lbl);
-      if (c.note) {
-        var note = document.createElement('span');
-        note.style.cssText = 'font-size:9px;font-family:var(--mono);color:var(--muted);opacity:0.6;display:block;';
-        note.textContent = c.note;
-        left.appendChild(note);
-      }
-      var val = document.createElement('span');
-      val.style.cssText = 'font-size:10px;font-family:var(--mono);font-weight:700;color:' + c.color + ';flex-shrink:0;';
-      val.textContent = c.val;
-      row.appendChild(left);
-      row.appendChild(val);
-      rows.appendChild(row);
-    });
-    sec.appendChild(rows);
-    legend.appendChild(sec);
-  });
-
-  card.appendChild(label);
-  card.appendChild(wrap);
-  card.appendChild(ends);
-  card.appendChild(legend);
-}
-
-var dmgMode = localStorage.getItem('brief.dmgmode') || 'strong';
-
-function fmtMoney(n) {
-  return n >= 1000000 ? '$' + (n / 1000000).toFixed(2) + 'M' : '$' + (n / 1000).toFixed(0) + 'k';
-}
-
-function gradeRGB(g) {
-  if (g.charAt(0) === 'A') return [34, 197, 94];
-  if (g.charAt(0) === 'B') return [6, 182, 212];
-  if (g.charAt(0) === 'C') return [234, 179, 8];
-  return [239, 68, 68];
-}
-
-function renderDamagesStack(STACK_HEADS) {
-  var wrap = document.getElementById('dmg-stack-card');
-  if (!wrap) return;
-  while (wrap.firstChild) wrap.removeChild(wrap.firstChild);
-
-  var STACK_CONSERVATIVE = STACK_HEADS.reduce(function(s, h) { return s + h.low; }, 0);
-  var STACK_STRONG = STACK_HEADS.reduce(function(s, h) { return s + h.high; }, 0);
-  var total = dmgMode === 'conservative' ? STACK_CONSERVATIVE : STACK_STRONG;
-  var isDark = document.body.dataset.theme !== 'paper';
-
-  var toggleWrap = document.createElement('div');
-  toggleWrap.className = 'ds-toggle';
-  ['conservative', 'strong'].forEach(function(m) {
-    var btn = document.createElement('button');
-    btn.className = 'ds-toggle-btn' + (dmgMode === m ? ' active' : '');
-    btn.textContent = m;
-    btn.addEventListener('click', function() {
-      dmgMode = m;
-      localStorage.setItem('brief.dmgmode', m);
-      renderDamagesStack(STACK_HEADS);
-    });
-    toggleWrap.appendChild(btn);
-  });
-  wrap.appendChild(toggleWrap);
-
-  var totCard = document.createElement('div');
-  totCard.className = 'card ds-total-card';
-  var totLeft = document.createElement('div');
-  var totLbl = document.createElement('div'); totLbl.className = 'ds-total-lbl'; totLbl.textContent = 'Stacked Total';
-  var totAmt = document.createElement('div'); totAmt.className = 'ds-total-amt'; totAmt.textContent = fmtMoney(total);
-  totLeft.appendChild(totLbl); totLeft.appendChild(totAmt);
-  var totRight = document.createElement('div'); totRight.style.cssText = 'text-align:right;';
-  var medLbl = document.createElement('div'); medLbl.className = 'ds-total-sub-lbl'; medLbl.textContent = 'Settlement Median';
-  var medVal = document.createElement('div'); medVal.className = 'ds-total-sub-val'; medVal.textContent = '$800k – $1.2M';
-  var ceilVal = document.createElement('div'); ceilVal.className = 'ds-total-ceil'; ceilVal.textContent = 'trial ceiling $2–$3M';
-  totRight.appendChild(medLbl); totRight.appendChild(medVal); totRight.appendChild(ceilVal);
-  totCard.appendChild(totLeft); totCard.appendChild(totRight);
-  wrap.appendChild(totCard);
-
-  var rowsCard = document.createElement('div');
-  rowsCard.className = 'card ds-rows-card';
-  STACK_HEADS.forEach(function(h) {
-    var val = dmgMode === 'conservative' ? h.low : h.high;
-    var pct = (val / STACK_STRONG) * 100;
-    var r = h.rgb[0], g = h.rgb[1], b = h.rgb[2];
-    var gr = gradeRGB(h.grade);
-    var grStr = 'rgb(' + gr[0] + ',' + gr[1] + ',' + gr[2] + ')';
-    var grBg = 'rgba(' + gr[0] + ',' + gr[1] + ',' + gr[2] + ',' + (isDark ? '0.18' : '0.12') + ')';
-    var grBdr = 'rgba(' + gr[0] + ',' + gr[1] + ',' + gr[2] + ',' + (isDark ? '0.28' : '0.20') + ')';
-    var hoverBg = 'rgba(' + r + ',' + g + ',' + b + ',' + (isDark ? '0.11' : '0.07') + ')';
-
-    var row = document.createElement('div');
-    row.className = 'ds-row';
-    row.addEventListener('mouseenter', function() { row.style.background = hoverBg; });
-    row.addEventListener('mouseleave', function() { row.style.background = 'transparent'; });
-
-    var topRow = document.createElement('div'); topRow.className = 'ds-row-top';
-    var badge = document.createElement('span'); badge.className = 'ds-badge';
-    badge.textContent = h.grade;
-    badge.style.cssText = 'color:' + grStr + ';background:' + grBg + ';border-color:' + grBdr + ';';
-    var meta = document.createElement('div'); meta.className = 'ds-row-meta';
-    var lbl = document.createElement('span'); lbl.className = 'ds-row-label'; lbl.textContent = h.label;
-    var sub = document.createElement('span'); sub.className = 'ds-row-sub'; sub.textContent = h.sub;
-    meta.appendChild(badge); meta.appendChild(lbl); meta.appendChild(sub);
-    var amt = document.createElement('span'); amt.className = 'ds-row-amt';
-    amt.style.color = 'rgb(' + r + ',' + g + ',' + b + ')';
-    amt.textContent = fmtMoney(val);
-    topRow.appendChild(meta); topRow.appendChild(amt);
-
-    var barTrack = document.createElement('div'); barTrack.className = 'ds-bar-track';
-    var barFill = document.createElement('div'); barFill.className = 'ds-bar-fill';
-    barFill.dataset.w = pct.toFixed(2);
-    barFill.style.cssText = 'background:rgb(' + r + ',' + g + ',' + b + ');width:0;';
-    barTrack.appendChild(barFill);
-
-    row.appendChild(topRow); row.appendChild(barTrack);
-    rowsCard.appendChild(row);
-  });
-  wrap.appendChild(rowsCard);
-
-  requestAnimationFrame(function() {
-    requestAnimationFrame(function() {
-      rowsCard.querySelectorAll('.ds-bar-fill').forEach(function(b) {
-        b.style.width = b.dataset.w + '%';
-      });
-    });
-  });
-}
-
-function renderWitnesses(WITNESSES) {
-  var list = document.getElementById('witnesses-list');
-  if (!list) return;
-  WITNESSES.forEach(function(w) {
-    var card = document.createElement('div');
-    card.className = 'card';
-
-    var hdr = document.createElement('div');
-    hdr.style.cssText = 'display:flex;align-items:center;gap:10px;margin-bottom:10px;';
-    var av = document.createElement('div');
-    av.style.cssText = 'width:36px;height:36px;border-radius:50%;background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--accent);flex-shrink:0;font-family:var(--mono);';
-    av.textContent = w.name[0];
-    var info = document.createElement('div');
-    var nm = document.createElement('div');
-    nm.style.cssText = 'font-size:13px;font-weight:600;color:var(--text);';
-    nm.textContent = w.name;
-    var role = document.createElement('div');
-    role.style.cssText = 'font-size:11px;color:var(--muted);font-family:var(--mono);';
-    role.textContent = w.role + ' · ' + w.date;
-    info.appendChild(nm); info.appendChild(role);
-    hdr.appendChild(av); hdr.appendChild(info);
-    card.appendChild(hdr);
-
-    var tags = document.createElement('div');
-    tags.style.cssText = 'display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px;';
-    w.tags.forEach(function(t) {
-      var tag = document.createElement('span');
-      tag.style.cssText = 'font-size:9px;font-family:var(--mono);background:var(--surface-2);color:var(--green);padding:2px 7px;border-radius:100px;border:1px solid var(--border);';
-      tag.textContent = t;
-      tags.appendChild(tag);
-    });
-    card.appendChild(tags);
-
-    var stmtHd = document.createElement('div');
-    stmtHd.style.cssText = 'font-size:9px;font-family:var(--mono);color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;';
-    stmtHd.textContent = 'Statement — verbatim';
-    card.appendChild(stmtHd);
-
-    var stmt = document.createElement('div');
-    stmt.style.cssText = 'font-size:12px;color:var(--text);line-height:1.75;white-space:pre-wrap;background:var(--surface-2);border-radius:8px;padding:12px;margin-bottom:14px;border-left:2px solid var(--border);';
-    stmt.textContent = w.statement;
-    card.appendChild(stmt);
-
-    var annHd = document.createElement('div');
-    annHd.style.cssText = 'font-size:9px;font-family:var(--mono);color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;';
-    annHd.textContent = 'Legal annotations';
-    card.appendChild(annHd);
-
-    var annList = document.createElement('div');
-    annList.style.cssText = 'display:flex;flex-direction:column;gap:7px;';
-    w.annotations.forEach(function(a) {
-      var row = document.createElement('div');
-      row.style.cssText = 'border-radius:6px;background:var(--surface-2);padding:8px 10px;border-left:2px solid var(--warn);';
-      var q = document.createElement('div');
-      q.style.cssText = 'font-size:11px;font-family:var(--mono);color:var(--warn);margin-bottom:3px;';
-      q.textContent = '"' + a.quote + '"';
-      var n = document.createElement('div');
-      n.style.cssText = 'font-size:11px;color:var(--muted);line-height:1.5;';
-      n.textContent = a.note;
-      row.appendChild(q); row.appendChild(n);
-      annList.appendChild(row);
-    });
-    card.appendChild(annList);
-    list.appendChild(card);
-  });
-}
-
-// Auth — Supabase magic link
-var SB_URL = 'https://tjsxsqlxjmanwvmywwvw.supabase.co';
-var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRqc3hzcWx4am1hbnd2bXl3d3Z3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0OTc0MDEsImV4cCI6MjA4NjA3MzQwMX0.LphLfho3wdQC20MhtcnBpzQUNuBoTOobrugQbNGxc68';
-var ALLOWED_EMAIL = 'jatrommel@gmail.com';
-var _sb = supabase.createClient(SB_URL, SB_KEY);
-var _userId = null;
-
-_sb.auth.getSession().then(function(res) {
+_sb.auth.getSession().then(res => {
   if (res.data.session) { _userId = res.data.session.user.id; loadAndShow(); }
 });
-_sb.auth.onAuthStateChange(function(_ev, session) {
+_sb.auth.onAuthStateChange((_ev, session) => {
   if (session && !_userId) { _userId = session.user.id; loadAndShow(); }
 });
 
 function loadAndShow() {
-  var overlay = document.getElementById('auth-overlay');
+  const overlay = document.getElementById('authOverlay');
   if (overlay) overlay.classList.add('hidden');
-  _sb.from('brief_config').select('*').then(function(res) {
-    var cfg = {};
-    (res.data || []).forEach(function(r) { cfg[r.key] = r.value; });
-    initAll(cfg);
-  });
+  initData();
 }
 
-function initAll(cfg) {
-  var SCRIPT = cfg.script || '';
-  var GROUNDS = cfg.grounds || [];
-  var WITNESSES = cfg.witnesses || [];
-  var JOURNAL_SEED = cfg.journal_seed || [];
-  var STACK_HEADS = cfg.stack_heads || [];
-  var DAMAGE_SCALE = cfg.damage_scale || [];
-
-  renderGrounds('grounds-case', '', GROUNDS);
-  renderGrounds('grounds-money', '2', GROUNDS);
-  renderDamageScale(DAMAGE_SCALE);
-  renderDamagesStack(STACK_HEADS);
-  renderWitnesses(WITNESSES);
-
-  document.getElementById('scriptText').textContent = SCRIPT;
-  document.getElementById('copyBtn').addEventListener('click', function() {
-    var btn = this;
-    navigator.clipboard.writeText(SCRIPT).then(function() {
-      btn.textContent = 'Copied';
-      btn.classList.add('copied');
-      setTimeout(function() { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
-    });
-  });
-
-  initData(JOURNAL_SEED);
-}
-
-document.getElementById('auth-form').addEventListener('submit', function(e) {
+document.getElementById('authForm').addEventListener('submit', e => {
   e.preventDefault();
-  var email = document.getElementById('auth-email').value.trim().toLowerCase();
-  var errEl = document.getElementById('auth-err');
+  const email = document.getElementById('authEmail').value.trim().toLowerCase();
+  const errEl = document.getElementById('authErr');
   if (email !== ALLOWED_EMAIL) { errEl.textContent = 'Access restricted.'; return; }
-  _sb.auth.signInWithOtp({ email: email, options: { emailRedirectTo: 'https://heyitsmejosh.com/brief/' } }).then(function(res) {
+  _sb.auth.signInWithOtp({ email, options: { emailRedirectTo: location.origin + location.pathname } }).then(res => {
     if (res.error) { errEl.textContent = res.error.message; return; }
-    document.getElementById('auth-step-email').style.display = 'none';
-    document.getElementById('auth-step-sent').style.display = 'block';
+    document.getElementById('authStepEmail').style.display = 'none';
+    document.getElementById('authStepSent').style.display = 'block';
   });
 });
 
-// Theme persistence
-(function() {
-  var saved = localStorage.getItem('brief.theme') || 'dark';
-  document.body.dataset.theme = saved;
-  document.getElementById('themeBtn').textContent = saved === 'dark' ? 'Light' : 'Dark';
+// ===== DATA =====
+const GROUNDS = [
+  { id:'s8', n:'01', title:'Unreasonable search & seizure', sec:'Charter s.8', val:'$200-500k', high:500, grade:'A',
+    desc:'Warrantless entry into a private dwelling on a non-criminal wellness call. Highest-tier s.8 violation under Feeney - the home is the most protected space in Charter jurisprudence. No exigent circumstances doctrine survives close scrutiny here: father present, plaintiff visible at kitchen table, no medical emergency observable from doorway.',
+    cite:'R v. Feeney, [1997] 2 SCR 13 - warrantless dwelling entry presumptively unreasonable. R v. Godoy, [1999] 1 SCR 311 - limits 911-wellness entry to safety verification only.' },
+  { id:'s9', n:'02', title:'Arbitrary detention', sec:'Charter s.9', val:'$150-350k', high:350, grade:'A',
+    desc:'Prone restraint, transport to hospital, overnight hold. No charge laid, no underlying crime. Detention must be authorized by law and not arbitrary - MHA s.28 threshold not met (father testimony defeats apprehension standard).',
+    cite:'R v. Grant, 2009 SCC 32 - definition of detention. Mental Health Act (BC) s.28 - apprehension requires officer-formed belief of likelihood of harm.' },
+  { id:'s7', n:'03', title:'Life, liberty, security of person', sec:'Charter s.7', val:'$250-600k', high:600, grade:'A',
+    desc:'Forced antipsychotic medication absent consent and absent meaningful incapacity assessment. Fleming v. Ontario establishes that even validly detained persons retain bodily integrity. Engages physical, psychological, and dignity interests simultaneously.',
+    cite:'Fleming v. Ontario, 2019 SCC 45 - bodily integrity protected during state detention. Carter v. Canada, 2015 SCC 5 - s.7 protects against state-imposed physical intervention.' },
+  { id:'s10b', n:'04', title:'Right to counsel', sec:'Charter s.10(b)', val:'$50-150k', high:150, grade:'C',
+    desc:'No caution given at any point of the encounter. Detention triggered s.10(b) immediately under Grant; failure to inform of right to counsel before transport and forced medication compounds every downstream violation.',
+    cite:'R v. Suberu, 2009 SCC 33 - s.10(b) attaches on detention without delay.' },
+  { id:'s12', n:'05', title:'Cruel & unusual treatment', sec:'Charter s.12', val:'$100-300k', high:300, grade:'B',
+    desc:'Prone restraint by kneeling on the back created positional asphyxia risk. Forced antipsychotic injection followed by overnight solitary, no family notification, discharge without aftercare. The aggregate satisfies the s.12 grossly disproportionate threshold.',
+    cite:'R v. Smith, [1987] 1 SCR 1045 - grossly disproportionate test. R v. Boudreault, 2018 SCC 58 - modern s.12 framework.' },
+  { id:'battery', n:'06', title:'Battery & excessive force', sec:'common law tort', val:'$80-200k', high:200, grade:'B',
+    desc:'Non-consensual physical contact exceeding any lawful authority. Pre-existing wrist fracture aggravated by restraint - additional special damages head. Standard of force assessed objectively per Anderson; officer notebooks must demonstrate proportionality, and the 30-second contact window per father testimony fails that standard.',
+    cite:'Anderson v. Smith, 2010 BCCA - proportionality standard for police use of force.' },
+  { id:'falseimp', n:'07', title:'False imprisonment', sec:'common law tort', val:'$60-180k', high:180, grade:'B',
+    desc:'Overnight solitary confinement absent lawful authority. Each hour past the s.28 examination window is independently actionable. Combined with hospital MHA Form 4 procedural review - was a Form 1 ever generated, signed, and on what evidentiary basis?',
+    cite:'Bird v. The Queen, 2019 SCC 7 - false imprisonment within state custody.' },
+  { id:'iims', n:'08', title:'Negligent investigation', sec:'tort - Hill', val:'$50-150k', high:150, grade:'C',
+    desc:'Officers owed a duty of care in investigation. Failure to verify wellness-call basis (911 audio defines this), failure to attempt verbal engagement before physical contact, failure to verify MHA s.28 threshold - all breach the Hill standard. Damages flow from downstream harms.',
+    cite:'Hill v. Hamilton-Wentworth Regional Police, 2007 SCC 41 - duty of care in police investigation.' },
+];
+
+const SCENARIOS = [
+  { name:'Best case',   desc:'Full trial, all heads, Ward functions maximally triggered, punitive granted.', amt:'$2-3M',       pct:15, color:'var(--good)' },
+  { name:'Strong',      desc:'Settlement with silence premium, evidence fully assembled, press-capable counsel.', amt:'$1.2-1.8M', pct:30, color:'var(--info)' },
+  { name:'Most likely', desc:'AG settles to suppress precedent. Confidentiality clause standard.',           amt:'$800k-1.2M', pct:40, color:'var(--warn)' },
+  { name:'Worst',       desc:'Limitation fails OR settles early without leverage.',                          amt:'$0-350k',    pct:15, color:'var(--danger)' },
+];
+
+const STACK_HEADS = [
+  { label:'Charter s.24(1) damages',        sub:'Ward - compensation + vindication + deterrence', low:200, high:500, grade:'A' },
+  { label:'Future earning capacity',         sub:'Age 26, 35+ working years; vocational economist', low:300, high:600, grade:'A' },
+  { label:'General / non-pecuniary',         sub:'Pain, suffering, loss of dignity, PTSD',         low:150, high:300, grade:'B' },
+  { label:'Aggravated damages',              sub:'Deliberate, bad-faith state action',              low:100, high:200, grade:'B' },
+  { label:'Punitive damages',                sub:'Egregious conduct, public deterrence',            low:100, high:400, grade:'B' },
+  { label:'Loss of dignity head',            sub:'Forced medication, solitary, no aftercare',       low:100, high:200, grade:'B' },
+  { label:'Special / medical, lost income',  sub:'Treatment, meds, time off, wrist injury',        low:50,  high:100, grade:'C' },
+  { label:'Wrist injury / aggravation',      sub:'Pre-existing fracture worsened by restraint',    low:40,  high:80,  grade:'C' },
+];
+
+const SCALE = [
+  { band:'Canadian CAD', max:8100,
+    marks:[
+      { k:55,   lbl:'Tort floor' },
+      { k:317,  lbl:'Degen 2023 BCSC', grp:'warn' },
+      { k:1000, lbl:'This case - likely', isThis:true },
+      { k:2500, lbl:'Trial ceiling', grp:'good' },
+      { k:8100, lbl:'Henry v. BC', grp:'mid' },
+    ],
+    rows:[
+      { name:'Degen v. Min. Public Safety',   yr:'2023 BCSC', v:'$317k',        note:'Surrey RCMP - force + PTSD' },
+      { name:'Mona Wang v. AG Canada',         yr:'2021',      v:'confidential', note:'BC RCMP wellness check (closest parallel)' },
+      { name:'This case / settlement median', yr:'projected', v:'$800k-1.2M',   note:'AG silence premium' },
+      { name:'This case / trial ceiling',      yr:'projected', v:'$2-3M',        note:'Ward maxed, punitive granted' },
+      { name:'Henry v. British Columbia',      yr:'2016 BCSC', v:'$8.1M',        note:'wrongful conviction ceiling' },
+    ]},
+  { band:'Global USD reference', max:45000,
+    marks:[
+      { k:1000,  lbl:'Federal 1983 median' },
+      { k:15000, lbl:'Elijah McClain', grp:'warn', isThis:true },
+      { k:27000, lbl:'Breonna Taylor', grp:'mid' },
+      { k:45000, lbl:'Randy Cox', grp:'mid' },
+    ],
+    rows:[
+      { name:'Elijah McClain estate',     yr:'2023 USD', v:'$15M',   note:'Aurora PD - closest fact pattern' },
+      { name:'Breonna Taylor settlement', yr:'2020 USD', v:'$12M',   note:'Louisville - warrantless entry' },
+      { name:'George Floyd estate',       yr:'2021 USD', v:'$27M',   note:'Minneapolis PD' },
+      { name:'Randy Cox',                 yr:'2023 USD', v:'$45M',   note:'in-custody paralysis - ceiling' },
+      { name:'NYC misconduct payouts',    yr:'FY 2024',  v:'$1.94B', note:'systemic baseline' },
+    ]},
+];
+
+const LAWYERS = [
+  { id:'paul-kent',        init:'PK', name:'Paul G. Kent-Snowsell', sub:'Kane Shannon & Weiler - Surrey BC - Of Counsel',
+    tags:[{t:'33 yrs trial',c:'good'},{t:'Sued RCMP',c:'good'}], status:'voicemail', fit:4,
+    contacts:[{label:'604-591-7321',href:'tel:6045917321',kind:'tel',primary:true},{label:'pgkent@kswlawyers.ca',href:'mailto:pgkent@kswlawyers.ca',kind:'email'}] },
+  { id:'cameron-ward',     init:'CW', name:'Cameron Ward', sub:'Vancouver BC - 40+ yrs',
+    tags:[{t:'Ward v. Vancouver SCC',c:'good'},{t:'Charter & police',c:'good'}], status:'emailed', fit:5,
+    contacts:[{label:'cameronward.com',href:'https://cameronward.com',kind:'web'}] },
+  { id:'arvay-finlay',     init:'AF', name:'Arvay Finlay LLP', sub:'Vancouver BC',
+    tags:[{t:'Fairy Creek RCMP class',c:'good'},{t:'Charter ss.2/7/8/9',c:'good'}], status:'emailed', fit:4,
+    contacts:[{label:'604-696-9828',href:'tel:6046969828',kind:'tel'},{label:'arvayfinlay.ca',href:'https://arvayfinlay.ca',kind:'web'}] },
+  { id:'klein-lawyers',    init:'KL', name:'Klein Lawyers', sub:'Vancouver BC',
+    tags:[{t:'RCMP class actions',c:'good'},{t:'Federal court',c:'good'}], status:'emailed', fit:3,
+    contacts:[{label:'callkleinlawyers.com',href:'https://callkleinlawyers.com',kind:'web'}] },
+  { id:'dla-law',          init:'DL', name:'DLA Law', sub:'Dosanjh Ladner Arora - Vancouver BC',
+    tags:[{t:'Police misconduct',c:'good'},{t:'Wrongful arrest',c:'good'}], status:'emailed', fit:3,
+    contacts:[{label:'604-327-6381',href:'tel:6043276381',kind:'tel'},{label:'Ingrid@dlalaw.ca',href:'mailto:Ingrid@dlalaw.ca',kind:'email'}] },
+  { id:'bccla',            init:'BC', name:'BCCLA Referral Line', sub:'BC Civil Liberties Association',
+    tags:[{t:'Free referrals',c:'good'},{t:'Civil rights',c:'good'}], status:'none', fit:2,
+    contacts:[{label:'604-687-2919',href:'tel:6046872919',kind:'tel'},{label:'bccla.org',href:'https://bccla.org',kind:'web'}] },
+  { id:'mcquarrie-hunter', init:'MH', name:'McQuarrie Hunter LLP', sub:'Surrey BC',
+    tags:[{t:'BC Limitation Act',c:'good'},{t:'Discoverability / s.18',c:'good'}], status:'voicemail', fit:3,
+    contacts:[{label:'604-581-7001',href:'tel:6045817001',kind:'tel'}] },
+  { id:'sean-hern',        init:'SH', name:'Sean Hern Law Corp.', sub:'Vancouver BC - formerly Farris LLP',
+    tags:[{t:'Pro bono',c:'good'},{t:'BC FOI/Privacy',c:'good'}], status:'none', fit:2,
+    contacts:[{label:'604-684-9151',href:'tel:6046849151',kind:'tel'}] },
+  { id:'cba-bc',           init:'CB', name:'Canadian Bar Association BC', sub:'Lawyer Referral Service',
+    tags:[{t:'Free referrals',c:'good'},{t:'No answer',c:'warn'}], status:'emailed', fit:1,
+    contacts:[{label:'604-687-3221',href:'tel:6046873221',kind:'tel'},{label:'info@cbabc.org',href:'mailto:info@cbabc.org',kind:'email'}] },
+];
+
+const TIMELINE = [
+  { when:'Now',          state:'now',  title:'Counsel selection',        desc:'Email-first outreach to 4 firms. Voicemail unreliable. Compare retainer structures before signing.' },
+  { when:'Month 1-2',    state:'',     title:'Evidence build',           desc:'Police report, ATIP, E-Comm FOI, hospital ROI, BWC, OPCC to CRCC complaint, PTSD diagnosis letter.' },
+  { when:'Month 2-4',    state:'warn', title:'Claim filed',              desc:'Basic limit expired Aug 2025. If discoverability holds, file immediately - every day increases risk.' },
+  { when:'Month 6-18',   state:'',     title:'Discovery & negotiation',  desc:'Evidence exchanged. Settlement talks begin. Federal AG typically prefers quiet settlement.' },
+  { when:'Month 12-24',  state:'good', title:'Settlement',               desc:'Approx 80% of cases settle before trial. Lump sum + confidentiality.' },
+  { when:'Year 2-4',     state:'bad',  title:'Trial if no settlement',   desc:'Rare. Longer, riskier, higher payout potential. Kent has 100+ trials of record.' },
+];
+
+const CHECKLIST = [
+  { i:'0',  label:'Call Paul Kent-Snowsell - book appointment',                pri:'now',  done:false, lev:20 },
+  { i:'1',  label:'PTSD assessment started (therapy) - get Dx letter',         pri:'now',  done:true,  lev:80 },
+  { i:'2',  label:'Body cam footage requested from RCMP',                       pri:'now',  done:false, lev:120 },
+  { i:'3',  label:'Police report - both Daryls full names',                     pri:'now',  done:false, lev:45 },
+  { i:'4',  label:'Hospital discharge records',                                 pri:'now',  done:false, lev:55 },
+  { i:'5',  label:'Pain journal - daily entries',                               pri:'now',  done:false, lev:30 },
+  { i:'6',  label:'Therapist letter confirming PTSD & causation',               pri:'now',  done:false, lev:100 },
+  { i:'7',  label:'CRCC complaint filed (federal, not OPCC)',                   pri:'soon', done:false, lev:25 },
+  { i:'8',  label:'Father witness statement documented',                        pri:'soon', done:true,  lev:60 },
+  { i:'9',  label:'Incident date confirmed: Aug 1, 2023 - File 2023-25586',    pri:'now',  done:true,  lev:10 },
+  { i:'10', label:'Hospital name confirmed',                                    pri:'soon', done:true,  lev:15 },
+  { i:'11', label:'Career & personality impact documented',                     pri:'soon', done:false, lev:40 },
+  { i:'12', label:'Therapist letter: PTSD + incapacity period + causation',    pri:'now',  done:false, lev:90 },
+  { i:'13', label:'Pin discovery date: May 11, 2026',                          pri:'now',  done:true,  lev:50 },
+  { i:'14', label:'ATIP filed with RCMP - officer names, notebooks, BWC',      pri:'now',  done:false, lev:70 },
+  { i:'15', label:'FOI filed with E-Comm 9-1-1 BC - 911 audio + CAD notes',   pri:'now',  done:false, lev:65 },
+  { i:'16', label:'Email outreach: Ward, Arvay, Klein, BCCLA',                 pri:'now',  done:false, lev:30 },
+];
+
+const JOURNAL_SEED = [
+  { date:'2026-05-15', text:'Journal entry will load here from Supabase once signed in.' },
+  { date:'2026-05-11', text:'May 11, 2026 - pinned discovery date for s.8(1)(d).' },
+  { date:'2026-04-22', text:'Entries are sourced from the brief_journal table.' },
+];
+
+const CALL_SCRIPT = 'Call script - read before each lawyer consultation.\n\nIntroduction: "My name is Joshua Trommel. I am following up on my email about a civil claim arising from a warrantless RCMP wellness-call entry in August 2023."\n\nKey facts (30 seconds):\n- Date: August 1, 2023, approx 11:00 AM, Langley BC (Brookswood detachment)\n- No underlying crime. Father present. I was sitting at kitchen table.\n- RCMP entered without warrant, restrained me within 30 seconds (prone, knee on back).\n- Transported to hospital, overnight hold, forced antipsychotic injection.\n- No s.10(b) caution at any point. File: 2023-25586.\n\nCharter grounds: ss. 7, 8, 9, 10(b), 12 + battery + false imprisonment.\n\nLimitation: Basic 2-year expired Aug 2025. Survived on discoverability (s.8(1)(d)) and PTSD incapacity (s.18). Discovery date: May 11, 2026.\n\nDefendant: Attorney General of Canada (RCMP is federal).\n\nDamages ask: $800k-1.2M settlement; $2-3M trial ceiling.\n\nQuestions for counsel:\n1. Do you take civil rights / Charter police misconduct cases?\n2. Retainer structure - flat or contingency?\n3. Have you acted against the AG / RCMP specifically?\n4. Are you press-capable if the AG stonewalls?\n5. When can we meet in person?';
+
+// ===== LEVERAGE =====
+const LAWYER_LEVERAGE = { none:0, voicemail:5, emailed:15, callback:40, retained:180 };
+const BASELINE_PROJECTION = 400;
+const CEILING_PROJECTION  = 2250;
+
+let _lawyerStatuses = {};
+const STATUS_CYCLE = ['none','voicemail','emailed','callback','retained'];
+const STATUS_LABEL = { none:'Not contacted', voicemail:'Voicemail left', emailed:'Email sent', callback:'Callback received', retained:'Retained' };
+
+function computeLeverage() {
+  const evidence = CHECKLIST.reduce((s,x) => s + (x.done ? x.lev : 0), 0);
+  let counselLev = 0, counselRetained = false;
+  document.querySelectorAll('.tag.status').forEach(chip => {
+    const st = chip.dataset.status;
+    if (st === 'retained') {
+      if (!counselRetained) { counselLev += LAWYER_LEVERAGE.retained; counselRetained = true; }
+    } else if (LAWYER_LEVERAGE[st]) {
+      counselLev += LAWYER_LEVERAGE[st];
+    }
+  });
+  if (!counselRetained) counselLev = Math.min(counselLev, 80);
+  const total = Math.min(CEILING_PROJECTION, BASELINE_PROJECTION + evidence + counselLev);
+  return { evidence, counselLev, counselRetained, total };
+}
+
+function renderLeverage() {
+  const el = document.getElementById('leverage-widget');
+  if (!el) return;
+  const { evidence, counselLev, counselRetained, total } = computeLeverage();
+  const delta = total - BASELINE_PROJECTION;
+  const pct = Math.min(100, ((total - BASELINE_PROJECTION) / (CEILING_PROJECTION - BASELINE_PROJECTION)) * 100);
+
+  const tlv = document.getElementById('triLiveVal');
+  if (tlv) {
+    tlv.textContent = '$' + total + 'k';
+    const tls = document.getElementById('triLiveSub');
+    if (tls) tls.textContent = delta > 0 ? '+$' + delta + 'k earned through leverage' : 'baseline - no leverage yet';
+  }
+
+  pushSparkline(total);
+
+  const pendingItems = CHECKLIST.filter(x => !x.done).sort((a,b) => b.lev - a.lev).slice(0,3);
+  const counselLine = counselRetained ? '' :
+    '<div class="lev-row"><div class="lev-row-l"><div class="lev-dot"></div><div>' +
+    '<div class="lev-row-name">Retain counsel</div>' +
+    '<div class="lev-row-sub">one signed retainer unlocks the biggest single step</div>' +
+    '</div></div><div class="lev-row-amt tnum">+$' + LAWYER_LEVERAGE.retained + 'k</div></div>';
+
+  const pendingLines = pendingItems.map(it =>
+    '<div class="lev-row" data-cl="' + it.i + '">' +
+    '<div class="lev-row-l"><div class="lev-dot"></div><div>' +
+    '<div class="lev-row-name">' + it.label + '</div>' +
+    '<div class="lev-row-sub">' + (it.pri === 'now' ? 'Priority - immediate' : 'Soon - pre-retainer') + '</div>' +
+    '</div></div><div class="lev-row-amt tnum">+$' + it.lev + 'k</div></div>'
+  ).join('');
+
+  el.innerHTML =
+    '<div class="section-hd"><div class="lbl"><b>Settlement leverage</b> - live projection</div><div class="hint">complete actions to move projection</div></div>' +
+    '<div class="lev-card">' +
+    '<div class="lev-tot">' +
+    '<div class="lev-tot-l">' +
+    '<div class="lev-tot-lbl">Projected settlement today</div>' +
+    '<div class="lev-tot-val tnum" id="levTotVal">$' + total + 'k</div>' +
+    '<div class="lev-tot-delta">' +
+    '<span class="lev-delta-pill">+$' + delta + 'k vs baseline</span>' +
+    '<span class="lev-tot-sub">baseline $' + BASELINE_PROJECTION + 'k - trial ceiling $' + (CEILING_PROJECTION/1000).toFixed(2) + 'M</span>' +
+    '</div></div>' +
+    '<div class="lev-tot-r"><div class="lev-breakdown">' +
+    '<div class="lev-bd-row"><span>Baseline</span><span class="tnum">$' + BASELINE_PROJECTION + 'k</span></div>' +
+    '<div class="lev-bd-row"><span>Evidence built</span><span class="tnum lev-pos">+$' + evidence + 'k</span></div>' +
+    '<div class="lev-bd-row"><span>Counsel posture</span><span class="tnum lev-pos">+$' + counselLev + 'k</span></div>' +
+    '</div></div></div>' +
+    '<div class="lev-bar">' +
+    '<div class="lev-bar-track"></div>' +
+    '<div class="lev-bar-fill" style="width:' + pct + '%"></div>' +
+    '<div class="lev-bar-marker" style="left:' + pct + '%"></div>' +
+    '<div class="lev-bar-anchors"><span>Baseline</span>' +
+    '<span style="position:absolute;left:' + pct + '%;transform:translateX(-50%);color:var(--danger);">$' + total + 'k</span>' +
+    '<span>Ceiling</span></div>' +
+    '</div></div>' +
+    '<div class="lev-list"><div class="lev-list-hd">Top levers not yet pulled</div>' +
+    counselLine + pendingLines + '</div>';
+
+  const pill = document.getElementById('pillVal');
+  if (pill) pill.textContent = '$' + total + 'k';
+
+  renderTrajectory(total);
+}
+
+function pushSparkline(v) {
+  const KEY = 'brief.v3.spark';
+  let hist = JSON.parse(localStorage.getItem(KEY) || '[]');
+  if (hist.length === 0) hist.push(BASELINE_PROJECTION, v);
+  else if (hist[hist.length-1] !== v) hist.push(v);
+  if (hist.length > 16) hist = hist.slice(-16);
+  localStorage.setItem(KEY, JSON.stringify(hist));
+  drawSparkline(hist);
+}
+
+function drawSparkline(hist) {
+  const svg = document.getElementById('pillSpark');
+  if (!svg || hist.length < 2) return;
+  const W = 36, H = 12, min = Math.min(...hist), max = Math.max(...hist), rng = max - min || 1;
+  const pts = hist.map((v,i) => (i/(hist.length-1)*W).toFixed(1) + ',' + (H-2-(v-min)/rng*(H-4)).toFixed(1)).join(' ');
+  svg.querySelector('polyline').setAttribute('points', pts);
+}
+
+function renderTrajectory(currentTotal) {
+  const el = document.getElementById('trajectory');
+  if (!el) return;
+  const steps = [
+    { lbl:'Today',            val:currentTotal,                                           delta:0,   kind:'now' },
+    { lbl:'+ Retain counsel', val:Math.min(CEILING_PROJECTION, currentTotal+180),          delta:180, kind:'next' },
+    { lbl:'+ Top 5 evidence', val:Math.min(CEILING_PROJECTION, currentTotal+180+295),      delta:295, kind:'next' },
+    { lbl:'+ Claim filed',    val:Math.min(CEILING_PROJECTION, currentTotal+180+295+100),  delta:100, kind:'next' },
+    { lbl:'Trial-ready',      val:CEILING_PROJECTION,                                      delta:0,   kind:'ceiling' },
+  ];
+  const details = [
+    { l:'Where you stand today',    m:'Current projection of $' + currentTotal + 'k based on completed evidence and counsel posture.', v:'$' + currentTotal + 'k' },
+    { l:'Retain counsel',           m:"One signed retainer flips the AG's posture. Press-capable counsel (Cameron Ward, Arvay Finlay) maximizes the silence premium.", v:'+$180k' },
+    { l:'Complete top 5 evidence',  m:'BWC footage, therapist letter (PTSD + causation), ATIP officer notebooks, E-Comm 911 audio, hospital discharge - top leverage items.', v:'+$295k' },
+    { l:'Claim filed',              m:'Filing converts pre-litigation soft leverage to live procedural pressure. AG must engage and consider discovery exposure.', v:'+$100k' },
+    { l:'Trial-ready evidence',     m:'Full pleadings, expert reports (forensic psych + vocational economist). Trial threat is now credible.', v:'$' + CEILING_PROJECTION/1000 + 'M ceiling' },
+  ];
+
+  const stepsHtml = steps.map((s,i) => {
+    const left = (i / (steps.length-1)) * 100;
+    return '<div class="traj-step ' + (s.kind==='now'?'now':'') + '" data-i="' + i + '" style="left:' + left + '%">' +
+      '<div class="val">$' + s.val + 'k</div>' +
+      (s.delta > 0 ? '<div class="traj-delta">+$' + s.delta + 'k</div>' : '') +
+      '<div class="dot"></div><div class="lbl">' + s.lbl + '</div></div>';
+  }).join('');
+
+  el.innerHTML =
+    '<div class="section-hd"><div class="lbl"><b>Trajectory</b> - what each next move adds</div><div class="hint">tap a step to focus</div></div>' +
+    '<div class="traj-card">' +
+    '<div class="traj-track" id="trajTrack"><div class="traj-line"></div>' + stepsHtml + '</div>' +
+    '<div class="traj-detail">' +
+    '<div class="det-l" id="trajDetailLbl">Focus</div>' +
+    '<div class="det-m" id="trajDetailMsg">' + details[1].m + '</div>' +
+    '<div class="det-r" id="trajDetailVal">' + details[1].v + '</div>' +
+    '</div></div>';
+
+  el.querySelectorAll('.traj-step').forEach(step => {
+    step.addEventListener('click', () => {
+      const i = parseInt(step.dataset.i);
+      document.getElementById('trajDetailLbl').textContent = details[i].l;
+      document.getElementById('trajDetailMsg').textContent = details[i].m;
+      document.getElementById('trajDetailVal').textContent = details[i].v;
+      el.querySelectorAll('.traj-step').forEach(s => s.classList.remove('focus'));
+      step.classList.add('focus');
+      const pv = Math.min(100, ((steps[i].val - BASELINE_PROJECTION) / (CEILING_PROJECTION - BASELINE_PROJECTION)) * 100);
+      const fill = document.querySelector('.lev-bar-fill'), marker = document.querySelector('.lev-bar-marker');
+      if (fill) fill.style.width = pv + '%';
+      if (marker) marker.style.left = pv + '%';
+      clearTimeout(window.__trajT);
+      if (i !== 0) window.__trajT = setTimeout(renderLeverage, 2400);
+      else renderLeverage();
+    });
+  });
+}
+
+// ===== RENDER =====
+
+(function(){
+  const now = new Date();
+  document.getElementById('todayStr').textContent = now.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}).toUpperCase();
 })();
 
-// Limitation countdown
-(function() {
-  var incident = new Date('2023-08-01');
-  var deadline = new Date('2025-08-01');
-  var now = new Date(); now.setHours(0,0,0,0);
-  var d = Math.ceil((deadline - now) / 86400000);
-  var expired = d < 0;
-  var pct = Math.min(100, ((now - incident) / (deadline - incident)) * 100);
-  var daysEl = document.getElementById('daysLeft');
-  var fillEl = document.getElementById('dlFill');
-  var nowEl = document.getElementById('dlNow');
-  if (expired) {
-    daysEl.textContent = 'Basic expired · Claim live';
-    daysEl.style.color = 'var(--warn)';
-    fillEl.style.width = '100%';
-    fillEl.style.background = 'var(--warn)';
-    nowEl.style.left = '100%';
-    var lbl = document.querySelector('.dl-label');
-    if (lbl) { lbl.textContent = 'Limitation — Discoverability + s.18 Active'; lbl.style.color = 'var(--warn)'; }
-    var naNotes = document.querySelectorAll('.na-note');
-    naNotes.forEach(function(el) {
-      el.textContent = 'Discoverability + s.18 — claim live';
-      el.style.color = 'var(--warn)';
-    });
+(function(){
+  const incident = new Date('2023-08-01').getTime();
+  const expired  = new Date('2025-08-01').getTime();
+  const ultimate = new Date('2038-08-01').getTime();
+  const now = Date.now();
+  const total = ultimate - incident;
+  const pNow = ((now - incident) / total) * 100;
+  const pExp = ((expired - incident) / total) * 100;
+  const daysSince = Math.floor((now - incident) / 86400000);
+  const daysToUlt = Math.floor((ultimate - now) / 86400000);
+
+  document.getElementById('daysOut').textContent = daysToUlt.toLocaleString() + ' DAYS TO ULTIMATE';
+
+  const nowClamped = Math.max(8, Math.min(92, pNow));
+  const nowRow = document.getElementById('clockNowRow');
+  const nowLabel = document.createElement('div');
+  nowLabel.className = 'clock-now-label';
+  nowLabel.style.cssText = 'left:' + nowClamped + '%;bottom:0';
+  const whatEl = document.createElement('div'); whatEl.className = 'what'; whatEl.textContent = 'Today - ' + daysSince.toLocaleString() + ' days in';
+  const whenEl = document.createElement('div'); whenEl.className = 'when'; whenEl.textContent = 'May 17, 2026';
+  nowLabel.appendChild(whatEl); nowLabel.appendChild(whenEl);
+  nowRow.appendChild(nowLabel);
+
+  const therapyStart = new Date('2026-05-01').getTime();
+  const pTherapy = ((therapyStart - incident) / total) * 100;
+  const curve = [];
+  for (let i = 0; i <= 80; i++) {
+    const x = (i/80)*100;
+    const t = x < pTherapy ? x/pTherapy : (x-pTherapy)/(100-pTherapy);
+    const y = x < pTherapy ? 0.45+0.55*t : 1.0-0.85*t*t;
+    curve.push([x,y]);
+  }
+  const W=1000, H=70;
+  const pathD = curve.map((p,i)=>(i===0?'M':'L')+(p[0]/100*W).toFixed(1)+','+(((1-p[1])*(H-4)+2)).toFixed(1)).join(' ');
+  const areaD = pathD + ' L' + W + ',' + H + ' L0,' + H + ' Z';
+  const curveYpx = (1-(curve.find(p=>p[0]>=pNow)||curve[curve.length-1])[1])*H;
+  const stemHeight = (96-16)-curveYpx;
+
+  const track = document.getElementById('clockTrack');
+  track.innerHTML =
+    '<svg class="clock-decay-svg" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none">' +
+    '<defs><linearGradient id="decayGrad" x1="0" x2="0" y1="0" y2="1">' +
+    '<stop offset="0%" stop-color="var(--warn)" stop-opacity="0.32"/>' +
+    '<stop offset="100%" stop-color="var(--warn)" stop-opacity="0"/>' +
+    '</linearGradient></defs>' +
+    '<path d="' + areaD + '" fill="url(#decayGrad)"/>' +
+    '<path d="' + pathD + '" fill="none" stroke="var(--warn)" stroke-width="1.4" vector-effect="non-scaling-stroke" opacity="0.75"/>' +
+    '</svg>' +
+    '<div class="clock-line"></div>' +
+    '<div class="clock-segment expired" style="left:0%;width:' + pExp + '%"></div>' +
+    '<div class="clock-segment runway" style="left:' + pExp + '%;width:' + (pNow-pExp) + '%"></div>' +
+    '<div class="clock-tick t-incident" style="left:0%;transform:translateX(-50%)"><div class="dot"></div></div>' +
+    '<div class="clock-tick t-expired" style="left:' + pExp + '%;transform:translateX(-50%)"><div class="dot"></div></div>' +
+    '<div class="clock-tick t-now" style="left:' + pNow + '%;transform:translateX(-50%)"><div class="stem" style="height:' + Math.max(0,stemHeight).toFixed(1) + 'px"></div><div class="dot"></div></div>' +
+    '<div class="clock-tick t-ultimate" style="left:100%;transform:translateX(-50%)"><div class="dot"></div></div>';
+
+  const labels = document.getElementById('clockLabels');
+  const tight = pExp < 18;
+  if (tight) {
+    labels.innerHTML =
+      '<div class="clock-label left exp"><div class="when">Aug 2023 to Aug 2025</div><div class="what">Incident to Basic expired</div></div>' +
+      '<div class="clock-label right"><div class="when">Aug 2038</div><div class="what">Ultimate</div></div>';
   } else {
-    daysEl.textContent = d + ' days';
-    fillEl.style.width = pct + '%';
-    nowEl.style.left = pct + '%';
-    var naNotes = document.querySelectorAll('.na-note');
-    naNotes.forEach(function(el) { el.textContent = 'Limitation in ' + d + ' days'; });
+    labels.innerHTML =
+      '<div class="clock-label left"><div class="when">Aug 2023</div><div class="what">Incident</div></div>' +
+      '<div class="clock-label exp mid" style="left:' + pExp + '%;transform:translateX(-50%)"><div class="when">Aug 2025</div><div class="what">Basic expired</div></div>' +
+      '<div class="clock-label right"><div class="when">Aug 2038</div><div class="what">Ultimate</div></div>';
   }
 })();
 
-// Bars (Money tab)
-function animateBars() {
-  document.querySelectorAll('.bar-fill').forEach(function(b) { b.style.width = b.dataset.w + '%'; });
-}
+function renderGrounds(containerId, suffix) {
+  const c = document.getElementById(containerId);
+  GROUNDS.forEach(g => {
+    const w = document.createElement('div');
+    w.className = 'ground';
+    w.dataset.id = g.id + suffix;
+    const pct = (g.high / 600) * 100;
 
-// Tabs
-document.querySelectorAll('.tab-btn').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
-    document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
-    btn.classList.add('active');
-    document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
-    if (btn.dataset.tab === 'money') { setTimeout(animateBars, 80); }
+    const hd = document.createElement('div'); hd.className = 'ground-hd';
+    const n = document.createElement('div'); n.className = 'ground-n serif'; n.textContent = g.n;
+    const info = document.createElement('div');
+    const title = document.createElement('div'); title.className = 'ground-title serif'; title.textContent = g.title;
+    const sec = document.createElement('div'); sec.className = 'ground-sec'; sec.textContent = g.sec;
+    info.appendChild(title); info.appendChild(sec);
+    const val = document.createElement('div'); val.className = 'ground-val tnum'; val.textContent = g.val;
+    const grade = document.createElement('div'); grade.className = 'ground-grade g-' + g.grade; grade.textContent = g.grade;
+    hd.appendChild(n); hd.appendChild(info); hd.appendChild(val); hd.appendChild(grade);
+
+    const mag = document.createElement('div'); mag.className = 'ground-mag';
+    const fill = document.createElement('div'); fill.className = 'ground-mag-fill';
+    fill.dataset.w = pct.toFixed(1);
+    fill.style.background = 'var(--grade-' + g.grade.toLowerCase() + ')';
+    mag.appendChild(fill);
+
+    const body = document.createElement('div'); body.className = 'ground-body';
+    const inner = document.createElement('div'); inner.className = 'ground-inner';
+    const desc = document.createElement('div'); desc.className = 'ground-desc'; desc.textContent = g.desc;
+    const cite = document.createElement('div'); cite.className = 'ground-cite'; cite.textContent = g.cite;
+    inner.appendChild(desc); inner.appendChild(cite); body.appendChild(inner);
+
+    w.appendChild(hd); w.appendChild(mag); w.appendChild(body);
+    c.appendChild(w);
+
+    w.addEventListener('click', () => {
+      const open = w.classList.contains('open');
+      c.querySelectorAll('.ground').forEach(x => x.classList.remove('open'));
+      if (!open) {
+        w.classList.add('open');
+        w.querySelector('.ground-mag-fill').style.width = w.querySelector('.ground-mag-fill').dataset.w + '%';
+      }
+    });
+  });
+}
+renderGrounds('grounds-case', '');
+renderGrounds('grounds-money', '2');
+
+(function(){
+  const c = document.getElementById('scenarios');
+  SCENARIOS.forEach((s,i) => {
+    const d = document.createElement('div'); d.className = 'scen';
+    const row = document.createElement('div'); row.className = 'scen-row';
+    const left = document.createElement('div');
+    const name = document.createElement('div'); name.className = 'scen-name serif'; name.textContent = s.name;
+    const desc = document.createElement('div'); desc.className = 'scen-desc'; desc.textContent = s.desc;
+    left.appendChild(name); left.appendChild(desc);
+    const right = document.createElement('div'); right.className = 'scen-right';
+    const amt = document.createElement('div'); amt.className = 'scen-amt tnum'; amt.style.color = s.color; amt.textContent = s.amt;
+    const pct = document.createElement('div'); pct.className = 'scen-pct'; pct.textContent = s.pct + '% probability';
+    right.appendChild(amt); right.appendChild(pct);
+    row.appendChild(left); row.appendChild(right);
+    const barTrack = document.createElement('div'); barTrack.className = 'bar-track';
+    const barFill = document.createElement('div'); barFill.className = 'bar-fill';
+    barFill.dataset.w = s.pct; barFill.style.background = s.color; barFill.style.transitionDelay = (i*100) + 'ms';
+    barTrack.appendChild(barFill);
+    d.appendChild(row); d.appendChild(barTrack);
+    c.appendChild(d);
+  });
+})();
+
+let stackMode = 'strong';
+function renderStack() {
+  const c = document.getElementById('stackRows');
+  c.innerHTML = '';
+  const total = STACK_HEADS.reduce((s,h) => s + (stackMode==='strong'?h.high:h.low), 0);
+  const max = Math.max(...STACK_HEADS.map(h => stackMode==='strong'?h.high:h.low));
+  document.getElementById('stackTot').textContent = '$' + (total/1000).toFixed(2) + 'M';
+  STACK_HEADS.forEach(h => {
+    const v = stackMode==='strong' ? h.high : h.low;
+    const pct = (v/max)*100;
+    const r = document.createElement('div'); r.className = 'stack-row';
+    const badge = document.createElement('div'); badge.className = 'badge g-' + h.grade; badge.textContent = h.grade;
+    const mid = document.createElement('div'); mid.className = 'mid';
+    const info = document.createElement('div');
+    const lbl = document.createElement('div'); lbl.className = 'label'; lbl.textContent = h.label;
+    const sub = document.createElement('div'); sub.className = 'sub'; sub.textContent = h.sub;
+    info.appendChild(lbl); info.appendChild(sub);
+    const meter = document.createElement('div'); meter.className = 'meter';
+    const mFill = document.createElement('div'); mFill.dataset.w = pct.toFixed(1); mFill.style.background = 'var(--grade-' + h.grade.toLowerCase() + ')';
+    meter.appendChild(mFill); mid.appendChild(info); mid.appendChild(meter);
+    const amtEl = document.createElement('div'); amtEl.className = 'amt tnum'; amtEl.textContent = '$' + (v<1000 ? v+'k' : (v/1000).toFixed(2)+'M');
+    r.appendChild(badge); r.appendChild(mid); r.appendChild(amtEl);
+    c.appendChild(r);
+  });
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    c.querySelectorAll('.meter > div').forEach(b => b.style.width = b.dataset.w + '%');
+  }));
+}
+renderStack();
+document.querySelectorAll('.stack-toggle button').forEach(b => {
+  b.addEventListener('click', () => {
+    stackMode = b.dataset.m;
+    document.querySelectorAll('.stack-toggle button').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    renderStack();
   });
 });
 
-// Journal
-function loadJournalFromDB(JOURNAL_SEED) {
-  _sb.from('brief_journal').select('*').order('date', { ascending: false }).then(function(res) {
-    var dbEntries = res.data || [];
-    var map = {};
-    JOURNAL_SEED.forEach(function(e) { map[e.date] = e; });
-    dbEntries.forEach(function(e) { map[e.date] = e; });
-    var entries = Object.values(map).sort(function(a, b) { return b.date < a.date ? -1 : 1; });
-    renderJournalEntries(entries);
+(function(){
+  const c = document.getElementById('scaleBands');
+  SCALE.forEach(band => {
+    const d = document.createElement('div'); d.className = 'scale-band';
+    const hd = document.createElement('div'); hd.className = 'scale-band-hd';
+    const lbl = document.createElement('div'); lbl.className = 'lbl'; lbl.textContent = band.band;
+    const max = document.createElement('div'); max.className = 'max';
+    max.textContent = 'scale: $0 to $' + (band.max>=1000 ? (band.max/1000).toFixed(1)+'M' : band.max+'k');
+    hd.appendChild(lbl); hd.appendChild(max); d.appendChild(hd);
+
+    const track = document.createElement('div'); track.className = 'scale-track';
+    const line = document.createElement('div'); line.className = 'line'; track.appendChild(line);
+    band.marks.forEach(m => {
+      const mk = document.createElement('div'); mk.className = 'scale-mark' + (m.isThis?' this':'');
+      mk.style.left = (m.k / band.max * 100) + '%';
+      const dot = document.createElement('div'); dot.className = 'dot';
+      const mlbl = document.createElement('div'); mlbl.className = 'lbl'; mlbl.textContent = m.lbl;
+      mk.appendChild(dot); mk.appendChild(mlbl); track.appendChild(mk);
+    });
+    d.appendChild(track);
+
+    const list = document.createElement('div'); list.className = 'scale-list';
+    band.rows.forEach(row => {
+      const rowEl = document.createElement('div'); rowEl.className = 'row';
+      const name = document.createElement('div'); name.className = 'name';
+      const nameText = document.createTextNode(row.name + ' ');
+      const yr = document.createElement('span'); yr.className = 'yr'; yr.textContent = '- ' + row.yr + ' - ' + row.note;
+      name.appendChild(nameText); name.appendChild(yr);
+      const v = document.createElement('div'); v.className = 'v tnum'; v.textContent = row.v;
+      rowEl.appendChild(name); rowEl.appendChild(v); list.appendChild(rowEl);
+    });
+    d.appendChild(list);
+    c.appendChild(d);
   });
-}
+})();
 
-function saveJournalEntry(date, text, JOURNAL_SEED) {
-  _sb.from('brief_journal').upsert({ user_id: _userId, date: date, text: text }).then(function() { loadJournalFromDB(JOURNAL_SEED); });
-}
+(function(){
+  const c = document.getElementById('lawyers');
+  LAWYERS.forEach(L => {
+    const d = document.createElement('div'); d.className = 'lawyer'; d.dataset.lawyerId = L.id;
 
-function fmtDate(iso) {
-  var d = new Date(iso + 'T12:00:00');
-  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).toUpperCase();
-}
+    const av = document.createElement('div'); av.className = 'lawyer-av'; av.textContent = L.init;
+    const body = document.createElement('div'); body.className = 'lawyer-body';
+    const nameRow = document.createElement('div'); nameRow.className = 'lawyer-name-row';
+    const name = document.createElement('div'); name.className = 'lawyer-name'; name.textContent = L.name;
+    const fits = document.createElement('div'); fits.className = 'fit-dots fit-' + L.fit; fits.title = 'Case-fit ' + L.fit + '/5';
+    fits.textContent = '●'.repeat(L.fit) + '○'.repeat(5-L.fit);
+    nameRow.appendChild(name); nameRow.appendChild(fits);
+    const sub = document.createElement('div'); sub.className = 'lawyer-sub'; sub.textContent = L.sub;
+    const tags = document.createElement('div'); tags.className = 'lawyer-tags';
+    L.tags.forEach(t => { const tg = document.createElement('span'); tg.className = 'tag ' + (t.c||''); tg.textContent = t.t; tags.appendChild(tg); });
+    const chip = document.createElement('span'); chip.className = 'tag status ' + L.status; chip.dataset.status = L.status; chip.textContent = STATUS_LABEL[L.status];
+    tags.appendChild(chip);
+    body.appendChild(nameRow); body.appendChild(sub); body.appendChild(tags);
 
-function renderJournalEntries(entries) {
-  var list = document.getElementById('journal-list');
-  if (!list) return;
-  while (list.firstChild) { list.removeChild(list.firstChild); }
-  entries.forEach(function(e, i) {
-    var div = document.createElement('div');
-    div.className = 'j-entry';
-    if (i === entries.length - 1) { div.style.borderBottom = 'none'; div.style.marginBottom = '0'; div.style.paddingBottom = '0'; }
-    var dt = document.createElement('div'); dt.className = 'j-date'; dt.textContent = fmtDate(e.date);
-    var tx = document.createElement('div'); tx.className = 'j-text'; tx.textContent = e.text;
-    div.appendChild(dt); div.appendChild(tx);
-    list.appendChild(div);
-  });
-}
+    const actions = document.createElement('div'); actions.className = 'lawyer-actions';
+    L.contacts.forEach(ct => {
+      const a = document.createElement('a'); a.className = 'contact' + (ct.primary?' primary':''); a.href = ct.href;
+      const ic = document.createElement('span'); ic.className = 'ic'; ic.textContent = ct.kind;
+      const lbl = document.createElement('span'); lbl.textContent = ct.label;
+      a.appendChild(ic); a.appendChild(lbl); actions.appendChild(a);
+    });
 
-// Checklist
-var SEEDED = { '1': true, '8': true, '9': true, '10': true, '13': true };
+    d.appendChild(av); d.appendChild(body); d.appendChild(actions);
+    c.appendChild(d);
 
-function applyChecklistState(done) {
-  document.querySelectorAll('.cl-item').forEach(function(row) {
-    var i = row.dataset.i;
-    var box = row.querySelector('.cl-box');
-    var lbl = row.querySelector('.cl-label');
-    if (done[i]) { box.classList.add('done'); lbl.classList.add('done'); }
-    else { box.classList.remove('done'); lbl.classList.remove('done'); }
-  });
-}
-
-function updateProgress(done) {
-  var count = Object.values(done || SEEDED).filter(Boolean).length;
-  document.getElementById('clCount').textContent = count + '/' + TOTAL;
-  document.getElementById('clBar').style.width = ((count / TOTAL) * 100) + '%';
-}
-
-function loadChecklistFromDB() {
-  _sb.from('brief_checklist').select('*').then(function(res) {
-    var done = Object.assign({}, SEEDED);
-    (res.data || []).forEach(function(r) { done[r.item_index] = r.completed; });
-    window._briefChecklist = done;
-    applyChecklistState(done);
-    updateProgress(done);
-  });
-}
-
-function toggleChecklistItem(index) {
-  if (!_userId) return;
-  var done = window._briefChecklist || Object.assign({}, SEEDED);
-  done[index] = !done[index];
-  window._briefChecklist = done;
-  _sb.from('brief_checklist').upsert({ user_id: _userId, item_index: parseInt(index), completed: done[index] });
-  applyChecklistState(done);
-  updateProgress(done);
-}
-
-document.querySelectorAll('.cl-item').forEach(function(row) {
-  row.addEventListener('click', function() { toggleChecklistItem(row.dataset.i); });
-});
-updateProgress(SEEDED);
-
-// Lawyer status
-var _lawyerStatuses = {};
-var STATUS_CYCLE = ['none', 'voicemail', 'emailed', 'callback', 'retained'];
-var STATUS_LABEL = { none: 'Not contacted', voicemail: 'Voicemail left', emailed: 'Email sent', callback: 'Callback received', retained: 'Retained' };
-
-function loadLawyerStatusFromDB() {
-  _sb.from('brief_lawyer_status').select('*').then(function(res) {
-    (res.data || []).forEach(function(r) { _lawyerStatuses[r.lawyer_id] = r.status; });
-    refreshLawyerStatusTags();
-  });
-}
-
-function setLawyerStatus(lawyerId, status) {
-  _lawyerStatuses[lawyerId] = status;
-  _sb.from('brief_lawyer_status').upsert({ user_id: _userId, lawyer_id: lawyerId, status: status });
-  refreshLawyerStatusTags();
-}
-
-function refreshLawyerStatusTags() {
-  document.querySelectorAll('.lawyer[data-lawyer-id]').forEach(function(card) {
-    var id = card.dataset.lawyerId;
-    var status = _lawyerStatuses[id] || 'none';
-    var tags = card.querySelector('.lawyer-tags');
-    if (!tags) return;
-    var chip = tags.querySelector('.ltag.status');
-    if (!chip) {
-      chip = document.createElement('span');
-      chip.className = 'ltag status';
-      chip.addEventListener('click', function(e) {
-        e.stopPropagation();
-        var cur = _lawyerStatuses[id] || 'none';
-        var next = STATUS_CYCLE[(STATUS_CYCLE.indexOf(cur) + 1) % STATUS_CYCLE.length];
-        setLawyerStatus(id, next);
-      });
-      tags.appendChild(chip);
-    }
-    chip.textContent = STATUS_LABEL[status] || status;
-    chip.className = 'ltag status' + (status !== 'none' ? ' ' + status : '');
-  });
-}
-
-function initData(JOURNAL_SEED) {
-  loadJournalFromDB(JOURNAL_SEED);
-  loadChecklistFromDB();
-  loadLawyerStatusFromDB();
-
-  var btn = document.getElementById('jAddBtn');
-  var form = document.getElementById('jForm');
-  var dateInput = document.getElementById('jDateInput');
-  var textarea = document.getElementById('jTextarea');
-  var saveBtn = document.getElementById('jSaveBtn');
-  var cancelBtn = document.getElementById('jCancelBtn');
-  if (!btn) return;
-
-  var today = new Date().toISOString().slice(0, 10);
-  dateInput.value = today;
-  dateInput.max = today;
-
-  btn.addEventListener('click', function() {
-    form.style.display = form.style.display === 'none' ? 'block' : 'none';
-    if (form.style.display !== 'none') { textarea.focus(); }
-  });
-  cancelBtn.addEventListener('click', function() {
-    form.style.display = 'none';
-    textarea.value = '';
-    dateInput.value = today;
-  });
-  saveBtn.addEventListener('click', function() {
-    var text = textarea.value.trim();
-    if (!text) return;
-    saveJournalEntry(dateInput.value, text, JOURNAL_SEED);
-    textarea.value = '';
-    dateInput.value = today;
-    form.style.display = 'none';
-  });
-}
-
-// Theme toggle
-document.getElementById('themeBtn').addEventListener('click', function() {
-  var body = document.body;
-  var isDark = body.dataset.theme === 'dark';
-  body.dataset.theme = isDark ? 'paper' : 'dark';
-  this.textContent = isDark ? 'Dark' : 'Light';
-  localStorage.setItem('brief.theme', body.dataset.theme);
-});
-
-// PDF export
-document.getElementById('exportBtn').addEventListener('click', function() {
-  window.print();
-});
-
-// Email outreach copy
-(function() {
-  var btn = document.getElementById('emailCopyBtn');
-  if (!btn) return;
-  btn.addEventListener('click', function() {
-    var text = document.getElementById('emailTemplateText').textContent;
-    navigator.clipboard.writeText(text).then(function() {
-      btn.textContent = 'Copied';
-      btn.classList.add('copied');
-      setTimeout(function() { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+    chip.addEventListener('click', e => {
+      e.stopPropagation();
+      const cur = chip.dataset.status;
+      const next = STATUS_CYCLE[(STATUS_CYCLE.indexOf(cur)+1)%STATUS_CYCLE.length];
+      chip.dataset.status = next;
+      chip.className = 'tag status ' + next;
+      chip.textContent = STATUS_LABEL[next];
+      _lawyerStatuses[L.id] = next;
+      if (_userId) _sb.from('brief_lawyer_status').upsert({ user_id:_userId, lawyer_id:L.id, status:next });
+      renderLeverage();
     });
   });
 })();
+
+(function(){
+  const c = document.getElementById('timeline');
+  TIMELINE.forEach((t,i) => {
+    const d = document.createElement('div'); d.className = 'tl-item';
+    const when = document.createElement('div'); when.className = 'tl-when'; when.textContent = t.when;
+    const rail = document.createElement('div'); rail.className = 'tl-rail';
+    const dot = document.createElement('div'); dot.className = 'tl-dot ' + (t.state||'');
+    rail.appendChild(dot);
+    if (i < TIMELINE.length-1) { const line = document.createElement('div'); line.className = 'tl-line'; rail.appendChild(line); }
+    const body = document.createElement('div'); body.className = 'tl-body';
+    const title = document.createElement('div'); title.className = 'tl-title serif'; title.textContent = t.title;
+    const desc = document.createElement('div'); desc.className = 'tl-desc'; desc.textContent = t.desc;
+    body.appendChild(title); body.appendChild(desc);
+    d.appendChild(when); d.appendChild(rail); d.appendChild(body);
+    c.appendChild(d);
+  });
+})();
+
+const CL_STORE = 'brief.v3.checklist';
+(function(){
+  const c = document.getElementById('checklist');
+  const saved = JSON.parse(localStorage.getItem(CL_STORE) || '{}');
+  CHECKLIST.forEach(it => {
+    if (saved[it.i] !== undefined) it.done = saved[it.i];
+    const d = document.createElement('div'); d.className = 'cl-item'; d.dataset.i = it.i;
+    const box = document.createElement('div'); box.className = 'cl-box' + (it.done?' done':'');
+    const lbl = document.createElement('div'); lbl.className = 'cl-label' + (it.done?' done':''); lbl.textContent = it.label;
+    const lev = document.createElement('div'); lev.className = 'cl-lev'; lev.textContent = '+$' + it.lev + 'k';
+    if (it.done) { lev.style.opacity = '0.4'; lev.style.textDecoration = 'line-through'; }
+    const pri = document.createElement('div'); pri.className = 'cl-pri ' + it.pri; pri.textContent = it.pri;
+    d.appendChild(box); d.appendChild(lbl); d.appendChild(lev); d.appendChild(pri);
+    c.appendChild(d);
+    d.addEventListener('click', () => {
+      it.done = !it.done;
+      const s = JSON.parse(localStorage.getItem(CL_STORE) || '{}');
+      s[it.i] = it.done;
+      localStorage.setItem(CL_STORE, JSON.stringify(s));
+      box.classList.toggle('done', it.done);
+      lbl.classList.toggle('done', it.done);
+      lev.style.opacity = it.done ? '0.4' : '';
+      lev.style.textDecoration = it.done ? 'line-through' : '';
+      if (_userId) _sb.from('brief_checklist').upsert({ user_id:_userId, item_index:parseInt(it.i), completed:it.done });
+      updateClProg();
+      renderLeverage();
+    });
+  });
+  updateClProg();
+})();
+
+function updateClProg() {
+  const done = CHECKLIST.filter(x => x.done).length;
+  document.getElementById('clCount').textContent = done;
+  document.getElementById('clTotal').textContent = CHECKLIST.length;
+  document.getElementById('clBar').style.width = (done/CHECKLIST.length*100) + '%';
+}
+
+function renderJournalEntries(entries) {
+  const list = document.getElementById('journalList');
+  if (!list) return;
+  while (list.firstChild) list.removeChild(list.firstChild);
+  entries.forEach(e => {
+    const d = document.createElement('div'); d.className = 'j-entry';
+    const dt = new Date(e.date+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}).toUpperCase();
+    const when = document.createElement('div'); when.className = 'when'; when.textContent = dt;
+    const what = document.createElement('div'); what.className = 'what serif'; what.textContent = e.text;
+    d.appendChild(when); d.appendChild(what);
+    list.appendChild(d);
+  });
+}
+
+const J_STORE = 'brief.v3.journal';
+(function(){
+  const saved = JSON.parse(localStorage.getItem(J_STORE) || '[]');
+  const map = {};
+  JOURNAL_SEED.forEach(e => map[e.date] = e);
+  saved.forEach(e => map[e.date] = e);
+  renderJournalEntries(Object.values(map).sort((a,b) => b.date.localeCompare(a.date)));
+
+  const btn = document.getElementById('jAddBtn');
+  const form = document.getElementById('jForm');
+  const dateI = document.getElementById('jDate');
+  const txtI = document.getElementById('jText');
+  const today = new Date().toISOString().slice(0,10);
+  dateI.value = today; dateI.max = today;
+
+  btn.addEventListener('click', () => { form.classList.toggle('open'); if (form.classList.contains('open')) txtI.focus(); });
+  document.getElementById('jCancel').addEventListener('click', () => { form.classList.remove('open'); txtI.value = ''; });
+  document.getElementById('jSave').addEventListener('click', () => {
+    const txt = txtI.value.trim(); if (!txt) return;
+    if (_userId) {
+      _sb.from('brief_journal').upsert({ user_id:_userId, date:dateI.value, text:txt }).then(() => loadJournalFromDB());
+    } else {
+      const s = JSON.parse(localStorage.getItem(J_STORE) || '[]');
+      s.push({ date:dateI.value, text:txt });
+      localStorage.setItem(J_STORE, JSON.stringify(s));
+      const m = {};
+      JOURNAL_SEED.forEach(e => m[e.date] = e);
+      s.forEach(e => m[e.date] = e);
+      renderJournalEntries(Object.values(m).sort((a,b) => b.date.localeCompare(a.date)));
+    }
+    txtI.value = ''; form.classList.remove('open');
+  });
+})();
+
+function animateBars() {
+  document.querySelectorAll('#scenarios .bar-fill').forEach(b => b.style.width = b.dataset.w + '%');
+}
+document.querySelectorAll('.tab-btn').forEach((b,idx,all) => {
+  b.setAttribute('role','tab');
+  b.setAttribute('tabindex', b.classList.contains('active') ? '0' : '-1');
+  b.addEventListener('click', () => {
+    all.forEach(x => { x.classList.remove('active'); x.setAttribute('tabindex','-1'); });
+    document.querySelectorAll('.tab-panel').forEach(x => x.classList.remove('active'));
+    b.classList.add('active'); b.setAttribute('tabindex','0');
+    document.getElementById('panel-' + b.dataset.tab).classList.add('active');
+    if (b.dataset.tab === 'money') setTimeout(animateBars, 80);
+  });
+  b.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      const n = (idx + (e.key === 'ArrowRight' ? 1 : -1) + all.length) % all.length;
+      all[n].focus(); all[n].click();
+    }
+  });
+});
+
+document.querySelectorAll('.ground').forEach(g => {
+  g.setAttribute('tabindex','0'); g.setAttribute('role','button');
+  g.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' ') { e.preventDefault(); g.click(); } });
+});
+
+(function(){
+  const mq = window.matchMedia('(prefers-color-scheme: light)');
+  let mode = 'auto';
+  function applySystem() { if (mode === 'auto') document.body.dataset.theme = mq.matches ? 'white' : 'dark'; }
+  window.__setTheme = function(m) { mode = m; if (m === 'auto') applySystem(); else document.body.dataset.theme = m; };
+  applySystem();
+  if (mq.addEventListener) mq.addEventListener('change', applySystem);
+})();
+
+const TWEAKS = { theme:'auto', accent:'red', hero:100, density:'comfortable', annot:true, decay:true };
+(function(){
+  const panel = document.getElementById('twPanel');
+  function apply(t) {
+    window.__setTheme(t.theme);
+    document.body.dataset.accent = t.accent;
+    document.body.dataset.density = t.density;
+    document.body.dataset.annot = t.annot ? 'on' : 'off';
+    document.body.dataset.decay = t.decay ? 'on' : 'off';
+    document.documentElement.style.setProperty('--hero-scale', (t.hero/100).toFixed(2));
+    document.getElementById('twHeroVal').textContent = (t.hero/100).toFixed(2) + 'x';
+    panel.querySelectorAll('.tw-seg[data-key="theme"] button').forEach(b => b.classList.toggle('active', b.dataset.v === t.theme));
+    panel.querySelectorAll('.tw-swatches[data-key="accent"] button').forEach(b => b.classList.toggle('active', b.dataset.v === t.accent));
+    panel.querySelectorAll('.tw-seg[data-key="density"] button').forEach(b => b.classList.toggle('active', b.dataset.v === t.density));
+    document.getElementById('twHero').value = t.hero;
+    document.getElementById('twAnnot').checked = t.annot;
+    document.getElementById('twDecay').checked = t.decay;
+  }
+  function set(patch) { Object.assign(TWEAKS, patch); apply(TWEAKS); }
+  panel.querySelectorAll('.tw-seg button').forEach(b => b.addEventListener('click', () => set({ [b.parentElement.dataset.key]: b.dataset.v })));
+  panel.querySelectorAll('.tw-swatches button').forEach(b => b.addEventListener('click', () => set({ [b.parentElement.dataset.key]: b.dataset.v })));
+  document.getElementById('twHero').addEventListener('input', e => set({ hero: parseInt(e.target.value) }));
+  document.getElementById('twAnnot').addEventListener('change', e => set({ annot: e.target.checked }));
+  document.getElementById('twDecay').addEventListener('change', e => set({ decay: e.target.checked }));
+  document.getElementById('twClose').addEventListener('click', () => { panel.hidden = true; });
+  document.addEventListener('keydown', e => { if (e.shiftKey && e.key === 'T') panel.hidden = !panel.hidden; });
+  const tweaksBtn = document.getElementById('tweaksBtn');
+  if (tweaksBtn) tweaksBtn.addEventListener('click', () => { panel.hidden = !panel.hidden; });
+  apply(TWEAKS);
+})();
+
+const scriptEl = document.getElementById('scriptText');
+if (scriptEl) scriptEl.textContent = CALL_SCRIPT;
+document.getElementById('copyScript').addEventListener('click', function() {
+  navigator.clipboard.writeText(document.getElementById('scriptText').textContent).then(() => {
+    this.textContent = 'Copied'; this.classList.add('copied');
+    setTimeout(() => { this.textContent = 'Copy'; this.classList.remove('copied'); }, 1800);
+  });
+});
+
+// ===== SUPABASE SYNC (called after auth) =====
+function loadJournalFromDB() {
+  _sb.from('brief_journal').select('*').order('date', { ascending:false }).then(res => {
+    const map = {};
+    JOURNAL_SEED.forEach(e => map[e.date] = e);
+    (res.data||[]).forEach(e => map[e.date] = e);
+    renderJournalEntries(Object.values(map).sort((a,b) => b.date.localeCompare(a.date)));
+  });
+}
+
+function loadChecklistFromDB() {
+  _sb.from('brief_checklist').select('*').then(res => {
+    (res.data||[]).forEach(r => {
+      const it = CHECKLIST.find(x => x.i === String(r.item_index));
+      if (it) it.done = r.completed;
+    });
+    const s = {};
+    CHECKLIST.forEach(it => s[it.i] = it.done);
+    localStorage.setItem(CL_STORE, JSON.stringify(s));
+    document.querySelectorAll('.cl-item').forEach(row => {
+      const it = CHECKLIST.find(x => x.i === row.dataset.i);
+      if (!it) return;
+      row.querySelector('.cl-box').classList.toggle('done', it.done);
+      row.querySelector('.cl-label').classList.toggle('done', it.done);
+      const lev = row.querySelector('.cl-lev');
+      if (lev) { lev.style.opacity = it.done ? '0.4' : ''; lev.style.textDecoration = it.done ? 'line-through' : ''; }
+    });
+    updateClProg();
+    renderLeverage();
+  });
+}
+
+function loadLawyerStatusFromDB() {
+  _sb.from('brief_lawyer_status').select('*').then(res => {
+    (res.data||[]).forEach(r => { _lawyerStatuses[r.lawyer_id] = r.status; });
+    document.querySelectorAll('.lawyer[data-lawyer-id]').forEach(card => {
+      const id = card.dataset.lawyerId;
+      const status = _lawyerStatuses[id] || (LAWYERS.find(l => l.id === id) || {}).status || 'none';
+      const chip = card.querySelector('.tag.status');
+      if (!chip) return;
+      chip.dataset.status = status;
+      chip.className = 'tag status ' + status;
+      chip.textContent = STATUS_LABEL[status];
+    });
+    renderLeverage();
+  });
+}
+
+function initData() {
+  loadJournalFromDB();
+  loadChecklistFromDB();
+  loadLawyerStatusFromDB();
+}
+
+renderLeverage();
