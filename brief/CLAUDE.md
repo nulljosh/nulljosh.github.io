@@ -74,14 +74,25 @@ Current anchors (update when new cases surface):
 - US ceiling: Randy Cox $45M USD (in-custody paralysis, 2023)
 - Systemic: NYC $1.94B FY2024, US top-25 $3.2B/decade
 
-## Auth + sync (A+ — shipped 2026-05-15)
+## Auth + sync
 
-Supabase magic link auth (OTP) with cross-platform DB sync. Auth gate: jatrommel@gmail.com only.
+Email + password auth (two-step Facebook-style flow). Auth gate: jatrommel@gmail.com only.
 
 - Supabase project: spark (`tjsxsqlxjmanwvmywwvw.supabase.co`)
 - Tables: `brief_journal`, `brief_checklist`, `brief_lawyer_status` — all RLS-protected
-- Web: supabase-js CDN, email-only overlay, session persists via localStorage JWT
-- iOS/macOS: supabase-swift SPM, @MainActor Store, magic link via `brief://` URL scheme
+- Web: supabase-js CDN, two-step overlay (email → avatar confirm → password), session persists via localStorage JWT
+- iOS/macOS: supabase-swift SPM, @MainActor Store, email+password (`sbClient.auth.signIn(email:password:)`)
+- **First login**: set password via Supabase dashboard > Auth > Users > jatrommel@gmail.com > Send password reset email
+
+## Claude auto-scan (no-auth solution)
+
+Brief's data is in Supabase. To scan without touching the web UI:
+```
+KEY=$(security find-generic-password -s brief-supabase-service-role -a service_role -w)
+curl "https://tjsxsqlxjmanwvmywwvw.supabase.co/rest/v1/brief_checklist?select=*" \
+  -H "apikey: $KEY" -H "Authorization: Bearer $KEY"
+```
+Store the service role key once: `security add-generic-password -s brief-supabase-service-role -a service_role -w "KEY"`
 
 ## Rules
 
