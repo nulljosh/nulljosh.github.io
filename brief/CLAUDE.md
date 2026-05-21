@@ -20,6 +20,9 @@ Static litigation planning tool for Trommel v. AG Canada. Not a generic case ana
 - BCCLA referral line (604-687-2919) — not yet contacted
 - Aitken Robertson — phone out of order
 
+## Pending work
+- **CASE-0002 web** — add case switcher (two pill buttons), CASE2_* data constants (grounds, lawyers, checklist, scenarios, timeline, call script matching `apps/brief/ios/Sources/Models/FamilyCaseData.swift`), `switchCase(id)` toggle, c1-only/c2-only wrapper divs in index.html, bump to `?v=6`. iOS/macOS already show both cases.
+
 ## Deployment
 
 Push to main. GitHub Pages serves it at `heyitsmejosh.com/brief`. Cache bust by bumping the `?v=N` query param on `<link>` and `<script>` tags in `index.html` after any CSS or JS change.
