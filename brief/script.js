@@ -127,8 +127,8 @@ const SCALE = [
 ];
 
 const LAWYERS = [
-  { id:'paul-kent',        init:'PK', name:'Paul G. Kent-Snowsell', sub:'Kane Shannon & Weiler - Surrey BC - Of Counsel',
-    tags:[{t:'33 yrs trial',c:'good'},{t:'Sued RCMP',c:'good'}], status:'voicemail', fit:4,
+  { id:'paul-kent',        init:'PK', name:'Paul G. Kent-Snowsell', sub:'Kane Shannon & Weiler - Surrey BC - Not taking new cases (May 18) — referred Thomas Harding & Neil Chantler',
+    tags:[{t:'33 yrs trial',c:'good'},{t:'Sued RCMP',c:'good'},{t:'Declined May 18',c:'bad'}], status:'declined', fit:4,
     contacts:[{label:'604-591-7321',href:'tel:6045917321',kind:'tel',primary:true},{label:'pgkent@kswlawyers.ca',href:'mailto:pgkent@kswlawyers.ca',kind:'email'}] },
   { id:'cameron-ward',     init:'CW', name:'Cameron Ward', sub:'Cameron Ward & Co - Gastown, Vancouver BC - 40+ yrs',
     tags:[{t:'Ward v. Vancouver SCC',c:'good'},{t:'Charter & police',c:'good'}], status:'emailed', fit:5,
@@ -139,9 +139,15 @@ const LAWYERS = [
   { id:'klein-lawyers',    init:'KL', name:'Klein Lawyers', sub:'1385 W 8th Ave #400 - Vancouver BC - free consult, contingency',
     tags:[{t:'RCMP class actions',c:'good'},{t:'Federal court',c:'good'},{t:'Contingency',c:'good'}], status:'emailed', fit:3,
     contacts:[{label:'604-874-7171',href:'tel:6048747171',kind:'tel',primary:true},{label:'callkleinlawyers.com',href:'https://callkleinlawyers.com',kind:'web'}] },
-  { id:'dla-law',          init:'DL', name:'DLA Law', sub:'Dosanjh Ladner Arora - Vancouver BC',
-    tags:[{t:'Police misconduct',c:'good'},{t:'Wrongful arrest',c:'good'}], status:'emailed', fit:3,
+  { id:'dla-law',          init:'DL', name:'DLA Law (Ingrid Eiermann)', sub:'Dosanjh Ladner Arora - Vancouver BC - Not able to assist (May 15)',
+    tags:[{t:'Police misconduct',c:'good'},{t:'Wrongful arrest',c:'good'},{t:'Declined May 15',c:'bad'}], status:'declined', fit:3,
     contacts:[{label:'604-327-6381',href:'tel:6043276381',kind:'tel'},{label:'Ingrid@dlalaw.ca',href:'mailto:Ingrid@dlalaw.ca',kind:'email'}] },
+  { id:'thomas-harding',   init:'TH', name:'Thomas Harding', sub:'Vancouver BC - Referred by Paul Kent (KSW) - did the Degen case ($317k Surrey RCMP)',
+    tags:[{t:'Degen case',c:'good'},{t:'RCMP misconduct',c:'good'},{t:'PK referral',c:'warn'}], status:'none', fit:5,
+    contacts:[] },
+  { id:'neil-chantler',    init:'NC', name:'Neil Chantler', sub:'Vancouver BC - Referred by Paul Kent (KSW)',
+    tags:[{t:'Civil rights',c:'good'},{t:'PK referral',c:'warn'}], status:'none', fit:4,
+    contacts:[] },
   { id:'bccla',            init:'BC', name:'BCCLA Referral Line', sub:'BC Civil Liberties Association',
     tags:[{t:'Free referrals',c:'good'},{t:'Civil rights',c:'good'}], status:'none', fit:2,
     contacts:[{label:'604-687-2919',href:'tel:6046872919',kind:'tel'},{label:'bccla.org',href:'https://bccla.org',kind:'web'}] },
@@ -157,7 +163,7 @@ const LAWYERS = [
 ];
 
 const TIMELINE = [
-  { when:'Now',          state:'now',  title:'Counsel selection',        desc:'Email-first outreach to 4 firms. Voicemail unreliable. Compare retainer structures before signing.' },
+  { when:'Now',          state:'now',  title:'Counsel selection',        desc:'Paul Kent (KSW) declined May 18 — not taking new cases. DLA Law declined May 15. Referred: Thomas Harding (Degen case) & Neil Chantler. Still awaiting: Cameron Ward, Arvay Finlay, Klein, BCCLA.' },
   { when:'Month 1-2',    state:'',     title:'Evidence build',           desc:'Police report, ATIP, E-Comm FOI, hospital ROI, BWC, OPCC to CRCC complaint, PTSD diagnosis letter.' },
   { when:'Month 2-4',    state:'warn', title:'Claim filed',              desc:'Basic limit expired Aug 2025. If discoverability holds, file immediately - every day increases risk.' },
   { when:'Month 6-18',   state:'',     title:'Discovery & negotiation',  desc:'Evidence exchanged. Settlement talks begin. Federal AG typically prefers quiet settlement.' },
@@ -166,7 +172,7 @@ const TIMELINE = [
 ];
 
 const CHECKLIST = [
-  { i:'0',  label:'Call Paul Kent-Snowsell - book appointment',                pri:'now',  done:false, lev:20 },
+  { i:'0',  label:'Paul Kent declined May 18 — contact Thomas Harding & Neil Chantler (PK referrals — Degen case)',  pri:'now',  done:true,  lev:20 },
   { i:'1',  label:'PTSD assessment started (therapy) - get Dx letter',         pri:'now',  done:true,  lev:80 },
   { i:'2',  label:'Body cam footage requested from RCMP',                       pri:'now',  done:false, lev:120 },
   { i:'3',  label:'Police report - both Daryls full names',                     pri:'now',  done:false, lev:45 },
@@ -183,6 +189,8 @@ const CHECKLIST = [
   { i:'14', label:'ATIP filed with RCMP - officer names, notebooks, BWC',      pri:'now',  done:false, lev:70 },
   { i:'15', label:'FOI filed with E-Comm 9-1-1 BC - 911 audio + CAD notes',   pri:'now',  done:false, lev:65 },
   { i:'16', label:'Email outreach: Ward, Arvay, Klein, BCCLA',                 pri:'now',  done:false, lev:30 },
+  { i:'17', label:'Contact Thomas Harding (referred by Paul Kent - did Degen case $317k)',  pri:'now', done:false, lev:20 },
+  { i:'18', label:'Contact Neil Chantler (referred by Paul Kent)',              pri:'now',  done:false, lev:20 },
 ];
 
 const JOURNAL_SEED = [
@@ -194,13 +202,13 @@ const JOURNAL_SEED = [
 const CALL_SCRIPT = '30-SECOND COLD CALL — use verbatim:\n"Hi, my name is Josh Trommel. I have a Charter damages claim against the Attorney General of Canada — warrantless RCMP entry during a wellness call in Langley, August 2023, forced hospitalisation, forced antipsychotic medication, documented PTSD. I\'m looking to retain counsel. The basic two-year limit has passed but I have strong discoverability and incapacity arguments. I\'d like to book a consultation."\n\n---\n\nFULL CONSULTATION PREP:\n\nIntroduction: "My name is Joshua Trommel. I am following up on my email about a civil claim arising from a warrantless RCMP wellness-call entry in August 2023."\n\nKey facts (30 seconds):\n- Date: August 1, 2023, approx 11:00 AM, Langley BC (Brookswood detachment)\n- No underlying crime. Father present. I was sitting at kitchen table.\n- RCMP entered without warrant, restrained me within 30 seconds (prone, knee on back).\n- Transported to hospital, overnight hold, forced antipsychotic injection.\n- No s.10(b) caution at any point. File: 2023-25586.\n\nCharter grounds: ss. 7, 8, 9, 10(b), 12 + battery + false imprisonment.\n\nLimitation: Basic 2-year expired Aug 2025. Survived on discoverability (s.8(1)(d)) and PTSD incapacity (s.18). Discovery date: May 11, 2026.\n\nDefendant: Attorney General of Canada (RCMP is federal).\n\nDamages ask: $800k-1.2M settlement; $2-3M trial ceiling.\n\nQuestions for counsel:\n1. Do you take civil rights / Charter police misconduct cases?\n2. Retainer structure - flat or contingency?\n3. Have you acted against the AG / RCMP specifically?\n4. Are you press-capable if the AG stonewalls?\n5. When can we meet in person?';
 
 // ===== LEVERAGE =====
-const LAWYER_LEVERAGE = { none:0, voicemail:5, emailed:15, callback:40, retained:180 };
+const LAWYER_LEVERAGE = { none:0, voicemail:5, emailed:15, callback:40, retained:180, declined:0 };
 const BASELINE_PROJECTION = 400;
 const CEILING_PROJECTION  = 2250;
 
 let _lawyerStatuses = {};
-const STATUS_CYCLE = ['none','voicemail','emailed','callback','retained'];
-const STATUS_LABEL = { none:'Not contacted', voicemail:'Voicemail left', emailed:'Email sent', callback:'Callback received', retained:'Retained' };
+const STATUS_CYCLE = ['none','voicemail','emailed','callback','retained','declined'];
+const STATUS_LABEL = { none:'Not contacted', voicemail:'Voicemail left', emailed:'Email sent', callback:'Callback received', retained:'Retained', declined:'Declined' };
 
 function computeLeverage() {
   const evidence = CHECKLIST.reduce((s,x) => s + (x.done ? x.lev : 0), 0);

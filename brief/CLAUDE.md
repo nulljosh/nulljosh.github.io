@@ -6,13 +6,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Static litigation planning tool for Trommel v. AG Canada. Not a generic case analyzer. No build step.
 
-**Lawyer status (as of 2026-05-16):** Full email blitz sent. Awaiting responses.
-- Paul Kent-Snowsell (pgkent@kswlawyers.ca) — voicemail + email sent
-- DLA Law / Ingrid (Ingrid@dlalaw.ca) — email sent (follow-up)
-- Cameron Ward (cward@cameronward.com) — email sent 2026-05-16
-- Arvay Finlay (arvayfinlay.ca) — email sent 2026-05-16
-- Klein Lawyers (callkleinlawyers.com) — email sent 2026-05-16
-- CBA BC (info@cbabc.org) — email sent 2026-05-16
+**Lawyer status (as of 2026-05-20):**
+- Paul Kent-Snowsell (KSW) — DECLINED May 18: "Not taking new cases." Referred Thomas Harding & Neil Chantler.
+- DLA Law / Ingrid Eiermann — DECLINED May 15: "Not able to assist with your matter."
+- Thomas Harding — not yet contacted (PK referral — did Degen case $317k)
+- Neil Chantler — not yet contacted (PK referral)
+- Cameron Ward (cward@cameronward.com) — email sent 2026-05-16, awaiting
+- Arvay Finlay (arvayfinlay.ca) — email sent 2026-05-16, awaiting
+- Klein Lawyers (callkleinlawyers.com) — email sent 2026-05-16, awaiting
+- CBA BC (info@cbabc.org) — email sent 2026-05-16, awaiting
 - McQuarrie Hunter LLP (604-581-7001) — voicemail left
 - Sean Hern Law Corp (604-684-9151) — not yet contacted
 - BCCLA referral line (604-687-2919) — not yet contacted
