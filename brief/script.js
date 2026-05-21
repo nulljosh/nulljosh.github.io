@@ -142,12 +142,12 @@ const LAWYERS = [
   { id:'dla-law',          init:'DL', name:'DLA Law (Ingrid Eiermann)', sub:'Dosanjh Ladner Arora - Vancouver BC - Not able to assist (May 15)',
     tags:[{t:'Police misconduct',c:'good'},{t:'Wrongful arrest',c:'good'},{t:'Declined May 15',c:'bad'}], status:'declined', fit:3,
     contacts:[{label:'604-327-6381',href:'tel:6043276381',kind:'tel'},{label:'Ingrid@dlalaw.ca',href:'mailto:Ingrid@dlalaw.ca',kind:'email'}] },
-  { id:'thomas-harding',   init:'TH', name:'Thomas Harding', sub:'Vancouver BC - Referred by Paul Kent (KSW) - did the Degen case ($317k Surrey RCMP)',
-    tags:[{t:'Degen case',c:'good'},{t:'RCMP misconduct',c:'good'},{t:'PK referral',c:'warn'}], status:'none', fit:5,
-    contacts:[] },
-  { id:'neil-chantler',    init:'NC', name:'Neil Chantler', sub:'Vancouver BC - Referred by Paul Kent (KSW)',
+  { id:'thomas-harding',   init:'TH', name:'Thomas Harding', sub:'Thomas Harding Law Corp (TLAG) - Surrey BC - PK referral - Degen $317k',
+    tags:[{t:'Degen case $317k',c:'good'},{t:'RCMP misconduct',c:'good'},{t:'PK referral',c:'warn'}], status:'none', fit:5,
+    contacts:[{label:'604-635-1330',href:'tel:6046351330',kind:'tel',primary:true},{label:'tlag.ca',href:'https://tlag.ca',kind:'web'}] },
+  { id:'neil-chantler',    init:'NC', name:'Neil Chantler', sub:'Chantler & Company - Vancouver BC - PK referral',
     tags:[{t:'Civil rights',c:'good'},{t:'PK referral',c:'warn'}], status:'none', fit:4,
-    contacts:[] },
+    contacts:[{label:'604-424-8454',href:'tel:6044248454',kind:'tel',primary:true},{label:'neilchantler@chantlerlaw.ca',href:'mailto:neilchantler@chantlerlaw.ca',kind:'email'},{label:'chantlerlaw.ca',href:'https://chantlerlaw.ca',kind:'web'}] },
   { id:'bccla',            init:'BC', name:'BCCLA Referral Line', sub:'BC Civil Liberties Association',
     tags:[{t:'Free referrals',c:'good'},{t:'Civil rights',c:'good'}], status:'none', fit:2,
     contacts:[{label:'604-687-2919',href:'tel:6046872919',kind:'tel'},{label:'bccla.org',href:'https://bccla.org',kind:'web'}] },
@@ -189,8 +189,8 @@ const CHECKLIST = [
   { i:'14', label:'ATIP filed with RCMP - officer names, notebooks, BWC',      pri:'now',  done:false, lev:70 },
   { i:'15', label:'FOI filed with E-Comm 9-1-1 BC - 911 audio + CAD notes',   pri:'now',  done:false, lev:65 },
   { i:'16', label:'Email outreach: Ward, Arvay, Klein, BCCLA',                 pri:'now',  done:false, lev:30 },
-  { i:'17', label:'Contact Thomas Harding (referred by Paul Kent - did Degen case $317k)',  pri:'now', done:false, lev:20 },
-  { i:'18', label:'Contact Neil Chantler (referred by Paul Kent)',              pri:'now',  done:false, lev:20 },
+  { i:'17', label:'Contact Thomas Harding (referred by Paul Kent — did Degen case $317k)',  pri:'now', done:false, lev:120 },
+  { i:'18', label:'Contact Neil Chantler (referred by Paul Kent)',                          pri:'now', done:false, lev:100 },
 ];
 
 const JOURNAL_SEED = [
