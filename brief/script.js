@@ -77,10 +77,9 @@ const GROUNDS = [
 ];
 
 const SCENARIOS = [
-  { name:'Best case',   desc:'Full trial, all heads, Ward functions maximally triggered, punitive granted.', amt:'$2-3M',       pct:15, color:'var(--good)' },
-  { name:'Strong',      desc:'Settlement with silence premium, evidence fully assembled, press-capable counsel.', amt:'$1.2-1.8M', pct:30, color:'var(--info)' },
-  { name:'Most likely', desc:'AG settles to suppress precedent. Confidentiality clause standard.',           amt:'$800k-1.2M', pct:40, color:'var(--warn)' },
-  { name:'Worst',       desc:'Limitation fails OR settles early without leverage.',                          amt:'$0-350k',    pct:15, color:'var(--danger)' },
+  { name:'Most likely', desc:'AG settles to suppress precedent on forced medication + solitary + Charter violations. No underlying crime, no complicating factors. Confidentiality clause standard.', amt:'$1.5-2.5M', pct:70, color:'var(--warn)' },
+  { name:'Trial',       desc:'Full trial victory with punitive damages and clear Charter breaches. Ward maximally triggered — compensation, vindication, deterrence all engage.', amt:'$2.5-4M', pct:20, color:'var(--good)' },
+  { name:'Worst',       desc:'Early settlement without litigation momentum, or limitation argument fails.',  amt:'$800k-1.2M', pct:10, color:'var(--danger)' },
 ];
 
 const STACK_HEADS = [
@@ -99,15 +98,16 @@ const SCALE = [
     marks:[
       { k:55,   lbl:'Tort floor' },
       { k:317,  lbl:'Degen 2023 BCSC', grp:'warn' },
-      { k:1000, lbl:'This case - likely', isThis:true },
-      { k:2500, lbl:'Trial ceiling', grp:'good' },
+      { k:2000, lbl:'This case - likely', isThis:true },
+      { k:4000, lbl:'Trial ceiling', grp:'good' },
       { k:8100, lbl:'Henry v. BC', grp:'mid' },
     ],
     rows:[
       { name:'Degen v. Min. Public Safety',   yr:'2023 BCSC', v:'$317k',        note:'Surrey RCMP - force + PTSD' },
       { name:'Mona Wang v. AG Canada',         yr:'2021',      v:'confidential', note:'BC RCMP wellness check (closest parallel)' },
-      { name:'This case / settlement median', yr:'projected', v:'$800k-1.2M',   note:'AG silence premium' },
-      { name:'This case / trial ceiling',      yr:'projected', v:'$2-3M',        note:'Ward maxed, punitive granted' },
+      { name:'BC Prison Solitary Class Action', yr:'2026 BC',  v:'$60M class / $85-91k pp', note:'Establishes solitary as s.12 violation — per-person baseline' },
+      { name:'This case / settlement median', yr:'projected', v:'$1.5M-2.5M',   note:'AG silence premium — 70% probability' },
+      { name:'This case / trial ceiling',      yr:'projected', v:'$2.5-4M',      note:'Ward maxed, punitive granted' },
       { name:'Henry v. British Columbia',      yr:'2016 BCSC', v:'$8.1M',        note:'wrongful conviction ceiling' },
     ]},
   { band:'Global USD reference', max:45000,
@@ -204,7 +204,7 @@ const CALL_SCRIPT = '30-SECOND COLD CALL — use verbatim:\n"Hi, my name is Josh
 // ===== LEVERAGE =====
 const LAWYER_LEVERAGE = { none:0, voicemail:5, emailed:15, callback:40, retained:180, declined:0 };
 const BASELINE_PROJECTION = 400;
-const CEILING_PROJECTION  = 2250;
+const CEILING_PROJECTION  = 4000;
 
 let _lawyerStatuses = {};
 const STATUS_CYCLE = ['none','voicemail','emailed','callback','retained','declined'];
@@ -323,7 +323,7 @@ function renderTrajectory(currentTotal) {
     { l:'Retain counsel',           m:"One signed retainer flips the AG's posture. Press-capable counsel (Cameron Ward, Arvay Finlay) maximizes the silence premium.", v:'+$180k' },
     { l:'Complete top 5 evidence',  m:'BWC footage, therapist letter (PTSD + causation), ATIP officer notebooks, E-Comm 911 audio, hospital discharge - top leverage items.', v:'+$295k' },
     { l:'Claim filed',              m:'Filing converts pre-litigation soft leverage to live procedural pressure. AG must engage and consider discovery exposure.', v:'+$100k' },
-    { l:'Trial-ready evidence',     m:'Full pleadings, expert reports (forensic psych + vocational economist). Trial threat is now credible.', v:'$' + CEILING_PROJECTION/1000 + 'M ceiling' },
+    { l:'Trial-ready evidence',     m:'Full pleadings, expert reports (forensic psych + vocational economist). Trial threat is now credible.', v:'$' + (CEILING_PROJECTION/1000).toFixed(1) + 'M ceiling' },
   ];
 
   const stepsHtml = steps.map((s,i) => {
