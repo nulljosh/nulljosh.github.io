@@ -1,3 +1,21 @@
+## [v0.0.1] — 2026-05-23
+
+- fbaec77 fix(brief): update lawyer statuses — Kent-Snowsell + DLA declined, Cameron Ward no response, Arvay Finlay unclear
+- ee15b3d fix(brief): A+ gap — strip pill, hero marks, next-action, strategy, comparables, white theme, dead code, renderLeverage guards, v6
+- 0b995c2 feat(brief): CASE-0002 case switcher, remove Supabase journal, macOS toolbar fix
+- a8c12b0 feat(brief): update scenarios + ceiling to JSON projections (v6)
+- d179eaa docs(brief): add CASE-0002 web as pending work
+- 4e412a1 fix(brief): TH/NC contacts, bump checklist leverage, update next-action banners
+- ad9a80d docs: add CapU BLS Paralegal details to school notes
+- cfde454 fix(brief): mark Paul Kent + DLA Law declined, add Harding & Chantler referrals
+- bcae7e5 fix(brief): replace magic link with password auth, two-step login flow
+- 7e0b57b feat: add CapU Paralegal Studies, mark UVic CS as postponed
+- 0823582 fix: update header path from ~/nulljosh to ~/Documents/Code
+- 62f7d46 fix(brief): full father statement + lawyer updates + base href
+- b0a5784 feat: brief v3 - sync from apps monorepo, remove ui/ prototype dir
+- c8efcd6 auto: daily sync 2026-05-17
+- 9d53350 chore: remove sensitive docs + PDF from public repo, gitignore supabase temp
+
 # Changelog
 
 ## [v0.0.1] — 2026-05-16
