@@ -6,13 +6,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Static litigation planning tool for Trommel v. AG Canada. Not a generic case analyzer. No build step.
 
-**Lawyer status (as of 2026-05-20):**
+**Lawyer status (as of 2026-05-22):**
 - Paul Kent-Snowsell (KSW) — DECLINED May 18: "Not taking new cases." Referred Thomas Harding & Neil Chantler.
 - DLA Law / Ingrid Eiermann — DECLINED May 15: "Not able to assist with your matter."
 - Thomas Harding — not yet contacted (PK referral — did Degen case $317k)
 - Neil Chantler — not yet contacted (PK referral)
-- Cameron Ward (cward@cameronward.com) — email sent 2026-05-16, awaiting
-- Arvay Finlay (arvayfinlay.ca) — email sent 2026-05-16, awaiting
+- Cameron Ward (cward@cameronward.com) — email sent 2026-05-16, no response as of 2026-05-22
+- Arvay Finlay (arvayfinlay.ca) — email sent 2026-05-16, response unclear (may have declined)
 - Klein Lawyers (callkleinlawyers.com) — email sent 2026-05-16, awaiting
 - CBA BC (info@cbabc.org) — email sent 2026-05-16, awaiting
 - McQuarrie Hunter LLP (604-581-7001) — voicemail left

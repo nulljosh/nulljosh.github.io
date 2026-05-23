@@ -128,19 +128,19 @@ const SCALE = [
 
 const LAWYERS = [
   { id:'paul-kent',        init:'PK', name:'Paul G. Kent-Snowsell', sub:'Kane Shannon & Weiler - Surrey BC - Of Counsel',
-    tags:[{t:'33 yrs trial',c:'good'},{t:'Sued RCMP',c:'good'}], status:'voicemail', fit:4,
+    tags:[{t:'33 yrs trial',c:'good'},{t:'Sued RCMP',c:'good'},{t:'Not taking new cases',c:'warn'}], status:'declined', fit:4,
     contacts:[{label:'604-591-7321',href:'tel:6045917321',kind:'tel',primary:true},{label:'pgkent@kswlawyers.ca',href:'mailto:pgkent@kswlawyers.ca',kind:'email'}] },
   { id:'cameron-ward',     init:'CW', name:'Cameron Ward', sub:'Cameron Ward & Co - Gastown, Vancouver BC - 40+ yrs',
-    tags:[{t:'Ward v. Vancouver SCC',c:'good'},{t:'Charter & police',c:'good'}], status:'emailed', fit:5,
+    tags:[{t:'Ward v. Vancouver SCC',c:'good'},{t:'Charter & police',c:'good'},{t:'No response',c:'warn'}], status:'emailed', fit:5,
     contacts:[{label:'604-688-6881',href:'tel:6046886881',kind:'tel',primary:true},{label:'cward@cameronward.com',href:'mailto:cward@cameronward.com',kind:'email'},{label:'cameronward.com',href:'https://cameronward.com',kind:'web'}] },
   { id:'arvay-finlay',     init:'AF', name:'Arvay Finlay LLP', sub:'Vancouver BC',
-    tags:[{t:'Fairy Creek RCMP class',c:'good'},{t:'Charter ss.2/7/8/9',c:'good'}], status:'voicemail', fit:4,
+    tags:[{t:'Fairy Creek RCMP class',c:'good'},{t:'Charter ss.2/7/8/9',c:'good'},{t:'Response unclear',c:'warn'}], status:'emailed', fit:4,
     contacts:[{label:'604-696-9928',href:'tel:6046969928',kind:'tel'},{label:'arvayfinlay.ca',href:'https://arvayfinlay.ca',kind:'web'}] },
   { id:'klein-lawyers',    init:'KL', name:'Klein Lawyers', sub:'1385 W 8th Ave #400 - Vancouver BC - free consult, contingency',
     tags:[{t:'RCMP class actions',c:'good'},{t:'Federal court',c:'good'},{t:'Contingency',c:'good'}], status:'emailed', fit:3,
     contacts:[{label:'604-874-7171',href:'tel:6048747171',kind:'tel',primary:true},{label:'callkleinlawyers.com',href:'https://callkleinlawyers.com',kind:'web'}] },
   { id:'dla-law',          init:'DL', name:'DLA Law', sub:'Dosanjh Ladner Arora - Vancouver BC',
-    tags:[{t:'Police misconduct',c:'good'},{t:'Wrongful arrest',c:'good'}], status:'emailed', fit:3,
+    tags:[{t:'Police misconduct',c:'good'},{t:'Wrongful arrest',c:'good'},{t:'Not able to assist',c:'warn'}], status:'declined', fit:3,
     contacts:[{label:'604-327-6381',href:'tel:6043276381',kind:'tel'},{label:'Ingrid@dlalaw.ca',href:'mailto:Ingrid@dlalaw.ca',kind:'email'}] },
   { id:'bccla',            init:'BC', name:'BCCLA Referral Line', sub:'BC Civil Liberties Association',
     tags:[{t:'Free referrals',c:'good'},{t:'Civil rights',c:'good'}], status:'none', fit:2,
@@ -305,8 +305,8 @@ const BASELINE_PROJECTION = 400;
 const CEILING_PROJECTION  = 2250;
 
 let _lawyerStatuses = {};
-const STATUS_CYCLE = ['none','voicemail','emailed','callback','retained'];
-const STATUS_LABEL = { none:'Not contacted', voicemail:'Voicemail left', emailed:'Email sent', callback:'Callback received', retained:'Retained' };
+const STATUS_CYCLE = ['none','voicemail','emailed','callback','retained','declined'];
+const STATUS_LABEL = { none:'Not contacted', voicemail:'Voicemail left', emailed:'Email sent', callback:'Callback received', retained:'Retained', declined:'Declined' };
 
 function computeLeverage() {
   const evidence = CHECKLIST.reduce((s,x) => s + (x.done ? x.lev : 0), 0);
