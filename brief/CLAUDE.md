@@ -4,7 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What it is
 
-Static litigation planning tool for Trommel v. AG Canada. Not a generic case analyzer. No build step.
+Static litigation planning tool — 3 cases. No build step.
+
+**Cases:**
+- CASE-0001: Trommel v. AG Canada (RCMP excessive force / Charter)
+- CASE-0002: Trommel v. Trommel (family — appropriation of personality, IIMS)
+- CASE-0003: Baitz v. City of Surrey (municipal slip-and-fall, s.285 notice)
 
 **Lawyer status (as of 2026-05-22):**
 - Paul Kent-Snowsell (KSW) — DECLINED May 18: "Not taking new cases." Referred Thomas Harding & Neil Chantler.
@@ -20,88 +25,102 @@ Static litigation planning tool for Trommel v. AG Canada. Not a generic case ana
 - BCCLA referral line (604-687-2919) — not yet contacted
 - Aitken Robertson — phone out of order
 
-## Pending work
-- **CASE-0002 web** — add case switcher (two pill buttons), CASE2_* data constants (grounds, lawyers, checklist, scenarios, timeline, call script matching `apps/brief/ios/Sources/Models/FamilyCaseData.swift`), `switchCase(id)` toggle, c1-only/c2-only wrapper divs in index.html, bump to `?v=6`. iOS/macOS already show both cases.
+## Current version
+
+**v5.0.0** — shipped 2026-05-24. Bumped assets to `?v=8`, sw.js to `brief-v5-1`.
 
 ## Deployment
 
-Push to main. GitHub Pages serves it at `heyitsmejosh.com/brief`. Cache bust by bumping the `?v=N` query param on `<link>` and `<script>` tags in `index.html` after any CSS or JS change.
+Push to main. GitHub Pages serves at `heyitsmejosh.com/brief`. Cache bust by bumping `?v=N` on `<link>` and `<script>` tags in `index.html`, and bumping `CACHE` in `sw.js`.
 
 ## CRITICAL — `<base>` tag
 
-`index.html` MUST have `<base href="/brief/">` as the second tag in `<head>` (right after `<meta charset>`). Without it, accessing `heyitsmejosh.com/brief` (no trailing slash) causes all relative URLs (`style.css`, `script.js`, `manifest.json`) to resolve to the wrong path and the page loads completely unstyled. Never remove this tag.
+`index.html` MUST have `<base href="/brief/">` as the second tag in `<head>` (right after `<meta charset>`). Without it, accessing `heyitsmejosh.com/brief` (no trailing slash) causes all relative URLs to resolve to the wrong path.
 
 ## Architecture
 
 `script.js` executes after DOM is ready (script tag at bottom of body).
 
-`renderGrounds(containerId, suffix)` is called twice — Case tab (`grounds-case`, `''`) and Money tab (`grounds-money`, `'2'`). Same `GROUNDS` array, independent accordion state. Suffix avoids `dataset.id` collisions.
+**Case switching**: `body[data-activecase="rcmp|family|muni"]`. Show/hide via `.case-rcmp/.case-family/.case-muni`. Case switcher buttons: `.cs-btn[data-case]` in `.cs-switcher`. `setActiveCase(id)` in script.js.
 
-`renderJournal()` reads `localStorage.brief.journal`, merges with `JOURNAL_SEED`, sorts newest-first, renders into `#journal-list`. The "+ Entry" button shows an inline form; saves to localStorage and re-renders. Seed entries are never modified by user additions — they merge by date key.
+**Tab switching**: `.rib[data-tab]` buttons → `#panel-{tab}` panels. Money tab triggers `animateBars()` on switch.
 
-`sw.js` is a cache-first service worker registered at `/brief/sw.js` scope. Bump `CACHE` version string when deploying CSS/JS changes to force cache refresh.
+`renderGrounds(containerId, suffix)` called twice — Case tab (`grounds-case`, `''`) and Money tab (`grounds-money`, `'2'`). Suffix avoids `dataset.id` collisions.
 
-Accordion click handlers are attached by a `querySelectorAll('.grounds')` loop after `renderGrounds()` runs — order matters.
+`renderJournal()` reads `localStorage.brief.journal`, merges with `JOURNAL_SEED`, sorts newest-first. Journal is RCMP case only.
+
+`sw.js` is a cache-first service worker. Bump `CACHE` version string on every deploy.
 
 ## Data locations
 
-- **Legal grounds** (title, Charter section, damage range, description, citation): `GROUNDS` array in `script.js`.
-- **Checklist items**: `.cl-item` divs in `index.html` `#checklist`. Each must have a unique `data-i` starting at 0.
-- **Pain journal entries**: `JOURNAL_SEED` array in `script.js`. User-added entries live in `localStorage.brief.journal`. To add entries via code, append to `JOURNAL_SEED`.
-- **Call script**: `const SCRIPT` at the top of `script.js`.
+All per-case data lives in `script.js` as `const` arrays:
+
+| Data type | RCMP | Family | Muni |
+|---|---|---|---|
+| Grounds | `GROUNDS` | `FAMILY_GROUNDS` | `MUNI_GROUNDS` |
+| Stack heads | `STACK_HEADS` | `FAMILY_STACK_HEADS` | `MUNI_STACK_HEADS` |
+| Scenarios | `SCENARIOS` | `FAMILY_SCENARIOS` | `MUNI_SCENARIOS` |
+| Checklist | `CHECKLIST` | `FAMILY_CHECKLIST` | `MUNI_CHECKLIST` |
+| Lawyers | `LAWYERS` | `FAMILY_LAWYERS` | `MUNI_LAWYERS` |
+| Timeline | `TIMELINE` | `FAMILY_TIMELINE` | `MUNI_TIMELINE` |
+| Call script | `SCRIPT` | `FAMILY_CALL_SCRIPT` | `MUNI_CALL_SCRIPT` |
+| localStorage key | `CL_STORE` | `CL_STORE_FAMILY` | `CL_STORE_MUNI` |
+
+**Stack units**: RCMP and Family values are in $k (200 = $200k). Muni values are also in $k (3.5 = $3.5k). `renderStack()` displays `v<1000` as `vk`, else as `(v/1000)M`. Total display is case-aware: muni shows `k`, others show `M`.
 
 ## Critical invariant
 
-`const TOTAL = 17` in `script.js` must equal the number of `.cl-item` divs in `index.html` (currently 17, data-i 0–16). These are not linked automatically — update both together or the progress bar will be wrong.
+`const TOTAL = 17` in `script.js` must equal the number of `.cl-item` divs in `index.html` (RCMP checklist). MUNI and FAMILY checklists are JS-rendered; only RCMP uses the HTML `.cl-item` pattern.
+
+## CASE-0003 specifics
+
+- **Incident date**: unknown (placeholder `2026-05-24` in notice countdown — update when confirmed)
+- **Location**: Main Street, Surrey BC
+- **Injury**: Bilateral knee lacerations ("road rash"), minor injury classification
+- **Key law**: BC Community Charter s.285 — 2-month written notice to municipality or claim barred
+- **Range**: $6k–$12k likely; floor $5.5k (minor injury cap) + medicals
+- **Grounds**: Occupiers Liability Act s.3 (grade A), Municipal Negligence / Marchi 2021 SCC (grade B), Notice requirement (prerequisite)
+- **Notice**: Send to Surrey City Clerk, 13450 104 Ave, Surrey BC V3T 1V8. Registered mail + email.
+- **Surrey PI lawyers**: Law Society BC 1-800-663-1919, Slater Vecchio LLP, Acheson Sweeney Foley Sahota (Surrey local)
 
 ## Design system
 
-Apple Liquid Glass variant — dark/paper themes toggled via `body[data-theme="dark"|"paper"]`, persisted to `localStorage`. Fonts: Inter Tight only (Google Fonts CDN). Color tokens defined as CSS custom properties in `style.css`: `--danger`, `--warn`, `--accent`, `--green`, `--mid`, `--muted`.
+v5: `.cls` fixed banner, `.filebar` sticky, `header.cover` with SVG stamp, `section.tape` (RCMP limitation clock), `section.belt` (value columns), `nav.ribs` (tabs), `.section-hd` with roman numeral labels.
+
+Apple Liquid Glass variant — dark/paper themes toggled via `body[data-theme="dark"|"paper"]`, persisted to `localStorage`. Fonts: Inter Tight only (Google Fonts CDN). Color tokens: `--danger`, `--warn`, `--accent`, `--green`, `--mid`, `--muted`, `--red`, `--red-soft`, `--red-line`.
 
 ## New case facts (added 2026-05-13)
 
-- **Wrist injury**: Subject had a pre-existing wrist fracture that was directly aggravated/reinvigorated by the prone restraint. Added to Facts grid and Excessive Force ground description. Strengthens special damages head.
+- **Wrist injury**: Pre-existing fracture aggravated by prone restraint. Added to Facts grid and Excessive Force ground description.
 
 ## Comparables research shortcut
 
-To refresh comparables, run these four searches and update `renderDamageScale()` in `script.js`:
-
-1. `Canada Charter damages police misconduct RCMP BC large award millions`
-2. `BC RCMP wrongful detention excessive force settlement award`
-3. `largest police excessive force government lawsuit settlement billion worldwide`
-4. `Langley Fraser Valley RCMP lawsuit settlement civil damages`
-
-Current anchors (update when new cases surface):
+Current anchors:
 - Canadian floor: Degen v. Min. Public Safety 2023 BCSC $317k (Surrey RCMP, PTSD)
-- **Closest fact parallel: Wang v. AG Canada (BC RCMP, 2021)** — Kelowna wellness call, officer dragged/assaulted semi-conscious student, criminally convicted, RCMP settled civil claim (confidential). Proves RCMP settles this exact category.
-- Canadian ceiling: Henry v. BC 2016 BCSC $8.1M (wrongful conviction — not directly comparable but shows Charter can reach millions)
-- US wellness call parallel: Elijah McClain $15M USD (Aurora PD, 2023 — closest fact pattern)
-- US ceiling: Randy Cox $45M USD (in-custody paralysis, 2023)
-- Systemic: NYC $1.94B FY2024, US top-25 $3.2B/decade
+- Closest fact parallel: Wang v. AG Canada (BC RCMP, 2021) — RCMP settled (confidential)
+- Canadian ceiling: Henry v. BC 2016 BCSC $8.1M
+- US wellness call parallel: Elijah McClain $15M USD (Aurora PD, 2023)
+- US ceiling: Randy Cox $45M USD (2023)
 
 ## Auth + sync
 
-Email + password auth (two-step Facebook-style flow). Auth gate: jatrommel@gmail.com only.
+Email + password auth. Auth gate: jatrommel@gmail.com only.
 
 - Supabase project: spark (`tjsxsqlxjmanwvmywwvw.supabase.co`)
 - Tables: `brief_journal`, `brief_checklist`, `brief_lawyer_status` — all RLS-protected
-- Web: supabase-js CDN, two-step overlay (email → avatar confirm → password), session persists via localStorage JWT
-- iOS/macOS: supabase-swift SPM, @MainActor Store, email+password (`sbClient.auth.signIn(email:password:)`)
-- **First login**: set password via Supabase dashboard > Auth > Users > jatrommel@gmail.com > Send password reset email
+- Web: supabase-js CDN, two-step overlay
 
 ## Claude auto-scan (no-auth solution)
 
-Brief's data is in Supabase. To scan without touching the web UI:
 ```
 KEY=$(security find-generic-password -s brief-supabase-service-role -a service_role -w)
 curl "https://tjsxsqlxjmanwvmywwvw.supabase.co/rest/v1/brief_checklist?select=*" \
   -H "apikey: $KEY" -H "Authorization: Bearer $KEY"
 ```
-Store the service role key once: `security add-generic-password -s brief-supabase-service-role -a service_role -w "KEY"`
 
 ## Rules
 
-- No build system — do not add Vite, npm, or bundlers
+- No build system — no Vite, npm, bundlers
 - No `innerHTML` — use DOM methods (`createElement`, `textContent`, `appendChild`)
-- All ground content lives in the `GROUNDS` array; do not hardcode ground divs in HTML
-- Tabs wired via `data-tab` attribute → `panel-{tab}` ID; Money tab triggers `animateBars()` on switch
+- All ground content lives in the data arrays; do not hardcode ground divs in HTML
+- Tab buttons are `.rib`, not `.tab-btn` (v5 rename)
