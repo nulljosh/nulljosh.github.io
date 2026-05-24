@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=7">
+<link rel="stylesheet" href="style.css?v=8">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 </head>
@@ -18,7 +18,7 @@
 <div class="auth-overlay" id="authOverlay">
   <div class="auth-card">
     <div class="auth-title">Brief<span style="color:var(--muted)">·</span></div>
-    <div class="auth-sub">Trommel v. AG Canada &middot; private</div>
+    <div class="auth-sub">Trommel · private</div>
     <div id="authStep1">
       <form id="authFormEmail">
         <input class="auth-input" id="authEmail" type="email" placeholder="Email" autocomplete="email">
@@ -42,11 +42,11 @@
   </div>
 </div>
 
-<!-- Tweaks panel (Shift+T to open) -->
+<!-- Tweaks panel (Shift+T) -->
 <div class="tw-panel" id="twPanel" hidden>
   <div class="tw-head">
     <div class="tw-title">Tweaks</div>
-    <button class="tw-close" id="twClose">&#x2715;</button>
+    <button class="tw-close" id="twClose" aria-label="Close">✕</button>
   </div>
   <div class="tw-body">
     <div class="tw-sec">
@@ -54,20 +54,19 @@
       <div class="tw-seg" data-key="theme">
         <button data-v="auto">Auto</button>
         <button data-v="dark">Dark</button>
-        <button data-v="white">White</button>
+        <button data-v="white">Paper</button>
       </div>
     </div>
     <div class="tw-sec">
       <div class="tw-lbl">Accent</div>
       <div class="tw-swatches" data-key="accent">
-        <button data-v="red"   style="background:#d24a3a" title="Red"></button>
-        <button data-v="amber" style="background:#d18a3a" title="Amber"></button>
-        <button data-v="ink"   style="background:#c9c2b1" title="Ink"></button>
+        <button data-v="red" style="background:#e0594a" aria-label="Red"></button>
+        <button data-v="ink" style="background:#f1f1f2;border-color:#555 !important;" aria-label="Ink"></button>
       </div>
     </div>
     <div class="tw-sec">
-      <div class="tw-lbl">Hero scale <span id="twHeroVal" class="tw-val">1.0&times;</span></div>
-      <input type="range" class="tw-slider" id="twHero" min="60" max="140" step="5" value="100">
+      <div class="tw-lbl">Cover scale <span class="tw-val" id="twHeroVal">1.00×</span></div>
+      <input type="range" class="tw-slider" id="twHero" min="70" max="120" value="100">
     </div>
     <div class="tw-sec">
       <div class="tw-lbl">Density</div>
@@ -77,7 +76,7 @@
       </div>
     </div>
     <div class="tw-sec">
-      <div class="tw-lbl">Witness annotations</div>
+      <div class="tw-lbl">Annotations</div>
       <label class="tw-toggle"><input type="checkbox" id="twAnnot" checked><span></span></label>
     </div>
     <div class="tw-sec">
@@ -87,192 +86,443 @@
   </div>
 </div>
 
-<!-- Sticky strip -->
-<div class="strip">
-  <div class="brand">Brief<span style="color:var(--muted)">&#xB7;</span></div>
+<!-- Classification banner -->
+<div class="cls" role="banner" id="clsBanner">
+  <span>VOL. I</span>
+  <span class="cls-mid">·</span>
+  <span class="cls-red">PRE-LITIGATION</span>
+  <span class="cls-mid">·</span>
+  <span>NOT LEGAL ADVICE</span>
+  <span class="cls-mid">·</span>
+  <span id="clsCase">CASE-0001</span>
+  <span class="cls-mid">·</span>
+  <span>BC, CAN</span>
+</div>
+
+<!-- Filebar -->
+<div class="filebar">
+  <div class="brand">brief.</div>
   <div class="meta">
     <span>FILE <b id="stripFile">CASE-0001</b></span>
     <span>JURISDICTION <b>BC, Canada</b></span>
     <span>STATUS <b>Pre-litigation</b></span>
-    <span class="pulse">Active outreach</span>
+    <span class="pulse" id="stripPulse">Active outreach</span>
   </div>
-  <div class="case-switcher">
-    <button class="cs-btn active" data-case="rcmp" onclick="setActiveCase('rcmp')">CASE-0001</button>
-    <button class="cs-btn" data-case="family" onclick="setActiveCase('family')">CASE-0002</button>
+  <div style="display:flex;align-items:center;gap:14px">
+    <div class="today">TODAY <b id="todayStr">—</b></div>
+    <div class="cs-switcher">
+      <button class="cs-btn active" data-case="rcmp" onclick="setActiveCase('rcmp')">CASE-0001</button>
+      <button class="cs-btn" data-case="family" onclick="setActiveCase('family')">CASE-0002</button>
+      <button class="cs-btn" data-case="muni" onclick="setActiveCase('muni')">CASE-0003</button>
+    </div>
+    <button class="strip-btn" id="tweaksBtn" title="Shift+T" style="background:none;border:1px solid var(--rule-strong);border-radius:2px;padding:6px 10px;cursor:pointer;color:var(--mid);font-size:14px;">&#9881;</button>
   </div>
-  <div class="strip-pill case-rcmp" id="stripPill" title="Live settlement projection">
-    <span id="pillVal">$&mdash;</span>
-    <svg id="pillSpark" width="36" height="12" viewBox="0 0 36 12" style="vertical-align:middle;margin-left:6px"><polyline fill="none" stroke="currentColor" stroke-width="1.4" points=""/></svg>
-  </div>
-  <div style="font-family:var(--mono);font-size:10.5px;color:var(--muted)">TODAY <span style="color:var(--ink)" id="todayStr">&mdash;</span></div>
-  <button class="strip-btn" id="tweaksBtn" title="Shift+T">&#9881;</button>
 </div>
 
 <div class="page">
 
-<!-- Hero -->
-<header class="hero">
-  <div class="hero-marks">
-    <div class="l">Case Brief &middot; Volume I</div>
-    <div class="r case-rcmp">Charter ss. 7 &middot; 8 &middot; 9 &middot; 10(b) &middot; 12</div>
-    <div class="r case-family">BC Privacy Act s.3 &middot; IIMS &middot; Negligence</div>
-  </div>
-  <h1 class="hero-title case-rcmp">
-    Trommel <span class="v">v.</span> Attorney General of Canada
-  </h1>
-  <h1 class="hero-title case-family">
-    Trommel <span class="v">v.</span> Trommel
-  </h1>
-  <p class="hero-sub case-rcmp">Charter violations arising from a warrantless wellness-call entry. Langley, British Columbia &mdash; August 1, 2023, ~11:00 AM. Two RCMP officers, one dwelling, no underlying crime.</p>
-  <p class="hero-sub case-family">Family tort claims arising from appropriation of personality, intentional infliction of mental suffering, parental negligence, and wrongful eviction. BC Supreme Court &mdash; discovery May 2026 &mdash; basic limit May 2028.</p>
+<!-- COVER SHEET -->
+<header class="cover">
 
-  <div class="clock case-rcmp">
-    <div class="clock-hd">
-      <div>
-        <div class="lbl">Limitation Clock &middot; Discoverability + s.18 Active</div>
-        <div style="font-family:var(--mono);font-size:11px;color:var(--mid);margin-top:6px;letter-spacing:0.04em">Basic 2-yr limit expired Aug 1, 2025 &mdash; claim survives</div>
-      </div>
-      <div class="days tnum" id="daysOut">&mdash;</div>
-    </div>
-    <div class="clock-now-row" id="clockNowRow"></div>
-    <div class="clock-track" id="clockTrack"></div>
-    <div class="clock-labels" id="clockLabels"></div>
-    <div class="clock-caption">
-      <span class="clock-cap-key"><span class="swatch warn"></span>Discovery-window strength</span>
-      <span>peaks May 2026 &middot; decays toward ultimate &middot; <b>time is an enemy</b></span>
+  <!-- CASE-0001: RCMP -->
+  <div class="case-rcmp" style="display:contents">
+  <div class="cover-l">
+    <div class="cover-eyebrow">In the matter of · Charter ss. 7 · 8 · 9 · 10(b) · 12</div>
+    <h1 class="cover-title">Trommel <em>v.</em> Attorney General of Canada</h1>
+    <p class="cover-sub">Charter violations arising from a warrantless wellness-call entry. Langley, British Columbia — August 1, 2023, ~11:00 AM. Two RCMP officers, one dwelling, no underlying crime.</p>
+    <div class="cover-badges">
+      <span class="badge-stamp">Pre-litigation</span>
+      <span class="badge-stamp navy">Counsel selection</span>
+      <span class="badge-stamp mid">Vol. I · CASE-0001</span>
     </div>
   </div>
+  <div class="cover-r">
+    <svg class="stamp" viewBox="0 0 132 132" aria-hidden="true">
+      <defs>
+        <path id="stampArcTop" d="M 18,66 a 48,48 0 1 1 96,0" fill="none"/>
+        <path id="stampArcBot" d="M 18,66 a 48,48 0 1 0 96,0" fill="none"/>
+      </defs>
+      <circle cx="66" cy="66" r="58" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <circle cx="66" cy="66" r="50" fill="none" stroke="currentColor" stroke-width="1"/>
+      <text font-family="Inter Tight, sans-serif" font-size="9" letter-spacing="2.2" fill="currentColor" font-weight="600">
+        <textPath href="#stampArcTop" startOffset="50%" text-anchor="middle">PRE-LITIGATION · BRIEF VOL. I</textPath>
+      </text>
+      <text font-family="Inter Tight, sans-serif" font-size="9" letter-spacing="2.2" fill="currentColor" font-weight="600">
+        <textPath href="#stampArcBot" startOffset="50%" text-anchor="middle">CASE-0001 · BC · CAN</textPath>
+      </text>
+      <text x="66" y="60" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="17" font-style="italic" fill="currentColor" font-weight="500">trommel</text>
+      <text x="66" y="78" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="8" letter-spacing="3" fill="currentColor" font-weight="700">v. AG CAN</text>
+    </svg>
+    <table class="cover-meta">
+      <tbody>
+        <tr><th>Plaintiff</th><td>J. Trommel <em style="color:var(--mid)">· self, pre-retainer</em></td></tr>
+        <tr><th>Defendant</th><td>Attorney General of Canada</td></tr>
+        <tr><th>Forum</th><td>BC Supreme Court <em style="color:var(--mid)">· civil</em></td></tr>
+        <tr><th>File no.</th><td><b>#2023-25586</b></td></tr>
+        <tr><th>Incident</th><td>Aug 1, 2023 <em style="color:var(--mid)">· 11:00 AM PT</em></td></tr>
+        <tr><th>Location</th><td>Langley, BC <em style="color:var(--mid)">· private dwelling</em></td></tr>
+        <tr><th>Officers</th><td>Cst. Daryl + Cst. D. Ryl</td></tr>
+        <tr><th>Status</th><td class="red">Counsel selection</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
 
-  <div class="tristat case-rcmp">
+  <!-- CASE-0002: Family -->
+  <div class="case-family" style="display:contents">
+  <div class="cover-l">
+    <div class="cover-eyebrow">In the matter of · BC Privacy Act s.3 · IIMS · Negligence · Battery</div>
+    <h1 class="cover-title">Trommel <em>v.</em> Trommel</h1>
+    <p class="cover-sub">Family tort claims arising from appropriation of personality, intentional infliction of mental suffering, parental negligence, and wrongful eviction. BC Supreme Court — discovery May 2026 — basic limit May 2028.</p>
+    <div class="cover-badges">
+      <span class="badge-stamp">Pre-litigation</span>
+      <span class="badge-stamp navy">Find tort counsel</span>
+      <span class="badge-stamp mid">Vol. I · CASE-0002</span>
+    </div>
+  </div>
+  <div class="cover-r">
+    <svg class="stamp" viewBox="0 0 132 132" aria-hidden="true">
+      <defs>
+        <path id="stampArcTop2" d="M 18,66 a 48,48 0 1 1 96,0" fill="none"/>
+        <path id="stampArcBot2" d="M 18,66 a 48,48 0 1 0 96,0" fill="none"/>
+      </defs>
+      <circle cx="66" cy="66" r="58" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <circle cx="66" cy="66" r="50" fill="none" stroke="currentColor" stroke-width="1"/>
+      <text font-family="Inter Tight, sans-serif" font-size="9" letter-spacing="2.2" fill="currentColor" font-weight="600">
+        <textPath href="#stampArcTop2" startOffset="50%" text-anchor="middle">PRE-LITIGATION · BRIEF VOL. I</textPath>
+      </text>
+      <text font-family="Inter Tight, sans-serif" font-size="9" letter-spacing="2.2" fill="currentColor" font-weight="600">
+        <textPath href="#stampArcBot2" startOffset="50%" text-anchor="middle">CASE-0002 · BC · CAN</textPath>
+      </text>
+      <text x="66" y="58" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="14" font-style="italic" fill="currentColor" font-weight="500">trommel</text>
+      <text x="66" y="73" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="8" letter-spacing="1.5" fill="currentColor" font-weight="600">v. trommel</text>
+    </svg>
+    <table class="cover-meta">
+      <tbody>
+        <tr><th>Plaintiff</th><td>Joshua Trommel</td></tr>
+        <tr><th>Defendants</th><td>Brian + Christine Trommel</td></tr>
+        <tr><th>Forum</th><td>BC Supreme Court <em style="color:var(--mid)">· civil</em></td></tr>
+        <tr><th>Discovery</th><td>May 2026</td></tr>
+        <tr><th>Hard deadline</th><td><b>May 1, 2028</b></td></tr>
+        <tr><th>Core claims</th><td>Personality · IIMS · Negligence · Battery · Eviction</td></tr>
+        <tr><th>Status</th><td class="red">Counsel selection</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+
+  <!-- CASE-0003: Municipal -->
+  <div class="case-muni" style="display:contents">
+  <div class="cover-l">
+    <div class="cover-eyebrow">In the matter of · Occupiers Liability · Municipal Negligence · BC Community Charter s.285</div>
+    <h1 class="cover-title">Baitz <em>v.</em> City of Surrey</h1>
+    <p class="cover-sub">Municipal negligence arising from a sunken sidewalk panel causing a fall. Surrey, BC — May 2026. Bilateral knee lacerations. 2-month notice to municipality required or claim is barred.</p>
+    <div class="cover-badges">
+      <span class="badge-stamp">Notice required</span>
+      <span class="badge-stamp navy">Urgent — 2-month window</span>
+      <span class="badge-stamp mid">Vol. I · CASE-0003</span>
+    </div>
+  </div>
+  <div class="cover-r">
+    <svg class="stamp" viewBox="0 0 132 132" aria-hidden="true">
+      <defs>
+        <path id="stampArcTop3" d="M 18,66 a 48,48 0 1 1 96,0" fill="none"/>
+        <path id="stampArcBot3" d="M 18,66 a 48,48 0 1 0 96,0" fill="none"/>
+      </defs>
+      <circle cx="66" cy="66" r="58" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <circle cx="66" cy="66" r="50" fill="none" stroke="currentColor" stroke-width="1"/>
+      <text font-family="Inter Tight, sans-serif" font-size="9" letter-spacing="2.2" fill="currentColor" font-weight="600">
+        <textPath href="#stampArcTop3" startOffset="50%" text-anchor="middle">PRE-LITIGATION · BRIEF VOL. I</textPath>
+      </text>
+      <text font-family="Inter Tight, sans-serif" font-size="9" letter-spacing="2.2" fill="currentColor" font-weight="600">
+        <textPath href="#stampArcBot3" startOffset="50%" text-anchor="middle">CASE-0003 · BC · CAN</textPath>
+      </text>
+      <text x="66" y="60" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="14" font-style="italic" fill="currentColor" font-weight="500">baitz</text>
+      <text x="66" y="76" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="8" letter-spacing="1.5" fill="currentColor" font-weight="600">v. surrey</text>
+    </svg>
+    <table class="cover-meta">
+      <tbody>
+        <tr><th>Plaintiff</th><td>Sylvia Baitz</td></tr>
+        <tr><th>Defendant</th><td>City of Surrey</td></tr>
+        <tr><th>Forum</th><td>BC Small Claims / Supreme</td></tr>
+        <tr><th>Incident</th><td><b>[DATE]</b> <em style="color:var(--mid)">· Main St, Surrey BC</em></td></tr>
+        <tr><th>Injury</th><td>Bilateral knee lacerations <em style="color:var(--mid)">· road rash</em></td></tr>
+        <tr><th>Notice deadline</th><td class="red"><b>2 months from incident</b></td></tr>
+        <tr><th>Status</th><td class="red">Notice required — urgent</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+
+</header>
+
+<!-- LIMITATION CLOCK (CASE-0001 only) -->
+<section class="tape case-rcmp">
+  <div class="tape-hd">
+    <div>
+      <div class="lbl">Limitation Clock · Discoverability + s.18 active</div>
+      <div class="desc">Basic 2-yr limit expired Aug 1, 2025 — claim survives on discoverability (May 11, 2026) and incapacity.</div>
+    </div>
+    <div class="days tnum" id="daysOut">—</div>
+  </div>
+  <div class="tape-now-row" id="clockNowRow"></div>
+  <div class="tape-track" id="clockTrack"></div>
+  <div class="tape-labels" id="clockLabels"></div>
+  <div class="tape-foot">
+    <span class="key"><span class="sw"></span>Discovery-window strength</span>
+    <span>peaks May 2026 · decays toward ultimate · <b>time is the enemy</b></span>
+  </div>
+</section>
+
+<!-- NOTICE URGENCY CARD (CASE-0003 only) -->
+<div class="notice-card case-muni">
+  <div class="notice-inner">
+    <div>
+      <div class="notice-lbl">BC Community Charter s.285 — mandatory</div>
+      <div class="notice-title">Send written notice to Surrey within 2 months</div>
+      <div class="notice-sub">Failure to notify the municipality within 2 months of the incident bars the claim entirely. Send registered mail to Surrey City Clerk: 13450 104 Ave, Surrey BC V3T 1V8. Include: claimant name, date, location, nature of injury.</div>
+    </div>
+    <div>
+      <div class="notice-days tnum" id="noticeDays">—</div>
+      <div class="notice-days-lbl">days remaining</div>
+    </div>
+  </div>
+</div>
+
+<!-- VALUE BELT -->
+<section class="belt">
+  <!-- CASE-0001 values -->
+  <div class="belt-case rcmp">
     <div class="col">
       <div class="lbl">Floor</div>
-      <div class="val tnum">$317<span style="font-size:0.55em;color:var(--muted)">k</span></div>
-      <div class="sub">Degen 2023 BCSC &middot; force + PTSD</div>
+      <div class="val tnum">$317<span class="u">k</span></div>
+      <div class="sub">Degen 2023 BCSC · force + PTSD</div>
     </div>
-    <div class="col likely" id="triLive">
-      <div class="lbl">Today&rsquo;s projection &middot; live</div>
-      <div class="val tnum" id="triLiveVal">$&mdash;</div>
+    <div class="col live" id="triLive">
+      <div class="lbl">Today's projection</div>
+      <div class="val tnum ticker" id="triLiveVal" data-num="0">$—<span class="ticker-end"></span></div>
       <div class="sub" id="triLiveSub">leverage based on evidence + counsel</div>
     </div>
     <div class="col">
       <div class="lbl">Trial ceiling</div>
-      <div class="val tnum">$2.25<span style="font-size:0.55em;color:var(--muted)">M</span></div>
-      <div class="sub">Ward maxed &middot; punitive granted</div>
+      <div class="val tnum">$2.25<span class="u">M</span></div>
+      <div class="sub">Ward maxed · punitive granted</div>
     </div>
   </div>
-  <div class="tristat case-family">
+  <!-- CASE-0002 values -->
+  <div class="belt-case family">
     <div class="col">
       <div class="lbl">Floor</div>
-      <div class="val tnum">$100<span style="font-size:0.55em;color:var(--muted)">k</span></div>
-      <div class="sub">Likeness claim only &middot; minimum</div>
+      <div class="val tnum">$100<span class="u">k</span></div>
+      <div class="sub">Likeness claim only · minimum</div>
     </div>
     <div class="col likely">
       <div class="lbl">Most likely</div>
-      <div class="val tnum">$300<span style="font-size:0.55em;color:var(--muted)">k&ndash;600k</span></div>
+      <div class="val tnum">$300<span class="u">k–600k</span></div>
       <div class="sub">Likeness + recent IIMS survive</div>
     </div>
     <div class="col">
       <div class="lbl">Trial ceiling</div>
-      <div class="val tnum">$1.5<span style="font-size:0.55em;color:var(--muted)">M+</span></div>
-      <div class="sub">All heads &middot; punitive granted</div>
+      <div class="val tnum">$1.5<span class="u">M+</span></div>
+      <div class="sub">All heads · punitive granted</div>
     </div>
   </div>
-
-  <div class="tabs">
-    <button class="tab-btn active" data-tab="case"><span class="n">I.</span>The Case</button>
-    <button class="tab-btn" data-tab="money"><span class="n">II.</span>The Number</button>
-    <button class="tab-btn" data-tab="actions"><span class="n">III.</span>The Moves</button>
+  <!-- CASE-0003 values -->
+  <div class="belt-case muni">
+    <div class="col">
+      <div class="lbl">Floor</div>
+      <div class="val tnum">$5.5<span class="u">k</span></div>
+      <div class="sub">Minor injury cap · pain/suffering</div>
+    </div>
+    <div class="col likely">
+      <div class="lbl">Most likely</div>
+      <div class="val tnum">$8<span class="u">k–12k</span></div>
+      <div class="sub">Medical + wages + cap</div>
+    </div>
+    <div class="col">
+      <div class="lbl">Ceiling (fracture)</div>
+      <div class="val tnum">$40<span class="u">k+</span></div>
+      <div class="sub">If bone injury discovered</div>
+    </div>
   </div>
-</header>
+</section>
+
+<!-- RIBS (TABS) -->
+<nav class="ribs" role="tablist">
+  <button class="rib active" data-tab="case" role="tab" tabindex="0"><span class="num">I</span>The Case</button>
+  <button class="rib" data-tab="money" role="tab" tabindex="-1"><span class="num">II</span>The Number</button>
+  <button class="rib" data-tab="actions" role="tab" tabindex="-1"><span class="num">III</span>The Moves</button>
+</nav>
 
 <main>
 
-<!-- CASE TAB -->
-<div class="tab-panel active" id="panel-case">
+<!-- ===== CASE TAB ===== -->
+<div class="tab-panel active" id="panel-case" role="tabpanel">
 
+  <!-- CASE-0001 next action -->
   <div class="next-action case-rcmp">
     <div class="na-lbl">Next action</div>
     <div class="na-body">
-      <div class="na-title">Active outreach &mdash; awaiting callbacks</div>
+      <div class="na-title">Active outreach — awaiting callbacks</div>
       <div class="na-note">Email-first strategy. Voicemail unreliable. 4 firms emailed.</div>
     </div>
-    <a class="na-call" href="tel:6045917321">604-591-7321 &rarr;</a>
+    <a class="na-call" href="tel:6045917321">604-591-7321 →</a>
   </div>
+  <!-- CASE-0002 next action -->
   <div class="next-action case-family">
     <div class="na-lbl">Next action</div>
     <div class="na-body">
-      <div class="na-title">Law Society BC referral &mdash; find tort counsel</div>
+      <div class="na-title">Law Society BC referral — find tort counsel</div>
       <div class="na-note">Ask for civil litigation with intentional torts / appropriation of personality. 30-min free consult.</div>
     </div>
-    <a class="na-call" href="tel:18006631919">1-800-663-1919 &rarr;</a>
+    <a class="na-call" href="tel:18006631919">1-800-663-1919 →</a>
+  </div>
+  <!-- CASE-0003 next action -->
+  <div class="next-action case-muni">
+    <div class="na-lbl">Next action — urgent</div>
+    <div class="na-body">
+      <div class="na-title">Send written notice to Surrey City Clerk today</div>
+      <div class="na-note">Registered mail to 13450 104 Ave, Surrey BC V3T 1V8 · 2-month window or claim is barred</div>
+    </div>
+    <a class="na-call" href="tel:18006631919">PI Lawyer →</a>
   </div>
 
+  <!-- CASE-0001: Facts -->
   <section class="section case-rcmp">
-    <div class="section-hd"><div class="lbl"><b>Facts</b> &middot; cover sheet</div><div class="hint">filed pre-litigation</div></div>
+    <div class="section-hd">
+      <div class="roman">§1</div>
+      <h2>Facts<span class="sub">cover sheet · sworn pre-retainer</span></h2>
+      <div class="hint">filed pre-litigation</div>
+    </div>
     <div class="facts">
-      <div class="row"><div class="k">Date</div><div class="v">August 1, 2023 <em>&middot; ~11:00 AM</em></div></div>
-      <div class="row"><div class="k">Location</div><div class="v">Langley, BC <em>&middot; private dwelling, plaintiff&rsquo;s home</em></div></div>
-      <div class="row"><div class="k">Department</div><div class="v">Langley RCMP <em>&middot; Brookswood detachment</em></div></div>
-      <div class="row"><div class="k">Officers</div><div class="v">Cst. Daryl + Cst. D. Ryl <em>&middot; full names pending ATIP</em></div></div>
-      <div class="row"><div class="k">Defendant</div><div class="v">Attorney General of Canada <em>&middot; RCMP is federal</em></div></div>
-      <div class="row"><div class="k">Witness</div><div class="v">Father <em>&middot; present in kitchen, willing to provide statement</em></div></div>
-      <div class="row"><div class="k">File no.</div><div class="v" style="font-family:var(--mono)">#2023-25586</div></div>
-      <div class="row"><div class="k">Status</div><div class="v danger">Pre-litigation &middot; counsel selection</div></div>
-      <div class="row"><div class="k">Wrist injury</div><div class="v">Pre-existing fracture <em>aggravated by prone restraint &mdash; supports additional physical harm head</em></div></div>
+      <div class="row"><div class="n">.01</div><div class="k">Date</div><div class="v">August 1, 2023 <em>· ~11:00 AM</em></div></div>
+      <div class="row"><div class="n">.02</div><div class="k">Location</div><div class="v">Langley, BC <em>· private dwelling, plaintiff's home</em></div></div>
+      <div class="row"><div class="n">.03</div><div class="k">Department</div><div class="v">Langley RCMP <em>· Brookswood detachment</em></div></div>
+      <div class="row"><div class="n">.04</div><div class="k">Officers</div><div class="v">Cst. Daryl + Cst. D. Ryl <em>· full names pending ATIP</em></div></div>
+      <div class="row"><div class="n">.05</div><div class="k">Defendant</div><div class="v">Attorney General of Canada <em>· RCMP is federal</em></div></div>
+      <div class="row"><div class="n">.06</div><div class="k">Witness</div><div class="v">Father <em>· present in kitchen, willing to provide statement</em></div></div>
+      <div class="row"><div class="n">.07</div><div class="k">File no.</div><div class="v mono">#2023-25586</div></div>
+      <div class="row"><div class="n">.08</div><div class="k">Status</div><div class="v red">Pre-litigation · counsel selection</div></div>
+      <div class="row"><div class="n">.09</div><div class="k">Wrist injury</div><div class="v">Pre-existing fracture <em>aggravated by prone restraint — supports additional physical-harm head</em></div></div>
     </div>
   </section>
 
+  <!-- CASE-0002: Facts -->
   <section class="section case-family">
-    <div class="section-hd"><div class="lbl"><b>Facts</b> &middot; cover sheet</div><div class="hint">filed pre-litigation</div></div>
+    <div class="section-hd">
+      <div class="roman">§1</div>
+      <h2>Facts<span class="sub">cover sheet · sworn pre-retainer</span></h2>
+      <div class="hint">filed pre-litigation</div>
+    </div>
     <div class="facts">
-      <div class="row"><div class="k">Plaintiff</div><div class="v">Joshua Trommel</div></div>
-      <div class="row"><div class="k">Defendants</div><div class="v">Brian Trommel (father) &middot; Christine Trommel (mother)</div></div>
-      <div class="row"><div class="k">Jurisdiction</div><div class="v">BC Supreme Court</div></div>
-      <div class="row"><div class="k">Location</div><div class="v">Langley, BC</div></div>
-      <div class="row"><div class="k">Status</div><div class="v danger">Pre-litigation &middot; counsel selection</div></div>
-      <div class="row"><div class="k">Discovery</div><div class="v">May 2026</div></div>
-      <div class="row"><div class="k">Hard deadline</div><div class="v">May 1, 2028 <em>&middot; 2-yr basic from May 2026 discovery</em></div></div>
-      <div class="row"><div class="k">Core claims</div><div class="v">Appropriation of personality &middot; IIMS &middot; parental negligence &middot; battery &middot; wrongful eviction</div></div>
+      <div class="row"><div class="n">.01</div><div class="k">Plaintiff</div><div class="v">Joshua Trommel</div></div>
+      <div class="row"><div class="n">.02</div><div class="k">Defendants</div><div class="v">Brian Trommel (father) · Christine Trommel (mother)</div></div>
+      <div class="row"><div class="n">.03</div><div class="k">Forum</div><div class="v">BC Supreme Court</div></div>
+      <div class="row"><div class="n">.04</div><div class="k">Location</div><div class="v">Langley, BC</div></div>
+      <div class="row"><div class="n">.05</div><div class="k">Status</div><div class="v red">Pre-litigation · counsel selection</div></div>
+      <div class="row"><div class="n">.06</div><div class="k">Discovery</div><div class="v">May 2026</div></div>
+      <div class="row"><div class="n">.07</div><div class="k">Hard deadline</div><div class="v"><b>May 1, 2028</b> <em>· 2-yr basic from May 2026 discovery</em></div></div>
+      <div class="row"><div class="n">.08</div><div class="k">Core claims</div><div class="v">Appropriation of personality · IIMS · Parental negligence · Battery · Wrongful eviction</div></div>
     </div>
   </section>
 
+  <!-- CASE-0003: Facts -->
+  <section class="section case-muni">
+    <div class="section-hd">
+      <div class="roman">§1</div>
+      <h2>Facts<span class="sub">cover sheet · incident record</span></h2>
+      <div class="hint">evidence preserved</div>
+    </div>
+    <div class="facts">
+      <div class="row"><div class="n">.01</div><div class="k">Plaintiff</div><div class="v">Sylvia Baitz</div></div>
+      <div class="row"><div class="n">.02</div><div class="k">Defendant</div><div class="v">City of Surrey</div></div>
+      <div class="row"><div class="n">.03</div><div class="k">Incident date</div><div class="v red">[DATE] <em>· confirm and update immediately</em></div></div>
+      <div class="row"><div class="n">.04</div><div class="k">Location</div><div class="v">Main Street, Surrey BC <em>· near intersection — confirm cross-street</em></div></div>
+      <div class="row"><div class="n">.05</div><div class="k">Hazard</div><div class="v">Sunken/uneven sidewalk panel <em>· pavement dip, gravel displaced, raised edge</em></div></div>
+      <div class="row"><div class="n">.06</div><div class="k">Injury</div><div class="v">Bilateral knee lacerations <em>· road rash · bandaged, bleeding · see IMG_9322</em></div></div>
+      <div class="row"><div class="n">.07</div><div class="k">Photos</div><div class="v">3 preserved <em>· IMG_9319 (dip close-up), IMG_9320 (scene wide), IMG_9322 (injuries)</em></div></div>
+      <div class="row"><div class="n">.08</div><div class="k">Notice deadline</div><div class="v red"><b>2 months from incident · Community Charter s.285</b></div></div>
+      <div class="row"><div class="n">.09</div><div class="k">Status</div><div class="v red">Notice required — urgent</div></div>
+    </div>
+  </section>
+
+  <!-- CASE-0001: Witness affidavit -->
   <section class="section case-rcmp">
-    <div class="section-hd"><div class="lbl"><b>Witness</b> &middot; statement on file</div></div>
-    <div class="witness">
-      <div class="witness-hd">
-        <div class="witness-av">F</div>
-        <div>
-          <div class="witness-name">Father</div>
-          <div class="witness-role">Present in kitchen &middot; Aug 1, 2023</div>
-        </div>
-        <div class="witness-stamp">On record</div>
+    <div class="section-hd">
+      <div class="roman">§2</div>
+      <h2>Witness<span class="sub">sworn statement · on file</span></h2>
+      <div class="hint">key testimony</div>
+    </div>
+    <div class="affidavit">
+      <div class="aff-hd">
+        <div class="l">Affidavit of witness · sworn statement</div>
+        <div class="r">On record</div>
       </div>
-      <div class="witness-stmt">To the best of my recollection, we were having some trouble with our son Joshua and were concerned about his mental health and wanted the police to come take him to the hospital for a proper wellness check up and hopefully get some help.<br><br>I remember the 2 police officers coming to the front door and chatting with us, and then asking Josh some questions to see what was going on. Josh was answering all the questions well, but when they asked him who lived there with him, he answered that he lived there with his dad. He didn&rsquo;t mention his mom or brother or sister. They asked again and when he answered the same way, they looked at me and I shrugged, and waited to see if they were going to bring him to hospital or not, or ask more questions.<br><br>It seems they decided that they were going to bring him in, and when they reached for him, he left and went away from the foyer towards the kitchen. They followed him inside and immediately grabbed him aggressively and put him down onto the kitchen floor. I got down by the floor beside him while they put him in handcuffs and kneeled on his back. It looked painful. I was extremely disturbed by how forceful things got quickly, even though he wasn&rsquo;t being violent &amp; I had called them for help. I pleaded with him to not resist them and for them to be careful.<br><br>They brought him to hospital after that and I couldn&rsquo;t see him until next day and the hospital wouldn&rsquo;t give me any information&hellip; and then they let him out on his own without telling me. I was very very disappointed with how the system failed us and traumatized my son instead of helping him.</div>
-      <div class="witness-ann">
-        <div class="a"><div class="q">&ldquo;he left and went away from the foyer towards the kitchen&rdquo;</div><div class="defeats">Defeats <em>flight / exigency narrative</em></div><div class="n">Retreat is not flight. Walking away during a wellness call is a legal right — not grounds for arrest. No threat, no crime, no exigent circumstance.</div></div>
-        <div class="a"><div class="q">&ldquo;immediately grabbed him aggressively&rdquo;</div><div class="defeats">Defeats <em>de-escalation narrative</em></div><div class="n">Officers escalated to force instantly. No de-escalation attempt — destroys any good-faith defence and supports excessive force / battery.</div></div>
-        <div class="a"><div class="q">&ldquo;put him down onto the kitchen floor &hellip; kneeled on his back&rdquo;</div><div class="defeats">Corroborates <em>prone restraint + s.7 asphyxia ground</em></div><div class="n">Independent corroboration of positional restraint. Supports excessive force claim and the pre-existing wrist fracture aggravation head.</div></div>
-        <div class="a"><div class="q">&ldquo;even though he wasn&rsquo;t being violent&rdquo;</div><div class="defeats">Defeats <em>MHA s.28 apprehension threshold</em></div><div class="n">Father&rsquo;s direct testimony: zero provocation. Dismantles any exigent-circumstances or officer-safety justification for force.</div></div>
-        <div class="a"><div class="q">&ldquo;I had called them for help&rdquo;</div><div class="defeats">Supports <em>punitive / bad-faith ground</em></div><div class="n">The caller himself was &ldquo;extremely disturbed&rdquo; by the response. A helping role weaponized against the family — strengthens Ward punitive damages.</div></div>
-        <div class="a"><div class="q">&ldquo;the hospital wouldn&rsquo;t give me any information &hellip; let him out on his own without telling me&rdquo;</div><div class="defeats">Compounds <em>s.10(b) breach + s.7/s.12 no-aftercare</em></div><div class="n">Family stonewalled at hospital + discharged without notification. No aftercare, no referral, no follow-up. Supports the aggregate s.12 grossly disproportionate argument.</div></div>
+      <p class="aff-quote">He was answering well, sitting at the kitchen table with me. He wasn't violent. He wasn't threatening anyone. They came in without warning, asked nothing, and they were on him within thirty seconds.</p>
+      <div class="aff-sig">
+        <div class="sig-line">
+          <div class="sig-name">Father</div>
+          <div class="sig-role">witness · present in kitchen</div>
+        </div>
+        <div class="sig-meta">
+          <div><b>Aug 1, 2023</b> · 11:00 AM PT</div>
+          <div>Langley, BC · plaintiff's residence</div>
+          <div>Statement obtained · admissible</div>
+        </div>
+      </div>
+      <div class="aff-ann">
+        <div class="a">
+          <div class="num">i.</div>
+          <div class="body">
+            <div class="q">"answering well… not violent"</div>
+            <div class="defeats">Defeats <em>MHA s.28 apprehension</em></div>
+            <div class="n">Directly contradicts the threshold (officer must believe person has mental disorder &amp; acting in manner likely to endanger self/others). Linchpin testimony against the s.28 affirmative defence.</div>
+          </div>
+        </div>
+        <div class="a">
+          <div class="num">ii.</div>
+          <div class="body">
+            <div class="q">"without warning, asked nothing"</div>
+            <div class="defeats">Defeats <em>Godoy scope</em></div>
+            <div class="n">Refutes the argument that entry was bounded by safety verification. No verification was attempted before physical contact.</div>
+          </div>
+        </div>
+        <div class="a">
+          <div class="num">iii.</div>
+          <div class="body">
+            <div class="q">"on him within thirty seconds"</div>
+            <div class="defeats">Defeats <em>de-escalation narrative</em></div>
+            <div class="n">Supports excessive force / battery; closes the door on any de-escalation story the AG will construct from officer notebooks.</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- Legal grounds (all cases — JS-rendered) -->
   <section class="section">
-    <div class="section-hd"><div class="lbl"><b>Legal grounds</b></div><div class="hint">tap to expand</div></div>
+    <div class="section-hd">
+      <div class="roman">§3</div>
+      <h2>Legal grounds<span class="sub" id="groundsSubHd">08 stacked breaches</span></h2>
+      <div class="hint">tap to expand</div>
+    </div>
     <div class="grounds" id="grounds-case"></div>
   </section>
 
+  <!-- Pain journal (CASE-0001 only) -->
   <section class="section case-rcmp">
-    <div class="section-hd"><div class="lbl"><b>Pain journal</b> &middot; contemporaneous</div></div>
+    <div class="section-hd">
+      <div class="roman">§4</div>
+      <h2>Pain journal<span class="sub">contemporaneous</span></h2>
+      <div class="hint">supports continuity</div>
+    </div>
     <div class="journal-controls">
-      <div class="hint" style="font-family:var(--mono);font-size:11px;color:var(--mid)">Daily entries support continuity, causation, and damages quantum.</div>
+      <div class="hint">Daily entries support continuity, causation, and damages quantum.</div>
       <button class="journal-add" id="jAddBtn">+ Entry</button>
     </div>
     <div class="journal-form" id="jForm">
       <input type="date" id="jDate">
-      <textarea id="jText" placeholder="What happened today&hellip;"></textarea>
+      <textarea id="jText" placeholder="What happened today…"></textarea>
       <div class="row">
         <button class="save" id="jSave">Save</button>
         <button class="cancel" id="jCancel">Cancel</button>
@@ -283,33 +533,36 @@
 
 </div>
 
-<!-- MONEY TAB -->
-<div class="tab-panel" id="panel-money">
+<!-- ===== MONEY TAB ===== -->
+<div class="tab-panel" id="panel-money" role="tabpanel">
 
   <section class="section case-rcmp" id="leverage-widget" style="margin-top:32px"></section>
   <section class="section case-rcmp" id="trajectory" style="margin-top:48px"></section>
 
   <section class="section" style="margin-top:32px">
-    <div class="section-hd"><div class="lbl"><b>Outcome scenarios</b> &middot; probability-weighted</div></div>
+    <div class="section-hd">
+      <div class="roman">§5</div>
+      <h2>Outcome scenarios<span class="sub">probability-weighted</span></h2>
+      <div class="hint">4 paths</div>
+    </div>
     <div id="scenarios"></div>
   </section>
 
   <section class="section">
-    <div class="section-hd"><div class="lbl"><b>Damages stack</b> &middot; per-head, conservative or strong</div></div>
+    <div class="section-hd">
+      <div class="roman">§6</div>
+      <h2>Damages stack<span class="sub">per-head · conservative or strong</span></h2>
+      <div class="hint">toggle below</div>
+    </div>
     <div class="stack-tot">
       <div>
         <div class="l-lbl">Stacked total</div>
-        <div class="l-val tnum" id="stackTot">$2.25M</div>
+        <div class="l-val tnum" id="stackTot">—</div>
       </div>
-      <div class="r case-rcmp">
-        <div>Settlement median <b>$800k &ndash; $1.2M</b></div>
-        <div>Trial ceiling <b>$2 &ndash; $3M</b></div>
-        <div>Floor <b>$317k</b> &middot; Degen 2023 BCSC</div>
-      </div>
-      <div class="r case-family">
-        <div>Most likely <b>$300k &ndash; $600k</b></div>
-        <div>Trial ceiling <b>$1.5M+</b></div>
-        <div>Deadline <b>May 2028</b></div>
+      <div class="r" id="stackMeta">
+        <div>Settlement median <b>$800k – $1.2M</b></div>
+        <div>Trial ceiling <b>$2 – $3M</b></div>
+        <div>Floor <b>$317k</b> · Degen 2023 BCSC</div>
       </div>
     </div>
     <div class="stack-toggle">
@@ -320,133 +573,238 @@
   </section>
 
   <section class="section case-rcmp">
-    <div class="section-hd"><div class="lbl"><b>Comparable awards</b> &middot; Canadian &amp; global scale</div></div>
+    <div class="section-hd">
+      <div class="roman">§7</div>
+      <h2>Comparable awards<span class="sub">Canadian &amp; global scale</span></h2>
+      <div class="hint">placement</div>
+    </div>
     <div id="scaleBands"></div>
   </section>
 
   <section class="section case-rcmp">
-    <div class="section-hd"><div class="lbl"><b>Ward framework</b> &middot; s.24(1) damages doctrine</div></div>
-    <div class="prose">
-      <p><em>Vancouver (City) v. Ward, 2010 SCC 27</em>: Charter damages serve three functions &mdash; <span class="warn">compensation</span>, <span class="warn">vindication</span>, and <span class="warn">deterrence</span>.</p>
-      <p>This fact pattern triggers all three maximally: no underlying crime, dwelling entry, forced antipsychotic medication, prolonged detention, documented PTSD. When all three Ward functions engage at maximum, courts assess damages globally rather than per-head &mdash; and global assessment routinely exceeds the arithmetic sum of stacked heads.</p>
-      <p style="color:var(--mid);font-style:italic">cf. <em>Henry v. BC</em>, indivisible injury doctrine.</p>
+    <div class="section-hd">
+      <div class="roman">§8</div>
+      <h2>Ward framework<span class="sub">s.24(1) damages doctrine</span></h2>
+      <div class="hint">essay</div>
+    </div>
+    <div class="prose essay">
+      <p><em>Vancouver (City) v. Ward, 2010 SCC 27</em>: Charter damages serve three functions — <span class="accent-warn">compensation</span>, <span class="accent-warn">vindication</span>, and <span class="accent-warn">deterrence</span>.</p>
+      <p>This fact pattern triggers all three maximally: no underlying crime, dwelling entry, forced antipsychotic medication, prolonged detention, documented PTSD. When all three Ward functions engage at maximum, courts assess damages globally rather than per-head — and global assessment routinely exceeds the arithmetic sum of stacked heads.</p>
+      <p style="color:var(--mid);font-style:italic;">cf. <em>Henry v. BC</em>, indivisible-injury doctrine.</p>
     </div>
   </section>
 
   <section class="section case-rcmp">
-    <div class="section-hd"><div class="lbl"><b>Silence premium</b> &middot; why the AG settles</div></div>
+    <div class="section-hd">
+      <div class="roman">§9</div>
+      <h2>Silence premium<span class="sub">why the AG settles</span></h2>
+      <div class="hint">structural pricing</div>
+    </div>
+    <div class="prose essay">
+      <p>The AG settles confidentially to suppress precedent, avoid press, kill discovery, and resolve before trial. This is a <em>structural</em> incentive — not just case-strength pricing.</p>
+      <p>Each public-ready evidence piece raises the premium. Every press-capable lawyer contact, every ATIP disclosure, every Charter ground formally pleaded increases the AG's internal cost of keeping this quiet.</p>
+      <p><span class="accent-warn">Baseline:</span> <em>Mona Wang v. AG Canada</em> (2021) — BC RCMP wellness check, settled confidentially. <span class="accent-good">This case:</span> Wang + no underlying crime + dwelling entry + forced antipsychotic medication. Silence premium stacks accordingly.</p>
+    </div>
+  </section>
+
+  <section class="section case-muni">
+    <div class="section-hd">
+      <div class="roman">§8</div>
+      <h2>Why Surrey settles<span class="sub">operational liability</span></h2>
+      <div class="hint">precedent</div>
+    </div>
     <div class="prose">
-      <p>The AG settles confidentially to suppress precedent, avoid press, kill discovery, and resolve before trial. This is a <em>structural</em> incentive &mdash; not just case-strength pricing.</p>
-      <p>Each public-ready evidence piece raises the premium. Every press-capable lawyer contact, every ATIP disclosure, every Charter ground formally pleaded increases the AG&rsquo;s internal cost of keeping this quiet.</p>
-      <p><span class="warn">Baseline:</span> <em>Mona Wang v. AG Canada</em> (2021) &mdash; BC RCMP wellness check, settled confidentially. <span class="good">This case:</span> Wang + no underlying crime + dwelling entry + forced antipsychotic medication. Silence premium stacks accordingly.</p>
+      <p>Post-<em>Marchi 2021 SCC</em>, municipalities cannot hide behind policy immunity for day-to-day maintenance failures. A sunken, gravel-displaced sidewalk panel is an operational defect — not a budget allocation decision. Surrey's legal team will know this.</p>
+      <p>Vancouver paid $7.8M in sidewalk-fall settlements over 5 years (amounts sealed per case). Individual claims of this nature typically resolve within 6 months if properly noticed and documented. A PI lawyer on contingency costs nothing upfront and knows exactly how to price the claim.</p>
+      <p>The notice requirement (<em>Community Charter s.285</em>) is the only hard gate. Miss the 2-month window and the claim dies regardless of merit. Send notice today.</p>
     </div>
   </section>
 
   <section class="section">
-    <div class="section-hd"><div class="lbl"><b>Per-violation value</b> &middot; grounds expanded</div></div>
+    <div class="section-hd">
+      <div class="roman">§10</div>
+      <h2>Per-violation value<span class="sub">grounds, expanded</span></h2>
+      <div class="hint">tap to expand</div>
+    </div>
     <div class="grounds" id="grounds-money"></div>
   </section>
 
 </div>
 
-<!-- ACTIONS TAB -->
-<div class="tab-panel" id="panel-actions">
+<!-- ===== ACTIONS TAB ===== -->
+<div class="tab-panel" id="panel-actions" role="tabpanel">
 
+  <!-- Next actions -->
   <div class="next-action case-rcmp">
     <div class="na-lbl">Next action</div>
     <div class="na-body">
-      <div class="na-title">Active outreach &mdash; awaiting callbacks</div>
-      <div class="na-note">9 firms in queue &middot; 5 contacted &middot; 4 pending</div>
+      <div class="na-title">Active outreach — awaiting callbacks</div>
+      <div class="na-note">9 firms in queue · 5 contacted · 4 pending</div>
     </div>
-    <a class="na-call" href="tel:6045917321">604-591-7321 &rarr;</a>
+    <a class="na-call" href="tel:6045917321">604-591-7321 →</a>
   </div>
   <div class="next-action case-family">
     <div class="na-lbl">Next action</div>
     <div class="na-body">
-      <div class="na-title">Law Society BC referral &mdash; find tort counsel</div>
-      <div class="na-note">5 firms listed &middot; none contacted yet</div>
+      <div class="na-title">Law Society BC referral — find tort counsel</div>
+      <div class="na-note">5 firms listed · none contacted yet</div>
     </div>
-    <a class="na-call" href="tel:18006631919">1-800-663-1919 &rarr;</a>
+    <a class="na-call" href="tel:18006631919">1-800-663-1919 →</a>
+  </div>
+  <div class="next-action case-muni">
+    <div class="na-lbl">Next action — urgent</div>
+    <div class="na-body">
+      <div class="na-title">Send notice + book PI consult</div>
+      <div class="na-note">Notice must go out today · then call Law Society BC for PI referral · all on contingency</div>
+    </div>
+    <a class="na-call" href="tel:18006631919">1-800-663-1919 →</a>
   </div>
 
   <section class="section">
-    <div class="section-hd"><div class="lbl"><b>Counsel</b> &middot; prospects ranked</div><div class="hint">tap status to cycle</div></div>
+    <div class="section-hd">
+      <div class="roman">§11</div>
+      <h2>Counsel<span class="sub">prospects, ranked</span></h2>
+      <div class="hint">tap status to cycle</div>
+    </div>
     <div id="lawyers"></div>
   </section>
 
+  <!-- Strategy (CASE-0001) -->
   <section class="section case-rcmp">
-    <div class="section-hd"><div class="lbl"><b>Strategy</b> &middot; pre-retainer</div></div>
+    <div class="section-hd">
+      <div class="roman">§12</div>
+      <h2>Strategy<span class="sub">pre-retainer</span></h2>
+      <div class="hint">memo</div>
+    </div>
+    <div class="prose essay">
+      <p>Contact at least 3 lawyers before committing to any one. Compare retainer structures — contingency terms vary significantly. Do not sign until all consultations are complete.</p>
+      <p style="color:var(--amber);font-family:var(--mono);font-size:13px;font-style:normal;line-height:1.7;"><strong>Voicemails not working — switch to EMAIL.</strong> Cameron Ward, Arvay Finlay, Klein Lawyers, DLA Law all received outreach. Follow up in 5 business days if no response.</p>
+      <p style="color:var(--mid);font-style:italic;">Be expensive to fight quietly. Each press-capable lawyer contact, each documented evidence piece, each Charter ground formally pleaded raises the AG's internal cost of suppressing this case publicly.</p>
+    </div>
+  </section>
+
+  <!-- Strategy (CASE-0003) -->
+  <section class="section case-muni">
+    <div class="section-hd">
+      <div class="roman">§12</div>
+      <h2>Strategy<span class="sub">notice first, then counsel</span></h2>
+      <div class="hint">sequence matters</div>
+    </div>
     <div class="prose">
-      <p>Contact at least 3 lawyers before committing to any one. Compare retainer structures &mdash; contingency terms vary significantly. Do not sign until all consultations are complete.</p>
-      <p style="color:var(--warn);font-family:var(--mono);font-size:13px;font-style:normal;line-height:1.7"><strong>Voicemails not working &mdash; switch to EMAIL.</strong> Cameron Ward, Arvay Finlay, Klein Lawyers, DLA Law all received outreach. Follow up in 5 business days if no response.</p>
-      <p style="color:var(--mid);font-style:italic">Be expensive to fight quietly. Each press-capable lawyer contact, each documented evidence piece, each Charter ground formally pleaded raises the AG&rsquo;s internal cost of suppressing this case publicly.</p>
+      <p>Do these in order: (1) send the <em>s.285 notice</em> today — registered mail is sufficient; email in addition for proof of delivery; (2) book a free PI consult through Law Society BC; (3) let the lawyer send the demand to Surrey Risk Management.</p>
+      <p>PI lawyers in BC take slip-and-fall municipal claims on contingency. No upfront cost. They know how Surrey's risk team prices claims and will handle the notice if you haven't sent it yet — call immediately.</p>
+      <p style="color:var(--mid);font-style:italic;">The evidence is solid: two angles of the hazard plus the injury photo. Add a GP visit for injury documentation on record. That's a clean file.</p>
     </div>
   </section>
 
   <section class="section">
-    <div class="section-hd"><div class="lbl"><b>Timeline</b> &middot; expected horizon</div></div>
+    <div class="section-hd">
+      <div class="roman">§13</div>
+      <h2>Timeline<span class="sub">expected horizon</span></h2>
+      <div class="hint">months → years</div>
+    </div>
     <div class="timeline" id="timeline"></div>
   </section>
 
   <section class="section">
-    <div class="section-hd"><div class="lbl"><b>Evidence</b> &middot; before retainer</div></div>
+    <div class="section-hd">
+      <div class="roman">§14</div>
+      <h2>Evidence<span class="sub">before retainer</span></h2>
+      <div class="hint">each item compounds leverage</div>
+    </div>
     <div class="cl-hd">
-      <div class="l">Build the file before sign-up. Each item compounds leverage.</div>
-      <div class="c"><span id="clCount">&mdash;</span> / <span id="clTotal">&mdash;</span></div>
+      <div class="l">Build the file before sign-up.</div>
+      <div class="c"><span id="clCount">—</span> / <span id="clTotal">—</span></div>
     </div>
     <div class="cl-bar"><div id="clBar"></div></div>
     <div class="cl-list" id="checklist"></div>
   </section>
 
+  <!-- Risks (CASE-0001) -->
   <section class="section case-rcmp">
-    <div class="section-hd"><div class="lbl"><b>Risks</b> &middot; what AG will attack</div></div>
+    <div class="section-hd">
+      <div class="roman">§15</div>
+      <h2>Risks<span class="sub">what AG will attack</span></h2>
+      <div class="hint">prepared lines</div>
+    </div>
     <div class="risks">
-      <div class="risk high"><div class="k">Kill shot</div><div class="v"><strong>Limitation</strong>. Rule 9-5 strike likely. s.8(1)(d) discoverability + s.18 incapacity must <em>both</em> be argued. Anything showing 2023&ndash;2025 functional capacity (taxes, leases, employment, banking, driving) hurts s.18.</div></div>
-      <div class="risk med"><div class="k">Doorway</div><div class="v"><strong>Godoy</strong>. <em>R v. Godoy</em> [1999] 1 SCR 311 gives 911-wellness entry authority. Counter-attack is scope &mdash; entry to verify safety, not detain/medicate. The 911 call audio defines the doorway size.</div></div>
-      <div class="risk med"><div class="k">MHA s.28</div><div class="v">If apprehension was lawful, forced-medication ground weakens. Father&rsquo;s &ldquo;answering well&hellip; not violent&rdquo; testimony is the linchpin against s.28 threshold.</div></div>
+      <div class="risk high killshot">
+        <div class="k">Kill shot</div>
+        <div class="v"><strong>Limitation</strong>. Rule 9-5 strike likely. s.8(1)(d) discoverability + s.18 incapacity must <em>both</em> be argued. Anything showing 2023–2025 functional capacity (taxes, leases, employment, banking, driving) hurts s.18.</div>
+      </div>
+      <div class="risk med"><div class="k">Doorway</div><div class="v"><strong>Godoy</strong>. <em>R v. Godoy</em> [1999] 1 SCR 311 gives 911-wellness entry authority. Counter-attack is scope — entry to verify safety, not detain/medicate. The 911 call audio defines the doorway size.</div></div>
+      <div class="risk med"><div class="k">MHA s.28</div><div class="v">If apprehension was lawful, forced-medication ground weakens. Father's "answering well… not violent" testimony is the linchpin against s.28 threshold.</div></div>
       <div class="risk med"><div class="k">Causation</div><div class="v">AG hires their own forensic psychiatrist; will subpoena pre-2023 GP records looking for alternative causes for PTSD.</div></div>
-      <div class="risk med"><div class="k">Self-rep</div><div class="v">Audit every email, complaint, social post written pre-retainer for inconsistencies &mdash; they will all be disclosed.</div></div>
+      <div class="risk med"><div class="k">Self-rep</div><div class="v">Audit every email, complaint, social post written pre-retainer for inconsistencies — they will all be disclosed.</div></div>
+    </div>
+  </section>
+
+  <!-- Risks (CASE-0003) -->
+  <section class="section case-muni">
+    <div class="section-hd">
+      <div class="roman">§15</div>
+      <h2>Risks<span class="sub">what Surrey will argue</span></h2>
+      <div class="hint">prepared lines</div>
+    </div>
+    <div class="risks">
+      <div class="risk high killshot">
+        <div class="k">Kill shot</div>
+        <div class="v"><strong>Notice missed.</strong> If the 2-month window under <em>Community Charter s.285</em> passes without written notice, the claim is barred — full stop. No lawyer can fix this. Send the notice today.</div>
+      </div>
+      <div class="risk med"><div class="k">Policy immunity</div><div class="v">Surrey argues the hazard was a policy/budget decision (no maintenance funds allocated). Counter: post-<em>Marchi 2021 SCC</em>, operational maintenance failures aren't shielded. A sunken panel is not a budget decision.</div></div>
+      <div class="risk med"><div class="k">Open + obvious</div><div class="v">Surrey argues the hazard was visible and plaintiff assumed the risk. Counter: <em>Waldick v. Malcolm</em> holds occupiers must address known hazards regardless of visibility, especially for elderly pedestrians.</div></div>
+      <div class="risk med"><div class="k">Minor injury cap</div><div class="v">Road rash is defined as a "minor injury" under BC tort law — $5,500 pain/suffering cap. Get a GP to document any joint or bone involvement — that changes the classification.</div></div>
     </div>
   </section>
 
   <section class="section">
-    <div class="section-hd"><div class="lbl"><b>Call script</b></div></div>
+    <div class="section-hd">
+      <div class="roman">§16</div>
+      <h2>Call script<span class="sub">callback prep</span></h2>
+      <div class="hint">read once</div>
+    </div>
     <div class="script-hd">
-      <div class="hint" style="font-family:var(--mono);font-size:11px;color:var(--mid)">Read once before each consultation.</div>
+      <div class="hint" style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:0.10em;text-transform:uppercase;">Read once before each consultation.</div>
       <button class="copy-btn" id="copyScript">Copy</button>
     </div>
     <div class="script" id="scriptText"></div>
   </section>
 
+  <!-- Drafts (CASE-0001) -->
   <section class="section case-rcmp">
-    <div class="section-hd"><div class="lbl"><b>Drafts</b> &middot; ready for review</div></div>
+    <div class="section-hd">
+      <div class="roman">§17</div>
+      <h2>Folder<span class="sub">drafts &amp; correspondence</span></h2>
+      <div class="hint">4 documents</div>
+    </div>
+    <div class="folder-hd"><div>STAMP · TITLE</div><div>RECIPIENT</div></div>
     <details class="draft">
-      <summary><div class="d-title">Outreach email &middot; standard template</div><div class="d-kind">to counsel</div></summary>
-      <div class="d-body">Subject: Civil Consultation &mdash; Wellness Call / RCMP Charter Claim &mdash; Trommel
+      <summary><div class="d-stamp">Doc</div><div class="d-title">Outreach email · standard template</div><div class="d-kind">to counsel</div></summary>
+      <div class="d-body">Subject: Civil Consultation — Wellness Call / RCMP Charter Claim — Trommel
 
 Hi [Name],
 
-My name is Joshua Trommel. I&rsquo;m reaching out because I have a potential civil claim arising from a warrantless wellness-call entry by Langley RCMP in August 2023.
+My name is Joshua Trommel. I'm reaching out because I have a potential civil claim arising from a warrantless wellness-call entry by Langley RCMP in August 2023.
 
-The incident involved unlawful entry into my home, excessive force, arbitrary detention, forced antipsychotic medication, and overnight solitary confinement &mdash; all without charge. The basic 2-year limitation expired August 2025; the claim survives on discoverability and PTSD-based incapacity under the BC Limitation Act.
+The incident involved unlawful entry into my home, excessive force, arbitrary detention, forced antipsychotic medication, and overnight solitary confinement — all without charge. The basic 2-year limitation expired August 2025; the claim survives on discoverability and PTSD-based incapacity under the BC Limitation Act.
 
-Full case brief: https://brief.heyitsmejosh.com
+Full case brief: https://heyitsmejosh.com/brief
 
-It covers the alleged Charter breaches (ss. 7, 8, 9, 12), relevant case law, estimated damages, and a full timeline. Based on your background, I believe you&rsquo;d be well-suited for this matter.
+It covers the alleged Charter breaches (ss. 7, 8, 9, 12), relevant case law, estimated damages, and a full timeline. Based on your background, I believe you'd be well-suited for this matter.
 
-I&rsquo;d like to book an in-person consultation at your earliest convenience.
+I'd like to book an in-person consultation at your earliest convenience.
 
 Thank you,
 Joshua Trommel</div>
     </details>
     <details class="draft">
-      <summary><div class="d-title">CRCC complaint &middot; skeleton</div><div class="d-kind">to commission</div></summary>
+      <summary><div class="d-stamp">Doc</div><div class="d-title">CRCC complaint · skeleton</div><div class="d-kind">to commission</div></summary>
       <div class="d-body">To: Civilian Review and Complaints Commission for the RCMP
 Re: Langley RCMP (Brookswood), File #2023-25586
 
 Conduct complained of:
 1. Warrantless entry into private dwelling on non-criminal wellness call.
-2. Prone restraint by kneeling on back &mdash; respiratory distress.
+2. Prone restraint by kneeling on back — respiratory distress.
 3. Apprehension absent lawful MHA s.28 grounds.
 4. No s.10(b) Charter caution.
 5. Forcible antipsychotic medication without consent.
@@ -456,26 +814,71 @@ Conduct complained of:
 Strategic: file AFTER counsel reviews. CRCC findings non-binding but persuasive. Does NOT toll limitation.</div>
     </details>
     <details class="draft">
-      <summary><div class="d-title">FOI / ATIP &middot; 4 requests</div><div class="d-kind">to crown</div></summary>
-      <div class="d-body">1. RCMP ATIP &mdash; officer names + badges, notebooks (Form 1624), GO Report, BWC, PRIME-BC entries, MHA forms generated. File #2023-25586.
+      <summary><div class="d-stamp">Doc</div><div class="d-title">FOI / ATIP · 4 requests</div><div class="d-kind">to crown</div></summary>
+      <div class="d-body">1. RCMP ATIP — officer names + badges, notebooks (Form 1624), GO Report, BWC, PRIME-BC entries, MHA forms generated. File #2023-25586.
 
-2. E-Comm 9-1-1 BC FOI &mdash; 911 audio, CAD notes, RCMP&harr;dispatch comms for Aug 1, 2023.
+2. E-Comm 9-1-1 BC FOI — 911 audio, CAD notes, RCMP↔dispatch comms for Aug 1, 2023.
 
-3. BCEHS Privacy Office &mdash; ePCR, dispatch logs, paramedic narratives.
+3. BCEHS Privacy Office — ePCR, dispatch logs, paramedic narratives.
 
-4. Hospital ROI &mdash; full chart Aug 1&ndash;2, 2023: ER triage, admission, MD orders, MAR, restraint records, MHA Form 4/Form 1, nursing notes, discharge.</div>
+4. Hospital ROI — full chart Aug 1–2, 2023: ER triage, admission, MD orders, MAR, restraint records, MHA Form 4/Form 1, nursing notes, discharge.</div>
     </details>
     <details class="draft">
-      <summary><div class="d-title">Demand letter &middot; skeleton</div><div class="d-kind">without prejudice</div></summary>
-      <div class="d-body">Without prejudice &mdash; settlement purposes only
+      <summary><div class="d-stamp">Doc</div><div class="d-title">Demand letter · skeleton</div><div class="d-kind">without prejudice</div></summary>
+      <div class="d-body">Without prejudice — settlement purposes only
 
 1. Parties: Trommel v. Crown in right of Canada (RCMP).
 2. Facts: 2-paragraph summary.
 3. Causes: Charter ss.7, 8, 9, 10(b), 12; battery; false imprisonment; IIMS; negligent investigation (Hill v. Hamilton-Wentworth 2007 SCC 41).
-4. Damages: general, Charter (Ward), aggravated, punitive, future earning capacity, special. Range $X&ndash;$Y.
+4. Damages: general, Charter (Ward), aggravated, punitive, future earning capacity, special. Range $X–$Y.
 5. Limitation: discovery May 11, 2026 (s.8(1)(d)); alt. s.18.
-6. Offer: open 30 days. 70&ndash;80% of mid-case estimate. Then file.
+6. Offer: open 30 days. 70–80% of mid-case estimate. Then file.
 7. Confidentiality: standard on terms; resist NDA on underlying facts (cf. Mona Wang).</div>
+    </details>
+  </section>
+
+  <!-- Surrey notice draft (CASE-0003) -->
+  <section class="section case-muni">
+    <div class="section-hd">
+      <div class="roman">§17</div>
+      <h2>Folder<span class="sub">notice + demand</span></h2>
+      <div class="hint">send today</div>
+    </div>
+    <div class="folder-hd"><div>STAMP · TITLE</div><div>RECIPIENT</div></div>
+    <details class="draft" open>
+      <summary><div class="d-stamp">Urgent</div><div class="d-title">Notice to Surrey — s.285 · send today</div><div class="d-kind">registered mail</div></summary>
+      <div class="d-body">City of Surrey, City Clerk
+13450 104 Ave
+Surrey, BC V3T 1V8
+
+Re: Notice of Claim — Sidewalk Slip and Fall
+Pursuant to: BC Community Charter SBC 2003 c.26, s.285
+
+Claimant: Sylvia Baitz
+Incident date: [DATE OF FALL]
+Incident location: Main Street (near [CROSS STREET]), Surrey, BC
+Nature of claim: Fall caused by a sunken/uneven sidewalk panel resulting in bilateral knee lacerations and abrasions. Claimant required medical attention. Photographic evidence of the hazard and injuries has been preserved.
+
+The claimant holds the City of Surrey responsible for the hazardous condition and reserves all rights to pursue a civil claim for damages including but not limited to pain and suffering, medical expenses, and any lost wages.
+
+Yours truly,
+[Signature]
+[Date]</div>
+    </details>
+    <details class="draft">
+      <summary><div class="d-stamp">Doc</div><div class="d-title">Lawyer outreach · PI consult request</div><div class="d-kind">to PI firm</div></summary>
+      <div class="d-body">Subject: Slip and Fall — Surrey Sidewalk — Baitz — Free Consult Request
+
+Hi [Name],
+
+My name is Joshua Trommel. I'm reaching out on behalf of my grandmother Sylvia Baitz, who fell on a sunken sidewalk panel in Surrey, BC in [MONTH] 2026.
+
+She sustained bilateral knee injuries. We have photographs of the hazard (two angles showing the sunken/uneven panel and displaced gravel) and of the injuries. I have already sent or am preparing to send the s.285 notice to Surrey City Clerk.
+
+I understand you take slip-and-fall municipal liability cases on contingency. We would like to book a free consultation at your earliest convenience.
+
+Joshua Trommel
+778-201-4533</div>
     </details>
   </section>
 
@@ -484,14 +887,14 @@ Strategic: file AFTER counsel reviews. CRCC findings non-binding but persuasive.
 </main>
 
 <footer>
-  <div>BRIEF &middot; NOT LEGAL ADVICE &middot; v3.0.0</div>
-  <div>VOLUME I &middot; BC, CANADA</div>
+  <div>BRIEF · NOT LEGAL ADVICE · v5.0.0</div>
+  <div>VOL. I · BC, CANADA</div>
 </footer>
 
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="script.js?v=7"></script>
+<script src="script.js?v=8"></script>
 <script>
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js');
