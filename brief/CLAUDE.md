@@ -11,7 +11,7 @@ Static litigation planning tool for Trommel v. AG Canada. Not a generic case ana
 - DLA Law / Ingrid Eiermann — DECLINED May 15: "Not able to assist with your matter."
 - Thomas Harding — not yet contacted (PK referral — did Degen case $317k)
 - Neil Chantler — not yet contacted (PK referral)
-- Cameron Ward (cward@cameronward.com) — email sent 2026-05-16, no response as of 2026-05-22
+- Cameron Ward (cward@cameronward.com) — DECLINED May 23: "I am no longer practising law."
 - Arvay Finlay (arvayfinlay.ca) — email sent 2026-05-16, response unclear (may have declined)
 - Klein Lawyers (callkleinlawyers.com) — email sent 2026-05-16, awaiting
 - CBA BC (info@cbabc.org) — email sent 2026-05-16, awaiting

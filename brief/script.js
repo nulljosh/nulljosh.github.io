@@ -131,7 +131,7 @@ const LAWYERS = [
     tags:[{t:'33 yrs trial',c:'good'},{t:'Sued RCMP',c:'good'},{t:'Not taking new cases',c:'warn'}], status:'declined', fit:4,
     contacts:[{label:'604-591-7321',href:'tel:6045917321',kind:'tel',primary:true},{label:'pgkent@kswlawyers.ca',href:'mailto:pgkent@kswlawyers.ca',kind:'email'}] },
   { id:'cameron-ward',     init:'CW', name:'Cameron Ward', sub:'Cameron Ward & Co - Gastown, Vancouver BC - 40+ yrs',
-    tags:[{t:'Ward v. Vancouver SCC',c:'good'},{t:'Charter & police',c:'good'},{t:'No response',c:'warn'}], status:'emailed', fit:5,
+    tags:[{t:'Ward v. Vancouver SCC',c:'good'},{t:'Charter & police',c:'good'},{t:'No longer practising',c:'warn'}], status:'declined', fit:5,
     contacts:[{label:'604-688-6881',href:'tel:6046886881',kind:'tel',primary:true},{label:'cward@cameronward.com',href:'mailto:cward@cameronward.com',kind:'email'},{label:'cameronward.com',href:'https://cameronward.com',kind:'web'}] },
   { id:'arvay-finlay',     init:'AF', name:'Arvay Finlay LLP', sub:'Vancouver BC',
     tags:[{t:'Fairy Creek RCMP class',c:'good'},{t:'Charter ss.2/7/8/9',c:'good'},{t:'Response unclear',c:'warn'}], status:'emailed', fit:4,
