@@ -421,31 +421,12 @@ function mkSignal(ms) { var c=new AbortController(); setTimeout(function(){c.abo
 async function loadFilms() {
   var el = document.getElementById('stat-films');
   var c = getCached('lb', DAY_MS); if (c) { el.textContent = c; return; }
-  var lbUrl = 'https://letterboxd.com/literallyjordan/';
-  var proxies = [
-    'https://corsproxy.io/?'+encodeURIComponent(lbUrl),
-    'https://api.allorigins.win/raw?url='+encodeURIComponent(lbUrl),
-    'https://api.codetabs.com/v1/proxy?quest='+encodeURIComponent(lbUrl),
-  ];
-  async function tryProxy(url) {
-    var r = await fetch(url, {signal:mkSignal(10000)});
-    if (!r.ok) throw new Error('!ok');
-    var html = await r.text();
-    var m = html.match(/([0-9,]+)\s+film/i);
-    if (!m) throw new Error('no match');
-    return m[1];
-  }
   try {
-    var count;
-    if (typeof Promise.any === 'function') {
-      count = await Promise.any(proxies.map(tryProxy));
-    } else {
-      for (var p of proxies) {
-        try { count = await tryProxy(p); if (count) break; } catch(e) {}
-      }
-    }
-    if (count) {
-      var n = parseInt(count.replace(/,/g,'')), txt = count+' on Letterboxd';
+    var r = await fetch('/stats.json', {signal:mkSignal(6000)});
+    if (!r.ok) throw new Error('!ok');
+    var d = await r.json();
+    if (d.films) {
+      var n = parseInt(d.films.replace(/,/g,'')), txt = d.films+' on Letterboxd';
       animateCount(el, n, ' on Letterboxd'); setCached('lb', txt); return;
     }
   } catch(e) {}
