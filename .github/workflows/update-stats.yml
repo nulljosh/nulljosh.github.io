@@ -1,0 +1,43 @@
+name: Update Stats
+
+on:
+  schedule:
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch Letterboxd count
+        id: lb
+        run: |
+          COUNT=$(curl -s --max-time 15 "https://letterboxd.com/literallyjordan/" \
+            -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" \
+            | grep -oE '[0-9,]+ film' | head -1 | grep -oE '[0-9,]+' || echo "")
+          echo "films=$COUNT" >> $GITHUB_OUTPUT
+
+      - name: Write stats.json
+        env:
+          FILMS: ${{ steps.lb.outputs.films }}
+        run: |
+          if [ -n "$FILMS" ]; then
+            printf '{"films":"%s"}\n' "$FILMS" > stats.json
+          fi
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add stats.json
+          if git diff --staged --quiet; then
+            echo "no change"
+          else
+            git commit -m "chore: update letterboxd stats"
+            git push
+          fi
