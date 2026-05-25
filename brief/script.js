@@ -135,6 +135,12 @@ const SCALE = [
 ];
 
 const LAWYERS = [
+  { id:'thomas-harding',   init:'TH', name:'Thomas Harding', sub:'Thomas Harding Law Corp (TLAG) - Surrey BC - PK referral - Degen $317k',
+    tags:[{t:'Degen case $317k',c:'good'},{t:'RCMP misconduct',c:'good'},{t:'PK referral',c:'urgent'},{t:'PRIORITY',c:'urgent'}], status:'none', fit:5,
+    contacts:[{label:'604-635-1330',href:'tel:6046351330',kind:'tel',primary:true},{label:'tlag.ca',href:'https://tlag.ca',kind:'web'}] },
+  { id:'neil-chantler',    init:'NC', name:'Neil Chantler', sub:'Chantler & Company - Vancouver BC - PK referral',
+    tags:[{t:'Civil rights',c:'good'},{t:'PK referral',c:'urgent'},{t:'PRIORITY',c:'urgent'}], status:'none', fit:4,
+    contacts:[{label:'604-424-8454',href:'tel:6044248454',kind:'tel',primary:true},{label:'neilchantler@chantlerlaw.ca',href:'mailto:neilchantler@chantlerlaw.ca',kind:'email'},{label:'chantlerlaw.ca',href:'https://chantlerlaw.ca',kind:'web'}] },
   { id:'paul-kent',        init:'PK', name:'Paul G. Kent-Snowsell', sub:'Kane Shannon & Weiler - Surrey BC - Of Counsel',
     tags:[{t:'33 yrs trial',c:'good'},{t:'Sued RCMP',c:'good'}], status:'voicemail', fit:4,
     contacts:[{label:'604-591-7321',href:'tel:6045917321',kind:'tel',primary:true},{label:'pgkent@kswlawyers.ca',href:'mailto:pgkent@kswlawyers.ca',kind:'email'}] },
@@ -142,7 +148,7 @@ const LAWYERS = [
     tags:[{t:'Ward v. Vancouver SCC',c:'good'},{t:'Charter & police',c:'good'}], status:'emailed', fit:5,
     contacts:[{label:'604-688-6881',href:'tel:6046886881',kind:'tel',primary:true},{label:'cward@cameronward.com',href:'mailto:cward@cameronward.com',kind:'email'},{label:'cameronward.com',href:'https://cameronward.com',kind:'web'}] },
   { id:'arvay-finlay',     init:'AF', name:'Arvay Finlay LLP', sub:'Vancouver BC',
-    tags:[{t:'Fairy Creek RCMP class',c:'good'},{t:'Charter ss.2/7/8/9',c:'good'}], status:'voicemail', fit:4,
+    tags:[{t:'Fairy Creek RCMP class',c:'good'},{t:'Charter ss.2/7/8/9',c:'good'},{t:'Declined May 25',c:'fail'}], status:'declined', fit:4,
     contacts:[{label:'604-696-9928',href:'tel:6046969928',kind:'tel'},{label:'arvayfinlay.ca',href:'https://arvayfinlay.ca',kind:'web'}] },
   { id:'klein-lawyers',    init:'KL', name:'Klein Lawyers', sub:'1385 W 8th Ave #400 - Vancouver BC - free consult, contingency',
     tags:[{t:'RCMP class actions',c:'good'},{t:'Federal court',c:'good'},{t:'Contingency',c:'good'}], status:'emailed', fit:3,
@@ -165,7 +171,7 @@ const LAWYERS = [
 ];
 
 const TIMELINE = [
-  { when:'Now',          state:'now',  title:'Counsel selection',        desc:'Email-first outreach to 4 firms. Voicemail unreliable. Compare retainer structures before signing.' },
+  { when:'Now',          state:'now',  title:'Call Harding & Chantler',  desc:'Thomas Harding 604-635-1330 (Degen $317k, PK referral) + Neil Chantler 604-424-8454. Ward/DLA/Arvay all declined. Klein + BCCLA still open.' },
   { when:'Month 1-2',    state:'',     title:'Evidence build',           desc:'Police report, ATIP, E-Comm FOI, hospital ROI, BWC, OPCC to CRCC complaint, PTSD diagnosis letter.' },
   { when:'Month 2-4',    state:'warn', title:'Claim filed',              desc:'Basic limit expired Aug 2025. If discoverability holds, file immediately - every day increases risk.' },
   { when:'Month 6-18',   state:'',     title:'Discovery & negotiation',  desc:'Evidence exchanged. Settlement talks begin. Federal AG typically prefers quiet settlement.' },
@@ -174,7 +180,7 @@ const TIMELINE = [
 ];
 
 const CHECKLIST = [
-  { i:'0',  label:'Call Paul Kent-Snowsell - book appointment',                pri:'now',  done:false, lev:20 },
+  { i:'0',  label:'Call Paul Kent-Snowsell - book appointment',                pri:'now',  done:true,  lev:20 },
   { i:'1',  label:'PTSD assessment started (therapy) - get Dx letter',         pri:'now',  done:true,  lev:80 },
   { i:'2',  label:'Body cam footage requested from RCMP',                       pri:'now',  done:false, lev:120 },
   { i:'3',  label:'Police report - both Daryls full names',                     pri:'now',  done:false, lev:45 },
@@ -190,7 +196,9 @@ const CHECKLIST = [
   { i:'13', label:'Pin discovery date: May 11, 2026',                          pri:'now',  done:true,  lev:50 },
   { i:'14', label:'ATIP filed with RCMP - officer names, notebooks, BWC',      pri:'now',  done:false, lev:70 },
   { i:'15', label:'FOI filed with E-Comm 9-1-1 BC - 911 audio + CAD notes',   pri:'now',  done:false, lev:65 },
-  { i:'16', label:'Email outreach: Ward, Arvay, Klein, BCCLA',                 pri:'now',  done:false, lev:30 },
+  { i:'16', label:'Email outreach: Ward (declined), Arvay (declined May 25), Klein, BCCLA', pri:'now',  done:true, lev:30 },
+  { i:'17', label:'Contact Thomas Harding - TLAG 604-635-1330 (Degen $317k, PK referral) - TOP PRIORITY', pri:'now', done:false, lev:150 },
+  { i:'18', label:'Contact Neil Chantler - 604-424-8454 / neilchantler@chantlerlaw.ca (PK referral) - TOP PRIORITY', pri:'now', done:false, lev:140 },
 ];
 
 const JOURNAL_SEED = [
@@ -288,102 +296,17 @@ const FAMILY_TIMELINE = [
 
 const FAMILY_CALL_SCRIPT = '30-SECOND — USE VERBATIM (Law Society referral):\n"Hi, my name is Josh Trommel. I\'m looking for a civil litigation lawyer with experience in intentional torts and appropriation of personality in BC. I have claims against my parents arising from commercial use of my likeness without consent, intentional infliction of mental suffering over a 20-year period, parental negligence, and wrongful eviction into homelessness. Discovery date is May 2026, basic limitation expires May 2028. I\'d like to book a 30-minute consultation."\n\n---\n\nFULL OUTREACH EMAIL:\nSubject: Civil Consultation — Appropriation of Personality / IIMS — Trommel\n\nHi [Name],\n\nMy name is Joshua Trommel. I\'m seeking a civil litigation lawyer with experience in intentional torts and/or appropriation of personality claims in BC.\n\nI have potential claims against my parents:\n1. Commercial use of my face and likeness on family business vehicles without consent — ongoing appropriation of personality tort under BC Privacy Act s.3.\n2. Intentional infliction of mental suffering — documented 20+ year pattern: eviction into homelessness, police weaponized during emotional distress, parking lot confrontation while homeless (father\'s stated priority: a Yelp review).\n3. Parental negligence contributing to documented PTSD.\n\nI have a separate Charter claim against the AG of Canada (RCMP). Discovery date: May 2026. Basic limitation expires May 2028.\n\nAvailable for consultation at your earliest convenience.\nJoshua Trommel · 778-201-4533';
 
-// ===== CASE-0003: Baitz v. City of Surrey =====
-const MUNI_GROUNDS = [
-  { id:'occ', n:'01', title:'Occupiers Liability', sec:'BC OLA RSBC 1996 c.337 s.3',
-    val:'$4–8k', high:8, grade:'A',
-    desc:'Municipality is occupier of the sidewalk. Duty to take reasonable care to see that persons on the premises are reasonably safe. The pavement dip is an observable structural hazard; photographic evidence establishes the defect pre-existed the fall.',
-    cite:'BC Occupiers Liability Act RSBC 1996 c.337 s.3 · Waldick v. Malcolm [1991] 2 SCR 456',
-    risk:'Surrey argues the hazard was open and obvious · Counter: Waldick holds occupiers must address known hazards regardless; elderly plaintiff with altered gait is a foreseeable visitor.' },
-  { id:'neg', n:'02', title:'Municipal Negligence', sec:'Anns/Cooper — operational failure',
-    val:'$3–6k', high:6, grade:'B',
-    desc:'Post-2021 SCC, municipalities are not immune for operational decisions — daily maintenance failures are actionable. Sunken concrete panel + displaced gravel = operational (not policy) failure. City of Surrey owes a duty of care to pedestrians on its sidewalks.',
-    cite:'Nelson (City) v. Marchi, 2021 SCC 41 · Anns/Cooper test — proximity + foreseeability',
-    risk:'Surrey invokes policy immunity (budgeting/prioritization) · Counter: Marchi 2021 SCC held operational maintenance failures are not shielded by policy immunity.' },
-  { id:'notice', n:'03', title:'Mandatory Notice Requirement', sec:'BC Community Charter s.285',
-    val:'prerequisite', high:0, grade:'C',
-    desc:'Written notice must be given to the municipality within 2 months of the incident or the claim is barred entirely. Notice must specify date, time, location, and general nature of injury. Send registered mail + email to Surrey City Clerk immediately.',
-    cite:'BC Community Charter SBC 2003 c.26 s.285',
-    risk:'Missing the 2-month window bars the claim entirely · Send notice before anything else — this is the only truly time-gated step in the entire claim.' },
-];
-
-const MUNI_SCENARIOS = [
-  { name:'Best case',   desc:'Bone or joint injury confirmed. Not minor injury classification. Full special damages.', amt:'$20–40k',  pct:10, color:'var(--green)' },
-  { name:'Likely',      desc:'Notice sent. PI lawyer retained. Surrey settles to avoid litigation cost.', amt:'$8–14k', pct:50, color:'var(--amber)' },
-  { name:'Floor',       desc:'Minor injury cap ($5,500) + out-of-pocket medical only.', amt:'$6–8k', pct:30, color:'var(--navy)' },
-  { name:'Worst',       desc:'Notice window missed. Claim barred entirely.', amt:'$0', pct:10, color:'var(--red)' },
-];
-
-const MUNI_STACK_HEADS = [
-  { label:'Minor injury — pain & suffering cap', sub:'Road rash = minor injury under BC tort law', low:3,   high:5.5, grade:'B' },
-  { label:'Medical expenses (out of pocket)',     sub:'Physio, medication, wound care, GP visits',  low:0.5, high:2,   grade:'A' },
-  { label:'Lost wages / activity',               sub:'If any work or activities missed',            low:0,   high:3,   grade:'C' },
-  { label:'Future medical',                      sub:'If treatment ongoing',                        low:0,   high:1.5, grade:'C' },
-];
-
-const MUNI_LAWYERS = [
-  { id:'lawsociety-pi', init:'LS', name:'Law Society of BC — PI Referral',
-    sub:'Lawyer Referral Service · free consult · contingency PI specialists',
-    tags:[{t:'Free consult',c:'good'},{t:'PI specialists',c:'good'},{t:'Contingency',c:'good'}], status:'none', fit:4,
-    contacts:[{label:'1-800-663-1919',href:'tel:18006631919',kind:'tel',primary:true},{label:'lawsocietybc.ca',href:'https://lawsocietybc.ca',kind:'web'}] },
-  { id:'slater-muni', init:'SV', name:'Slater Vecchio LLP', sub:'Vancouver BC · personal injury · municipal claims',
-    tags:[{t:'Slip & fall',c:'good'},{t:'Municipal liability',c:'good'}], status:'none', fit:3,
-    contacts:[{label:'slatervecchio.com',href:'https://slatervecchio.com',kind:'web'}] },
-  { id:'asfs', init:'AH', name:'Acheson Sweeney Foley Sahota', sub:'Surrey/Vancouver BC · personal injury',
-    tags:[{t:'Surrey local',c:'good'},{t:'Municipal liability',c:'good'}], status:'none', fit:3,
-    contacts:[{label:'604-591-1777',href:'tel:6045911777',kind:'tel'}] },
-];
-
-const MUNI_CHECKLIST = [
-  { i:'m0', label:'Send written notice to Surrey City Clerk — registered mail + email TODAY', pri:'now', done:false, lev:100 },
-  { i:'m1', label:'Preserve all 3 photos with date/GPS metadata intact (IMG_9319, 9320, 9322)', pri:'now', done:true,  lev:60 },
-  { i:'m2', label:'Document exact incident date, time, and intersection', pri:'now', done:false, lev:50 },
-  { i:'m3', label:'GP or walk-in visit — get injury documented on file today', pri:'now', done:false, lev:70 },
-  { i:'m4', label:'Keep all medical receipts (wound care, physio, meds)', pri:'now', done:false, lev:40 },
-  { i:'m5', label:'Return to scene — measure dip depth with tape measure, photograph', pri:'soon', done:false, lev:30 },
-  { i:'m6', label:'Check if hazard was previously reported to Surrey (FOI request)', pri:'soon', done:false, lev:25 },
-  { i:'m7', label:'Document any missed work, appointments, or activity (dates + amounts)', pri:'soon', done:false, lev:20 },
-  { i:'m8', label:'Get free consult with PI lawyer — contingency means no upfront cost', pri:'now', done:false, lev:80 },
-  { i:'m9', label:'Witness contact info — anyone who saw the fall or knows the hazard?', pri:'soon', done:false, lev:30 },
-];
-
-const MUNI_TIMELINE = [
-  { when:'NOW — urgent', state:'now', title:'Send notice to Surrey', desc:'BC Community Charter s.285: written notice within 2 months or claim is barred. Send to Surrey City Clerk: 13450 104 Ave, Surrey BC V3T 1V8. Include: date, location, nature of injury. Registered mail + email.' },
-  { when:'Week 1–2',    state:'',    title:'Evidence build',        desc:'Photograph hazard with measuring tape. GP visit for injury on record. Preserve all receipts. Write precise incident account with timestamps.' },
-  { when:'Month 1',     state:'',    title:'Lawyer consult',        desc:'PI lawyers take these on contingency — no upfront cost. Free consult through Law Society BC (1-800-663-1919) or call Slater Vecchio / ASFS directly.' },
-  { when:'Month 1–3',   state:'warn',title:'Demand to Surrey',      desc:'Lawyer sends without-prejudice demand. Surrey Risk Management typically settles to avoid litigation cost on clear operational failures.' },
-  { when:'Month 3–12',  state:'good',title:'Settlement',            desc:'Most municipal slip-and-falls settle within 6 months. Lump sum covers medical + pain/suffering. No trial needed at this quantum.' },
-  { when:'2 yrs out',   state:'bad', title:'Hard limitation',       desc:'2-year limitation from incident date. Must file BC Supreme Court (or Small Claims under $35k) or have settlement before this date.' },
-];
-
-const MUNI_CALL_SCRIPT = 'WRITTEN NOTICE TO SURREY — send immediately, registered mail:\n\nCity of Surrey, City Clerk\n13450 104 Ave\nSurrey, BC V3T 1V8\n\nRe: Notice of Claim — Sidewalk Slip and Fall\nPursuant to: BC Community Charter SBC 2003 c.26, s.285\n\nClaimant: Sylvia Baitz\nIncident date: [DATE OF FALL]\nIncident location: Main Street (near [CROSS STREET]), Surrey, BC\nNature of injury: Fall caused by sunken/uneven sidewalk panel. Bilateral knee lacerations and abrasions. Ongoing pain and reduced mobility.\n\nThe claimant reserves all rights to pursue a civil claim for damages.\n\nYours truly,\n[Signature]\n\n---\n\nLAWYER CALL (30 seconds):\n"Hi, I\'m calling about a slip-and-fall against the City of Surrey. My grandmother Sylvia Baitz fell on a sunken sidewalk panel at Main Street, Surrey in [MONTH] 2026. She has bilateral knee injuries — road rash and lacerations. We have photos of the hazard and injuries. I need to confirm the s.285 notice has gone out and then retain counsel. Do you take municipal slip-and-fall cases on contingency?"';
-
-const CL_STORE_MUNI = 'brief.v3.checklist.muni';
-
-function getActiveChecklist() {
-  return {rcmp: CHECKLIST, family: FAMILY_CHECKLIST, muni: MUNI_CHECKLIST}[webActiveCase] || CHECKLIST;
-}
+function getActiveChecklist() { return webActiveCase === 'rcmp' ? CHECKLIST : FAMILY_CHECKLIST; }
 const CL_STORE_FAMILY = 'brief.v3.checklist.family';
-function getClStore() {
-  return {rcmp: CL_STORE, family: CL_STORE_FAMILY, muni: CL_STORE_MUNI}[webActiveCase] || CL_STORE;
-}
-
-const CASE_TITLES = {
-  rcmp: 'Brief — Trommel v. AG Canada',
-  family: 'Brief — Trommel v. Trommel',
-  muni: 'Brief — Baitz v. City of Surrey',
-};
-const CASE_FILE_LABELS = { rcmp: 'CASE-0001', family: 'CASE-0002', muni: 'CASE-0003' };
+function getClStore() { return webActiveCase === 'rcmp' ? CL_STORE : CL_STORE_FAMILY; }
 
 function setActiveCase(id) {
   webActiveCase = id;
   document.body.dataset.activecase = id;
   document.querySelectorAll('.cs-btn').forEach(b => b.classList.toggle('active', b.dataset.case === id));
   const f = document.getElementById('stripFile');
-  if (f) f.textContent = CASE_FILE_LABELS[id] || id;
-  const cls = document.getElementById('clsCase');
-  if (cls) cls.textContent = CASE_FILE_LABELS[id] || id;
-  document.title = CASE_TITLES[id] || 'Brief';
+  if (f) f.textContent = id === 'rcmp' ? 'CASE-0001' : 'CASE-0002';
+  document.title = id === 'rcmp' ? 'Brief — Trommel v. AG Canada' : 'Brief — Trommel v. Trommel';
   renderGrounds('grounds-case', '');
   renderGrounds('grounds-money', '2');
   renderScenarios();
@@ -394,28 +317,7 @@ function setActiveCase(id) {
   renderTimeline();
   if (id === 'rcmp') renderLeverage();
   const scriptEl = document.getElementById('scriptText');
-  if (scriptEl) scriptEl.textContent = {rcmp: CALL_SCRIPT, family: FAMILY_CALL_SCRIPT, muni: MUNI_CALL_SCRIPT}[id] || '';
-  const groundsSub = document.getElementById('groundsSubHd');
-  if (groundsSub) groundsSub.textContent = {rcmp:'08 stacked breaches', family:'05 tort claims', muni:'03 grounds'}[id] || '';
-  updateStackMeta(id);
-}
-
-function updateStackMeta(id) {
-  const el = document.getElementById('stackMeta');
-  if (!el) return;
-  while (el.firstChild) el.removeChild(el.firstChild);
-  const rows = {
-    rcmp:   [['Settlement median', '$800k–$1.2M'], ['Trial ceiling', '$2–$3M'], ['Floor', '$317k · Degen 2023 BCSC']],
-    family: [['Most likely', '$300k–$600k'], ['Trial ceiling', '$1.5M+'], ['Deadline', 'May 2028']],
-    muni:   [['Most likely', '$8k–$12k'], ['Minor injury cap', '$5,500 pain/suffering'], ['Ceiling (fracture)', '$40k+']],
-  }[id] || [];
-  rows.forEach(([lbl, val]) => {
-    const d = document.createElement('div');
-    const t = document.createTextNode(lbl + ' ');
-    const b = document.createElement('b'); b.textContent = val;
-    d.appendChild(t); d.appendChild(b);
-    el.appendChild(d);
-  });
+  if (scriptEl) scriptEl.textContent = id === 'rcmp' ? CALL_SCRIPT : FAMILY_CALL_SCRIPT;
 }
 
 // ===== LEVERAGE =====
@@ -424,8 +326,8 @@ const BASELINE_PROJECTION = 400;
 const CEILING_PROJECTION  = 2250;
 
 let _lawyerStatuses = {};
-const STATUS_CYCLE = ['none','voicemail','emailed','callback','retained'];
-const STATUS_LABEL = { none:'Not contacted', voicemail:'Voicemail left', emailed:'Email sent', callback:'Callback received', retained:'Retained' };
+const STATUS_CYCLE = ['none','voicemail','emailed','callback','retained','declined'];
+const STATUS_LABEL = { none:'Not contacted', voicemail:'Voicemail left', emailed:'Email sent', callback:'Callback received', retained:'Retained', declined:'Declined' };
 
 function computeLeverage() {
   const evidence = CHECKLIST.reduce((s,x) => s + (x.done ? x.lev : 0), 0);
@@ -537,7 +439,7 @@ function renderTrajectory(currentTotal) {
   ];
   const details = [
     { l:'Where you stand today',    m:'Current projection of $' + currentTotal + 'k based on completed evidence and counsel posture.', v:'$' + currentTotal + 'k' },
-    { l:'Retain counsel',           m:"One signed retainer flips the AG's posture. Press-capable counsel (Cameron Ward, Arvay Finlay) maximizes the silence premium.", v:'+$180k' },
+    { l:'Retain counsel',           m:"One signed retainer flips the AG's posture. Press-capable counsel (Klein Lawyers, Thomas Harding) maximizes the silence premium.", v:'+$180k' },
     { l:'Complete top 5 evidence',  m:'BWC footage, therapist letter (PTSD + causation), ATIP officer notebooks, E-Comm 911 audio, hospital discharge - top leverage items.', v:'+$295k' },
     { l:'Claim filed',              m:'Filing converts pre-litigation soft leverage to live procedural pressure. AG must engage and consider discovery exposure.', v:'+$100k' },
     { l:'Trial-ready evidence',     m:'Full pleadings, expert reports (forensic psych + vocational economist). Trial threat is now credible.', v:'$' + CEILING_PROJECTION/1000 + 'M ceiling' },
@@ -603,7 +505,7 @@ function renderTrajectory(currentTotal) {
   const nowClamped = Math.max(8, Math.min(92, pNow));
   const nowRow = document.getElementById('clockNowRow');
   const nowLabel = document.createElement('div');
-  nowLabel.className = 'tape-now-label';
+  nowLabel.className = 'clock-now-label';
   nowLabel.style.cssText = 'left:' + nowClamped + '%;bottom:0';
   const whatEl = document.createElement('div'); whatEl.className = 'what'; whatEl.textContent = 'Today - ' + daysSince.toLocaleString() + ' days in';
   const whenEl = document.createElement('div'); whenEl.className = 'when'; whenEl.textContent = 'May 17, 2026';
@@ -627,7 +529,7 @@ function renderTrajectory(currentTotal) {
 
   const track = document.getElementById('clockTrack');
   track.innerHTML =
-    '<svg class="tape-decay" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none">' +
+    '<svg class="clock-decay-svg" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none">' +
     '<defs><linearGradient id="decayGrad" x1="0" x2="0" y1="0" y2="1">' +
     '<stop offset="0%" stop-color="var(--warn)" stop-opacity="0.32"/>' +
     '<stop offset="100%" stop-color="var(--warn)" stop-opacity="0"/>' +
@@ -635,33 +537,33 @@ function renderTrajectory(currentTotal) {
     '<path d="' + areaD + '" fill="url(#decayGrad)"/>' +
     '<path d="' + pathD + '" fill="none" stroke="var(--warn)" stroke-width="1.4" vector-effect="non-scaling-stroke" opacity="0.75"/>' +
     '</svg>' +
-    '<div class="tape-line"></div>' +
-    '<div class="tape-seg expired" style="left:0%;width:' + pExp + '%"></div>' +
-    '<div class="tape-seg runway" style="left:' + pExp + '%;width:' + (pNow-pExp) + '%"></div>' +
-    '<div class="tape-tick t-incident" style="left:0%;"><div class="dot"></div></div>' +
-    '<div class="tape-tick t-expired" style="left:' + pExp + '%;"><div class="dot"></div></div>' +
-    '<div class="tape-tick t-now" style="left:' + pNow + '%;"><div class="stem" style="height:' + Math.max(0,stemHeight).toFixed(1) + 'px"></div><div class="dot"></div></div>' +
-    '<div class="tape-tick t-ultimate" style="left:100%;"><div class="dot"></div></div>';
+    '<div class="clock-line"></div>' +
+    '<div class="clock-segment expired" style="left:0%;width:' + pExp + '%"></div>' +
+    '<div class="clock-segment runway" style="left:' + pExp + '%;width:' + (pNow-pExp) + '%"></div>' +
+    '<div class="clock-tick t-incident" style="left:0%;transform:translateX(-50%)"><div class="dot"></div></div>' +
+    '<div class="clock-tick t-expired" style="left:' + pExp + '%;transform:translateX(-50%)"><div class="dot"></div></div>' +
+    '<div class="clock-tick t-now" style="left:' + pNow + '%;transform:translateX(-50%)"><div class="stem" style="height:' + Math.max(0,stemHeight).toFixed(1) + 'px"></div><div class="dot"></div></div>' +
+    '<div class="clock-tick t-ultimate" style="left:100%;transform:translateX(-50%)"><div class="dot"></div></div>';
 
   const labels = document.getElementById('clockLabels');
   const tight = pExp < 18;
   if (tight) {
     labels.innerHTML =
-      '<div class="tape-label left exp"><div class="when">Aug 2023 to Aug 2025</div><div class="what">Incident to Basic expired</div></div>' +
-      '<div class="tape-label right"><div class="when">Aug 2038</div><div class="what">Ultimate</div></div>';
+      '<div class="clock-label left exp"><div class="when">Aug 2023 to Aug 2025</div><div class="what">Incident to Basic expired</div></div>' +
+      '<div class="clock-label right"><div class="when">Aug 2038</div><div class="what">Ultimate</div></div>';
   } else {
     labels.innerHTML =
-      '<div class="tape-label left"><div class="when">Aug 2023</div><div class="what">Incident</div></div>' +
-      '<div class="tape-label exp" style="left:' + pExp + '%;transform:translateX(-50%)"><div class="when">Aug 2025</div><div class="what">Basic expired</div></div>' +
-      '<div class="tape-label right"><div class="when">Aug 2038</div><div class="what">Ultimate</div></div>';
+      '<div class="clock-label left"><div class="when">Aug 2023</div><div class="what">Incident</div></div>' +
+      '<div class="clock-label exp mid" style="left:' + pExp + '%;transform:translateX(-50%)"><div class="when">Aug 2025</div><div class="what">Basic expired</div></div>' +
+      '<div class="clock-label right"><div class="when">Aug 2038</div><div class="what">Ultimate</div></div>';
   }
 })();
 
 function renderGrounds(containerId, suffix) {
   const c = document.getElementById(containerId);
   while (c.firstChild) c.removeChild(c.firstChild);
-  const data = {rcmp: GROUNDS, family: FAMILY_GROUNDS, muni: MUNI_GROUNDS}[webActiveCase] || GROUNDS;
-  const maxHigh = {rcmp: 600, family: 200, muni: 8}[webActiveCase] || 600;
+  const data = webActiveCase === 'rcmp' ? GROUNDS : FAMILY_GROUNDS;
+  const maxHigh = webActiveCase === 'rcmp' ? 600 : 200;
   data.forEach(g => {
     const w = document.createElement('div');
     w.className = 'ground';
@@ -711,7 +613,7 @@ renderGrounds('grounds-money', '2');
 function renderScenarios() {
   const c = document.getElementById('scenarios');
   while (c.firstChild) c.removeChild(c.firstChild);
-  const data = {rcmp: SCENARIOS, family: FAMILY_SCENARIOS, muni: MUNI_SCENARIOS}[webActiveCase] || SCENARIOS;
+  const data = webActiveCase === 'rcmp' ? SCENARIOS : FAMILY_SCENARIOS;
   data.forEach((s,i) => {
     const d = document.createElement('div'); d.className = 'scen';
     const row = document.createElement('div'); row.className = 'scen-row';
@@ -738,13 +640,10 @@ let stackMode = 'strong';
 function renderStack() {
   const c = document.getElementById('stackRows');
   c.innerHTML = '';
-  const heads = {rcmp: STACK_HEADS, family: FAMILY_STACK_HEADS, muni: MUNI_STACK_HEADS}[webActiveCase] || STACK_HEADS;
+  const heads = webActiveCase === 'rcmp' ? STACK_HEADS : FAMILY_STACK_HEADS;
   const total = heads.reduce((s,h) => s + (stackMode==='strong'?h.high:h.low), 0);
   const max = Math.max(...heads.map(h => stackMode==='strong'?h.high:h.low));
-  const isMuni = webActiveCase === 'muni';
-  document.getElementById('stackTot').textContent = isMuni
-    ? '$' + total.toFixed(1) + 'k'
-    : '$' + (total/1000).toFixed(2) + 'M';
+  document.getElementById('stackTot').textContent = '$' + (total/1000).toFixed(2) + 'M';
   heads.forEach(h => {
     const v = stackMode==='strong' ? h.high : h.low;
     const pct = (v/max)*100;
@@ -815,9 +714,10 @@ document.querySelectorAll('.stack-toggle button').forEach(b => {
 function renderLawyers() {
   const c = document.getElementById('lawyers');
   while (c.firstChild) c.removeChild(c.firstChild);
-  const data = {rcmp: LAWYERS, family: FAMILY_LAWYERS, muni: MUNI_LAWYERS}[webActiveCase] || LAWYERS;
+  const data = webActiveCase === 'rcmp' ? LAWYERS : FAMILY_LAWYERS;
   data.forEach(L => {
-    const d = document.createElement('div'); d.className = 'lawyer'; d.dataset.lawyerId = L.id;
+    const isPriority = L.id === 'thomas-harding' || L.id === 'neil-chantler';
+    const d = document.createElement('div'); d.className = 'lawyer' + (isPriority ? ' priority' : ''); d.dataset.lawyerId = L.id;
 
     const av = document.createElement('div'); av.className = 'lawyer-av'; av.textContent = L.init;
     const body = document.createElement('div'); body.className = 'lawyer-body';
@@ -862,7 +762,7 @@ renderLawyers();
 function renderTimeline() {
   const c = document.getElementById('timeline');
   while (c.firstChild) c.removeChild(c.firstChild);
-  const data = {rcmp: TIMELINE, family: FAMILY_TIMELINE, muni: MUNI_TIMELINE}[webActiveCase] || TIMELINE;
+  const data = webActiveCase === 'rcmp' ? TIMELINE : FAMILY_TIMELINE;
   data.forEach((t,i) => {
     const d = document.createElement('div'); d.className = 'tl-item';
     const when = document.createElement('div'); when.className = 'tl-when'; when.textContent = t.when;
@@ -887,8 +787,9 @@ function renderChecklist() {
   const cl = getActiveChecklist();
   const store = getClStore();
   const saved = JSON.parse(localStorage.getItem(store) || '{}');
+  cl.forEach(it => { if (saved[it.i] !== undefined) it.done = saved[it.i]; });
+  cl.sort((a, b) => (a.done === b.done) ? b.lev - a.lev : a.done ? 1 : -1);
   cl.forEach(it => {
-    if (saved[it.i] !== undefined) it.done = saved[it.i];
     const d = document.createElement('div'); d.className = 'cl-item'; d.dataset.i = it.i;
     const box = document.createElement('div'); box.className = 'cl-box' + (it.done?' done':'');
     const lbl = document.createElement('div'); lbl.className = 'cl-label' + (it.done?' done':''); lbl.textContent = it.label;
@@ -970,13 +871,15 @@ const J_STORE = 'brief.v3.journal';
 function animateBars() {
   document.querySelectorAll('#scenarios .bar-fill').forEach(b => b.style.width = b.dataset.w + '%');
 }
-document.querySelectorAll('.rib').forEach((b,idx,all) => {
+document.querySelectorAll('.tab-btn').forEach((b,idx,all) => {
+  b.setAttribute('role','tab');
+  b.setAttribute('tabindex', b.classList.contains('active') ? '0' : '-1');
   b.addEventListener('click', () => {
     all.forEach(x => { x.classList.remove('active'); x.setAttribute('tabindex','-1'); });
     document.querySelectorAll('.tab-panel').forEach(x => x.classList.remove('active'));
     b.classList.add('active'); b.setAttribute('tabindex','0');
     document.getElementById('panel-' + b.dataset.tab).classList.add('active');
-    if (b.dataset.tab === 'money') { setTimeout(animateBars, 80); updateStackMeta(webActiveCase); }
+    if (b.dataset.tab === 'money') setTimeout(animateBars, 80);
   });
   b.addEventListener('keydown', e => {
     if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
@@ -986,18 +889,6 @@ document.querySelectorAll('.rib').forEach((b,idx,all) => {
     }
   });
 });
-
-// Notice days counter for CASE-0003
-(function(){
-  const el = document.getElementById('noticeDays');
-  if (!el) return;
-  const INCIDENT = new Date('2026-05-24'); // placeholder — update when date confirmed
-  const deadline = new Date(INCIDENT);
-  deadline.setMonth(deadline.getMonth() + 2);
-  const remaining = Math.max(0, Math.ceil((deadline - Date.now()) / 86400000));
-  el.textContent = remaining;
-  if (remaining < 14) el.style.color = 'var(--red)';
-})();
 
 document.querySelectorAll('.ground').forEach(g => {
   g.setAttribute('tabindex','0'); g.setAttribute('role','button');

@@ -1,7 +1,7 @@
 {
   "name": "Brief — Trommel v. AG Canada",
   "short_name": "Brief",
-  "start_url": "/brief/",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#100e0b",
   "theme_color": "#100e0b",
