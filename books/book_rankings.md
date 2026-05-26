@@ -14,7 +14,7 @@ Books are scored using a weighted algorithm:
 
 ## RANKED LIST
 
-### 1. [Zero to One](https://www.goodreads.com/book/show/18050143-zero-to-one) by Peter Thiel &amp; Blake Masters
+### 1. [Zero to One](https://www.goodreads.com/book/show/18050143-zero-to-one) by Peter Thiel & Blake Masters
 **Rating:** 4.17/5 | **Reviews:** 400k+ ratings (Most reviewed)
 **Notes:** Notes on startups and how to build the future. Silicon Valley essential.
 
@@ -35,7 +35,7 @@ Books are scored using a weighted algorithm:
 **Notes:** How to heal from distant, rejecting, or self-involved parents. The definitive book on the subject.
 
 ### 6. [The Hard Thing About Hard Things](https://www.goodreads.com/book/show/18176747-the-hard-thing-about-hard-things) by Ben Horowitz
-**Rating:** 4.2/5 | **Reviews:** 111k+ ratings (Very popular)
+**Rating:** 4.20/5 | **Reviews:** 111k+ ratings (Very popular)
 **Notes:** Building a business when there are no easy answers. The most honest startup book ever written.
 
 ### 7. [The Black Swan](https://www.goodreads.com/book/show/242472.The_Black_Swan) by Nassim Nicholas Taleb
@@ -43,7 +43,7 @@ Books are scored using a weighted algorithm:
 **Notes:** The impact of the highly improbable. Changed how people think about risk.
 
 ### 8. [The Big Short](https://www.goodreads.com/book/show/26889576-the-big-short) by Michael Lewis
-**Rating:** 4.3/5 | **Reviews:** 171k+ ratings
+**Rating:** 4.30/5 | **Reviews:** 171k+ ratings
 **Notes:** Inside the financial crisis. Lewis at his best.
 
 ### 9. [How to Change Your Mind](https://www.goodreads.com/book/show/36613747-how-to-change-your-mind) by Michael Pollan
@@ -58,8 +58,8 @@ Books are scored using a weighted algorithm:
 **Rating:** 4.25/5 | **Reviews:** 54,176 ratings
 **Notes:** Important historical work on Japanese atrocities.
 
-### 12. [The Myth of Normal](https://www.goodreads.com/book/show/58537332-the-myth-of-normal) by Gabor Maté &amp; Daniel Maté
-**Rating:** 4.3/5 | **Reviews:** 37,769 ratings
+### 12. [The Myth of Normal](https://www.goodreads.com/book/show/58537332-the-myth-of-normal) by Gabor Maté & Daniel Maté
+**Rating:** 4.30/5 | **Reviews:** 37,769 ratings
 **Notes:** Trauma, illness, and healing in a toxic culture. Maté's most comprehensive work.
 
 ### 13. [Leonardo da Vinci](https://www.goodreads.com/book/show/34684622-leonardo-da-vinci) by Walter Isaacson
@@ -70,7 +70,7 @@ Books are scored using a weighted algorithm:
 **Rating:** 4.38/5 | **Reviews:** 20,258 ratings
 **Notes:** Comprehensive, authoritative history. Pulitzer Prize winner.
 
-### 15. [Killing the Rising Sun](https://www.goodreads.com/book/show/29370481-killing-the-rising-sun) by Bill O'Reilly &amp; Martin Dugard
+### 15. [Killing the Rising Sun](https://www.goodreads.com/book/show/29370481-killing-the-rising-sun) by Bill O'Reilly & Martin Dugard
 **Rating:** 4.35/5 | **Reviews:** 20,658 ratings
 **Notes:** Popular history of America's victory over Japan in WWII.
 
@@ -91,11 +91,11 @@ Books are scored using a weighted algorithm:
 **Notes:** Kahneman and Tversky's partnership that changed how we think.
 
 ### 20. [The Third Reich at War](https://www.goodreads.com/book/show/3761596-the-third-reich-at-war) by Richard J. Evans
-**Rating:** 4.4/5 | **Reviews:** 6,420 ratings
+**Rating:** 4.40/5 | **Reviews:** 6,420 ratings
 **Notes:** The final volume of Evans's landmark trilogy. Hailed a masterpiece by the NYT.
 
 ### 21. [Dark Money](https://www.goodreads.com/book/show/25266049-dark-money) by Jane Mayer
-**Rating:** 4.2/5 | **Reviews:** 15,000 ratings
+**Rating:** 4.20/5 | **Reviews:** 15,000 ratings
 **Notes:** The hidden history of the billionaires behind the radical right.
 
 ### 22. [Basic Economics](https://www.goodreads.com/book/show/3023.Basic_Economics) by Thomas Sowell
@@ -134,7 +134,7 @@ Books are scored using a weighted algorithm:
 **Rating:** 3.93/5 | **Reviews:** 37,626 ratings
 **Notes:** Dense philosophy classic.
 
-### 31. [American Prometheus](https://www.goodreads.com/en/book/show/80571) by Kai Bird &amp; Martin Sherwin
+### 31. [American Prometheus](https://www.goodreads.com/en/book/show/80571) by Kai Bird & Martin Sherwin
 **Rating:** 4.32/5 | **Reviews:** 4,856 ratings
 **Notes:** Oppenheimer biography. Pulitzer Prize winner.
 
@@ -143,7 +143,7 @@ Books are scored using a weighted algorithm:
 **Notes:** Dreams and nightmares inside Sam Altman's OpenAI. NYT Bestseller.
 
 ### 33. [Leviathan](https://www.goodreads.com/book/show/91953.Leviathan) by Thomas Hobbes
-**Rating:** 3.7/5 | **Reviews:** 53,226 ratings
+**Rating:** 3.70/5 | **Reviews:** 53,226 ratings
 **Notes:** Political philosophy classic (1651).
 
 ### 34. [The Thinking Machine](https://www.goodreads.com/en/book/show/211399783-the-thinking-machine) by Stephen Witt
@@ -171,7 +171,7 @@ Books are scored using a weighted algorithm:
 **Notes:** Strategic thinking guide.
 
 ### 40. [The Making of a Manager](https://www.goodreads.com/book/show/38821039-the-making-of-a-manager) by Julie Zhuo
-**Rating:** 4.1/5 | **Reviews:** 20,000 ratings
+**Rating:** 4.10/5 | **Reviews:** 20,000 ratings
 **Notes:** What to do when everyone looks to you. Practical management guide.
 
 ### 41. [The Infinity Machine](https://www.goodreads.com/en/book/show/241434373-the-infinity-machine) by Sebastian Mallaby
@@ -183,14 +183,14 @@ Books are scored using a weighted algorithm:
 **Notes:** Unconscious mind science.
 
 ### 43. [Hidden Potential](https://www.goodreads.com/book/show/171321843-hidden-potential) by Adam Grant
-**Rating:** 3.9/5 | **Reviews:** 30,000 ratings
+**Rating:** 3.90/5 | **Reviews:** 30,000 ratings
 **Notes:** The science of achieving greater things.
 
 ### 44. [This Is Your Mind on Plants](https://www.goodreads.com/book/show/56015498-this-is-your-mind-on-plants) by Michael Pollan
 **Rating:** 3.87/5 | **Reviews:** 34,090 ratings
 **Notes:** Opium, caffeine, mescaline — our relationship with psychoactive plants.
 
-### 45. [Stop Walking on Eggshells](https://www.goodreads.com/book/show/188013.Stop_Walking_on_Eggshells) by Paul T. Mason &amp; Randi Kreger
+### 45. [Stop Walking on Eggshells](https://www.goodreads.com/book/show/188013.Stop_Walking_on_Eggshells) by Paul T. Mason & Randi Kreger
 **Rating:** 4.02/5 | **Reviews:** 13,383 ratings
 **Notes:** Taking your life back when someone you care about has borderline personality disorder.
 
@@ -206,7 +206,7 @@ Books are scored using a weighted algorithm:
 **Rating:** 4.12/5 | **Reviews:** 5,684 ratings
 **Notes:** The surprisingly simple way to launch a 7-figure business in 48 hours.
 
-### 49. [The Holy Grail of Investing](https://www.goodreads.com/book/show/195847748-the-holy-grail-of-investing) by Tony Robbins &amp; Christopher Zook
+### 49. [The Holy Grail of Investing](https://www.goodreads.com/book/show/195847748-the-holy-grail-of-investing) by Tony Robbins & Christopher Zook
 **Rating:** 4.14/5 | **Reviews:** 5,000 ratings
 **Notes:** The world's greatest investors reveal their ultimate strategies.
 
@@ -215,7 +215,7 @@ Books are scored using a weighted algorithm:
 **Notes:** Technology futures.
 
 ### 51. [Steve Jobs in Exile](https://www.goodreads.com/book/show/240381395-steve-jobs-in-exile) by Geoffrey Cain
-**Rating:** 4.1/5 | **Reviews:** 300 ratings (New release)
+**Rating:** 4.10/5 | **Reviews:** 300 ratings (New release)
 **Notes:** The untold story of NeXT and the remaking of an American visionary.
 
 ### 52. [More Everything Forever](https://www.goodreads.com/book/show/215894092-more-everything-forever) by Adam Becker
@@ -230,7 +230,7 @@ Books are scored using a weighted algorithm:
 **Rating:** 4.05/5 | **Reviews:** 4,000 ratings
 **Notes:** Template for understanding debt cycles. Dalio's most rigorous work.
 
-### 55. [AI 2041](https://www.goodreads.com/book/show/56377201-ai-2041) by Kai-Fu Lee &amp; Chen Qiufan
+### 55. [AI 2041](https://www.goodreads.com/book/show/56377201-ai-2041) by Kai-Fu Lee & Chen Qiufan
 **Rating:** 3.82/5 | **Reviews:** 5,808 ratings
 **Notes:** Ten visions for our future. Fiction-nonfiction hybrid on how AI will reshape the world.
 
@@ -271,18 +271,18 @@ Books are scored using a weighted algorithm:
 **Notes:** Behind the brick empire. Family drama and business reinvention.
 
 ### 65. [Bonfire of the Murdochs](https://www.goodreads.com/book/show/241779820-bonfire-of-the-murdochs) by Gabriel Sherman
-**Rating:** 3.8/5 | **Reviews:** 200 ratings (Limited sample)
+**Rating:** 3.80/5 | **Reviews:** 200 ratings (Limited sample)
 **Notes:** How the epic fight to control the last great media dynasty broke a family and the world.
 
 ### 66. [Emotional](https://www.goodreads.com/book/show/58154664-emotional) by Leonard Mlodinow
-**Rating:** 3.8/5 | **Reviews:** 1,340 ratings
+**Rating:** 3.80/5 | **Reviews:** 1,340 ratings
 **Notes:** Neuroscience of emotions.
 
 ### 67. [Sneaker Wars](https://www.goodreads.com/book/show/1617037.Sneaker_Wars) by Barbara Smit
 **Rating:** 3.86/5 | **Reviews:** 836 ratings
 **Notes:** Adidas vs Puma family feud.
 
-### 68. [The Law of Attraction](https://www.goodreads.com/book/show/343614.The_Law_of_Attraction) by Esther &amp; Jerry Hicks
+### 68. [The Law of Attraction](https://www.goodreads.com/book/show/343614.The_Law_of_Attraction) by Esther & Jerry Hicks
 **Rating:** 4.13/5 | **Reviews:** 175 ratings (Limited sample)
 **Notes:** Foundational LOA text.
 
