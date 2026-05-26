@@ -38,6 +38,10 @@ Static litigation planning tool — 3 cases. No build step.
 
 **v5.1.0** — shipped 2026-05-26. Bumped assets to `?v=8`, sw.js to `brief-v5-1`.
 
+## PDF Export
+
+Run `/brief-pdf` (Claude skill) or `~/.local/bin/brief-pdf` directly. Outputs `~/Downloads/brief-YYYYMMDD.pdf` combining both cases. Uses Chrome headless + `@media print` (auth bypass built in) + pdfunite. Case switching via `?case=rcmp|family` URL param in `script.js`.
+
 ## Deployment
 
 Push to main. GitHub Pages serves at `heyitsmejosh.com/brief`. Cache bust by bumping `?v=N` on `<link>` and `<script>` tags in `index.html`, and bumping `CACHE` in `sw.js`.

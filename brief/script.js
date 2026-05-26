@@ -229,6 +229,8 @@ const CALL_SCRIPT = '30-SECOND COLD CALL — use verbatim:\n"Hi, my name is Josh
 // ===== CASE-0002: Trommel v. Trommel =====
 
 let webActiveCase = 'rcmp';
+const _ep = new URLSearchParams(location.search).get('case');
+if (_ep === 'family' || _ep === 'muni') webActiveCase = _ep;
 
 const FAMILY_GROUNDS = [
   { id:'likeness', n:'01', title:'Appropriation of Personality', sec:'BC Privacy Act s.3', val:'$75–200k', high:200, grade:'A',
