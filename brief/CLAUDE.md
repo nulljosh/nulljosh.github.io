@@ -11,23 +11,32 @@ Static litigation planning tool — 3 cases. No build step.
 - CASE-0002: Trommel v. Trommel (family — appropriation of personality, IIMS)
 - CASE-0003: Baitz v. City of Surrey (municipal slip-and-fall, s.285 notice)
 
-**Lawyer status (as of 2026-05-22):**
+**Lawyer status (as of 2026-05-26):**
 - Paul Kent-Snowsell (KSW) — DECLINED May 18: "Not taking new cases." Referred Thomas Harding & Neil Chantler.
 - DLA Law / Ingrid Eiermann — DECLINED May 15: "Not able to assist with your matter."
-- Thomas Harding — not yet contacted (PK referral — did Degen case $317k)
-- Neil Chantler — not yet contacted (PK referral)
-- Cameron Ward (cward@cameronward.com) — DECLINED May 23: "I am no longer practising law."
-- Arvay Finlay (arvayfinlay.ca) — email sent 2026-05-16, response unclear (may have declined)
-- Klein Lawyers (callkleinlawyers.com) — email sent 2026-05-16, awaiting
-- CBA BC (info@cbabc.org) — email sent 2026-05-16, awaiting
+- Cameron Ward — DECLINED May 23: "I am no longer practising law." (retired)
+- Arvay Finlay — DECLINED (confirmed via notes)
+- Paul B. North-Brownell — DECLINED (contradictory response)
+- Thomas Harding — NOT YET CONTACTED (PK referral, Degen $317k) — TOP PRIORITY
+- Neil Chantler — NOT YET CONTACTED (PK referral) — TOP PRIORITY
+- Klein Lawyers (callkleinlawyers.com) — emailed, awaiting
+- CBA BC (info@cbabc.org) — emailed, awaiting
 - McQuarrie Hunter LLP (604-581-7001) — voicemail left
 - Sean Hern Law Corp (604-684-9151) — not yet contacted
-- BCCLA referral line (604-687-2919) — not yet contacted
+- BCCLA referral line (604-687-2919) — contacted, referred but dismissed
+- Gust Harris Law Corporation — not yet contacted
+- Al-Qurashi Hunter LP (604-387-5957) — not yet contacted
 - Aitken Robertson — phone out of order
+
+## New case facts (added 2026-05-26)
+
+- **Officer name**: Cst. Darcy G. Ng (Langley Brookswood) — confirmed from notes. Second officer name still pending ATIP.
+- **RCMP complaint file**: 2023-XCAP
+- **PTSD therapy start**: August 2, 2025 (formal discoverability anchor for s.18 incapacity)
 
 ## Current version
 
-**v5.0.0** — shipped 2026-05-24. Bumped assets to `?v=8`, sw.js to `brief-v5-1`.
+**v5.1.0** — shipped 2026-05-26. Bumped assets to `?v=8`, sw.js to `brief-v5-1`.
 
 ## Deployment
 

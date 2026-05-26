@@ -142,10 +142,10 @@ const LAWYERS = [
     tags:[{t:'Civil rights',c:'good'},{t:'PK referral',c:'urgent'},{t:'PRIORITY',c:'urgent'}], status:'none', fit:4,
     contacts:[{label:'604-424-8454',href:'tel:6044248454',kind:'tel',primary:true},{label:'neilchantler@chantlerlaw.ca',href:'mailto:neilchantler@chantlerlaw.ca',kind:'email'},{label:'chantlerlaw.ca',href:'https://chantlerlaw.ca',kind:'web'}] },
   { id:'paul-kent',        init:'PK', name:'Paul G. Kent-Snowsell', sub:'Kane Shannon & Weiler - Surrey BC - Of Counsel',
-    tags:[{t:'33 yrs trial',c:'good'},{t:'Sued RCMP',c:'good'}], status:'voicemail', fit:4,
+    tags:[{t:'33 yrs trial',c:'good'},{t:'Sued RCMP',c:'good'},{t:'Declined May 18',c:'fail'},{t:'Referred TH + NC',c:'good'}], status:'declined', fit:4,
     contacts:[{label:'604-591-7321',href:'tel:6045917321',kind:'tel',primary:true},{label:'pgkent@kswlawyers.ca',href:'mailto:pgkent@kswlawyers.ca',kind:'email'}] },
-  { id:'cameron-ward',     init:'CW', name:'Cameron Ward', sub:'Cameron Ward & Co - Gastown, Vancouver BC - 40+ yrs',
-    tags:[{t:'Ward v. Vancouver SCC',c:'good'},{t:'Charter & police',c:'good'}], status:'emailed', fit:5,
+  { id:'cameron-ward',     init:'CW', name:'Cameron Ward', sub:'Cameron Ward & Co - Gastown, Vancouver BC - retired',
+    tags:[{t:'Ward v. Vancouver SCC',c:'good'},{t:'Charter & police',c:'good'},{t:'Declined May 23',c:'fail'}], status:'declined', fit:5,
     contacts:[{label:'604-688-6881',href:'tel:6046886881',kind:'tel',primary:true},{label:'cward@cameronward.com',href:'mailto:cward@cameronward.com',kind:'email'},{label:'cameronward.com',href:'https://cameronward.com',kind:'web'}] },
   { id:'arvay-finlay',     init:'AF', name:'Arvay Finlay LLP', sub:'Vancouver BC',
     tags:[{t:'Fairy Creek RCMP class',c:'good'},{t:'Charter ss.2/7/8/9',c:'good'},{t:'Declined May 25',c:'fail'}], status:'declined', fit:4,
@@ -154,10 +154,10 @@ const LAWYERS = [
     tags:[{t:'RCMP class actions',c:'good'},{t:'Federal court',c:'good'},{t:'Contingency',c:'good'}], status:'emailed', fit:3,
     contacts:[{label:'604-874-7171',href:'tel:6048747171',kind:'tel',primary:true},{label:'callkleinlawyers.com',href:'https://callkleinlawyers.com',kind:'web'}] },
   { id:'dla-law',          init:'DL', name:'DLA Law', sub:'Dosanjh Ladner Arora - Vancouver BC',
-    tags:[{t:'Police misconduct',c:'good'},{t:'Wrongful arrest',c:'good'}], status:'emailed', fit:3,
+    tags:[{t:'Police misconduct',c:'good'},{t:'Wrongful arrest',c:'good'},{t:'Declined May 15',c:'fail'}], status:'declined', fit:3,
     contacts:[{label:'604-327-6381',href:'tel:6043276381',kind:'tel'},{label:'Ingrid@dlalaw.ca',href:'mailto:Ingrid@dlalaw.ca',kind:'email'}] },
-  { id:'bccla',            init:'BC', name:'BCCLA Referral Line', sub:'BC Civil Liberties Association',
-    tags:[{t:'Free referrals',c:'good'},{t:'Civil rights',c:'good'}], status:'none', fit:2,
+  { id:'bccla',            init:'BC', name:'BCCLA Referral Line', sub:'BC Civil Liberties Association — contacted, referred but dismissed',
+    tags:[{t:'Free referrals',c:'good'},{t:'Civil rights',c:'good'},{t:'Contacted',c:'warn'}], status:'callback', fit:2,
     contacts:[{label:'604-687-2919',href:'tel:6046872919',kind:'tel'},{label:'bccla.org',href:'https://bccla.org',kind:'web'}] },
   { id:'mcquarrie-hunter', init:'MH', name:'McQuarrie Hunter LLP', sub:'Surrey BC',
     tags:[{t:'BC Limitation Act',c:'good'},{t:'Discoverability / s.18',c:'good'}], status:'voicemail', fit:3,
@@ -168,10 +168,19 @@ const LAWYERS = [
   { id:'cba-bc',           init:'CB', name:'Canadian Bar Association BC', sub:'Lawyer Referral Service',
     tags:[{t:'Free referrals',c:'good'},{t:'No answer',c:'warn'}], status:'emailed', fit:1,
     contacts:[{label:'604-687-3221',href:'tel:6046873221',kind:'tel'},{label:'info@cbabc.org',href:'mailto:info@cbabc.org',kind:'email'}] },
+  { id:'paul-north-brownell', init:'PN', name:'Paul B. North-Brownell', sub:'Vancouver BC',
+    tags:[{t:'Contacted',c:'warn'},{t:'Contradictory — declined',c:'fail'}], status:'declined', fit:2,
+    contacts:[] },
+  { id:'gust-harris',     init:'GH', name:'Gust Harris Law Corporation', sub:'Vancouver BC',
+    tags:[{t:'Civil litigation',c:'good'}], status:'none', fit:3,
+    contacts:[] },
+  { id:'al-qurashi-hunter', init:'AQ', name:'Al-Qurashi Hunter LP', sub:'Vancouver BC',
+    tags:[{t:'Civil tort',c:'good'}], status:'none', fit:2,
+    contacts:[{label:'604-387-5957',href:'tel:6043875957',kind:'tel',primary:true}] },
 ];
 
 const TIMELINE = [
-  { when:'Now',          state:'now',  title:'Call Harding & Chantler',  desc:'Thomas Harding 604-635-1330 (Degen $317k, PK referral) + Neil Chantler 604-424-8454. Ward/DLA/Arvay all declined. Klein + BCCLA still open.' },
+  { when:'Now',          state:'now',  title:'Call Harding & Chantler',  desc:'Thomas Harding 604-635-1330 (Degen $317k, PK referral) + Neil Chantler 604-424-8454. Ward retired, Kent/DLA/Arvay/North-Brownell all declined. Klein + Gust Harris + Al-Qurashi open.' },
   { when:'Month 1-2',    state:'',     title:'Evidence build',           desc:'Police report, ATIP, E-Comm FOI, hospital ROI, BWC, OPCC to CRCC complaint, PTSD diagnosis letter.' },
   { when:'Month 2-4',    state:'warn', title:'Claim filed',              desc:'Basic limit expired Aug 2025. If discoverability holds, file immediately - every day increases risk.' },
   { when:'Month 6-18',   state:'',     title:'Discovery & negotiation',  desc:'Evidence exchanged. Settlement talks begin. Federal AG typically prefers quiet settlement.' },
@@ -181,9 +190,9 @@ const TIMELINE = [
 
 const CHECKLIST = [
   { i:'0',  label:'Call Paul Kent-Snowsell - book appointment',                pri:'now',  done:true,  lev:20 },
-  { i:'1',  label:'PTSD assessment started (therapy) - get Dx letter',         pri:'now',  done:true,  lev:80 },
+  { i:'1',  label:'PTSD assessment started — therapy from Aug 2, 2025. Get formal Dx + causation letter', pri:'now', done:true, lev:80 },
   { i:'2',  label:'Body cam footage requested from RCMP',                       pri:'now',  done:false, lev:120 },
-  { i:'3',  label:'Police report - both Daryls full names',                     pri:'now',  done:false, lev:45 },
+  { i:'3',  label:'Police report — confirm Cst. Darcy G. Ng + second officer full name via ATIP', pri:'now', done:false, lev:45 },
   { i:'4',  label:'Surrey Memorial Hospital records — obtained',                pri:'now',  done:true,  lev:30 },
   { i:'4b', label:'Langley Memorial Hospital records (Aug 1-2, 2023 hold)',    pri:'now',  done:false, lev:55 },
   { i:'5',  label:'Pain journal - daily entries',                               pri:'now',  done:false, lev:30 },
@@ -203,16 +212,19 @@ const CHECKLIST = [
   { i:'19', label:'BCEIIB — paramedic records (Aug 1, 2023 transport)',        pri:'now',  done:false, lev:50 },
   { i:'20', label:'Pharmacy — Adderall records (pre-2023)',                    pri:'soon', done:false, lev:35 },
   { i:'21', label:'GP records pre-2023 — proves zero income since 2021 (s.18 incapacity)', pri:'soon', done:false, lev:45 },
+  { i:'22', label:'RCMP complaint file reference 2023-XCAP — request file copy for record', pri:'now',  done:false, lev:30 },
+  { i:'23', label:'BCEIIB/EHS paramedic run report Aug 1-2, 2023 — transport record + observations', pri:'now', done:false, lev:50 },
 ];
 
 const JOURNAL_SEED = [
+  { date:'2026-05-26', text:'Integrated planning notes. Officer confirmed: Cst. Darcy G. Ng (Langley Brookswood). RCMP complaint file: 2023-XCAP. PTSD therapy documented from August 2, 2025. Lawyers: Paul Kent declined May 18 (referred Harding + Chantler), Cameron Ward declined May 23 (retired), DLA Law declined May 15, Paul North-Brownell declined, BCCLA contacted but dismissed. Added: Gust Harris Law Corp + Al-Qurashi Hunter LP for outreach.' },
   { date:'2026-05-25', text:'Surrey Memorial Hospital records obtained. Still waiting on Langley Memorial (Aug 1-2, 2023 admission). Ordered: BCEIIB paramedic records, pharmacy Adderall history, GP pre-2023 records for s.18 incapacity argument.' },
   { date:'2026-05-23', text:'Mom texted Friday: she is actively gathering supporting evidence — getting letters from past counselors and having the family doctor correct his notes on what support I needed. She also flagged getting the hospital records. This is notable given her role in CASE-0002.' },
   { date:'2026-05-11', text:'May 11, 2026 — pinned as formal discovery date for s.8(1)(d) discoverability argument.' },
-  { date:'2026-04-22', text:'Therapy started May 2026. PTSD causation letter pending.' },
+  { date:'2026-04-22', text:'Therapy started August 2, 2025. PTSD causation letter pending — formal discoverability anchor.' },
 ];
 
-const CALL_SCRIPT = '30-SECOND COLD CALL — use verbatim:\n"Hi, my name is Josh Trommel. I have a Charter damages claim against the Attorney General of Canada — warrantless RCMP entry during a wellness call in Langley, August 2023, forced hospitalisation, forced antipsychotic medication, documented PTSD. I\'m looking to retain counsel. The basic two-year limit has passed but I have strong discoverability and incapacity arguments. I\'d like to book a consultation."\n\n---\n\nFULL CONSULTATION PREP:\n\nIntroduction: "My name is Joshua Trommel. I am following up on my email about a civil claim arising from a warrantless RCMP wellness-call entry in August 2023."\n\nKey facts (30 seconds):\n- Date: August 1, 2023, approx 11:00 AM, Langley BC (Brookswood detachment)\n- No underlying crime. Father present. I was sitting at kitchen table.\n- RCMP entered without warrant, restrained me within 30 seconds (prone, knee on back).\n- Transported to hospital, overnight hold, forced antipsychotic injection.\n- No s.10(b) caution at any point. File: 2023-25586.\n\nCharter grounds: ss. 7, 8, 9, 10(b), 12 + battery + false imprisonment.\n\nLimitation: Basic 2-year expired Aug 2025. Survived on discoverability (s.8(1)(d)) and PTSD incapacity (s.18). Discovery date: May 11, 2026.\n\nDefendant: Attorney General of Canada (RCMP is federal).\n\nDamages ask: $800k-1.2M settlement; $2-3M trial ceiling.\n\nQuestions for counsel:\n1. Do you take civil rights / Charter police misconduct cases?\n2. Retainer structure - flat or contingency?\n3. Have you acted against the AG / RCMP specifically?\n4. Are you press-capable if the AG stonewalls?\n5. When can we meet in person?';
+const CALL_SCRIPT = '30-SECOND COLD CALL — use verbatim:\n"Hi, my name is Josh Trommel. I have a Charter damages claim against the Attorney General of Canada — warrantless RCMP entry during a wellness call in Langley, August 2023, forced hospitalisation, forced antipsychotic medication, documented PTSD. I\'m looking to retain counsel. The basic two-year limit has passed but I have strong discoverability and incapacity arguments. I\'d like to book a consultation."\n\n---\n\nFULL CONSULTATION PREP:\n\nIntroduction: "My name is Joshua Trommel. I am following up on my email about a civil claim arising from a warrantless RCMP wellness-call entry in August 2023."\n\nKey facts (30 seconds):\n- Date: August 1, 2023, approx 11:00 AM, Langley BC (Brookswood detachment)\n- No underlying crime. Father present. I was sitting at kitchen table.\n- RCMP entered without warrant, restrained me within 30 seconds (prone, knee on back).\n- Transported to hospital, overnight hold, forced antipsychotic injection.\n- No s.10(b) caution at any point. File: 2023-25586.\n\nCharter grounds: ss. 7, 8, 9, 10(b), 12 + battery + false imprisonment.\n\nLimitation: Basic 2-year expired Aug 2025. Survived on discoverability (s.8(1)(d)) and PTSD incapacity (s.18). Discovery date: May 11, 2026.\n\nDefendant: Attorney General of Canada (RCMP is federal).\n\nDamages ask: $800k-1.2M settlement; $2-3M trial ceiling.\n\nDeclined: Paul Kent (May 18, referred TH + NC), Cameron Ward (May 23, retired), DLA Law (May 15), Arvay Finlay, Paul North-Brownell.\n\nQuestions for counsel:\n1. Do you take civil rights / Charter police misconduct cases?\n2. Retainer structure - flat or contingency?\n3. Have you acted against the AG / RCMP specifically?\n4. Are you press-capable if the AG stonewalls?\n5. When can we meet in person?';
 
 // ===== CASE-0002: Trommel v. Trommel =====
 
