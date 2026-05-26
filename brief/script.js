@@ -13,6 +13,7 @@ _sb.auth.onAuthStateChange((_ev, session) => {
 });
 const _pin = new URLSearchParams(location.search).get('pin');
 if (_pin === '7743') loadAndShow();
+if (new URLSearchParams(location.search).get('slim') === '1') document.body.classList.add('slim');
 
 function loadAndShow() {
   const overlay = document.getElementById('authOverlay');
@@ -327,8 +328,8 @@ function setActiveCase(id) {
   document.body.dataset.activecase = id;
   document.querySelectorAll('.cs-btn').forEach(b => b.classList.toggle('active', b.dataset.case === id));
   const f = document.getElementById('stripFile');
-  if (f) f.textContent = id === 'rcmp' ? 'CASE-0001' : 'CASE-0002';
-  document.title = id === 'rcmp' ? 'Brief — Trommel v. AG Canada' : 'Brief — Trommel v. Trommel';
+  if (f) f.textContent = id === 'rcmp' ? 'CASE-0001' : id === 'family' ? 'CASE-0002' : 'CASE-0003';
+  document.title = id === 'rcmp' ? 'Brief — Trommel v. AG Canada' : id === 'family' ? 'Brief — Trommel v. Trommel' : 'Brief — Baitz v. City of Surrey';
   renderGrounds('grounds-case', '');
   renderGrounds('grounds-money', '2');
   renderScenarios();
@@ -339,7 +340,7 @@ function setActiveCase(id) {
   renderTimeline();
   if (id === 'rcmp') renderLeverage();
   const scriptEl = document.getElementById('scriptText');
-  if (scriptEl) scriptEl.textContent = id === 'rcmp' ? CALL_SCRIPT : FAMILY_CALL_SCRIPT;
+  if (scriptEl) scriptEl.textContent = id === 'rcmp' ? CALL_SCRIPT : id === 'family' ? FAMILY_CALL_SCRIPT : MUNI_CALL_SCRIPT;
 }
 
 // ===== LEVERAGE =====
@@ -1010,4 +1011,16 @@ function initData() {
   loadLawyerStatusFromDB();
 }
 
+function renderMuniNotice() {
+  const incident = new Date('2026-05-24').getTime();
+  const deadline = new Date(incident + 61 * 86400000);
+  const now = Date.now();
+  const days = Math.max(0, Math.ceil((deadline - now) / 86400000));
+  const el = document.getElementById('muniDaysOut');
+  const dv = document.getElementById('muniDeadlineVal');
+  if (el) { el.textContent = days + 'd'; el.style.color = days < 14 ? 'var(--danger)' : days < 30 ? 'var(--warn)' : 'var(--ink)'; }
+  if (dv) dv.textContent = deadline.toLocaleDateString('en-CA', {month:'short', day:'numeric', year:'numeric'});
+}
+
 renderLeverage();
+renderMuniNotice();
