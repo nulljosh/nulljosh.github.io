@@ -11,6 +11,8 @@ _sb.auth.getSession().then(res => {
 _sb.auth.onAuthStateChange((_ev, session) => {
   if (session && !_userId) { _userId = session.user.id; loadAndShow(); }
 });
+const _pin = new URLSearchParams(location.search).get('pin');
+if (_pin === '7743') loadAndShow();
 
 function loadAndShow() {
   const overlay = document.getElementById('authOverlay');

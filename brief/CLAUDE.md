@@ -36,7 +36,11 @@ Static litigation planning tool — 3 cases. No build step.
 
 ## Current version
 
-**v5.1.0** — shipped 2026-05-26. Bumped assets to `?v=8`, sw.js to `brief-v5-1`.
+**v5.2.0** — shipped 2026-05-26. Assets `?v=12`, sw.js `brief-v7`. Added PIN bypass.
+
+## PIN Bypass
+
+`?pin=7743` in the URL skips the Supabase auth overlay. Identical to normal post-login flow (`loadAndShow()`). Bookmark URL for parents' iMac: `heyitsmejosh.com/brief/?pin=7743`
 
 ## PDF Export
 
