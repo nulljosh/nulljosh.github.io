@@ -184,7 +184,8 @@ const CHECKLIST = [
   { i:'1',  label:'PTSD assessment started (therapy) - get Dx letter',         pri:'now',  done:true,  lev:80 },
   { i:'2',  label:'Body cam footage requested from RCMP',                       pri:'now',  done:false, lev:120 },
   { i:'3',  label:'Police report - both Daryls full names',                     pri:'now',  done:false, lev:45 },
-  { i:'4',  label:'Hospital discharge records',                                 pri:'now',  done:false, lev:55 },
+  { i:'4',  label:'Surrey Memorial Hospital records — obtained',                pri:'now',  done:true,  lev:30 },
+  { i:'4b', label:'Langley Memorial Hospital records (Aug 1-2, 2023 hold)',    pri:'now',  done:false, lev:55 },
   { i:'5',  label:'Pain journal - daily entries',                               pri:'now',  done:false, lev:30 },
   { i:'6',  label:'Therapist letter confirming PTSD & causation',               pri:'now',  done:false, lev:100 },
   { i:'7',  label:'CRCC complaint filed (federal, not OPCC)',                   pri:'soon', done:false, lev:25 },
@@ -199,9 +200,14 @@ const CHECKLIST = [
   { i:'16', label:'Email outreach: Ward (declined), Arvay (declined May 25), Klein, BCCLA', pri:'now',  done:true, lev:30 },
   { i:'17', label:'Contact Thomas Harding - TLAG 604-635-1330 (Degen $317k, PK referral) - TOP PRIORITY', pri:'now', done:false, lev:150 },
   { i:'18', label:'Contact Neil Chantler - 604-424-8454 / neilchantler@chantlerlaw.ca (PK referral) - TOP PRIORITY', pri:'now', done:false, lev:140 },
+  { i:'19', label:'BCEIIB — paramedic records (Aug 1, 2023 transport)',        pri:'now',  done:false, lev:50 },
+  { i:'20', label:'Pharmacy — Adderall records (pre-2023)',                    pri:'soon', done:false, lev:35 },
+  { i:'21', label:'GP records pre-2023 — proves zero income since 2021 (s.18 incapacity)', pri:'soon', done:false, lev:45 },
 ];
 
 const JOURNAL_SEED = [
+  { date:'2026-05-25', text:'Surrey Memorial Hospital records obtained. Still waiting on Langley Memorial (Aug 1-2, 2023 admission). Ordered: BCEIIB paramedic records, pharmacy Adderall history, GP pre-2023 records for s.18 incapacity argument.' },
+  { date:'2026-05-23', text:'Mom texted Friday: she is actively gathering supporting evidence — getting letters from past counselors and having the family doctor correct his notes on what support I needed. She also flagged getting the hospital records. This is notable given her role in CASE-0002.' },
   { date:'2026-05-11', text:'May 11, 2026 — pinned as formal discovery date for s.8(1)(d) discoverability argument.' },
   { date:'2026-04-22', text:'Therapy started May 2026. PTSD causation letter pending.' },
 ];
