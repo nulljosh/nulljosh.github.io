@@ -30,7 +30,7 @@ Static litigation planning tool — 3 cases. No build step.
 
 ## New case facts (added 2026-05-26)
 
-- **Officer name**: Cst. Darcy G. Ng (Langley Brookswood) — confirmed from notes. Second officer name still pending ATIP.
+- **Officer names**: Unknown — ATIP pending.
 - **RCMP complaint file**: 2023-XCAP
 - **PTSD therapy start**: August 2, 2025 (formal discoverability anchor for s.18 incapacity)
 
