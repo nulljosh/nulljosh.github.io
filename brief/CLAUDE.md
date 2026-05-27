@@ -115,9 +115,23 @@ Apple Liquid Glass variant — dark/paper themes toggled via `body[data-theme="d
 Current anchors:
 - Canadian floor: Degen v. Min. Public Safety 2023 BCSC $317k (Surrey RCMP, PTSD)
 - Closest fact parallel: Wang v. AG Canada (BC RCMP, 2021) — RCMP settled (confidential)
-- Canadian ceiling: Henry v. BC 2016 BCSC $8.1M
+- Canadian living-victim ceiling: Ivan Henry 2016 BCSC $8M (wrongful conviction, 27yr — living plaintiff)
+- David Milgaard 1999 $10M (wrongful conviction, 22yr — highest Canadian award)
+- Steven Truscott 2008 $6.5M (wrongful conviction, living victim, Ontario)
+- Thomas Sophonow $2.6M (wrongful conviction, shorter imprisonment — lower bound for major Charter violation to living victim)
 - US wellness call parallel: Elijah McClain $15M USD (Aurora PD, 2023)
 - US ceiling: Randy Cox $45M USD (2023)
+
+## $4–5M argument basis (added 2026-05-26)
+
+The wrongful conviction cases establish that Canadian courts award $2.6M–$10M to living victims for serious Charter violations. The distinction is those cases involved 20–27 years of wrongful imprisonment. This case does not, but has:
+- 8 stacked Charter/tort breaches (vs. 2 in Degen)
+- Forced antipsychotic medication (s.12 cruel treatment — Fleming v. Ontario 2019 ONCA establishes this as an extreme violation)
+- Solitary confinement
+- No underlying crime
+- Age 26 — 35+ affected working years (future capacity head alone exceeds Degen's entire award)
+
+Argument path to $4–5M: Forced medication + full stacking + punitive component for bad-faith state action. Hard to argue without trial — AG will settle to suppress precedent. Best realistic ceiling in settlement is $1.5–2.5M.
 
 ## Auth + sync
 
