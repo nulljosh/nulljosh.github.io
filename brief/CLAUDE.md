@@ -36,7 +36,7 @@ Static litigation planning tool — 3 cases. No build step.
 
 ## Current version
 
-**v5.2.0** — shipped 2026-05-26. Assets `?v=12`, sw.js `brief-v7`. Added PIN bypass.
+**v6.0.0** — shipped 2026-05-26. Assets `?v=13`, sw.js `brief-v8`. Clean single-case redesign from Claude Design handoff. No auth overlay, no multi-case switcher.
 
 ## PIN Bypass
 
