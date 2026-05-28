@@ -188,7 +188,7 @@ Books are scored using a weighted algorithm:
 
 ### 44. [This Is Your Mind on Plants](https://www.goodreads.com/book/show/56015498-this-is-your-mind-on-plants) by Michael Pollan
 **Rating:** 3.87/5 | **Reviews:** 34,090 ratings
-**Notes:** Opium, caffeine, mescaline — our relationship with psychoactive plants.
+**Notes:** Opium, caffeine, mescaline, our relationship with psychoactive plants.
 
 ### 45. [Stop Walking on Eggshells](https://www.goodreads.com/book/show/188013.Stop_Walking_on_Eggshells) by Paul T. Mason & Randi Kreger
 **Rating:** 4.02/5 | **Reviews:** 13,383 ratings
@@ -316,7 +316,7 @@ Books are scored using a weighted algorithm:
 
 ### 76. [Hubris Maximus](https://www.goodreads.com/book/show/216041530-hubris-maximus) by Faiz Siddiqui
 **Rating:** 3.62/5 | **Reviews:** 374 ratings
-**Notes:** Elon Musk's quest for power — from Tesla to Twitter to government.
+**Notes:** Elon Musk's quest for power, from Tesla to Twitter to government.
 
 ### 77. [Every Screen on the Planet](https://www.goodreads.com/book/show/218892633-every-screen-on-the-planet) by Emily Baker-White
 **Rating:** 3.47/5 | **Reviews:** 129 ratings

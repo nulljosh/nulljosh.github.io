@@ -315,12 +315,12 @@ footer a:hover { opacity:0.5; }
           <a href="https://wiretext.heyitsmejosh.com" target="_blank" rel="noopener">Wiretext</a><span class="dot"></span>
           <div class="proj-tags"><span class="tag">Web</span><span class="tag">iOS</span><span class="tag">macOS</span></div>
         </div>
-        <span class="proj-desc">Unicode wireframe design tool. Draw interfaces with text characters — boxes, grids, connectors, annotations.</span>
+        <span class="proj-desc">Unicode wireframe design tool. Draw interfaces with text characters: boxes, grids, connectors, annotations.</span>
       </li>
       <li>
         <div class="proj-row">
           <a href="https://dose.heyitsmejosh.com" target="_blank" rel="noopener">Dose</a><span class="dot"></span>
-          <div class="proj-tags"><span class="tag">iOS</span></div>
+          <div class="proj-tags"><span class="tag">Web</span><span class="tag">iOS</span><span class="tag">macOS</span><span class="tag">watchOS</span></div>
         </div>
         <span class="proj-desc">Health tracker for supplements, medications, and biometrics. 200+ substances, daily check-ins, HealthKit sync.</span>
       </li>
@@ -341,21 +341,21 @@ footer a:hover { opacity:0.5; }
       <li>
         <div class="proj-row">
           <a href="https://grapher.heyitsmejosh.com" target="_blank" rel="noopener">Grapher</a><span class="dot"></span>
-          <div class="proj-tags"><span class="tag">Web</span></div>
+          <div class="proj-tags"><span class="tag">Web</span><span class="tag">iOS</span><span class="tag">macOS</span></div>
         </div>
         <span class="proj-desc">Desmos-style graphing calculator. Cartesian and polar plots, function analysis, real-time rendering.</span>
       </li>
       <li>
         <div class="proj-row">
           <a href="https://nyc.heyitsmejosh.com" target="_blank" rel="noopener">NYC</a><span class="dot"></span>
-          <div class="proj-tags"><span class="tag">Web</span></div>
+          <div class="proj-tags"><span class="tag">Web</span><span class="tag">iOS</span></div>
         </div>
-        <span class="proj-desc">Times Square city simulator. Build and balance a district — zoning, traffic, budget, population.</span>
+        <span class="proj-desc">Times Square city simulator. Build and balance a district: zoning, traffic, budget, population.</span>
       </li>
       <li>
         <div class="proj-row">
           <a href="https://tally.heyitsmejosh.com" target="_blank" rel="noopener">Tally</a><span class="dot"></span>
-          <div class="proj-tags"><span class="tag">Web</span></div>
+          <div class="proj-tags"><span class="tag">Web</span><span class="tag">iOS</span><span class="tag">macOS</span><span class="tag">watchOS</span></div>
         </div>
         <span class="proj-desc">BC benefits eligibility tracker. Checks MSP, income assistance, BCSC, and 20+ provincial programs.</span>
       </li>
@@ -365,18 +365,18 @@ footer a:hover { opacity:0.5; }
   <section class="fade-up">
     <span class="label">Currently</span>
     <ul class="items">
-      <li>Finishing Pre-Calc 12 — spring blended class, wrapping up mid-June</li>
-      <li>Accepted to <span style="white-space:nowrap"><a href="https://www.capilanou.ca/programs--courses/program-listing/paralegal-studies/" target="_blank" rel="noopener">Capilano University — Paralegal Studies</a>,</span> starting fall 2026</li>
+      <li>Finishing Pre-Calc 12 in a spring blended class, wrapping up mid-June</li>
+      <li>Accepted to <span style="white-space:nowrap"><a href="https://www.capilanou.ca/programs--courses/program-listing/paralegal-studies/" target="_blank" rel="noopener">Capilano University: Paralegal Studies</a>,</span> starting fall 2026</li>
     </ul>
   </section>
 
   <section class="fade-up">
     <span class="label">Background</span>
     <ul class="items wrap">
-      <li><strong>Paralegal Studies</strong>&nbsp;— <a href="https://www.capilanou.ca/programs--courses/program-listing/paralegal-studies/" target="_blank" rel="noopener">Capilano University</a>. Accepted, starting fall 2026.</li>
-      <li><strong>BSc Computer Science</strong>&nbsp;— <a href="https://www.uvic.ca/undergraduate/programs/undergraduate-programs/pages/computer-science.php" target="_blank" rel="noopener">University of Victoria</a>. Postponed indefinitely.</li>
-      <li><strong>Independent Engineering</strong>&nbsp;— Full-time self-directed software work since 2020. Everything in the projects section above.</li>
-      <li><strong>Apple Retail</strong>&nbsp;— <a href="https://macinhome.com" target="_blank" rel="noopener">Macinhome</a> and <a href="https://www.simply.ca/" target="_blank" rel="noopener">Simply Computing</a>, Vancouver area. 2017–2020.</li>
+      <li><strong>Paralegal Studies</strong>:&nbsp;<a href="https://www.capilanou.ca/programs--courses/program-listing/paralegal-studies/" target="_blank" rel="noopener">Capilano University</a>. Accepted, starting fall 2026.</li>
+      <li><strong>BSc Computer Science</strong>:&nbsp;<a href="https://www.uvic.ca/undergraduate/programs/undergraduate-programs/pages/computer-science.php" target="_blank" rel="noopener">University of Victoria</a>. Postponed indefinitely.</li>
+      <li><strong>Independent Engineering</strong>:&nbsp;Full-time self-directed software work since 2020. Everything in the projects section above.</li>
+      <li><strong>Apple Retail</strong>:&nbsp;<a href="https://macinhome.com" target="_blank" rel="noopener">Macinhome</a> and <a href="https://www.simply.ca/" target="_blank" rel="noopener">Simply Computing</a>, Vancouver area. 2017–2020.</li>
     </ul>
   </section>
 
@@ -511,7 +511,7 @@ async function loadFilms() {
       animateCount(el, n, ' on Letterboxd'); setCached('lb', txt); return;
     }
   } catch(e) {}
-  el.textContent = '— on Letterboxd';
+  el.textContent = 'on Letterboxd';
 }
 
 async function loadTV() {
@@ -526,7 +526,7 @@ async function loadTV() {
     var d = await r.json();
     var n = d.episodes?.watched ?? 0, txt = n.toLocaleString()+' episodes on Trakt';
     animateCount(el, n, ' episodes on Trakt'); setCached('trakt', txt);
-  } catch(e) { el.textContent = '— on Trakt'; }
+  } catch(e) { el.textContent = 'on Trakt'; }
 }
 
 async function loadCode() {
@@ -538,7 +538,7 @@ async function loadCode() {
     var d = await r.json();
     var txt = d.public_repos+' public repos';
     animateCount(el, d.public_repos, ' public repos'); setCached('gh_v1', txt);
-  } catch(e) { el.textContent = '— repos'; }
+  } catch(e) { el.textContent = 'repos'; }
 }
 
 async function loadBlog() {
@@ -557,7 +557,7 @@ async function loadBlog() {
     el.appendChild(a);
   }
   try { await tryFeed('https://journal.heyitsmejosh.com/feed.xml'); }
-  catch(e) { try { await tryFeed('https://api.allorigins.win/raw?url='+encodeURIComponent('https://journal.heyitsmejosh.com/feed.xml')); } catch(e2) { el.textContent='—'; } }
+  catch(e) { try { await tryFeed('https://api.allorigins.win/raw?url='+encodeURIComponent('https://journal.heyitsmejosh.com/feed.xml')); } catch(e2) { el.textContent='...'; } }
 }
 
 async function loadWeather() {
@@ -572,7 +572,7 @@ async function loadWeather() {
     function td(t){if(t<=-10)return'brutally cold';if(t<=0)return'below freezing';if(t<=5)return'pretty cold';if(t<=10)return'kinda cold';if(t<=15)return'kinda chilly';if(t<=18)return'mild';if(t<=22)return'nice out';if(t<=27)return'warm';if(t<=32)return'hot';return'scorching';}
     var txt = td(t)+' and '+(cond[d.current.weather_code]||'kinda mixed')+' in Langley';
     el.textContent = txt; setCached('wx', txt);
-  } catch(e) { el.textContent = '—'; }
+  } catch(e) { el.textContent = '...'; }
 }
 
 function loadCoffee() {
@@ -584,7 +584,7 @@ function loadCoffee() {
 
 loadCoffee();
 Promise.all([loadFilms(),loadTV(),loadCode(),loadBlog(),loadWeather()]);
-setTimeout(function(){ document.querySelectorAll('.skel').forEach(function(s){ s.parentElement.textContent='—'; }); }, 14000);
+setTimeout(function(){ document.querySelectorAll('.skel').forEach(function(s){ s.parentElement.textContent='...'; }); }, 14000);
 
 // ─── Heatmap ──────────────────────────────────────────────────────────────────
 var hmCells = [], hmLevels = [];

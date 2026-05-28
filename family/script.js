@@ -16,7 +16,7 @@ const LAWYER_LABELS   = {
 
 const $ = (sel, root) => (root || document).querySelector(sel);
 const $$ = (sel, root) => [...(root || document).querySelectorAll(sel)];
-const fmt = n => n > 0 ? '$' + (n >= 1e6 ? (n / 1e6).toFixed(2) + 'M' : Math.round(n / 1000) + 'k') : '—';
+const fmt = n => n > 0 ? '$' + (n >= 1e6 ? (n / 1e6).toFixed(2) + 'M' : Math.round(n / 1000) + 'k') : '$0';
 
 function el(tag, cls, text) {
   const e = document.createElement(tag);
@@ -25,7 +25,7 @@ function el(tag, cls, text) {
   return e;
 }
 
-// Auth — Supabase magic link (same as brief/)
+// Auth: Supabase magic link (same as brief/)
 const _sb = supabase.createClient(SB_URL, SB_KEY);
 let _userId = null;
 
