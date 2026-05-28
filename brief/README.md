@@ -13,16 +13,16 @@ Litigation planning tool for Trommel v. Attorney General of Canada. Charter viol
 - Evidence checklist with localStorage persistence
 - Limitation countdown (August 2026)
 - 4 lawyer contacts + call script
-- In-app pain journal — add entries without editing code
+- In-app pain journal, add entries without editing code
 - Dark / Paper theme with persistence
 - PDF export via print
-- PWA — installable from Safari, works offline
+- PWA, installable from Safari, works offline
 
 ## Stack
 
-- Vanilla HTML / CSS / JS — no framework, no build step
-- GitHub Pages — deploys on push to main
-- localStorage — checklist state, theme, journal entries
+- Vanilla HTML / CSS / JS, no framework, no build step
+- GitHub Pages, deploys on push to main
+- localStorage, checklist state, theme, journal entries
 
 ## Structure
 
@@ -30,25 +30,25 @@ Litigation planning tool for Trommel v. Attorney General of Canada. Charter viol
 index.html            Page shell + PWA meta
 style.css             Design tokens, layout, @media print
 script.js             Grounds data, journal, accordion, checklist, theme
-sw.js                 Service worker — cache-first, offline support
+sw.js                 Service worker, cache-first, offline support
 manifest.json         PWA manifest
 apple-touch-icon.png  iOS home screen icon (180×180)
 ```
 
 ## Roadmap
 
-### v3.0.0 — Multi-user / Open-Ended Case Tool
+### v3.0.0, Multi-user / Open-Ended Case Tool
 
 Make Brief a generic litigation planner, not hardcoded to one case.
 
 - **Auth**: Registration + login (email/password). Supabase Auth or similar.
-- **Per-user case storage**: Each account gets private case data — grounds, checklist, journal, lawyer contacts. Cases are private by default.
+- **Per-user case storage**: Each account gets private case data, grounds, checklist, journal, lawyer contacts. Cases are private by default.
 - **Profile page**: Manage account, view all cases, basic settings.
 - **Multi-case support**: Create/switch between multiple cases per user.
 - **Data migration**: Export current localStorage state to seed a new account's first case.
 - **Skills to build first**: `supabase-auth`, `case-crud` (create/read/update/delete cases), `user-profile`.
 
-This is a significant rearchitecture — localStorage becomes Supabase tables, all reads/writes go through the API. Plan for a weekend session with full token budget.
+This is a significant rearchitecture, localStorage becomes Supabase tables, all reads/writes go through the API. Plan for a weekend session with full token budget.
 
 ## License
 

@@ -4,39 +4,39 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What it is
 
-Static litigation planning tool — 3 cases. No build step.
+Static litigation planning tool, 3 cases. No build step.
 
 **Cases:**
 - CASE-0001: Trommel v. AG Canada (RCMP excessive force / Charter)
-- CASE-0002: Trommel v. Trommel (family — appropriation of personality, IIMS)
+- CASE-0002: Trommel v. Trommel (family, appropriation of personality, IIMS)
 - CASE-0003: Baitz v. City of Surrey (municipal slip-and-fall, s.285 notice)
 
 **Lawyer status (as of 2026-05-26):**
-- Paul Kent-Snowsell (KSW) — DECLINED May 18: "Not taking new cases." Referred Thomas Harding & Neil Chantler.
-- DLA Law / Ingrid Eiermann — DECLINED May 15: "Not able to assist with your matter."
-- Cameron Ward — DECLINED May 23: "I am no longer practising law." (retired)
-- Arvay Finlay — DECLINED (confirmed via notes)
-- Paul B. North-Brownell — DECLINED (contradictory response)
-- Thomas Harding — NOT YET CONTACTED (PK referral, Degen $317k) — TOP PRIORITY
-- Neil Chantler — NOT YET CONTACTED (PK referral) — TOP PRIORITY
-- Klein Lawyers (callkleinlawyers.com) — emailed, awaiting
-- CBA BC (info@cbabc.org) — emailed, awaiting
-- McQuarrie Hunter LLP (604-581-7001) — voicemail left
-- Sean Hern Law Corp (604-684-9151) — not yet contacted
-- BCCLA referral line (604-687-2919) — contacted, referred but dismissed
-- Gust Harris Law Corporation — not yet contacted
-- Al-Qurashi Hunter LP (604-387-5957) — not yet contacted
-- Aitken Robertson — phone out of order
+- Paul Kent-Snowsell (KSW), DECLINED May 18: "Not taking new cases." Referred Thomas Harding & Neil Chantler.
+- DLA Law / Ingrid Eiermann, DECLINED May 15: "Not able to assist with your matter."
+- Cameron Ward, DECLINED May 23: "I am no longer practising law." (retired)
+- Arvay Finlay, DECLINED (confirmed via notes)
+- Paul B. North-Brownell, DECLINED (contradictory response)
+- Thomas Harding, NOT YET CONTACTED (PK referral, Degen $317k), TOP PRIORITY
+- Neil Chantler, NOT YET CONTACTED (PK referral), TOP PRIORITY
+- Klein Lawyers (callkleinlawyers.com), emailed, awaiting
+- CBA BC (info@cbabc.org), emailed, awaiting
+- McQuarrie Hunter LLP (604-581-7001), voicemail left
+- Sean Hern Law Corp (604-684-9151), not yet contacted
+- BCCLA referral line (604-687-2919), contacted, referred but dismissed
+- Gust Harris Law Corporation, not yet contacted
+- Al-Qurashi Hunter LP (604-387-5957), not yet contacted
+- Aitken Robertson, phone out of order
 
 ## New case facts (added 2026-05-26)
 
-- **Officer names**: Unknown — ATIP pending.
+- **Officer names**: Unknown, ATIP pending.
 - **RCMP complaint file**: 2023-XCAP
 - **PTSD therapy start**: August 2, 2025 (formal discoverability anchor for s.18 incapacity)
 
 ## Current version
 
-**v6.0.0** — shipped 2026-05-26. Assets `?v=13`, sw.js `brief-v8`. Clean single-case redesign from Claude Design handoff. No auth overlay, no multi-case switcher.
+**v6.0.0**, shipped 2026-05-26. Assets `?v=13`, sw.js `brief-v8`. Clean single-case redesign from Claude Design handoff. No auth overlay, no multi-case switcher.
 
 ## PIN Bypass
 
@@ -50,7 +50,7 @@ Run `/brief-pdf` (Claude skill) or `~/.local/bin/brief-pdf` directly. Outputs `~
 
 Push to main. GitHub Pages serves at `heyitsmejosh.com/brief`. Cache bust by bumping `?v=N` on `<link>` and `<script>` tags in `index.html`, and bumping `CACHE` in `sw.js`.
 
-## CRITICAL — `<base>` tag
+## CRITICAL, `<base>` tag
 
 `index.html` MUST have `<base href="/brief/">` as the second tag in `<head>` (right after `<meta charset>`). Without it, accessing `heyitsmejosh.com/brief` (no trailing slash) causes all relative URLs to resolve to the wrong path.
 
@@ -62,7 +62,7 @@ Push to main. GitHub Pages serves at `heyitsmejosh.com/brief`. Cache bust by bum
 
 **Tab switching**: `.rib[data-tab]` buttons → `#panel-{tab}` panels. Money tab triggers `animateBars()` on switch.
 
-`renderGrounds(containerId, suffix)` called twice — Case tab (`grounds-case`, `''`) and Money tab (`grounds-money`, `'2'`). Suffix avoids `dataset.id` collisions.
+`renderGrounds(containerId, suffix)` called twice, Case tab (`grounds-case`, `''`) and Money tab (`grounds-money`, `'2'`). Suffix avoids `dataset.id` collisions.
 
 `renderJournal()` reads `localStorage.brief.journal`, merges with `JOURNAL_SEED`, sorts newest-first. Journal is RCMP case only.
 
@@ -91,10 +91,10 @@ All per-case data lives in `script.js` as `const` arrays:
 
 ## CASE-0003 specifics
 
-- **Incident date**: unknown (placeholder `2026-05-24` in notice countdown — update when confirmed)
+- **Incident date**: unknown (placeholder `2026-05-24` in notice countdown, update when confirmed)
 - **Location**: Main Street, Surrey BC
 - **Injury**: Bilateral knee lacerations ("road rash"), minor injury classification
-- **Key law**: BC Community Charter s.285 — 2-month written notice to municipality or claim barred
+- **Key law**: BC Community Charter s.285, 2-month written notice to municipality or claim barred
 - **Range**: $6k–$12k likely; floor $5.5k (minor injury cap) + medicals
 - **Grounds**: Occupiers Liability Act s.3 (grade A), Municipal Negligence / Marchi 2021 SCC (grade B), Notice requirement (prerequisite)
 - **Notice**: Send to Surrey City Clerk, 13450 104 Ave, Surrey BC V3T 1V8. Registered mail + email.
@@ -104,7 +104,7 @@ All per-case data lives in `script.js` as `const` arrays:
 
 v5: `.cls` fixed banner, `.filebar` sticky, `header.cover` with SVG stamp, `section.tape` (RCMP limitation clock), `section.belt` (value columns), `nav.ribs` (tabs), `.section-hd` with roman numeral labels.
 
-Apple Liquid Glass variant — dark/paper themes toggled via `body[data-theme="dark"|"paper"]`, persisted to `localStorage`. Fonts: Inter Tight only (Google Fonts CDN). Color tokens: `--danger`, `--warn`, `--accent`, `--green`, `--mid`, `--muted`, `--red`, `--red-soft`, `--red-line`.
+Apple Liquid Glass variant, dark/paper themes toggled via `body[data-theme="dark"|"paper"]`, persisted to `localStorage`. Fonts: Inter Tight only (Google Fonts CDN). Color tokens: `--danger`, `--warn`, `--accent`, `--green`, `--mid`, `--muted`, `--red`, `--red-soft`, `--red-line`.
 
 ## New case facts (added 2026-05-13)
 
@@ -114,11 +114,11 @@ Apple Liquid Glass variant — dark/paper themes toggled via `body[data-theme="d
 
 Current anchors:
 - Canadian floor: Degen v. Min. Public Safety 2023 BCSC $317k (Surrey RCMP, PTSD)
-- Closest fact parallel: Wang v. AG Canada (BC RCMP, 2021) — RCMP settled (confidential)
-- Canadian living-victim ceiling: Ivan Henry 2016 BCSC $8M (wrongful conviction, 27yr — living plaintiff)
-- David Milgaard 1999 $10M (wrongful conviction, 22yr — highest Canadian award)
+- Closest fact parallel: Wang v. AG Canada (BC RCMP, 2021), RCMP settled (confidential)
+- Canadian living-victim ceiling: Ivan Henry 2016 BCSC $8M (wrongful conviction, 27yr, living plaintiff)
+- David Milgaard 1999 $10M (wrongful conviction, 22yr, highest Canadian award)
 - Steven Truscott 2008 $6.5M (wrongful conviction, living victim, Ontario)
-- Thomas Sophonow $2.6M (wrongful conviction, shorter imprisonment — lower bound for major Charter violation to living victim)
+- Thomas Sophonow $2.6M (wrongful conviction, shorter imprisonment, lower bound for major Charter violation to living victim)
 - US wellness call parallel: Elijah McClain $15M USD (Aurora PD, 2023)
 - US ceiling: Randy Cox $45M USD (2023)
 
@@ -126,19 +126,19 @@ Current anchors:
 
 The wrongful conviction cases establish that Canadian courts award $2.6M–$10M to living victims for serious Charter violations. The distinction is those cases involved 20–27 years of wrongful imprisonment. This case does not, but has:
 - 8 stacked Charter/tort breaches (vs. 2 in Degen)
-- Forced antipsychotic medication (s.12 cruel treatment — Fleming v. Ontario 2019 ONCA establishes this as an extreme violation)
+- Forced antipsychotic medication (s.12 cruel treatment, Fleming v. Ontario 2019 ONCA establishes this as an extreme violation)
 - Solitary confinement
 - No underlying crime
-- Age 26 — 35+ affected working years (future capacity head alone exceeds Degen's entire award)
+- Age 26, 35+ affected working years (future capacity head alone exceeds Degen's entire award)
 
-Argument path to $4–5M: Forced medication + full stacking + punitive component for bad-faith state action. Hard to argue without trial — AG will settle to suppress precedent. Best realistic ceiling in settlement is $1.5–2.5M.
+Argument path to $4–5M: Forced medication + full stacking + punitive component for bad-faith state action. Hard to argue without trial, AG will settle to suppress precedent. Best realistic ceiling in settlement is $1.5–2.5M.
 
 ## Auth + sync
 
 Email + password auth. Auth gate: jatrommel@gmail.com only.
 
 - Supabase project: spark (`tjsxsqlxjmanwvmywwvw.supabase.co`)
-- Tables: `brief_journal`, `brief_checklist`, `brief_lawyer_status` — all RLS-protected
+- Tables: `brief_journal`, `brief_checklist`, `brief_lawyer_status`, all RLS-protected
 - Web: supabase-js CDN, two-step overlay
 
 ## Claude auto-scan (no-auth solution)
@@ -151,7 +151,7 @@ curl "https://tjsxsqlxjmanwvmywwvw.supabase.co/rest/v1/brief_checklist?select=*"
 
 ## Rules
 
-- No build system — no Vite, npm, bundlers
-- No `innerHTML` — use DOM methods (`createElement`, `textContent`, `appendChild`)
+- No build system, no Vite, npm, bundlers
+- No `innerHTML`, use DOM methods (`createElement`, `textContent`, `appendChild`)
 - All ground content lives in the data arrays; do not hardcode ground divs in HTML
 - Tab buttons are `.rib`, not `.tab-btn` (v5 rename)
