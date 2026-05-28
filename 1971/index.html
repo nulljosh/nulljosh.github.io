@@ -7,7 +7,8 @@
     <meta name="description" content="Data visualization exploring the economic shift that began in 1971 when the US abandoned the gold standard.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../tokens.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -24,14 +25,14 @@
         }
 
         body {
-            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #fbfbfd;
-            color: #1d1d1f;
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        body.dark-mode { background: #0c0c0c; color: #f5f5f7; }
+        body.dark-mode { background: var(--charcoal); color: var(--cream); }
 
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(20px); }
@@ -69,8 +70,8 @@
             box-shadow: 3px 3px 0 rgba(232,230,224,0.12);
         }
 
-        .theme-toggle svg { width: 22px; height: 22px; fill: #1d1d1f; }
-        body.dark-mode .theme-toggle svg { fill: #f5f5f7; }
+        .theme-toggle svg { width: 22px; height: 22px; fill: var(--charcoal); }
+        body.dark-mode .theme-toggle svg { fill: var(--cream); }
 
         /* Header */
         .header {
@@ -81,13 +82,13 @@
         }
 
         .section-label {
-            font-family: 'IBM Plex Mono', monospace;
+            font-family: var(--font-display);
             font-size: 0.75rem;
             letter-spacing: 0.12em;
             text-transform: uppercase;
             font-weight: 700;
             display: inline-block;
-            background: #e7ff4f;
+            background: #F9C31F;
             color: #121212;
             padding: 3px 10px;
             border: 2px solid #181818;
@@ -98,16 +99,16 @@
         body.dark-mode .section-label { border-color: rgba(232,230,224,0.4); }
 
         h1 {
-            font-family: 'IBM Plex Mono', monospace;
+            font-family: var(--font-display);
             font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.04em;
-            color: #1d1d1f;
+            color: var(--charcoal);
             margin-bottom: 0.75rem;
         }
 
-        body.dark-mode h1 { color: #f5f5f7; }
+        body.dark-mode h1 { color: var(--cream); }
 
         .subtitle {
             font-size: 1.125rem;
@@ -117,10 +118,10 @@
         }
 
         .year-display {
-            font-family: 'IBM Plex Mono', monospace;
+            font-family: var(--font-display);
             font-size: clamp(4rem, 12vw, 8rem);
             font-weight: 700;
-            color: #e7ff4f;
+            color: #F9C31F;
             opacity: 0.15;
             letter-spacing: 0.5rem;
             margin-top: 1rem;
@@ -141,16 +142,16 @@
         .section:nth-child(5) { animation-delay: 0.25s; }
 
         .section-title {
-            font-family: 'IBM Plex Mono', monospace;
+            font-family: var(--font-display);
             font-size: 1.875rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.04em;
-            color: #1d1d1f;
+            color: var(--charcoal);
             margin-bottom: 1.5rem;
         }
 
-        body.dark-mode .section-title { color: #f5f5f7; }
+        body.dark-mode .section-title { color: var(--cream); }
 
         /* Cards */
         .card {
@@ -180,8 +181,8 @@
             font-size: 1.05rem;
         }
 
-        .card p strong { color: #1d1d1f; }
-        body.dark-mode .card p strong { color: #f5f5f7; }
+        .card p strong { color: var(--charcoal); }
+        body.dark-mode .card p strong { color: var(--cream); }
 
         /* Chart Grid */
         .chart-grid {
@@ -212,16 +213,16 @@
         }
 
         .chart-card h3 {
-            font-family: 'IBM Plex Mono', monospace;
+            font-family: var(--font-display);
             font-size: 1.125rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.04em;
-            color: #1d1d1f;
+            color: var(--charcoal);
             margin-bottom: 0.5rem;
         }
 
-        body.dark-mode .chart-card h3 { color: #f5f5f7; }
+        body.dark-mode .chart-card h3 { color: var(--cream); }
 
         .chart-card p {
             color: #86868b;
@@ -231,7 +232,7 @@
         }
 
         .chart-card a {
-            color: #1d1d1f;
+            color: var(--charcoal);
             text-decoration: none;
             font-weight: 500;
         }
@@ -258,37 +259,37 @@
             padding: 3rem 2.5rem;
             margin: 60px 0;
             box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
-            border-left: 3px solid #e7ff4f;
+            border-left: 3px solid #F9C31F;
         }
 
         body.dark-mode .book-section {
             background: #181614;
             backdrop-filter: none;
             border: 2px solid rgba(232,230,224,0.28);
-            border-left: 3px solid #e7ff4f;
+            border-left: 3px solid #F9C31F;
             box-shadow: 4px 4px 0 rgba(232,230,224,0.18);
         }
 
         .book-section h2 {
-            font-family: 'IBM Plex Mono', monospace;
+            font-family: var(--font-display);
             font-size: clamp(1.5rem, 4vw, 1.875rem);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.04em;
-            color: #1d1d1f;
+            color: var(--charcoal);
             margin-bottom: 1rem;
         }
 
-        body.dark-mode .book-section h2 { color: #f5f5f7; }
+        body.dark-mode .book-section h2 { color: var(--cream); }
 
         .book-section > p { color: #86868b; font-size: 1.05rem; }
 
         .book-quote {
             font-style: italic;
             font-size: 1.125rem;
-            color: #1d1d1f;
+            color: var(--charcoal);
             padding: 1.5rem 2rem;
-            border-left: 3px solid #e7ff4f;
+            border-left: 3px solid #F9C31F;
             background: rgba(0,0,0,0.02);
             border-radius: 8px;
             margin: 1.5rem 0;
@@ -296,7 +297,7 @@
         }
 
         body.dark-mode .book-quote {
-            color: #f5f5f7;
+            color: var(--cream);
             background: rgba(255,255,255,0.03);
         }
 
@@ -311,7 +312,7 @@
             margin: 0.75rem 0;
             background: rgba(0,0,0,0.02);
             border-radius: 8px;
-            border-left: 3px solid #e7ff4f;
+            border-left: 3px solid #F9C31F;
             color: #86868b;
             position: relative;
             transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -329,14 +330,14 @@
         }
 
         .key-points strong {
-            font-family: 'IBM Plex Mono', monospace;
-            color: #1d1d1f;
+            font-family: var(--font-display);
+            color: var(--charcoal);
             font-weight: 700;
             font-size: 0.9rem;
             letter-spacing: 0.02em;
         }
 
-        body.dark-mode .key-points strong { color: #e7ff4f; }
+        body.dark-mode .key-points strong { color: #F9C31F; }
 
         /* Footer */
         .footer {
@@ -347,7 +348,7 @@
         }
 
         .footer a {
-            color: #1d1d1f;
+            color: var(--charcoal);
             text-decoration: none;
             font-weight: 500;
         }
@@ -451,7 +452,7 @@
                 <div class="chart-card">
                     <h3>Explore More</h3>
                     <p>Dive deeper into the data at <a href="https://wtfhappenedin1971.com" target="_blank">wtfhappenedin1971.com</a></p>
-                    <div style="padding: 4rem 0; text-align: center; color: #86868b; font-size: 1.5rem; font-family: 'IBM Plex Mono', monospace;">$ > _</div>
+                    <div style="padding: 4rem 0; text-align: center; color: #86868b; font-size: 1.5rem; font-family: var(--font-display);">$ > _</div>
                 </div>
             </div>
         </section>
@@ -474,7 +475,7 @@
                     <li><strong>Environmental Neglect</strong> -- Kicked climate costs down to children and grandchildren</li>
                 </ul>
 
-                <p style="margin-top: 1.5rem;">The data suggests Gibney may have a point. Every major policy shift benefited Boomers at the expense of future generations. <strong style="color: #1d1d1f;">The charts don't lie.</strong></p>
+                <p style="margin-top: 1.5rem;">The data suggests Gibney may have a point. Every major policy shift benefited Boomers at the expense of future generations. <strong style="color: var(--charcoal);">The charts don't lie.</strong></p>
             </div>
         </section>
 
