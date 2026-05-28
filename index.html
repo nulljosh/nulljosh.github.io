@@ -15,7 +15,7 @@
 <meta name="author" content="Joshua Trommel">
 <meta name="robots" content="index, follow">
 <meta name="googlebot" content="index, follow">
-<meta name="theme-color" content="#0a0a0a">
+<meta name="theme-color" content="#FFF8F0">
 <meta name="view-transition" content="same-origin">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://heyitsmejosh.com">
@@ -47,9 +47,7 @@
 }
 </script>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
 <style>
 @font-face { font-family:'Geist'; src:url('fonts/Geist-Regular.woff2') format('woff2'); font-weight:400; font-display:swap; }
 @font-face { font-family:'Geist'; src:url('fonts/Geist-Medium.woff2') format('woff2'); font-weight:500; font-display:swap; }
@@ -57,29 +55,6 @@
 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
-:root {
-  --bg: #0a0a0a;
-  --bg2: #111;
-  --text: #e8e8e8;
-  --text2: #888;
-  --text3: rgba(255,255,255,0.22);
-  --border: rgba(255,255,255,0.07);
-  --border2: rgba(255,255,255,0.04);
-  --accent: #e8e8e8;
-  --accent-dot: rgba(255,255,255,0.28);
-  --cell0:#1c1c1c; --cell1:#2e2e2e; --cell2:#4a4a4a; --cell3:#707070; --cell4:#e8e8e8;
-  --font:'Geist',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
-  --spring:cubic-bezier(0.34,1.56,0.64,1);
-  --ease:cubic-bezier(0.16,1,0.3,1);
-}
-
-[data-theme="light"] {
-  --bg:#f0efed; --bg2:#e8e7e4;
-  --text:#111; --text2:#555; --text3:#999;
-  --border:rgba(0,0,0,0.09); --border2:rgba(0,0,0,0.05);
-  --accent:#111; --accent-dot:rgba(0,0,0,0.3);
-  --cell0:#ddd; --cell1:#bbb; --cell2:#888; --cell3:#555; --cell4:#111;
-}
 
 html { scroll-behavior:smooth; }
 
@@ -114,9 +89,10 @@ header { margin-bottom:clamp(3.5rem,8vw,5.5rem); }
 }
 
 h1 {
-  font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  font-family:var(--font-display);
+  font-style:italic;
   font-size:clamp(3rem,9vw,5rem);
-  font-weight:700; letter-spacing:-0.04em; line-height:1.05;
+  font-weight:900; letter-spacing:-0.02em; line-height:1.05;
   color:var(--text); margin-bottom:20px;
 }
 
@@ -486,7 +462,7 @@ var SUN_PATH = 'M12 2a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm0 16a1 1 0 
 function applyTheme(dark) {
   root.setAttribute('data-theme', dark ? 'dark' : 'light');
   var tc = document.querySelector('meta[name="theme-color"]');
-  if (tc) tc.content = dark ? '#0a0a0a' : '#f0efed';
+  if (tc) tc.content = dark ? '#1A1A1A' : '#FFF8F0';
   var ip = document.getElementById('themeIconPath');
   if (ip) ip.setAttribute('d', dark ? MOON_PATH : SUN_PATH);
   recolorHeatmap();
