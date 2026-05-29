@@ -6,8 +6,8 @@
   --yellow: #F9C31F;
   --charcoal: #1A1A1A;
 
-  --bg: var(--cream);
-  --bg2: #f0e6d8;
+  --bg: #FFFFFF;
+  --bg2: #f5efe6;
   --text: var(--charcoal);
   --text2: #4a3f38;
   --text3: rgba(26,26,26,0.4);
