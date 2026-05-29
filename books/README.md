@@ -4,7 +4,7 @@ A curated collection of book rankings based on Goodreads ratings and reviews.
 
 ## Files
 
-- `index.html` - Interactive book rankings with Apple Liquid design
+- `index.html` - Interactive book rankings with Apple Liquid design. Top section tracks library checkouts with a live due-date countdown (edit the `data-due` attribute on `#deadline` and the `.library` list to update).
 - `book_rankings.md` - Markdown version of the rankings
 - Images of all books in the collection
 
