@@ -36,6 +36,9 @@ apple-touch-icon.png  iOS home screen icon (180×180)
 ```
 
 ## Roadmap
+- [ ] Graph: show a dynamic date in the top-right, matching the header date
+- [ ] Case 0003 (granny's case) is not rendering while 0002 is - restore it and investigate why it was dropped
+- [ ] Decide whether to keep the tweaks/toggle button; apply that decision consistently across all projects
 
 ### v3.0.0, Multi-user / Open-Ended Case Tool
 
