@@ -5,46 +5,45 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>notes</title>
 <link rel="icon" href="assets/img/icon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --bg-primary: #09090b;
-    --bg-secondary: #18181b;
-    --bg-tertiary: #1c1c1f;
-    --text-primary: #f4f4f5;
-    --text-secondary: #a1a1aa;
-    --text-tertiary: #71717a;
-    --blue: #3b82f6;
-    --blue-light: #60a5fa;
-    --green: #10b981;
-    --border: rgba(255, 255, 255, 0.06);
-    --border-hover: rgba(255, 255, 255, 0.1);
-    --radius: 16px;
-    --radius-pill: 28px;
-    --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.3);
+    --bg-primary: #1A1A1A;
+    --bg-secondary: #2a2118;
+    --bg-tertiary: #332920;
+    --text-primary: #FFF8F0;
+    --text-secondary: rgba(255,248,240,0.65);
+    --text-tertiary: rgba(255,248,240,0.3);
+    --blue: #F9C31F;
+    --blue-light: #fbe07a;
+    --blue-rgb: 249, 195, 31;
+    --green: #2a9d6f;
+    --border: rgba(255, 248, 240, 0.1);
+    --border-hover: rgba(255, 248, 240, 0.18);
+    --radius: var(--radius-md);
+    --shadow-hover: var(--shadow-md);
   }
   :root[data-theme="light"] {
-    --bg-primary: #f6f7fb;
-    --bg-secondary: #ffffff;
-    --bg-tertiary: #f8fafc;
-    --text-primary: #111827;
-    --text-secondary: #374151;
-    --text-tertiary: #6b7280;
-    --blue: #2563eb;
-    --blue-light: #1d4ed8;
-    --green: #059669;
-    --border: rgba(15, 23, 42, 0.12);
-    --border-hover: rgba(15, 23, 42, 0.2);
-    --shadow-hover: 0 8px 24px rgba(15, 23, 42, 0.12);
+    --bg-primary: #FFF8F0;
+    --bg-secondary: #f0e6d8;
+    --bg-tertiary: #ede0d0;
+    --text-primary: #1A1A1A;
+    --text-secondary: #4a3f38;
+    --text-tertiary: rgba(26,26,26,0.4);
+    --blue: #E4002B;
+    --blue-light: #c20025;
+    --blue-rgb: 228, 0, 43;
+    --green: #1f6e46;
+    --border: rgba(26, 26, 26, 0.1);
+    --border-hover: rgba(26, 26, 26, 0.18);
+    --shadow-hover: var(--shadow-md);
   }
 
   body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: var(--font-body);
     background: var(--bg-primary);
     color: var(--text-primary);
     min-height: 100vh;
@@ -69,7 +68,7 @@
 
   .theme-toggle:hover {
     color: var(--blue-light);
-    border-color: rgba(59, 130, 246, 0.35);
+    border-color: rgba(var(--blue-rgb), 0.35);
     background: var(--bg-tertiary);
   }
 
@@ -177,7 +176,7 @@
     color: rgba(255, 255, 255, 0.8);
   }
 
-  .file-icon.md { background: rgba(59, 130, 246, 0.15); color: var(--blue-light); }
+  .file-icon.md { background: rgba(var(--blue-rgb), 0.15); color: var(--blue-light); }
   .file-icon.html { background: rgba(249, 115, 22, 0.15); color: #fb923c; }
   .file-icon.claude { background: rgba(251, 191, 36, 0.15); color: #fbbf24; }
 
@@ -234,9 +233,9 @@
   }
 
   .links a:hover {
-    background: rgba(59, 130, 246, 0.08);
+    background: rgba(var(--blue-rgb), 0.08);
     color: var(--blue-light);
-    border-color: rgba(59, 130, 246, 0.2);
+    border-color: rgba(var(--blue-rgb), 0.2);
     transform: translateY(-1px);
   }
 
@@ -286,7 +285,7 @@
   .search-bar input {
     width: 100%;
     padding: 0.625rem 1rem 0.625rem 2.25rem;
-    font-family: 'Inter', -apple-system, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.875rem;
     background: var(--bg-secondary);
     border: 1px solid var(--border);
