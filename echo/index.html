@@ -3,18 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Echo</title>
-    <meta http-equiv="refresh" content="0; url=privacy.html">
+    <title>Echo: On-Device Transcription</title>
+    <meta name="description" content="Transcribe speech, music, and audio files entirely on-device. No account, no cloud, no subscription.">
+    <meta property="og:title" content="Echo: On-Device Transcription">
+    <meta property="og:description" content="Voice to text, nothing leaves your device.">
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 2rem; }
-        a { color: #0066cc; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; line-height: 1.6; color: #1a1a1a; background: #fff; }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        header { text-align: center; padding: 3rem 0; border-bottom: 1px solid #eee; margin-bottom: 2rem; }
+        h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .tagline { font-size: 1.2rem; color: #666; margin-bottom: 1.5rem; }
+        .hero { text-align: center; margin-bottom: 3rem; }
+        .hero-description { font-size: 1.1rem; color: #333; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .app-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
+        .app-link { display: inline-block; padding: 0.75rem 1.5rem; background: #000; color: #fff; border-radius: 8px; text-decoration: none; font-weight: 500; transition: opacity 0.2s; }
+        .app-link:hover { opacity: 0.8; }
+        .app-link.secondary { background: #f0f0f0; color: #000; }
+        .app-link.secondary:hover { background: #e0e0e0; }
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .feature { padding: 1.5rem; background: #f9f9f9; border-radius: 8px; }
+        .feature h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .feature-list { list-style: none; padding-left: 1rem; }
+        .feature-list li { padding: 0.3rem 0; }
+        .feature-list li:before { content: "✓ "; color: #0a7; font-weight: bold; }
+        .pricing { background: #f9f9f9; padding: 2rem; border-radius: 8px; margin: 2rem 0; text-align: center; }
+        .plan { display: inline-block; padding: 1.5rem; margin: 0 1rem; }
+        .plan h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .plan-price { font-size: 2rem; font-weight: bold; margin-bottom: 1rem; }
+        .plan-details { text-align: left; line-height: 1.8; margin-top: 1rem; }
+        footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #eee; text-align: center; color: #666; font-size: 0.9rem; }
+        footer a { color: #0066cc; text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        @media (max-width: 640px) {
+            h1 { font-size: 2rem; }
+            .tagline { font-size: 1rem; }
+            .app-links { gap: 0.5rem; }
+            .features { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
-    <h1>Echo</h1>
-    <p>A simple, elegant note-taking app for iPhone and Mac.</p>
-    <p><a href="privacy.html">Privacy Policy</a></p>
-    <p>Redirecting to privacy policy...</p>
+    <div class="container">
+        <header>
+            <h1>Echo</h1>
+            <p class="tagline">Voice to text, nothing leaves</p>
+        </header>
+
+        <section class="hero">
+            <p class="hero-description">
+                Echo transcribes speech, music, and audio files entirely on your iPhone and Mac. No account, no cloud, no subscription. Your audio never leaves the device.
+            </p>
+            <div class="app-links">
+                <a href="https://apps.apple.com/app/echo-on-device-transcription/id6738476836" class="app-link" target="_blank">Get on App Store</a>
+                <a href="privacy.html" class="app-link secondary">Privacy Policy</a>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature">
+                <h3>Free, Forever</h3>
+                <ul class="feature-list">
+                    <li>Unlimited live microphone transcription</li>
+                    <li>Transcribe music and lyrics</li>
+                    <li>Auto, Tiny, and Base models</li>
+                    <li>Full history, copy, and share</li>
+                    <li>12 languages with auto-detect</li>
+                </ul>
+            </div>
+            <div class="feature">
+                <h3>Echo Pro</h3>
+                <ul class="feature-list">
+                    <li>Unlimited audio file transcription</li>
+                    <li>The Small model, most accurate</li>
+                    <li>One purchase, no subscription</li>
+                </ul>
+            </div>
+            <div class="feature">
+                <h3>Why Echo</h3>
+                <ul class="feature-list">
+                    <li>On device. Your voice stays yours.</li>
+                    <li>No account, no sign-up, no tracking.</li>
+                    <li>No monthly fee. Own it once.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="pricing">
+            <h2 style="margin-bottom: 2rem;">Choose Your Plan</h2>
+            <div class="plan">
+                <h3>Free</h3>
+                <p style="font-size: 0.9rem; color: #666; margin: 0.5rem 0;">Unlimited microphone transcription</p>
+                <div class="plan-details">
+                    <strong>Live recording</strong><br>
+                    Music & lyrics<br>
+                    All models<br>
+                    12 languages
+                </div>
+            </div>
+            <div class="plan">
+                <h3>Echo Pro</h3>
+                <div class="plan-price">$7.99</div>
+                <p style="font-size: 0.9rem; color: #666; margin: 0.5rem 0;">One-time purchase</p>
+                <div class="plan-details">
+                    <strong>Everything in Free, plus:</strong><br>
+                    Unlimited file transcription<br>
+                    Most accurate model
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Built with WhisperKit on-device AI. <a href="privacy.html">Privacy Policy</a> • <a href="https://heyitsmejosh.com">More Apps</a></p>
+        </footer>
+    </div>
 </body>
 </html>
