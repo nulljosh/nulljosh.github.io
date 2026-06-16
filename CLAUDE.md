@@ -15,9 +15,6 @@ Static personal site for `heyitsmejosh.com`. v3.0.0.
 
 ## Directories
 
-- `books/` - reading tracker
-- `brief/` - Charter litigation tool (multi-case: Trommel v. AG Canada + Trommel v. Trommel). DEPLOY-ONLY MIRROR of `apps/brief/web/` (the canonical source). Do NOT hand-edit here; it is overwritten by `apps/brief/web/deploy.sh` (auto-run by the apps pre-push hook).
-- `echo/` - on-device audio transcription PWA
 - `fonts/` - Geist woff2 font files
 - `notes/` - personal reference site (styled HTML, theme toggle)
 - `scripts/` - maintenance scripts
