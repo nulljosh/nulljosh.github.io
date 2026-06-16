@@ -11,13 +11,10 @@ Personal site and project hub at [heyitsmejosh.com](https://heyitsmejosh.com).
 | Path | Description |
 |------|-------------|
 | `/` | Homepage |
-| `1971/` | History project |
-| `bcgd/` | BC Garage Doors landing page |
 | `books/` | Reading tracker |
-| `brief/` | Article summarizer |
-| `chi/` | Room calculator |
+| `brief/` | Charter litigation tool (multi-case planning) |
+| `echo/` | On-device audio transcription |
 | `notes/` | Personal reference site |
-| `scroll/` | Scroll feed experiment |
 
 ## Stack
 
