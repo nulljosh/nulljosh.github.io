@@ -187,13 +187,15 @@ hr { border:none; border-top:1px solid var(--border2); margin:2.5rem 0; }
 .stat-val a { color:var(--text); text-decoration:underline; text-decoration-color:var(--border); text-underline-offset:3px; transition:opacity 0.25s; }
 .stat-val a:hover { opacity:0.5; }
 
-/* Skeleton */
+/* Skeleton — Anthropic-style text shimmer */
 .skel {
   display:inline-block; height:0.8125rem; width:110px;
-  background:linear-gradient(90deg, var(--border) 25%, var(--bg2) 50%, var(--border) 75%);
-  background-size:200% 100%; animation:skel 1.4s ease-in-out infinite; border-radius:4px; vertical-align:middle;
+  border-radius:4px; vertical-align:middle;
+  background:linear-gradient(90deg, var(--text3) 0%, var(--text3) 35%, var(--accent) 50%, var(--text3) 65%, var(--text3) 100%);
+  background-size:250% 100%;
+  animation:skel 1.6s var(--ease) infinite;
 }
-@keyframes skel { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+@keyframes skel { 0%{background-position:200% 0} 100%{background-position:-100% 0} }
 @media (prefers-reduced-motion:reduce) { .skel { animation:none; background:var(--border); } }
 
 /* Heatmap */
