@@ -188,7 +188,7 @@ section { margin-bottom:clamp(3.5rem,7vw,5rem); }
 .fcard:hover .fcover .mono { transform:scale(1.04); }
 
 .fcover {
-  aspect-ratio:4/5; position:relative; overflow:hidden;
+  aspect-ratio:1/1; position:relative; overflow:hidden;
   border-bottom:1px solid var(--border2);
   background:linear-gradient(180deg, var(--bg2), var(--bg));
 }
@@ -464,15 +464,12 @@ footer.site a:hover { color:var(--text); }
           </svg>
           <div class="cv-epi-num">+12.4%</div>
           <span class="tag">001 · Finance</span>
-          <span class="live-pin"><span class="live-pulse"></span>Live</span>
           <span class="mono">E</span>
         </div>
         <div class="fbody">
           <div class="ftitle">Epiphany <span class="farrow">↗</span></div>
           <ul class="fbullets">
             <li><strong>Problem:</strong> tracking markets, macro data, and portfolio performance meant juggling five different apps with no daily synthesis.</li>
-            <li><strong>Stack:</strong> SwiftUI (iOS/macOS/watchOS) + Vite/React web client, shared Swift package for models, Cloudflare Workers for data ingestion.</li>
-            <li><strong>Decisions:</strong> AI-generated daily briefs run server-side on a schedule rather than per-request, so the client just renders cached JSON — keeps the app fast and the LLM bill predictable.</li>
             <li><strong>Outcome:</strong> live across 4 platforms with real-time P/E, ticker, and map-layer data; used daily as a personal dashboard.</li>
           </ul>
           <div class="fplatforms">
@@ -490,15 +487,12 @@ footer.site a:hover { color:var(--text); }
             <div class="tly-row"><span class="tly-label">+20</span><div class="tly-track"><div class="tly-fill" style="width:40%"></div></div></div>
           </div>
           <span class="tag">002 · Benefits</span>
-          <span class="live-pin"><span class="live-pulse"></span>Live</span>
           <span class="mono">T</span>
         </div>
         <div class="fbody">
           <div class="ftitle">Talli <span class="farrow">↗</span></div>
           <ul class="fbullets">
             <li><strong>Problem:</strong> BC benefits (PWD, income assistance, MSP, 20+ programs) live behind a clunky government portal with no unified status view or deadline tracking.</li>
-            <li><strong>Stack:</strong> Node/Express scraper API + Puppeteer against BC Self-Serve, vanilla JS PWA frontend, SwiftUI iOS + watchOS companions, Vercel Blob for persistence.</li>
-            <li><strong>Decisions:</strong> session-encrypted credentials and a server-side scraper instead of an unofficial API, since BC Self-Serve has none — keeps user credentials off the client and survives portal changes more gracefully.</li>
             <li><strong>Outcome:</strong> live, in daily personal use for tracking a real PWD application and monthly reporting deadlines.</li>
           </ul>
           <div class="fplatforms">
@@ -516,15 +510,12 @@ footer.site a:hover { color:var(--text); }
             <div class="wv-bar hi" style="height:50%"></div><div class="wv-bar" style="height:45%"></div><div class="wv-bar hi" style="height:65%"></div>
           </div>
           <span class="tag">003 · Audio</span>
-          <span class="live-pin"><span class="live-pulse"></span>Live</span>
           <span class="mono">E</span>
         </div>
         <div class="fbody">
           <div class="ftitle">Echo <span class="farrow">↗</span></div>
           <ul class="fbullets">
             <li><strong>Problem:</strong> cloud transcription tools require uploading audio to a third party — a non-starter for private recordings (interviews, voice memos, podcasts).</li>
-            <li><strong>Stack:</strong> SwiftUI (iOS + macOS), WhisperKit running entirely on-device, no backend or network calls.</li>
-            <li><strong>Decisions:</strong> chose on-device WhisperKit over a server API specifically to guarantee zero audio leaves the device — slower than a cloud GPU but the privacy guarantee was the actual point.</li>
             <li><strong>Outcome:</strong> 12-language transcription from mic or file import, fully offline.</li>
           </ul>
           <div class="fplatforms">
@@ -565,7 +556,6 @@ footer.site a:hover { color:var(--text); }
         <span class="platforms-inline">iOS · macOS</span>
       </li>
     </ul>
-    <p style="font-size:0.8125rem; margin-top:10px;"><a href="https://github.com/nulljosh" target="_blank" rel="noopener">See more on GitHub →</a></p>
   </section>
 
   <!-- Currently ───────────────────────────────────────────────────────── -->
@@ -616,7 +606,7 @@ footer.site a:hover { color:var(--text); }
       <div class="tl-entry">
         <div class="tl-year">2017–20</div>
         <div class="tl-body">
-          <div class="tl-title">Apple Retail</div>
+          <div class="tl-title">Apple Specialist</div>
           <div class="tl-meta"><a href="https://macinhome.com" target="_blank" rel="noopener">Macinhome</a> + <a href="https://www.simply.ca/" target="_blank" rel="noopener">Simply Computing</a> — Vancouver area</div>
         </div>
       </div>
