@@ -420,7 +420,6 @@ footer.site a:hover { color:var(--text); }
     <span class="crumb">portfolio</span>
   </div>
   <div class="topbar-r">
-    <span class="topbar-status"><span class="live-pulse"></span><span>live</span></span>
     <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
       <svg id="themeIcon" viewBox="0 0 24 24"><path id="themeIconPath" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
     </button>
@@ -431,7 +430,6 @@ footer.site a:hover { color:var(--text); }
 
   <!-- Hero ────────────────────────────────────────────────────────────── -->
   <header class="hero fade-up">
-    <pre class="ascii-mark">~/Documents/Code</pre>
     <h1>Joshua<br>Trommel</h1>
     <p class="intro">
       Software engineer & paralegal student. Building apps across <strong>web, iOS, watchOS, and Mac</strong>. Based in Langley, BC.
@@ -443,6 +441,7 @@ footer.site a:hover { color:var(--text); }
       <span class="ls-item"><span class="ls-key">loc</span> <span class="ls-val">langley, bc</span></span>
       <span class="ls-item"><span class="ls-key">wx</span> <span class="ls-val" id="ls-wx"><span class="skel" style="width:90px"></span></span></span>
       <span class="ls-item"><span class="ls-key">last commit</span> <span class="ls-val" id="ls-commit"><span class="skel" style="width:50px"></span></span></span>
+      <span class="ls-item"><span class="ls-key">repos</span> <span class="ls-val" id="ls-repos"><span class="skel" style="width:30px"></span></span></span>
       <span class="ls-item"><span class="ls-key">time</span> <span class="ls-val" id="ls-time">—</span></span>
     </div>
   </header>
@@ -555,6 +554,7 @@ footer.site a:hover { color:var(--text); }
       <li>
         <a href="https://charters.heyitsmejosh.com" target="_blank" rel="noopener">Charters</a>
         <span>— Constitutional rights reference. 15 countries, 146 articles, full-text search.</span>
+        <a class="items-repo" href="https://github.com/nulljosh/apps/tree/main/charters" target="_blank" rel="noopener">repo</a>
         <span class="platforms-inline">Web · iOS</span>
       </li>
       <li>
@@ -844,14 +844,18 @@ function injectWeeklyRate(el, total, label) {
 
 async function loadCode() {
   var el = document.getElementById('stat-code');
-  var c = getCached('gh_v2', DAY_MS); if (c) { el.innerHTML = c; return; }
+  var lsRepos = document.getElementById('ls-repos');
+  var c = getCached('gh_v2', DAY_MS);
+  if (c) { el.innerHTML = c; if (lsRepos) lsRepos.textContent = getCached('gh_repos_v1', DAY_MS) || ''; return; }
   try {
     var r = await fetch('https://api.github.com/users/nulljosh', {signal:mkSignal(6000)});
     if (!r.ok) throw 0;
     var d = await r.json();
     animateCount(el, d.public_repos, '<span class="unit">public repos</span>');
     setCached('gh_v2', '<span class="num">'+d.public_repos+'</span><span class="unit">public repos</span>');
-  } catch(e) { el.innerHTML = '<span class="num">—</span><span class="unit">repos</span>'; }
+    if (lsRepos) lsRepos.textContent = d.public_repos;
+    setCached('gh_repos_v1', d.public_repos);
+  } catch(e) { el.innerHTML = '<span class="num">—</span><span class="unit">repos</span>'; if (lsRepos) lsRepos.textContent = '—'; }
 }
 
 async function loadBlog() {
