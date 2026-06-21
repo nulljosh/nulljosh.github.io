@@ -212,6 +212,9 @@ section { margin-bottom:clamp(3.5rem,7vw,5rem); }
 .farrow { color:var(--text3); font-size:0.875rem; transition:transform 0.3s var(--spring), color 0.3s; }
 .fcard:hover .farrow { transform:translate(3px,-3px); color:var(--accent); }
 .fdesc { font-size:0.8125rem; color:var(--text2); line-height:1.5; margin-bottom:10px; }
+.fbullets { font-size:0.8125rem; color:var(--text2); line-height:1.5; margin:0 0 10px; padding-left:1.1em; }
+.fbullets li { margin-bottom:3px; }
+.fbullets li::marker { color:var(--text3); }
 .fplatforms { display:flex; gap:5px; flex-wrap:wrap; }
 .fchip { font-size:0.5625rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--text3); padding:3px 6px; border:1px solid var(--border); border-radius:4px; }
 
@@ -433,6 +436,7 @@ footer.site a:hover { color:var(--text); }
     <h1>Joshua<br>Trommel</h1>
     <p class="intro">
       Software engineer & paralegal student. Building apps across <strong>web, iOS, watchOS, and Mac</strong>. Based in Langley, BC.
+      Swift, TypeScript, and Python across SwiftUI, React, and Node — deployed on Vercel and Cloudflare.
       <a href="mailto:jatrommel@gmail.com">jatrommel@gmail.com</a> /
       <a href="tel:+17782014533">778-201-4533</a>.
     </p>
@@ -465,7 +469,12 @@ footer.site a:hover { color:var(--text); }
         </div>
         <div class="fbody">
           <div class="ftitle">Epiphany <span class="farrow">↗</span></div>
-          <div class="fdesc">Personal intelligence platform. Markets, macro, news, portfolio tracking, and AI-generated daily briefs.</div>
+          <ul class="fbullets">
+            <li><strong>Problem:</strong> tracking markets, macro data, and portfolio performance meant juggling five different apps with no daily synthesis.</li>
+            <li><strong>Stack:</strong> SwiftUI (iOS/macOS/watchOS) + Vite/React web client, shared Swift package for models, Cloudflare Workers for data ingestion.</li>
+            <li><strong>Decisions:</strong> AI-generated daily briefs run server-side on a schedule rather than per-request, so the client just renders cached JSON — keeps the app fast and the LLM bill predictable.</li>
+            <li><strong>Outcome:</strong> live across 4 platforms with real-time P/E, ticker, and map-layer data; used daily as a personal dashboard.</li>
+          </ul>
           <div class="fplatforms">
             <span class="fchip">Web</span><span class="fchip">iOS</span><span class="fchip">macOS</span><span class="fchip">watchOS</span>
           </div>
@@ -486,7 +495,12 @@ footer.site a:hover { color:var(--text); }
         </div>
         <div class="fbody">
           <div class="ftitle">Talli <span class="farrow">↗</span></div>
-          <div class="fdesc">BC benefits eligibility tracker. Checks MSP, income assistance, BCSC, and 20+ provincial programs.</div>
+          <ul class="fbullets">
+            <li><strong>Problem:</strong> BC benefits (PWD, income assistance, MSP, 20+ programs) live behind a clunky government portal with no unified status view or deadline tracking.</li>
+            <li><strong>Stack:</strong> Node/Express scraper API + Puppeteer against BC Self-Serve, vanilla JS PWA frontend, SwiftUI iOS + watchOS companions, Vercel Blob for persistence.</li>
+            <li><strong>Decisions:</strong> session-encrypted credentials and a server-side scraper instead of an unofficial API, since BC Self-Serve has none — keeps user credentials off the client and survives portal changes more gracefully.</li>
+            <li><strong>Outcome:</strong> live, in daily personal use for tracking a real PWD application and monthly reporting deadlines.</li>
+          </ul>
           <div class="fplatforms">
             <span class="fchip">Web</span><span class="fchip">iOS</span><span class="fchip">watchOS</span>
           </div>
@@ -507,7 +521,12 @@ footer.site a:hover { color:var(--text); }
         </div>
         <div class="fbody">
           <div class="ftitle">Echo <span class="farrow">↗</span></div>
-          <div class="fdesc">Audio transcription with WhisperKit. Real-time mic input, file import, 12 languages, no cloud.</div>
+          <ul class="fbullets">
+            <li><strong>Problem:</strong> cloud transcription tools require uploading audio to a third party — a non-starter for private recordings (interviews, voice memos, podcasts).</li>
+            <li><strong>Stack:</strong> SwiftUI (iOS + macOS), WhisperKit running entirely on-device, no backend or network calls.</li>
+            <li><strong>Decisions:</strong> chose on-device WhisperKit over a server API specifically to guarantee zero audio leaves the device — slower than a cloud GPU but the privacy guarantee was the actual point.</li>
+            <li><strong>Outcome:</strong> 12-language transcription from mic or file import, fully offline.</li>
+          </ul>
           <div class="fplatforms">
             <span class="fchip">Web</span><span class="fchip">iOS</span><span class="fchip">macOS</span>
           </div>
@@ -523,47 +542,30 @@ footer.site a:hover { color:var(--text); }
     <ul class="items">
       <li>
         <a href="https://spark.heyitsmejosh.com" target="_blank" rel="noopener">Spark</a>
-        <span>— Idea-sharing platform with upvoting, comments, and trending. JWT auth, dark/light theme, PWA with offline support.</span>
+        <span>— Idea-sharing platform with upvoting, comments, and trending. JWT auth, dark/light theme, PWA with offline support. <em>Node/Express + JWT, PWA service worker.</em></span>
         <a class="items-repo" href="https://github.com/nulljosh/spark" target="_blank" rel="noopener">repo</a>
         <span class="platforms-inline">Web · iOS · macOS · watchOS</span>
       </li>
       <li>
-        <a href="https://lingo.heyitsmejosh.com" target="_blank" rel="noopener">Lingo</a>
-        <span>— Interactive learning platform. Data-driven courses, skill-tree lesson paths, SM-2 spaced repetition, audio pronunciation, XP and daily streaks.</span>
-        <a class="items-repo" href="https://github.com/nulljosh/lingo" target="_blank" rel="noopener">repo</a>
-        <span class="platforms-inline">Web · iOS · macOS</span>
-      </li>
-      <li>
         <a href="https://wiretext.heyitsmejosh.com" target="_blank" rel="noopener">Wiretext</a>
-        <span>— Unicode wireframe design tool. Draw interfaces with text characters: boxes, grids, connectors, annotations.</span>
+        <span>— Unicode wireframe design tool. Draw interfaces with text characters: boxes, grids, connectors, annotations. <em>Vanilla JS, no canvas — pure text-grid rendering.</em></span>
         <a class="items-repo" href="https://github.com/nulljosh/labs/tree/main/wiretext" target="_blank" rel="noopener">repo</a>
         <span class="platforms-inline">Web · iOS · macOS</span>
       </li>
       <li>
         <a href="https://grapher.heyitsmejosh.com" target="_blank" rel="noopener">Grapher</a>
-        <span>— Desmos-style graphing calculator. Cartesian and polar plots, function analysis, real-time rendering.</span>
+        <span>— Desmos-style graphing calculator. Cartesian and polar plots, function analysis, real-time rendering. <em>Custom expression parser, no plotting library.</em></span>
         <a class="items-repo" href="https://github.com/nulljosh/labs/tree/main/grapher" target="_blank" rel="noopener">repo</a>
         <span class="platforms-inline">Web · iOS · macOS</span>
       </li>
       <li>
-        <a href="https://nimble.heyitsmejosh.com" target="_blank" rel="noopener">Nimble</a>
-        <span>— Instant answers with math evaluation, web search, and knowledge lookup. DuckDuckGo + Wikipedia API integration.</span>
-        <a class="items-repo" href="https://github.com/nulljosh/labs/tree/main/nimble" target="_blank" rel="noopener">repo</a>
-        <span class="platforms-inline">Web · iOS · macOS</span>
-      </li>
-      <li>
-        <a href="https://charters.heyitsmejosh.com" target="_blank" rel="noopener">Charters</a>
-        <span>— Constitutional rights reference. 15 countries, 146 articles, full-text search.</span>
-        <a class="items-repo" href="https://github.com/nulljosh/apps/tree/main/charters" target="_blank" rel="noopener">repo</a>
-        <span class="platforms-inline">Web · iOS</span>
-      </li>
-      <li>
         <a href="https://nyc.heyitsmejosh.com" target="_blank" rel="noopener">NYC</a>
-        <span>— Times Square colony survival sim. Canvas-based game with procedural generation, decision trees, and strategic planning.</span>
-        <a class="items-repo" href="https://github.com/nulljosh/apps" target="_blank" rel="noopener">repo</a>
-        <span class="platforms-inline">Web · iOS · macOS</span>
+        <span>— Unified iOS + macOS Factorio-style factory sim set in Times Square. <em>SpriteKit, shared game-logic codebase across both platforms.</em></span>
+        <a class="items-repo" href="https://github.com/nulljosh/nyc" target="_blank" rel="noopener">repo</a>
+        <span class="platforms-inline">iOS · macOS</span>
       </li>
     </ul>
+    <p style="font-size:0.8125rem; margin-top:10px;"><a href="https://github.com/nulljosh" target="_blank" rel="noopener">See more on GitHub →</a></p>
   </section>
 
   <!-- Currently ───────────────────────────────────────────────────────── -->
@@ -606,8 +608,8 @@ footer.site a:hover { color:var(--text); }
       <div class="tl-entry">
         <div class="tl-year">2020</div>
         <div class="tl-body">
-          <div class="tl-title">BSc Computer Science <span class="badge">Postponed</span></div>
-          <div class="tl-meta"><a href="https://www.uvic.ca/undergraduate/programs/undergraduate-programs/pages/computer-science.php" target="_blank" rel="noopener">University of Victoria</a></div>
+          <div class="tl-title">BSc Computer Science <span class="badge">Paused — pivoted</span></div>
+          <div class="tl-meta"><a href="https://www.uvic.ca/undergraduate/programs/undergraduate-programs/pages/computer-science.php" target="_blank" rel="noopener">University of Victoria</a> — left to build full-time instead of theory-first; that CS foundation is what made paralegal studies a deliberate next step, not a detour: structured argument and systems thinking carry over directly to legal research and case analysis.</div>
         </div>
       </div>
 
