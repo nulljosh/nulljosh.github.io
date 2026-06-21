@@ -36,3 +36,6 @@ All stats cached in localStorage for 24h.
 - Preview by opening `index.html`
 - Deploy by pushing to `main`
 - Keep edits lightweight unless asked otherwise
+
+## Imported from Portfolio.pdf (2026-06-21)
+- [ ] Animated Animoji avatar — BLOCKED, needs user to export and provide an actual Animoji file (video/sticker/Lottie); no usable asset exists in repo.

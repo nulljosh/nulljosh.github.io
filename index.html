@@ -435,8 +435,7 @@ footer.site a:hover { color:var(--text); }
   <header class="hero fade-up">
     <h1>Joshua<br>Trommel</h1>
     <p class="intro">
-      Software engineer & paralegal student. Building apps across <strong>web, iOS, watchOS, and Mac</strong>. Based in Langley, BC.
-      Swift, TypeScript, and Python across SwiftUI, React, and Node — deployed on Vercel and Cloudflare.
+      Software engineer. Based in Langley, BC.
       <a href="mailto:jatrommel@gmail.com">jatrommel@gmail.com</a> /
       <a href="tel:+17782014533">778-201-4533</a>.
     </p>
@@ -529,8 +528,13 @@ footer.site a:hover { color:var(--text); }
 
   <!-- Also building ───────────────────────────────────────────────────── -->
   <section class="fade-up">
-    <div class="label">Also building <span class="num">07</span></div>
+    <div class="label">Also building <span class="num">05</span></div>
     <ul class="items">
+      <li>
+        <a href="https://school.heyitsmejosh.com" target="_blank" rel="noopener">School</a>
+        <span>— Personal study dashboard for Pre-Calc 12 and Biology. Unit tracking, quizzes, and review tools. <em>Custom /quiz and /review commands.</em></span>
+        <span class="platforms-inline">Web</span>
+      </li>
       <li>
         <a href="https://spark.heyitsmejosh.com" target="_blank" rel="noopener">Spark</a>
         <span>— Idea-sharing platform with upvoting, comments, and trending. JWT auth, dark/light theme, PWA with offline support. <em>Node/Express + JWT, PWA service worker.</em></span>
@@ -838,7 +842,14 @@ async function loadCode() {
   var el = document.getElementById('stat-code');
   var lsRepos = document.getElementById('ls-repos');
   var c = getCached('gh_v2', DAY_MS);
-  if (c) { el.innerHTML = c; if (lsRepos) lsRepos.textContent = getCached('gh_repos_v1', DAY_MS) || ''; return; }
+  if (c) {
+    el.innerHTML = c;
+    if (lsRepos) {
+      var cm = c.match(/<span class="num">([\d,]+)<\/span>/);
+      lsRepos.textContent = cm ? cm[1] : '—';
+    }
+    return;
+  }
   try {
     var r = await fetch('https://api.github.com/users/nulljosh', {signal:mkSignal(6000)});
     if (!r.ok) throw 0;
@@ -846,7 +857,6 @@ async function loadCode() {
     animateCount(el, d.public_repos, '<span class="unit">public repos</span>');
     setCached('gh_v2', '<span class="num">'+d.public_repos+'</span><span class="unit">public repos</span>');
     if (lsRepos) lsRepos.textContent = d.public_repos;
-    setCached('gh_repos_v1', d.public_repos);
   } catch(e) { el.innerHTML = '<span class="num">—</span><span class="unit">repos</span>'; if (lsRepos) lsRepos.textContent = '—'; }
 }
 
