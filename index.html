@@ -468,8 +468,8 @@ footer.site a:hover { color:var(--text); }
         <div class="fbody">
           <div class="ftitle">Epiphany <span class="farrow">↗</span></div>
           <ul class="fbullets">
-            <li><strong>Problem:</strong> tracking markets, macro data, and portfolio performance meant juggling five different apps with no daily synthesis.</li>
-            <li><strong>Outcome:</strong> live across 4 platforms with real-time P/E, ticker, and map-layer data; used daily as a personal dashboard.</li>
+            <li><strong>Problem:</strong> 5 apps, no daily synthesis.</li>
+            <li><strong>Outcome:</strong> 1 dashboard, live P/E + tickers.</li>
           </ul>
           <div class="fplatforms">
             <span class="fchip">Web</span><span class="fchip">iOS</span><span class="fchip">macOS</span><span class="fchip">watchOS</span>
@@ -491,8 +491,8 @@ footer.site a:hover { color:var(--text); }
         <div class="fbody">
           <div class="ftitle">Talli <span class="farrow">↗</span></div>
           <ul class="fbullets">
-            <li><strong>Problem:</strong> BC benefits (PWD, income assistance, MSP, 20+ programs) live behind a clunky government portal with no unified status view or deadline tracking.</li>
-            <li><strong>Outcome:</strong> live, in daily personal use for tracking a real PWD application and monthly reporting deadlines.</li>
+            <li><strong>Problem:</strong> 20+ programs, no unified view.</li>
+            <li><strong>Outcome:</strong> 1 app, tracks real PWD deadlines.</li>
           </ul>
           <div class="fplatforms">
             <span class="fchip">Web</span><span class="fchip">iOS</span><span class="fchip">watchOS</span>
@@ -514,11 +514,29 @@ footer.site a:hover { color:var(--text); }
         <div class="fbody">
           <div class="ftitle">Echo <span class="farrow">↗</span></div>
           <ul class="fbullets">
-            <li><strong>Problem:</strong> cloud transcription tools require uploading audio to a third party — a non-starter for private recordings (interviews, voice memos, podcasts).</li>
-            <li><strong>Outcome:</strong> 12-language transcription from mic or file import, fully offline.</li>
+            <li><strong>Problem:</strong> cloud transcription = privacy risk.</li>
+            <li><strong>Outcome:</strong> 12-language, fully offline.</li>
           </ul>
           <div class="fplatforms">
             <span class="fchip">Web</span><span class="fchip">iOS</span><span class="fchip">macOS</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="fcard" href="https://nyc.heyitsmejosh.com" target="_blank" rel="noopener">
+        <div class="fcover">
+          <div class="pattern pat-epi"></div>
+          <span class="tag">004 · Game</span>
+          <span class="mono">N</span>
+        </div>
+        <div class="fbody">
+          <div class="ftitle">NYC <span class="farrow">↗</span></div>
+          <ul class="fbullets">
+            <li><strong>Problem:</strong> factory sims feel disconnected from iOS.</li>
+            <li><strong>Outcome:</strong> 1 codebase, native iOS + macOS sim.</li>
+          </ul>
+          <div class="fplatforms">
+            <span class="fchip">iOS</span><span class="fchip">macOS</span>
           </div>
         </div>
       </a>
@@ -552,12 +570,6 @@ footer.site a:hover { color:var(--text); }
         <span>— Desmos-style graphing calculator. Cartesian and polar plots, function analysis, real-time rendering. <em>Custom expression parser, no plotting library.</em></span>
         <a class="items-repo" href="https://github.com/nulljosh/labs/tree/main/grapher" target="_blank" rel="noopener">repo</a>
         <span class="platforms-inline">Web · iOS · macOS</span>
-      </li>
-      <li>
-        <a href="https://nyc.heyitsmejosh.com" target="_blank" rel="noopener">NYC</a>
-        <span>— Unified iOS + macOS Factorio-style factory sim set in Times Square. <em>SpriteKit, shared game-logic codebase across both platforms.</em></span>
-        <a class="items-repo" href="https://github.com/nulljosh/nyc" target="_blank" rel="noopener">repo</a>
-        <span class="platforms-inline">iOS · macOS</span>
       </li>
     </ul>
   </section>
@@ -841,7 +853,7 @@ function injectWeeklyRate(el, total, label) {
 async function loadCode() {
   var el = document.getElementById('stat-code');
   var lsRepos = document.getElementById('ls-repos');
-  var c = getCached('gh_v2', DAY_MS);
+  var c = getCached('gh_v2', HOUR_MS);
   if (c) {
     el.innerHTML = c;
     if (lsRepos) {
