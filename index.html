@@ -348,7 +348,7 @@ loadLastCommit();
 
 var hmCells=[],hmLevels=[];
 function getCellColors(){var s=getComputedStyle(document.documentElement);return[0,1,2,3,4].map(function(i){return s.getPropertyValue('--cell'+i).trim();});}
-function recolorHeatmap(){if(!hmCells.length)return;var colors=getCellColors();hmCells.forEach(function(c,i){c.style.background=colors[hmLevels[i]];});document.querySelectorAll('.legend-sq').forEach(function(sq){sq.style.background=colors[parseInt(sq.dataset.lvl)];});}
+function recolorHeatmap(){if(!hmCells||!hmCells.length)return;var colors=getCellColors();hmCells.forEach(function(c,i){c.style.background=colors[hmLevels[i]];});document.querySelectorAll('.legend-sq').forEach(function(sq){sq.style.background=colors[parseInt(sq.dataset.lvl)];});}
 
 async function fetchEvents(){var c=getCached('ghev',HOUR_MS);if(c){try{return JSON.parse(c);}catch(e){}}var all=[];try{for(var pg=1;pg<=3;pg++){var r=await fetch('https://api.github.com/users/nulljosh/events?per_page=100&page='+pg,{signal:mkSignal(8000)});if(!r.ok)break;var b=await r.json();if(!Array.isArray(b)||!b.length)break;all=all.concat(b);}setCached('ghev',JSON.stringify(all));}catch(e){}return all;}
 function buildEventMap(evs){var m={};evs.forEach(function(ev){var d=ev.created_at.split('T')[0];if(!m[d])m[d]=[];m[d].push(ev);});return m;}

@@ -26,6 +26,11 @@ Push to `main`. GitHub Pages deploys via Actions. Custom domain via `CNAME`.
 - [ ] Set Vercel API token for iOS app (vercel.com/account/tokens → create token → wire to claude-usage-ios)
 - [ ] Add echo.heyitsmejosh.com CNAME record to Cloudflare (Name: echo, Content: nulljosh.github.io)
 
+## Roadmap
+
+- [ ] Clone portfolio vibe/design system to all other projects + journal
+- [ ] iOS companion app for portfolio website
+
 ## License
 
 MIT 2026 Joshua Trommel
