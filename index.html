@@ -161,7 +161,7 @@ a{color:inherit;}
 .links{display:flex;flex-wrap:wrap;gap:6px;list-style:none;}
 .links a{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--text2);padding:6px 12px;border:1px solid var(--border);border-radius:100px;text-decoration:none;transition:border-color 0.2s,color 0.2s,background 0.2s;}
 .links a:hover{border-color:var(--text2);color:var(--text);background:var(--bg2);}
-.links a::after{content:'↗';font-size:10px;color:var(--text3);}
+.links a::after{content:'';font-size:10px;color:var(--text3);}
 
 /* Responsive */
 @media(max-width:720px){
@@ -234,7 +234,7 @@ a{color:inherit;}
           <tr><td><div class="name-cell"><a class="proj-badge" href="https://spark.heyitsmejosh.com" target="_blank" rel="noopener" style="background:#E4002B">S</a><a href="https://spark.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Spark</a></div></td><td class="proj-site">spark.heyitsmejosh.com</td><td class="proj-note">Idea forum · Web · iOS · macOS · watchOS</td></tr>
           <tr><td><div class="name-cell"><a class="proj-badge" href="https://wiretext.heyitsmejosh.com" target="_blank" rel="noopener" style="background:#10B981">W</a><a href="https://wiretext.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Wiretext</a></div></td><td class="proj-site">wiretext.heyitsmejosh.com</td><td class="proj-note">Wireframe text editor · Web · iOS · macOS</td></tr>
           <tr><td><div class="name-cell"><a class="proj-badge" href="https://grapher.heyitsmejosh.com" target="_blank" rel="noopener" style="background:#F97316">G</a><a href="https://grapher.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Grapher</a></div></td><td class="proj-site">grapher.heyitsmejosh.com</td><td class="proj-note">Graph visualization · Web · iOS · macOS</td></tr>
-          <tr><td><div class="name-cell"><a class="proj-badge" href="https://school.heyitsmejosh.com" target="_blank" rel="noopener" style="background:#6366F1">S</a><a href="https://school.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">School</a></div></td><td class="proj-site">school.heyitsmejosh.com</td><td class="proj-note">Study tools · Web</td></tr>
+          <tr><td><div class="name-cell"><a class="proj-badge" href="https://lingo.heyitsmejosh.com" target="_blank" rel="noopener" style="background:#06B6D4">L</a><a href="https://lingo.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Lingo</a></div></td><td class="proj-site">lingo.heyitsmejosh.com</td><td class="proj-note">Language learning · Web · iOS · macOS</td></tr>
         </tbody>
       </table>
     </div>
@@ -251,7 +251,7 @@ a{color:inherit;}
     <div class="section-label">About</div>
     <div class="timeline">
       <div class="tl-entry tl-now">
-        <div class="tl-year">2026 →</div>
+        <div class="tl-year">2026</div>
         <div class="tl-body"><div class="tl-title">Paralegal Studies <span class="badge">Accepted</span></div><div class="tl-meta"><a href="https://www.capilanou.ca/programs--courses/program-listing/paralegal-studies/" target="_blank" rel="noopener">Capilano University</a> — North Vancouver</div></div>
       </div>
       <div class="tl-entry">
@@ -259,12 +259,12 @@ a{color:inherit;}
         <div class="tl-body"><div class="tl-title">Pre-Calc 12 <span class="badge">Completed</span></div><div class="tl-meta">Blended class. Completed June 2026.</div></div>
       </div>
       <div class="tl-entry tl-now">
-        <div class="tl-year">2020 →</div>
+        <div class="tl-year">2020</div>
         <div class="tl-body"><div class="tl-title">Independent Engineering</div><div class="tl-meta">Full-time self-directed software work. Everything in the Work section above, plus more.</div></div>
       </div>
       <div class="tl-entry">
         <div class="tl-year">2020</div>
-        <div class="tl-body"><div class="tl-title">BSc Computer Science <span class="badge">Paused — pivoted</span></div><div class="tl-meta"><a href="https://www.uvic.ca/undergraduate/programs/undergraduate-programs/pages/computer-science.php" target="_blank" rel="noopener">University of Victoria</a> — left to build full-time. CS foundation made paralegal studies a deliberate next step: structured argument and systems thinking carry directly into legal research.</div></div>
+        <div class="tl-body"><div class="tl-title">BSc Computer Science <span class="badge">Paused — pivoted</span></div><div class="tl-meta"><a href="https://www.uvic.ca/undergraduate/programs/undergraduate-programs/pages/computer-science.php" target="_blank" rel="noopener">University of Victoria</a> — left to build full-time.</div></div>
       </div>
       <div class="tl-entry">
         <div class="tl-year">2017–20</div>
@@ -280,7 +280,7 @@ a{color:inherit;}
       <div class="footer-stat"><div class="stat-label"><span class="swatch"></span>TV</div><div class="stat-val" id="stat-tv"><span class="skel" style="width:90px"></span></div><div class="stat-sub" id="sub-tv"></div></div>
       <div class="footer-stat" id="fs-code"><div class="stat-label"><span class="swatch"></span>Code</div><div class="stat-val" id="stat-code"><span class="skel" style="width:60px"></span></div><div class="stat-viz" id="viz-code" aria-hidden="true"></div></div>
       <div class="footer-stat"><div class="stat-label"><span class="swatch"></span>Writing</div><div class="stat-val" id="stat-blog"><span class="skel" style="width:110px"></span></div><div class="stat-sub" id="sub-blog"></div></div>
-      <div class="footer-stat w-weather"><div class="stat-label"><span class="swatch"></span>Weather</div><div class="stat-val" id="stat-weather"><span class="skel" style="width:110px"></span></div><div class="stat-meter" id="meter-weather" aria-hidden="true" style="display:none"><div class="track"><div class="dot" id="meter-weather-dot" style="left:50%"></div></div><div class="ticks"><span>−10°</span><span>10°</span><span>30°</span></div></div></div>
+      <div class="footer-stat w-weather"><div class="stat-label"><span class="swatch"></span>Weather</div><div class="stat-val" id="stat-weather"><span class="skel" style="width:110px"></span></div><div class="stat-meter" id="meter-weather" aria-hidden="true" style="display:none"><div class="track"><div class="dot" id="meter-weather-dot" style="left:50%"></div></div><div class="ticks"><span>-10°</span><span>10°</span><span>30°</span></div></div></div>
       <div class="footer-stat"><div class="stat-label"><span class="swatch"></span>Coffee</div><div class="stat-val" id="stat-coffee"><span class="skel" style="width:75px"></span></div><div class="stat-progress"><div class="track"><div class="fill" id="coffee-fill" style="width:0%"></div></div><div class="labels"><span>Jan</span><span id="coffee-today">today</span><span>Dec</span></div></div></div>
     </div>
   </section>
@@ -355,7 +355,7 @@ function buildEventMap(evs){var m={};evs.forEach(function(ev){var d=ev.created_a
 function descEvent(ev){var repo=(ev.repo&&ev.repo.name?ev.repo.name:'unknown').replace('nulljosh/','');switch(ev.type){case 'PushEvent':var n=ev.payload.commits?ev.payload.commits.length:1;return 'pushed '+n+' commit'+(n!==1?'s':'')+' to '+repo;case 'PullRequestEvent':return(ev.payload.action||'updated')+' PR in '+repo;case 'IssuesEvent':return(ev.payload.action||'updated')+' issue in '+repo;case 'CreateEvent':return 'created '+(ev.payload.ref_type||'branch')+' in '+repo;case 'ReleaseEvent':return 'released '+(ev.payload.release?ev.payload.release.tag_name:'build')+' in '+repo;default:return 'activity in '+repo;}}
 
 var activePop=null;
-function showPop(cell,contrib,events){if(activePop){activePop.remove();activePop=null;}var pop=document.createElement('div');pop.className='popover';var d=new Date(contrib.date+'T12:00:00');var ds=d.toLocaleDateString('en-CA',{month:'long',day:'numeric',year:'numeric'});pop.innerHTML='<div class="popover-date">'+ds+'</div><div class="popover-count">'+(contrib.count===0?'No contributions':'<span class="num">'+contrib.count+'</span> contribution'+(contrib.count!==1?'s':''))+'</div>';if(events&&events.length){var ul=document.createElement('ul');ul.className='popover-events';events.slice(0,4).forEach(function(ev){var li=document.createElement('li');li.textContent=descEvent(ev);ul.appendChild(li);});pop.appendChild(ul);}var a=document.createElement('a');a.href='https://github.com/nulljosh?from='+contrib.date+'&to='+contrib.date+'&tab=overview';a.target='_blank';a.rel='noopener';a.className='popover-link';a.innerHTML='<span>View on GitHub</span><span>↗</span>';pop.appendChild(a);document.body.appendChild(pop);activePop=pop;var rect=cell.getBoundingClientRect(),pw=220,ph=pop.offsetHeight||150;var left=Math.max(8,Math.min(rect.left+rect.width/2-pw/2,window.innerWidth-pw-8));var top=(rect.top-ph-8>0)?window.scrollY+rect.top-ph-8:window.scrollY+rect.bottom+8;pop.style.left=left+'px';pop.style.top=top+'px';}
+function showPop(cell,contrib,events){if(activePop){activePop.remove();activePop=null;}var pop=document.createElement('div');pop.className='popover';var d=new Date(contrib.date+'T12:00:00');var ds=d.toLocaleDateString('en-CA',{month:'long',day:'numeric',year:'numeric'});pop.innerHTML='<div class="popover-date">'+ds+'</div><div class="popover-count">'+(contrib.count===0?'No contributions':'<span class="num">'+contrib.count+'</span> contribution'+(contrib.count!==1?'s':''))+'</div>';if(events&&events.length){var ul=document.createElement('ul');ul.className='popover-events';events.slice(0,4).forEach(function(ev){var li=document.createElement('li');li.textContent=descEvent(ev);ul.appendChild(li);});pop.appendChild(ul);}var a=document.createElement('a');a.href='https://github.com/nulljosh?from='+contrib.date+'&to='+contrib.date+'&tab=overview';a.target='_blank';a.rel='noopener';a.className='popover-link';a.innerHTML='<span>View on GitHub</span>';pop.appendChild(a);document.body.appendChild(pop);activePop=pop;var rect=cell.getBoundingClientRect(),pw=220,ph=pop.offsetHeight||150;var left=Math.max(8,Math.min(rect.left+rect.width/2-pw/2,window.innerWidth-pw-8));var top=(rect.top-ph-8>0)?window.scrollY+rect.top-ph-8:window.scrollY+rect.bottom+8;pop.style.left=left+'px';pop.style.top=top+'px';}
 document.addEventListener('click',function(e){if(activePop&&!activePop.contains(e.target)){activePop.remove();activePop=null;}});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&activePop){activePop.remove();activePop=null;}});
 
