@@ -22,7 +22,7 @@ Static HTML, CSS, JavaScript. No build step. Geist font family (woff2, `font-dis
 Push to `main`. GitHub Pages deploys via Actions. Custom domain via `CNAME`.
 
 ## Roadmap
-- [ ] Replace the off-white background with a lighter true white; once the hue is locked, replace all whites across the project with it
+- [x] Replace the off-white background with true white — done 2026-06-28
 - [ ] Set Vercel API token for iOS app (vercel.com/account/tokens → create token → wire to claude-usage-ios)
 - [ ] Add echo.heyitsmejosh.com CNAME record to Cloudflare (Name: echo, Content: nulljosh.github.io)
 

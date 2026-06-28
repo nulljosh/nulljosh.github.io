@@ -40,5 +40,11 @@ All stats cached in localStorage for 24h.
 ## Imported from Portfolio.pdf (2026-06-21)
 - [ ] Animated Animoji avatar — BLOCKED, needs user to export and provide an actual Animoji file (video/sticker/Lottie); no usable asset exists in repo.
 
+## Imported from Portfolio.pdf (2026-06-28)
+- [x] Remove all arrow/symbol characters (↗, →, −) from HTML — done 2026-06-28
+- [x] Replace off-white background (#fbfbfb) with true white (#ffffff) — done 2026-06-28
+- [x] Trim BSc timeline copy (removed the justification sentence) — done 2026-06-28
+- [x] Swap School for Lingo in work table — done 2026-06-28
+
 ## Imported from Portfolio.pdf (2026-06-21)
 - [x] Projects list has way too much detail per card — trim copy to be more scannable. Applied 2026-06-21: Epiphany/Talli/Echo bullets shortened, NYC added as 4th featured card (was in "Also building"), GitHub repos cache TTL shortened 24h → 1h for accuracy.
