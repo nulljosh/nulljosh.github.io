@@ -37,7 +37,6 @@ a{color:inherit;}
 .sb-nav a{font-size:13px;color:var(--text2);text-decoration:none;padding:3px 0;transition:color 0.15s;}
 .sb-nav a:hover{color:var(--text);}
 .sb-bottom{display:flex;flex-direction:column;gap:10px;}
-.sb-font{font-size:11px;color:var(--text3);}
 .sb-copy{font-size:11px;color:var(--text3);}
 .theme-btn{background:none;border:1px solid var(--border);color:var(--text3);width:26px;height:26px;border-radius:100px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color 0.2s,color 0.2s;align-self:flex-start;}
 .theme-btn:hover{border-color:var(--accent);color:var(--text);}
@@ -67,7 +66,8 @@ a{color:inherit;}
 .proj-table tbody tr{transition:background 0.15s;}
 .proj-table tbody tr:hover{background:var(--bg2);}
 .name-cell{display:flex;align-items:center;gap:10px;}
-.proj-badge{width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0;text-decoration:none;}
+.proj-badge{width:26px;height:26px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;text-decoration:none;overflow:hidden;}
+.proj-badge img{width:26px;height:26px;display:block;}
 .proj-name{font-size:13px;color:var(--text);text-decoration:none;}
 .proj-name:hover{text-decoration:underline;text-underline-offset:3px;}
 .proj-site{font-size:12px;color:var(--text3);}
@@ -196,7 +196,6 @@ a{color:inherit;}
     </nav>
   </div>
   <div class="sb-bottom">
-    <div class="sb-font">ui-monospace</div>
     <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
       <svg id="themeIcon" viewBox="0 0 24 24"><path id="themeIconPath" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
     </button>
@@ -227,44 +226,29 @@ a{color:inherit;}
       <table class="proj-table">
         <thead><tr><th>Name</th><th>Site</th><th>Note</th></tr></thead>
         <tbody>
-          <tr><td><div class="name-cell"><a class="proj-badge" href="https://epiphany.heyitsmejosh.com" target="_blank" rel="noopener" style="background:#5B9BD5">E</a><a href="https://epiphany.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Epiphany</a></div></td><td class="proj-site">epiphany.heyitsmejosh.com</td><td class="proj-note">Finance dashboard · Web · iOS · macOS · watchOS</td></tr>
-          <tr><td><div class="name-cell"><a class="proj-badge" href="https://talli.heyitsmejosh.com" target="_blank" rel="noopener" style="background:#8B5CF6">T</a><a href="https://talli.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Talli</a></div></td><td class="proj-site">talli.heyitsmejosh.com</td><td class="proj-note">Benefits tracker · Web · iOS · watchOS</td></tr>
-          <tr><td><div class="name-cell"><a class="proj-badge" href="https://echo.heyitsmejosh.com" target="_blank" rel="noopener" style="background:#7C3AED">E</a><a href="https://echo.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Echo</a></div></td><td class="proj-site">echo.heyitsmejosh.com</td><td class="proj-note">On-device transcription · Web · iOS · macOS</td></tr>
-          <tr><td><div class="name-cell"><a class="proj-badge" href="https://nyc.heyitsmejosh.com" target="_blank" rel="noopener" style="background:#F59E0B">N</a><a href="https://nyc.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">NYC</a></div></td><td class="proj-site">nyc.heyitsmejosh.com</td><td class="proj-note">Times Square city sim · iOS · macOS</td></tr>
-          <tr><td><div class="name-cell"><a class="proj-badge" href="https://spark.heyitsmejosh.com" target="_blank" rel="noopener" style="background:#E4002B">S</a><a href="https://spark.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Spark</a></div></td><td class="proj-site">spark.heyitsmejosh.com</td><td class="proj-note">Idea forum · Web · iOS · macOS · watchOS</td></tr>
-          <tr><td><div class="name-cell"><a class="proj-badge" href="https://wiretext.heyitsmejosh.com" target="_blank" rel="noopener" style="background:#10B981">W</a><a href="https://wiretext.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Wiretext</a></div></td><td class="proj-site">wiretext.heyitsmejosh.com</td><td class="proj-note">Wireframe text editor · Web · iOS · macOS</td></tr>
-          <tr><td><div class="name-cell"><a class="proj-badge" href="https://grapher.heyitsmejosh.com" target="_blank" rel="noopener" style="background:#F97316">G</a><a href="https://grapher.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Grapher</a></div></td><td class="proj-site">grapher.heyitsmejosh.com</td><td class="proj-note">Graph visualization · Web · iOS · macOS</td></tr>
-          <tr><td><div class="name-cell"><a class="proj-badge" href="https://lingo.heyitsmejosh.com" target="_blank" rel="noopener" style="background:#06B6D4">L</a><a href="https://lingo.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Lingo</a></div></td><td class="proj-site">lingo.heyitsmejosh.com</td><td class="proj-note">Language learning · Web · iOS · macOS</td></tr>
+          <tr><td><div class="name-cell"><a class="proj-badge" href="https://epiphany.heyitsmejosh.com" target="_blank" rel="noopener"><img src="/images/icons/epiphany.svg" alt="Epiphany"></a><a href="https://epiphany.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Epiphany</a></div></td><td class="proj-site">epiphany.heyitsmejosh.com</td><td class="proj-note">Finance dashboard · Web · iOS · macOS · watchOS</td></tr>
+          <tr><td><div class="name-cell"><a class="proj-badge" href="https://talli.heyitsmejosh.com" target="_blank" rel="noopener"><img src="/images/icons/talli.svg" alt="Talli"></a><a href="https://talli.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Talli</a></div></td><td class="proj-site">talli.heyitsmejosh.com</td><td class="proj-note">Benefits tracker · Web · iOS · watchOS</td></tr>
+          <tr><td><div class="name-cell"><a class="proj-badge" href="https://echo.heyitsmejosh.com" target="_blank" rel="noopener"><img src="/images/icons/echo.svg" alt="Echo"></a><a href="https://echo.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Echo</a></div></td><td class="proj-site">echo.heyitsmejosh.com</td><td class="proj-note">On-device transcription · Web · iOS · macOS</td></tr>
+          <tr><td><div class="name-cell"><a class="proj-badge" href="https://nyc.heyitsmejosh.com" target="_blank" rel="noopener"><img src="/images/icons/nyc.svg" alt="NYC"></a><a href="https://nyc.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">NYC</a></div></td><td class="proj-site">nyc.heyitsmejosh.com</td><td class="proj-note">Times Square city sim · iOS · macOS</td></tr>
+          <tr><td><div class="name-cell"><a class="proj-badge" href="https://spark.heyitsmejosh.com" target="_blank" rel="noopener"><img src="/images/icons/spark.svg" alt="Spark"></a><a href="https://spark.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Spark</a></div></td><td class="proj-site">spark.heyitsmejosh.com</td><td class="proj-note">Idea forum · Web · iOS · macOS · watchOS</td></tr>
+          <tr><td><div class="name-cell"><a class="proj-badge" href="https://wiretext.heyitsmejosh.com" target="_blank" rel="noopener"><img src="/images/icons/wiretext.svg" alt="Wiretext"></a><a href="https://wiretext.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Wiretext</a></div></td><td class="proj-site">wiretext.heyitsmejosh.com</td><td class="proj-note">Wireframe text editor · Web · iOS · macOS</td></tr>
+          <tr><td><div class="name-cell"><a class="proj-badge" href="https://grapher.heyitsmejosh.com" target="_blank" rel="noopener"><img src="/images/icons/grapher.svg" alt="Grapher"></a><a href="https://grapher.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Grapher</a></div></td><td class="proj-site">grapher.heyitsmejosh.com</td><td class="proj-note">Graph visualization · Web · iOS · macOS</td></tr>
+          <tr><td><div class="name-cell"><a class="proj-badge" href="https://lingo.heyitsmejosh.com" target="_blank" rel="noopener"><img src="/images/icons/lingo.svg" alt="Lingo"></a><a href="https://lingo.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Lingo</a></div></td><td class="proj-site">lingo.heyitsmejosh.com</td><td class="proj-note">Language learning · Web · iOS · macOS</td></tr>
         </tbody>
       </table>
     </div>
-  </section>
-
-  <section class="section">
-    <div class="section-label">Currently</div>
-    <ul class="items">
-      <li>Preparing for <a href="https://www.capilanou.ca/programs--courses/program-listing/paralegal-studies/" target="_blank" rel="noopener">Capilano University — Paralegal Studies</a>, fall 2026</li>
-    </ul>
   </section>
 
   <section class="section" id="about">
     <div class="section-label">About</div>
     <div class="timeline">
       <div class="tl-entry tl-now">
-        <div class="tl-year">2026</div>
-        <div class="tl-body"><div class="tl-title">Paralegal Studies <span class="badge">Accepted</span></div><div class="tl-meta"><a href="https://www.capilanou.ca/programs--courses/program-listing/paralegal-studies/" target="_blank" rel="noopener">Capilano University</a> — North Vancouver</div></div>
-      </div>
-      <div class="tl-entry">
-        <div class="tl-year">2026</div>
-        <div class="tl-body"><div class="tl-title">Pre-Calc 12 <span class="badge">Completed</span></div><div class="tl-meta">Blended class. Completed June 2026.</div></div>
-      </div>
-      <div class="tl-entry tl-now">
-        <div class="tl-year">2020</div>
+        <div class="tl-year">2020–</div>
         <div class="tl-body"><div class="tl-title">Independent Engineering</div><div class="tl-meta">Full-time self-directed software work. Everything in the Work section above, plus more.</div></div>
       </div>
-      <div class="tl-entry">
-        <div class="tl-year">2020</div>
-        <div class="tl-body"><div class="tl-title">BSc Computer Science <span class="badge">Paused — pivoted</span></div><div class="tl-meta"><a href="https://www.uvic.ca/undergraduate/programs/undergraduate-programs/pages/computer-science.php" target="_blank" rel="noopener">University of Victoria</a> — left to build full-time.</div></div>
+      <div class="tl-entry tl-now">
+        <div class="tl-year">2018</div>
+        <div class="tl-body"><div class="tl-title">BSc Computer Science</div><div class="tl-meta"><a href="https://www.uvic.ca/undergraduate/programs/undergraduate-programs/pages/computer-science.php" target="_blank" rel="noopener">University of Victoria</a> — on leave, building full-time.</div></div>
       </div>
       <div class="tl-entry">
         <div class="tl-year">2017–20</div>
