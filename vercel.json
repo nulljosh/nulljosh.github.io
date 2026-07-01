@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/quotable", "destination": "https://nulljosh.github.io/quotable/", "permanent": false },
+    { "source": "/quotable/:path*", "destination": "https://nulljosh.github.io/quotable/:path*", "permanent": false }
+  ]
+}
