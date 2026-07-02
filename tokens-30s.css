@@ -1,0 +1,60 @@
+/* 1930s rubber-hose theme — portfolio only. Do not @import from other projects
+   until promoted; tokens.css stays the shared source. */
+@import url('https://fonts.googleapis.com/css2?family=Shrikhand&display=swap');
+
+:root {
+  --blue: #d9442c;            /* poster red takes the accent slot */
+  --blue-light: #f0b429;      /* mustard */
+  --navy: #1a1611;
+
+  --bg: #f4e9d3;              /* aged paper */
+  --bg2: #ece0c6;
+  --text: #1a1611;            /* ink */
+  --text2: #4a4237;
+  --text3: #8a7f6d;
+  --accent: #d9442c;
+  --accent-dot: #d9442c;
+  --border: #1a1611;
+  --border2: #d8cbae;
+
+  --font: ui-monospace, "SF Mono", Monaco, "Cascadia Code", monospace;
+  --font-display: "Shrikhand", "Cooper Black", serif;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 100px;
+
+  --shadow-sm: 2px 2px 0 var(--navy);
+  --shadow-md: 4px 4px 0 var(--navy);
+  --shadow-lg: 6px 6px 0 var(--navy);
+
+  --spring: cubic-bezier(0.34,1.56,0.64,1);
+  --ease: cubic-bezier(0.16,1,0.3,1);
+
+  --cell0: #e3d6ba;
+  --cell1: #f0b429;
+  --cell2: #e07f2e;
+  --cell3: #d9442c;
+  --cell4: #8c2318;
+}
+
+[data-theme="dark"] {
+  /* film-noir inversion */
+  --bg: #1a1611;
+  --bg2: #241f18;
+  --text: #f4e9d3;
+  --text2: rgba(244,233,211,0.65);
+  --text3: rgba(244,233,211,0.35);
+  --border: #f4e9d3;
+  --border2: rgba(244,233,211,0.15);
+  --navy: #f4e9d3;
+  --shadow-sm: 2px 2px 0 rgba(244,233,211,0.9);
+  --shadow-md: 4px 4px 0 rgba(244,233,211,0.9);
+  --shadow-lg: 6px 6px 0 rgba(244,233,211,0.9);
+  --cell0: #2e2820;
+  --cell1: #8c5a13;
+  --cell2: #c07425;
+  --cell3: #e07f2e;
+  --cell4: #f0b429;
+}

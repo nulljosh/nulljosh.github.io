@@ -21,7 +21,7 @@
 {"@context":"https://schema.org","@type":"Person","name":"Joshua Trommel","url":"https://heyitsmejosh.com","email":"jatrommel@gmail.com","jobTitle":"Software Engineer","sameAs":["https://github.com/nulljosh","https://letterboxd.com/literallyjordan/"]}
 </script>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="tokens-30s.css">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -163,6 +163,20 @@ a{color:inherit;}
 .links a:hover{border-color:var(--text2);color:var(--text);background:var(--bg2);}
 .links a::after{content:'';font-size:10px;color:var(--text3);}
 
+/* 30s rubber-hose overrides */
+body{background-image:radial-gradient(var(--border2) 1px,transparent 1px);background-size:14px 14px;}
+.sb-name{font-family:var(--font-display);font-size:18px;font-weight:400;}
+.section-label{font-family:var(--font-display);font-size:15px;color:var(--accent);text-transform:none;letter-spacing:0;}
+.proj-box,.footer-stat,.popover{border-width:2px;border-color:var(--border);}
+.proj-box{box-shadow:var(--shadow-md);}
+.footer-stats,.footer-stat{border-color:var(--border);}
+.links a{border:2px solid var(--border);box-shadow:var(--shadow-sm);transition:transform 0.15s var(--spring),box-shadow 0.15s;}
+.links a:hover{transform:translate(-2px,-2px);box-shadow:var(--shadow-md);border-color:var(--border);}
+.theme-btn{border:2px solid var(--border);color:var(--text);}
+.mascot{width:88px;height:88px;float:right;margin:-8px 0 8px 16px;animation:bounce 1.4s ease-in-out infinite;}
+@keyframes bounce{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg) translateY(-4px)}}
+@media(prefers-reduced-motion:reduce){.mascot{animation:none;}}
+
 /* Responsive */
 @media(max-width:720px){
   .sidebar{position:relative;width:100%;padding:20px 24px;border-right:none;border-bottom:1px solid var(--border);flex-direction:row;align-items:center;justify-content:space-between;}
@@ -206,6 +220,27 @@ a{color:inherit;}
 <main class="main" id="main">
 
   <section class="section">
+    <svg class="mascot" viewBox="0 0 100 100" aria-hidden="true">
+      <!-- grinning rubber-hose paintbrush -->
+      <g stroke="#1a1611" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M35 12 Q50 2 65 12 L62 38 Q50 44 38 38 Z" fill="#d9442c"/>
+        <rect x="40" y="36" width="20" height="8" rx="2" fill="#f0b429"/>
+        <path d="M42 44 h16 v30 q-8 6 -16 0 Z" fill="#f4e9d3"/>
+        <circle cx="45" cy="56" r="6" fill="#fff"/>
+        <circle cx="57" cy="56" r="6" fill="#fff"/>
+        <circle cx="46.5" cy="57.5" r="2.5" fill="#1a1611" stroke="none"/>
+        <circle cx="58.5" cy="57.5" r="2.5" fill="#1a1611" stroke="none"/>
+        <path d="M44 66 Q51 73 58 66" fill="none"/>
+        <path d="M42 50 C28 48 24 60 30 66" fill="none"/>
+        <circle cx="30" cy="68" r="5" fill="#fff"/>
+        <path d="M58 50 C74 48 78 62 70 68" fill="none"/>
+        <circle cx="70" cy="70" r="5" fill="#fff"/>
+        <path d="M46 74 C44 84 38 86 36 92" fill="none"/>
+        <ellipse cx="34" cy="93" rx="6" ry="3.5" fill="#1a1611"/>
+        <path d="M56 74 C58 84 64 86 66 92" fill="none"/>
+        <ellipse cx="68" cy="93" rx="6" ry="3.5" fill="#1a1611"/>
+      </g>
+    </svg>
     <p class="intro">
       Software engineer. Based in Langley, BC.<br>
       Building financial tools, health trackers, and native Mac apps.<br>
