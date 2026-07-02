@@ -10,8 +10,8 @@
   --bg: #f4e9d3;              /* aged paper */
   --bg2: #ece0c6;
   --text: #1a1611;            /* ink */
-  --text2: #4a4237;
-  --text3: #8a7f6d;
+  --text2: #3d362a;
+  --text3: #6e6047;
   --accent: #d9442c;
   --accent-dot: #d9442c;
   --border: #1a1611;
@@ -44,8 +44,8 @@
   --bg: #1a1611;
   --bg2: #241f18;
   --text: #f4e9d3;
-  --text2: rgba(244,233,211,0.65);
-  --text3: rgba(244,233,211,0.35);
+  --text2: rgba(244,233,211,0.78);
+  --text3: rgba(244,233,211,0.55);
   --border: #f4e9d3;
   --border2: rgba(244,233,211,0.15);
   --navy: #f4e9d3;

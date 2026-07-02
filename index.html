@@ -173,9 +173,24 @@ body{background-image:radial-gradient(var(--border2) 1px,transparent 1px);backgr
 .links a{border:2px solid var(--border);box-shadow:var(--shadow-sm);transition:transform 0.15s var(--spring),box-shadow 0.15s;}
 .links a:hover{transform:translate(-2px,-2px);box-shadow:var(--shadow-md);border-color:var(--border);}
 .theme-btn{border:2px solid var(--border);color:var(--text);}
-.mascot{width:88px;height:88px;float:right;margin:-8px 0 8px 16px;animation:bounce 1.4s ease-in-out infinite;}
-@keyframes bounce{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg) translateY(-4px)}}
-@media(prefers-reduced-motion:reduce){.mascot{animation:none;}}
+.mascot{width:96px;height:96px;float:right;margin:-8px 0 8px 16px;overflow:visible;}
+.mascot g{transform-box:fill-box;transform-origin:center;}
+.m-body{animation:m-bounce 0.9s ease-in-out infinite;transform-origin:50% 100%;}
+@keyframes m-bounce{0%,100%{transform:rotate(-3deg) scaleY(1)}25%{transform:scaleY(0.96)}50%{transform:rotate(3deg) translateY(-3px) scaleY(1.03)}75%{transform:scaleY(0.98)}}
+.m-hand-r{animation:m-wave 0.9s ease-in-out infinite;transform-origin:20% 90%;}
+@keyframes m-wave{0%,100%{transform:rotate(-18deg)}50%{transform:rotate(22deg)}}
+.m-arm-r{animation:m-armswing 0.9s ease-in-out infinite;transform-origin:10% 90%;}
+@keyframes m-armswing{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(6deg)}}
+.m-eyes{animation:m-blink 3.4s infinite;transform-origin:50% 50%;}
+@keyframes m-blink{0%,93%,100%{transform:scaleY(1)}95%,97%{transform:scaleY(0.1)}}
+.m-pupils{animation:m-look 6.8s ease-in-out infinite;}
+@keyframes m-look{0%,55%,100%{transform:translateX(0)}62%,80%{transform:translateX(2.2px)}86%,92%{transform:translateX(-1.6px)}}
+.m-leg-l{animation:m-kick 0.9s ease-in-out infinite;transform-origin:80% 0%;}
+.m-leg-r{animation:m-kick 0.9s ease-in-out infinite reverse;transform-origin:20% 0%;}
+@keyframes m-kick{0%,100%{transform:rotate(2deg)}50%{transform:rotate(-4deg)}}
+.m-shadow{animation:m-shdw 0.9s ease-in-out infinite;transform-origin:50% 50%;}
+@keyframes m-shdw{0%,100%{transform:scaleX(1)}50%{transform:scaleX(0.85)}}
+@media(prefers-reduced-motion:reduce){.mascot g,.m-shadow{animation:none;}}
 
 /* Responsive */
 @media(max-width:720px){
@@ -221,24 +236,47 @@ body{background-image:radial-gradient(var(--border2) 1px,transparent 1px);backgr
 
   <section class="section">
     <svg class="mascot" viewBox="0 0 100 100" aria-hidden="true">
-      <!-- grinning rubber-hose paintbrush -->
+      <!-- grinning rubber-hose paintbrush, cuphead-style -->
       <g stroke="#1a1611" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M35 12 Q50 2 65 12 L62 38 Q50 44 38 38 Z" fill="#d9442c"/>
-        <rect x="40" y="36" width="20" height="8" rx="2" fill="#f0b429"/>
-        <path d="M42 44 h16 v30 q-8 6 -16 0 Z" fill="#f4e9d3"/>
-        <circle cx="45" cy="56" r="6" fill="#fff"/>
-        <circle cx="57" cy="56" r="6" fill="#fff"/>
-        <circle cx="46.5" cy="57.5" r="2.5" fill="#1a1611" stroke="none"/>
-        <circle cx="58.5" cy="57.5" r="2.5" fill="#1a1611" stroke="none"/>
-        <path d="M44 66 Q51 73 58 66" fill="none"/>
-        <path d="M42 50 C28 48 24 60 30 66" fill="none"/>
-        <circle cx="30" cy="68" r="5" fill="#fff"/>
-        <path d="M58 50 C74 48 78 62 70 68" fill="none"/>
-        <circle cx="70" cy="70" r="5" fill="#fff"/>
-        <path d="M46 74 C44 84 38 86 36 92" fill="none"/>
-        <ellipse cx="34" cy="93" rx="6" ry="3.5" fill="#1a1611"/>
-        <path d="M56 74 C58 84 64 86 66 92" fill="none"/>
-        <ellipse cx="68" cy="93" rx="6" ry="3.5" fill="#1a1611"/>
+        <ellipse cx="50" cy="95" rx="22" ry="3" fill="#1a1611" stroke="none" opacity="0.15" class="m-shadow"/>
+        <g class="m-leg-l"><path d="M46 74 C44 84 38 86 36 90" fill="none"/><ellipse cx="33" cy="91" rx="7" ry="3.5" fill="#1a1611"/></g>
+        <g class="m-leg-r"><path d="M56 74 C58 84 64 86 66 90" fill="none"/><ellipse cx="69" cy="91" rx="7" ry="3.5" fill="#1a1611"/></g>
+        <g class="m-body">
+          <!-- left arm: hand on hip -->
+          <g class="m-arm-l">
+            <path d="M42 52 C30 52 26 62 32 66" fill="none"/>
+            <path d="M32 66 l6 -3 M32 66 l7 1 M32 66 l4 5" fill="none" stroke-width="2.5"/>
+            <circle cx="32" cy="66" r="5.5" fill="#fff"/>
+          </g>
+          <!-- right arm: waving glove -->
+          <g class="m-arm-r">
+            <path d="M58 52 C72 50 78 42 74 32" fill="none"/>
+            <g class="m-hand-r">
+              <circle cx="74" cy="28" r="6.5" fill="#fff"/>
+              <path d="M70 24 l-1 -4 M74 22 v-4 M78 24 l1 -4" fill="none" stroke-width="2.5"/>
+            </g>
+          </g>
+          <!-- bristle hair -->
+          <path d="M35 12 Q40 4 46 10 Q50 2 54 10 Q60 4 65 12 L62 38 Q50 44 38 38 Z" fill="#d9442c"/>
+          <rect x="39" y="36" width="22" height="8" rx="2" fill="#f0b429"/>
+          <!-- face -->
+          <path d="M42 44 h16 v30 q-8 6 -16 0 Z" fill="#f4e9d3"/>
+          <g class="m-eyes">
+            <ellipse cx="45" cy="55" rx="5.5" ry="7" fill="#fff"/>
+            <ellipse cx="57" cy="55" rx="5.5" ry="7" fill="#fff"/>
+            <g class="m-pupils" stroke="none">
+              <!-- pie-cut pupils -->
+              <path d="M46 57 a3.4 3.4 0 1 1 2.4 -5.8 l-2.4 2.4 Z" fill="#1a1611"/>
+              <path d="M58 57 a3.4 3.4 0 1 1 2.4 -5.8 l-2.4 2.4 Z" fill="#1a1611"/>
+            </g>
+          </g>
+          <!-- open grin -->
+          <path d="M43 65 Q51 74 59 65 Q51 69 43 65 Z" fill="#1a1611"/>
+          <path d="M47 68.5 q4 2.5 8 0" fill="none" stroke="#fff" stroke-width="2"/>
+          <!-- blush -->
+          <ellipse cx="41.5" cy="63" rx="2" ry="1.2" fill="#d9442c" stroke="none" opacity="0.6"/>
+          <ellipse cx="60.5" cy="63" rx="2" ry="1.2" fill="#d9442c" stroke="none" opacity="0.6"/>
+        </g>
       </g>
     </svg>
     <p class="intro">
