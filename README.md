@@ -11,7 +11,6 @@ Personal site and project hub at [heyitsmejosh.com](https://heyitsmejosh.com).
 | Path | Description |
 |------|-------------|
 | `/` | Homepage |
-| `notes/` | Personal reference site |
 
 ## Stack
 
