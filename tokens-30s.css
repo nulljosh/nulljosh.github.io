@@ -11,7 +11,7 @@
   --bg2: #dedbd3;
   --text: #1a1611;            /* ink */
   --text2: #3a3630;
-  --text3: #6b665d;
+  --text3: #5c574e;
   --accent: #d9442c;
   --accent-dot: #d9442c;
   --border: #1a1611;
@@ -45,7 +45,7 @@
   --bg2: #232120;
   --text: #f0efeb;
   --text2: rgba(240,239,235,0.78);
-  --text3: rgba(240,239,235,0.55);
+  --text3: rgba(240,239,235,0.62);
   --border: #f0efeb;
   --border2: rgba(240,239,235,0.15);
   --navy: #f0efeb;
