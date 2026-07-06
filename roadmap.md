@@ -14,4 +14,4 @@ Icons across all apps shipping to the App Store — portfolio page + ASC.
 
 ## Portfolio iOS app (scaffolded 2026-07-06)
 - [ ] Run in simulator, verify light/dark rendering (build passes; visual check pending)
-- [ ] App icon asset catalog + ASC registration if shipping
+- [x] App icon + ASC registration + build 1.0.0 (1) uploaded 2026-07-06 (app id 6788180394)
