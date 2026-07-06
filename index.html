@@ -10,7 +10,7 @@
 <link rel="canonical" href="https://heyitsmejosh.com">
 <meta name="author" content="Joshua Trommel">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#fdfdfc">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://heyitsmejosh.com">
 <meta property="og:title" content="Joshua Trommel">
@@ -21,411 +21,84 @@
 {"@context":"https://schema.org","@type":"Person","name":"Joshua Trommel","url":"https://heyitsmejosh.com","email":"jatrommel@gmail.com","jobTitle":"Software Engineer","sameAs":["https://github.com/nulljosh","https://letterboxd.com/literallyjordan/"]}
 </script>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-<link rel="stylesheet" href="tokens-30s.css">
+<link rel="stylesheet" href="tokens-sage.css">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:var(--font);font-size:14px;background:var(--bg);color:var(--text);line-height:1.6;min-height:100dvh;-webkit-font-smoothing:antialiased;transition:background 0.3s,color 0.3s;}
-::selection{background:var(--text);color:var(--bg);}
-a{color:inherit;}
+body{font-family:var(--font-body);font-size:.875rem;font-weight:460;letter-spacing:-.00563rem;line-height:1.7;background:var(--color-bg);color:var(--color-text);-webkit-font-smoothing:antialiased;}
+::selection{background:var(--color-text);color:var(--color-bg);}
+main{max-width:var(--column-width);margin:0 auto;padding:5rem 1.25rem 6rem;}
+header h1{font-size:.875rem;font-weight:460;}
+.updated{color:var(--color-secondary);margin-top:.15rem;}
+.bio{margin-top:2.5rem;display:flex;flex-direction:column;gap:1.25rem;}
+a{color:var(--color-text);text-decoration:underline;text-decoration-color:var(--color-underline);text-underline-offset:3px;transition:text-decoration-color .14s;}
+a:hover{text-decoration-color:var(--color-underline-hover);}
 
-/* Layout */
-.layout{display:flex;min-height:100dvh;}
-.sidebar{position:fixed;top:0;left:0;bottom:0;width:192px;padding:40px 28px;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:space-between;background:var(--bg);z-index:10;transition:background 0.3s;}
-.sb-name{display:block;font-size:14px;font-weight:500;color:var(--text);text-decoration:none;margin-bottom:28px;}
-.sb-nav{display:flex;flex-direction:column;gap:2px;}
-.sb-nav a{font-family:var(--font-display);font-size:13px;color:var(--text2);text-decoration:none;padding:3px 0;transition:color 0.15s;}
-.sb-nav a:hover{color:var(--text);}
-.sb-bottom{display:flex;flex-direction:column;gap:10px;}
-.sb-copy{font-size:11px;color:var(--text3);}
-.theme-btn{background:none;border:1px solid var(--border);color:var(--text3);width:26px;height:26px;border-radius:100px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color 0.2s,color 0.2s;align-self:flex-start;}
-.theme-btn:hover{border-color:var(--accent);color:var(--text);}
-.theme-btn svg{width:12px;height:12px;fill:currentColor;}
-
-.main{margin-left:192px;flex:1;padding:48px 56px 80px;max-width:calc(192px + 720px);}
-
-/* Sections */
-.section{margin-bottom:52px;}
-.section-label{font-size:11px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;}
-
-/* Intro */
-.intro{font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:20px;max-width:540px;}
-.intro a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--border);transition:text-decoration-color 0.2s;}
-.intro a:hover{text-decoration-color:var(--text);}
-.live-strip{display:flex;flex-wrap:wrap;gap:0 16px;row-gap:6px;font-size:12px;color:var(--text3);padding-top:16px;border-top:1px solid var(--border2);max-width:540px;}
-.ls-item{display:inline-flex;align-items:center;gap:5px;}
-.ls-item+.ls-item::before{content:'·';color:var(--text3);margin-right:10px;}
-.ls-val{color:var(--text2);}
-
-/* Projects table */
-.proj-box{border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden;}
-.proj-table{width:100%;border-collapse:collapse;}
-.proj-table th{text-align:left;font-size:11px;color:var(--text3);font-weight:400;padding:10px 16px;border-bottom:1px solid var(--border);background:var(--bg);letter-spacing:0.04em;}
-.proj-table td{padding:11px 16px;border-bottom:1px solid var(--border);vertical-align:middle;}
-.proj-table tbody tr:last-child td{border-bottom:none;}
-.proj-table tbody tr{transition:background 0.15s;}
-.proj-table tbody tr:hover{background:var(--bg2);}
-.name-cell{display:flex;align-items:center;gap:10px;}
-.proj-badge{width:26px;height:26px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;text-decoration:none;overflow:hidden;}
-.proj-badge img{width:26px;height:26px;display:block;}
-.proj-name{font-size:13px;color:var(--text);text-decoration:none;}
-.proj-name:hover{text-decoration:underline;text-underline-offset:3px;}
-.proj-site{font-size:12px;color:var(--text3);}
-.proj-note{font-size:12px;color:var(--text3);}
-
-/* Items */
-.items{list-style:none;border-top:1px solid var(--border);}
-.items li{padding:10px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text2);}
-.items li a{color:var(--text);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--border);transition:text-decoration-color 0.2s;}
-.items li a:hover{text-decoration-color:var(--text);}
-
-/* Timeline */
-.timeline{display:grid;grid-template-columns:88px 1fr;border-top:1px solid var(--border);}
-.tl-entry{display:contents;}
-.tl-year,.tl-body{padding:12px 0;border-bottom:1px solid var(--border);}
-.tl-year{font-size:11px;color:var(--text3);letter-spacing:0.04em;font-variant-numeric:tabular-nums;padding-right:16px;position:relative;display:flex;align-items:flex-start;padding-top:13px;}
-.tl-year::after{content:'';position:absolute;right:0;top:16px;width:5px;height:5px;border-radius:50%;background:var(--text3);transform:translateX(50%);transition:background 0.2s;}
-.tl-entry:hover .tl-year::after,.tl-entry.tl-now .tl-year::after{background:var(--accent);}
-.tl-body{padding-left:20px;border-left:1px solid var(--border);margin-left:-1px;display:flex;flex-direction:column;gap:3px;}
-.tl-title{font-size:13px;color:var(--text);font-weight:500;}
-.tl-meta{font-size:12px;color:var(--text2);line-height:1.55;}
-.tl-meta a{color:var(--text);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--border);transition:text-decoration-color 0.2s;}
-.tl-meta a:hover{text-decoration-color:var(--text);}
-.badge{display:inline-block;margin-left:6px;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--text3);padding:1px 5px;border:1px solid var(--border);border-radius:3px;vertical-align:1px;}
-
-/* Stats */
-.footer-stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border);border-left:1px solid var(--border);}
-.footer-stat{padding:16px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;flex-direction:column;gap:6px;transition:background 0.2s;min-height:88px;}
-.footer-stat:hover{background:var(--bg2);}
-.stat-label{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);display:flex;align-items:center;gap:6px;}
-.stat-label .swatch{width:5px;height:5px;border-radius:1px;background:var(--accent);}
-.stat-val{font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;}
-.stat-val a{color:var(--text);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--border);}
-.stat-val a:hover{text-decoration-color:var(--text);}
-.stat-val .num{font-weight:500;}
-.stat-val .unit{color:var(--text3);font-size:11px;margin-left:2px;}
-.stat-viz{margin-top:auto;padding-top:8px;display:flex;align-items:flex-end;gap:2px;height:16px;}
-.stat-viz .bar{flex:1;min-width:0;background:var(--cell1);border-radius:1px;transition:background 0.35s,height 0.6s;}
-.stat-viz .bar.hot{background:var(--cell3);}
-.stat-viz .bar.hottest{background:var(--accent);}
-.stat-meter{margin-top:auto;padding-top:10px;position:relative;}
-.stat-meter .track{height:2px;background:var(--border);border-radius:1px;position:relative;}
-.stat-meter .dot{position:absolute;top:50%;width:7px;height:7px;background:var(--accent);border-radius:50%;transform:translate(-50%,-50%);transition:left 0.6s;box-shadow:0 0 0 2px var(--bg);}
-.stat-meter .ticks{position:absolute;inset:auto 0 -10px 0;display:flex;justify-content:space-between;font-size:9px;color:var(--text3);font-variant-numeric:tabular-nums;}
-.w-weather{padding-bottom:18px;}
-.stat-sub{margin-top:auto;padding-top:8px;font-size:11px;color:var(--text3);font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:5px;}
-.stat-sub .sub-num{color:var(--text2);}
-.stat-sub .ago{display:inline-block;padding:1px 5px;border:1px solid var(--border);border-radius:3px;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;}
-.stat-progress{margin-top:auto;padding-top:10px;display:flex;flex-direction:column;gap:4px;}
-.stat-progress .track{height:2px;background:var(--border);border-radius:2px;overflow:hidden;position:relative;}
-.stat-progress .fill{position:absolute;left:0;top:0;bottom:0;background:var(--accent);border-radius:2px;transition:width 1s;}
-.stat-progress .labels{display:flex;justify-content:space-between;font-size:9px;color:var(--text3);font-variant-numeric:tabular-nums;}
-.skel{display:inline-block;height:12px;background:linear-gradient(90deg,var(--border) 25%,var(--bg2) 50%,var(--border) 75%);background-size:200% 100%;animation:skel 1.6s ease-in-out infinite;border-radius:2px;vertical-align:middle;}
-@keyframes skel{0%{background-position:200% 0}100%{background-position:-200% 0}}
-@media(prefers-reduced-motion:reduce){.skel{animation:none;background:var(--border);}}
-
-/* Heatmap */
-.heatmap-scroll{max-width:100%;overflow-x:auto;padding:2px;margin:0 -2px;}
-.heatmap-layout{display:flex;gap:6px;align-items:flex-start;}
-.heatmap-daylabels{display:flex;flex-direction:column;gap:var(--g,2px);flex-shrink:0;width:14px;margin-top:20px;}
-.heatmap-daylabel{height:var(--c,11px);font-size:8px;color:var(--text3);display:flex;align-items:center;justify-content:flex-end;line-height:1;}
-.heatmap-right{flex:1;min-width:0;}
-.heatmap-months{position:relative;height:16px;margin-bottom:4px;}
-.heatmap-month{position:absolute;font-size:9px;color:var(--text3);white-space:nowrap;top:0;letter-spacing:0.06em;}
-.heatmap-grid{display:grid;grid-template-rows:repeat(7,var(--c,11px));grid-auto-flow:column;gap:var(--g,2px);}
-.heatmap-cell{width:var(--c,11px);height:var(--c,11px);border-radius:2px;transition:transform 0.15s,background 0.3s;opacity:0;animation:cfade 0.3s ease forwards;}
-.heatmap-cell.active{cursor:pointer;}
-.heatmap-cell:hover{transform:scale(1.7);z-index:1;}
-@keyframes cfade{to{opacity:1}}
-@media(hover:none){.heatmap-cell:hover{transform:none;}}
-.heatmap-bottom{display:flex;align-items:flex-end;justify-content:space-between;margin-top:12px;flex-wrap:wrap;gap:10px;}
-.heatmap-meta{font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;}
-.heatmap-meta .num{font-weight:500;}
-.heatmap-meta .unit{color:var(--text2);margin-left:4px;}
-.heatmap-streak{font-size:11px;color:var(--text3);margin-top:3px;}
-.heatmap-legend{display:flex;align-items:center;gap:5px;}
-.heatmap-legend span{font-size:9px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;}
-.legend-sq{width:9px;height:9px;border-radius:2px;transition:background 0.3s;}
-
-/* Popover */
-.popover{position:fixed;z-index:200;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 14px;width:220px;animation:popin 0.15s forwards;box-shadow:var(--shadow-lg);}
-@keyframes popin{from{opacity:0;transform:scale(0.94)}to{opacity:1;transform:scale(1)}}
-.popover-date{font-size:11px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;}
-.popover-count{font-size:13px;font-weight:500;color:var(--text);margin-bottom:8px;font-variant-numeric:tabular-nums;}
-.popover-events{list-style:none;margin-bottom:2px;}
-.popover-events li{font-size:11px;color:var(--text2);padding:3px 0;line-height:1.4;}
-.popover-link{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--text3);margin-top:8px;border-top:1px solid var(--border);padding-top:8px;text-decoration:none;transition:color 0.2s;}
-.popover-link:hover{color:var(--text);}
-
-/* Links */
-.links{display:flex;flex-wrap:wrap;gap:6px;list-style:none;}
-.links a{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--text2);padding:6px 12px;border:1px solid var(--border);border-radius:100px;text-decoration:none;transition:border-color 0.2s,color 0.2s,background 0.2s;}
-.links a:hover{border-color:var(--text2);color:var(--text);background:var(--bg2);}
-.links a::after{content:'';font-size:10px;color:var(--text3);}
-
-/* 30s rubber-hose overrides */
-body{background-image:radial-gradient(var(--border2) 1px,transparent 1px);background-size:14px 14px;}
-.sb-name{font-family:var(--font-display);font-size:18px;font-weight:400;}
-.section-label{font-family:var(--font-display);font-size:15px;color:var(--accent);text-transform:none;letter-spacing:0;}
-.proj-box,.footer-stat,.popover{border-width:2px;border-color:var(--border);}
-.proj-box{box-shadow:var(--shadow-md);}
-.footer-stats,.footer-stat{border-color:var(--border);}
-.links a{border:2px solid var(--border);box-shadow:var(--shadow-sm);transition:transform 0.15s var(--spring),box-shadow 0.15s;}
-.links a:hover{transform:translate(-2px,-2px);box-shadow:var(--shadow-md);border-color:var(--border);}
-.theme-btn{border:2px solid var(--border);color:var(--text);}
-.mascot{width:96px;height:96px;float:right;margin:-8px 0 8px 16px;overflow:visible;}
-.mascot g{transform-box:fill-box;transform-origin:center;}
-.m-body{animation:m-bounce 0.9s ease-in-out infinite;transform-origin:50% 100%;}
-@keyframes m-bounce{0%,100%{transform:rotate(-3deg) scaleY(1)}25%{transform:scaleY(0.96)}50%{transform:rotate(3deg) translateY(-3px) scaleY(1.03)}75%{transform:scaleY(0.98)}}
-.m-hand-r{animation:m-wave 0.9s ease-in-out infinite;transform-origin:20% 90%;}
-@keyframes m-wave{0%,100%{transform:rotate(-18deg)}50%{transform:rotate(22deg)}}
-.m-arm-r{animation:m-armswing 0.9s ease-in-out infinite;transform-origin:10% 90%;}
-@keyframes m-armswing{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(6deg)}}
-.m-eyes{animation:m-blink 3.4s infinite;transform-origin:50% 50%;}
-@keyframes m-blink{0%,93%,100%{transform:scaleY(1)}95%,97%{transform:scaleY(0.1)}}
-.m-pupils{animation:m-look 6.8s ease-in-out infinite;}
-@keyframes m-look{0%,55%,100%{transform:translateX(0)}62%,80%{transform:translateX(2.2px)}86%,92%{transform:translateX(-1.6px)}}
-.m-leg-l{animation:m-kick 0.9s ease-in-out infinite;transform-origin:80% 0%;}
-.m-leg-r{animation:m-kick 0.9s ease-in-out infinite reverse;transform-origin:20% 0%;}
-@keyframes m-kick{0%,100%{transform:rotate(2deg)}50%{transform:rotate(-4deg)}}
-.m-shadow{animation:m-shdw 0.9s ease-in-out infinite;transform-origin:50% 50%;}
-@keyframes m-shdw{0%,100%{transform:scaleX(1)}50%{transform:scaleX(0.85)}}
-@media(prefers-reduced-motion:reduce){.mascot g,.m-shadow{animation:none;}}
-
-/* Responsive */
-@media(max-width:720px){
-  .sidebar{position:relative;width:100%;padding:20px 24px;border-right:none;border-bottom:1px solid var(--border);flex-direction:row;align-items:center;justify-content:space-between;gap:16px;}
-  .sb-top{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
-  .sb-bottom{margin-left:auto;flex-shrink:0;}
-  .sb-name{margin-bottom:0;}
-  .sb-nav{flex-direction:row;gap:18px;}
-  .sb-bottom{flex-direction:row;align-items:center;gap:10px;}
-  .sb-copy{display:none;}
-  .main{margin-left:0;padding:32px 24px 60px;max-width:100%;}
-  .layout{flex-direction:column;}
-  .footer-stats{grid-template-columns:repeat(2,1fr);}
+.list{padding-top:3rem;}
+.list h2{color:var(--color-secondary);font-size:.875rem;font-weight:460;border-bottom:1px solid var(--color-hairline);padding-bottom:.5rem;}
+.list ul{list-style:none;}
+.list li{position:relative;}
+.list li a{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.735rem 0 .735rem 6.75rem;text-decoration:none;border-bottom:1px solid var(--color-hairline);}
+.list li:last-child a{border-bottom:none;}
+.list .year{position:absolute;left:0;top:.735rem;color:var(--color-secondary);}
+.list .name{transition:opacity .14s;}
+.list .meta{color:var(--color-secondary);white-space:nowrap;flex-shrink:0;transition:opacity .14s;}
+@media screen and (min-width:520px){
+  .list ul:hover .name,.list ul:hover .meta{opacity:.3;}
+  .list li a:hover .name,.list li a:hover .meta{opacity:1;}
 }
-@media(max-width:480px){
-  .proj-table th:nth-child(2),.proj-table td:nth-child(2),
-  .proj-table th:nth-child(3),.proj-table td:nth-child(3){display:none;}
-  .footer-stats{grid-template-columns:1fr 1fr;}
+@media screen and (max-width:520px){
+  .list li a{padding-left:3rem;}
+  .list .meta{display:none;}
 }
+footer{padding-top:4rem;color:var(--color-secondary);}
+footer a{color:inherit;}
 </style>
 </head>
 <body>
-<div class="layout">
+<main>
+<header>
+  <h1>Joshua Trommel</h1>
+  <div class="updated">Langley, BC</div>
+</header>
 
-<aside class="sidebar">
-  <div class="sb-top">
-    <a href="/" class="sb-name">Joshua Trommel</a>
-    <nav class="sb-nav">
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
-      <a href="#elsewhere">Elsewhere</a>
-      <a href="mailto:jatrommel@gmail.com">Contact</a>
-    </nav>
-  </div>
-  <div class="sb-bottom">
-    <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
-      <svg id="themeIcon" viewBox="0 0 24 24"><path id="themeIconPath" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
-    </button>
-    <div class="sb-copy">© 2026</div>
-  </div>
-</aside>
-
-<main class="main" id="main">
-
-  <section class="section">
-    <svg class="mascot" viewBox="0 0 100 100" aria-hidden="true">
-      <!-- grinning rubber-hose paintbrush, cuphead-style -->
-      <g stroke="#1a1611" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-        <ellipse cx="50" cy="95" rx="22" ry="3" fill="#1a1611" stroke="none" opacity="0.15" class="m-shadow"/>
-        <g class="m-leg-l"><path d="M46 74 C44 84 38 86 36 90" fill="none"/><ellipse cx="33" cy="91" rx="7" ry="3.5" fill="#1a1611"/></g>
-        <g class="m-leg-r"><path d="M56 74 C58 84 64 86 66 90" fill="none"/><ellipse cx="69" cy="91" rx="7" ry="3.5" fill="#1a1611"/></g>
-        <g class="m-body">
-          <!-- left arm: hand on hip -->
-          <g class="m-arm-l">
-            <path d="M42 52 C30 52 26 62 32 66" fill="none"/>
-            <path d="M32 66 l6 -3 M32 66 l7 1 M32 66 l4 5" fill="none" stroke-width="2.5"/>
-            <circle cx="32" cy="66" r="5.5" fill="#fff"/>
-          </g>
-          <!-- right arm: waving glove -->
-          <g class="m-arm-r">
-            <path d="M58 52 C72 50 78 42 74 32" fill="none"/>
-            <g class="m-hand-r">
-              <circle cx="74" cy="28" r="6.5" fill="#fff"/>
-              <path d="M70 24 l-1 -4 M74 22 v-4 M78 24 l1 -4" fill="none" stroke-width="2.5"/>
-            </g>
-          </g>
-          <!-- bristle hair -->
-          <path d="M35 12 Q40 4 46 10 Q50 2 54 10 Q60 4 65 12 L62 38 Q50 44 38 38 Z" fill="#d9442c"/>
-          <rect x="39" y="36" width="22" height="8" rx="2" fill="#f0b429"/>
-          <!-- face -->
-          <path d="M42 44 h16 v30 q-8 6 -16 0 Z" fill="#f3f1ec"/>
-          <g class="m-eyes">
-            <ellipse cx="45" cy="55" rx="5.5" ry="7" fill="#fff"/>
-            <ellipse cx="57" cy="55" rx="5.5" ry="7" fill="#fff"/>
-            <g class="m-pupils" stroke="none">
-              <!-- pie-cut pupils -->
-              <path d="M46 57 a3.4 3.4 0 1 1 2.4 -5.8 l-2.4 2.4 Z" fill="#1a1611"/>
-              <path d="M58 57 a3.4 3.4 0 1 1 2.4 -5.8 l-2.4 2.4 Z" fill="#1a1611"/>
-            </g>
-          </g>
-          <!-- open grin -->
-          <path d="M43 65 Q51 74 59 65 Q51 69 43 65 Z" fill="#1a1611"/>
-          <path d="M47 68.5 q4 2.5 8 0" fill="none" stroke="#fff" stroke-width="2"/>
-          <!-- blush -->
-          <ellipse cx="41.5" cy="63" rx="2" ry="1.2" fill="#d9442c" stroke="none" opacity="0.6"/>
-          <ellipse cx="60.5" cy="63" rx="2" ry="1.2" fill="#d9442c" stroke="none" opacity="0.6"/>
-        </g>
-      </g>
-    </svg>
-    <p class="intro">
-      Software engineer. Based in Langley, BC.<br>
-      Building financial tools, health trackers, and native Mac apps.<br>
-      <a href="mailto:jatrommel@gmail.com">jatrommel@gmail.com</a> / <a href="tel:+17782014533">778-201-4533</a>.
-    </p>
-    <div class="live-strip" id="liveStrip">
-      <span class="ls-item"><span class="ls-key">loc</span> <span class="ls-val">langley, bc</span></span>
-      <span class="ls-item"><span class="ls-key">wx</span> <span class="ls-val" id="ls-wx"><span class="skel" style="width:80px"></span></span></span>
-      <span class="ls-item"><span class="ls-key">last commit</span> <span class="ls-val" id="ls-commit"><span class="skel" style="width:44px"></span></span></span>
-      <span class="ls-item"><span class="ls-key">repos</span> <span class="ls-val" id="ls-repos"><span class="skel" style="width:24px"></span></span></span>
-      <span class="ls-item"><span class="ls-key">time</span> <span class="ls-val" id="ls-time">—</span></span>
-    </div>
-  </section>
-
-  <section class="section" id="work">
-    <div class="section-label">Work</div>
-    <div class="proj-box">
-      <table class="proj-table">
-        <thead><tr><th>Name</th><th>Site</th><th>Note</th></tr></thead>
-        <tbody>
-          <tr><td><div class="name-cell"><a class="proj-badge" href="https://epiphany.heyitsmejosh.com" target="_blank" rel="noopener"><img src="images/icons/epiphany.svg" alt="Epiphany"></a><a href="https://epiphany.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Epiphany</a></div></td><td class="proj-site">epiphany.heyitsmejosh.com</td><td class="proj-note">Finance dashboard · Web · iOS · macOS · watchOS</td></tr>
-          <tr><td><div class="name-cell"><a class="proj-badge" href="https://talli.heyitsmejosh.com" target="_blank" rel="noopener"><img src="images/icons/talli.svg" alt="Talli"></a><a href="https://talli.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Talli</a></div></td><td class="proj-site">talli.heyitsmejosh.com</td><td class="proj-note">Benefits tracker · Web · iOS · watchOS</td></tr>
-          <tr><td><div class="name-cell"><a class="proj-badge" href="https://echo.heyitsmejosh.com" target="_blank" rel="noopener"><img src="images/icons/echo.png" alt="Echo"></a><a href="https://echo.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Echo</a></div></td><td class="proj-site">echo.heyitsmejosh.com</td><td class="proj-note">On-device transcription · Web · iOS · macOS</td></tr>
-          <tr><td><div class="name-cell"><a class="proj-badge" href="https://nyc.heyitsmejosh.com" target="_blank" rel="noopener"><img src="images/icons/nyc.svg" alt="NYC"></a><a href="https://nyc.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">NYC</a></div></td><td class="proj-site">nyc.heyitsmejosh.com</td><td class="proj-note">Times Square city sim · iOS · macOS</td></tr>
-          <tr><td><div class="name-cell"><a class="proj-badge" href="https://spark.heyitsmejosh.com" target="_blank" rel="noopener"><img src="images/icons/spark.svg" alt="Spark"></a><a href="https://spark.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Spark</a></div></td><td class="proj-site">spark.heyitsmejosh.com</td><td class="proj-note">Idea forum · Web · iOS · macOS · watchOS</td></tr>
-          <tr><td><div class="name-cell"><a class="proj-badge" href="https://wiretext.heyitsmejosh.com" target="_blank" rel="noopener"><img src="images/icons/wiretext.svg" alt="Wiretext"></a><a href="https://wiretext.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Wiretext</a></div></td><td class="proj-site">wiretext.heyitsmejosh.com</td><td class="proj-note">Wireframe text editor · Web · iOS · macOS</td></tr>
-          <tr><td><div class="name-cell"><a class="proj-badge" href="https://grapher.heyitsmejosh.com" target="_blank" rel="noopener"><img src="images/icons/grapher.svg" alt="Grapher"></a><a href="https://grapher.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Grapher</a></div></td><td class="proj-site">grapher.heyitsmejosh.com</td><td class="proj-note">Graph visualization · Web · iOS · macOS</td></tr>
-          <tr><td><div class="name-cell"><a class="proj-badge" href="https://lexly.heyitsmejosh.com" target="_blank" rel="noopener"><img src="images/icons/lingo.png" alt="Lexly"></a><a href="https://lexly.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Lexly</a></div></td><td class="proj-site">lexly.heyitsmejosh.com</td><td class="proj-note">Language learning · Web · iOS · macOS</td></tr>
-          <tr><td><div class="name-cell"><a class="proj-badge" href="https://healstack.heyitsmejosh.com" target="_blank" rel="noopener"><img src="images/icons/healstack.svg" alt="Healstack"></a><a href="https://healstack.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Healstack</a></div></td><td class="proj-site">healstack.heyitsmejosh.com</td><td class="proj-note">Health dashboard · Web · iOS</td></tr>
-          <tr><td><div class="name-cell"><a class="proj-badge" href="https://brief.heyitsmejosh.com" target="_blank" rel="noopener"><img src="images/icons/brief.svg" alt="Brief"></a><a href="https://brief.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Brief</a></div></td><td class="proj-site">brief.heyitsmejosh.com</td><td class="proj-note">Litigation planner · Web · iOS · macOS</td></tr>
-          <tr><td><div class="name-cell"><a class="proj-badge" href="https://quotable.heyitsmejosh.com" target="_blank" rel="noopener"><img src="images/icons/quotable.svg" alt="Quotable"></a><a href="https://quotable.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Quotable</a></div></td><td class="proj-site">quotable.heyitsmejosh.com</td><td class="proj-note">Movie-quote trivia game · Web · iOS</td></tr>
-          <tr><td><div class="name-cell"><a class="proj-badge" href="https://nimble.heyitsmejosh.com" target="_blank" rel="noopener"><img src="images/icons/nimble.svg" alt="Nimble"></a><a href="https://nimble.heyitsmejosh.com" target="_blank" rel="noopener" class="proj-name">Nimble</a></div></td><td class="proj-site">nimble.heyitsmejosh.com</td><td class="proj-note">Instant-answer search · macOS</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section class="section" id="about">
-    <div class="section-label">About</div>
-    <div class="timeline">
-      <div class="tl-entry tl-now">
-        <div class="tl-year">2020–</div>
-        <div class="tl-body"><div class="tl-title">Independent Engineering</div><div class="tl-meta">Full-time self-directed software work. Everything in the Work section above, plus more.</div></div>
-      </div>
-      <div class="tl-entry tl-now">
-        <div class="tl-year">2018</div>
-        <div class="tl-body"><div class="tl-title">BSc Computer Science</div><div class="tl-meta"><a href="https://www.uvic.ca/undergraduate/programs/undergraduate-programs/pages/computer-science.php" target="_blank" rel="noopener">University of Victoria</a> — returning for Computer Science; currently retaking Pre-Calculus 12.</div></div>
-      </div>
-      <div class="tl-entry">
-        <div class="tl-year">2017–20</div>
-        <div class="tl-body"><div class="tl-title">Apple Specialist</div><div class="tl-meta"><a href="https://macinhome.com" target="_blank" rel="noopener">Macinhome</a> + <a href="https://www.simply.ca/" target="_blank" rel="noopener">Simply Computing</a> — Vancouver area</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-label">Right now</div>
-    <div class="footer-stats">
-      <div class="footer-stat"><div class="stat-label"><span class="swatch"></span>Films</div><div class="stat-val" id="stat-films"><span class="skel" style="width:80px"></span></div><div class="stat-sub" id="sub-films"></div></div>
-      <div class="footer-stat"><div class="stat-label"><span class="swatch"></span>TV</div><div class="stat-val" id="stat-tv"><span class="skel" style="width:90px"></span></div><div class="stat-sub" id="sub-tv"></div></div>
-      <div class="footer-stat" id="fs-code"><div class="stat-label"><span class="swatch"></span>Code</div><div class="stat-val" id="stat-code"><span class="skel" style="width:60px"></span></div><div class="stat-viz" id="viz-code" aria-hidden="true"></div></div>
-      <div class="footer-stat"><div class="stat-label"><span class="swatch"></span>Writing</div><div class="stat-val" id="stat-blog"><span class="skel" style="width:110px"></span></div><div class="stat-sub" id="sub-blog"></div></div>
-      <div class="footer-stat w-weather"><div class="stat-label"><span class="swatch"></span>Weather</div><div class="stat-val" id="stat-weather"><span class="skel" style="width:110px"></span></div><div class="stat-meter" id="meter-weather" aria-hidden="true" style="display:none"><div class="track"><div class="dot" id="meter-weather-dot" style="left:50%"></div></div><div class="ticks"><span>-10°</span><span>10°</span><span>30°</span></div></div></div>
-      <div class="footer-stat"><div class="stat-label"><span class="swatch"></span>Coffee</div><div class="stat-val" id="stat-coffee"><span class="skel" style="width:75px"></span></div><div class="stat-progress"><div class="track"><div class="fill" id="coffee-fill" style="width:0%"></div></div><div class="labels"><span>Jan</span><span id="coffee-today">today</span><span>Dec</span></div></div></div>
-    </div>
-  </section>
-
-  <section class="section" id="heatmapSection">
-    <div class="section-label">Contributions <span id="hmCount">—</span></div>
-    <div class="heatmap-scroll"><div class="heatmap-layout" id="hmLayout"><div class="heatmap-daylabels" id="hmDays"></div><div class="heatmap-right" id="hmRight"><div class="heatmap-months" id="hmMonths"></div><div class="heatmap-grid" id="hmGrid"></div></div></div></div>
-    <div class="heatmap-bottom"><div><div class="heatmap-meta" id="hmMeta"></div><div class="heatmap-streak" id="hmStreak"></div></div><div class="heatmap-legend" id="hmLegend"></div></div>
-  </section>
-
-  <section class="section" id="elsewhere">
-    <div class="section-label">Elsewhere</div>
-    <ul class="links">
-      <li><a href="https://github.com/nulljosh" target="_blank" rel="noopener">GitHub</a></li>
-      <li><a href="https://journal.heyitsmejosh.com" target="_blank" rel="noopener">Blog</a></li>
-      <li><a href="https://letterboxd.com/literallyjordan/" target="_blank" rel="noopener">Letterboxd</a></li>
-      <li><a href="https://trakt.tv/users/nljs" target="_blank" rel="noopener">Trakt</a></li>
-    </ul>
-  </section>
-
-</main>
+<div class="bio">
+  <p>I&rsquo;m a software engineer building financial tools, health trackers, and native Mac apps.</p>
+  <p>I ship independent apps for web, iOS, macOS, and watchOS &mdash; everything below is live, most of it on the <a href="https://apps.apple.com/ca/developer/joshua-trommel/id6779522177" target="_blank" rel="noopener">App Store</a>.</p>
+  <p>Previously an Apple specialist at Macinhome and Simply Computing in Vancouver. Returning to the University of Victoria for computer science.</p>
+  <p>You can find me on <a href="https://github.com/nulljosh" target="_blank" rel="noopener">GitHub</a>, <a href="https://letterboxd.com/literallyjordan/" target="_blank" rel="noopener">Letterboxd</a>, and <a href="https://trakt.tv/users/nljs" target="_blank" rel="noopener">Trakt</a>, or reach me at <a href="mailto:jatrommel@gmail.com">jatrommel@gmail.com</a>.</p>
 </div>
 
-<script>
-var DAY_MS=86400000,HOUR_MS=3600000;
-function getCached(k,dur){var v=localStorage.getItem(k),t=localStorage.getItem(k+'_ts');return(v&&t&&Date.now()-parseInt(t)<dur)?v:null;}
-function setCached(k,v){localStorage.setItem(k,v);localStorage.setItem(k+'_ts',Date.now());}
-function animateCount(el,target,suffix,prefix){prefix=prefix||'';if(!('IntersectionObserver' in window)){el.innerHTML=prefix+target.toLocaleString()+suffix;return;}var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(!e.isIntersecting)return;obs.disconnect();var dur=1100,start=null;(function step(ts){if(!start)start=ts;var p=Math.min((ts-start)/dur,1),ease=1-Math.pow(1-p,3);el.innerHTML=prefix+'<span class="num">'+Math.round(ease*target).toLocaleString()+'</span>'+suffix;if(p<1)requestAnimationFrame(step);})(performance.now());});},{threshold:0.4});obs.observe(el);}
+<section class="list" id="work">
+  <h2>Work</h2>
+  <ul>
+    <li><a href="https://epiphany.heyitsmejosh.com" target="_blank" rel="noopener"><span class="year">2025</span><span class="name">Epiphany &mdash; finance dashboard</span><time class="meta">Web · iOS · macOS · watchOS</time></a></li>
+    <li><a href="https://talli.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Talli &mdash; benefits tracker</span><time class="meta">Web · iOS · watchOS</time></a></li>
+    <li><a href="https://echo.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Echo &mdash; on-device transcription</span><time class="meta">Web · iOS · macOS</time></a></li>
+    <li><a href="https://spark.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Spark &mdash; idea forum</span><time class="meta">Web · iOS · macOS · watchOS</time></a></li>
+    <li><a href="https://healstack.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Healstack &mdash; health dashboard</span><time class="meta">Web · iOS</time></a></li>
+    <li><a href="https://lexly.heyitsmejosh.com" target="_blank" rel="noopener"><span class="year">2026</span><span class="name">Lexly &mdash; language learning</span><time class="meta">Web · iOS · macOS</time></a></li>
+    <li><a href="https://brief.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Casewright &mdash; litigation planner</span><time class="meta">Web · iOS · macOS</time></a></li>
+    <li><a href="https://quotable.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Quotable &mdash; movie-quote trivia</span><time class="meta">Web · iOS</time></a></li>
+    <li><a href="https://nyc.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">NYC &mdash; Times Square city sim</span><time class="meta">iOS · macOS</time></a></li>
+    <li><a href="https://wiretext.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Wiretext &mdash; wireframe text editor</span><time class="meta">Web · iOS · macOS</time></a></li>
+    <li><a href="https://grapher.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Grapher &mdash; graph visualization</span><time class="meta">Web · iOS · macOS</time></a></li>
+    <li><a href="https://nimble.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Nimble &mdash; instant-answer search</span><time class="meta">macOS</time></a></li>
+  </ul>
+</section>
 
-var root=document.documentElement;
-var MOON='M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z';
-var SUN='M12 2a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm0 16a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0v-1a1 1 0 0 1 1-1zm10-6a1 1 0 0 1-1 1h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 1 1zM4 12a1 1 0 0 1-1 1H2a1 1 0 0 1 0-2h1a1 1 0 0 1 1 1zm14.364-6.364a1 1 0 0 1 0 1.414l-.707.707a1 1 0 1 1-1.414-1.414l.707-.707a1 1 0 0 1 1.414 0zM7.757 16.243a1 1 0 0 1 0 1.414l-.707.707a1 1 0 1 1-1.414-1.414l.707-.707a1 1 0 0 1 1.414 0zM18.364 18.364a1 1 0 0 1-1.414 0l-.707-.707a1 1 0 1 1 1.414-1.414l.707.707a1 1 0 0 1 0 1.414zM7.757 7.757a1 1 0 0 1-1.414 0l-.707-.707A1 1 0 1 1 7.05 5.636l.707.707a1 1 0 0 1 0 1.414zM12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8z';
-function applyTheme(dark){root.setAttribute('data-theme',dark?'dark':'light');var tc=document.querySelector('meta[name="theme-color"]');if(tc)tc.content=dark?'#111111':'#ffffff';var ip=document.getElementById('themeIconPath');if(ip)ip.setAttribute('d',dark?MOON:SUN);recolorHeatmap();}
-var prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
-var storedTheme=localStorage.getItem('theme');
-var isDark=storedTheme?storedTheme==='dark':prefersDark;
-applyTheme(isDark);
-var themeBtn=document.getElementById('themeBtn');
-if(themeBtn)themeBtn.addEventListener('click',function(){isDark=!isDark;applyTheme(isDark);localStorage.setItem('theme',isDark?'dark':'light');});
+<section class="list" id="writing">
+  <h2>Writing</h2>
+  <ul>
+    <li><a href="https://journal.heyitsmejosh.com/2026/07/03/june-july/"><span class="year">2026</span><span class="name">Renames and Widgets</span><time class="meta" datetime="2026-07-03">Jul 3</time></a></li>
+    <li><a href="https://journal.heyitsmejosh.com/2026/05/29/may/"><span class="name">Fold</span><time class="meta" datetime="2026-05-29">May 29</time></a></li>
+    <li><a href="https://journal.heyitsmejosh.com/2026/04/26/april/"><span class="name">Everything Connected</span><time class="meta" datetime="2026-04-26">Apr 26</time></a></li>
+    <li><a href="https://journal.heyitsmejosh.com/2026/02/20/week/"><span class="name">Boot to Prompt</span><time class="meta" datetime="2026-02-20">Feb 20</time></a></li>
+  </ul>
+</section>
 
-function updateLocalTime(){var el=document.getElementById('ls-time');if(!el)return;var d=new Date();el.textContent=d.toLocaleTimeString('en-CA',{timeZone:'America/Vancouver',hour:'2-digit',minute:'2-digit',hour12:false})+' PT';}
-updateLocalTime();setInterval(updateLocalTime,30000);
-
-function mkSignal(ms){var c=new AbortController();setTimeout(function(){c.abort();},ms);return c.signal;}
-
-async function loadFilms(){var el=document.getElementById('stat-films'),sub=document.getElementById('sub-films');var c=getCached('lb_v2',DAY_MS);if(c){el.innerHTML=c;var m=c.match(/<span class="num">([\d,]+)<\/span>/);if(m&&sub)injectWeeklyRate(sub,parseInt(m[1].replace(/,/g,'')), 'per wk avg');return;}try{var r=await fetch('/stats.json',{signal:mkSignal(6000)});if(!r.ok)throw 0;var d=await r.json();if(d.films){var n=parseInt(d.films.replace(/,/g,''));animateCount(el,n,'<span class="unit">on Letterboxd</span>');setCached('lb_v2','<span class="num">'+n.toLocaleString()+'</span><span class="unit">on Letterboxd</span>');if(sub)injectWeeklyRate(sub,n,'per wk avg');return;}}catch(e){}el.innerHTML='<span class="num">—</span><span class="unit">letterboxd</span>';}
-
-async function loadTV(){var el=document.getElementById('stat-tv'),sub=document.getElementById('sub-tv');var c=getCached('trakt_v2',DAY_MS);if(c){el.innerHTML=c;var m=c.match(/<span class="num">([\d,]+)<\/span>/);if(m&&sub)injectWeeklyRate(sub,parseInt(m[1].replace(/,/g,'')),'eps per wk');return;}try{var r=await fetch('https://api.trakt.tv/users/nljs/stats',{headers:{'Content-Type':'application/json','trakt-api-version':'2','trakt-api-key':'7701cfa6ab16986a3cce333ef21cc55c6334e3368f211f1debb646603e26ccb5'},signal:mkSignal(6000)});if(!r.ok)throw 0;var d=await r.json();var n=d.episodes&&d.episodes.watched||0;animateCount(el,n,'<span class="unit">episodes</span>');setCached('trakt_v2','<span class="num">'+n.toLocaleString()+'</span><span class="unit">episodes</span>');if(sub)injectWeeklyRate(sub,n,'eps per wk');}catch(e){el.innerHTML='<span class="num">—</span><span class="unit">episodes</span>';}}
-
-function injectWeeklyRate(el,total,label){if(!total||total<=0){el.textContent='';return;}var rate=total/(5*52);el.innerHTML='<span class="sub-num">~ '+(rate>=10?rate.toFixed(0):rate.toFixed(1))+'</span> '+label;}
-
-async function loadCode(){var el=document.getElementById('stat-code'),lsRepos=document.getElementById('ls-repos');var c=getCached('gh_v2',HOUR_MS);if(c){el.innerHTML=c;if(lsRepos){var cm=c.match(/<span class="num">([\d,]+)<\/span>/);lsRepos.textContent=cm?cm[1]:'—';}return;}try{var r=await fetch('https://api.github.com/users/nulljosh',{signal:mkSignal(6000)});if(!r.ok)throw 0;var d=await r.json();animateCount(el,d.public_repos,'<span class="unit">public repos</span>');setCached('gh_v2','<span class="num">'+d.public_repos+'</span><span class="unit">public repos</span>');if(lsRepos)lsRepos.textContent=d.public_repos;}catch(e){el.innerHTML='<span class="num">—</span><span class="unit">repos</span>';if(lsRepos)lsRepos.textContent='—';}}
-
-async function loadBlog(){var el=document.getElementById('stat-blog'),sub=document.getElementById('sub-blog');function setAgo(iso){if(!sub||!iso)return;var day=Math.floor((Date.now()-new Date(iso).getTime())/86400000);sub.innerHTML='<span class="ago">'+(day>30?Math.floor(day/30)+'mo ago':day>0?day+'d ago':'today')+'</span>';}async function tryFeed(url){var r=await fetch(url,{signal:mkSignal(6000)});if(!r.ok)throw 0;var doc=new DOMParser().parseFromString(await r.text(),'text/xml');var entry=doc.querySelector('entry');if(!entry)throw 0;var title=entry.querySelector('title').textContent;var link=entry.querySelector('link').getAttribute('href');var updated=entry.querySelector('updated')||entry.querySelector('published');el.innerHTML='';var a=document.createElement('a');a.href=link;a.textContent=title;a.target='_blank';a.rel='noopener';el.appendChild(a);if(updated)setAgo(updated.textContent);}try{await tryFeed('https://journal.heyitsmejosh.com/feed.xml');}catch(e){try{await tryFeed('https://api.allorigins.win/raw?url='+encodeURIComponent('https://journal.heyitsmejosh.com/feed.xml'));}catch(e2){el.innerHTML='<span class="num">—</span>';}}}
-
-async function loadWeather(){var el=document.getElementById('stat-weather'),elStrip=document.getElementById('ls-wx');var c=getCached('wx_v2',HOUR_MS);if(c){try{var p=JSON.parse(c);el.innerHTML=p.long;if(elStrip)elStrip.textContent=p.short;if(typeof p.t==='number'){var meter=document.getElementById('meter-weather'),dot=document.getElementById('meter-weather-dot');if(meter&&dot){meter.style.display='block';requestAnimationFrame(function(){dot.style.left=Math.max(0,Math.min(100,((p.t- -10)/45)*100))+'%';});}}return;}catch(e){}}try{var r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=49.0667&longitude=-122.6667&current=temperature_2m,weather_code&timezone=America/Vancouver&temperature_unit=celsius',{signal:mkSignal(6000)});if(!r.ok)throw 0;var d=await r.json();var t=Math.round(d.current.temperature_2m);var cond={0:'super sunny',1:'mostly sunny',2:'partly cloudy',3:'pretty grey',45:'foggy as hell',48:'foggy as hell',51:'spitting',53:'drizzling',55:'drizzling pretty good',61:'lightly raining',63:'raining',65:'pouring rain',71:'lightly snowing',73:'snowing',75:'dumping snow',80:'showery',81:'showery',82:'bucketing down',95:'stormy'};var condTxt=cond[d.current.weather_code]||'kinda mixed';var longTxt='<span class="num">'+t+'°</span><span class="unit">'+condTxt+'</span>';var shortTxt=t+'° '+(condTxt.length>16?condTxt.split(' ').slice(0,2).join(' '):condTxt);el.innerHTML=longTxt;if(elStrip)elStrip.textContent=shortTxt;var meter=document.getElementById('meter-weather'),dot=document.getElementById('meter-weather-dot');if(meter&&dot){meter.style.display='block';requestAnimationFrame(function(){dot.style.left=Math.max(0,Math.min(100,((t- -10)/45)*100))+'%';});}setCached('wx_v2',JSON.stringify({long:longTxt,short:shortTxt,t:t}));}catch(e){el.innerHTML='<span class="num">—</span>';if(elStrip)elStrip.textContent='—';}}
-
-function loadCoffee(){var el=document.getElementById('stat-coffee'),fill=document.getElementById('coffee-fill'),todayLabel=document.getElementById('coffee-today');var now=new Date(),soy=new Date(now.getFullYear(),0,1);var day=Math.floor((now-soy)/86400000)+1;var yearDays=(now.getFullYear()%4===0&&(now.getFullYear()%100!==0||now.getFullYear()%400===0))?366:365;var pct=Math.min(100,(day/yearDays)*100);animateCount(el,Math.round(day*2.5),'<span class="unit">cups in '+now.getFullYear()+'</span>');if(fill)requestAnimationFrame(function(){fill.style.width=pct+'%';});if(todayLabel)todayLabel.textContent=Math.round(pct)+'%';}
-loadCoffee();
-Promise.all([loadFilms(),loadTV(),loadCode(),loadBlog(),loadWeather()]);
-setTimeout(function(){document.querySelectorAll('.skel').forEach(function(s){if(s.parentElement&&s.parentElement.querySelector('.skel'))s.parentElement.innerHTML='<span class="num">—</span>';});},14000);
-
-async function loadLastCommit(){var el=document.getElementById('ls-commit');if(!el)return;var c=getCached('lc_v1',HOUR_MS);if(c){el.textContent=c;return;}try{var r=await fetch('https://api.github.com/users/nulljosh/events?per_page=20',{signal:mkSignal(6000)});if(!r.ok)throw 0;var evs=await r.json();var push=evs.find(function(e){return e.type==='PushEvent';});if(!push)throw 0;var ago=Date.now()-new Date(push.created_at).getTime();var min=Math.floor(ago/60000),hr=Math.floor(min/60),day=Math.floor(hr/24);var txt=day>0?day+'d ago':hr>0?hr+'h ago':Math.max(1,min)+'m ago';el.textContent=txt;setCached('lc_v1',txt);}catch(e){el.textContent='—';}}
-loadLastCommit();
-
-var hmCells=[],hmLevels=[];
-function getCellColors(){var s=getComputedStyle(document.documentElement);return[0,1,2,3,4].map(function(i){return s.getPropertyValue('--cell'+i).trim();});}
-function recolorHeatmap(){if(!hmCells||!hmCells.length)return;var colors=getCellColors();hmCells.forEach(function(c,i){c.style.background=colors[hmLevels[i]];});document.querySelectorAll('.legend-sq').forEach(function(sq){sq.style.background=colors[parseInt(sq.dataset.lvl)];});}
-
-async function fetchEvents(){var c=getCached('ghev',HOUR_MS);if(c){try{return JSON.parse(c);}catch(e){}}var all=[];try{for(var pg=1;pg<=3;pg++){var r=await fetch('https://api.github.com/users/nulljosh/events?per_page=100&page='+pg,{signal:mkSignal(8000)});if(!r.ok)break;var b=await r.json();if(!Array.isArray(b)||!b.length)break;all=all.concat(b);}setCached('ghev',JSON.stringify(all));}catch(e){}return all;}
-function buildEventMap(evs){var m={};evs.forEach(function(ev){var d=ev.created_at.split('T')[0];if(!m[d])m[d]=[];m[d].push(ev);});return m;}
-function descEvent(ev){var repo=(ev.repo&&ev.repo.name?ev.repo.name:'unknown').replace('nulljosh/','');switch(ev.type){case 'PushEvent':var n=ev.payload.commits?ev.payload.commits.length:1;return 'pushed '+n+' commit'+(n!==1?'s':'')+' to '+repo;case 'PullRequestEvent':return(ev.payload.action||'updated')+' PR in '+repo;case 'IssuesEvent':return(ev.payload.action||'updated')+' issue in '+repo;case 'CreateEvent':return 'created '+(ev.payload.ref_type||'branch')+' in '+repo;case 'ReleaseEvent':return 'released '+(ev.payload.release?ev.payload.release.tag_name:'build')+' in '+repo;default:return 'activity in '+repo;}}
-
-var activePop=null;
-function showPop(cell,contrib,events){if(activePop){activePop.remove();activePop=null;}var pop=document.createElement('div');pop.className='popover';var d=new Date(contrib.date+'T12:00:00');var ds=d.toLocaleDateString('en-CA',{month:'long',day:'numeric',year:'numeric'});pop.innerHTML='<div class="popover-date">'+ds+'</div><div class="popover-count">'+(contrib.count===0?'No contributions':'<span class="num">'+contrib.count+'</span> contribution'+(contrib.count!==1?'s':''))+'</div>';if(events&&events.length){var ul=document.createElement('ul');ul.className='popover-events';events.slice(0,4).forEach(function(ev){var li=document.createElement('li');li.textContent=descEvent(ev);ul.appendChild(li);});pop.appendChild(ul);}var a=document.createElement('a');a.href='https://github.com/nulljosh?from='+contrib.date+'&to='+contrib.date+'&tab=overview';a.target='_blank';a.rel='noopener';a.className='popover-link';a.innerHTML='<span>View on GitHub</span>';pop.appendChild(a);document.body.appendChild(pop);activePop=pop;var rect=cell.getBoundingClientRect(),pw=220,ph=pop.offsetHeight||150;var left=Math.max(8,Math.min(rect.left+rect.width/2-pw/2,window.innerWidth-pw-8));var top=(rect.top-ph-8>0)?window.scrollY+rect.top-ph-8:window.scrollY+rect.bottom+8;pop.style.left=left+'px';pop.style.top=top+'px';}
-document.addEventListener('click',function(e){if(activePop&&!activePop.contains(e.target)){activePop.remove();activePop=null;}});
-document.addEventListener('keydown',function(e){if(e.key==='Escape'&&activePop){activePop.remove();activePop=null;}});
-
-async function renderHeatmap(eventMap){var MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],DAYS=['S','M','T','W','T','F','S'];try{var res=await fetch('https://github-contributions-api.jogruber.de/v4/nulljosh?y=last',{signal:mkSignal(10000)});var data=await res.json();var contribs=data.contributions;if(!contribs||!contribs.length)throw 0;var firstDay=new Date(contribs[0].date).getDay();var cols=Math.ceil((firstDay+contribs.length)/7);var grid=document.getElementById('hmGrid'),layout=document.getElementById('hmLayout'),right=document.getElementById('hmRight'),months=document.getElementById('hmMonths'),days=document.getElementById('hmDays'),legend=document.getElementById('hmLegend'),meta=document.getElementById('hmMeta'),streak=document.getElementById('hmStreak');DAYS.forEach(function(l,i){var el=document.createElement('div');el.className='heatmap-daylabel';el.textContent=(i===1||i===3||i===5)?l:'';days.appendChild(el);});var mls=[],lastM=-1;contribs.forEach(function(c,i){var m=new Date(c.date+'T12:00:00').getMonth();if(m!==lastM){mls.push({text:MONTHS[m],col:Math.floor((firstDay+i)/7)});lastM=m;}});mls.forEach(function(ml){var s=document.createElement('span');s.className='heatmap-month';s.textContent=ml.text;s.dataset.col=ml.col;months.appendChild(s);});function size(){var w=right.clientWidth,c=Math.min(Math.floor(w/(cols+0.2*(cols-1))),12);var g=Math.max(1,Math.min(Math.floor(c*0.22),2));layout.style.setProperty('--c',c+'px');layout.style.setProperty('--g',g+'px');months.querySelectorAll('.heatmap-month').forEach(function(s){s.style.left=(parseInt(s.dataset.col)*(c+g))+'px';});}size();new ResizeObserver(size).observe(right);var colors=getCellColors(),cellIdx=0;hmCells=[];hmLevels=[];for(var i=0;i<firstDay;i++){var cell=document.createElement('div');cell.className='heatmap-cell';cell.style.background=colors[0];cell.style.animationDelay=(cellIdx*0.4)+'ms';grid.appendChild(cell);hmCells.push(cell);hmLevels.push(0);cellIdx++;}contribs.forEach(function(c){var cell=document.createElement('div');cell.className='heatmap-cell'+(c.count>0?' active':'');cell.style.background=colors[c.level];cell.style.animationDelay=(cellIdx*0.4)+'ms';if(c.count>0)cell.addEventListener('click',function(e){e.stopPropagation();showPop(cell,c,eventMap?eventMap[c.date]:null);});grid.appendChild(cell);hmCells.push(cell);hmLevels.push(c.level);cellIdx++;});var total=contribs.reduce(function(s,d){return s+d.count;},0);animateCount(meta,total,'<span class="unit">contributions · last 12 months</span>');var hmc=document.getElementById('hmCount');if(hmc)hmc.textContent=total.toLocaleString();var cur=0,longest=0,run=0;for(var i=contribs.length-1;i>=0;i--){if(contribs[i].count>0)cur++;else break;}contribs.forEach(function(c){run=c.count>0?run+1:0;longest=Math.max(longest,run);});var parts=[];if(cur>0)parts.push('current streak: '+cur+'d');if(longest>0)parts.push('longest: '+longest+'d');if(parts.length)streak.textContent=parts.join(' · ');var less=document.createElement('span');less.textContent='Less';legend.appendChild(less);var sqs=document.createElement('div');sqs.style.cssText='display:flex;gap:3px;';[0,1,2,3,4].forEach(function(lvl){var sq=document.createElement('div');sq.className='legend-sq';sq.dataset.lvl=lvl;sq.style.background=colors[lvl];sqs.appendChild(sq);});legend.appendChild(sqs);var more=document.createElement('span');more.textContent='More';legend.appendChild(more);}catch(e){var hs=document.getElementById('heatmapSection');if(hs)hs.style.display='none';}}
-fetchEvents().then(function(evs){renderHeatmap(buildEventMap(evs));});
-
-async function drawCodeSparkline(){var host=document.getElementById('viz-code');if(!host)return;try{var res=await fetch('https://github-contributions-api.jogruber.de/v4/nulljosh?y=last',{signal:mkSignal(10000)});var data=await res.json();var contribs=(data.contributions||[]).slice(-30);if(!contribs.length)return;var max=Math.max.apply(null,contribs.map(function(c){return c.count;}));host.innerHTML='';contribs.forEach(function(c,i){var bar=document.createElement('div');bar.className='bar'+(c.level>=4?' hottest':c.level>=2?' hot':'');var h=max>0?Math.max(2,Math.round((c.count/max)*14)):2;bar.style.height='0px';bar.title=c.date+': '+c.count;host.appendChild(bar);setTimeout(function(){bar.style.height=h+'px';},40+i*18);});}catch(e){}}
-setTimeout(drawCodeSparkline,400);
-</script>
+<footer>
+  <a href="mailto:jatrommel@gmail.com">jatrommel@gmail.com</a> · <a href="tel:+17782014533">778-201-4533</a> · © 2026
+</footer>
+</main>
 </body>
 </html>
