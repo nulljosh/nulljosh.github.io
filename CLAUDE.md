@@ -19,16 +19,9 @@ Static personal site for `heyitsmejosh.com`. v3.0.0.
 - `notes/` - personal reference site (styled HTML, theme toggle)
 - `scripts/` - maintenance scripts
 
-## Live API integrations
+## Style
 
-Homepage pulls live data client-side:
-- GitHub API (public repo count + contribution heatmap)
-- Letterboxd (film count via CORS proxy)
-- Trakt.tv (episode count via API)
-- Open-Meteo (weather for Langley, BC)
-- Jekyll blog feed (latest post from journal.heyitsmejosh.com)
-
-All stats cached in localStorage for 24h.
+Sage minimal theme (2026-07-06): `tokens-sage.css`, light + dark via `prefers-color-scheme`. Static page — no client-side API integrations (removed in the sage restyle).
 
 ## Working rules
 

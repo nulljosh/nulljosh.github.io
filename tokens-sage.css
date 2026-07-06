@@ -1,5 +1,5 @@
 /* sage.me-derived tokens — extracted 2026-07-06 via /vibe */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400..500&family=Newsreader:ital,opsz,wght@1,6..72,400..500&display=swap');
+/* fonts loaded via <link> in head (non-blocking), not @import */
 
 :root{
   --color-bg:#fdfdfc;
@@ -15,4 +15,18 @@
   --font-body:'Inter',-apple-system,system-ui,sans-serif;
   --font-serif:'Newsreader',Georgia,serif;
   --font-code:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,monospace;
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --color-bg:#111;
+    --color-text:#ededed;
+    --color-secondary:rgba(255,255,255,0.45);
+    --color-soft:rgba(255,255,255,0.55);
+    --color-hairline:#1f1f1f;
+    --color-hairline-strong:#2a2a2a;
+    --color-underline:#3a3a3a;
+    --color-underline-hover:#aaa;
+    --color-code-bg:#1a1a1a;
+  }
 }
