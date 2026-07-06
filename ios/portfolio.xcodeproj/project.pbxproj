@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9927F4D210D09D9AE5F2C98F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C953115CD9DB2A6AFFA71E5 /* Assets.xcassets */; };
 		B446015895C59DDEB845F726 /* PortfolioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299F9B40B6B8C93634455277 /* PortfolioApp.swift */; };
 /* End PBXBuildFile section */
 
@@ -14,6 +15,7 @@
 		0E8453FB8EA21B449EA32174 /* Portfolio-iOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "Portfolio-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		299F9B40B6B8C93634455277 /* PortfolioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioApp.swift; sourceTree = "<group>"; };
 		7CE9F659321B0168AE672521 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9C953115CD9DB2A6AFFA71E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -28,6 +30,7 @@
 		C82F656A7687198F77420185 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				9C953115CD9DB2A6AFFA71E5 /* Assets.xcassets */,
 				7CE9F659321B0168AE672521 /* Info.plist */,
 				299F9B40B6B8C93634455277 /* PortfolioApp.swift */,
 			);
@@ -50,6 +53,7 @@
 			buildConfigurationList = 73F0FCCF4BFECBB1E9EB6DCE /* Build configuration list for PBXNativeTarget "Portfolio-iOS" */;
 			buildPhases = (
 				5B4FA085ED93E2BB87D3ECD4 /* Sources */,
+				436F23701FD82109B9905AF9 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -94,6 +98,17 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		436F23701FD82109B9905AF9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9927F4D210D09D9AE5F2C98F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5B4FA085ED93E2BB87D3ECD4 /* Sources */ = {
