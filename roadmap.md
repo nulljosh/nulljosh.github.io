@@ -11,3 +11,7 @@ Icons across all apps shipping to the App Store — portfolio page + ASC.
 - [ ] Refresh/update stale app icon(s) on portfolio page — at least one shows purple where it should be dark (color/asset mismatch, fast fix)
 - [ ] Redesign icons that don't match the set's style — rule: icons mostly black/white, color sprinkled in only
 - [ ] Half the icons missing in App Store Connect across shipping apps — needs investigation (visual ASC check per app, likely upload/asset-catalog gap)
+
+## Portfolio iOS app (scaffolded 2026-07-06)
+- [ ] Run in simulator, verify light/dark rendering (build passes; visual check pending)
+- [ ] App icon asset catalog + ASC registration if shipping
