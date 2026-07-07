@@ -16,9 +16,8 @@ Icons across all apps shipping to the App Store — portfolio page + ASC.
 - [ ] Run in simulator, verify light/dark rendering (build passes; visual check pending)
 - [x] App icon + ASC registration + build 1.0.0 (1) uploaded 2026-07-06 (app id 6788180394)
 
-## Portfolio iOS — submit for review (state 2026-07-06 late)
-Done via asc: support URL, review contact (+demo=false), category UTILITIES, content rights, encryption=false, age rating all-none, copyright, free pricing (US base).
-Remaining — blocked on expired web session (`asc web` login needed):
-- [ ] `asc web apps availability create --app 6788180394 --territory "<all 175 codes from asc pricing territories list --limit 200>" --available-in-new-territories true`
-- [ ] App Privacy publish: `asc web privacy publish --app 6788180394 --confirm` (or dashboard: appstoreconnect.apple.com/apps/6788180394/appPrivacy)
-- [ ] `asc validate --app 6788180394 --version 1.0 --platform IOS` then `asc review submit --app 6788180394 --version 1.0 --confirm`
+## Portfolio iOS — submit for review (state 2026-07-06 11:35 PM)
+9/10 done. App Privacy PUBLISHED, all metadata/rating/pricing set. ONE blocker:
+- [ ] Availability: `asc web apps availability create` 404s (endpoint broken) — set once in dashboard: appstoreconnect.apple.com/apps/6788180394 → Pricing and Availability → select territories → Save
+- [ ] then `asc review submit --app 6788180394 --version 1.0 --confirm`
+New skill: ~/.claude/skills/asc-web-relogin for future web-session expiry.
