@@ -21,3 +21,6 @@ Icons across all apps shipping to the App Store — portfolio page + ASC.
 - [ ] Availability: `asc web apps availability create` 404s (endpoint broken) — set once in dashboard: appstoreconnect.apple.com/apps/6788180394 → Pricing and Availability → select territories → Save
 - [ ] then `asc review submit --app 6788180394 --version 1.0 --confirm`
 New skill: ~/.claude/skills/asc-web-relogin for future web-session expiry.
+
+## From Icons.pdf / Asc.pdf (imported 2026-07-12)
+- [ ] Portfolio app (Joshua Trommel, 6788180394): availability + App Privacy publish (web-only), then submit
