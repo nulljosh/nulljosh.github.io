@@ -10,8 +10,8 @@
 <link rel="canonical" href="https://heyitsmejosh.com">
 <meta name="author" content="Joshua Trommel">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#fdfdfc" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fcfcfc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://heyitsmejosh.com">
 <meta property="og:title" content="Joshua Trommel">
@@ -23,21 +23,28 @@
 </script>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400..500&family=Newsreader:ital,opsz,wght@1,6..72,400..500&display=swap">
-<link rel="stylesheet" href="tokens-sage.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="preload" href="fonts/Geist-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="tokens-fredrika.css">
+<script>
+const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t;
+</script>
 <style>
+@font-face{font-family:'Geist';font-weight:400;font-display:swap;src:url(fonts/Geist-Regular.woff2)format('woff2');}
+@font-face{font-family:'Geist';font-weight:500;font-display:swap;src:url(fonts/Geist-Medium.woff2)format('woff2');}
+@font-face{font-family:'Geist';font-weight:600;font-display:swap;src:url(fonts/Geist-SemiBold.woff2)format('woff2');}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:var(--font-body);font-size:.875rem;font-weight:460;letter-spacing:-.00563rem;line-height:1.7;background:var(--color-bg);color:var(--color-text);-webkit-font-smoothing:antialiased;}
+body{font-family:var(--font-body);font-size:.875rem;font-weight:400;letter-spacing:-.00563rem;line-height:1.7;background:var(--color-bg);color:var(--color-text);-webkit-font-smoothing:antialiased;}
 ::selection{background:var(--color-text);color:var(--color-bg);}
 main{max-width:var(--column-width);margin:0 auto;padding:5rem 1.25rem 6rem;}
-header h1{font-size:.875rem;font-weight:460;}
+header h1{font-family:var(--font-serif);font-style:italic;font-size:1.375rem;font-weight:400;letter-spacing:0;}
 .updated{color:var(--color-secondary);margin-top:.15rem;}
 .bio{margin-top:2.5rem;display:flex;flex-direction:column;gap:1.25rem;}
 a{color:var(--color-text);text-decoration:underline;text-decoration-color:var(--color-underline);text-underline-offset:3px;transition:text-decoration-color .14s;}
 a:hover{text-decoration-color:var(--color-underline-hover);}
 
 .list{padding-top:3rem;}
-.list h2{color:var(--color-secondary);font-size:.875rem;font-weight:460;border-bottom:1px solid var(--color-hairline);padding-bottom:.5rem;}
+.list h2{color:var(--color-secondary);font-size:.875rem;font-weight:500;border-bottom:1px solid var(--color-hairline);padding-bottom:.5rem;}
 .list ul{list-style:none;}
 .list li{position:relative;}
 .list li a{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.735rem 0 .735rem 6.75rem;text-decoration:none;border-bottom:1px solid var(--color-hairline);}
@@ -56,8 +63,10 @@ a:hover{text-decoration-color:var(--color-underline-hover);}
   .list li a{padding-left:3rem;}
   .list .meta{display:none;}
 }
-footer{padding-top:4rem;color:var(--color-secondary);}
+footer{padding-top:4rem;color:var(--color-secondary);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
 footer a{color:inherit;}
+#theme{background:none;border:none;font:inherit;color:inherit;cursor:pointer;text-decoration:underline;text-decoration-color:var(--color-underline);text-underline-offset:3px;padding:0;}
+#theme:hover{text-decoration-color:var(--color-underline-hover);}
 </style>
 </head>
 <body>
@@ -89,6 +98,9 @@ footer a{color:inherit;}
     <li><a href="https://wiretext.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Wiretext &mdash; wireframe text editor</span><time class="meta">Web · iOS · macOS</time></a></li>
     <li><a href="https://grapher.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Grapher &mdash; graph visualization</span><time class="meta">Web · iOS · macOS</time></a></li>
     <li><a href="https://nimble.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Nimble &mdash; instant-answer search</span><time class="meta">macOS</time></a></li>
+    <li><a href="https://journal.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Inkpress &mdash; weekly journal</span><time class="meta">Web · iOS</time></a></li>
+    <li><a href="https://books.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Books &mdash; reading list &amp; summaries</span><time class="meta">Web</time></a></li>
+    <li><a href="https://bcgd.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">BCGD &mdash; dashboard</span><time class="meta">Web</time></a></li>
   </ul>
 </section>
 
@@ -121,8 +133,17 @@ footer a{color:inherit;}
 </section>
 
 <footer>
-  <a href="mailto:jatrommel@gmail.com">jatrommel@gmail.com</a> · <a href="tel:+17782014533">778-201-4533</a> · © 2026
+  <span><a href="mailto:jatrommel@gmail.com">jatrommel@gmail.com</a> · <a href="tel:+17782014533">778-201-4533</a> · © 2026</span>
+  <button id="theme" type="button">Toggle theme</button>
 </footer>
 </main>
+<script>
+document.getElementById('theme').onclick=()=>{
+  const root=document.documentElement;
+  const dark=root.dataset.theme?root.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+  root.dataset.theme=dark?'light':'dark';
+  localStorage.setItem('theme',root.dataset.theme);
+};
+</script>
 </body>
 </html>
