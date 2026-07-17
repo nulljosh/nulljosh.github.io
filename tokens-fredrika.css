@@ -13,7 +13,7 @@
   --color-code-bg:#f5f5f5;
   --column-width:36.375rem;
   --radius:.625rem;
-  --font-body:'Geist',-apple-system,system-ui,sans-serif;
+  --font-body:-apple-system,system-ui,'Helvetica Neue',Helvetica,Arial,sans-serif;
   --font-serif:'Instrument Serif',Georgia,serif;
   --font-code:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,monospace;
 }
