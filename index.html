@@ -37,6 +37,11 @@ const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.them
 body{font-family:var(--font-body);font-size:.875rem;font-weight:400;letter-spacing:-.00563rem;line-height:1.7;background:var(--color-bg);color:var(--color-text);-webkit-font-smoothing:antialiased;}
 ::selection{background:var(--color-text);color:var(--color-bg);}
 main{max-width:var(--column-width);margin:0 auto;padding:5rem 1.25rem 6rem;}
+.header-row{display:flex;align-items:center;gap:1rem;}
+.avatar{flex-shrink:0;width:56px;height:56px;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 35% 30%,#5b93d6,#2e5f9e);}
+.avatar img{width:64px;height:64px;margin:-4px 0 0 -4px;animation:bob 3.2s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(3px) rotate(-4deg);}}
+@media (prefers-reduced-motion:reduce){.avatar img{animation:none;}}
 header h1{font-family:var(--font-serif);font-style:italic;font-size:1.625rem;font-weight:400;letter-spacing:-0.02em;}
 .updated{color:var(--color-secondary);margin-top:.15rem;}
 .bio{margin-top:2.5rem;display:flex;flex-direction:column;gap:1.25rem;}
@@ -73,9 +78,14 @@ footer a{color:inherit;}
 </head>
 <body>
 <main>
-<header>
-  <h1>Joshua Trommel</h1>
-  <div class="updated">Langley, BC</div>
+<header class="header-row">
+  <div class="avatar" aria-hidden="true">
+    <img src="images/memoji-face.png" width="64" height="64" alt="">
+  </div>
+  <div>
+    <h1>Joshua Trommel</h1>
+    <div class="updated">Langley, BC</div>
+  </div>
 </header>
 
 <div class="bio">
