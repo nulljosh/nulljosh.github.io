@@ -24,7 +24,7 @@ let work = [
     Item(year: "", name: "Spark — idea forum", meta: "Web · iOS · macOS · watchOS", url: "https://spark.heyitsmejosh.com"),
     Item(year: "", name: "Healstack — health dashboard", meta: "Web · iOS", url: "https://healstack.heyitsmejosh.com"),
     Item(year: "2026", name: "Lexly — language learning", meta: "Web · iOS · macOS", url: "https://lexly.heyitsmejosh.com"),
-    Item(year: "", name: "Casewright — litigation planner", meta: "Web · iOS · macOS", url: "https://brief.heyitsmejosh.com"),
+    Item(year: "", name: "Litigate — litigation planner", meta: "Web · iOS · macOS", url: "https://litigate.heyitsmejosh.com"),
     Item(year: "", name: "Quotable — movie-quote trivia", meta: "Web · iOS", url: "https://quotable.heyitsmejosh.com"),
     Item(year: "", name: "NYC — Times Square city sim", meta: "iOS · macOS", url: "https://nyc.heyitsmejosh.com"),
     Item(year: "", name: "Wiretext — wireframe text editor", meta: "Web · iOS · macOS", url: "https://wiretext.heyitsmejosh.com"),
