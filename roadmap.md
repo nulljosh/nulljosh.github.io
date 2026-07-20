@@ -27,4 +27,4 @@ New skill: ~/.claude/skills/asc-web-relogin for future web-session expiry.
 
 ## From Portfolio.pdf (imported 2026-07-19)
 - [ ] Icon still broken in TestFlight for the Portfolio iOS app (6788180394) — ship the icon fix (separate from the availability/App Privacy blocker already tracked above).
-- [ ] Refresh project dates shown on the portfolio site — user believes most/all should read 2026 ("I've been building projects for the last year or so, and it's half way through this year"), flagged a few might still be dated last year. Needs a pass through index.html's project entries to check/correct year stamps.
+- [x] Refresh project dates — audited 2026-07-19: only Epiphany was wrong (2025→2026, repo first commit is 2026); 2017/2018/2020/2024 entries are job history, correct as-is
