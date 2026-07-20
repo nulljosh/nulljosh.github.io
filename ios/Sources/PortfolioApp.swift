@@ -1,13 +1,5 @@
 import SwiftUI
 
-// Sage theme — mirrors tokens-sage.css (light #fdfdfc/#111, dark #111/#ededed)
-enum Theme {
-    static let bg = Color(UIColor { $0.userInterfaceStyle == .dark ? UIColor(white: 0.067, alpha: 1) : UIColor(red: 0.992, green: 0.992, blue: 0.988, alpha: 1) })
-    static let text = Color(UIColor { $0.userInterfaceStyle == .dark ? UIColor(white: 0.93, alpha: 1) : UIColor(white: 0.067, alpha: 1) })
-    static let secondary = Color(UIColor { $0.userInterfaceStyle == .dark ? UIColor(white: 1, alpha: 0.45) : UIColor(white: 0, alpha: 0.4) })
-    static let hairline = Color(UIColor { $0.userInterfaceStyle == .dark ? UIColor(white: 0.122, alpha: 1) : UIColor(white: 0.949, alpha: 1) })
-}
-
 struct Item: Identifiable {
     let id = UUID()
     let year: String
@@ -51,81 +43,88 @@ let writing = [
     Item(year: "", name: "Boot to Prompt", meta: "Feb 20", url: "https://journal.heyitsmejosh.com/2026/02/20/week/"),
 ]
 
-struct SectionList: View {
-    let title: String
-    let items: [Item]
+struct ItemRow: View {
+    let item: Item
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Text(title)
-                .foregroundStyle(Theme.secondary)
-                .padding(.bottom, 8)
-            Rectangle().fill(Theme.hairline).frame(height: 1)
-            ForEach(Array(items.enumerated()), id: \.element.id) { i, item in
-                row(item)
-                if i < items.count - 1 {
-                    Rectangle().fill(Theme.hairline).frame(height: 1)
-                }
+        HStack(alignment: .firstTextBaseline, spacing: 10) {
+            if !item.year.isEmpty {
+                Text(item.year)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .frame(width: 36, alignment: .leading)
+            }
+            VStack(alignment: .leading, spacing: 2) {
+                Text(item.name)
+                    .font(.body)
+                Text(item.meta)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            if item.url != nil {
+                Spacer()
+                Image(systemName: "arrow.up.right")
+                    .font(.caption)
+                    .foregroundStyle(.tertiary)
             }
         }
-        .padding(.top, 40)
-    }
-
-    @ViewBuilder
-    func row(_ item: Item) -> some View {
-        let content = HStack(alignment: .firstTextBaseline, spacing: 8) {
-            Text(item.year)
-                .foregroundStyle(Theme.secondary)
-                .frame(width: 44, alignment: .leading)
-            Text(item.name)
-                .foregroundStyle(Theme.text)
-                .multilineTextAlignment(.leading)
-            Spacer(minLength: 8)
-            Text(item.meta)
-                .foregroundStyle(Theme.secondary)
-                .lineLimit(1)
-        }
-        .padding(.vertical, 11)
-
-        if let url = item.url.flatMap(URL.init) {
-            Link(destination: url) { content }
-        } else {
-            content
-        }
+        .padding(.vertical, 4)
     }
 }
 
 struct ContentView: View {
+    @Environment(\.openURL) private var openURL
+
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 0) {
-                Text("Joshua Trommel")
-                Text("Langley, BC").foregroundStyle(Theme.secondary).padding(.top, 2)
-
-                VStack(alignment: .leading, spacing: 18) {
-                    Text("I'm a software engineer building financial tools, health trackers, and native Mac apps.")
-                    Text("I ship independent apps for web, iOS, macOS, and watchOS — everything below is live, most of it on the App Store.")
-                    Text("Previously an Apple specialist at Macinhome and Simply Computing in Vancouver. Returning to the University of Victoria for computer science.")
+        NavigationStack {
+            List {
+                Section {
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text("Joshua Trommel")
+                            .font(.title2.bold())
+                        Text("Langley, BC")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                        Text("Software engineer building financial tools, health trackers, and native Mac apps. Shipping independent apps for web, iOS, macOS, and watchOS — everything below is live, most of it on the App Store.")
+                            .font(.callout)
+                            .foregroundStyle(.secondary)
+                    }
+                    .padding(.vertical, 8)
                 }
-                .padding(.top, 36)
 
-                SectionList(title: "Work", items: work)
-                SectionList(title: "Experience", items: experience)
-                SectionList(title: "Education", items: education)
-                SectionList(title: "Writing", items: writing)
+                section("Work", work)
+                section("Experience", experience)
+                section("Education", education)
+                section("Writing", writing)
 
-                Text("jatrommel@gmail.com · 778-201-4533 · © 2026")
-                    .foregroundStyle(Theme.secondary)
-                    .padding(.top, 56)
+                Section {
+                    Text("jatrommel@gmail.com · 778-201-4533")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                }
             }
-            .font(.system(size: 14))
-            .foregroundStyle(Theme.text)
-            .padding(.horizontal, 20)
-            .padding(.top, 60)
-            .padding(.bottom, 80)
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .listStyle(.insetGrouped)
+            .navigationTitle("Portfolio")
+            .navigationBarTitleDisplayMode(.large)
         }
-        .background(Theme.bg.ignoresSafeArea())
+    }
+
+    @ViewBuilder
+    private func section(_ title: String, _ items: [Item]) -> some View {
+        Section(title) {
+            ForEach(items) { item in
+                if let urlString = item.url, let url = URL(string: urlString) {
+                    Button {
+                        openURL(url)
+                    } label: {
+                        ItemRow(item: item)
+                    }
+                    .tint(.primary)
+                } else {
+                    ItemRow(item: item)
+                }
+            }
+        }
     }
 }
 
