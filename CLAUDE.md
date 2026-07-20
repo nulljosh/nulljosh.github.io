@@ -21,7 +21,7 @@ Static personal site for `heyitsmejosh.com`. v3.0.0.
 
 ## Style
 
-Sage minimal theme (2026-07-06): `tokens-sage.css`, light + dark via `prefers-color-scheme`. Static page — no client-side API integrations (removed in the sage restyle).
+Fredrika restyle (2026-07-13): `tokens-fredrika.css`, Geist + Instrument Serif, theme toggle, light + dark via `prefers-color-scheme`. Sage (`tokens-sage.css`) retired. Static page — no client-side API integrations.
 
 ## Working rules
 

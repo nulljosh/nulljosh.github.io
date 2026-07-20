@@ -4,11 +4,11 @@
 - [x] Cuphead-ify mascot — pie-cut pupils, waving glove, blink/look/kick animations (2026-07-02)
 - [x] Improve readability — bumped --text2/--text3 contrast in light + dark modes (2026-07-02)
 - [x] ~~Roll out 30s theme to other projects~~ — superseded by sage.me minimal restyle (tokens-sage.css, 2026-07-06)
-- [ ] If sage theme sticks: full journal merge into portfolio (post pages need the theme too)
+- [x] ~~If sage theme sticks: full journal merge into portfolio~~ — moot: sage itself was superseded by the fredrika restyle (tokens-fredrika.css, 2026-07-13, confirmed live in index.html); verified 2026-07-20
 
 ## From icons-bugs.pdf (imported 2026-06-30)
 Icons across all apps shipping to the App Store — portfolio page + ASC.
-- [ ] Refresh/update stale app icon(s) on portfolio page — at least one shows purple where it should be dark (color/asset mismatch, fast fix)
+- [ ] Refresh/update stale app icon(s) on portfolio page — at least one shows purple where it should be dark (color/asset mismatch, fast fix). Checked 2026-07-20: index.html doesn't currently reference any app-icon images at all, and the iOS AppIcon.appiconset (icon-1024.png) is structurally fine (1024x1024, no alpha) — needs a visual/on-device check to find where this "purple" icon actually lives, can't verify blind.
 - [ ] Redesign icons that don't match the set's style — rule: icons mostly black/white, color sprinkled in only
 - [ ] Half the icons missing in App Store Connect across shipping apps — needs investigation (visual ASC check per app, likely upload/asset-catalog gap)
 
