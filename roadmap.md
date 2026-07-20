@@ -24,3 +24,7 @@ New skill: ~/.claude/skills/asc-web-relogin for future web-session expiry.
 
 ## From Icons.pdf / Asc.pdf (imported 2026-07-12)
 - [ ] Portfolio app (Joshua Trommel, 6788180394): availability + App Privacy publish (web-only), then submit
+
+## From Portfolio.pdf (imported 2026-07-19)
+- [ ] Icon still broken in TestFlight for the Portfolio iOS app (6788180394) — ship the icon fix (separate from the availability/App Privacy blocker already tracked above).
+- [ ] Refresh project dates shown on the portfolio site — user believes most/all should read 2026 ("I've been building projects for the last year or so, and it's half way through this year"), flagged a few might still be dated last year. Needs a pass through index.html's project entries to check/correct year stamps.
