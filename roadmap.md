@@ -20,13 +20,10 @@ Icons across all apps shipping to the App Store — portfolio page + ASC.
 - [x] App icon + ASC registration + build 1.0.0 (1) uploaded 2026-07-06 (app id 6788180394)
 
 ## Portfolio iOS — submit for review (state 2026-07-06 11:35 PM)
-9/10 done. App Privacy PUBLISHED, all metadata/rating/pricing set. ONE blocker:
-- [ ] Availability: `asc web apps availability create` 404s (endpoint broken) — set once in dashboard: appstoreconnect.apple.com/apps/6788180394 → Pricing and Availability → select territories → Save. Blocked: dashboard-only, no CLI path (confirmed dead-end per project_asc_availability_deadend).
-- [ ] then `asc review submit --app 6788180394 --version 1.0 --confirm` — blocked on availability above.
-New skill: ~/.claude/skills/asc-web-relogin for future web-session expiry.
+- [x] Availability + submit — RESOLVED 2026-07-21: the "404/dashboard-only" dead-end was stale. `asc web apps availability create` now just requires `--territory` (was previously called without it); re-run showed availability already existed for app 6788180394. Version 1.0 confirmed **WAITING_FOR_REVIEW** (submitted previously, roadmap was out of date — no new submission needed).
 
 ## From Icons.pdf / Asc.pdf (imported 2026-07-12)
-- [ ] Portfolio app (Joshua Trommel, 6788180394): availability + App Privacy publish (web-only), then submit — blocked, same dashboard-only availability wall as above.
+- [x] Portfolio app (Joshua Trommel, 6788180394): availability + App Privacy publish, submit — done, see above.
 
 ## From Portfolio.pdf (imported 2026-07-19)
 - [x] Icon still broken in TestFlight for the Portfolio iOS app (6788180394) — root-caused 2026-07-20: `scripts/make-appicon.sh` regeneration produced a changed `icon-1024.png` (stale/mismatched PNG was checked in). Source fixed + committed; still needs a new archive/build/upload via `asc xcode archive`/`asc build upload` to actually update TestFlight — that build/upload step not run this pass (heavy Xcode work out of scope for this sweep).
