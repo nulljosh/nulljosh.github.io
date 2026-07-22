@@ -1,11 +1,5 @@
 # Portfolio Roadmap
 
-## 30s rubber-hose theme (shipped 2026-07-01)
-- [x] Cuphead-ify mascot — pie-cut pupils, waving glove, blink/look/kick animations (2026-07-02)
-- [x] Improve readability — bumped --text2/--text3 contrast in light + dark modes (2026-07-02)
-- [x] ~~Roll out 30s theme to other projects~~ — superseded by sage.me minimal restyle (tokens-sage.css, 2026-07-06)
-- [x] ~~If sage theme sticks: full journal merge into portfolio~~ — moot: sage itself was superseded by the fredrika restyle (tokens-fredrika.css, 2026-07-13, confirmed live in index.html); verified 2026-07-20
-
 ## From icons-bugs.pdf (imported 2026-06-30)
 Icons across all apps shipping to the App Store — portfolio page + ASC.
 - [ ] Refresh/update stale app icon(s) on portfolio page — at least one shows purple where it should be dark. Still unverified 2026-07-20: needs a visual/on-device check (no icon references in index.html to fix directly), blocked without simulator/screenshot access.
@@ -17,14 +11,3 @@ Icons across all apps shipping to the App Store — portfolio page + ASC.
 
 ## Portfolio iOS app (scaffolded 2026-07-06)
 - [ ] Run in simulator, verify light/dark rendering (build passes; visual check pending) — blocked: skipping simulator by default per user preference, needs an explicit ask.
-- [x] App icon + ASC registration + build 1.0.0 (1) uploaded 2026-07-06 (app id 6788180394)
-
-## Portfolio iOS — submit for review (state 2026-07-06 11:35 PM)
-- [x] Availability + submit — RESOLVED 2026-07-21: the "404/dashboard-only" dead-end was stale. `asc web apps availability create` now just requires `--territory` (was previously called without it); re-run showed availability already existed for app 6788180394. Version 1.0 confirmed **WAITING_FOR_REVIEW** (submitted previously, roadmap was out of date — no new submission needed).
-
-## From Icons.pdf / Asc.pdf (imported 2026-07-12)
-- [x] Portfolio app (Joshua Trommel, 6788180394): availability + App Privacy publish, submit — done, see above.
-
-## From Portfolio.pdf (imported 2026-07-19)
-- [x] Icon still broken in TestFlight for the Portfolio iOS app (6788180394) — root-caused 2026-07-20: `scripts/make-appicon.sh` regeneration produced a changed `icon-1024.png` (stale/mismatched PNG was checked in). Source fixed + committed; still needs a new archive/build/upload via `asc xcode archive`/`asc build upload` to actually update TestFlight — that build/upload step not run this pass (heavy Xcode work out of scope for this sweep).
-- [x] Refresh project dates — audited 2026-07-19: only Epiphany was wrong (2025→2026, repo first commit is 2026); 2017/2018/2020/2024 entries are job history, correct as-is
