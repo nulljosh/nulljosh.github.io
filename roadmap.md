@@ -11,3 +11,8 @@ Icons across all apps shipping to the App Store — portfolio page + ASC.
 
 ## Portfolio iOS app (scaffolded 2026-07-06)
 - [ ] Run in simulator, verify light/dark rendering (build passes; visual check pending) — blocked: skipping simulator by default per user preference, needs an explicit ask.
+
+## Deferred (2026-07-21)
+- [ ] Custom SVG piece-level animation of the Animoji (e.g. animate.css-style or custom)
+- [ ] Port the Animoji float/animation to iOS app
+- [ ] Automatic project name/URL refresh in the site when a project is renamed
