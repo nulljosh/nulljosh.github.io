@@ -16,3 +16,9 @@ Icons across all apps shipping to the App Store — portfolio page + ASC.
 - [ ] Custom SVG piece-level animation of the Animoji (e.g. animate.css-style or custom)
 - [ ] Port the Animoji float/animation to iOS app
 - [ ] Automatic project name/URL refresh in the site when a project is renamed
+
+## Ingested 2026-07-25
+- [ ] Books (now Spine) and Spark links 404 — repo names changed and broke them.
+- [ ] Animoji still has a white outline in dark mode — prior fix attempts (hours spent) unsuccessful.
+- [ ] Update education section: KPU for a year (prerequisites incl. Pre-Calc 12 equivalent), then 3 years at SFU, possibly a finance minor/major after.
+- [ ] Fix experience section href links — heyitsmejosh.com entry should link to "#" not GitHub; remaining entries should link to their own sites (bcgd, simply, macinhome).
