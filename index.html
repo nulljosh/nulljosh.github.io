@@ -49,12 +49,7 @@ main{max-width:var(--column-width);margin:0 auto;padding:5rem 1.25rem 6rem;}
   75%{transform:translateY(-4px) rotate(1deg) scale(1.015);}
   88%{transform:translateY(-1px) rotate(-3deg) scale(.995);}
 }
-.avatar .tongue{position:absolute;left:34.4%;top:64%;width:31%;transform-origin:50% 0%;transform:scaleY(0);animation:blep 9s ease-in-out infinite;}
-@keyframes blep{
-  0%,88%,100%{transform:scaleY(0);}
-  91%,96%{transform:scaleY(1);}
-}
-@media (prefers-reduced-motion:reduce){.avatar img{animation:none;}.avatar .tongue{animation:none;transform:scaleY(0);}}
+@media (prefers-reduced-motion:reduce){.avatar img{animation:none;}}
 header h1{font-family:var(--font-body);font-size:1.625rem;font-weight:600;letter-spacing:-0.02em;}
 .updated{color:var(--color-secondary);margin-top:.15rem;}
 .bio{margin-top:2.5rem;display:flex;flex-direction:column;gap:1.25rem;}
@@ -94,7 +89,6 @@ footer a{color:inherit;}
 <header>
   <div class="avatar" id="avatar" aria-hidden="true">
     <img src="images/memoji-face-2.png" width="88" height="88" alt="">
-    <svg class="tongue" viewBox="0 0 40 20"><path d="M2,0 Q2,18 20,18 Q38,18 38,0 Z" fill="#d9636f"/></svg>
   </div>
   <h1>Joshua Trommel</h1>
   <div class="updated">Langley, BC</div>
