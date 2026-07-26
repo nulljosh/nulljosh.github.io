@@ -18,7 +18,7 @@ Icons across all apps shipping to the App Store — portfolio page + ASC.
 - [ ] Automatic project name/URL refresh in the site when a project is renamed
 
 ## Ingested 2026-07-25
-- [ ] Books (now Spine) and Spark links 404 — repo names changed and broke them.
+- [x] Books (now Spine) and Spark links 404 — repo names changed and broke them. Fixed 2026-07-25: `books.` → `spine.heyitsmejosh.com` (+ label "Books" → "Spine"), `spark.` → `sparkjar.heyitsmejosh.com`; both were DNS-dead, now curl 200. Mirrored in `ios/Sources/PortfolioApp.swift`. All 16 project links re-verified 200.
 - [ ] Animoji still has a white outline in dark mode — prior fix attempts (hours spent) unsuccessful.
-- [ ] Update education section: KPU for a year (prerequisites incl. Pre-Calc 12 equivalent), then 3 years at SFU, possibly a finance minor/major after.
-- [ ] Fix experience section href links — heyitsmejosh.com entry should link to "#" not GitHub; remaining entries should link to their own sites (bcgd, simply, macinhome).
+- [x] Update education section: KPU for a year (prerequisites incl. Pre-Calc 12 equivalent), then 3 years at SFU, possibly a finance minor/major after. Done 2026-07-25: replaced the UVic entry with SFU (2027, "3 years · possible finance minor") + KPU (2026, "incl. Pre-Calculus 12"); also fixed the stale "Returning to the University of Victoria" line in the intro paragraph. Mirrored in the iOS app.
+- [x] Fix experience section href links — heyitsmejosh.com entry should link to "#" not GitHub; remaining entries should link to their own sites (bcgd, simply, macinhome). Done 2026-07-25: heyitsmejosh.com → `#`; Best Choice Garage Doors → bcgaragedoors.ca, Simply Computing → simply.ca, Macinhome → macinhome.com (all verified 200). Mirrored as `url:` values in the iOS app.

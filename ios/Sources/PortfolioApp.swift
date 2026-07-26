@@ -13,7 +13,7 @@ let work = [
     Item(year: "2025", name: "Epiphany — finance dashboard", meta: "Web · iOS · macOS · watchOS", url: "https://epiphany.heyitsmejosh.com"),
     Item(year: "", name: "Talli — benefits tracker", meta: "Web · iOS · watchOS", url: "https://talli.heyitsmejosh.com"),
     Item(year: "", name: "Echo — on-device transcription", meta: "Web · iOS · macOS", url: "https://echo.heyitsmejosh.com"),
-    Item(year: "", name: "Spark — idea forum", meta: "Web · iOS · macOS · watchOS", url: "https://spark.heyitsmejosh.com"),
+    Item(year: "", name: "Spark — idea forum", meta: "Web · iOS · macOS · watchOS", url: "https://sparkjar.heyitsmejosh.com"),
     Item(year: "", name: "Healstack — health dashboard", meta: "Web · iOS", url: "https://healstack.heyitsmejosh.com"),
     Item(year: "2026", name: "Lexly — language learning", meta: "Web · iOS · macOS", url: "https://lexly.heyitsmejosh.com"),
     Item(year: "", name: "Litigate — litigation planner", meta: "Web · iOS · macOS", url: "https://litigate.heyitsmejosh.com"),
@@ -26,14 +26,15 @@ let work = [
 
 let experience = [
     Item(year: "2024", name: "Independent software developer", meta: "2024 – present"),
-    Item(year: "2020", name: "Customer service & inventory — Best Choice Garage Doors", meta: "2020 – 2026"),
-    Item(year: "2018", name: "Mac specialist — Simply Computing", meta: "2018 – 2019"),
-    Item(year: "2017", name: "Mobile consultant — Macinhome", meta: "2017 – 2018"),
+    Item(year: "2020", name: "Customer service & inventory — Best Choice Garage Doors", meta: "2020 – 2026", url: "https://bcgaragedoors.ca"),
+    Item(year: "2018", name: "Mac specialist — Simply Computing", meta: "2018 – 2019", url: "https://www.simply.ca"),
+    Item(year: "2017", name: "Mobile consultant — Macinhome", meta: "2017 – 2018", url: "https://www.macinhome.com"),
 ]
 
 let education = [
-    Item(year: "2026", name: "University of Victoria — BSc Computer Science", meta: "returning"),
-    Item(year: "", name: "BCIT — A+ hardware certification coursework", meta: ""),
+    Item(year: "2027", name: "Simon Fraser University — BSc Computer Science", meta: "3 years · possible finance minor", url: "https://www.sfu.ca"),
+    Item(year: "2026", name: "Kwantlen Polytechnic University — prerequisite year", meta: "incl. Pre-Calculus 12", url: "https://www.kpu.ca"),
+    Item(year: "", name: "BCIT — A+ hardware certification coursework", meta: "", url: "https://www.bcit.ca"),
 ]
 
 let writing = [
