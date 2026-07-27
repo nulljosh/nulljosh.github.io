@@ -18,7 +18,7 @@ Icons across all apps shipping to the App Store — portfolio page + ASC.
 - [ ] Automatic project name/URL refresh in the site when a project is renamed
 
 ## From Apple Note (imported 2026-07-26)
-- [x] "Remove the Animoji background without keying out the eyes" — already satisfied: `images/memoji-face-2.png` is the current avatar, a clean blue-circle crop with 0 near-white edge pixels (see 2026-07-25 outline fix below), no photo background left to remove.
+- [x] "Remove the Animoji background without keying out the eyes" — DONE 2026-07-27: blue circle background removed from `images/memoji-face-2.png` using border flood-fill instead of color key, preserving blue in eyes/glasses. Deployed.
 
 ## Ingested 2026-07-25
 - [x] Books (now Spine) and Spark links 404 — repo names changed and broke them. Fixed 2026-07-25: `books.` → `spine.heyitsmejosh.com` (+ label "Books" → "Spine"), `spark.` → `sparkjar.heyitsmejosh.com`; both were DNS-dead, now curl 200. Mirrored in `ios/Sources/PortfolioApp.swift`. All 16 project links re-verified 200.
