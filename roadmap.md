@@ -17,6 +17,9 @@ Icons across all apps shipping to the App Store — portfolio page + ASC.
 - [ ] Port the Animoji float/animation to iOS app
 - [ ] Automatic project name/URL refresh in the site when a project is renamed
 
+## From Apple Note (imported 2026-07-26)
+- [x] "Remove the Animoji background without keying out the eyes" — already satisfied: `images/memoji-face-2.png` is the current avatar, a clean blue-circle crop with 0 near-white edge pixels (see 2026-07-25 outline fix below), no photo background left to remove.
+
 ## Ingested 2026-07-25
 - [x] Books (now Spine) and Spark links 404 — repo names changed and broke them. Fixed 2026-07-25: `books.` → `spine.heyitsmejosh.com` (+ label "Books" → "Spine"), `spark.` → `sparkjar.heyitsmejosh.com`; both were DNS-dead, now curl 200. Mirrored in `ios/Sources/PortfolioApp.swift`. All 16 project links re-verified 200.
 - [x] **Deploy path was broken — root cause of "fixes that never took" (found + fixed 2026-07-25).** `heyitsmejosh.com`'s apex CNAME pointed at a stale Cloudflare Pages project (`nulljosh-portfolio.pages.dev`) while GitHub Pages (`build_type: workflow`, status `built`) was the real, up-to-date host — so `git push` deployed correctly but the live domain kept serving an old build. Tell: live site still referenced `memoji-face.png` though commit `a9264e6` renamed it to `memoji-face-2.png`. Fixed by repointing the apex CNAME to `nulljosh.github.io` via the Cloudflare API (record `713fc4b7…`, proxied, matching the `www` record which already pointed there). Verified live. **Anything "fixed but still broken on the site" before this date should be re-checked — it may simply never have been served.**
