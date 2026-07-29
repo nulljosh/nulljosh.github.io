@@ -15,7 +15,7 @@ Icons across all apps shipping to the App Store — portfolio page + ASC.
 ## Deferred (2026-07-21)
 - [ ] Custom SVG piece-level animation of the Animoji (e.g. animate.css-style or custom)
 - [ ] Port the Animoji float/animation to iOS app
-- [ ] Automatic project name/URL refresh in the site when a project is renamed
+- [ ] Automatic project name/URL refresh in the site when a project is renamed — SCOPED 2026-07-28: `index.html` hardcodes each project as a static `<li><a>` with name/URL/tagline/platforms, no data file, no build step (CLAUDE.md: "No build step" is a deliberate convention). Automating this means a generator script parsing `~/Documents/Code/CLAUDE.md`'s project table, but that table lacks the taglines/platform lists/years shown per entry — needs a second source of truth or richer per-repo metadata before a generator is worth building. M-effort, not a quick fix; deferred.
 
 ## Ingested 2026-07-25
 - [ ] Stale Cloudflare Pages project `nulljosh-portfolio.pages.dev` still exists and may still hold `heyitsmejosh.com` as a custom domain — delete the project (or at least detach the domain) so it can't hijack the apex again. Blocked: the `CLOUDFLARE_DNS_TOKEN` in `~/.config/fish/secrets.fish` is DNS-scoped only (`/accounts` returns empty) and no working `wrangler` is installed (`npx wrangler` fails on a workerd binary error). Needs a Pages-scoped API token or a `wrangler login`.
