@@ -22,3 +22,6 @@ Icons across all apps shipping to the App Store — portfolio page + ASC.
 
 ## From App Store.pdf (imported 2026-07-28)
 - [ ] Ship a macOS version of Nullfolio (ASC 6788180394).
+
+## From App Store.pdf (imported 2026-07-29)
+- [ ] Nullfolio: icon is correct in repo/build but ASC/TestFlight listing still shows a stale plain orange "N" — needs a resubmit/reprocess to clear the stale cached icon.
