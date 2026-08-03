@@ -2,15 +2,15 @@
 
 ## From icons-bugs.pdf (imported 2026-06-30)
 Icons across all apps shipping to the App Store — portfolio page + ASC.
-- [ ] Refresh/update stale app icon(s) on portfolio page — at least one shows purple where it should be dark. Still unverified 2026-07-20: needs a visual/on-device check (no icon references in index.html to fix directly), blocked without simulator/screenshot access.
-- [ ] Redesign icons that don't match the set's style — rule: icons mostly black/white, color sprinkled in only. Not actionable without a per-icon visual audit; blocked.
+- [x] Refresh/update stale app icon(s) on portfolio page — checked 2026-08-03: not applicable. Live site (heyitsmejosh.com) and the `Portfolio-iOS` app both render the Work list as plain text rows, no icon images at all (confirmed via `curl` + sim screenshot, light+dark). `images/icons/*.svg` exist on disk but are orphaned — never referenced by index.html. No purple anywhere on the actual page. The "purple icon" this note points at is an App Store Connect listing icon (sparkjar's, per its own roadmap), not this repo.
+- [ ] Redesign icons that don't match the set's style — rule: icons mostly black/white, color sprinkled in only. Not actionable without a per-icon visual audit; blocked. (Also applies to ASC listing icons, not this repo's orphaned `images/icons/*.svg` — ignore those, they're unused.)
 - [ ] Half the icons missing in App Store Connect across shipping apps — needs per-app visual ASC check, blocked without dashboard/screenshot access.
 
 ## Someday / Explore
 - [ ] "Null folio" idea (from Null folio.pdf, imported 2026-07-21): a folio/resume variant needing a better name, should mirror the main site's style more closely, and wants Animoji-style avatars with animations. Not scoped/actionable yet — needs a naming + design pass before starting.
 
 ## Portfolio iOS app (scaffolded 2026-07-06)
-- [ ] Run in simulator, verify light/dark rendering (build passes; visual check pending) — blocked: skipping simulator by default per user preference, needs an explicit ask.
+- [x] Run in simulator, verify light/dark rendering — verified 2026-08-03 (explicit one-time sim exception granted): build+run succeeded on iPhone 17 (iOS 26.5), light and dark both render cleanly, no visual bugs. Noted in passing (out of scope here): the Work list still shows stale app names "Echo" and "Spark" — should be "Voxprint" and "Sparkjar".
 
 ## Deferred (2026-07-21)
 - [ ] Custom SVG piece-level animation of the Animoji (e.g. animate.css-style or custom)
