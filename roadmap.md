@@ -21,3 +21,9 @@ Icons across all apps shipping to the App Store — portfolio page + ASC.
 
 ## From App Store.pdf (imported 2026-07-29)
 - [ ] Nullfolio: icon is correct in repo/build but ASC/TestFlight listing still shows a stale plain orange "N" — needs a resubmit/reprocess to clear the stale cached icon.
+
+## Ingested 2026-08-04
+- [ ] Animoji asset is low quality — convert to SVG (or other lossless format) so it stays crisp
+- [ ] Portfolio iOS app should also show the Animoji
+- [ ] Journal/portfolio out of sync: journal site shows more entries than the portfolio does — confirm syncing so both are parallel
+- [ ] Reflect the Echo → voxprint rename in portfolio content/links
