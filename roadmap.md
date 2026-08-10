@@ -32,3 +32,7 @@ Icons across all apps shipping to the App Store — portfolio page + ASC.
 
 ## From Apple Notes (imported 2026-08-04)
 - [ ] **Nullfolio iOS 1.0 is REJECTED — has been since 2026-07-22, unnoticed.** App ID `6788180394` (`com.nulljosh.portfolio`), version id `cc1a2e3a-7d19-4981-bbd2-1b291077fb90`, submission `0ebad2f8-da32-4727-9be0-a00dce3719e5`, state `UNRESOLVED_ISSUES` (submitted 2026-07-22 07:48 UTC via API Key). `asc review doctor --app 6788180394` confirms 1 blocking error but the actual rejection text lives in App Review's Resolution Center, which is web-UI-only — read it at appstoreconnect.apple.com, fix, then resubmit (`asc versions attach-build` + `asc review submissions-submit --confirm`).
+
+## App Store submission freeze — until 2026-08-18
+- [ ] **BLOCKED: no App Store submission on any app until 2026-08-18.** Account is under a Guideline 5.6 Developer Code of Conduct review suspension (Curvely, Transcriptly, Wiretext, NYC Survive). Apple warns that continued similar submissions may result in removal from the Apple Developer Program. Full detail: wiki `ship-plan.md` § "Guideline 5.6 suspension (2026-08-10)". TestFlight builds, pushes and web deploys are still fine.
+- [ ] Nullfolio (6788180394) REJECTED 2.3.8 + 4.2. 2.3.8 (name mismatch, marketplace "Nullfolio" vs on-device "Joshua Trommel") FIXED 2026-08-10 in ios/Sources/Info.plist. 4.2 Minimum Functionality is unresolved and is a real verdict on a portfolio-site wrapper — either add genuine app-only functionality or withdraw the record.
