@@ -1,5 +1,17 @@
 # Portfolio Roadmap
 
+## DECISION 2026-08-11: Nullfolio is not shipping to the App Store
+App 6788180394 stays rejected under **4.2 Minimum Functionality** and will not be
+resubmitted. The app is a hardcoded mirror of `index.html` whose rows open Safari — Apple's
+read is correct, and the only route past 4.2 is inventing app-only features (widget,
+offline cache, notifications) for a personal résumé with no App Store audience. Resubmitting
+a thin app while four apps sit under the Guideline 5.6 conduct review is exactly the
+"same or similar issues" Apple's letter warns leads to Developer Program removal.
+
+Consequence: every Nullfolio ASC/TestFlight/icon item below is **closed, not deferred**.
+Keep the Xcode target as a personal build only. Remaining open question for Joshua: whether
+to delete the ASC record 6788180394 outright (irreversible — not done without a go-ahead).
+
 ## From Apple Notes (imported 2026-08-08)
 - [x] Animoji chin-crop bug: user reported "you said you fixed it but I don't see the changes propagated live" — verified 2026-08-08, it IS live. Fix commit `ea81c36` (Aug 7, padding added around face) is pushed to `origin/main`, and `curl https://heyitsmejosh.com/images/memoji-face-2.png` returns the exact same file (sha1 `f8a49c7f...`) as the repo's current version. No further action.
 - [ ] Nullfolio (iOS app) TestFlight stale + "icon scaling still broken": root cause is NOT the icon asset — `icon-1024.png` is already correctly generated (1024×1024, no alpha, via `scripts/make-appicon.sh` per this repo's CLAUDE.md rule) and matches the documented fix from 2026-07-12. The actual staleness: the last archive in `ios/.asc/artifacts/Nullfolio.xcarchive` is dated **2026-07-21**, but `Sources/PortfolioApp.swift`'s hardcoded journal list (synced by `journal/scripts/sync-portfolio.sh`) has entries through **Aug 6** — meaning ~2.5 weeks of content/fixes (including the chin-crop fix above) have never been archived/uploaded to TestFlight. No `.asc/workflow.json` exists for this app yet. Needs: `asc xcode archive` + `asc xcode export` + upload with a bumped build number, or set up a `ship-ios` workflow like the other repos. "Icon scaling broken" as *currently observed on TestFlight* is most likely just this same stale build, not a new bug — re-verify only if it persists after the next upload.
