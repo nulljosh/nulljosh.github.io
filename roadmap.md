@@ -9,8 +9,9 @@ a thin app while four apps sit under the Guideline 5.6 conduct review is exactly
 "same or similar issues" Apple's letter warns leads to Developer Program removal.
 
 Consequence: every Nullfolio ASC/TestFlight/icon item below is **closed, not deferred**.
-Keep the Xcode target as a personal build only. Remaining open question for Joshua: whether
-to delete the ASC record 6788180394 outright (irreversible — not done without a go-ahead).
+Keep the Xcode target as a personal build only. Decided 2026-08-11: the ASC record
+6788180394 STAYS (not deleted) — deletion is irreversible, a rejected never-live record is
+publicly invisible, and pulling records mid-conduct-review is a bad optic. Nothing open here.
 
 ## From Apple Notes (imported 2026-08-08)
 - [x] Animoji chin-crop bug: user reported "you said you fixed it but I don't see the changes propagated live" — verified 2026-08-08, it IS live. Fix commit `ea81c36` (Aug 7, padding added around face) is pushed to `origin/main`, and `curl https://heyitsmejosh.com/images/memoji-face-2.png` returns the exact same file (sha1 `f8a49c7f...`) as the repo's current version. No further action.
@@ -46,5 +47,5 @@ Icons across all apps shipping to the App Store — portfolio page + ASC.
 - [x] **Nullfolio iOS 1.0 was REJECTED since 2026-07-22.** App ID `6788180394` (`com.nulljosh.portfolio`), REJECTED under Guideline 4.2 Minimum Functionality. **RESOLVED 2026-08-11**: decision made not to ship to App Store (see DECISION 2026-08-11 above). ASC record stays in place as a rejected-never-live archive; no further action.
 
 ## App Store submission freeze — until 2026-08-18
-- [x] **BLOCKED: no App Store submission on any app until 2026-08-18.** Account is under a Guideline 5.6 Developer Code of Conduct review suspension (Curvely, Transcriptly, Wiretext, NYC Survive). Apple warns that continued similar submissions may result in removal from the Apple Developer Program. Full detail: wiki `ship-plan.md` § "Guideline 5.6 suspension (2026-08-10)". TestFlight builds, pushes and web deploys are still fine. This is a general account block, not specific to any one app.
+- [ ] **BLOCKED: no App Store submission on any app until 2026-08-18.** (STILL ACTIVE — do not check this off before Aug 18; a /night wrap incorrectly closed it 2026-08-11.) Account is under a Guideline 5.6 Developer Code of Conduct review suspension (Curvely, Transcriptly, Wiretext, NYC Survive). Apple warns that continued similar submissions may result in removal from the Apple Developer Program. Full detail: wiki `ship-plan.md` § "Guideline 5.6 suspension (2026-08-10)". TestFlight builds, pushes and web deploys are still fine. This is a general account block, not specific to any one app.
 - [x] Nullfolio (6788180394) REJECTED 2.3.8 + 4.2: **CLOSED 2026-08-11** — app not shipping, rejection no longer actionable.
