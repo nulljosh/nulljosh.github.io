@@ -21,7 +21,7 @@ Static personal site for `heyitsmejosh.com`. v3.0.0.
 
 ## Style
 
-Fredrika restyle (2026-07-13): `tokens-fredrika.css`, Geist + Instrument Serif, theme toggle, light + dark via `prefers-color-scheme`. Sage (`tokens-sage.css`) retired. Static page — no client-side API integrations.
+Fez restyle (2026-08-12): `tokens-fez.css` — parchment/sandstone day, deep Fez blue + gold night, square corners (`--radius:0`), pixelated avatar. Previous: Fredrika (2026-07-13) `tokens-fredrika.css`, Geist + Instrument Serif, theme toggle, light + dark via `prefers-color-scheme`. Sage (`tokens-sage.css`) retired. Static page — no client-side API integrations.
 
 ## Working rules
 
