@@ -49,3 +49,8 @@ Icons across all apps shipping to the App Store — portfolio page + ASC.
 ## App Store submission freeze — until 2026-08-18
 - [ ] **BLOCKED: no App Store submission on any app until 2026-08-18.** (STILL ACTIVE — do not check this off before Aug 18; a /night wrap incorrectly closed it 2026-08-11.) Account is under a Guideline 5.6 Developer Code of Conduct review suspension (Curvely, Transcriptly, Wiretext, NYC Survive). Apple warns that continued similar submissions may result in removal from the Apple Developer Program. Full detail: wiki `ship-plan.md` § "Guideline 5.6 suspension (2026-08-10)". TestFlight builds, pushes and web deploys are still fine. This is a general account block, not specific to any one app.
 - [x] Nullfolio (6788180394) REJECTED 2.3.8 + 4.2: **CLOSED 2026-08-11** — app not shipping, rejection no longer actionable.
+
+### From Notes (2026-08-14)
+- [ ] **Background is rendering blue (was orange-yellow earlier the same day) — should be white.**
+  Almost certainly the Fez token set (`tokens-fez.css`); the shifting color suggests a
+  theme/media-query fallback winning rather than a single wrong value.
