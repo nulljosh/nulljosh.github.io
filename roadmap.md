@@ -28,3 +28,6 @@ Icons across all apps shipping to the App Store — portfolio page + ASC.
 
 ## App Store submission freeze — until 2026-08-18
 - [ ] **BLOCKED: no App Store submission on any app until 2026-08-18.** (STILL ACTIVE — do not check this off before Aug 18; a /night wrap incorrectly closed it 2026-08-11.) Account is under a Guideline 5.6 Developer Code of Conduct review suspension (Curvely, Transcriptly, Wiretext, NYC Survive). Apple warns that continued similar submissions may result in removal from the Apple Developer Program. Full detail: wiki `ship-plan.md` § "Guideline 5.6 suspension (2026-08-10)". TestFlight builds, pushes and web deploys are still fine. This is a general account block, not specific to any one app.
+
+## Ingested 2026-08-18
+- [ ] Fix the Inkpress link — it should point at the Inkpress landing page now.
