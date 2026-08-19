@@ -35,3 +35,6 @@ each is one `asc review submit` away. Do not submit until the in-flight verdicts
 
 ## Ingested 2026-08-18
 - [ ] Fix the Inkpress link — it should point at the Inkpress landing page now.
+
+## Braindump 2026-08-19
+- [ ] Nullfolio: refresh the app and ship a new version (App Store record was closed 2026-08-11 — confirm whether reviving or re-creating).
