@@ -29,3 +29,7 @@ Push to `main`. GitHub Pages deploys via Actions. Custom domain via `CNAME`.
 ## License
 
 MIT 2026 Joshua Trommel
+
+## Whitepaper
+
+[Technical whitepaper](WHITEPAPER.md)
