@@ -38,3 +38,6 @@ each is one `asc review submit` away. Do not submit until the in-flight verdicts
 
 ## Braindump 2026-08-19
 - [ ] Nullfolio: refresh the app and ship a new version (App Store record was closed 2026-08-11 — confirm whether reviving or re-creating).
+
+## Braindump 2026-08-19
+- [ ] Vibe-clone https://cmux.com/ — run /vibe on it, extract tokens, apply to portfolio
