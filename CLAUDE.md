@@ -23,6 +23,13 @@ Static personal site for `heyitsmejosh.com`. v3.0.0.
 
 Fez restyle (2026-08-12): `tokens-fez.css` — parchment/sandstone day, deep Fez blue + gold night, square corners (`--radius:0`), pixelated avatar. Previous: Fredrika (2026-07-13) `tokens-fredrika.css`, Geist + Instrument Serif, theme toggle, light + dark via `prefers-color-scheme`. Sage (`tokens-sage.css`) retired. Static page — no client-side API integrations.
 
+## Work list ordering
+
+The `#work` list in `index.html` is ranked most- to least-shipped, using shipped platform
+breadth as the metric (the `.meta` column): 4 platforms, then 3, then 2, then 1, then source-only
+(Labs stays last). Within a tier, keep the existing relative order. The `2026` year label anchors
+the first row only, so it moves with whatever ends up on top.
+
 ## Working rules
 
 - No build step
