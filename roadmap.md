@@ -44,5 +44,17 @@ each is one `asc review submit` away. Do not submit until the in-flight verdicts
 
 ## Ingested 2026-08-22
 - [ ] **Nullfolio App Store rejection — Guideline 2.3.8 Accurate Metadata** (submission 0ebad2f8-da32-4727-9be0-a00dce3719e5, reviewed 2026-08-04, iPhone 17 Pro Max, v1.0 build 202607211542). Marketplace name is "Nullfolio" but the name displayed on device is "Joshua Trommel". One-line fix: set `CFBundleDisplayName`/`CFBundleName` to Nullfolio. Do not change the bundle identifier.
-- [ ] **Nullfolio rejection — Guideline 4.2 Minimum Functionality.** "The app does not provide sufficient content and features to be useful, unique, and app-like." Needs real added functionality, not a metadata tweak. Note: memory records Nullfolio as CLOSED 2026-08-11 — decide whether to revive or formally abandon this app record before spending on 4.2.
+### DECIDED 2026-08-22: Nullfolio App Store app is abandoned.
+A personal portfolio cannot pass Guideline 4.2 — Apple names repackaged personal
+sites as not app-like, so there is no build that fixes it while it stays a
+portfolio. Retrying it also spends review goodwill on a zero-reach app record
+while Healstack, Lexly and Sparkjar sit in the same queue, on an account that was
+already suspended once under 5.6. The portfolio is already live on the web at
+heyitsmejosh.com, so the app adds nothing but a rejection record.
+The only version worth building is a different product: a portfolio *builder*
+other people use. That is a new app, not a resubmit.
+- [ ] Manual step (Joshua, ASC dashboard): remove the Nullfolio app record (id 6788180394). No API exists for deleting an app record.
+- [x] ~~Guideline 2.3.8 device name~~ — already fixed in source; CFBundleDisplayName reads "Nullfolio". The Aug 4 rejection was against a stale archive.
+- [ ] ~~Guideline 4.2 Minimum Functionality~~ — moot, see decision above.
+- [ ] (superseded) **Nullfolio rejection — Guideline 4.2 Minimum Functionality.** "The app does not provide sufficient content and features to be useful, unique, and app-like." Needs real added functionality, not a metadata tweak. Note: memory records Nullfolio as CLOSED 2026-08-11 — decide whether to revive or formally abandon this app record before spending on 4.2.
 - [ ] Vibe-clone Nous Research's site aesthetic into the portfolio (from Notes: "Nous research / Portfolio / Vibe clone nous into our portfolio").
