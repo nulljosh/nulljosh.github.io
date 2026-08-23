@@ -41,3 +41,8 @@ each is one `asc review submit` away. Do not submit until the in-flight verdicts
 
 ## Braindump 2026-08-19
 - [ ] Vibe-clone https://cmux.com/ — run /vibe on it, extract tokens, apply to portfolio
+
+## Ingested 2026-08-22
+- [ ] **Nullfolio App Store rejection — Guideline 2.3.8 Accurate Metadata** (submission 0ebad2f8-da32-4727-9be0-a00dce3719e5, reviewed 2026-08-04, iPhone 17 Pro Max, v1.0 build 202607211542). Marketplace name is "Nullfolio" but the name displayed on device is "Joshua Trommel". One-line fix: set `CFBundleDisplayName`/`CFBundleName` to Nullfolio. Do not change the bundle identifier.
+- [ ] **Nullfolio rejection — Guideline 4.2 Minimum Functionality.** "The app does not provide sufficient content and features to be useful, unique, and app-like." Needs real added functionality, not a metadata tweak. Note: memory records Nullfolio as CLOSED 2026-08-11 — decide whether to revive or formally abandon this app record before spending on 4.2.
+- [ ] Vibe-clone Nous Research's site aesthetic into the portfolio (from Notes: "Nous research / Portfolio / Vibe clone nous into our portfolio").
