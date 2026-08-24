@@ -58,3 +58,16 @@ other people use. That is a new app, not a resubmit.
 - [ ] ~~Guideline 4.2 Minimum Functionality~~ — moot, see decision above.
 - [ ] (superseded) **Nullfolio rejection — Guideline 4.2 Minimum Functionality.** "The app does not provide sufficient content and features to be useful, unique, and app-like." Needs real added functionality, not a metadata tweak. Note: memory records Nullfolio as CLOSED 2026-08-11 — decide whether to revive or formally abandon this app record before spending on 4.2.
 - [ ] Vibe-clone Nous Research's site aesthetic into the portfolio (from Notes: "Nous research / Portfolio / Vibe clone nous into our portfolio").
+
+## Rename: heyitsmejosh.com → jaybulb.com
+
+`jaybulb.com` and `joybulb.com` are both unregistered as of 2026-08-24. Jaybulb it is.
+Slow migration — nothing breaks at any step:
+
+1. Register `jaybulb.com`, add the zone to Cloudflare (same account as heyitsmejosh.com).
+2. Point `jaybulb.com` at the same GitHub Pages / Pages deploy. Both domains serve the site.
+3. Move app subdomains one at a time (`epiphany.jaybulb.com`, …), keeping the old ones
+   as 301s. ~20 subdomains, so do these in batches when touching each app anyway.
+4. Update `CNAME`, canonical/OG URLs, `sitemap.xml`, ASC support/marketing URLs, resume.
+5. Once App Store metadata is all on jaybulb.com, 301 the apex heyitsmejosh.com → jaybulb.com.
+6. Keep heyitsmejosh.com renewed indefinitely — old App Store listings link to it.

@@ -21,7 +21,14 @@ Static personal site for `heyitsmejosh.com`. v3.0.0.
 
 ## Style
 
-Fez restyle (2026-08-12): `tokens-fez.css` — parchment/sandstone day, deep Fez blue + gold night, square corners (`--radius:0`), pixelated avatar. Previous: Fredrika (2026-07-13) `tokens-fredrika.css`, Geist + Instrument Serif, theme toggle, light + dark via `prefers-color-scheme`. Sage (`tokens-sage.css`) retired. Static page — no client-side API integrations.
+`tokens.css` is the canonical design system — Jaybulb, derived from maybulb.com (2026-08-24).
+Signature: `#ffca30` used as a solid block (never a tint), black on white, square corners
+(`--radius:0`), no shadows, 2px yellow rules between sections, geometric sans (Europa → Avenir Next → Geist).
+Dark mode inverts the ink only; the bulb yellow never changes.
+
+Every app site should link `https://heyitsmejosh.com/tokens.css` rather than redefining colors.
+Retired themes (Fez, Fredrika, 30s, Sage, Bending Spoons) are parked in `themes/` — don't add
+a new one, edit `tokens.css`.
 
 ## Work list ordering
 
