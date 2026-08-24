@@ -26,6 +26,7 @@ Signature: `#ffca30` used as a solid block (never a tint), black on white, squar
 (`--radius:0`), no shadows, 2px yellow rules between sections, geometric sans (Europa → Avenir Next → Geist).
 Dark mode inverts the ink only; the bulb yellow never changes.
 
+The portfolio itself stays on `tokens-fredrika.css` — the yellow was rolled back 2026-08-24.
 Every app site should link `https://heyitsmejosh.com/tokens.css` rather than redefining colors.
 Retired themes (Fez, Fredrika, 30s, Sage, Bending Spoons) are parked in `themes/` — don't add
 a new one, edit `tokens.css`.
