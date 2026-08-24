@@ -10,7 +10,8 @@
 <link rel="canonical" href="https://heyitsmejosh.com">
 <meta name="author" content="Joshua Trommel">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#ffca30">
+<meta name="theme-color" content="#fcfcfc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://heyitsmejosh.com">
 <meta property="og:title" content="Joshua Trommel">
@@ -24,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap">
 <link rel="preload" href="fonts/Geist-Regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="tokens-fredrika.css">
 <script>
 const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t;
 </script>
@@ -34,7 +35,7 @@ const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.them
 @font-face{font-family:'Geist';font-weight:600;font-display:swap;src:url(fonts/Geist-SemiBold.woff2)format('woff2');}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:var(--font-body);font-size:.875rem;font-weight:400;letter-spacing:-.00563rem;line-height:1.7;background:var(--color-bg);color:var(--color-text);-webkit-font-smoothing:antialiased;}
-::selection{background:var(--bulb);color:#000;}
+::selection{background:var(--color-text);color:var(--color-bg);}
 main{max-width:var(--column-width);margin:0 auto;padding:5rem 1.25rem 6rem;}
 .avatar{width:75px;height:75px;margin-bottom:1.25rem;position:relative;}
 .avatar img{width:100%;height:100%;image-rendering:pixelated;animation:bob 6.4s ease-in-out infinite;transform-origin:50% 85%;}
@@ -56,10 +57,7 @@ a{color:var(--color-text);text-decoration:underline;text-decoration-color:var(--
 a:hover{text-decoration-color:var(--color-underline-hover);}
 
 .list{padding-top:3rem;}
-.list{border-bottom:var(--rule);padding-bottom:2rem;}
-.list:last-of-type{border-bottom:none;}
-.list h2{font-size:.875rem;font-weight:500;margin-bottom:.5rem;}
-.list h2 span{background:var(--bulb);color:#000;padding:3px 8px;}
+.list h2{color:var(--color-secondary);font-size:.875rem;font-weight:500;border-bottom:1px solid var(--color-hairline);padding-bottom:.5rem;}
 .list ul{list-style:none;}
 .list li{position:relative;}
 .list li{opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .5s ease;}
@@ -104,7 +102,7 @@ footer a{color:inherit;}
 </div>
 
 <section class="list" id="work">
-  <h2><span>Work</span></h2>
+  <h2>Work</h2>
   <ul>
     <li><a href="https://epiphany.heyitsmejosh.com" target="_blank" rel="noopener"><span class="year">2026</span><span class="name">Epiphany, finance dashboard</span><time class="meta">Web · iOS · macOS · watchOS</time></a></li>
     <li><a href="https://sparkjar.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Sparkjar, idea forum</span><time class="meta">Web · iOS · macOS · watchOS</time></a></li>
@@ -129,7 +127,7 @@ footer a{color:inherit;}
 </section>
 
 <section class="list" id="experience">
-  <h2><span>Experience</span></h2>
+  <h2>Experience</h2>
   <ul>
     <li><a href="#"><span class="year">2024</span><span class="name">Independent software developer, heyitsmejosh.com</span><time class="meta">2024-present</time></a></li>
     <li><a href="https://bcgaragedoors.ca" target="_blank" rel="noopener"><span class="year">2020</span><span class="name">Customer service &amp; inventory, Best Choice Garage Doors</span><time class="meta">2020-2026</time></a></li>
@@ -139,7 +137,7 @@ footer a{color:inherit;}
 </section>
 
 <section class="list" id="education">
-  <h2><span>Education</span></h2>
+  <h2>Education</h2>
   <ul>
     <li><a href="https://www.sfu.ca" target="_blank" rel="noopener"><span class="year">2027</span><span class="name">Simon Fraser University, BSc Computer Science</span><time class="meta">3 years · possible finance minor</time></a></li>
     <li><a href="https://www.kpu.ca" target="_blank" rel="noopener"><span class="year">2026</span><span class="name">Kwantlen Polytechnic University, prerequisite year</span><time class="meta">incl. Pre-Calculus 12</time></a></li>
@@ -148,7 +146,7 @@ footer a{color:inherit;}
 </section>
 
 <section class="list" id="writing">
-  <h2><span>Writing</span></h2>
+  <h2>Writing</h2>
   <ul>
     <!-- journal-sync:start -->
     <li><a href="https://journal.heyitsmejosh.com/2026/08/23/income/"><span class="year">2026</span><span class="name">Income</span><time class="meta" datetime="2026-08-23">Aug 23</time></a></li>
