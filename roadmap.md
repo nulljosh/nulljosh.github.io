@@ -70,3 +70,7 @@ Slow migration — nothing breaks at any step:
 4. Update `CNAME`, canonical/OG URLs, `sitemap.xml`, ASC support/marketing URLs, resume.
 5. Once App Store metadata is all on jaybulb.com, 301 the apex heyitsmejosh.com → jaybulb.com.
 6. Keep heyitsmejosh.com renewed indefinitely — old App Store listings link to it.
+
+## Link audit 2026-08-24
+
+- [ ] `letterboxd.com/literallyjordan/` (index.html) returns 403 to curl even with a browser UA — likely Letterboxd bot protection rather than a dead profile. Verify in a real browser; only change the link if it actually 404s there. Every other outbound link on index.html returned 200 in this audit.
