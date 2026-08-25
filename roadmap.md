@@ -42,7 +42,7 @@ each is one `asc review submit` away. Do not submit until the in-flight verdicts
 - [ ] Vibe-clone https://cmux.com/ — run /vibe on it, extract tokens, apply to portfolio
 
 ## Ingested 2026-08-22
-- [ ] **Nullfolio App Store rejection — Guideline 2.3.8 Accurate Metadata** (submission 0ebad2f8-da32-4727-9be0-a00dce3719e5, reviewed 2026-08-04, iPhone 17 Pro Max, v1.0 build 202607211542). Marketplace name is "Nullfolio" but the name displayed on device is "Joshua Trommel". One-line fix: set `CFBundleDisplayName`/`CFBundleName` to Nullfolio. Do not change the bundle identifier.
+- **CLOSED 2026-08-25** (the Nullfolio App Store track was abandoned 2026-08-11 — the record 6788180394 is one of three orphans slated for deletion via Apple Support, not a product to fix. Its iOS 1.0 is still REJECTED and will stay that way). Was: **Nullfolio App Store rejection — Guideline 2.3.8 Accurate Metadata** (submission 0ebad2f8-da32-4727-9be0-a00dce3719e5, reviewed 2026-08-04, iPhone 17 Pro Max, v1.0 build 202607211542). Marketplace name is "Nullfolio" but the name displayed on device is "Joshua Trommel". One-line fix: set `CFBundleDisplayName`/`CFBundleName` to Nullfolio. Do not change the bundle identifier.
 ### DECIDED 2026-08-22: Nullfolio App Store app is abandoned.
 A personal portfolio cannot pass Guideline 4.2 — Apple names repackaged personal
 sites as not app-like, so there is no build that fixes it while it stays a
