@@ -64,6 +64,10 @@ a:hover{text-decoration-color:var(--color-underline-hover);}
 .list li.in{opacity:1;transform:none;}
 .list li a{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.735rem 0 .735rem 6.75rem;text-decoration:none;border-bottom:1px solid var(--color-hairline);}
 .list li:last-child a{border-bottom:none;}
+.more li{opacity:1;transform:none;}
+.more summary{list-style:none;cursor:pointer;color:var(--color-secondary);padding:.735rem 0;font-size:.875rem;}
+.more summary::-webkit-details-marker{display:none;}
+.more[open] summary{border-bottom:1px solid var(--color-hairline);}
 .list .year{position:absolute;left:0;top:.735rem;color:var(--color-secondary);}
 .list .name{position:relative;transition:opacity .14s;}
 .list .name::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--color-underline-hover);transform:scaleX(0);transform-origin:left;transition:transform .28s ease;}
@@ -110,20 +114,25 @@ footer a{color:inherit;}
     <li><a href="https://voxprint.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Voxprint, on-device transcription</span><time class="meta">Web · iOS · macOS</time></a></li>
     <li><a href="https://lexly.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Lexly, language learning</span><time class="meta">Web · iOS · macOS</time></a></li>
     <li><a href="https://litigate.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Litigate, litigation planner</span><time class="meta">Web · iOS · macOS</time></a></li>
-    <li><a href="https://wiretext.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Wiretext, wireframe text editor</span><time class="meta">Web · iOS · macOS</time></a></li>
-    <li><a href="https://grapher.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Curvely, graph visualization</span><time class="meta">Web · iOS · macOS</time></a></li>
     <li><a href="https://healstack.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Healstack, health dashboard</span><time class="meta">Web · iOS</time></a></li>
-    <li><a href="https://quotable.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Quotable, movie-quote trivia</span><time class="meta">Web · iOS</time></a></li>
-    <li><a href="https://nyc.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">NYC, Times Square city sim</span><time class="meta">iOS · macOS</time></a></li>
-    <li><a href="https://wordroot.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Wordroot, etymology dictionary</span><time class="meta">Web · iOS</time></a></li>
     <li><a href="https://nimble.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Nimble, instant-answer search</span><time class="meta">macOS</time></a></li>
-    <li><a href="https://journal.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Journal, weekly writing</span><time class="meta">Web</time></a></li>
-    <li><a href="https://inkpress.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Inkpress, RSS reader</span><time class="meta">iOS</time></a></li>
-    <li><a href="https://bookrank.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Bookrank, reading list &amp; summaries</span><time class="meta">Web</time></a></li>
-    <li><a href="https://bcgd.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">BCGD, dashboard</span><time class="meta">Web</time></a></li>
-    <li><a href="https://news.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Newsline, news aggregator with bias bars</span><time class="meta">Web</time></a></li>
-    <li><a href="https://github.com/nulljosh/labs" target="_blank" rel="noopener"><span class="name">Labs, small experiments &amp; build-your-owns</span><time class="meta">Source</time></a></li>
   </ul>
+  <details class="more">
+    <summary>11 more</summary>
+    <ul>
+      <li><a href="https://wiretext.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Wiretext, wireframe text editor</span><time class="meta">Web · iOS · macOS</time></a></li>
+      <li><a href="https://grapher.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Curvely, graph visualization</span><time class="meta">Web · iOS · macOS</time></a></li>
+      <li><a href="https://quotable.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Quotable, movie-quote trivia</span><time class="meta">Web · iOS</time></a></li>
+      <li><a href="https://nyc.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">NYC, Times Square city sim</span><time class="meta">iOS · macOS</time></a></li>
+      <li><a href="https://wordroot.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Wordroot, etymology dictionary</span><time class="meta">Web · iOS</time></a></li>
+      <li><a href="https://journal.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Journal, weekly writing</span><time class="meta">Web</time></a></li>
+      <li><a href="https://inkpress.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Inkpress, RSS reader</span><time class="meta">iOS</time></a></li>
+      <li><a href="https://bookrank.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Bookrank, reading list &amp; summaries</span><time class="meta">Web</time></a></li>
+      <li><a href="https://bcgd.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">BCGD, dashboard</span><time class="meta">Web</time></a></li>
+      <li><a href="https://news.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Newsline, news aggregator with bias bars</span><time class="meta">Web</time></a></li>
+      <li><a href="https://github.com/nulljosh/labs" target="_blank" rel="noopener"><span class="name">Labs, small experiments &amp; build-your-owns</span><time class="meta">Source</time></a></li>
+    </ul>
+  </details>
 </section>
 
 <section class="list" id="experience">
