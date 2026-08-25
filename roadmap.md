@@ -33,8 +33,6 @@ WAITING_FOR_REVIEW: Curvely iOS 1.2.0, Wiretext iOS 1.1.0, Wordroot iOS 1.0, Hea
 Lexly Mac. All six are `asc validate` clean (0 errors, 0 blocking) with a VALID build attached, so
 each is one `asc review submit` away. Do not submit until the in-flight verdicts land.
 
-## Ingested 2026-08-18
-
 ## Braindump 2026-08-19
 - [ ] Nullfolio: refresh the app and ship a new version (App Store record was closed 2026-08-11 — confirm whether reviving or re-creating).
 
@@ -53,7 +51,6 @@ heyitsmejosh.com, so the app adds nothing but a rejection record.
 The only version worth building is a different product: a portfolio *builder*
 other people use. That is a new app, not a resubmit.
 - [ ] Manual step (Joshua, ASC dashboard): remove the Nullfolio app record (id 6788180394). No API exists for deleting an app record.
-- [x] ~~Guideline 2.3.8 device name~~ — already fixed in source; CFBundleDisplayName reads "Nullfolio". The Aug 4 rejection was against a stale archive.
 - [ ] ~~Guideline 4.2 Minimum Functionality~~ — moot, see decision above.
 - [ ] (superseded) **Nullfolio rejection — Guideline 4.2 Minimum Functionality.** "The app does not provide sufficient content and features to be useful, unique, and app-like." Needs real added functionality, not a metadata tweak. Note: memory records Nullfolio as CLOSED 2026-08-11 — decide whether to revive or formally abandon this app record before spending on 4.2.
 - [ ] Vibe-clone Nous Research's site aesthetic into the portfolio (from Notes: "Nous research / Portfolio / Vibe clone nous into our portfolio").
