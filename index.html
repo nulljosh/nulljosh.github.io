@@ -45,7 +45,10 @@ a:hover{text-decoration-color:var(--color-underline-hover);}
 .list li{position:relative;}
 .list li{opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .5s ease;}
 .list li.in{opacity:1;transform:none;}
-.list li a{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.735rem 0 .735rem 6.75rem;text-decoration:none;border-bottom:1px solid var(--color-hairline);}
+.list .store{position:absolute;right:0;top:.735rem;color:var(--color-secondary);font-size:.85rem;text-decoration:none;opacity:.55;transition:opacity .14s;}
+.list li:hover .store,.list .store:focus{opacity:1;}
+.list .store:hover{color:var(--color-primary);text-decoration:underline;}
+.list li>a:first-child{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.735rem 5.5rem .735rem 6.75rem;text-decoration:none;border-bottom:1px solid var(--color-hairline);}
 .list li:last-child a{border-bottom:none;}
 .more li{opacity:1;transform:none;}
 .more summary{list-style:none;cursor:pointer;color:var(--color-secondary);padding:.735rem 0;font-style:italic;}
@@ -62,8 +65,9 @@ a:hover{text-decoration-color:var(--color-underline-hover);}
   .list li a:hover .name,.list li a:hover .meta{opacity:1;}
 }
 @media screen and (max-width:520px){
-  .list li a{padding-left:3rem;}
+  .list li>a:first-child{padding-left:3rem;}
   .list .meta{display:none;}
+    .list .store{opacity:1;}
 }
 footer{padding-top:4rem;color:var(--color-secondary);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
 footer a{color:inherit;}
@@ -87,26 +91,26 @@ footer a{color:inherit;}
 <section class="list" id="work">
   <h2>Work</h2>
   <ul>
-    <li><a href="https://epiphany.heyitsmejosh.com" target="_blank" rel="noopener"><span class="year">2026</span><span class="name">Epiphany, finance dashboard</span><time class="meta">Web · iOS · macOS · watchOS</time></a></li>
-    <li><a href="https://sparkjar.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Sparkjar, idea forum</span><time class="meta">Web · iOS · macOS · watchOS</time></a></li>
-    <li><a href="https://talli.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Talli, benefits tracker</span><time class="meta">Web · iOS · watchOS</time></a></li>
-    <li><a href="https://voxprint.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Voxprint, on-device transcription</span><time class="meta">Web · iOS · macOS</time></a></li>
-    <li><a href="https://lexly.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Lexly, language learning</span><time class="meta">Web · iOS · macOS</time></a></li>
-    <li><a href="https://litigate.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Litigate, litigation planner</span><time class="meta">Web · iOS · macOS</time></a></li>
+    <li><a href="https://epiphany.heyitsmejosh.com" target="_blank" rel="noopener"><span class="year">2026</span><span class="name">Epiphany, finance dashboard</span><time class="meta">Web · iOS · macOS · watchOS</time></a><a class="store" href="https://apps.apple.com/app/id6779522175" target="_blank" rel="noopener" aria-label="View on the App Store">App&nbsp;Store</a></li>
+    <li><a href="https://sparkjar.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Sparkjar, idea forum</span><time class="meta">Web · iOS · macOS · watchOS</time></a><a class="store" href="https://apps.apple.com/app/id6785162492" target="_blank" rel="noopener" aria-label="View on the App Store">App&nbsp;Store</a></li>
+    <li><a href="https://talli.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Talli, benefits tracker</span><time class="meta">Web · iOS · watchOS</time></a><a class="store" href="https://apps.apple.com/app/id6782366555" target="_blank" rel="noopener" aria-label="View on the App Store">App&nbsp;Store</a></li>
+    <li><a href="https://voxprint.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Voxprint, on-device transcription</span><time class="meta">Web · iOS · macOS</time></a><a class="store" href="https://apps.apple.com/app/id6782604262" target="_blank" rel="noopener" aria-label="View on the App Store">App&nbsp;Store</a></li>
+    <li><a href="https://lexly.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Lexly, language learning</span><time class="meta">Web · iOS · macOS</time></a><a class="store" href="https://apps.apple.com/app/id6783501611" target="_blank" rel="noopener" aria-label="View on the App Store">App&nbsp;Store</a></li>
+    <li><a href="https://litigate.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Litigate, litigation planner</span><time class="meta">Web · iOS · macOS</time></a><a class="store" href="https://apps.apple.com/app/id6787857503" target="_blank" rel="noopener" aria-label="View on the App Store">App&nbsp;Store</a></li>
     <li><a href="https://healstack.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Healstack, health dashboard</span><time class="meta">Web · iOS</time></a></li>
     <li><a href="https://nimble.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Nimble, instant-answer search</span><time class="meta">macOS</time></a></li>
   </ul>
   <details class="more">
     <summary>11 more</summary>
     <ul>
-      <li><a href="https://wiretext.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Wiretext, wireframe text editor</span><time class="meta">Web · iOS · macOS</time></a></li>
-      <li><a href="https://grapher.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Curvely, graph visualization</span><time class="meta">Web · iOS · macOS</time></a></li>
-      <li><a href="https://quotable.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Quotable, movie-quote trivia</span><time class="meta">Web · iOS</time></a></li>
+      <li><a href="https://wiretext.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Wiretext, wireframe text editor</span><time class="meta">Web · iOS · macOS</time></a><a class="store" href="https://apps.apple.com/app/id6794988951" target="_blank" rel="noopener" aria-label="View on the App Store">App&nbsp;Store</a></li>
+      <li><a href="https://grapher.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Curvely, graph visualization</span><time class="meta">Web · iOS · macOS</time></a><a class="store" href="https://apps.apple.com/app/id6794988370" target="_blank" rel="noopener" aria-label="View on the App Store">App&nbsp;Store</a></li>
+      <li><a href="https://quotable.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Quotable, movie-quote trivia</span><time class="meta">Web · iOS</time></a><a class="store" href="https://apps.apple.com/app/id6804394619" target="_blank" rel="noopener" aria-label="View on the App Store">App&nbsp;Store</a></li>
       <li><a href="https://nyc.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">NYC, Times Square city sim</span><time class="meta">iOS · macOS</time></a></li>
-      <li><a href="https://wordroot.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Wordroot, etymology dictionary</span><time class="meta">Web · iOS</time></a></li>
+      <li><a href="https://wordroot.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Wordroot, etymology dictionary</span><time class="meta">Web · iOS</time></a><a class="store" href="https://apps.apple.com/app/id6794988021" target="_blank" rel="noopener" aria-label="View on the App Store">App&nbsp;Store</a></li>
       <li><a href="https://journal.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Journal, weekly writing</span><time class="meta">Web</time></a></li>
-      <li><a href="https://inkpress.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Inkpress, RSS reader</span><time class="meta">iOS</time></a></li>
-      <li><a href="https://bookrank.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Bookrank, reading list &amp; summaries</span><time class="meta">Web</time></a></li>
+      <li><a href="https://inkpress.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Inkpress, RSS reader</span><time class="meta">iOS</time></a><a class="store" href="https://apps.apple.com/app/id6787759999" target="_blank" rel="noopener" aria-label="View on the App Store">App&nbsp;Store</a></li>
+      <li><a href="https://bookrank.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Bookrank, reading list &amp; summaries</span><time class="meta">Web</time></a><a class="store" href="https://apps.apple.com/app/id6792376485" target="_blank" rel="noopener" aria-label="View on the App Store">App&nbsp;Store</a></li>
       <li><a href="https://bcgd.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">BCGD, dashboard</span><time class="meta">Web</time></a></li>
       <li><a href="https://news.heyitsmejosh.com" target="_blank" rel="noopener"><span class="name">Newsline, news aggregator with bias bars</span><time class="meta">Web</time></a></li>
       <li><a href="https://github.com/nulljosh/labs" target="_blank" rel="noopener"><span class="name">Labs, small experiments &amp; build-your-owns</span><time class="meta">Source</time></a></li>
