@@ -26,10 +26,13 @@ Signature: `#ffca30` used as a solid block (never a tint), black on white, squar
 (`--radius:0`), no shadows, 2px yellow rules between sections, geometric sans (Europa → Avenir Next → Geist).
 Dark mode inverts the ink only; the bulb yellow never changes.
 
-The portfolio itself stays on `tokens-fredrika.css` — the yellow was rolled back 2026-08-24.
+The portfolio itself runs on `tokens-lovefrom.css` — lovefrom.com-derived, extracted
+2026-08-25 via /vibe. Serif (EB Garamond standing in for the proprietary LoveFrom Serif),
+#fafafa on #000, no radius, no shadows, links italic with no underline that fade to 50% ink.
 Every app site should link `https://heyitsmejosh.com/tokens.css` rather than redefining colors.
-Retired themes (Fez, Fredrika, 30s, Sage, Bending Spoons) are parked in `themes/` — don't add
-a new one, edit `tokens.css`.
+The no-new-themes rule guards `tokens.css`: it is the shared Jaybulb system every app site
+consumes, so never repaint it for a portfolio-only look — change the portfolio's own token file
+instead. Retired themes (Fez, Fredrika, 30s, Sage, Bending Spoons) are parked in `themes/`.
 
 ## Work list ordering
 
