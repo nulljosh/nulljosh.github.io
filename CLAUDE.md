@@ -31,6 +31,9 @@ The portfolio itself runs on `tokens-lovefrom.css` — lovefrom.com-derived, ext
 fade to 50% ink. The type is NOT LoveFrom's — the serif (EB Garamond) was rolled back
 2026-08-28 for the system sans stack (San Francisco → Helvetica Neue → Helvetica → Arial).
 Keep it sans; the serif read too professional. No webfont is loaded on the portfolio.
+The stylesheet link carries a `?v=YYYYMMDD` cache-buster — **bump it whenever
+`tokens-lovefrom.css` changes**. Cloudflare fronts the zone and caches CSS by extension, so
+without a new URL the edge keeps serving the old tokens and the change never reaches anyone.
 Every app site should link `https://heyitsmejosh.com/tokens.css` rather than redefining colors.
 The no-new-themes rule guards `tokens.css`: it is the shared Jaybulb system every app site
 consumes, so never repaint it for a portfolio-only look — change the portfolio's own token file
