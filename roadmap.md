@@ -75,3 +75,10 @@ Slow migration — nothing breaks at any step:
 ## From Apple Notes (imported 2026-08-25)
 
 - [ ] Top description is a bit wordy. Clean it up — make it more like a business card than life story paragraphs.
+
+## Avatar restored 2026-08-28
+
+The memoji is back in the header. Dropping it (2b6b5bc) left the LoveFrom serif page reading
+too corporate — the avatar was the only thing on it with a personality. LoveFrom tokens, type
+and layout are unchanged; only the avatar returns. The animated-Animoji item stays open (this
+is still the static PNG with a CSS bob, not an Animoji export).

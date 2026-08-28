@@ -33,6 +33,19 @@ const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.them
 body{font-family:var(--font-body);font-size:1rem;font-weight:400;line-height:1.5;background:var(--color-bg);color:var(--color-text);-webkit-font-smoothing:antialiased;}
 ::selection{background:var(--color-text);color:var(--color-bg);}
 main{max-width:var(--column-width);margin:0 auto;padding:5rem 1.25rem 6rem;}
+.avatar{width:75px;height:75px;margin-bottom:1.25rem;position:relative;}
+.avatar img{width:100%;height:100%;image-rendering:pixelated;animation:bob 6.4s ease-in-out infinite;transform-origin:50% 85%;}
+@keyframes bob{
+  0%,100%{transform:translateY(0) rotate(0deg) scale(1);}
+  12%{transform:translateY(-3px) rotate(3deg) scale(1.015);}
+  25%{transform:translateY(1px) rotate(-5deg) scale(1);}
+  38%{transform:translateY(3px) rotate(-2deg) scale(.99);}
+  50%{transform:translateY(2px) rotate(4deg) scale(1.01);}
+  62%{transform:translateY(-2px) rotate(6deg) scale(1);}
+  75%{transform:translateY(-4px) rotate(1deg) scale(1.015);}
+  88%{transform:translateY(-1px) rotate(-3deg) scale(.995);}
+}
+@media (prefers-reduced-motion:reduce){.avatar img{animation:none;}}
 header h1{font-family:var(--font-body);font-size:2.25rem;font-weight:400;line-height:1.15;}
 .updated{color:var(--color-secondary);margin-top:.15rem;}
 .bio{margin-top:2.5rem;display:flex;flex-direction:column;gap:1.25rem;}
@@ -79,6 +92,9 @@ footer a{color:inherit;}
 <body>
 <main>
 <header>
+  <div class="avatar" id="avatar" aria-hidden="true">
+    <img src="images/memoji-face-2.png" width="75" height="75" alt="">
+  </div>
   <h1>Joshua Trommel</h1>
   <div class="updated">Langley, BC</div>
 </header>
@@ -162,6 +178,10 @@ document.getElementById('theme').onclick=()=>{
   root.dataset.theme=dark?'light':'dark';
   localStorage.setItem('theme',root.dataset.theme);
 };
+const avatar=document.getElementById('avatar');
+if(avatar&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  avatar.querySelector('img').style.animationDelay=(-Math.random()*6.4)+'s';
+}
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.2});
 document.querySelectorAll('.list li').forEach((li,i)=>{li.style.transitionDelay=(i%20*30)+'ms';io.observe(li);});
 </script>
