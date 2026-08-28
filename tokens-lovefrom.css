@@ -1,7 +1,8 @@
 /* lovefrom.com-derived tokens — extracted 2026-08-25 via /vibe */
 /* Their values, verbatim where they exist: bg #fafafa, ink #000, links italic + no
    underline fading to rgba(0,0,0,.5) over .5s. LoveFrom Serif is proprietary and
-   self-hosted at lovefrom.com; EB Garamond stands in, ending on their own Times fallback.
+   NO SERIF. The type here is the system sans stack (San Francisco / Helvetica) by explicit
+   instruction — never reintroduce a serif webfont on this or any other project.
    LoveFrom has no rules, no radius, no shadows and no dark mode — the hairlines and the
    dark block below are ours, kept as faint as stays visible. */
 

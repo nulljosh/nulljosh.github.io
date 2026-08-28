@@ -30,7 +30,7 @@ The portfolio itself runs on `tokens-lovefrom.css` — lovefrom.com-derived, ext
 2026-08-25 via /vibe: #fafafa on #000, no radius, no shadows, links with no underline that
 fade to 50% ink. The type is NOT LoveFrom's — the serif (EB Garamond) was rolled back
 2026-08-28 for the system sans stack (San Francisco → Helvetica Neue → Helvetica → Arial).
-Keep it sans; the serif read too professional. No webfont is loaded on the portfolio.
+**No serif webfonts on any project — standing instruction, do not reintroduce one.** No webfont is loaded on the portfolio.
 The stylesheet link carries a `?v=YYYYMMDD` cache-buster — **bump it whenever
 `tokens-lovefrom.css` changes**. Cloudflare fronts the zone and caches CSS by extension, so
 without a new URL the edge keeps serving the old tokens and the change never reaches anyone.
