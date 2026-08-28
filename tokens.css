@@ -31,9 +31,11 @@
   --border:var(--color-hairline);
   --border2:var(--color-bg2);
 
-  /* type — Europa is maybulb's Typekit face; geometric sans fallbacks */
-  --font-body:'Europa','Avenir Next','Avenir','Geist',-apple-system,system-ui,'Helvetica Neue',Helvetica,Arial,sans-serif;
-  --font-serif:'Instrument Serif',Georgia,'Times New Roman',serif;
+  /* type — sans everywhere: San Francisco on Apple, Helvetica off it.
+     No webfonts, no Typekit names, and never a bare generic keyword at the
+     end of a chain, which hands the choice to the reader's browser default. */
+  --font-body:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --font-serif:var(--font-body);
   --font-code:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,monospace;
 
   /* geometry — maybulb is square everywhere */

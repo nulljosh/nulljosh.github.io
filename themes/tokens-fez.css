@@ -15,7 +15,7 @@
   --column-width:36.375rem;
   --radius:0;
   --font-body:-apple-system,system-ui,'Helvetica Neue',Helvetica,Arial,sans-serif;
-  --font-serif:'Instrument Serif',Georgia,serif;
+  --font-serif:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',Helvetica,Arial,sans-serif;
   --font-code:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,monospace;
 }
 

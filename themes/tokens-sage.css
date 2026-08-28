@@ -13,7 +13,7 @@
   --color-code-bg:#f8f8f8;
   --column-width:36.375rem;
   --font-body:'Inter',-apple-system,system-ui,sans-serif;
-  --font-serif:'Newsreader',Georgia,serif;
+  --font-serif:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',Helvetica,Arial,sans-serif;
   --font-code:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,monospace;
 }
 
