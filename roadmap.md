@@ -82,3 +82,13 @@ The memoji is back in the header. Dropping it (2b6b5bc) left the LoveFrom serif 
 too corporate — the avatar was the only thing on it with a personality. LoveFrom tokens, type
 and layout are unchanged; only the avatar returns. The animated-Animoji item stays open (this
 is still the static PNG with a CSS bob, not an Animoji export).
+
+## Font rolled back to sans 2026-08-28
+
+The EB Garamond serif from the LoveFrom restyle is gone — system sans stack instead
+(`-apple-system` → San Francisco on Apple, Helvetica Neue/Helvetica/Arial elsewhere). It was
+the single change from the past week that read wrong. Body metrics and the h1 go back to the
+Fredrika treatment (.875rem/1.7, h1 1.625rem/600), and the italic section labels drop with the
+serif — italic is a serif mannerism that doesn't carry to Helvetica. Everything else from the
+LoveFrom pass stays: #fafafa/#000, no radius, no shadows, underline-on-hover links. No webfont
+is loaded on the portfolio now; the Google Fonts <link> and preconnect are gone.

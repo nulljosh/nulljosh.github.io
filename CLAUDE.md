@@ -27,8 +27,10 @@ Signature: `#ffca30` used as a solid block (never a tint), black on white, squar
 Dark mode inverts the ink only; the bulb yellow never changes.
 
 The portfolio itself runs on `tokens-lovefrom.css` — lovefrom.com-derived, extracted
-2026-08-25 via /vibe. Serif (EB Garamond standing in for the proprietary LoveFrom Serif),
-#fafafa on #000, no radius, no shadows, links italic with no underline that fade to 50% ink.
+2026-08-25 via /vibe: #fafafa on #000, no radius, no shadows, links with no underline that
+fade to 50% ink. The type is NOT LoveFrom's — the serif (EB Garamond) was rolled back
+2026-08-28 for the system sans stack (San Francisco → Helvetica Neue → Helvetica → Arial).
+Keep it sans; the serif read too professional. No webfont is loaded on the portfolio.
 Every app site should link `https://heyitsmejosh.com/tokens.css` rather than redefining colors.
 The no-new-themes rule guards `tokens.css`: it is the shared Jaybulb system every app site
 consumes, so never repaint it for a portfolio-only look — change the portfolio's own token file
