@@ -92,3 +92,6 @@ Fredrika treatment (.875rem/1.7, h1 1.625rem/600), and the italic section labels
 serif — italic is a serif mannerism that doesn't carry to Helvetica. Everything else from the
 LoveFrom pass stays: #fafafa/#000, no radius, no shadows, underline-on-hover links. No webfont
 is loaded on the portfolio now; the Google Fonts <link> and preconnect are gone.
+
+## From Apple Notes (imported 2026-08-27)
+- [ ] Rephrase the portfolio around **Jaybulb** — the next domain to buy. It reads as a design studio name and a software engineering firm name.
