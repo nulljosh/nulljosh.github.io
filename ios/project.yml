@@ -29,7 +29,8 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.nulljosh.portfolio
         INFOPLIST_FILE: Sources/Info.plist
         GENERATE_INFOPLIST_FILE: NO
-        TARGETED_DEVICE_FAMILY: "1"
+        # Universal: iPad was never excluded for a design reason, only never enabled.
+        TARGETED_DEVICE_FAMILY: "1,2"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         CODE_SIGN_STYLE: Automatic
         # Without an entitlements file the signed bundle carries no
