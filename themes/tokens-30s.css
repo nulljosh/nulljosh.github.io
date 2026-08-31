@@ -13,6 +13,7 @@
   --text2: #3a3630;
   --text3: #5c574e;
   --accent: #d9442c;
+  --link: #ab3623;
   --accent-dot: #d9442c;
   --border: #1a1611;
   --border2: #c9c5bb;
@@ -42,6 +43,7 @@
 [data-theme="dark"] {
   /* film-noir inversion */
   --bg: #191817;
+    --link: #dd5741;
   --bg2: #232120;
   --text: #f0efeb;
   --text2: rgba(240,239,235,0.78);
