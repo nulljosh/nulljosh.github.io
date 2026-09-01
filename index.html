@@ -48,7 +48,8 @@ main{max-width:var(--column-width);margin:0 auto;padding:5rem 1.25rem 6rem;}
 @media (prefers-reduced-motion:reduce){.avatar img{animation:none;}}
 header h1{font-family:-apple-system,BlinkMacSystemFont,system-ui,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:1.625rem;font-weight:600;letter-spacing:-0.02em;}
 .updated{color:var(--color-secondary);margin-top:.15rem;}
-.bio{margin-top:2.5rem;display:flex;flex-direction:column;gap:1.25rem;}
+.bio{margin-top:2.5rem;display:flex;flex-direction:column;gap:.5rem;}
+.bio .links{color:var(--color-secondary);}
 a{color:var(--color-text);text-decoration:underline;text-decoration-color:var(--color-underline);text-underline-offset:3px;transition:text-decoration-color .5s ease-out;}
 a:hover{text-decoration-color:var(--color-underline-hover);}
 
@@ -102,9 +103,8 @@ footer a{color:inherit;}
 </header>
 
 <div class="bio">
-  <p>Software engineer. I build the apps I needed and couldn't find. Talli started because tracking BC disability benefits meant paperwork, deadlines, and phone calls nobody explains to you, so I wrote the thing that keeps it all straight. The rest followed the same rule: a real problem I had, shipped end to end rather than left as a prototype.</p>
-  <p>Everything below is live across web, iOS, macOS, and watchOS, most of it on the <a href="https://apps.apple.com/ca/developer/joshua-trommel/id6779522177" target="_blank" rel="noopener">App Store</a>. All of it is free, with no ads, no accounts you don't need, and no data sold.</p>
-  <p>You can find me on <a href="https://github.com/nulljosh" target="_blank" rel="noopener">GitHub</a>, <a href="https://letterboxd.com/literallyjordan/" target="_blank" rel="noopener">Letterboxd</a>, and <a href="https://trakt.tv/users/nljs" target="_blank" rel="noopener">Trakt</a>, or reach me at <a href="mailto:jatrommel@gmail.com">jatrommel@gmail.com</a>.</p>
+  <p>Software engineer. I build apps for web, iOS, macOS, and watchOS. All free — no ads, no data sold.</p>
+  <p class="links"><a href="https://apps.apple.com/ca/developer/joshua-trommel/id6779522177" target="_blank" rel="noopener">App&nbsp;Store</a> · <a href="https://github.com/nulljosh" target="_blank" rel="noopener">GitHub</a> · <a href="https://letterboxd.com/literallyjordan/" target="_blank" rel="noopener">Letterboxd</a> · <a href="https://trakt.tv/users/nljs" target="_blank" rel="noopener">Trakt</a> · <a href="mailto:jatrommel@gmail.com">jatrommel@gmail.com</a></p>
 </div>
 
 <section class="list" id="work">
