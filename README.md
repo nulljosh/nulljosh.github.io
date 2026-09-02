@@ -4,7 +4,7 @@
 
 ![version](https://img.shields.io/badge/version-v3.0.0-blue) ![license](https://img.shields.io/badge/license-MIT-green) [![GitHub](https://img.shields.io/badge/GitHub-nulljosh%2Fnulljosh.github.io-black?logo=github)](https://github.com/nulljosh/nulljosh.github.io)
 
-Personal site and project hub at [heyitsmejosh.com](https://heyitsmejosh.com).
+Me, on the internet. Portfolio and project hub at [heyitsmejosh.com](https://heyitsmejosh.com).
 
 ## Projects
 
@@ -14,11 +14,11 @@ Personal site and project hub at [heyitsmejosh.com](https://heyitsmejosh.com).
 
 ## Stack
 
-Static HTML, CSS, JavaScript. No build step. Geist font family (woff2, `font-display: swap`). Live API integrations: GitHub, Letterboxd, Trakt, Open-Meteo weather, Jekyll blog feed.
+Static HTML, CSS and JavaScript. No build step. Geist (woff2, `font-display: swap`). Live data from GitHub, Letterboxd, Trakt, Open-Meteo weather and the blog feed.
 
 ## Deploy
 
-Push to `main`. GitHub Pages deploys via Actions. Custom domain via `CNAME`.
+Push to `main`. GitHub Pages deploys it through Actions. The domain is in `CNAME`.
 
 ## Roadmap
 - [ ] Set Vercel API token for iOS app (vercel.com/account/tokens → create token → wire to claude-usage-ios)
