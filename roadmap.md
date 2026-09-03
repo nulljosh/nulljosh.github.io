@@ -95,7 +95,3 @@ is loaded on the portfolio now; the Google Fonts <link> and preconnect are gone.
 
 ## From Apple Notes (imported 2026-08-27)
 - [ ] Rephrase the portfolio around **Jaybulb**, the next domain to buy. It reads as a design studio name and a software engineering firm name.
-
-## Open
-
-- [ ] Apple Watch companion app -- standalone watchOS target (XcodeGen), same pattern as talli/watchos, sparkjar/watchos, epiphany/watchos, and the new companions in bookrank/charwork/curvely/fengshui/inkpress/lexly/quotestreak. Deferred 2026-09-02 to keep the sweep scoped; pick network+token-pairing, App-Group share, or a fully local port depending on what the app actually is.

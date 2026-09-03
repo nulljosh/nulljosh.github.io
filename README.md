@@ -14,7 +14,7 @@ Me, on the internet. Portfolio and project hub at [heyitsmejosh.com](https://hey
 
 ## Stack
 
-Static HTML, CSS and JavaScript. No build step. Geist (woff2, `font-display: swap`). Live data from GitHub, Letterboxd, Trakt, Open-Meteo weather and the blog feed.
+Static HTML, CSS and JavaScript. No build step. Geist (woff2, `font-display: swap`). Live data from GitHub, Letterboxd, Trakt, Open-Meteo weather and the blog feed. Native iOS companion app (`ios/`) plus an Apple Watch companion (`watchos/`) with the work list and bio ported for the wrist.
 
 ## Deploy
 
@@ -24,7 +24,6 @@ Push to `main`. GitHub Pages deploys it through Actions. The domain is in `CNAME
 - [ ] Set Vercel API token for iOS app (vercel.com/account/tokens → create token → wire to claude-usage-ios)
 - [ ] Add echo.heyitsmejosh.com CNAME record to Cloudflare (Name: echo, Content: nulljosh.github.io)
 - [ ] Clone portfolio vibe/design system to all other projects + journal
-- [ ] iOS companion app for portfolio website
 
 ## License
 
