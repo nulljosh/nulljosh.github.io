@@ -41,10 +41,10 @@ instead. Retired themes (Fez, Fredrika, 30s, Sage, Bending Spoons) are parked in
 
 ## Work list ordering
 
-The `#work` list in `index.html` is ranked most- to least-shipped, using shipped platform
-breadth as the metric (the `.meta` column): 4 platforms, then 3, then 2, then 1, then source-only
-(Labs stays last). Within a tier, keep the existing relative order. The `2026` year label anchors
-the first row only, so it moves with whatever ends up on top.
+The `#work` list in `index.html` is ranked by App Store status: submitted/live on the App
+Store first, not-on-the-App-Store last (Labs stays last). Within a tier, keep the existing
+relative order. The `2026` year label anchors the first row only, so it moves with whatever
+ends up on top.
 
 ## Working rules
 
