@@ -1,5 +1,5 @@
-/* Jaybulb design system — canonical tokens. Derived from maybulb.com. */
-/* Signature: #ffca30 as a solid block, black on white, square corners, no shadows. */
+/* Jaybulb design system — canonical tokens. Bulb accent from maybulb.com, */
+/* type/geometry/glass from apple.com liquid glass (extracted via /vibe 2026-09-10). */
 /* Consumed by heyitsmejosh.com and every app site: <link href="https://heyitsmejosh.com/tokens.css"> */
 /* Past themes live in themes/. Don't add a new one — edit this. */
 
@@ -13,9 +13,9 @@
   /* surface + ink */
   --color-bg:#ffffff;
   --color-bg2:#faf8f3;
-  --color-text:#000000;
-  --color-secondary:rgba(0,0,0,0.50);
-  --color-soft:rgba(0,0,0,0.67);
+  --color-text:#1d1d1f;
+  --color-secondary:rgba(29,29,31,0.56);
+  --color-soft:rgba(29,29,31,0.67);
   --color-hairline:#f0e2b8;
   --color-hairline-strong:var(--bulb);
   --color-underline:var(--bulb);
@@ -27,61 +27,82 @@
   --bg2:var(--color-bg2);
   --text:var(--color-text);
   --text2:var(--color-secondary);
-  --text3:rgba(0,0,0,0.30);
+  --text3:rgba(29,29,31,0.30);
   --border:var(--color-hairline);
   --border2:var(--color-bg2);
 
-  /* type — sans everywhere: San Francisco on Apple, Helvetica off it.
-     No webfonts, no Typekit names, and never a bare generic keyword at the
-     end of a chain, which hands the choice to the reader's browser default. */
+  /* type — San Francisco on Apple, Helvetica off it. No webfonts. */
   --font-body:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',Helvetica,Arial,sans-serif;
   --font-serif:var(--font-body);
   --font-code:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,monospace;
+  --tracking:-0.374px;
 
-  /* geometry — maybulb is square everywhere */
-  --radius:0;
-  --radius-sm:0;
-  --radius-md:0;
-  --radius-lg:0;
-  --radius-pill:0;
+  /* geometry — Apple liquid glass: rounded, not square */
+  --radius:20px;
+  --radius-sm:8px;
+  --radius-md:11px;
+  --radius-lg:28px;
+  --radius-pill:999px;
   --rule:2px solid var(--bulb);
   --column-width:36.375rem;
 
-  /* no shadows: maybulb uses flat blocks. Kept as no-ops so consumers don't break. */
-  --shadow-sm:none;
-  --shadow-md:none;
-  --shadow-lg:none;
+  /* glass surface: translucent, blurred, specular edge */
+  --glass-bg:rgba(255,255,255,0.55);
+  --glass-blur:blur(20px) saturate(180%);
+  --glass-border:rgba(255,255,255,0.4);
+  --shadow-sm:0 2px 12px rgba(0,0,0,0.08);
+  --shadow-md:0 8px 32px rgba(0,0,0,0.12);
+  --shadow-lg:0 16px 48px rgba(0,0,0,0.16);
 
   --ease:cubic-bezier(0.16,1,0.3,1);
   --spring:cubic-bezier(0.34,1.56,0.64,1);
 }
 
-/* Dark: maybulb has no dark mode. Ink inverts, the bulb does not. */
+.glass{
+  background:var(--glass-bg);
+  -webkit-backdrop-filter:var(--glass-blur);
+  backdrop-filter:var(--glass-blur);
+  border:1px solid var(--glass-border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-md);
+}
+
+/* Dark: ink inverts, the bulb does not. */
 [data-theme="dark"]{
-  --color-bg:#0d0d0d;
+  --color-bg:#000000;
   --color-bg2:#171717;
-  --color-text:#f5f2ea;
-  --color-secondary:rgba(245,242,234,0.50);
-  --color-soft:rgba(245,242,234,0.67);
+  --color-text:#f5f5f7;
+  --color-secondary:rgba(245,245,247,0.56);
+  --color-soft:rgba(245,245,247,0.67);
   --color-hairline:rgba(255,202,48,0.22);
   --color-underline:rgba(255,202,48,0.55);
   --color-underline-hover:var(--bulb);
   --color-code-bg:#171717;
   --bulb-deep:var(--bulb);
-  --text3:rgba(245,242,234,0.30);
+  --text3:rgba(245,245,247,0.30);
+  --glass-bg:rgba(29,29,31,0.55);
+  --glass-border:rgba(255,255,255,0.12);
+  --shadow-sm:0 2px 12px rgba(0,0,0,0.3);
+  --shadow-md:0 8px 32px rgba(0,0,0,0.4);
+  --shadow-lg:0 16px 48px rgba(0,0,0,0.5);
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --color-bg:#0d0d0d;
+    --color-bg:#000000;
     --color-bg2:#171717;
-    --color-text:#f5f2ea;
-    --color-secondary:rgba(245,242,234,0.50);
-    --color-soft:rgba(245,242,234,0.67);
+    --color-text:#f5f5f7;
+    --color-secondary:rgba(245,245,247,0.56);
+    --color-soft:rgba(245,245,247,0.67);
     --color-hairline:rgba(255,202,48,0.22);
     --color-underline:rgba(255,202,48,0.55);
     --color-underline-hover:var(--bulb);
     --color-code-bg:#171717;
     --bulb-deep:var(--bulb);
-    --text3:rgba(245,242,234,0.30);
+    --text3:rgba(245,245,247,0.30);
+    --glass-bg:rgba(29,29,31,0.55);
+    --glass-border:rgba(255,255,255,0.12);
+    --shadow-sm:0 2px 12px rgba(0,0,0,0.3);
+    --shadow-md:0 8px 32px rgba(0,0,0,0.4);
+    --shadow-lg:0 16px 48px rgba(0,0,0,0.5);
   }
 }

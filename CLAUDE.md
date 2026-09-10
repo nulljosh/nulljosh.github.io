@@ -21,10 +21,11 @@ Static personal site for `heyitsmejosh.com`. v3.0.0.
 
 ## Style
 
-`tokens.css` is the canonical design system, Jaybulb, derived from maybulb.com (2026-08-24).
-Signature: `#ffca30` used as a solid block (never a tint), black on white, square corners
-(`--radius:0`), no shadows, 2px yellow rules between sections, geometric sans (Europa → Avenir Next → Geist).
-Dark mode inverts the ink only; the bulb yellow never changes.
+`tokens.css` is the canonical design system, Jaybulb: `#ffca30` bulb accent (solid block,
+never a tint) from maybulb.com, merged 2026-09-10 with an Apple liquid-glass system extracted
+via /vibe from apple.com — SF Pro type, -0.374px tracking, rounded geometry (`--radius:20px`),
+translucent blurred `.glass` surfaces (`--glass-bg`/`--glass-blur`/`--glass-border`), and real
+shadows again (`--shadow-sm/md/lg`). Dark mode inverts the ink only; the bulb yellow never changes.
 
 The portfolio itself runs on `tokens-lovefrom.css`, lovefrom.com-derived, extracted
 2026-08-25 via /vibe: #fafafa on #000, no radius, no shadows, links with no underline that
