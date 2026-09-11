@@ -94,7 +94,8 @@ footer a{color:inherit;}
 
 /* Obsidian-style graph, replaces the plain #work list visually. The real <ul>
    below stays in the DOM (sr-only once the graph mounts) so links/SEO/no-JS all still work. */
-.graph-wrap{position:relative;width:100%;height:460px;margin-top:.5rem;border:1px solid var(--color-hairline);border-radius:var(--radius-md);overflow:hidden;background:var(--color-bg2);}
+.graph-wrap{position:relative;width:100%;height:560px;margin-top:.5rem;border:1px solid var(--color-hairline);border-radius:var(--radius-md);overflow:hidden;background:var(--color-bg2);}
+@media (max-width:520px){.graph-wrap{height:420px;}}
 .graph-wrap svg{width:100%;height:100%;display:block;cursor:grab;}
 .graph-wrap svg:active{cursor:grabbing;}
 .graph-wrap .edge{stroke:var(--color-hairline-strong);stroke-width:1;opacity:.25;}
@@ -132,7 +133,7 @@ footer a{color:inherit;}
 <section class="list" id="work">
   <h2>Work</h2>
   <div class="graph-wrap" id="graphWrap" hidden>
-    <svg id="graph" viewBox="0 0 700 460" preserveAspectRatio="xMidYMid meet"></svg>
+    <svg id="graph" viewBox="0 0 1000 620" preserveAspectRatio="xMidYMid meet"></svg>
   </div>
   <p class="graph-hint" id="graphHint" hidden>Drag to look around · click a node to open it</p>
   <ul id="workList">
@@ -249,16 +250,19 @@ document.querySelectorAll('.list li').forEach((li,i)=>{li.style.transitionDelay=
   if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const items=[...document.querySelectorAll('#workList a[href]:first-child,#workListMore a[href]:first-child')];
   if(!items.length) return;
-  const nodes=[{id:'hub',hub:true,x:350,y:230,vx:0,vy:0,name:'Joshua',href:null}];
+  const W=1000,H=620;
+  const nodes=[{id:'hub',hub:true,x:W/2,y:H/2,vx:0,vy:0,name:'Joshua',href:null}];
   items.forEach((a,i)=>{
+    const angle=(i/items.length)*Math.PI*2;
     nodes.push({
       id:'n'+i,
-      x:350+(Math.random()-.5)*500,
-      y:230+(Math.random()-.5)*380,
+      x:W/2+Math.cos(angle)*260,
+      y:H/2+Math.sin(angle)*260,
       vx:0,vy:0,
       name:a.querySelector('.name').textContent,
       href:a.href,
-      tags:(a.dataset.tags||'').split(',').filter(Boolean)
+      // 'web' is on nearly everything, drop it so cross-links only mean something rarer
+      tags:(a.dataset.tags||'').split(',').filter(t=>t&&t!=='web')
     });
   });
   const edges=[];
@@ -270,13 +274,12 @@ document.querySelectorAll('.list li').forEach((li,i)=>{li.style.transitionDelay=
     }
   }
   // ponytail: fixed-iteration force sim (repel + spring), settle once on load, no rAF loop after
-  const W=700,H=460;
-  for(let iter=0;iter<220;iter++){
+  for(let iter=0;iter<300;iter++){
     for(let i=0;i<nodes.length;i++){
       for(let j=i+1;j<nodes.length;j++){
         let dx=nodes[j].x-nodes[i].x,dy=nodes[j].y-nodes[i].y;
         let d2=dx*dx+dy*dy||0.01;
-        const rep=2200/d2;
+        const rep=26000/d2;
         const d=Math.sqrt(d2);
         const fx=dx/d*rep,fy=dy/d*rep;
         nodes[i].vx-=fx;nodes[i].vy-=fy;
@@ -285,27 +288,33 @@ document.querySelectorAll('.list li').forEach((li,i)=>{li.style.transitionDelay=
     }
     edges.forEach(e=>{
       const n1=nodes[e.a],n2=nodes[e.b];
-      const target=e.hub?150:90;
+      const target=e.hub?280:170;
       let dx=n2.x-n1.x,dy=n2.y-n1.y;
       const d=Math.sqrt(dx*dx+dy*dy)||0.01;
-      const strength=(e.hub?0.02:0.006)*(d-target);
+      const strength=(e.hub?0.018:0.003)*(d-target);
       const fx=dx/d*strength,fy=dy/d*strength;
       n1.vx+=fx;n1.vy+=fy;
       n2.vx-=fx;n2.vy-=fy;
     });
     nodes.forEach(n=>{
       if(n.hub) return;
-      n.vx+=(W/2-n.x)*0.0015;
-      n.vy+=(H/2-n.y)*0.0015;
+      n.vx+=(W/2-n.x)*0.0008;
+      n.vy+=(H/2-n.y)*0.0008;
       n.x+=n.vx*0.6;n.y+=n.vy*0.6;
-      n.vx*=0.82;n.vy*=0.82;
-      n.x=Math.max(20,Math.min(W-20,n.x));
-      n.y=Math.max(20,Math.min(H-20,n.y));
+      n.vx*=0.85;n.vy*=0.85;
+      n.x=Math.max(30,Math.min(W-30,n.x));
+      n.y=Math.max(30,Math.min(H-30,n.y));
     });
   }
+  // fit the final layout into the viewBox with padding, so it never reads as a tiny squished blob
+  const pad=60;
+  const minX=Math.min(...nodes.map(n=>n.x))-pad, maxX=Math.max(...nodes.map(n=>n.x))+pad;
+  const minY=Math.min(...nodes.map(n=>n.y))-pad, maxY=Math.max(...nodes.map(n=>n.y))+pad;
 
   const svgns='http://www.w3.org/2000/svg';
   const svg=document.getElementById('graph');
+  const vbW=maxX-minX,vbH=maxY-minY;
+  svg.setAttribute('viewBox',`${minX} ${minY} ${vbW} ${vbH}`);
   const gEdges=document.createElementNS(svgns,'g');
   const gNodes=document.createElementNS(svgns,'g');
   svg.append(gEdges,gNodes);
@@ -344,14 +353,15 @@ document.querySelectorAll('.list li').forEach((li,i)=>{li.style.transitionDelay=
   render();
 
   // drag-to-pan the whole graph (simple viewBox offset, no zoom)
-  let panX=0,panY=0,dragging=false,lastX=0,lastY=0;
+  let panX=minX,panY=minY,dragging=false,lastX=0,lastY=0;
+  const scale=vbW/svg.clientWidth||1;
   const wrap=document.getElementById('graphWrap');
   svg.addEventListener('pointerdown',e=>{dragging=true;lastX=e.clientX;lastY=e.clientY;svg.setPointerCapture(e.pointerId);});
   svg.addEventListener('pointermove',e=>{
     if(!dragging) return;
-    panX-=(e.clientX-lastX);panY-=(e.clientY-lastY);
+    panX-=(e.clientX-lastX)*scale;panY-=(e.clientY-lastY)*scale;
     lastX=e.clientX;lastY=e.clientY;
-    svg.setAttribute('viewBox',`${panX} ${panY} 700 460`);
+    svg.setAttribute('viewBox',`${panX} ${panY} ${vbW} ${vbH}`);
   });
   ['pointerup','pointerleave'].forEach(ev=>svg.addEventListener(ev,()=>dragging=false));
 
