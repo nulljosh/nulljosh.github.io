@@ -285,6 +285,9 @@ async function syncGithubRepos(){
 (async function(){
   if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if(typeof d3==='undefined') return;
+  const svg=document.getElementById('graph');
+  if(!svg) return;
+  try{
   await syncGithubRepos();
   const items=[...document.querySelectorAll('#workList a[href]:first-child,#workListMore a[href]:first-child')];
   if(!items.length) return;
@@ -320,7 +323,6 @@ async function syncGithubRepos(){
   const vbW=maxX-minX,vbH=maxY-minY;
 
   const svgns='http://www.w3.org/2000/svg';
-  const svg=document.getElementById('graph');
   const homeView=`${minX} ${minY} ${vbW} ${vbH}`;
   svg.setAttribute('viewBox',homeView);
   const gEdges=document.createElementNS(svgns,'g');
@@ -408,6 +410,7 @@ async function syncGithubRepos(){
   document.getElementById('workListMore').classList.add('sr-only');
   document.getElementById('graphWrap').hidden=false;
   document.getElementById('graphHint').hidden=false;
+  }catch(e){/* graph is progressive enhancement, list view still stands */}
 })();
 </script>
   <script>if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('/sw.js'));</script>
