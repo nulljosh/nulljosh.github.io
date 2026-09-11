@@ -96,7 +96,11 @@ footer a{color:inherit;}
    below stays in the DOM (sr-only once the graph mounts) so links/SEO/no-JS all still work. */
 .graph-wrap{position:relative;width:100%;height:560px;margin-top:.5rem;border:1px solid var(--color-hairline);border-radius:var(--radius-md);overflow:hidden;background:var(--color-bg2);}
 @media (max-width:520px){.graph-wrap{height:420px;}}
-.graph-wrap svg{width:100%;height:100%;display:block;touch-action:manipulation;}
+.graph-wrap .preview{position:absolute;inset:0;opacity:0;transition:opacity .45s ease;pointer-events:none;}
+.graph-wrap .preview.show{opacity:1;}
+.graph-wrap .preview iframe{width:100%;height:100%;border:0;display:block;}
+.graph-wrap svg{position:relative;width:100%;height:100%;display:block;touch-action:manipulation;transition:opacity .45s ease;}
+.graph-wrap.previewing svg{opacity:.12;}
 .graph-wrap .edge{stroke:var(--color-hairline-strong);stroke-width:1;opacity:.25;}
 .graph-wrap .edge.hub{opacity:.4;}
 .graph-wrap .node .hit{fill:transparent;}
@@ -137,6 +141,7 @@ footer a{color:inherit;}
 <section class="list" id="work">
   <h2>Work</h2>
   <div class="graph-wrap" id="graphWrap" hidden>
+    <div class="preview" id="graphPreview"><iframe id="graphFrame" loading="lazy" referrerpolicy="no-referrer" title="Project preview"></iframe></div>
     <svg id="graph" viewBox="0 0 1000 620" preserveAspectRatio="xMidYMid meet"></svg>
   </div>
   <p class="graph-hint" id="graphHint" hidden>Click a project to zoom in, click again to open it</p>
@@ -295,7 +300,23 @@ document.querySelectorAll('.list li').forEach((li,i)=>{li.style.transitionDelay=
     line.setAttribute('x2',l.target.x);line.setAttribute('y2',l.target.y);
     gEdges.appendChild(line);
   });
-  let focused=null;
+  let focused=null,hoverTimer=null;
+  const wrap=document.getElementById('graphWrap');
+  const previewEl=document.getElementById('graphPreview');
+  const frame=document.getElementById('graphFrame');
+  function showPreview(n){
+    if(!n.href) return;
+    clearTimeout(hoverTimer);
+    if(frame.src!==n.href) frame.src=n.href;
+    previewEl.classList.add('show');
+    wrap.classList.add('previewing');
+  }
+  function hidePreview(){
+    previewEl.classList.remove('show');
+    wrap.classList.remove('previewing');
+    clearTimeout(hoverTimer);
+    hoverTimer=setTimeout(()=>{ if(!previewEl.classList.contains('show')) frame.src='about:blank'; },500);
+  }
   const nodeEls=nodes.map(n=>{
     const g=document.createElementNS(svgns,'g');
     g.setAttribute('class','node'+(n.hub?' hub':''));
@@ -318,14 +339,22 @@ document.querySelectorAll('.list li').forEach((li,i)=>{li.style.transitionDelay=
       g.appendChild(hit);
     }
     if(n.href){
-      g.addEventListener('mouseenter',()=>g.classList.add('focus'));
-      g.addEventListener('mouseleave',()=>{if(focused!==n)g.classList.remove('focus');});
-      // click once: zoom the view onto the node. click again (now focused): open its link.
+      g.addEventListener('mouseenter',()=>{
+        g.classList.add('focus');
+        clearTimeout(hoverTimer);
+        hoverTimer=setTimeout(()=>showPreview(n),350);
+      });
+      g.addEventListener('mouseleave',()=>{
+        if(focused!==n)g.classList.remove('focus');
+        if(focused!==n) hidePreview();
+      });
+      // click once: zoom in and load the live preview. click again (now focused): open its link.
       g.addEventListener('click',ev=>{
         ev.stopPropagation();
         if(focused===n){ window.open(n.href,'_blank','noopener'); return; }
         if(focused) focused.el.classList.remove('focus');
         focused=n; n.el=g; g.classList.add('focus');
+        showPreview(n);
         const zw=220,zh=zw*(vbH/vbW);
         svg.setAttribute('viewBox',`${n.x-zw/2} ${n.y-zh/2} ${zw} ${zh}`);
       });
@@ -339,6 +368,7 @@ document.querySelectorAll('.list li').forEach((li,i)=>{li.style.transitionDelay=
     focused.el.classList.remove('focus');
     focused=null;
     svg.setAttribute('viewBox',homeView);
+    hidePreview();
   });
 
   document.getElementById('workList').classList.add('sr-only');
