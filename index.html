@@ -135,7 +135,7 @@ footer a{color:inherit;}
   <div class="graph-wrap" id="graphWrap" hidden>
     <svg id="graph" viewBox="0 0 1000 620" preserveAspectRatio="xMidYMid meet"></svg>
   </div>
-  <p class="graph-hint" id="graphHint" hidden>Drag to look around · click a node to open it</p>
+  <p class="graph-hint" id="graphHint" hidden>Click a project to zoom in, click again to open it</p>
   <ul id="workList">
     <li><a href="https://talli.heyitsmejosh.com" target="_blank" rel="noopener" data-tags="web,ios,macos,watchos"><span class="year">2026</span><span class="name">Talli, BC disability benefits tracker</span><time class="meta">Web · iOS · macOS · watchOS</time></a><a class="store" href="https://apps.apple.com/app/id6782366555" target="_blank" rel="noopener" aria-label="View on the App Store">App&nbsp;Store</a></li>
     <li><a href="https://epiphany.heyitsmejosh.com" target="_blank" rel="noopener" data-tags="web,ios,macos,watchos"><span class="name">Epiphany, finance dashboard</span><time class="meta">Web · iOS · macOS · watchOS</time></a><a class="store" href="https://apps.apple.com/app/id6779522175" target="_blank" rel="noopener" aria-label="View on the App Store">App&nbsp;Store</a></li>
@@ -188,15 +188,8 @@ footer a{color:inherit;}
   <h2>Writing</h2>
   <ul>
     <!-- journal-sync:start -->
-    <li><a href="https://journal.heyitsmejosh.com/2026/09/11/unattended/"><span class="year">2026</span><span class="name">Unattended</span><time class="meta" datetime="2026-09-11">Sep 11</time></a></li>
-    <li><a href="https://journal.heyitsmejosh.com/2026/09/10/headless/"><span class="name">Headless</span><time class="meta" datetime="2026-09-10">Sep 10</time></a></li>
-    <li><a href="https://journal.heyitsmejosh.com/2026/09/09/network/"><span class="name">Network</span><time class="meta" datetime="2026-09-09">Sep 09</time></a></li>
-    <li><a href="https://journal.heyitsmejosh.com/2026/09/08/public/"><span class="name">Public</span><time class="meta" datetime="2026-09-08">Sep 08</time></a></li>
-    <li><a href="https://journal.heyitsmejosh.com/2026/09/06/waiting/"><span class="name">Waiting</span><time class="meta" datetime="2026-09-06">Sep 06</time></a></li>
-    <li><a href="https://journal.heyitsmejosh.com/2026/09/05/ordering/"><span class="name">Ordering</span><time class="meta" datetime="2026-09-05">Sep 05</time></a></li>
-    <li><a href="https://journal.heyitsmejosh.com/2026/09/04/duolingo/"><span class="name">Duolingo</span><time class="meta" datetime="2026-09-04">Sep 04</time></a></li>
-    <li><a href="https://journal.heyitsmejosh.com/2026/09/03/plain/"><span class="name">Plain</span><time class="meta" datetime="2026-09-03">Sep 03</time></a></li>
-    <li><a href="https://journal.heyitsmejosh.com/2026/09/02/fixes/"><span class="name">Fixes</span><time class="meta" datetime="2026-09-02">Sep 02</time></a></li>
+    <li><a href="https://journal.heyitsmejosh.com/2026/09/11/scale/"><span class="year">2026</span><span class="name">Scale</span><time class="meta" datetime="2026-09-11">Sep 11</time></a></li>
+    <li><a href="https://journal.heyitsmejosh.com/2026/09/06/week/"><span class="name">Week</span><time class="meta" datetime="2026-09-06">Sep 06</time></a></li>
     <li><a href="https://journal.heyitsmejosh.com/2026/08/24/the-picture-gets-accurate/"><span class="name">Accurate</span><time class="meta" datetime="2026-08-24">Aug 24</time></a></li>
     <li><a href="https://journal.heyitsmejosh.com/2026/07/31/a-summer-of-renames/"><span class="name">Renames</span><time class="meta" datetime="2026-07-31">Jul 31</time></a></li>
     <li><a href="https://journal.heyitsmejosh.com/2026/05/29/winter-into-spring/"><span class="name">Spring</span><time class="meta" datetime="2026-05-29">May 29</time></a></li>
@@ -229,6 +222,7 @@ footer a{color:inherit;}
   <button id="theme" type="button">Toggle theme</button>
 </footer>
 </main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-force/3.0.0/d3-force.min.js"></script>
 <script>
 document.body.classList.remove('no-js');
 document.getElementById('theme').onclick=()=>{
@@ -244,130 +238,100 @@ if(avatar&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.2});
 document.querySelectorAll('.list li').forEach((li,i)=>{li.style.transitionDelay=(i%20*30)+'ms';io.observe(li);});
 
-// Obsidian-style force graph over the Work list. Progressive enhancement:
-// the real <ul> items stay in the DOM as the data source and as a11y/no-JS fallback.
+// Obsidian-style force graph over the Work list, laid out with d3-force (proper
+// physics, no hand-rolled clamping). Progressive enhancement: the real <ul> items
+// stay in the DOM as the data source and as a11y/no-JS fallback.
 (function(){
   if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if(typeof d3==='undefined') return;
   const items=[...document.querySelectorAll('#workList a[href]:first-child,#workListMore a[href]:first-child')];
   if(!items.length) return;
   const W=1000,H=620;
-  const nodes=[{id:'hub',hub:true,x:W/2,y:H/2,vx:0,vy:0,name:'Joshua',href:null}];
+  const nodes=[{id:0,hub:true,x:W/2,y:H/2,fx:W/2,fy:H/2,name:'Joshua',href:null}];
   items.forEach((a,i)=>{
-    const angle=(i/items.length)*Math.PI*2;
     nodes.push({
-      id:'n'+i,
-      x:W/2+Math.cos(angle)*260,
-      y:H/2+Math.sin(angle)*260,
-      vx:0,vy:0,
+      id:i+1,
       name:a.querySelector('.name').textContent,
       href:a.href,
       // 'web' is on nearly everything, drop it so cross-links only mean something rarer
       tags:(a.dataset.tags||'').split(',').filter(t=>t&&t!=='web')
     });
   });
-  const edges=[];
-  for(let i=1;i<nodes.length;i++) edges.push({a:0,b:i,hub:true});
+  const links=[];
+  for(let i=1;i<nodes.length;i++) links.push({source:0,target:i,hub:true});
   for(let i=1;i<nodes.length;i++){
     for(let j=i+1;j<nodes.length;j++){
-      const shared=nodes[i].tags.filter(t=>nodes[j].tags.includes(t));
-      if(shared.length) edges.push({a:i,b:j,hub:false});
+      if(nodes[i].tags.some(t=>nodes[j].tags.includes(t))) links.push({source:i,target:j,hub:false});
     }
   }
-  // ponytail: fixed-iteration force sim (repel + spring), settle once on load, no rAF loop after
-  for(let iter=0;iter<300;iter++){
-    for(let i=0;i<nodes.length;i++){
-      for(let j=i+1;j<nodes.length;j++){
-        let dx=nodes[j].x-nodes[i].x,dy=nodes[j].y-nodes[i].y;
-        let d2=dx*dx+dy*dy||0.01;
-        const rep=26000/d2;
-        const d=Math.sqrt(d2);
-        const fx=dx/d*rep,fy=dy/d*rep;
-        nodes[i].vx-=fx;nodes[i].vy-=fy;
-        nodes[j].vx+=fx;nodes[j].vy+=fy;
-      }
-    }
-    edges.forEach(e=>{
-      const n1=nodes[e.a],n2=nodes[e.b];
-      const target=e.hub?280:170;
-      let dx=n2.x-n1.x,dy=n2.y-n1.y;
-      const d=Math.sqrt(dx*dx+dy*dy)||0.01;
-      const strength=(e.hub?0.018:0.003)*(d-target);
-      const fx=dx/d*strength,fy=dy/d*strength;
-      n1.vx+=fx;n1.vy+=fy;
-      n2.vx-=fx;n2.vy-=fy;
-    });
-    nodes.forEach(n=>{
-      if(n.hub) return;
-      n.vx+=(W/2-n.x)*0.0008;
-      n.vy+=(H/2-n.y)*0.0008;
-      n.x+=n.vx*0.6;n.y+=n.vy*0.6;
-      n.vx*=0.85;n.vy*=0.85;
-      n.x=Math.max(30,Math.min(W-30,n.x));
-      n.y=Math.max(30,Math.min(H-30,n.y));
-    });
-  }
-  // fit the final layout into the viewBox with padding, so it never reads as a tiny squished blob
-  const pad=60;
+  const sim=d3.forceSimulation(nodes)
+    .force('charge',d3.forceManyBody().strength(-140))
+    .force('link',d3.forceLink(links).id(d=>d.id).distance(l=>l.hub?170:70).strength(l=>l.hub?0.5:0.1))
+    .force('center',d3.forceCenter(W/2,H/2))
+    .force('collide',d3.forceCollide(16))
+    .stop();
+  for(let i=0;i<400;i++) sim.tick();
+
+  const pad=40;
   const minX=Math.min(...nodes.map(n=>n.x))-pad, maxX=Math.max(...nodes.map(n=>n.x))+pad;
   const minY=Math.min(...nodes.map(n=>n.y))-pad, maxY=Math.max(...nodes.map(n=>n.y))+pad;
+  const vbW=maxX-minX,vbH=maxY-minY;
 
   const svgns='http://www.w3.org/2000/svg';
   const svg=document.getElementById('graph');
-  const vbW=maxX-minX,vbH=maxY-minY;
-  svg.setAttribute('viewBox',`${minX} ${minY} ${vbW} ${vbH}`);
+  const homeView=`${minX} ${minY} ${vbW} ${vbH}`;
+  svg.setAttribute('viewBox',homeView);
   const gEdges=document.createElementNS(svgns,'g');
   const gNodes=document.createElementNS(svgns,'g');
   svg.append(gEdges,gNodes);
-  const edgeEls=edges.map(e=>{
-    const l=document.createElementNS(svgns,'line');
-    l.setAttribute('class','edge'+(e.hub?' hub':''));
-    gEdges.appendChild(l);
-    return l;
+  links.forEach(l=>{
+    const line=document.createElementNS(svgns,'line');
+    line.setAttribute('class','edge'+(l.hub?' hub':''));
+    line.setAttribute('x1',l.source.x);line.setAttribute('y1',l.source.y);
+    line.setAttribute('x2',l.target.x);line.setAttribute('y2',l.target.y);
+    gEdges.appendChild(line);
   });
+  let focused=null;
   const nodeEls=nodes.map(n=>{
     const g=document.createElementNS(svgns,'g');
     g.setAttribute('class','node'+(n.hub?' hub':''));
+    g.setAttribute('transform',`translate(${n.x},${n.y})`);
+    g.setAttribute('tabindex',n.href?'0':'-1');
+    if(n.href) g.setAttribute('role','link');
     const c=document.createElementNS(svgns,'circle');
-    c.setAttribute('r',n.hub?9:5);
+    c.setAttribute('r',n.hub?9:6);
     const t=document.createElementNS(svgns,'text');
-    t.setAttribute('x',n.hub?0:8);
+    t.setAttribute('x',n.hub?0:9);
     t.setAttribute('y',4);
     t.textContent=n.name;
     g.append(c,t);
     if(n.href){
-      g.addEventListener('click',()=>window.open(n.href,'_blank','noopener'));
       g.addEventListener('mouseenter',()=>g.classList.add('focus'));
-      g.addEventListener('mouseleave',()=>g.classList.remove('focus'));
+      g.addEventListener('mouseleave',()=>{if(focused!==n)g.classList.remove('focus');});
+      // click once: zoom the view onto the node. click again (now focused): open its link.
+      g.addEventListener('click',ev=>{
+        ev.stopPropagation();
+        if(focused===n){ window.open(n.href,'_blank','noopener'); return; }
+        if(focused) focused.el.classList.remove('focus');
+        focused=n; n.el=g; g.classList.add('focus');
+        const zw=220,zh=zw*(vbH/vbW);
+        svg.setAttribute('viewBox',`${n.x-zw/2} ${n.y-zh/2} ${zw} ${zh}`);
+      });
     }
     gNodes.appendChild(g);
     return g;
   });
-  function render(){
-    edgeEls.forEach((l,i)=>{
-      const e=edges[i],n1=nodes[e.a],n2=nodes[e.b];
-      l.setAttribute('x1',n1.x);l.setAttribute('y1',n1.y);
-      l.setAttribute('x2',n2.x);l.setAttribute('y2',n2.y);
-    });
-    nodeEls.forEach((g,i)=>g.setAttribute('transform',`translate(${nodes[i].x},${nodes[i].y})`));
-  }
-  render();
-
-  // drag-to-pan the whole graph (simple viewBox offset, no zoom)
-  let panX=minX,panY=minY,dragging=false,lastX=0,lastY=0;
-  const scale=vbW/svg.clientWidth||1;
-  const wrap=document.getElementById('graphWrap');
-  svg.addEventListener('pointerdown',e=>{dragging=true;lastX=e.clientX;lastY=e.clientY;svg.setPointerCapture(e.pointerId);});
-  svg.addEventListener('pointermove',e=>{
-    if(!dragging) return;
-    panX-=(e.clientX-lastX)*scale;panY-=(e.clientY-lastY)*scale;
-    lastX=e.clientX;lastY=e.clientY;
-    svg.setAttribute('viewBox',`${panX} ${panY} ${vbW} ${vbH}`);
+  // click empty space to zoom back out
+  svg.addEventListener('click',()=>{
+    if(!focused) return;
+    focused.el.classList.remove('focus');
+    focused=null;
+    svg.setAttribute('viewBox',homeView);
   });
-  ['pointerup','pointerleave'].forEach(ev=>svg.addEventListener(ev,()=>dragging=false));
 
   document.getElementById('workList').classList.add('sr-only');
   document.getElementById('workListMore').classList.add('sr-only');
-  wrap.hidden=false;
+  document.getElementById('graphWrap').hidden=false;
   document.getElementById('graphHint').hidden=false;
 })();
 </script>
