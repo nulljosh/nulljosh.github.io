@@ -188,6 +188,7 @@ footer a{color:inherit;}
       <li><a href="https://fieldbook.heyitsmejosh.com" target="_blank" rel="noopener" data-tags="web"><span class="name">Fieldbook, 89 fields with check questions</span><time class="meta">Web</time></a></li>
       <li><a href="https://tripwire.heyitsmejosh.com" target="_blank" rel="noopener" data-tags="web"><span class="name">Tripwire, API drift watcher</span><time class="meta">Web</time></a></li>
       <li><a href="https://pwnlingo.heyitsmejosh.com" target="_blank" rel="noopener" data-tags="web"><span class="name">Pwnlingo, Duolingo autopilot</span><time class="meta">Web</time></a></li>
+      <li><a href="https://sieve.heyitsmejosh.com" target="_blank" rel="noopener" data-tags="web"><span class="name">Sieve, inbox triage skill</span><time class="meta">Web</time></a></li>
       <li><a href="https://github.com/nulljosh/labs" target="_blank" rel="noopener" data-tags="source"><span class="name">Labs, small experiments &amp; build-your-owns</span><time class="meta">Source</time></a></li>
     </ul>
   </details>
@@ -247,12 +248,44 @@ if(avatar&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.2});
 document.querySelectorAll('.list li').forEach((li,i)=>{li.style.transitionDelay=(i%20*30)+'ms';io.observe(li);});
 
+// New repos with a homepage set show up here automatically, no manual <li> needed.
+// Curated entries above stay for SEO/no-JS; this only appends what's missing.
+async function syncGithubRepos(){
+  const list=document.getElementById('workListMore');
+  if(!list) return;
+  const known=new Set([...document.querySelectorAll('#workList a[href],#workListMore a[href]')].map(a=>a.href.replace(/\/$/,'')));
+  try{
+    const res=await fetch('https://api.github.com/users/nulljosh/repos?per_page=100&sort=updated');
+    if(!res.ok) return;
+    const repos=await res.json();
+    for(const r of repos){
+      if(r.fork||!r.homepage) continue;
+      const href=r.homepage.replace(/\/$/,'');
+      if(known.has(href)) continue;
+      known.add(href);
+      const li=document.createElement('li');
+      const a=document.createElement('a');
+      a.href=r.homepage; a.target='_blank'; a.rel='noopener';
+      a.dataset.tags='web';
+      const name=document.createElement('span');
+      name.className='name';
+      name.textContent=r.description?`${r.name}, ${r.description.replace(/\.$/,'').toLowerCase()}`:r.name;
+      const meta=document.createElement('time');
+      meta.className='meta'; meta.textContent='Web';
+      a.append(name,meta);
+      li.append(a);
+      list.append(li);
+    }
+  }catch(e){/* offline or rate-limited, curated list still stands */}
+}
+
 // Obsidian-style force graph over the Work list, laid out with d3-force (proper
 // physics, no hand-rolled clamping). Progressive enhancement: the real <ul> items
 // stay in the DOM as the data source and as a11y/no-JS fallback.
-(function(){
+(async function(){
   if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if(typeof d3==='undefined') return;
+  await syncGithubRepos();
   const items=[...document.querySelectorAll('#workList a[href]:first-child,#workListMore a[href]:first-child')];
   if(!items.length) return;
   const W=1000,H=620;
