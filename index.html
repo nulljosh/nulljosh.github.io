@@ -99,7 +99,7 @@ footer a{color:inherit;}
 .graph-wrap .preview{position:absolute;inset:0;opacity:0;transition:opacity .45s ease;pointer-events:none;}
 .graph-wrap .preview.show{opacity:1;}
 .graph-wrap .preview iframe{width:100%;height:100%;border:0;display:block;}
-.graph-wrap svg{position:relative;width:100%;height:100%;display:block;touch-action:manipulation;transition:opacity .45s ease;}
+.graph-wrap svg{position:relative;width:100%;height:100%;display:block;touch-action:none;transition:opacity .45s ease;}
 .graph-wrap.previewing svg{opacity:.12;}
 .graph-wrap .edge{stroke:var(--color-hairline-strong);stroke-width:1;opacity:.25;}
 .graph-wrap .edge.hub{opacity:.4;}
@@ -324,10 +324,25 @@ async function syncGithubRepos(){
 
   const svgns='http://www.w3.org/2000/svg';
   const homeView=`${minX} ${minY} ${vbW} ${vbH}`;
+  const cx=minX+vbW/2, cy=minY+vbH/2;
   svg.setAttribute('viewBox',homeView);
+  const zoomLayer=document.createElementNS(svgns,'g');
   const gEdges=document.createElementNS(svgns,'g');
   const gNodes=document.createElementNS(svgns,'g');
-  svg.append(gEdges,gNodes);
+  zoomLayer.append(gEdges,gNodes);
+  svg.append(zoomLayer);
+  const d3svg=d3.select(svg);
+  const zoomLayerSel=d3.select(zoomLayer);
+  const zoom=d3.zoom().scaleExtent([1,8]).on('zoom',ev=>{
+    zoomLayerSel.attr('transform',ev.transform);
+  });
+  d3svg.call(zoom);
+  function zoomTo(x,y,k,duration=400){
+    d3svg.transition().duration(duration).call(
+      zoom.transform,
+      d3.zoomIdentity.translate(cx,cy).scale(k).translate(-x,-y)
+    );
+  }
   links.forEach(l=>{
     const line=document.createElementNS(svgns,'line');
     line.setAttribute('class','edge'+(l.hub?' hub':''));
@@ -390,8 +405,7 @@ async function syncGithubRepos(){
         if(focused) focused.el.classList.remove('focus');
         focused=n; n.el=g; g.classList.add('focus');
         showPreview(n);
-        const zw=220,zh=zw*(vbH/vbW);
-        svg.setAttribute('viewBox',`${n.x-zw/2} ${n.y-zh/2} ${zw} ${zh}`);
+        zoomTo(n.x,n.y,vbW/220);
       });
     }
     gNodes.appendChild(g);
@@ -402,7 +416,7 @@ async function syncGithubRepos(){
     if(!focused) return;
     focused.el.classList.remove('focus');
     focused=null;
-    svg.setAttribute('viewBox',homeView);
+    zoomTo(cx,cy,1);
     hidePreview();
   });
 
