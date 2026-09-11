@@ -19,7 +19,7 @@ let work = [
     Item(year: "", name: "Litigate, litigation planner", meta: "Web · iOS · macOS", url: "https://litigate.heyitsmejosh.com"),
     Item(year: "", name: "Quotable, movie-quote trivia", meta: "Web · iOS", url: "https://quotable.heyitsmejosh.com"),
     Item(year: "", name: "NYC, Times Square city sim", meta: "iOS · macOS", url: "https://nyc.heyitsmejosh.com"),
-    Item(year: "", name: "Wiretext, wireframe text editor", meta: "Web · iOS · macOS", url: "https://wiretext.heyitsmejosh.com"),
+    Item(year: "", name: "Blockframe, wireframe text editor", meta: "Web · iOS · macOS", url: "https://wiretext.heyitsmejosh.com"),
     Item(year: "", name: "Curvely, equation grapher", meta: "Web · iOS · macOS", url: "https://grapher.heyitsmejosh.com"),
     Item(year: "", name: "Nimble, instant-answer search", meta: "macOS", url: "https://nimble.heyitsmejosh.com"),
 ]
