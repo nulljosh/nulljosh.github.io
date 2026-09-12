@@ -287,8 +287,8 @@ async function syncGithubRepos(){
   if(typeof d3==='undefined') return;
   const svg=document.getElementById('graph');
   if(!svg) return;
+  syncGithubRepos(); // fire and forget, don't block first paint on a network round-trip
   try{
-  await syncGithubRepos();
   const items=[...document.querySelectorAll('#workList a[href]:first-child,#workListMore a[href]:first-child')];
   if(!items.length) return;
   const W=1000,H=620;
