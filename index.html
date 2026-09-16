@@ -61,69 +61,30 @@ a:hover{text-decoration-color:var(--color-underline-hover);}
 .list h2{color:var(--color-secondary);font-size:.875rem;font-weight:500;border-bottom:1px solid var(--color-hairline);padding-bottom:.5rem;}
 .list ul{list-style:none;}
 .list li{position:relative;}
-.list li{opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .5s ease;}
-.list li.in{opacity:1;transform:none;}
-.list .store{position:absolute;right:0;top:.735rem;color:var(--color-secondary);font-size:.85rem;text-decoration:none;opacity:.55;transition:opacity .14s;}
-.list li:hover .store,.list .store:focus{opacity:1;}
+.list .store{position:absolute;right:0;top:.735rem;color:var(--color-secondary);font-size:.85rem;text-decoration:none;}
 .list .store:hover{color:var(--bulb);text-decoration:underline;}
 .list li>a:first-child{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.735rem 5.5rem .735rem 6.75rem;text-decoration:none;border-bottom:1px solid var(--color-hairline);}
 .list li:last-child a{border-bottom:none;}
-.more li{opacity:1;transform:none;}
 .more summary{list-style:none;cursor:pointer;color:var(--color-secondary);padding:.735rem 0;font-size:.875rem;}
 .more summary::-webkit-details-marker{display:none;}
 .more[open] summary{border-bottom:1px solid var(--color-hairline);}
 .list .year{position:absolute;left:0;top:.735rem;color:var(--color-secondary);}
-.list .name{position:relative;transition:opacity .14s;}
-.list .name::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--color-underline-hover);transform:scaleX(0);transform-origin:left;transition:transform .3s ease-out;}
-.list li a:hover .name::after{transform:scaleX(1);}
-@media (prefers-reduced-motion:reduce){.list .name::after{transition:none;}.list li{opacity:1;transform:none;transition:none;}}
-.list .meta{color:var(--color-secondary);white-space:nowrap;flex-shrink:0;transition:opacity .14s;}
-@media screen and (min-width:520px){
-  .list ul:hover .name,.list ul:hover .meta{opacity:.3;}
-  .list li a:hover .name,.list li a:hover .meta{opacity:1;}
-}
+.list li a:hover .name{text-decoration:underline;}
+.list .meta{color:var(--color-secondary);white-space:nowrap;flex-shrink:0;}
 @media screen and (max-width:520px){
   .list li>a:first-child{padding-left:3rem;}
   .list .meta{display:none;}
-    .list .store{opacity:1;}
 }
 footer{padding-top:4rem;color:var(--color-secondary);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
 footer a{color:inherit;}
 #theme{background:none;border:none;font:inherit;color:inherit;cursor:pointer;text-decoration:underline;text-decoration-color:var(--color-underline);text-underline-offset:3px;padding:0;}
 #theme:hover{text-decoration-color:var(--color-underline-hover);}
 #theme{transition:text-decoration-color .5s ease-out;}
-
-/* Obsidian-style graph, replaces the plain #work list visually. The real <ul>
-   below stays in the DOM (sr-only once the graph mounts) so links/SEO/no-JS all still work. */
-.graph-wrap{position:relative;width:100%;height:560px;margin-top:.5rem;border:1px solid var(--color-hairline);border-radius:var(--radius-md);overflow:hidden;background:var(--color-bg2);}
-@media (max-width:520px){.graph-wrap{height:420px;}}
-.graph-wrap .preview{position:absolute;inset:0;opacity:0;transition:opacity .45s ease;pointer-events:none;}
-.graph-wrap .preview.show{opacity:1;}
-.graph-wrap .preview iframe{width:100%;height:100%;border:0;display:block;}
-.graph-wrap svg{position:relative;width:100%;height:100%;display:block;touch-action:pan-y;transition:opacity .45s ease;}
-.graph-wrap.previewing svg{opacity:.12;}
-.graph-wrap .edge{stroke:var(--color-hairline-strong);stroke-width:1;opacity:.25;}
-.graph-wrap .edge.hub{opacity:.4;}
-.graph-wrap .node .hit{fill:transparent;}
-.graph-wrap .node .dot{fill:var(--color-bg2);stroke:var(--bulb);stroke-width:1.5;transition:r .15s,fill .15s;}
-.graph-wrap .node.hub .dot{fill:var(--bulb);stroke:none;}
-.graph-wrap .node text{font-family:var(--font-body);font-size:10px;fill:var(--color-secondary);pointer-events:none;opacity:0;transition:opacity .15s;}
-.graph-wrap .node.hub text{fill:var(--color-text);font-weight:600;font-size:12px;opacity:1;}
-.graph-wrap .node:hover .dot,.graph-wrap .node.focus .dot{fill:var(--bulb);}
-.graph-wrap .node:hover text,.graph-wrap .node.focus text{opacity:1;fill:var(--color-text);}
-.graph-wrap .node{cursor:pointer;}
-.graph-hint{font-size:.75rem;color:var(--color-secondary);margin-top:.5rem;}
-@media (max-width:520px){
-  .graph-wrap .node text{font-size:12px;}
-  .graph-wrap .node.hub text{font-size:14px;}
-}
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
-.no-js .sr-only{position:static;width:auto;height:auto;margin:0;clip:auto;white-space:normal;}
 </style>
   <link rel="manifest" href="/manifest.webmanifest">
   <meta name="apple-mobile-web-app-capable" content="yes">
 </head>
-<body class="no-js">
+<body>
 <main>
 <header>
   <div class="avatar" id="avatar" aria-hidden="true">
@@ -141,11 +102,6 @@ footer a{color:inherit;}
 
 <section class="list" id="work">
   <h2>Work</h2>
-  <div class="graph-wrap" id="graphWrap" hidden>
-    <div class="preview" id="graphPreview"><iframe id="graphFrame" loading="lazy" referrerpolicy="no-referrer" title="Project preview"></iframe></div>
-    <svg id="graph" viewBox="0 0 1000 620" preserveAspectRatio="xMidYMid meet"></svg>
-  </div>
-  <p class="graph-hint" id="graphHint" hidden>Click a project to zoom in, click again to open it</p>
   <ul id="workList">
     <li><a href="https://talli.heyitsmejosh.com" target="_blank" rel="noopener" data-tags="web,ios,macos,watchos"><span class="year">2026</span><span class="name">Talli, BC disability benefits tracker</span><time class="meta">Web · iOS · macOS · watchOS</time></a><a class="store" href="https://apps.apple.com/app/id6782366555" target="_blank" rel="noopener" aria-label="View on the App Store">App&nbsp;Store</a></li>
     <li><a href="https://epiphany.heyitsmejosh.com" target="_blank" rel="noopener" data-tags="web,ios,macos,watchos"><span class="name">Epiphany, finance dashboard</span><time class="meta">Web · iOS · macOS · watchOS</time></a><a class="store" href="https://apps.apple.com/app/id6779522175" target="_blank" rel="noopener" aria-label="View on the App Store">App&nbsp;Store</a></li>
@@ -237,9 +193,7 @@ footer a{color:inherit;}
   <button id="theme" type="button">Toggle theme</button>
 </footer>
 </main>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <script>
-document.body.classList.remove('no-js');
 document.getElementById('theme').onclick=()=>{
   const root=document.documentElement;
   const dark=root.dataset.theme?root.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
@@ -250,8 +204,6 @@ const avatar=document.getElementById('avatar');
 if(avatar&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
   avatar.querySelector('img').style.animationDelay=(-Math.random()*6.4)+'s';
 }
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.2});
-document.querySelectorAll('.list li').forEach((li,i)=>{li.style.transitionDelay=(i%20*30)+'ms';io.observe(li);});
 
 // New repos with a homepage set show up here automatically, no manual <li> needed.
 // Curated entries above stay for SEO/no-JS; this only appends what's missing.
@@ -283,154 +235,7 @@ async function syncGithubRepos(){
     }
   }catch(e){/* offline or rate-limited, curated list still stands */}
 }
-
-// Obsidian-style force graph over the Work list, laid out with d3-force (proper
-// physics, no hand-rolled clamping). Progressive enhancement: the real <ul> items
-// stay in the DOM as the data source and as a11y/no-JS fallback.
-(async function(){
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if(typeof d3==='undefined') return;
-  const svg=document.getElementById('graph');
-  if(!svg) return;
-  syncGithubRepos(); // fire and forget, don't block first paint on a network round-trip
-  try{
-  const items=[...document.querySelectorAll('#workList a[href]:first-child,#workListMore a[href]:first-child')];
-  if(!items.length) return;
-  const W=1000,H=620;
-  const nodes=[{id:0,hub:true,x:W/2,y:H/2,fx:W/2,fy:H/2,name:'Joshua',href:null}];
-  items.forEach((a,i)=>{
-    nodes.push({
-      id:i+1,
-      name:a.querySelector('.name').textContent,
-      href:a.href,
-      // 'web' is on nearly everything, drop it so cross-links only mean something rarer
-      tags:(a.dataset.tags||'').split(',').filter(t=>t&&t!=='web')
-    });
-  });
-  const links=[];
-  for(let i=1;i<nodes.length;i++) links.push({source:0,target:i,hub:true});
-  for(let i=1;i<nodes.length;i++){
-    for(let j=i+1;j<nodes.length;j++){
-      if(nodes[i].tags.some(t=>nodes[j].tags.includes(t))) links.push({source:i,target:j,hub:false});
-    }
-  }
-  const sim=d3.forceSimulation(nodes)
-    .force('charge',d3.forceManyBody().strength(-320))
-    .force('link',d3.forceLink(links).id(d=>d.id).distance(l=>l.hub?190:85).strength(l=>l.hub?0.35:0.05))
-    .force('center',d3.forceCenter(W/2,H/2))
-    .force('collide',d3.forceCollide(28))
-    .stop();
-  for(let i=0;i<500;i++) sim.tick();
-
-  const pad=40;
-  const minX=Math.min(...nodes.map(n=>n.x))-pad, maxX=Math.max(...nodes.map(n=>n.x))+pad;
-  const minY=Math.min(...nodes.map(n=>n.y))-pad, maxY=Math.max(...nodes.map(n=>n.y))+pad;
-  const vbW=maxX-minX,vbH=maxY-minY;
-
-  const svgns='http://www.w3.org/2000/svg';
-  const homeView=`${minX} ${minY} ${vbW} ${vbH}`;
-  const cx=minX+vbW/2, cy=minY+vbH/2;
-  svg.setAttribute('viewBox',homeView);
-  const zoomLayer=document.createElementNS(svgns,'g');
-  const gEdges=document.createElementNS(svgns,'g');
-  const gNodes=document.createElementNS(svgns,'g');
-  zoomLayer.append(gEdges,gNodes);
-  svg.append(zoomLayer);
-  const d3svg=d3.select(svg);
-  const zoomLayerSel=d3.select(zoomLayer);
-  const zoom=d3.zoom().scaleExtent([1,8]).on('zoom',ev=>{
-    zoomLayerSel.attr('transform',ev.transform);
-  });
-  d3svg.call(zoom);
-  function zoomTo(x,y,k,duration=400){
-    d3svg.transition().duration(duration).call(
-      zoom.transform,
-      d3.zoomIdentity.translate(cx,cy).scale(k).translate(-x,-y)
-    );
-  }
-  links.forEach(l=>{
-    const line=document.createElementNS(svgns,'line');
-    line.setAttribute('class','edge'+(l.hub?' hub':''));
-    line.setAttribute('x1',l.source.x);line.setAttribute('y1',l.source.y);
-    line.setAttribute('x2',l.target.x);line.setAttribute('y2',l.target.y);
-    gEdges.appendChild(line);
-  });
-  let focused=null,hoverTimer=null;
-  const wrap=document.getElementById('graphWrap');
-  const previewEl=document.getElementById('graphPreview');
-  const frame=document.getElementById('graphFrame');
-  function showPreview(n){
-    if(!n.href) return;
-    clearTimeout(hoverTimer);
-    if(frame.src!==n.href) frame.src=n.href;
-    previewEl.classList.add('show');
-    wrap.classList.add('previewing');
-  }
-  function hidePreview(){
-    previewEl.classList.remove('show');
-    wrap.classList.remove('previewing');
-    clearTimeout(hoverTimer);
-    hoverTimer=setTimeout(()=>{ if(!previewEl.classList.contains('show')) frame.src='about:blank'; },500);
-  }
-  const nodeEls=nodes.map(n=>{
-    const g=document.createElementNS(svgns,'g');
-    g.setAttribute('class','node'+(n.hub?' hub':''));
-    g.setAttribute('transform',`translate(${n.x},${n.y})`);
-    g.setAttribute('tabindex',n.href?'0':'-1');
-    if(n.href) g.setAttribute('role','link');
-    const c=document.createElementNS(svgns,'circle');
-    c.setAttribute('class','dot');
-    c.setAttribute('r',n.hub?9:6);
-    const t=document.createElementNS(svgns,'text');
-    t.setAttribute('x',n.hub?0:9);
-    t.setAttribute('y',4);
-    t.textContent=n.name;
-    g.append(c,t);
-    if(n.href){
-      // generous invisible tap target, drawn last so it sits on top and catches the click
-      const hit=document.createElementNS(svgns,'circle');
-      hit.setAttribute('class','hit');
-      hit.setAttribute('r',16);
-      g.appendChild(hit);
-    }
-    if(n.href){
-      g.addEventListener('mouseenter',()=>{
-        g.classList.add('focus');
-        clearTimeout(hoverTimer);
-        hoverTimer=setTimeout(()=>showPreview(n),350);
-      });
-      g.addEventListener('mouseleave',()=>{
-        if(focused!==n)g.classList.remove('focus');
-        if(focused!==n) hidePreview();
-      });
-      // click once: zoom in and load the live preview. click again (now focused): open its link.
-      g.addEventListener('click',ev=>{
-        ev.stopPropagation();
-        if(focused===n){ window.open(n.href,'_blank','noopener'); return; }
-        if(focused) focused.el.classList.remove('focus');
-        focused=n; n.el=g; g.classList.add('focus');
-        showPreview(n);
-        zoomTo(n.x,n.y,vbW/220);
-      });
-    }
-    gNodes.appendChild(g);
-    return g;
-  });
-  // click empty space to zoom back out
-  svg.addEventListener('click',()=>{
-    if(!focused) return;
-    focused.el.classList.remove('focus');
-    focused=null;
-    zoomTo(cx,cy,1);
-    hidePreview();
-  });
-
-  document.getElementById('workList').classList.add('sr-only');
-  document.getElementById('workListMore').classList.add('sr-only');
-  document.getElementById('graphWrap').hidden=false;
-  document.getElementById('graphHint').hidden=false;
-  }catch(e){/* graph is progressive enhancement, list view still stands */}
-})();
+syncGithubRepos();
 </script>
   <script>if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('/sw.js'));</script>
 </body>
