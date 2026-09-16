@@ -8,16 +8,18 @@ Static personal site for `heyitsmejosh.com`. v3.0.0.
 
 - `index.html` - main homepage
 - `CNAME` - custom domain
-- `og-image.jpg` - social share card
-- `favicon.svg` - browser icon
 - `robots.txt` - crawler directives
 - `sitemap.xml` - search engine sitemap
 
 ## Directories
 
+- `pwa/` - installability only: manifest, favicon, apple-touch-icon, maskable icons, og-image
 - `fonts/` - Geist woff2 font files
-- `notes/` - personal reference site (styled HTML, theme toggle)
+- `notes/` - redirect stub to notes.heyitsmejosh.com
+- `echo/` - redirect stub to echo.heyitsmejosh.com (Voxprint privacy policy)
+- `themes/` - retired token files (Fez, Fredrika, 30s, Sage, Bending Spoons), kept for reference, not loaded
 - `scripts/` - maintenance scripts
+- `ios/`, `watchos/` - dev-only companion wrappers, not shipped to the App Store
 
 ## Style
 

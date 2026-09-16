@@ -1,7 +1,7 @@
 // ponytail: network-first for pages, cache-first for the hashed assets they name.
 // Bump CACHE to evict everything a previous version stored.
 const CACHE = "jaybulb-v3";
-const FILES = ["/", "/index.html", "/manifest.webmanifest"];
+const FILES = ["/", "/index.html", "/pwa/manifest.webmanifest"];
 
 self.addEventListener("install", e => {
   // A single missing file fails the whole addAll, so tolerate misses.
