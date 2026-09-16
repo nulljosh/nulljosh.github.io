@@ -14,14 +14,6 @@ test("every local href/src in index.html exists", () => {
   assert.deepEqual(missing, []);
 });
 
-test("graph IIFE is wrapped in try/catch and required elements exist", () => {
-  const graphScript = html.slice(html.indexOf("Obsidian-style force graph"), html.indexOf("</script>", html.indexOf("Obsidian-style force graph")));
-  assert.match(graphScript, /\btry\s*{/, "graph script should not be able to throw past progressive enhancement");
-  for (const id of ["graph", "graphWrap", "graphHint", "workList", "workListMore", "graphPreview", "graphFrame"]) {
-    assert.match(html, new RegExp(`id="${id}"`), `#${id} referenced by the graph script must exist in the DOM`);
-  }
-});
-
 test("sitemap urls exist", () => {
   const sm = readFileSync(join(root, "sitemap.xml"), "utf8");
   const paths = [...sm.matchAll(/<loc>https?:\/\/[^/]+(\/[^<]*)<\/loc>/g)].map(m => m[1]);

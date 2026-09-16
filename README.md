@@ -20,11 +20,6 @@ Static HTML, CSS and JavaScript. No build step. Geist (woff2, `font-display: swa
 
 Push to `main`. GitHub Pages deploys it through Actions. The domain is in `CNAME`.
 
-## Roadmap
-- [ ] Set Vercel API token for iOS app (vercel.com/account/tokens → create token → wire to claude-usage-ios)
-- [ ] Add echo.heyitsmejosh.com CNAME record to Cloudflare (Name: echo, Content: nulljosh.github.io)
-- [ ] Clone portfolio vibe/design system to all other projects + journal
-
 ## License
 
 MIT 2026 Joshua Trommel
