@@ -6,6 +6,8 @@
 
 Me, on the internet. Portfolio and project hub at [heyitsmejosh.com](https://heyitsmejosh.com).
 
+<img src="progress.svg" width="460">
+
 ## Projects
 
 | Path | Description |
