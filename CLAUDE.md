@@ -44,10 +44,12 @@ instead. Retired themes (Fez, Fredrika, 30s, Sage, Bending Spoons) are parked in
 
 ## Work list ordering
 
-The `#work` list in `index.html` is ranked by App Store status: submitted/live on the App
-Store first, not-on-the-App-Store last (Labs stays last). Within a tier, keep the existing
-relative order. The `2026` year label anchors the first row only, so it moves with whatever
-ends up on top.
+`#workList` is eight picks, the strongest work, no more. Everything else goes in
+`#workListMore`, grouped by kind: Life, Read, Make, Play, Dev, Client. The group label sits in
+the `.year` slot of the group's first row. Within a group, App Store apps first. New project =
+one `<li>` in its group, and bump the count in the `<summary>`.
+No runtime GitHub sync. It was removed 2026-09-20: every subdomain rename made it append a dupe.
+Journal lives in Writing, not Work.
 
 ## Working rules
 
