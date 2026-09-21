@@ -16,7 +16,7 @@ const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.them
 </script>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:var(--font-body);letter-spacing:var(--tracking);font-size:.9375rem;line-height:1.7;background:var(--color-bg);color:var(--color-text);-webkit-font-smoothing:antialiased;}
+body{font-family:var(--font-body);letter-spacing:var(--tracking);font-size:.9375rem;line-height:1.7;background:var(--color-bg);color:var(--color-text);-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 a{color:inherit;text-decoration-color:var(--color-underline);text-underline-offset:3px;}
 a:hover{text-decoration-color:var(--color-underline-hover);}
 .wrap{max-width:62rem;margin:0 auto;padding:4rem 1.25rem 6rem;display:grid;grid-template-columns:11rem minmax(0,1fr);gap:3rem;}
@@ -24,6 +24,7 @@ nav{position:sticky;top:2rem;align-self:start;max-height:calc(100vh - 4rem);over
 nav .home{display:block;margin-bottom:1.25rem;color:var(--color-secondary);}
 nav a.repo{display:block;padding:.15rem 0;text-decoration:none;color:var(--color-secondary);}
 nav a.repo[aria-current]{color:var(--color-text);font-weight:600;}
+article{min-width:0;overflow-wrap:anywhere;}
 article h1{font-size:1.75rem;line-height:1.2;margin-bottom:1rem;}
 article h2{font-size:1.15rem;margin:2.25rem 0 .6rem;padding-top:1.25rem;border-top:1px solid var(--color-hairline);}
 article h3{font-size:1rem;margin:1.5rem 0 .4rem;}
@@ -39,7 +40,7 @@ article th{color:var(--color-secondary);font-weight:600;}
 article td:first-child{white-space:nowrap;}
 .src{margin-top:3rem;color:var(--color-secondary);font-size:.8125rem;}
 @media (max-width:720px){
-  .wrap{grid-template-columns:1fr;gap:1.5rem;padding-top:2rem;}
+  .wrap{grid-template-columns:minmax(0,1fr);gap:1.5rem;padding-top:2rem;}
   nav{position:static;max-height:none;display:flex;flex-wrap:wrap;gap:.25rem .9rem;}
   nav .home{width:100%;margin-bottom:.25rem;}
   article td:first-child{white-space:normal;}
