@@ -25,6 +25,29 @@ Dream is a personal dream journal with AI interpretation. Users write or speak a
 | `web/sw.js` | Service worker. Caches the app shell for offline loading (though offline mode will not work without a cached API response). |
 | CSS and design | `web/index.html` embeds or links styles. Color palette from `tokens.css` (deep blue, amber, coral). No light mode. Text never sits directly on the shader background; all text is on an opaque or frosted panel with sufficient contrast (17:1 for primary text, 10:1 for dimmed). Focus ring is visible (golden, `#ffd79a`). No gradients, no gradients, no emojis, no teal or purple. Sans-serif only (SF or Helvetica). |
 
+## Testing
+
+| File | What it owns |
+|---|---|
+| `interpret.test.mjs` | Test suite for `interpret.js`. Verifies prompt construction, distress detection, citation of previous dreams, and edge cases. Run with `node interpret.test.mjs`. |
+| `transcribe.test.mjs` | Test suite for `transcribe.js`. Verifies audio transcription against test audio files. |
+| `integration.mjs` | End-to-end integration tests. Calls the Worker endpoints and verifies full flows (dream entry → interpretation, speech input → transcription). |
+
+## Kotlin Multiplatform
+
+Note: Dream's KMP implementation is in development. It mirrors the web app's logic in Kotlin.
+
+| File | What it owns |
+|---|---|
+| `kmp/shared/src/commonMain/kotlin/com/nulljosh/dream/DreamClient.kt` | Shared network code. Calls `/api/interpret` and `/api/transcribe`, decodes responses. |
+| `kmp/shared/src/commonMain/kotlin/com/nulljosh/dream/Entries.kt` | Dream entry model and journal logic. Mirrors `localStorage` logic in Kotlin. |
+| `kmp/shared/src/commonMain/kotlin/com/nulljosh/dream/Store.kt` | Abstract storage interface. Platform-specific implementations use Android Preferences or JVM UserPreferences. |
+| `kmp/shared/src/commonMain/kotlin/com/nulljosh/dream/Clock.kt` | Abstract time source. Platform-specific overrides for Android and JVM. |
+| `kmp/shared/src/commonTest/kotlin/com/nulljosh/dream/EntriesTest.kt` | Tests for the Kotlin entries model. Verifies interpretation parsing and journal operations. |
+| `kmp/composeApp/src/commonMain/kotlin/com/nulljosh/dream/AppScreen.kt` | Shared Compose UI for Android and desktop. Same dream entry and list UI as the web app. |
+| `kmp/composeApp/src/androidMain/kotlin/com/nulljosh/dream/MainActivity.kt` | Android entry point. Boots the Compose app. |
+| `kmp/composeApp/src/desktopMain/kotlin/com/nulljosh/dream/Main.kt` | Desktop (JVM) entry point. Boots the Compose app as a window. |
+
 ## Local storage
 
 | Key | What it stores |
