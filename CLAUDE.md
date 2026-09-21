@@ -6,7 +6,8 @@ Static personal site for `heyitsmejosh.com`. v3.0.0.
 
 ## Important files
 
-- `index.html` - main homepage
+- `index.html` - the root: Joshua Tree booting live in portfolio mode (frames joshuatree.heyitsmejosh.com/?full&portfolio)
+- `classic.html` - the old text homepage, linked from the root as "Classic site"
 - `CNAME` - custom domain
 - `robots.txt` - crawler directives
 - `sitemap.xml` - search engine sitemap

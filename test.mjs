@@ -4,9 +4,9 @@ import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 
 const root = new URL("./", import.meta.url).pathname;
-const html = readFileSync(join(root, "index.html"), "utf8");
+const html = readFileSync(join(root, "classic.html"), "utf8");
 
-test("every local href/src in index.html exists", () => {
+test("every local href/src in classic.html exists", () => {
   const refs = [...html.matchAll(/(?:href|src)="([^"]+)"/g)].map(m => m[1])
     .filter(u => !/^(https?:|mailto:|tel:|#|data:)/.test(u))
     .map(u => u.replace(/[?#].*$/, ""));
