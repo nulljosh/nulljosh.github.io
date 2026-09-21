@@ -45,10 +45,10 @@ instead. Retired themes (Fez, Fredrika, 30s, Sage, Bending Spoons) are parked in
 ## Work list ordering
 
 `#workList` is five picks, no more. Only apps READY_FOR_SALE on every platform they target
-(check the ASC ledger, `wiki/pages/asc-status.md`), ranked by how much shipping they have behind them. Everything else goes in
-`#workListMore`, grouped by kind: Life, Read, Make, Play, Dev, Client. The group label sits in
+(check the ASC ledger, `wiki/pages/asc-status.md`), ranked by how much shipping they have behind them. The homepage shows only those five plus a link to `apps.html`,
+which lists everything (picks included), grouped by kind: Life, Read, Make, Play, Dev, Client. The group label sits in
 the `.year` slot of the group's first row. Within a group, App Store apps first. New project =
-one `<li>` in its group, and bump the count in the `<summary>`.
+one `<li>` in its group in `apps.html`, and bump the count there and in the homepage link.
 No runtime GitHub sync. It was removed 2026-09-20: every subdomain rename made it append a dupe.
 Journal lives in Writing, not Work.
 
