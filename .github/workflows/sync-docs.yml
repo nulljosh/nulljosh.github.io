@@ -1,0 +1,40 @@
+name: Sync Docs
+
+# Pulls each project's docs/ARCHITECTURE.md into docs/<repo>.md so docs.html
+# never drifts behind the source repos. Replaces the manual "Sync project docs" commits.
+
+on:
+  schedule:
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch every project's ARCHITECTURE.md
+        run: |
+          for r in $(python3 -c 'import json;print(" ".join(json.load(open("docs/index.json"))))'); do
+            # Only overwrite on a real 200, so a renamed or private repo keeps its last good copy.
+            curl -fsS --max-time 15 -o "/tmp/$r.md" \
+              "https://raw.githubusercontent.com/nulljosh/$r/main/docs/ARCHITECTURE.md" \
+              && mv "/tmp/$r.md" "docs/$r.md" \
+              || echo "skip $r"
+          done
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          if git diff --staged --quiet; then
+            echo "no change"
+          else
+            git commit -m "Sync project docs"
+            git push
+          fi
