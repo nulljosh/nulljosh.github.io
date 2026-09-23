@@ -4,6 +4,10 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # Bot pushes (GITHUB_TOKEN) don't trigger `push`, so redeploy after the bots commit.
+  workflow_run:
+    workflows: ["Sync Docs", "Update Stats"]
+    types: [completed]
 
 permissions:
   contents: read
