@@ -23,7 +23,7 @@ watchOS: Mirrors iOS, simplified for the small screen. Shows chapters and assess
 
 | File | What it owns |
 |---|---|
-| `ios/Homeqi/HomeqiApp.swift` | App entry point. TabView with Assess and Read tabs. Shares app link via .shareApp modifier. |
+| `ios/Homeqi/HomeqiApp.swift` | App entry point. TabView with Assess and Read tabs. |
 | `ios/Homeqi/AssessmentView.swift` | Assessment interface: layer sections, question rows, property rename/new/delete UI. Binds to PropertyStore. |
 | `ios/Homeqi/AssessmentData.swift` | Layer and question definitions. Mirrored by hand from `index.html`'s LAYERS/QUESTIONS arrays. Hand-port ensures iOS question set matches web when the assessment is updated. |
 | `ios/Homeqi/PropertyStore.swift` | Persistent storage for properties (per-property assessment state). UserDefaults-backed, observable. Stores answer map from question ID to yes/no/unsure response. |
