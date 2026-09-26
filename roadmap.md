@@ -13,6 +13,9 @@ Keep the Xcode target as a personal build only. Decided 2026-08-11: the ASC reco
 6788180394 STAYS (not deleted), deletion is irreversible, a rejected never-live record is
 publicly invisible, and pulling records mid-conduct-review is a bad optic. Nothing open here.
 
+## Fleet design (2026-09-25)
+- [ ] Orchard leftovers: conway and healstack demo blue buttons, homeqi white background still override shared tokens; need to flip them to use --clay accent and paper background
+
 ## From icons-bugs.pdf (imported 2026-06-30)
 Icons across all apps shipping to the App Store, portfolio page + ASC.
 - [ ] Redesign icons that don't match the set's style, rule: icons mostly black/white, color sprinkled in only. Not actionable without a per-icon visual audit; blocked. (Also applies to ASC listing icons, not this repo's orphaned `images/icons/*.svg`, ignore those, they're unused.)
