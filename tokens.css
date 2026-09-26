@@ -5,7 +5,7 @@
 
 :root{
   /* accent */
-  --bulb:#e0a526;          /* quince gold, the yellow apple (plate 12) */
+  --bulb:#ffca30;          /* brand yellow, kept: app icons and full-bleed blocks use it */
   --bulb-deep:#8a6412;     /* accessible gold for text on paper */
   --clay:#b3461f;          /* apple blush (plate 1), the accent */
   --clay-deep:#9e3b1f;
