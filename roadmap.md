@@ -14,7 +14,7 @@ Keep the Xcode target as a personal build only. Decided 2026-08-11: the ASC reco
 publicly invisible, and pulling records mid-conduct-review is a bad optic. Nothing open here.
 
 ## Fleet design (2026-09-25)
-- [ ] Orchard leftovers: conway and healstack demo blue buttons, homeqi white background still override shared tokens; need to flip them to use --clay accent and paper background
+- [ ] Orchard: redeploy roost/nyc/lucarne/curbfind (still showing old tab colors live); add theme-color meta tag to all 28 landing pages
 
 ## From icons-bugs.pdf (imported 2026-06-30)
 Icons across all apps shipping to the App Store, portfolio page + ASC.
