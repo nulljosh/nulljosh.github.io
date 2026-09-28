@@ -1,44 +1,53 @@
 # Architecture
 
-This is the map of the kernel as it exists today. If you want to know what
-a file is for, or where to start reading, start here. `docs/roadmap.md` is
-the plan and the history; this page stays in the present tense.
+Joshua Tree is a whole computer written from nothing. You turn it on, it
+draws a desktop, and you use its apps: notes, mail, a calendar, weather,
+a chat that can set reminders for you. Everything it does, it does
+itself. There is no Linux underneath and no borrowed library.
 
-The whole thing is one static binary, `kernel.elf`, built from the
-`boot/`, `kernel/`, `drivers/` and `lib/` folders with Clang and lld.
-There is no libc. Everything the kernel needs, it carries.
+It runs in your browser on the landing page, in QEMU on a Mac, or from a
+USB stick on a real PC. It is all one file, `kernel.elf`, built from the
+`boot/`, `kernel/`, `drivers/` and `lib/` folders. `docs/roadmap.md` is
+the plan; this page is the map of what exists today.
 
-## From power-on to the desktop
+## How it starts
 
-1. **The bootloader hands over.** QEMU's `-kernel` loader, or Limine on a
-   real disk, loads the ELF at physical address 1MB and jumps to
-   `_start` in `boot/boot.S`.
-2. **Paging comes on.** The kernel is linked to run at 0xC0000000 (a
-   "higher-half" kernel) but it is sitting at 1MB. `boot.S` builds a
-   temporary page directory that maps the first 4MB at both addresses,
-   switches paging on, and jumps to the high address. From here on every
-   line of C runs in the upper half.
-3. **`kmain` brings the hardware up in dependency order.** Segments, then
-   interrupt tables, then the interrupt controller, then physical memory,
-   then the permanent page tables, then the scheduler, then the disk. Each
-   step needs the one before it, so the order is not negotiable.
+1. **Something loads it.** QEMU, the browser demo or a real bootloader
+   drops the kernel into memory and jumps to `boot/boot.S`.
+2. **It sets up its own memory.** A few lines of assembly move the kernel
+   to where it expects to live, then hand off to C.
+3. **It wakes the hardware, one piece at a time.** `kmain` starts the
+   processor tables, the clock, memory, the scheduler and the disk, each
+   one needing the last.
 4. **You land in a shell.** Type `gui` and the desktop starts. The shell
-   and the desktop are the same program; the terminal window is just the
-   shell in a window.
+   and the desktop are the same program; the Terminal is the shell in a
+   window.
+
+## Boot modes
+
+Pass keywords on the multiboot command line (QEMU's `-append` flag or the
+browser emulator's cmdline config) to change how the kernel starts:
+
+| Flag | What it does |
+|---|---|
+| `phone` | Boots into portrait phone mode (430x932) instead of the desktop (960x540 retina). Handled in `kernel/kernel.c`'s `kmain` as `boot_to_phone`, used by `gui_run`. |
+| `samantha` | Skips the desktop and opens Chat's full-screen Samantha avatar view directly. Handled in `kernel/kernel.c`'s `kmain` as `boot_to_samantha`, passed to `chat_boot_samantha_open`. |
 
 ## The layers
 
-Read the kernel bottom-up and each file makes sense from the ones below it.
+Each layer only leans on the ones above it on this page, so it reads top to bottom.
 
 ### CPU setup and interrupts
 
 | File | What it does |
 |---|---|
-| `boot/boot.S` | Multiboot header, temporary page tables, the jump into the higher half, the first stack. |
-| `kernel/gdt.c` | The segment table. Ring-0 and ring-3 code and data segments, plus the TSS that lets a user program trap back into the kernel on its own kernel stack. |
-| `kernel/idt.c` + `kernel/isr.S` | The interrupt table and the 32 CPU exception handlers. A kernel-mode fault paints a panic screen and halts. A user-mode fault kills that one program and the kernel keeps going. |
-| `kernel/pic.c` | Reprograms the 8259 so hardware interrupts land on vectors 32 to 47 instead of colliding with CPU exceptions. |
+| `boot/boot.S` | The first code that runs. Sets up just enough memory to reach C. |
+| `kernel/gdt.c` | Tells the processor what is kernel and what is a program, so programs can safely call into the kernel. |
+| `kernel/idt.c` + `kernel/isr.S` | The interrupt table and the 32 CPU exception handlers. A kernel-mode fault paints a panic screen and halts. A user-mode fault kills that one program and the kernel keeps going. Its crash report now names the function that faulted, via `kernel/symtab.h`. |
+| `kernel/symtab.h` + `kernel/backtrace.c` | Crash reports with real function names. `kernel/symtab.c` (generated, never committed) is a sorted address-to-name table read from `nm -n` on a first-pass link of the kernel, done twice by the Makefile so the table can live inside the very kernel it describes. `backtrace.c` binary-searches that table for a fault's EIP and walks a few EBP stack frames above it, printing `at <func>+0x<off>` lines over serial and on the panic screen. `kernel/symtab_stub.c` is the empty placeholder table pass one links against, since the real table doesn't exist yet at that point. |
+| `kernel/pic.c` | Routes hardware signals, like a key press, so they never get confused with processor errors. |
 | `kernel/irq.c` + `kernel/irq_stubs.S` | The hardware interrupt handlers. The timer tick drives the scheduler, the keyboard fills a ring buffer. |
+| `kernel/entropy.c` + `kernel/entropy.h` | The kernel's only source of unpredictable bytes: an HMAC_DRBG (BearSSL SHA-256) seeded from RDRAND when the CPU has it, RDTSC jitter and interrupt timing. Password salts draw from it. Boot logs `entropy: sources=` over serial. |
 | `kernel/syscall.c` | The `int 0x80` dispatch table. Numbers and calling convention are Linux's, so the ABI needs no translation. The contract is written down in `docs/SYSCALL-ABI.md`. |
 
 ### Memory
@@ -46,9 +55,10 @@ Read the kernel bottom-up and each file makes sense from the ones below it.
 | File | What it does |
 |---|---|
 | `kernel/pmm.c` | Physical memory as a bitmap of 4KB frames, sized from what the bootloader reports. |
-| `kernel/paging.c` | The permanent page tables. Identity-maps the first 4MB and maps it again at 0xC0000000 for the kernel. Also flips individual pages user-accessible for ring-3 programs. |
+| `kernel/paging.c` | Decides which memory each program can see, and keeps programs out of the kernel's. |
 | `kernel/kheap.c` | `kmalloc` and `kfree`. A first-fit free list that grows one frame at a time. |
 | `lib/libc.c` | `memcpy`, `memset`, `strlen` and the other handful of primitives a freestanding kernel cannot live without. |
+| `third_party/bearssl/` | Vendored BearSSL 0.6 subset (MIT): `sha2small.c`, `hmac.c`, `hmac_drbg.c`, the two big-endian codec files, the public headers and a one-line `string.h` shim onto `lib/libc.h`. Nothing modified; see its README.md. |
 
 ### Tasks and user programs
 
@@ -61,12 +71,17 @@ Read the kernel bottom-up and each file makes sense from the ones below it.
 | `user/note.c` | The second user program, and the first one worth running: prints a file, appends a line, seeks. Exercises the v2 syscalls. |
 | `user/libjt/` | A small C library for user programs: `string.c`, `stdlib.c` (a fixed-arena `malloc`), `stdio.c` (`printf` and friends over the write syscall), plus `ctype.h` and `unistd.h`. Built into `libjt.a`. |
 | `user/wc.c` | Unix `wc`, counts lines, words and bytes. The first program linked against libjt instead of raw syscalls. |
+| `user/fbpoke.c` | The program that must not work (1.7.8): runs after a window closed, hands `write` a kernel pointer and a pointer into the released framebuffer (both must be `-EFAULT`), then stores into it and must page-fault. Run by `kernel/ring3app.c` under the `fbpoke` boot flag. |
+| `user/keyrate.c` | Keyrate, the typing test, as a ring-3 program: the first app to leave the kernel (1.7.7). Gets its window from `SYS_WINDOW_OPEN`, its keys from `SYS_WINDOW_POLL`, draws its own 8x16 glyphs. The backquote key crashes it on purpose. |
+| `user/toroid.c` | Toroid, Conway's Life on a torus, as a ring-3 program: the second app out of the kernel (1.7.11). Two 160x80 bit-packed boards in its own .data, generations paced off `SYS_TIME`, the backquote key crashes it on purpose. |
+| `user/calculator.c` | Calculator, a recursive-descent parser over `+ - * / ()`, as a ring-3 program: the third app out of the kernel (1.7.12). Same grammar as the in-kernel version, evaluated straight into a `double` per rule instead of an `expr_node` tree, since a flat binary has no `.bss` and no `kmalloc`. Dividing by zero yields 0, unchanged. The backquote key crashes it on purpose. |
+| `kernel/ring3app.c` + `kernel/ring3app.h` | The table-driven launcher and supervisor for apps that run as ring-3 processes (`RING3_APPS`: name, embedded binary, VFS filename). Seeds the binary onto the VFS, runs it with `exec_user`, and when it exits or is reaped after a fault, logs what happened and hands the desktop back. |
 
 ### Storage
 
 | File | What it does |
 |---|---|
-| `drivers/ata.c` | ATA PIO disk reads and writes, primary master, 28-bit addressing. |
+| `drivers/ata.c` | Reads and writes the hard disk. |
 | `drivers/blockdev.c` | One `read_sector` / `write_sector` table so the filesystem does not care whether the bytes come from a disk or from RAM. |
 | `drivers/ramdisk.c` | The RAM-backed block device. |
 | `drivers/fat.c` | FAT16 with real subdirectories, writes and 8.3 names. |
@@ -81,7 +96,7 @@ Read the kernel bottom-up and each file makes sense from the ones below it.
 | `drivers/pci.c` | Walks the PCI bus so the kernel can find its own network card. |
 | `drivers/rtl8139.c` | Driver for the RTL8139 card, QEMU's default. |
 | `drivers/ne2k.c` | Driver for the NE2000 card, which is what the browser emulator provides. The kernel probes for RTL8139 first and falls back to this. |
-| `drivers/net.c` | Ethernet, ARP, IPv4, UDP, DNS and TCP, built up from raw frames on top of whichever card was found. |
+| `drivers/net.c` | Ethernet, ARP, IPv4, UDP, DNS and TCP, built up from raw frames on top of whichever card was found. `net_init` leases a real address by DHCP (DISCOVER/OFFER/REQUEST/ACK) first, falling back to the old fixed config if nothing answers; `nodhcp` on the command line skips it. |
 | `drivers/http.c` | `http_get` and `http_post` over that TCP. Plain HTTP only. There is no TLS. |
 | `drivers/html.c` | A deliberately tiny HTML-to-text converter, enough to read a page or a ported app. |
 | `drivers/json.c` | A small JSON reader for the weather, geolocation and chat responses. |
@@ -90,11 +105,31 @@ The network stack is what fetches the weather in the menu bar, the map
 tiles for the wallpaper, stock quotes, and the replies from a local
 Ollama server in the Chat app.
 
+### Sound
+
+| File | What it does |
+|---|---|
+| `drivers/sb16.c` | The Sound Blaster 16 driver: DSP reset/detect, IRQ 5, and ISA DMA channel 1 for both directions. `sb16_play`/`sb16_beep` push 8-bit unsigned mono PCM out through the SB16-only high-speed command pair (`0x41` set rate, `0xC0` transfer). `sb16_record` captures the same format in, through the older DSP-2.xx-compatible ADC pair (`0x40` set time constant, `0x24` transfer) every real SB16 answers -- QEMU's own `-device sb16` has no ADC path today (confirmed against its source), so recording only produces real audio on hardware, or under `make talk`'s coreaudio backend. |
+| `drivers/speak.c` | Text to speech: posts to Turing's `/api/speak`, plays the PCM reply on `sb16.c`, and tracks its own playback position so Chat's face can move with it (`speak_level`). |
+
+### Worker endpoints
+
+The browser landing page routes kernel HTTP requests to a Cloudflare Worker
+(`worker.js`) for external APIs:
+
+| Endpoint | What it does |
+|---|---|
+| `/api/stocks` | Live stock quotes for the Stocks app. |
+| `/api/chat` | LLM routing and chat responses for the Chat app. |
+| `/api/pick` | LLM tool selection for Chat's command execution. |
+| `/api/waitlist` | Dev-kit waitlist signup (POST) and count (GET). Stores one email per address with a timestamp. |
+| `/api/listen` | Speech-to-text for Chat's push-to-talk: runs Workers AI Whisper over a posted audio clip. |
+
 ### Graphics and input
 
 | File | What it does |
 |---|---|
-| `drivers/vbe.c` | Switches the Bochs VGA adapter into 1920x1080 linear framebuffer mode and back. |
+| `drivers/vbe.c` | Switches the screen into 1920x1080 graphics. |
 | `drivers/window.c` | The one drawing target everything renders through: pixels, rectangles, a viewport, and a partial-repaint band. |
 | `drivers/font.c` | Reads the real 8x16 IBM font out of VGA hardware at boot. Falls back to an embedded copy when the read comes back empty, as it does in the browser. |
 | `drivers/png.c` + `drivers/jpeg.c` | Small image decoders, 8-bit RGB and RGBA PNG and baseline JPEG. The wallpaper map tiles go through PNG. |
@@ -120,9 +155,14 @@ changed.
 | `kernel/ttf_render.h` | The shared glyph path for anything drawing real DejaVu text at physical resolution: a per-face cache, a glyph cache, the antialiased ink blend. Notes and the Terminal both draw through it. |
 | `kernel/gui_prims.c` | Tiny pure helpers split out of `kernel.c`: blend two colours, square root for antialiased lines. |
 | `kernel/dock_geom.c` | Dock geometry and hit-testing: where each icon sits at the current scale, and which slot a click landed on. |
+| `kernel/app.h` | The app interface. One `struct app` per app (name, tile color, glyph, `open`, and `draw`/`key` for apps that run in a desktop window), plus the few desktop services and helpers an app in its own file needs. |
+| `kernel/app.c` | The helpers behind `app.h`, only ones two or more apps were writing by hand: start an app's window with its titlebar, print a number. |
+| `kernel/bench.h` | Built-in benchmarks: boot time, heap, memcpy, context switch, disk read. `bench` in the shell or on the command line. Results in `docs/BENCHMARKS.md`. |
 | `kernel/gui_prompt.h` | The shared one-line prompt and chrome-versus-content split that the newer apps use, so a keystroke redraws only what changed. |
-| `kernel/auth.h` | User accounts. A from-scratch SHA-256, a salted `USERS.TXT` on disk, the login and first-run screens. Built against `docs/THREAT-MODEL.md`. |
+| `kernel/auth.h` | User accounts. PBKDF2-HMAC-SHA256 records in `USERS.TXT` (scheme tag and iteration count stored per line), verify-only support for the pre-1.7.9 chained-SHA-256 records with an in-place upgrade on the next successful login, the login and first-run screens. Built against `docs/THREAT-MODEL.md`. |
+| `kernel/auth_kdf.c` + `kernel/auth_kdf.h` | PBKDF2-HMAC-SHA256 (RFC 8018) as one block loop over BearSSL's `br_hmac`; no primitive of its own. Compiled for the kernel and natively for `tools/auth-host`, which pins it to the RFC 7914 and RFC 6070 (SHA-256) vectors. |
 | `kernel/wall_sat.h` | A real satellite photo, baked in, used as the wallpaper when there is no network to fetch map tiles. |
+| `kernel/boot_mark.h` | The real landing brand mark (`landing/logo.svg`, the four-arm Joshua tree), rasterized by `tools/gen/gen_boot_mark.py` into 8-bit alpha coverage at the splash's real physical size and blended straight onto the boot screen by `gui_draw_boot_mark` (`kernel/kernel.c`), replacing the old `gui_draw_logo` stick-figure primitive there. The menu bar keeps drawing `gui_draw_logo` unchanged, since the engraved-style mark reads as a solid blob at 16px. |
 
 ## The apps
 
@@ -140,26 +180,25 @@ change. No Save button.
 | Calendar | `kernel/calendar.h` | `EVENTS.TXT`. The grid itself is computed from the clock. |
 | Mail | `kernel/mail.h` | `MAIL.TXT`. Two starter messages ship compiled in. |
 | Contacts | `kernel/contacts.h` | `CONTACTS.TXT`. |
-| Chat | `kernel/chat.h` | `CHAT.TXT`. Talks to a local Ollama server over the kernel's own HTTP. |
+| Chat | `kernel/chat.h` | `CHAT.TXT`. Talks to a local Ollama server over the kernel's own HTTP. Push-to-talk: holding F2 records on `drivers/sb16.c` and posts the clip to the Worker's `/api/listen` (Cloudflare Workers AI Whisper); the recognized text runs through the same path a typed message takes. |
 
 **Apps with nothing to save.**
 
 | App | File | What it is |
 |---|---|---|
-| Calculator | `kernel/calculator.h` | A recursive-descent parser over `+ - * / ()`. |
 | Stocks | `kernel/stocks.h` | Eight fixed symbols with live quotes and charts from the Worker at `/api/stocks`. |
-| Epiphany | `kernel/epiphany.h` | The offline slice of the Epiphany portfolio app: watchlist, portfolio, crypto. |
+| Epiphany | `kernel/epiphany.h` | The offline slice of the Epiphany portfolio app: watchlist, portfolio, crypto, plus a Bloomberg-style command bar (`/`, then `AAPL GP` or `AAPL DES`). |
 | Search | `kernel/search.h` | Filters the current directory as you type. Enter opens a folder or shows a file. Scoped to what the VFS can list, no whole-disk index. |
 | Portfolio | `kernel/portfolio.h` | A catalog of every app in the fleet with its URL. |
 | Activity | `kernel/activity.h` | Activity Monitor over the real scheduler and memory counters. Refreshes on a timer, can kill a task. |
+| Clock | `kernel/clock.h` | Current time from the RTC, a countdown timer you can start and pause, and an alarm. |
 
 **Apps ported from the fleet.** Each is a native rewrite of one of the
 sibling web apps, kept small on purpose.
 
 | App | File | What it is |
 |---|---|---|
-| Quotes | `kernel/quotes.h` | Name the film from the line. Streak and best for the session. |
-| Toroid | `kernel/toroid.h` | Conway's Life on a torus. |
+| Quotes | `drivers/app_quotestreak.c`, `drivers/quotestreak.h` | Name the film from the line. Streak and best for the session. Moved out of `kernel.c` after Keyrate. |
 | Bookrank | `kernel/bookrank.h` | Ranked non-fiction with a summary panel. |
 | Curbfind | `kernel/curbfind.h` | Craigslist deals for Vancouver, ranked by score. |
 | Lexly | `kernel/lexly.h` | Spanish vocabulary drill, four choices. |
@@ -167,6 +206,18 @@ sibling web apps, kept small on purpose.
 | Plan | `kernel/plan.h` | A ten-year timeline with a detail panel. |
 | Sparkjar | `kernel/sparkjar.h` | Post an idea, vote on ideas. |
 | Homeqi | `kernel/homeqi.h` | Eight feng shui questions about your home and a score. |
+| Keyrate | `user/keyrate.c`, `kernel/ring3app.c` | Typing test with endless random words and a live words-per-minute count. The first app running outside the kernel as a ring-3 process (1.7.7); its in-kernel copy is gone. |
+| Toroid | `user/toroid.c`, `kernel/ring3app.c` | Conway's Life on a torus. The second ring-3 app (1.7.11); its in-kernel copy is gone. |
+| Calculator | `user/calculator.c`, `kernel/ring3app.c` | Recursive-descent parser over `+ - * / ()`. The third ring-3 app (1.7.12); its in-kernel copy is gone. |
+
+**Adding an app.** Every app is one row in `APPS[]` in `kernel/kernel.c`,
+and nothing else dispatches on an app's index: the dock, the Apps folder,
+Chat's `open_app`, and the multiwindow desktop all read that table. Write
+the app as a ring-3 program in `user/<app>.c` the way Keyrate and Toroid
+do and add a row to `RING3_APPS` in `kernel/ring3app.c`, or (for now) in
+its own kernel `.c` with its `open` declared in a tiny header. Then add
+the row, add the `.c` to the Makefile, and bump `GUI_APP_COUNT`. Give it `draw` and `key` only if it should also run as a
+desktop window. Reach for `app.h`'s helpers before writing your own.
 
 The `drivers/app_*.h` files are the original single-file web builds of
 those apps as C byte arrays, generated by `tools/gen/gen_app.sh`. The
@@ -216,6 +267,7 @@ speak a shell command into a running instance through Whisper and Ollama.
 
 ## Where to go next
 
+- `docs/BENCHMARKS.md` for how fast it is, and `tools/bench.sh` to measure it yourself.
 - `docs/WHITEPAPER.md` for why this exists and what it is not yet.
 - `docs/SYSCALL-ABI.md` if you want to write a program for it.
 - `docs/BLUEPRINT.md` for the plan after 1.0: apps as real processes and a window server.
