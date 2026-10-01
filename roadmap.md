@@ -98,3 +98,7 @@ is loaded on the portfolio now; the Google Fonts <link> and preconnect are gone.
 
 ## From Apple Notes (imported 2026-08-27)
 - [ ] Rephrase the portfolio around **Jaybulb**, the next domain to buy. It reads as a design studio name and a software engineering firm name.
+
+## Ingested 2026-10-01
+- [ ] Fix failing GitHub tests.
+- [ ] Samantha demo should be me: it needs to talk about me.
