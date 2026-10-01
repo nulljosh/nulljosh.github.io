@@ -19,4 +19,9 @@
   <url><loc>https://heyitsmejosh.com/apps.html</loc></url>
   <url><loc>https://heyitsmejosh.com/docs.html</loc></url>
   <url><loc>https://heyitsmejosh.com/classic.html</loc></url>
+  <url>
+    <loc>https://heyitsmejosh.com/buy.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
