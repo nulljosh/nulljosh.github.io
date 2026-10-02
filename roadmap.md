@@ -105,4 +105,4 @@ is loaded on the portfolio now; the Google Fonts <link> and preconnect are gone.
   (#341), full-screen face with glass chat bar and typing fix (#343), his voice (#345), face at full rate,
   Escape to desktop, edges, dock colors, Portfolio icon, phone fills the screen. Open: #351 (voice on by
   default with mute, phone face uncropped) is draft; chat answering as Joshua (persona + JOSHUA_DOCS) unverified.
-  - [ ] Launchpad icon still reads pixelated (Joshua, 2026-10-02 live QA). Checked 2026-10-02: Portfolio and Clock already have authored vector art and render through the supersampled path. The likely tile is apps.svg (nine colored chips); redrawing it in engraving style is a set-wide design call, ask which tile he means first.
+  - [x] Launchpad icon redrawn in joshuatree PR #352 (1.9.38): apps.svg changed from purple/gradients to nine flat chips in set colors. ci-local green, GitHub 7/8 shards green, auto-merge queued, pending merge.
