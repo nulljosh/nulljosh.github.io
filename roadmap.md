@@ -103,7 +103,7 @@ is loaded on the portfolio now; the Google Fonts <link> and preconnect are gone.
 - [ ] Fix failing GitHub tests.
 - [ ] Portfolio demo is Joshua, not Samantha (2026-10-02). Face DONE: Seedance 2.5 renders of my cloned
   voice (v9 = A+), 72 frames in joshuatree landing/face-joshua, kernel switches to them in portfolio mode
-  (joshuatree PR #341, draft until ci-local is green). Left: chat answers as Joshua (Turing worker.js
+  (joshuatree PR #341, merged). Left: chat answers as Joshua (Turing worker.js
   chatAnswer gets a persona + a JOSHUA_DOCS pack, kernel chat.h sends persona in portfolio mode); the
   gibberish typing (reproduce first, suspect 55 ms key pacing, the phone composer theory was wrong);
   face full screen with a blurred Liquid Glass chat bar; QA at phone width. Voice in the renders is
