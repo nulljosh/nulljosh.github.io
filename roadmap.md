@@ -109,3 +109,6 @@ is loaded on the portfolio now; the Google Fonts <link> and preconnect are gone.
   face full screen with a blurred Liquid Glass chat bar; QA at phone width. Voice in the renders is
   Seedance's re-voicing: a LatentSync pass over v9 with the exact ElevenLabs line fixes it (free quota
   back 2026-10-03 ~01:00, or HF PRO $9). Samantha gets the same Seedance treatment after a Higgsfield top-up.
+  - [ ] Launchpad icon still reads pixelated (Joshua, 2026-10-02 live QA). The dock pipeline supersamples
+    vector icons 6x, so check which tile he means: the Apps-folder grid, or the gray grid glyph that
+    Portfolio and Clock borrow (no authored art) on the phone home screen. Give those two real art.
