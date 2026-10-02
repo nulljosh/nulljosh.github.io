@@ -6,20 +6,19 @@ Polish the portfolio to A+ grade against the landing-demo rubric. Recover from t
 
 ## Where things stand
 
-Checkpoint 2026-10-02 afternoon. Portfolio recovered from a crash. QA'd heyitsmejosh.com: grade B+ (three issues identified and one fixed).
+Delta checkpoint 2026-10-02. PR #353 (exit button hide) open with auto-merge waiting for GitHub CI. Portfolio grade B+ (letterbox bands on 16:10 screens, soft face frames on retina).
 
-**Issues found:**
-- Black letterbox bands appear on 16:10 screens (demo is 16:9 content in a 16:10 frame).
-- Face frames appear soft/pixelated on retina displays.
-- Exit button visible in portfolio mode even though it should be hidden.
+**Fixed in this session:**
+- Exit button visibility: CSS hidden attribute on #demo-exit, committed.
+- Local ci-local test: exit button fix runs green headless.
 
-**Fixed:**
-- Joshua Tree 1.9.39: CSS hidden attribute on #demo-exit fixes visibility (`#demo-exit[hidden] { display: none }`).
-- tools/ci-local.sh running locally, green.
+**CI status:**
+- Shared ci-local with another session's jt-release run (16 QEMUs total) caused transient Stocks and Keyrate flakes in local ci-local; all checks passed when rerun alone.
+- PR #353 now on GitHub CI auto-merge, waiting for passing checks.
 
-**Deployed state:**
-- Last 30 GitHub runs verified green.
-- Live at heyitsmejosh.com with exit button now hidden in portfolio mode.
+**Outstanding issues:**
+- Black letterbox bands on 16:10 aspect screens (16:9 content in 16:10 frame).
+- Face image frames appear soft on retina displays.
 
 ## Next, in order
 
