@@ -105,6 +105,4 @@ is loaded on the portfolio now; the Google Fonts <link> and preconnect are gone.
   (#341), full-screen face with glass chat bar and typing fix (#343), his voice (#345), face at full rate,
   Escape to desktop, edges, dock colors, Portfolio icon, phone fills the screen. Open: #351 (voice on by
   default with mute, phone face uncropped) is draft; chat answering as Joshua (persona + JOSHUA_DOCS) unverified.
-  - [ ] Launchpad icon still reads pixelated (Joshua, 2026-10-02 live QA). The dock pipeline supersamples
-    vector icons 6x, so check which tile he means: the Apps-folder grid, or the gray grid glyph that
-    Portfolio and Clock borrow (no authored art) on the phone home screen. Give those two real art.
+  - [ ] Launchpad icon still reads pixelated (Joshua, 2026-10-02 live QA). Checked 2026-10-02: Portfolio and Clock already have authored vector art and render through the supersampled path. The likely tile is apps.svg (nine colored chips); redrawing it in engraving style is a set-wide design call, ask which tile he means first.
