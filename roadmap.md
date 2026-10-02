@@ -101,4 +101,13 @@ is loaded on the portfolio now; the Google Fonts <link> and preconnect are gone.
 
 ## Ingested 2026-10-01
 - [ ] Fix failing GitHub tests.
-- [ ] Samantha demo should be me: it needs to talk about me.
+- [ ] Portfolio demo is Joshua, not Samantha (2026-10-02). Lives in the joshuatree repo, not here:
+  the portfolio frames joshuatree.heyitsmejosh.com/?full&portfolio, phones boot "phone samantha".
+  - Face: swap landing/face/idle-*.jpg + talk-*.jpg (72 frames) for Joshua. BLOCKED: no photo or
+    video of Joshua exists (~/.samantha/characters has only samantha). Needs a front-facing clip.
+  - Voice/content: in portfolio mode the chat answers as Joshua, about his work, not reminders.
+    Tour script is TOUR_APPS Samantha scene + phoneSamanthaIntro in landing/v86/embed.js.
+  - Gibberish bug: the scene types into the chat with a leading 'n' key and 55ms keys; on the live
+    page it reads as gibberish. Trace keyboard_send_keys vs kernel/chat.h input state first.
+  - Layout: face full screen, chat bar as a blurred Liquid Glass strip at the bottom (kernel/chat.h
+    + chat_face.h draw path). QA at phone width (430x760 logical) and desktop.
