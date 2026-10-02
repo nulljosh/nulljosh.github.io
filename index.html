@@ -11,15 +11,14 @@
 <style>
 html,body{margin:0;height:100%;background:#000;}
 iframe{display:block;width:100%;height:100dvh;border:0;}
-a{position:fixed;bottom:max(.6rem,env(safe-area-inset-bottom));left:.8rem;font:600 .75rem -apple-system,"Helvetica Neue",Helvetica,Arial,sans-serif;color:#fff;opacity:.5;text-decoration:none;}
-a:hover{opacity:1;}
-a.apps{left:6.2rem;}
+nav{position:fixed;top:max(.6rem,env(safe-area-inset-top));left:.8rem;display:flex;gap:.4rem;}
+nav a{font:600 .72rem -apple-system,"Helvetica Neue",Helvetica,Arial,sans-serif;color:#1c1c1e;text-decoration:none;padding:.38rem .7rem;border-radius:999px;background:rgba(255,255,255,.55);backdrop-filter:blur(14px) saturate(160%);-webkit-backdrop-filter:blur(14px) saturate(160%);border:1px solid rgba(255,255,255,.6);box-shadow:0 1px 6px rgba(0,0,0,.08);opacity:.85;}
+nav a:hover{opacity:1;background:rgba(255,255,255,.8);}
 </style>
 </head>
 <body>
 <!-- ponytail: frames the real boot on the Joshua Tree landing rather than vendoring 5MB of v86 + kernel.elf here, so it is always the latest kernel. -->
 <iframe src="https://joshuatree.heyitsmejosh.com/?full&portfolio" title="Joshua Tree, booting live" allow="fullscreen"></iframe>
-<a href="classic.html">Classic site</a>
-<a class="apps" href="buy.html">Apps</a>
+<nav><a href="classic.html">Classic</a><a href="buy.html">Apps</a></nav>
 </body>
 </html>
