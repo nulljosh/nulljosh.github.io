@@ -101,14 +101,10 @@ is loaded on the portfolio now; the Google Fonts <link> and preconnect are gone.
 
 ## Ingested 2026-10-01
 - [ ] Fix failing GitHub tests.
-- [ ] Portfolio demo is Joshua, not Samantha (2026-10-02). Face DONE: Seedance 2.5 renders of my cloned
-  voice (v9 = A+), 72 frames in joshuatree landing/face-joshua, kernel switches to them in portfolio mode
-  (joshuatree PR #341, merged). Left: chat answers as Joshua (Turing worker.js
-  chatAnswer gets a persona + a JOSHUA_DOCS pack, kernel chat.h sends persona in portfolio mode); the
-  gibberish typing (reproduce first, suspect 55 ms key pacing, the phone composer theory was wrong);
-  face full screen with a blurred Liquid Glass chat bar; QA at phone width. Voice in the renders is
-  Seedance's re-voicing: a LatentSync pass over v9 with the exact ElevenLabs line fixes it (free quota
-  back 2026-10-03 ~01:00, or HF PRO $9). Samantha gets the same Seedance treatment after a Higgsfield top-up.
+- [ ] Portfolio demo is Joshua, not Samantha (2026-10-02). Shipped in joshuatree 1.9.28 to 1.9.37: his face
+  (#341), full-screen face with glass chat bar and typing fix (#343), his voice (#345), face at full rate,
+  Escape to desktop, edges, dock colors, Portfolio icon, phone fills the screen. Open: #351 (voice on by
+  default with mute, phone face uncropped) is draft; chat answering as Joshua (persona + JOSHUA_DOCS) unverified.
   - [ ] Launchpad icon still reads pixelated (Joshua, 2026-10-02 live QA). The dock pipeline supersamples
     vector icons 6x, so check which tile he means: the Apps-folder grid, or the gray grid glyph that
     Portfolio and Clock borrow (no authored art) on the phone home screen. Give those two real art.
