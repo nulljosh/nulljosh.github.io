@@ -101,13 +101,11 @@ is loaded on the portfolio now; the Google Fonts <link> and preconnect are gone.
 
 ## Ingested 2026-10-01
 - [ ] Fix failing GitHub tests.
-- [ ] Portfolio demo is Joshua, not Samantha (2026-10-02). Lives in the joshuatree repo, not here:
-  the portfolio frames joshuatree.heyitsmejosh.com/?full&portfolio, phones boot "phone samantha".
-  - Face: swap landing/face/idle-*.jpg + talk-*.jpg (72 frames) for Joshua. BLOCKED: no photo or
-    video of Joshua exists (~/.samantha/characters has only samantha). Needs a front-facing clip.
-  - Voice/content: in portfolio mode the chat answers as Joshua, about his work, not reminders.
-    Tour script is TOUR_APPS Samantha scene + phoneSamanthaIntro in landing/v86/embed.js.
-  - Gibberish bug: the scene types into the chat with a leading 'n' key and 55ms keys; on the live
-    page it reads as gibberish. Trace keyboard_send_keys vs kernel/chat.h input state first.
-  - Layout: face full screen, chat bar as a blurred Liquid Glass strip at the bottom (kernel/chat.h
-    + chat_face.h draw path). QA at phone width (430x760 logical) and desktop.
+- [ ] Portfolio demo is Joshua, not Samantha (2026-10-02). Face DONE: Seedance 2.5 renders of my cloned
+  voice (v9 = A+), 72 frames in joshuatree landing/face-joshua, kernel switches to them in portfolio mode
+  (joshuatree PR #341, draft until ci-local is green). Left: chat answers as Joshua (Turing worker.js
+  chatAnswer gets a persona + a JOSHUA_DOCS pack, kernel chat.h sends persona in portfolio mode); the
+  gibberish typing (reproduce first, suspect 55 ms key pacing, the phone composer theory was wrong);
+  face full screen with a blurred Liquid Glass chat bar; QA at phone width. Voice in the renders is
+  Seedance's re-voicing: a LatentSync pass over v9 with the exact ElevenLabs line fixes it (free quota
+  back 2026-10-03 ~01:00, or HF PRO $9). Samantha gets the same Seedance treatment after a Higgsfield top-up.
