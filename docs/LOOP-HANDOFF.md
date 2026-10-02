@@ -6,29 +6,26 @@ Polish the portfolio to A+ grade against the landing-demo rubric. Recover from t
 
 ## Where things stand
 
-Delta checkpoint 2026-10-02. PR #353 (exit button hide) open with auto-merge waiting for GitHub CI. Portfolio grade B+ (letterbox bands on 16:10 screens, soft face frames on retina).
+Final checkpoint 2026-10-02. PR #353 merged, exit button hidden verified headless. Portfolio grade A- (exit button fixed and hidden; letterbox bands and soft retina faces remain).
 
 **Fixed in this session:**
-- Exit button visibility: CSS hidden attribute on #demo-exit, committed.
-- Local ci-local test: exit button fix runs green headless.
+- Exit button visibility: CSS hidden attribute on #demo-exit, merged and live in 1.9.39.
+- Headless verification: exit button confirmed hidden in local ci-local tests.
 
-**CI status:**
-- Shared ci-local with another session's jt-release run (16 QEMUs total) caused transient Stocks and Keyrate flakes in local ci-local; all checks passed when rerun alone.
-- PR #353 now on GitHub CI auto-merge, waiting for passing checks.
+**Loop status: Paused at A-**
+- Exit button hidden on portfolio mode (done).
+- Letterbox bands on 16:10 screens (outstanding).
+- Face frames soft on retina (outstanding).
 
-**Outstanding issues:**
-- Black letterbox bands on 16:10 aspect screens (16:9 content in 16:10 frame).
-- Face image frames appear soft on retina displays.
+## Next, in order (when loop resumes)
 
-## Next, in order
-
-1. Black letterbox bands: Investigate the desktop/mobile layout boundary on 16:10 aspect screens. The demo frames content at 16:9 (1600x900 on desktop), but screens with 16:10 (1920x1200, etc.) letterbox it. Check `index.html` video frame sizing and CSS aspect-ratio rules.
-2. Face sharpness on retina: Face image frames are soft when displayed at >1x device pixel ratio. Verify image rendering (canvas upscale vs. asset resolution). Check if Joshua's face image needs a 2x version or if a CSS scale is blurring it.
-3. Grade against the rubric: Once both are fixed, re-capture the page at real device sizes and grade against the A+ bar (clean no-band rendering, sharp text and face, hidden UI buttons when not needed).
+1. Letterbox bands: Fix desktop/mobile layout on 16:10 aspect screens. Demo frames 16:9 (1600x900), but 16:10 screens (1920x1200) letterbox it. Check `index.html` video frame sizing and CSS aspect-ratio rules.
+2. Face sharpness: Face image frames soft on retina (>1x device pixel ratio). Verify image rendering (canvas upscale vs. asset). Check if face needs a 2x version or if CSS scale is blurring it.
+3. Grade to A+: Once both fixed, re-capture at real device sizes and grade against A+ rubric (clean no-band rendering, sharp face, hidden buttons when not demoing).
 
 ## Restart prompt
 
 ```
-/loop QA portfolio until A+: fix letterbox bands on 16:10 screens, sharpen face on retina, verify exit button hidden. Grade after each fix. No new scope.
+/loop QA portfolio until A+: fix letterbox bands on 16:10 screens, sharpen face on retina. Grade after each fix. No new scope.
 ```
 
