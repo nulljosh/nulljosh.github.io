@@ -24,8 +24,19 @@ Factorio already exposes its state as structured data through FLE's Lua/RCON bri
 | `scripts/progress_svg.py` | Chart generator (commit history progress line). |
 | `scripts/cpu_guard.sh` + `scripts/watch.sh` | Process guardians (restart runner if it hangs, monitor resource usage). |
 | `menubar/` | Menu-bar app scripts (`restart_runner.sh`, `restart_server.sh`, `stop_all.sh`, `build.sh`). Shortcuts for starting/stopping the cluster and agent from macOS menu bar. |
+| `scripts/world.sh` | Boots the Factorio server on a copy of a real save (`world.sh back` restores the stock map). Original save is never touched. |
+| `scripts/science.sh` | One hand-crafted science cycle: fetch plates from base chests, craft red and green, load labs. |
+| `scripts/feedlabs.py` | Moves science packs from the character into every lab over RCON (FLE's get_entity fails on a lab that already holds packs). |
+| `scripts/fuel.py` | Tops boilers and fuel-hungry furnaces up with coal over RCON. |
+| `scripts/snap.py` | Every 5 min copies the live map into `shots/` and appends a benchmark row (entities, techs, steps, ok, memory) to `shots/bench.jsonl`. Stops when the runner stops. |
+| `docs/LEARNINGS.md` | One-line lessons from the real save, newest last. |
+| `docs/LOOP-HANDOFF.md` | Current session state and restart prompt. |
 | `web/` | Landing page (`index.html`). Deployed to conveyer.heyitsmejosh.com. Shows project info, GitHub link, live Factorio game state (via v86 embedded emulator), usage instructions. No code required from visitors, just static HTML/CSS. |
 | `.env` | Configuration. `FACTORIO_SERVER_ADDRESS`, `FACTORIO_SERVER_PORT`, `OLLAMA_ENDPOINT`. Hardcoded to work around colima's `docker inspect` limitation. |
+
+## Real save mode
+
+`runner.py --keep-world` patches FLE before it initialises: no reset, adopt the save's character, keep biters. A single `runner.lock` stops duplicate runners. `get_entities()` is capped at 30 tiles around the character so observations stay small, and a memory guard exits the runner at 3 GB and removes `runner.pid` so the menu bar does not restart it into the same problem. `skills.py` has a `goto` skill for walking to far chests.
 
 ## Storage and IPC
 
@@ -46,3 +57,62 @@ No central database. Every state lives in JSON files, so the system is transpare
 - **Factorio.com token required.** Not Steam credentials. Get the token from factorio.com/profile (after signing in with Steam if you own it there).
 - **Memory-tight.** 16 GB machine + colima + Factorio server + browser + agent session can OOM. Keep the cluster at `--workers 1`.
 - **UDP networking.** Colima's default bridged mode doesn't reliably forward UDP to `127.0.0.1`. Start colima with `--network-address` for a routable VM IP.
+
+
+## Real save scripts (2026-10-02)
+
+The agent plays Joshua's real save through a planner and a set of replay scripts, all under `scripts/`. Everything is Python over RCON, one persistent connection each, no daemons of ours (the loop runs them as Claude background tasks).
+
+| Script | What it does |
+|---|---|
+| `planner.py` | Builds and feeds tiles (assembler, input chest, inserters, output chest). `step` places one tile per pass and feeds every chest, `labs` feeds the labs, `replay` rebuilds tiles after a crash. Recipes, buffers (`BUF`) and tile counts (`MULT`) live at the top. |
+| `keepbusy.sh` | The 20 second loop: planner step, oil refill, speed governor, labs and lab feeding, fuel. Exits when `runner.pid` is gone. |
+| `tick.sh`, `health.sh` | One compact report per loop tick. `health.sh --fix` starts what is down and, after a world revert, replays every build. |
+| `speed.py`, `cpu.sh` | Game speed follows CPU load and free RAM (10, 6, 3, 2x). `cpu.sh` measures each process. |
+| `queue.py` | Keeps the research queue on the rocket-silo path, prerequisites first, cheapest first. |
+| `research_status.py`, `livefeed.py`, `livemap.py`, `snap.py` | The monitor's feeds. Research and labs (`research.json`), player position (`live.json`), machine status dots and the strolling player (`live_status.json`), benchmark rows (`shots/bench.jsonl`). The last three sleep unless the monitor touches `.watching`. |
+| `terrain.py` | Paints real ground under the FLE render, writes `preview_map.png`. |
+| `oil.py`, `sulfur.py`, `advcircuit.py`, `power.py` | The oil block (refinery, plastic plant with an output chest and a coal chest refilled every pass), the sulfur plant with 90 tiles of underground water, one advanced circuit assembler, and steam power columns. All idempotent. |
+| `acid.py` | Sulfuric acid plant beside the sulfur plant, an underground acid line to a free field, and four processing unit assemblers on it. `acid.py feed` moves iron, circuits and advanced circuits into their chests every pass. Idempotent replay. |
+| `oilfield2.py`, `ledger.py`, `concrete.py`, `advoil.py`, `fuelsupply.py`, `blocks.py`, `fuelgas.py`, `refineries.py`, `barrels.py`, `coalfarm.py`, `pumpjacks.py` | The generic builder (place, read fluid ports, power chain, pipe router, free-spot search), more refineries each with a barrel emptier, crude by barrel from the four rich wells, ten coal drills dropping into chests (coal fell from 50,000 to 6,000 in two hours of steam power), and the pumpjack experiment kept for reference. |
+| `ironfarm.py` | Drill, furnace, inserter, chest slots on the iron, copper or stone patch, plus a pole bridge back to the grid. Slot lists freeze in `.world/*farm.json`. |
+| `labs.py`, `feedlabs.py`, `withdraw.py`, `fuel.py` | Lab grid, moving packs into labs, pulling items from chests and furnaces into the bag, filling boilers and furnaces. |
+| `journal.py` | Snapshot, check and restore of the build list, because FLE's Lua state cannot be saved. |
+| `assist.py`, `silo.py` | Assisted mode: tops the labs with every pack while `.assist` exists, and builds the rocket silo, rocket parts and satellite and launches. This is how v1.0.0 was reached, and it is labeled that way everywhere. |
+| `milestone.py`, `ship_landing.sh`, `landing_sync.py`, `make_icon.py`, `statline.py`, `realshot.sh`, `oilprep.sh` | Proof GIFs, landing and README refresh and deploy, the icon, one detailed log line, a true graphics screenshot (needs a real client, crashes the server if left joined), and oil prep. |
+| `export_training.py` | Turns `runs/*.jsonl` into `data/train.jsonl` and `data/valid.jsonl` for LoRA. See [TRAINING.md](TRAINING.md). |
+
+## The monitor (`menubar/main.swift`)
+
+A SwiftUI menu bar app signed with the Developer ID so macOS keeps its Documents permission across rebuilds. The popover shows the map, research and roadmap. The live window (`--open-live`, `--fullscreen` to opt in) floats above all windows by default (Ctrl+Option+P toggles), follows the player with a zoomed camera eased at 60 fps, draws the real Factorio engineer sprite (copied from the Steam install by `build.sh`, never into git), and pulses a dot on every machine (green working, amber waiting, red stuck). Ctrl+Option+H shows or hides the progress panel. The map picture only redraws when the runner steps, so new builds show as dots before they show as sprites.
+
+## The live view (v2.1)
+
+The menu bar app never talks to the game. It reads small files the loop writes, so a slow render or a crash cannot freeze it.
+
+| File | Written by | What the window draws |
+|---|---|---|
+| `preview_map.png`, `frame.json` | `runner.py` | The map picture. It centres on `.focus` ("x,y", or "x,y,silo" / "x,y,hold") and never moves the engineer. |
+| `live.json`, `live_status.json`, `engineer.json` | `livefeed.py`, `livemap.py` | The engineer, the machine status dots, the line saying what he is doing. |
+| `hotbar.json`, `silo.json` | `livefeed.py` | The key stock bar, and the silo (parts, status, rocket on the pad). |
+| `events.json` | `events.py` | The activity feed: ledger moves, research, power, pumpjacks, launches. |
+| `combat.json` | `combat.py` | Enemies, firing turrets. |
+| `minimap.png`, `minimap.json` | `minimap.py` | The terrain minimap with base, oil and nests. |
+
+The silo and rocket are the game's own sprites, composited by `scripts/silo_sprites.py` from the Steam install into `assets/silo/` (never committed).
+
+## The launch path
+
+`planner.py` builds low density structure tiles. The refinery and chemical plants make plastic and rocket fuel. `shuttle.sh` moves crude by barrel and runs `siloline.py`, which carries processing units, low density structure and rocket fuel from the base chests to three chests beside the silo. Fast inserters put them in, the silo crafts the 100 parts itself, and `siloline.py` calls `launch_rocket()` once the finished rocket stands on the pad. A `.hold` file pauses the launch, `.assist` disables it.
+
+## Assisted tools (labelled as such)
+
+`scripts/relaunch.py` puts the silo and a bank of parts back by console. `scripts/sweep.py` kills nests by console. The engineer is invulnerable on oil-field patrol. None of these count toward a legit launch.
+
+## Never join with the real client
+
+A client join forces a map save. FLE's Lua state cannot be saved, so the server quits and the world reverts. `scripts/realshot.sh` is disabled. See [LEARNINGS.md](LEARNINGS.md).
+
+## Video
+
+`scripts/record.sh` captures the screen with ffmpeg avfoundation (`screencapture -v` writes nothing here). `scripts/make_video.py` cuts the take and the landing wallpaper.
