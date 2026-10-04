@@ -13,7 +13,7 @@ let work = [
     Item(year: "2025", name: "Epiphany, finance dashboard", meta: "Web · iOS · macOS · watchOS", url: "https://epiphany.heyitsmejosh.com"),
     Item(year: "", name: "Talli, benefits tracker", meta: "Web · iOS · watchOS", url: "https://talli.heyitsmejosh.com"),
     Item(year: "", name: "Voxprint, on-device transcription", meta: "Web · iOS · macOS", url: "https://voxprint.heyitsmejosh.com"),
-    Item(year: "", name: "Sparkjar, idea forum", meta: "Web · iOS · macOS · watchOS", url: "https://sparkjar.heyitsmejosh.com"),
+    Item(year: "", name: "Hikko, idea forum", meta: "Web · iOS · macOS · watchOS", url: "https://hikko.heyitsmejosh.com"),
     Item(year: "", name: "Healstack, health dashboard", meta: "Web · iOS", url: "https://healstack.heyitsmejosh.com"),
     Item(year: "2026", name: "Lexly, language learning", meta: "Web · iOS · macOS", url: "https://lexly.heyitsmejosh.com"),
     Item(year: "", name: "Litigate, litigation planner", meta: "Web · iOS · macOS", url: "https://litigate.heyitsmejosh.com"),

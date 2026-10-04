@@ -17,7 +17,7 @@ enum PortfolioData {
         WorkItem(name: "Epiphany", meta: "Web · iOS · macOS · watchOS"),
         WorkItem(name: "Talli", meta: "Web · iOS · watchOS"),
         WorkItem(name: "Voxprint", meta: "Web · iOS · macOS"),
-        WorkItem(name: "Sparkjar", meta: "Web · iOS · macOS · watchOS"),
+        WorkItem(name: "Hikko", meta: "Web · iOS · macOS · watchOS"),
         WorkItem(name: "Healstack", meta: "Web · iOS"),
         WorkItem(name: "Lexly", meta: "Web · iOS · macOS"),
         WorkItem(name: "Litigate", meta: "Web · iOS · macOS"),
