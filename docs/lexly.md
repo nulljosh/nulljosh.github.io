@@ -10,7 +10,7 @@ A gamified language and skills learning app featuring 12 languages plus math, sc
 
 **macOS**: `ios/Sources/macOS/LingoApp.swift` is the entry point (separate from iOS), renders `CatalogView`. Same auth and progress syncing as iOS.
 
-**Android/Desktop (KMP)**: `kmp/composeApp/src/commonMain/kotlin/com/nulljosh/lexly/AppScreen.kt` is the shared entry point, fetches catalog from the live web API.
+**Android/Desktop (KMP)**: `kmp/composeApp/src/commonMain/kotlin/com/nulljosh/tonchi/AppScreen.kt` is the shared entry point, fetches catalog from the live web API.
 
 ## Web
 
@@ -24,9 +24,7 @@ A gamified language and skills learning app featuring 12 languages plus math, sc
 | `css/lingo.css` | All styling, `data-theme` attribute for light/dark mode toggling |
 | `privacy.html` | Privacy policy |
 | `support.html` | Support page |
-| `middleware.js` | Vercel middleware for basic auth on `/school/` (BC curriculum masterclass content) |
 | `onboarding.js` | Shared onboarding modal (reused across multiple Supabase apps) |
-| `devices.css` | Responsive device frame CSS for landing screenshots |
 | `sw.js` | Service worker, network-first for pages, cache-first for assets |
 | `manifest.json` | PWA manifest (app name, icons, start URL, display mode) |
 | `assets/` | SVG icons and images (bundled with service worker) |
@@ -47,7 +45,7 @@ A gamified language and skills learning app featuring 12 languages plus math, sc
 |---|---|
 | `scripts/build-language-course.mjs` | Generates language packs from Tatoeba/OpenSubtitles, appends with `t` prefix (safe to re-run) |
 | `scripts/fieldbook-course.py` | Builds fieldbook.json (science/math domain reference) from ../fieldbook source |
-| `scripts/import-pwnlingo-exercises.mjs` | Imports Duolingo exercise captures from sibling pwnlingo repo into new Lexly course files |
+| `scripts/import-pwnlingo-exercises.mjs` | Imports Duolingo exercise captures from sibling pwnlingo repo into new Tonchi course files |
 | `scripts/make-appicon.sh` | Renders icon.svg to all iOS app icon sizes (do not hand-export) |
 | `scripts/deploy.sh` | Publishes web + content to Cloudflare Pages (run manually, project not git-connected) |
 
@@ -68,7 +66,7 @@ A gamified language and skills learning app featuring 12 languages plus math, sc
 | `ios/Sources/Shared/AuthStore.swift` | Supabase auth (email, Apple, Google), biometric login (Face ID/Touch ID via Keychain), session persistence, profile fetch/update |
 | `ios/Sources/Shared/AvatarPickerView.swift` | 8x8 pixel-art avatar generator and picker, mirrors web's SVG generation to PNG |
 | `ios/Sources/Shared/SettingsView.swift` | Account settings, daily reminder toggle, delete account, daily streak/XP display |
-| `ios/Sources/Shared/SplashView.swift` | Loading screen with Lexly cap icon |
+| `ios/Sources/Shared/SplashView.swift` | Loading screen with Tonchi cap icon |
 | `ios/Sources/Shared/ContentStore.swift` | @Observable store, loads bundled `catalog.json` and course packs, manages progress (XP, streak, hearts, SRS cards), syncs with Supabase on init, saves to UserDefaults |
 | `ios/Sources/Shared/Models.swift` | Decodable types: Catalog, Subject, CoursePack, Unit, Lesson, Exercise, LingoProfile, SrsCard (SM-2 spaced repetition) |
 | `ios/Sources/Shared/DailyReminder.swift` | Local notification for daily lesson reminders, reschedules after lesson complete |
@@ -97,7 +95,7 @@ A gamified language and skills learning app featuring 12 languages plus math, sc
 | `content/catalog.json` | Course catalog: categories (languages, math, science, skills, masterclasses) with subjects and packs |
 | `content/courses/*.json` | Course packs: units, lessons, exercises (type + fields specific to renderer) |
 | `content/notes/*.json` | Masterclass notes: sections, blocks (prose, code, callouts, tables, flashcards) |
-| `school/*.html` | BC curriculum masterclass pages (gated by basic auth via middleware.js, noindex) |
+| `school/*.html` | BC curriculum masterclass pages (gated by basic auth via functions/school/_middleware.js, noindex) |
 | `scripts/build-language-course.mjs` | Generates language packs from Tatoeba (CC-BY 2.0 FR) and OpenSubtitles frequency, appends with `t` prefix, safe to re-run |
 | `tools/validate-catalog.js` | Validates catalog structure, all packs/notes/exercises, and renderer field coverage (web + iOS) |
 
@@ -135,11 +133,11 @@ A gamified language and skills learning app featuring 12 languages plus math, sc
 
 | File | What it owns |
 |---|---|
-| `kmp/shared/src/commonMain/kotlin/com/nulljosh/lexly/Content.kt` | LexlyClient HTTP fetcher for catalog from web API |
-| `kmp/shared/src/commonTest/kotlin/com/nulljosh/lexly/ContentTest.kt` | Tests for catalog shape decoding |
-| `kmp/composeApp/src/commonMain/kotlin/com/nulljosh/lexly/AppScreen.kt` | Shared Compose UI |
-| `kmp/composeApp/src/androidMain/kotlin/com/nulljosh/lexly/MainActivity.kt` | Android entry |
-| `kmp/composeApp/src/desktopMain/kotlin/com/nulljosh/lexly/Main.kt` | Desktop window setup |
+| `kmp/shared/src/commonMain/kotlin/com/nulljosh/tonchi/Content.kt` | LexlyClient HTTP fetcher for catalog from web API |
+| `kmp/shared/src/commonTest/kotlin/com/nulljosh/tonchi/ContentTest.kt` | Tests for catalog shape decoding |
+| `kmp/composeApp/src/commonMain/kotlin/com/nulljosh/tonchi/AppScreen.kt` | Shared Compose UI |
+| `kmp/composeApp/src/androidMain/kotlin/com/nulljosh/tonchi/MainActivity.kt` | Android entry |
+| `kmp/composeApp/src/desktopMain/kotlin/com/nulljosh/tonchi/Main.kt` | Desktop window setup |
 
 ## watchOS
 
@@ -176,7 +174,7 @@ A gamified language and skills learning app featuring 12 languages plus math, sc
 
 **OpenSubtitles + Tatoeba**: language course generation, CC-BY 2.0 FR license (attribution in landing, iOS settings).
 
-**Web API**: KMP fetches the live catalog from `lexly.heyitsmejosh.com/content/catalog.json`.
+**Web API**: KMP fetches the live catalog from `tonchi.heyitsmejosh.com/content/catalog.json`.
 
 ## Gotchas
 
