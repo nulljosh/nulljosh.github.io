@@ -104,3 +104,7 @@ is loaded on the portfolio now; the Google Fonts <link> and preconnect are gone.
   (#341), full-screen face with glass chat bar and typing fix (#343), his voice (#345), face at full rate,
   Escape to desktop, edges, dock colors, Portfolio icon, phone fills the screen. Open: #351 (voice on by
   default with mute, phone face uncropped) is draft; chat answering as Joshua (persona + JOSHUA_DOCS) unverified.
+
+## Ingested 2026-10-05
+- [ ] Landing page demo doesn't even play. Should have a skip button too, to skip to the actual demo.
+- [ ] Keep apps list refreshed. Some names are stale.
