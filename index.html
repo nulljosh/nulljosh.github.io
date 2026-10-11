@@ -27,7 +27,7 @@ a{color:var(--ink)}
 .sidebar h2{font-weight:400;font-size:1.3em;margin:0 0 1em}
 .sidebar nav{margin-top:auto;padding-bottom:20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .sidebar nav a{text-decoration:none;letter-spacing:-.5px}
-.content{margin-left:250px;padding:0 0 4rem;min-width:0;overflow-wrap:anywhere}
+.content{margin-left:250px;padding:0;min-width:0;overflow-wrap:anywhere}
 .section{padding:20px 40px 35px;margin-bottom:35px;border-bottom:2px solid var(--bulb);max-width:860px}
 .section h2{font-size:1.25em;font-weight:400;margin:20px 0}
 .hero h2.big{font-size:2.5em;margin:0;font-weight:600}
@@ -57,7 +57,8 @@ li:first-child{border-top:0}
 .foot-dir ul{list-style:none;padding:0;margin:0}.foot-dir li{margin:6px 0}
 .foot-dir a{text-decoration:none;border-bottom:2px solid var(--bulb)}
 .foot-meta{margin:0;padding:18px 0 0;border-top:1px solid #eee;color:#666;font-size:.8rem}
-@media(max-width:760px){.foot{margin:40px 20px 0}.foot-story{grid-template-columns:1fr}.foot-dir{grid-template-columns:1fr 1fr}.foot-rule{flex-wrap:wrap;white-space:normal}.foot-rule::before{flex-basis:100%;order:-1}}
+.foot-landscape{height:clamp(200px,24vw,380px);margin-top:48px;background:var(--bulb);-webkit-mask:url(pwa/footer-landscape.svg) center bottom/cover no-repeat;mask:url(pwa/footer-landscape.svg) center bottom/cover no-repeat;pointer-events:none}
+@media(max-width:760px){.foot-landscape{-webkit-mask-position:right bottom;mask-position:right bottom}.foot{margin:40px 20px 0}.foot-story{grid-template-columns:1fr}.foot-dir{grid-template-columns:1fr 1fr}.foot-rule{flex-wrap:wrap;white-space:normal}.foot-rule::before{flex-basis:100%;order:-1}}
 </style>
 </head>
 <body>
@@ -121,6 +122,7 @@ li:first-child{border-top:0}
 </nav>
 <p class="foot-meta">&copy; 2026 Joshua Trommel &middot; Made in Langley, BC &middot; Nothing here tracks you.</p>
 </footer>
+<div class="foot-landscape" aria-hidden="true"></div>
 </main>
 <script>
 document.getElementById('boot').addEventListener('click',function(){var f=document.getElementById('demo');f.src='https://joshuatree.jaybulb.com/?full&portfolio';f.style.display='block';this.remove()});
