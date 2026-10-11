@@ -1,5 +1,5 @@
 /* landing.js: drifting background + reveal-on-scroll for the house landing pattern.
-   <script defer src="https://heyitsmejosh.com/landing.js" data-shape="bars"></script>
+   <script defer src="https://jaybulb.com/landing.js" data-shape="bars"></script>
    data-shape: bars (default), dots, rings. data-count: how many (default 26).
    Draws in the page's own text color at low alpha, so it follows tokens.css light and dark.
    Honors prefers-reduced-motion: one static frame, no animation. */

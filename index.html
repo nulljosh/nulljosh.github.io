@@ -2,23 +2,98 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Joshua Trommel</title>
-<meta name="description" content="The portfolio as a computer. Joshua Tree, an operating system written from scratch, booting live in your browser.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jaybulb, apps by Joshua Trommel</title>
+<meta name="description" content="Jaybulb makes things for screens. Apps that are free or one dollar, and Joshua Tree, an operating system built from scratch.">
 <link rel="icon" type="image/svg+xml" href="pwa/favicon.svg">
-<link rel="canonical" href="https://heyitsmejosh.com/">
-<meta name="theme-color" content="#000000">
+<link rel="canonical" href="https://jaybulb.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jaybulb.com/">
+<meta property="og:title" content="Jaybulb, apps by Joshua Trommel">
+<meta property="og:description" content="Apps that are free or one dollar, and an operating system built from scratch.">
+<meta property="og:image" content="https://jaybulb.com/pwa/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffca30">
 <style>
-html,body{margin:0;height:100%;background:#000;}
-iframe{display:block;width:100%;height:100dvh;border:0;}
-nav{position:fixed;top:max(.6rem,env(safe-area-inset-top));left:.8rem;display:flex;gap:.4rem;}
-nav a{font:600 .72rem -apple-system,"Helvetica Neue",Helvetica,Arial,sans-serif;color:#1c1c1e;text-decoration:none;padding:.38rem .7rem;border-radius:999px;background:rgba(255,255,255,.55);backdrop-filter:blur(14px) saturate(160%);-webkit-backdrop-filter:blur(14px) saturate(160%);border:1px solid rgba(255,255,255,.6);box-shadow:0 1px 6px rgba(0,0,0,.08);opacity:.85;}
-nav a:hover{opacity:1;background:rgba(255,255,255,.8);}
+:root{--bulb:#ffca30;--ink:#000;--paper:#fff}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:"Avenir Next",Avenir,"Helvetica Neue",Helvetica,Arial,sans-serif;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;line-height:1.5}
+::selection{background:var(--bulb);color:#fff}
+a{color:var(--ink)}
+.sidebar{position:fixed;inset:0 auto 0 0;width:250px;padding:0 25px;background:var(--bulb);display:flex;flex-direction:column}
+.sidebar h1{margin:20px 0 30px;text-align:center;font-weight:400;font-size:2em}
+.sidebar h1 a{text-decoration:none}
+.sidebar h2{font-weight:400;font-size:1.3em;margin:0 0 1em}
+.sidebar nav{margin-top:auto;padding-bottom:20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.sidebar nav a{text-decoration:none;letter-spacing:-.5px}
+.content{margin-left:250px;padding:0 0 4rem;min-width:0;overflow-wrap:anywhere}
+.section{padding:20px 40px 35px;margin-bottom:35px;border-bottom:2px solid var(--bulb);max-width:860px}
+.section h2{font-size:1.25em;font-weight:400;margin:20px 0}
+.hero h2.big{font-size:2.5em;margin:0;font-weight:600}
+.hero p{font-size:1.25em;margin:20px 0}
+.button{display:inline-block;text-decoration:none;background:var(--bulb);padding:9px 14px;margin:8px 5px 8px 0;white-space:nowrap;font-size:.95rem}
+.button:hover{filter:brightness(.95)}
+a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+ul{list-style:none;margin:0;padding:0}
+li{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:14px;align-items:center;padding:12px 0;border-top:1px solid #eee}
+li:first-child{border-top:0}
+.who a{font-weight:600;text-decoration:none;border-bottom:2px solid var(--bulb)}
+.who span{display:block;font-size:.875rem;color:#555}
+.price{font-size:.875rem;color:#555;text-align:right}
+#demo{display:none;width:100%;aspect-ratio:16/10;border:0;margin-top:12px;background:#000}
+@media(max-width:760px){.sidebar{position:static;width:auto;padding:0 20px 14px}.sidebar nav{margin-top:8px;padding-bottom:0}.sidebar h1{margin:14px 0}.content{margin-left:0}.section{padding:20px}li{grid-template-columns:minmax(0,1fr) auto}.price{grid-column:1;text-align:left}.button{grid-column:2;grid-row:1/3}}
+@media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 </style>
 </head>
 <body>
-<!-- ponytail: frames the real boot on the Joshua Tree landing rather than vendoring 5MB of v86 + kernel.elf here, so it is always the latest kernel. -->
-<iframe src="https://joshuatree.heyitsmejosh.com/?full&portfolio" title="Joshua Tree, booting live" allow="fullscreen"></iframe>
-<nav><a href="buy.html">Apps</a></nav>
+<aside class="sidebar">
+<h1><a href="/">Jaybulb</a></h1>
+<h2>I make things for screens.</h2>
+<h2>Apps that are free or one dollar, and an operating system I wrote from scratch.</h2>
+<nav><a href="#apps">Apps</a><a href="#open">Open source</a><a href="https://github.com/nulljosh">GitHub</a><a href="mailto:trommatic@icloud.com">Email</a></nav>
+</aside>
+<main class="content">
+<section class="section hero">
+<h2 class="big">Joshua Tree</h2>
+<p>An operating system built from scratch. It boots in your browser, no install.</p>
+<button class="button" id="boot" type="button" style="border:0;font:inherit;cursor:pointer">Boot it here</button>
+<a class="button" href="https://joshuatree.jaybulb.com">Open full screen</a>
+<a class="button" href="https://github.com/nulljosh/joshuatree">GitHub</a>
+<iframe id="demo" title="Joshua Tree, booting live" allow="fullscreen" loading="lazy"></iframe>
+</section>
+<section class="section" id="apps">
+<h2>Apps. Buy on the web for $0.99 through Stripe, or get them from the App Store.</h2>
+<ul>
+<li><div class="who"><a href="https://epiphany.jaybulb.com">Epiphany</a><span>Finance dashboard</span></div><span class="price">$0.99</span><a class="button" href="https://apps.apple.com/app/id6779522175">App Store</a></li>
+<li><div class="who"><a href="https://talli.jaybulb.com">Talli</a><span>Benefits and grades tracker</span></div><span class="price">Free</span><a class="button" href="https://apps.apple.com/app/id6782366555">App Store</a></li>
+<li><div class="who"><a href="https://inkpress.jaybulb.com">Inkpress</a><span>RSS and Atom reader</span></div><span class="price">$0.99</span><a class="button" href="https://apps.apple.com/app/id6787759999">App Store</a></li>
+<li><div class="who"><a href="https://bookrank.jaybulb.com">Bookrank</a><span>Chapter by chapter book summaries</span></div><span class="price">Free</span><a class="button" href="https://apps.apple.com/app/id6792376485">App Store</a></li>
+<li><div class="who"><a href="https://lexly.jaybulb.com">Lexly</a><span>Learn a language</span></div><span class="price">Free</span><a class="button" href="https://apps.apple.com/app/id6783501611">App Store</a></li>
+<li><div class="who"><a href="https://hikko.jaybulb.com">Hikko</a><span>Idea forum</span></div><span class="price">Free, $0.99 on the web</span><a class="button" href="https://apps.apple.com/app/id6785162492">App Store</a></li>
+<li><div class="who"><a href="https://notate.jaybulb.com">Notate</a><span>On-device transcription</span></div><span class="price">Free, $0.99 unlock</span><a class="button" href="https://apps.apple.com/app/id6782604262">App Store</a></li>
+<li><div class="who"><a href="https://nimble.jaybulb.com">Nimble Answers</a><span>Ask a question, get one sentence</span></div><span class="price">Free</span><a class="button" href="https://apps.apple.com/app/id6807858746">App Store</a></li>
+<li><div class="who"><a href="https://healstack.jaybulb.com">Healstack</a><span>Dose log and health dashboard</span></div><span class="price">Free, $0.99 export on the web</span><a class="button" href="https://apps.apple.com/app/id6785764864">App Store</a></li>
+<li><div class="who"><a href="https://curvely.jaybulb.com">Curvely</a><span>Graphing calculator</span></div><span class="price">$0.99</span><a class="button" href="https://apps.apple.com/app/id6794988370">App Store</a></li>
+<li><div class="who"><a href="https://wiretext.jaybulb.com">Blockframe</a><span>Wireframes made of characters</span></div><span class="price">$0.99</span><a class="button" href="https://apps.apple.com/app/id6794988951">App Store</a></li>
+<li><div class="who"><a href="https://nyc.jaybulb.com">NYC Survive</a><span>Times Square city sim</span></div><span class="price">$0.99</span><a class="button" href="https://apps.apple.com/app/id6782618198">App Store</a></li>
+<li><div class="who"><a href="https://quotestreak.jaybulb.com">Quotestreak</a><span>Daily quote game</span></div><span class="price">Free</span><a class="button" href="https://apps.apple.com/app/id6804394619">App Store</a></li>
+<li><div class="who"><a href="https://sidewise.jaybulb.com">Sidewise</a><span>Headlines across the spectrum</span></div><span class="price">Free</span><a class="button" href="https://apps.apple.com/app/id6806028670">App Store</a></li>
+<li><div class="who"><a href="https://wordroot.jaybulb.com">Wordroot</a><span>Dictionary with deep etymology</span></div><span class="price">$0.99</span><a class="button" href="https://apps.apple.com/app/id6794988021">App Store</a></li>
+<li><div class="who"><a href="https://toroid.jaybulb.com">Toroid</a><span>Game of Life on a wrapping grid</span></div><span class="price">$0.99</span><a class="button" href="https://apps.apple.com/app/id6806324937">App Store</a></li>
+<li><div class="who"><a href="https://curbfind.jaybulb.com">Curbfind</a><span>Craigslist as a photo grid</span></div><span class="price">Free</span><a class="button" href="https://apps.apple.com/app/id6809031662">App Store</a></li>
+<li><div class="who"><a href="https://plain.jaybulb.com">Plaintxt</a><span>Plain text editor for the Mac</span></div><span class="price">Free</span><a class="button" href="https://apps.apple.com/app/id6809841903">App Store</a></li>
+</ul>
+</section>
+<section class="section" id="open">
+<h2>Open source</h2>
+<ul>
+<li><div class="who"><a href="https://joshuatree.jaybulb.com">Joshua Tree</a><span>An operating system built from scratch. Boots in your browser.</span></div><span class="price">Free</span><a class="button" href="https://github.com/nulljosh/joshuatree">GitHub</a></li>
+<li><div class="who"><a href="https://plank.jaybulb.com">Plank</a><span>A compiled language you can read in an evening.</span></div><span class="price">Free</span><a class="button" href="https://github.com/nulljosh/plank">GitHub</a></li>
+</ul>
+</section>
+</main>
+<script>
+document.getElementById('boot').addEventListener('click',function(){var f=document.getElementById('demo');f.src='https://joshuatree.jaybulb.com/?full&portfolio';f.style.display='block';this.remove()});
+</script>
 </body>
 </html>

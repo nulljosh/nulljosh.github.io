@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://heyitsmejosh.com/</loc>
+    <loc>https://jaybulb.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -12,14 +12,14 @@
   <url>
   <url>
   <url>
-    <loc>https://heyitsmejosh.com/notes/</loc>
+    <loc>https://jaybulb.com/notes/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
-  <url><loc>https://heyitsmejosh.com/apps.html</loc></url>
-  <url><loc>https://heyitsmejosh.com/docs.html</loc></url>
+  <url><loc>https://jaybulb.com/apps.html</loc></url>
+  <url><loc>https://jaybulb.com/docs.html</loc></url>
   <url>
-    <loc>https://heyitsmejosh.com/buy.html</loc>
+    <loc>https://jaybulb.com/buy.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
