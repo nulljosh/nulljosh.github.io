@@ -42,8 +42,22 @@ li:first-child{border-top:0}
 .who span{display:block;font-size:.875rem;color:#555}
 .price{font-size:.875rem;color:#555;text-align:right}
 #demo{display:none;width:100%;aspect-ratio:16/10;border:0;margin-top:12px;background:#000}
-@media(max-width:760px){.sidebar{position:static;width:auto;padding:0 20px 14px}.sidebar nav{margin-top:8px;padding-bottom:0}.sidebar h1{margin:14px 0}.content{margin-left:0}.section{padding:20px}li{grid-template-columns:minmax(0,1fr) auto}.price{grid-column:1;text-align:left}.button{grid-column:2;grid-row:1/3}}
+@media(max-width:760px){.sidebar{position:static;width:auto;padding:0 20px 14px;overflow-wrap:anywhere}.sidebar nav{margin-top:8px;padding-bottom:0}.sidebar h1{margin:14px 0}.content{margin-left:0}.section{padding:20px}li{grid-template-columns:minmax(0,1fr) auto}.price{grid-column:1;text-align:left}.button{grid-column:2;grid-row:1/3}}
 @media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+
+.foot{margin:60px 40px 0;max-width:860px;color:#333;font-size:.875rem}
+.foot-story{display:grid;grid-template-columns:72px 1fr;gap:28px;align-items:start;padding-bottom:36px}
+.foot-story h2{font-size:1.6em;font-weight:600;line-height:1.1;margin:0 0 10px}
+.foot-story p{margin:0;max-width:52ch;font-size:1rem;color:#444}
+.foot-rule{display:flex;align-items:center;gap:16px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;color:#555}
+.foot-rule::before{content:"";order:1;flex:1;height:2px;background:var(--bulb)}
+.foot-rule>:first-child{order:0}.foot-rule>:last-child{order:2}
+.foot-dir{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:32px 0}
+.foot-dir h3{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;margin:0 0 10px}
+.foot-dir ul{list-style:none;padding:0;margin:0}.foot-dir li{margin:6px 0}
+.foot-dir a{text-decoration:none;border-bottom:2px solid var(--bulb)}
+.foot-meta{margin:0;padding:18px 0 0;border-top:1px solid #eee;color:#666;font-size:.8rem}
+@media(max-width:760px){.foot{margin:40px 20px 0}.foot-story{grid-template-columns:1fr}.foot-dir{grid-template-columns:1fr 1fr}.foot-rule{flex-wrap:wrap;white-space:normal}.foot-rule::before{flex-basis:100%;order:-1}}
 </style>
 </head>
 <body>
@@ -53,7 +67,7 @@ li:first-child{border-top:0}
 <h2>Apps that are free or one dollar, and an operating system I wrote from scratch.</h2>
 <nav><a href="#apps">Apps</a><a href="#open">Open source</a><a href="https://github.com/nulljosh">GitHub</a><a href="mailto:trommatic@icloud.com">Email</a></nav>
 </aside>
-<main class="content">
+<main class="content" id="top">
 <section class="section hero">
 <h2 class="big">Joshua Tree</h2>
 <p>An operating system built from scratch. It boots in your browser, no install.</p>
@@ -92,6 +106,21 @@ li:first-child{border-top:0}
 <li><div class="who"><a href="https://plank.jaybulb.com">Plank</a><span>A compiled language you can read in an evening.</span></div><span class="price">Free</span><a class="button" href="https://github.com/nulljosh/plank">GitHub</a></li>
 </ul>
 </section>
+<footer class="foot">
+<section class="foot-story">
+<img class="seal" src="pwa/logo.svg" alt="" width="72" height="104" loading="lazy">
+<div><h2>Bright ideas,<br>written down.</h2>
+<p>Jaybulb is one person in Langley, BC making small software that costs a dollar or nothing. A bulb for the idea, a pencil for the work. Every app runs on the web first, then on iPhone and Mac.</p></div>
+</section>
+<div class="foot-rule" aria-hidden="true"><span>Jaybulb</span><span>Bright ideas, written down.</span></div>
+<nav class="foot-dir" aria-label="Footer">
+<div><h3>Apps</h3><ul><li><a href="#apps">All apps</a></li><li><a href="buy.html">Prices</a></li><li><a href="https://apps.apple.com/developer/id1794425636">App Store</a></li><li><a href="docs.html">Docs</a></li></ul></div>
+<div><h3>Open source</h3><ul><li><a href="https://joshuatree.jaybulb.com">Joshua Tree</a></li><li><a href="https://plank.jaybulb.com">Plank</a></li><li><a href="https://github.com/nulljosh">GitHub</a></li></ul></div>
+<div><h3>Writing</h3><ul><li><a href="https://journal.jaybulb.com">Journal</a></li><li><a href="notes/">Notes</a></li><li><a href="https://news.jaybulb.com">Sidewise</a></li></ul></div>
+<div><h3>Contact</h3><ul><li><a href="mailto:trommatic@icloud.com">Email</a></li><li><a href="https://github.com/nulljosh">@nulljosh</a></li><li><a href="#top">Back to top</a></li></ul></div>
+</nav>
+<p class="foot-meta">&copy; 2026 Joshua Trommel &middot; Made in Langley, BC &middot; Nothing here tracks you.</p>
+</footer>
 </main>
 <script>
 document.getElementById('boot').addEventListener('click',function(){var f=document.getElementById('demo');f.src='https://joshuatree.jaybulb.com/?full&portfolio';f.style.display='block';this.remove()});
