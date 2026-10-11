@@ -96,9 +96,6 @@ serif, italic is a serif mannerism that doesn't carry to Helvetica. Everything e
 LoveFrom pass stays: #fafafa/#000, no radius, no shadows, underline-on-hover links. No webfont
 is loaded on the portfolio now; the Google Fonts <link> and preconnect are gone.
 
-## From Apple Notes (imported 2026-08-27)
-- [ ] Rephrase the portfolio around **Jaybulb**, the next domain to buy. It reads as a design studio name and a software engineering firm name.
-
 ## Ingested 2026-10-01
 - [ ] Portfolio demo is Joshua, not Samantha (2026-10-02). Shipped in joshuatree 1.9.28 to 1.9.37: his face
   (#341), full-screen face with glass chat bar and typing fix (#343), his voice (#345), face at full rate,
