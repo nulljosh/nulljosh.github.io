@@ -104,4 +104,3 @@ is loaded on the portfolio now; the Google Fonts <link> and preconnect are gone.
 
 ## Ingested 2026-10-05
 - [ ] Landing page demo doesn't even play. Should have a skip button too, to skip to the actual demo.
-- [ ] Keep apps list refreshed. Some names are stale.
