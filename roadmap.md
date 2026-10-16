@@ -109,6 +109,3 @@ is loaded on the portfolio now; the Google Fonts <link> and preconnect are gone.
 - [ ] Needs Turing listed.
 - [ ] The demo needs more QA. I'm not showing up full screen, smiling, or animating my mouth.
 - [ ] It should be easy to exit the face, return to the desktop, and use the computer. After inactivity, the demo takes over.
-- [ ] Needs Turing listed.
-- [ ] The demo needs more QA. I'm not showing up full screen, smiling, or animating my mouth.
-- [ ] It should be easy to exit the face, return to the desktop, and use the computer. After inactivity, the demo takes over.
