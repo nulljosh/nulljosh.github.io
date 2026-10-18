@@ -1,5 +1,7 @@
 # Portfolio Roadmap
 
+> Priority tier 4 (2026-10-17): portfolio and meta. Order: live blockers, ship pushes, active features, portfolio, exploratory. See ~/Documents/Code/LOOP-HANDOFF.md.
+
 ## DECISION 2026-08-11: Nullfolio is not shipping to the App Store
 App 6788180394 stays rejected under **4.2 Minimum Functionality** and will not be
 resubmitted. The app is a hardcoded mirror of `index.html` whose rows open Safari, Apple's
