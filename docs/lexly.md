@@ -45,7 +45,7 @@ A gamified language and skills learning app featuring 12 languages plus math, sc
 |---|---|
 | `scripts/build-language-course.mjs` | Generates language packs from Tatoeba/OpenSubtitles, appends with `t` prefix (safe to re-run) |
 | `scripts/fieldbook-course.py` | Builds fieldbook.json (science/math domain reference) from ../fieldbook source |
-| `scripts/import-pwnlingo-exercises.mjs` | Imports Duolingo exercise captures from sibling pwnlingo repo into new Tonchi course files |
+| `scripts/import-pwnlingo-exercises.mjs` | Imports Duolingo exercise captures from sibling pwnlingo repo into new Patois course files |
 | `scripts/make-appicon.sh` | Renders icon.svg to all iOS app icon sizes (do not hand-export) |
 | `scripts/deploy.sh` | Publishes web + content to Cloudflare Pages (run manually, project not git-connected) |
 
@@ -66,7 +66,7 @@ A gamified language and skills learning app featuring 12 languages plus math, sc
 | `ios/Sources/Shared/AuthStore.swift` | Supabase auth (email, Apple, Google), biometric login (Face ID/Touch ID via Keychain), session persistence, profile fetch/update |
 | `ios/Sources/Shared/AvatarPickerView.swift` | 8x8 pixel-art avatar generator and picker, mirrors web's SVG generation to PNG |
 | `ios/Sources/Shared/SettingsView.swift` | Account settings, daily reminder toggle, delete account, daily streak/XP display |
-| `ios/Sources/Shared/SplashView.swift` | Loading screen with Tonchi cap icon |
+| `ios/Sources/Shared/SplashView.swift` | Loading screen with Patois cap icon |
 | `ios/Sources/Shared/ContentStore.swift` | @Observable store, loads bundled `catalog.json` and course packs, manages progress (XP, streak, hearts, SRS cards), syncs with Supabase on init, saves to UserDefaults |
 | `ios/Sources/Shared/Models.swift` | Decodable types: Catalog, Subject, CoursePack, Unit, Lesson, Exercise, LingoProfile, SrsCard (SM-2 spaced repetition) |
 | `ios/Sources/Shared/DailyReminder.swift` | Local notification for daily lesson reminders, reschedules after lesson complete |
