@@ -108,7 +108,6 @@ is loaded on the portfolio now; the Google Fonts <link> and preconnect are gone.
 - [ ] Landing page demo doesn't even play. Should have a skip button too, to skip to the actual demo.
 
 ## Ingested 2026-10-16
-- [ ] Needs Turing listed.
 - [ ] The demo needs more QA. I'm not showing up full screen, smiling, or animating my mouth.
 - [ ] It should be easy to exit the face, return to the desktop, and use the computer. After inactivity, the demo takes over.
 
