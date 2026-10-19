@@ -41,7 +41,6 @@ li:first-child{border-top:0}
 .who a{font-weight:600;text-decoration:none;border-bottom:2px solid var(--bulb)}
 .who span{display:block;font-size:.875rem;color:#555}
 .price{font-size:.875rem;color:#555;text-align:right}
-#demo{display:none;width:100%;aspect-ratio:16/10;border:0;margin-top:12px;background:#000}
 @media(max-width:760px){.sidebar{position:static;width:auto;padding:0 20px 14px;overflow-wrap:anywhere}.sidebar nav{margin-top:8px;padding-bottom:0}.sidebar h1{margin:14px 0}.content{margin-left:0}.section{padding:20px}li{grid-template-columns:minmax(0,1fr) auto}.price{grid-column:1;text-align:left}.button{grid-column:2;grid-row:1/3}}
 @media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 
@@ -71,11 +70,9 @@ li:first-child{border-top:0}
 <main class="content" id="top">
 <section class="section hero">
 <h2 class="big">Joshua Tree</h2>
-<p>An operating system built from scratch. It boots in your browser, no install.</p>
-<button class="button" id="boot" type="button" style="border:0;font:inherit;cursor:pointer">Boot it here</button>
-<a class="button" href="https://joshuatree.jaybulb.com">Open full screen</a>
+<p>An operating system built from scratch.</p>
+<a class="button" href="https://joshuatree.jaybulb.com">Open Joshua Tree</a>
 <a class="button" href="https://github.com/nulljosh/joshuatree">GitHub</a>
-<iframe id="demo" title="Joshua Tree, booting live" allow="fullscreen" loading="lazy"></iframe>
 </section>
 <section class="section" id="apps">
 <h2>Apps. Buy on the web for $0.99 through Stripe, or get them from the App Store.</h2>
@@ -109,6 +106,7 @@ li:first-child{border-top:0}
 <h2>Open source</h2>
 <ul>
 <li><div class="who"><a href="https://joshuatree.jaybulb.com">Joshua Tree</a><span>An operating system built from scratch. Boots in your browser.</span></div><span class="price">Free</span><a class="button" href="https://github.com/nulljosh/joshuatree">GitHub</a></li>
+<li><div class="who"><a href="https://turing.jaybulb.com">Turing</a><span>Samantha: a small, private AI that lives on your Mac.</span></div><span class="price">Free</span><a class="button" href="https://github.com/nulljosh/turing">GitHub</a></li>
 <li><div class="who"><a href="https://plank.jaybulb.com">Plank</a><span>A compiled language you can read in an evening.</span></div><span class="price">Free</span><a class="button" href="https://github.com/nulljosh/plank">GitHub</a></li>
 <li><div class="who"><a href="https://seamark.jaybulb.com">Seamark</a><span>Reads the numbers back out of drawn charts.</span></div><span class="price">Free</span><a class="button" href="https://github.com/nulljosh/labs/tree/main/seamark">GitHub</a></li>
 </ul>
@@ -122,7 +120,7 @@ li:first-child{border-top:0}
 <div class="foot-rule" aria-hidden="true"><span>Jaybulb</span><span>Bright ideas, written down.</span></div>
 <nav class="foot-dir" aria-label="Footer">
 <div><h3>Apps</h3><ul><li><a href="#apps">All apps</a></li><li><a href="buy.html">Prices</a></li><li><a href="https://apps.apple.com/developer/id6779522177">App Store</a></li><li><a href="docs.html">Docs</a></li></ul></div>
-<div><h3>Open source</h3><ul><li><a href="https://joshuatree.jaybulb.com">Joshua Tree</a></li><li><a href="https://plank.jaybulb.com">Plank</a></li><li><a href="https://github.com/nulljosh">GitHub</a></li></ul></div>
+<div><h3>Open source</h3><ul><li><a href="https://joshuatree.jaybulb.com">Joshua Tree</a></li><li><a href="https://turing.jaybulb.com">Turing</a></li><li><a href="https://plank.jaybulb.com">Plank</a></li><li><a href="https://github.com/nulljosh">GitHub</a></li></ul></div>
 <div><h3>Writing</h3><ul><li><a href="https://journal.jaybulb.com">Journal</a></li><li><a href="notes/">Notes</a></li><li><a href="https://news.jaybulb.com">Sidewise</a></li></ul></div>
 <div><h3>Contact</h3><ul><li><a href="mailto:trommatic@icloud.com">Email</a></li><li><a href="https://github.com/nulljosh">@nulljosh</a></li><li><a href="#top">Back to top</a></li></ul></div>
 </nav>
@@ -130,8 +128,5 @@ li:first-child{border-top:0}
 </footer>
 <div class="foot-landscape" aria-hidden="true"></div>
 </main>
-<script>
-document.getElementById('boot').addEventListener('click',function(){var f=document.getElementById('demo');f.src='https://joshuatree.jaybulb.com/?full&portfolio';f.style.display='block';this.remove()});
-</script>
 </body>
 </html>

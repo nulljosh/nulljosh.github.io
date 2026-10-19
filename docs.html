@@ -64,7 +64,9 @@ async function show() {
   const md = await fetch(`docs/${r}.md`).then(x => x.text());
   doc.innerHTML = DOMPurify.sanitize(marked.parse(md.replace(/^# Architecture/m, '# ' + r)));
   doc.querySelectorAll('table').forEach(t => { const w = document.createElement('div'); w.className = 'table'; t.replaceWith(w); w.append(t); });
-  doc.insertAdjacentHTML('beforeend', `<p class="src">Source: <a href="https://github.com/nulljosh/${r}/blob/main/docs/ARCHITECTURE.md">docs/ARCHITECTURE.md</a> in the ${r} repo.</p>`);
+  const own = ["bookrank", "conveyer", "curbfind", "epiphany", "joshuatree", "nimble", "sidewise", "talli", "turing", "wordroot"]; // ponytail: repos with their own GitHub repo, the rest live in labs
+  const src = own.includes(r) ? `https://github.com/nulljosh/${r}/blob/main/docs/ARCHITECTURE.md` : `https://github.com/nulljosh/labs/tree/main/${r}`;
+  doc.insertAdjacentHTML('beforeend', `<p class="src">Source: <a href="${src}">${own.includes(r) ? 'docs/ARCHITECTURE.md' : r}</a> in the ${own.includes(r) ? r : 'labs'} repo.</p>`);
   document.title = `${r} docs, Joshua Trommel`;
   scrollTo(0, 0);
 }
