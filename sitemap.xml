@@ -16,7 +16,6 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
-  <url><loc>https://jaybulb.com/apps.html</loc></url>
   <url><loc>https://jaybulb.com/docs.html</loc></url>
   <url>
     <loc>https://jaybulb.com/buy.html</loc>
