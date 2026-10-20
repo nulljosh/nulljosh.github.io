@@ -42,21 +42,19 @@ The no-new-themes rule guards `tokens.css`: it is the shared Jaybulb system ever
 consumes, so never repaint it for a portfolio-only look, change the portfolio's own token file
 instead. Retired themes (Fez, Fredrika, 30s, Sage, Bending Spoons) are parked in `themes/`.
 
-## Work list ordering
+## Project list
 
-`#workList` is five picks, no more. Only apps READY_FOR_SALE on every platform they target
-(check the ASC ledger, `wiki/pages/asc-status.md`), ranked by how much shipping they have behind them. The homepage shows only those five plus a link to `apps.html`,
-which lists everything (picks included), grouped by kind: Life, Read, Make, Play, Dev, Client. The group label sits in
-the `.year` slot of the group's first row. Within a group, App Store apps first. New project =
-one `<li>` in its group in `apps.html`, and bump the count there and in the homepage link.
-No runtime GitHub sync. It was removed 2026-09-20: every subdomain rename made it append a dupe.
-Journal lives in Writing, not Work.
+One list: `#apps` in `index.html`, every project one `<li>`, no hero, no second list. `apps.html` redirects to `/#apps`.
+Before deploying run `python3 scripts/sync-projects.py` (`--dry` to preview). It keys every row to its GitHub repo or labs
+folder, so renames can't add dupes, drops rows that are archived, gone, or quiet for 120 days (App Store apps stay),
+and adds new public repos with a jaybulb.com homepage. Names, blurbs and prices are hand-curated; it never rewrites them.
+Prices come from the public store (`itunes.apple.com/lookup?id=`), not from guesses. Journal lives in Writing, not Work.
 
 ## Working rules
 
 - No build step
 - Preview by opening `index.html`
-- Deploy by pushing to `main`
+- Deploy with `sh scripts/deploy-jaybulb.sh` (Cloudflare Pages `jaybulb`). A push deploys nothing to jaybulb.com.
 - Keep edits lightweight unless asked otherwise
 
 ## Open
