@@ -12,7 +12,7 @@ SKIP = {'nulljosh.github.io', 'homebrew-tap', 'labs', 'dotfiles', 'scripts', 'ru
 # live projects with no GitHub remote yet (see ~/Documents/Code/CLAUDE.md); drop one once it gets a repo
 LOCAL = {'noema', 'gato'}
 # subdomain -> source, where they differ
-ALIAS = {'plain': 'plaintxt'}
+ALIAS = {'plain': ('plaintxt',), 'swing': ('irisa', 'marmoset')}  # swing is mid-rename; rename the row once the new host serves
 FOLD = re.compile(r'^(Fold |Point links|Move |Merge )')  # monorepo bookkeeping, not real work
 
 def gh(*args):
@@ -42,7 +42,7 @@ def sources():
 def key(href, src):
     m = re.search(r'//([a-z0-9-]+)\.jaybulb\.com', href) or re.search(r'github\.com/nulljosh/([^/"]+)', href)
     sub = m.group(1) if m else ''
-    sub = ALIAS.get(sub, sub)
+    sub = next((a for a in ALIAS.get(sub, ()) if a in src), sub)
     if sub in src: return sub
     return next((n for n, s in src.items() if s['home'] == href.rstrip('/')), None)
 
