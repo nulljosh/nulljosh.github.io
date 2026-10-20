@@ -1,0 +1,15 @@
+/* Jaybulb portfolio tokens (jaybulb.com only). The fleet's shared system is /tokens.css; don't merge them. */
+:root{
+  --bulb:#ffca30;            /* the brand: sidebar, buttons, underlines, the bulb */
+  --bulb-light:#ffe48a;      /* icon tile top, footer band floor */
+  --ink:#000;
+  --ink-2:#333;              /* footer body */
+  --ink-3:#555;              /* blurbs, prices */
+  --ink-warm:#6b5a2e;        /* text on the warm band */
+  --paper:#fff;
+  --hairline:#eee;
+  --band:linear-gradient(180deg,#fff 0,#fffaf0 30%,#fff0c2 75%,var(--bulb-light) 100%);
+  --band-edge:inset 0 24px 32px -24px rgba(120,80,0,.12);
+  --band-rule:rgba(120,80,0,.14);
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text",Lato,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}

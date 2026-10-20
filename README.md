@@ -16,7 +16,7 @@ Me, on the internet. Portfolio and project hub at [jaybulb.com](https://jaybulb.
 
 ## Stack
 
-Static HTML, CSS and JavaScript. No build step. Geist (woff2, `font-display: swap`). Live data from GitHub, Letterboxd, Trakt, Open-Meteo weather and the blog feed. Native iOS companion app (`ios/`) plus an Apple Watch companion (`watchos/`) with the work list and bio ported for the wrist.
+Static HTML, CSS and JavaScript. No build step. System font. The project list syncs from GitHub with `scripts/sync-projects.py`; brand kit in `brand/`. Native iOS companion app (`ios/`) plus an Apple Watch companion (`watchos/`) with the work list and bio ported for the wrist.
 
 ## Deploy
 

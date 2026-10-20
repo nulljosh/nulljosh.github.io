@@ -37,11 +37,11 @@ dead API never takes the site down.
 
 ## Typography and design system
 
-Geist, self-hosted as woff2 with `font-display: swap`, so the first paint is never
-blocked on a font file. Colors and spacing come from the shared token set published
-at [heyitsmejosh.com/tokens.css](https://heyitsmejosh.com/tokens.css), which the
-other projects consume too, because a fleet of apps that each defined their own
-palette would drift out of sync the first time one got a redesign and the rest didn't.
+The system font, so nothing waits on a download. The portfolio's colors live in
+`brand/tokens.css`: bulb yellow, black ink, white paper. The app sites share a
+separate set at [jaybulb.com/tokens.css](https://jaybulb.com/tokens.css), because a
+fleet of apps that each defined their own palette would drift out of sync the first
+time one got a redesign and the rest didn't.
 
 The resume lives inline in `index.html` rather than as a linked PDF, because a PDF
 is a copy that goes stale the moment the page changes around it: one page, one

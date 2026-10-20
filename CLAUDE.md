@@ -2,11 +2,11 @@
 
 ## Project
 
-Static personal site for `heyitsmejosh.com`. v3.0.0.
+Static portfolio for `jaybulb.com`. v3.0.0.
 
 ## Important files
 
-- `index.html` - the root: Joshua Tree booting live in portfolio mode (frames joshuatree.heyitsmejosh.com/?full&portfolio)
+- `index.html` - the root: yellow sidebar, one project list, footer band
 - `CNAME` - custom domain
 - `robots.txt` - crawler directives
 - `sitemap.xml` - search engine sitemap
@@ -14,7 +14,6 @@ Static personal site for `heyitsmejosh.com`. v3.0.0.
 ## Directories
 
 - `pwa/` - installability only: manifest, favicon, apple-touch-icon, maskable icons, og-image
-- `fonts/` - Geist woff2 font files
 - `notes/` - redirect stub to notes.heyitsmejosh.com
 - `echo/` - redirect stub to echo.heyitsmejosh.com (Voxprint privacy policy)
 - `themes/` - retired token files (Fez, Fredrika, 30s, Sage, Bending Spoons), kept for reference, not loaded
@@ -23,24 +22,11 @@ Static personal site for `heyitsmejosh.com`. v3.0.0.
 
 ## Style
 
-`tokens.css` is the canonical design system, Jaybulb: `#ffca30` bulb accent (solid block,
-never a tint) from maybulb.com, merged 2026-09-10 with an Apple liquid-glass system extracted
-via /vibe from apple.com — SF Pro type, -0.374px tracking, rounded geometry (`--radius:20px`),
-translucent blurred `.glass` surfaces (`--glass-bg`/`--glass-blur`/`--glass-border`), and real
-shadows again (`--shadow-sm/md/lg`). Dark mode inverts the ink only; the bulb yellow never changes.
+Two systems, kept apart:
+- `tokens.css` is the shared Jaybulb system every app site loads (Orchard edition: clay accent, cream paper, 12px radius). Never repaint it for a portfolio look; it changes 30 sites.
+- The portfolio runs on `brand/tokens.css` (bulb yellow, black ink, white paper, warm footer band) with the kit in `brand/BRAND.md`. Bump its `?v=` in `index.html` when it changes, Cloudflare caches CSS.
 
-The portfolio itself runs on `tokens-lovefrom.css`, lovefrom.com-derived, extracted
-2026-08-25 via /vibe: #fafafa on #000, no radius, no shadows, links with no underline that
-fade to 50% ink. The type is NOT LoveFrom's, the serif (EB Garamond) was rolled back
-2026-08-28 for the system sans stack (San Francisco → Helvetica Neue → Helvetica → Arial).
-**No serif webfonts on any project, standing instruction, do not reintroduce one.** No webfont is loaded on the portfolio.
-The stylesheet link carries a `?v=YYYYMMDD` cache-buster, **bump it whenever
-`tokens-lovefrom.css` changes**. Cloudflare fronts the zone and caches CSS by extension, so
-without a new URL the edge keeps serving the old tokens and the change never reaches anyone.
-Every app site should link `https://heyitsmejosh.com/tokens.css` rather than redefining colors.
-The no-new-themes rule guards `tokens.css`: it is the shared Jaybulb system every app site
-consumes, so never repaint it for a portfolio-only look, change the portfolio's own token file
-instead. Retired themes (Fez, Fredrika, 30s, Sage, Bending Spoons) are parked in `themes/`.
+System font only. No webfonts, no serif. `tokens-lovefrom.css` is legacy, only `docs.html` still loads it. Retired themes sit in `themes/`.
 
 ## Project list
 
