@@ -1,6 +1,6 @@
 # Architecture
 
-Talli helps people in BC track and manage their disability benefits. It pulls a user's data from the government's BC Self-Serve portal, explains which benefits they qualify for, and lets them file their monthly income report right from the app instead of the portal. It has a web dashboard, native iOS and macOS apps, a watchOS companion, and an early Android version. A Cloudflare Workers backend does the actual portal scraping, and all versions of the app stay in sync through shared API endpoints backed by Cloudflare's key-value store and Supabase.
+Talli helps people in BC track and manage their disability benefits. It pulls a user's data from the government's BC Self-Serve portal, explains which benefits they qualify for, and lets them file their monthly income report right from the app instead of the portal. It has a web dashboard, native iOS and macOS apps, a watchOS companion, and an early Android version. A Cloudflare Workers backend does the actual portal scraping, and all versions of the app stay in sync through shared API endpoints backed by Cloudflare's key-value store.
 
 ## How it runs
 
@@ -18,7 +18,7 @@ Talli helps people in BC track and manage their disability benefits. It pulls a 
 |---|---|
 | `web/landing.html` | Public marketing page. Hero, feature list, app links. Theme toggle, View Transitions API. |
 | `web/login.html` | Sign-in form. Username/password OR OAuth redirect to BC. Theme toggle. Redirects to unified on success. |
-| `web/unified.html` | Main dashboard. Tabbed shell: Home (payment info, messages, banners), Dashboard (benefits cards), Status (PWD/RDSP/CDB timelines, filed months, messages), Settings. Handles offline state, notification scheduling, theme. Lazy-loads tab content on tab switch. 1633 lines. |
+| `web/unified.html` | Main dashboard. Three tabs: Home (the next cheque, Mark as paid, a Paydays calendar with the next six cheque days from `PAY_SCHEDULE`, then Details), Status (approved summary, tools, timelines), Messages and Settings (the avatar, account, sign out). Handles offline state, notifications and theme. 2633 lines. |
 | `web/screen.html` | Benefits eligibility screener. Multi-step questionnaire that guides user through questions (income, household, disability type) and outputs matched benefits. Saves answers to localStorage. |
 | `web/dca.html` | Dollar-Cost Averaging calculator with Chart.js visualization. For RDSP investment planning. Standalone tool. |
 | `web/lawyers.html` | Directory of disability lawyers in Canada. Filter by province/category. Reads from inline data. |
@@ -48,12 +48,12 @@ Core business logic: scraper, auth, session management, program schemas, data pa
 
 | File | What it owns |
 |---|---|
-| `src/api.js` | Express app (2000+ lines). Routes all /api/* endpoints (login, check, latest, submit-report, paid-status, messages, etc.). Manages sessions (express-session + Upstash Redis), auth, CSRF. Loads program schemas, binds to Cloudflare KV. Serves static assets via `run_worker_first`. |
-| `src/http-scraper.js` | Puppeteer scraper for BC Self-Serve portal. Logs in with credentials (BCeID relay chain), scrapes /Auth/Dashboard, /Auth/MonthlyReports, /Auth/Messages. Handles retries, timeouts, error states. Returns structured portal data (payment amount, next date, benefits, messages, report filing status). |
+| `src/api.js` | Express app (2700+ lines). Routes all /api/* endpoints (login, check, latest, submit-report, paid-status, messages, etc.). Manages sessions (express-session, cookie only, no external store), auth, CSRF. Loads program schemas, binds to Cloudflare KV. Serves static assets via `run_worker_first`. |
+| `src/http-scraper.js` | HTTP scraper for BC Self-Serve portal. Logs in with credentials (BCeID relay chain), scrapes /Auth/Dashboard, /Auth/MonthlyReports, /Auth/Messages. Handles retries, timeouts, error states. Returns structured portal data (payment amount, next date, benefits, messages, report filing status). |
 | `src/parse-messages.js` | Message extraction from scraped HTML. Handles portal's quirky text-node-only markup. Deduplicates, parses dates, counts. Returns message array [{ text, date }]. |
 | `src/programs/` | Program-specific logic: PWD (Persons with Disabilities), RDSP (Registered Disability Savings Plan), CDB (Canada Disability Benefit). Each has profile endpoints (data structure), eligibility rules, status derivation. Generated routes via `registerProfileRoutes()`. |
-| `src/scraper.js` | Puppeteer session manager, login orchestration, cache layer. Checks if scrape is already in-flight, returns existing promise (locks prevent duplicate concurrent scrapes). |
-| `src/session-store.js` | Session storage abstraction. Upstash Redis wrapper for express-session (TTL-backed, serializable). Fallback in-memory store for local dev. |
+| `src/scraper.js` | Session manager, login orchestration, cache layer. Checks if scrape is already in-flight, returns existing promise (locks prevent duplicate concurrent scrapes). |
+| `src/session-store.js` | Unused. An old Upstash Redis store for express-session from the Vercel days; nothing imports it and `@upstash/redis` is not a dependency. Slated for deletion. |
 | `src/pay-dates.js` | Hardcoded BC payment schedule (Wednesday cheque issue dates) and derived payday calculation. nextPaymentDate() looks up schedule. |
 | `src/school-grades.js` | Loads cached school grades from disk (for future feature). |
 | `src/_blob.js` | KV storage abstraction. Wraps Cloudflare Workers KV. Stores dashboard cache, report-status, paid-months, avatar, messages. |
@@ -67,7 +67,7 @@ Core business logic: scraper, auth, session management, program schemas, data pa
 | File | What it owns |
 |---|---|
 | `ios/TallyApp.swift` | Main app entry. Instantiates AppState, wraps in environment, sets theme preference. |
-| `ios/ContentView.swift` | Root UI shell (559 lines). AuthenticatedTabShell vs LoginScreen. Tab switching, splash screen, offline/stale banners. TabView with Dashboard, Settings, Reports. |
+| `ios/ContentView.swift` | Root UI shell. AuthenticatedTabShell vs LoginScreen. Splash screen, offline/stale banners. TabView with Home, Status, Messages and Settings, each tab owning its NavigationStack. |
 
 ### State & API
 
@@ -123,7 +123,7 @@ iOS structure ported to macOS. Separate App State, Models, API client, Keychain 
 | `macos/Models/MacKeychainHelper.swift` | Keychain access (64 lines, macOS variant). |
 | `macos/Models/MacDateParsing.swift` + `MacDashboardData.swift` | macOS versions of date parsing and data shapes. |
 | `macos/Views/` | 10 view files: MacContentView (shell), MacDashboardView, MacLoginView, MacMessagesView, MacPaymentCalendarView, MacSettingsView, MacBenefitsView, MacTheme, MenuBarView. Responsive layout for larger screens. |
-| `macos/UITests-mac/MacScreenshot.swift` | Snapshot test for macOS. |
+| `macos/UITests-mac/MacScreenshot.swift` | Snapshot test for macOS: Home, Status and Messages in light and dark (`UITEST_SNAPSHOT=1`, `UITEST_APPEARANCE=light/dark`). Export the shots with `xcrun xcresulttool export attachments`. |
 | `widgets-macos/` | Widget bundle + providers/views. Mirrors iOS widgets but macOS-specific styling. |
 
 ## watchOS
@@ -150,15 +150,47 @@ Minimal UI: three glances (payment, benefits, messages). Read-only companion to 
 
 ## Tools & Scripts
 
-Test suite covering scraper, parsing, date logic, session store, payment dates, message parsing, read-messages, paid-status, program schemas, i18n, auth, Stripe webhooks, WebMCP. Tools include:
+Test suite covering scraper, parsing, date logic, payment dates, message parsing, read-messages, paid-status, program schemas, i18n, auth, Stripe webhooks, WebMCP. Tools include:
 
 | File | What it owns |
 |---|---|
 | `tools/test.js` | Main test runner. Checks scraper sections, portal data freshness, parsing correctness. |
-| `tools/test-*.js` | Individual test files: http-scraper (portal parse), messages (extraction), pay-dates (schedule verification), program-schema (routes), paid-status (monthly paid months format), session-store (Redis), i18n (string validity), stripe-webhook (Stripe event handling), webmcp (tool registration), response-split (Content-Length bug), school-grades (file loading), scrape-lock (concurrency guard), read-messages (read-state persistence). |
+| `tools/test-*.js` | Individual test files: http-scraper (portal parse), messages (extraction), pay-dates (schedule verification), program-schema (routes), paid-status (monthly paid months format), pay-schedule-sync (every cheque table matches gov.bc.ca, and the Home payday list reads it), i18n (string validity), stripe-webhook (Stripe event handling), webmcp (tool registration), response-split (Content-Length bug), school-grades (file loading), scrape-lock (concurrency guard), read-messages (read-state persistence). |
 | `tools/native-decode-check/` | Swift cross-check: both native clients shipped shape-mismatch bugs (Workers truncated by 1 byte, macOS had wrong field names). This standalone check decodes the payload natively to catch future drift. |
 | `tools/school/fill_pdf.py` | Biology 12 fill-in-the-blank PDF filler. Finds blanks, matches them to answer key using Claude. |
 | `tools/dtc_apply.py` | T2201/DTC application helper (file -> CSV). |
+| `tools/test-avatar.js` | Every avatar file exists, the same user always gets the same face, regenerate always changes it, users spread over the set. |
+| `tools/test-cli.js` | bin/talli.js views from good, partial, missing and garbage summaries, and the TUI frame at two terminal sizes. |
+
+## Talli Display (the Home amount's face)
+| File | What it does |
+|------|-------------|
+| `scripts/gen_font.py` | Builds Talli Display: Barlow Condensed SemiBold (OFL) renamed, figures respaced to be proportional. `--check` also proves the web advance table matches the font. Run with `uv run --with fonttools --with brotli`. |
+| `web/fonts/TalliDisplay-Semibold.woff2` | The web copy, loaded by `@font-face` and preloaded in `web/unified.html`. |
+| `fonts/TalliDisplay-Semibold.ttf` | The Apple copy, bundled by `ios/project.yml` and `macos/project.yml` and registered at runtime. |
+| `ios/Views/HeroAmountView.swift` | The Home amount on iPhone and Mac: figures up to half the screen tall at their own proportions (never stretched), 24 points of room each side, a small raised green $, a slow breath (off with Reduce Motion). The web `HeroAmount` draws the same thing as SVG. |
+| `tools/test-font.js` | Both font files exist, are named Talli Display, ship with the OFL, and are wired into the page and both Xcode projects. |
+
+## Terminal
+
+| File | What it owns |
+|---|---|
+| `bin/talli.js` | The `talli` CLI and TUI, no dependencies. `login` signs in once and stores only the read-only widget token (~/.config/talli/token, 0600); `next`, `summary [--json]` and `tui` read `/api/summary`; the next cheque date comes from `src/pay-dates.js`, so it works offline. |
+
+## Avatars
+
+| File | What it owns |
+|---|---|
+| `src/avatar.js` | Picks each user's portrait: 24 public domain Greek sculpture photos plus mirrors, hashed by user, stepped by Refresh. |
+| `web/avatars/` | The 48 portraits, dithered into the landing blues. `CREDITS.md` names every source and license. |
+
+## Commercial
+
+| File | What it owns |
+|---|---|
+| `launch/make_promo.py` | Builds `launch/talli-promo.mp4`: ElevenLabs voice per shot, the app recording, the stage recording, an original music bed ducked under the voice. |
+| `launch/record.mjs` | Headless Chrome screencast recorder: `app` records the dashboard at phone size, `stage` records `stage.html` at 1080p. |
+| `launch/stage.html` | The commercial's picture: landing-style sculpture cards, the app in a phone frame, the end card. |
 
 ## Build & Deploy
 
@@ -171,7 +203,7 @@ Test suite covering scraper, parsing, date logic, session store, payment dates, 
 
 ## Storage & Sync
 
-- **KV (Cloudflare Workers)**: Dashboard cache (per user), report-status (filed months), paid-months (history), avatars (generated node graphs), messages read-state
+- **KV (Cloudflare Workers)**: Dashboard cache (per user), report-status (filed months), paid-months (history), avatars (generated Greek-god busts), messages read-state
 - **Keychain**: Credentials (username, password), report secrets (SIN, PIN, phone)
 - **UserDefaults (iOS/macOS)**: Theme preference, last sync date, paid status (pre-migration data), app-group shared defaults for widget access
 - **Widget App Group**: Shared UserDefaults (group.com.heyitsmejosh.talli) for widget↔app data sync
@@ -179,7 +211,7 @@ Test suite covering scraper, parsing, date logic, session store, payment dates, 
 ## Key Gotchas & Design Decisions
 
 - **No authentication token in code**: Sessions are server-side and cookie-based. Portal credentials never leave the server (stored encrypted in KV). Clients hold only session cookies via URLSession.
-- **Portal scraper**: Puppeteer-based on BC Self-Serve HTML. Inherently fragile to UI changes. Test suite (`tools/test.js`) validates freshness weekly.
+- **Portal scraper**: HTTP-based on BC Self-Serve HTML. Inherently fragile to UI changes. Test suite (`tools/test.js`) validates freshness weekly.
 - **Stale-while-revalidate**: API serves cached data immediately, refreshes in background. Prevents UI hang on slow portal scrapes (~30s).
 - **App Group sharing**: iOS app + widgets share data via UserDefaults(suiteName: "group.com.heyitsmejosh.talli"). macOS uses the same pattern. watchOS reads from API only (no local sync).
 - **Date parsing**: Portal returns inconsistent date formats. DateParsing.swift/MacDateParsing.swift handle multiple patterns with fallbacks.
