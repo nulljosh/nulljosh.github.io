@@ -1,12 +1,14 @@
 # Architecture
 
-A survival colony builder where players place buildings, manage colonists, and balance five resources (food, power, materials, oxygen, cash) on a 128x128 grid. The core game loop runs on SpriteKit (macOS and iOS), with optional watchOS quick-reference and terminal versions for reference.
+A Vancouver colony game where you command a crew, build machines that run themselves, and raise the Steam Clock on a 128x128 grid. Three resources: food, materials and power. The game runs on SpriteKit (macOS and iOS) and in the browser (`web/`), with a watchOS quick-reference companion.
+
+![Gastown architecture](architecture.svg)
 
 ## How it runs
 
-**macOS**: `Sources/App/NYCSurviveApp.swift` is the entry point. SwiftUI window hosts an `SKView` embedding `GameScene` for rendering and physics. User input (keyboard/mouse on macOS, touch on iOS) goes through `InputHandler`, which emits commands to `GameState`. Each frame, `GameScene` ticks all systems (BuildSystem, JobSystem, NeedsSystem, ResourceSystem, TimeSystem) in order. HUD overlays (built menu, colonist stats, resource bar) are SwiftUI Views layered on top.
+**macOS**: `Sources/App/GastownApp.swift` is the entry point. SwiftUI window hosts an `SKView` embedding `GameScene` for rendering and physics. User input (keyboard/mouse on macOS, touch on iOS) goes through `InputHandler`, which emits commands to `GameState`. Each frame, `GameScene` ticks all systems (BuildSystem, JobSystem, NeedsSystem, ResourceSystem, TimeSystem) in order. HUD overlays (built menu, colonist stats, resource bar) are SwiftUI Views layered on top.
 
-**iOS**: `Sources/AppiOS/NYCSurviveApp.swift` is the entry point. Touch gestures (tap to select, pan to move camera, pinch to zoom) are captured by `InputHandler` and routed to the same `GameScene`. The game runs identically to macOS.
+**iOS**: `Sources/AppiOS/GastownApp.swift` is the entry point. Touch gestures (tap to select, pan to move camera, pinch to zoom) are captured by `InputHandler` and routed to the same `GameScene`. The game runs identically to macOS.
 
 **Saving**: three save slots stored as JSON via `SaveManager`. Game state serializes to `SaveData` containing all colonists, buildings, resources, and grid state.
 
@@ -14,13 +16,13 @@ A survival colony builder where players place buildings, manage colonists, and b
 
 | File | What it owns |
 |---|---|
-| `Sources/App/NYCSurviveApp.swift` | App entry point, scene setup, `SKView` hosting, macOS-specific key/mouse input setup |
+| `Sources/App/GastownApp.swift` | App entry point, scene setup, `SKView` hosting, macOS-specific key/mouse input setup |
 
 ## iOS
 
 | File | What it owns |
 |---|---|
-| `Sources/AppiOS/NYCSurviveApp.swift` | App entry point, scene setup, `UIView` hosting, iOS-specific touch/gesture input setup |
+| `Sources/AppiOS/GastownApp.swift` | App entry point, scene setup, `UIView` hosting, iOS-specific touch/gesture input setup |
 
 ## Game logic
 
@@ -86,14 +88,13 @@ A survival colony builder where players place buildings, manage colonists, and b
 
 | File | What it owns |
 |---|---|
-| `scripts/generate_sprites.py` | Python script to generate all Fez-style pixel art sprites at build time: colonists (walk cycle, dead), buildings (5 types), resources (5 types), outputs to `Resources/Assets.xcassets` |
+| `scripts/gen_sprites.py` | Draws every sprite from one palette (noir night, clay and cream accents) into `Resources/Assets.xcassets` and `web/sprites/` |
 
 ## Platforms (non-game)
 
 | File | What it owns |
 |---|---|
-| `watchos/NYCSurviveWatchApp.swift` + `watchos/ContentView.swift` | watchOS app entry, quick-reference tabs (buildings, traits, weapons stats), NOT a live save mirror, no pairing |
-| `tui/main.swift` | Terminal UI reference card using SwiftTUI, quick-reference building costs and stats, NOT a live game |
+| `watchos/GastownWatchApp.swift` + `watchos/ContentView.swift` | watchOS app entry, quick-reference tabs (buildings, traits, weapons stats), NOT a live save mirror, no pairing |
 
 ## Audio
 
