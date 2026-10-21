@@ -79,7 +79,6 @@ Slow migration, nothing breaks at any step:
 
 ## From Apple Notes (imported 2026-08-25)
 
-- [x] Top description is a bit wordy. Clean it up, make it more like a business card than life story paragraphs. (Done 2026-10-21: sidebar line cut to "Apps for free or a dollar, plus an OS and a language.")
 
 ## Avatar restored 2026-08-28
 
