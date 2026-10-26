@@ -16,7 +16,7 @@ Keep the Xcode target as a personal build only. Decided 2026-08-11: the ASC reco
 publicly invisible, and pulling records mid-conduct-review is a bad optic. Nothing open here.
 
 ## Fleet design (2026-09-25)
-- [ ] Orchard: redeploy roost/nyc/lucarne/scrounge (still showing old tab colors live); add theme-color meta tag to all 28 landing pages
+- [ ] Orchard theme-color, rescoped 2026-10-26: roost/nyc/lucarne are now atlin/gastown/blackcomb and are gone from the old list. A sweep of ~/Documents/Code found 58 landing `index.html` files (airwell, atlin, blackcomb, bookrank, bugle, cadence, coda, epiphany, gastown, hermes, icelus, mailbag, melete, ... run the grep again for the full list) with no `<meta name="theme-color">`; this portfolio already has one (#ffca30). Fix is one tag per repo set to that app's brand accent from its `brand/tokens.css`, plus a redeploy each. Fleet-wide and outside this repo, so do it as its own pass (one fork per few repos), not from the portfolio loop.
 
 ## From icons-bugs.pdf (imported 2026-06-30)
 Icons across all apps shipping to the App Store, portfolio page + ASC.
@@ -29,7 +29,7 @@ Icons across all apps shipping to the App Store, portfolio page + ASC.
 ## Deferred (2026-07-21)
 - [ ] Custom SVG piece-level animation of the Animoji (e.g. animate.css-style or custom)
 - [ ] Port the Animoji float/animation to iOS app
-- [ ] Automatic project name/URL refresh in the site when a project is renamed, SCOPED 2026-07-28: `index.html` hardcodes each project as a static `<li><a>` with name/URL/tagline/platforms, no data file, no build step (CLAUDE.md: "No build step" is a deliberate convention). Automating this means a generator script parsing `~/Documents/Code/CLAUDE.md`'s project table, but that table lacks the taglines/platform lists/years shown per entry, needs a second source of truth or richer per-repo metadata before a generator is worth building. M-effort, not a quick fix; deferred.
+- [ ] Automatic project name/URL refresh in the site when a project is renamed, partly solved 2026-10-26: `scripts/sync-projects.py` now keys rows to GitHub repo/labs folder, so renames can't add dupes and dead rows drop. What is still manual: the display name, blurb and price on a renamed row. Original scope note (2026-07-28)
 
 ## App Store submission freeze, LIFTED 2026-08-18
 Freeze lifted 2026-08-18 (Guideline 5.6 suspension expired). Submitted that day and now
