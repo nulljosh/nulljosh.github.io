@@ -1,6 +1,6 @@
 # Architecture
 
-Doorstock helps a garage door repair business run day to day. It tracks parts on the shelf, job quotes, and customer leads, and lets customers book a job online. There is a public website for customers, a dashboard app for the office, and iOS/macOS apps for technicians out on a job. Everyone signs in through Supabase using Apple or Google.
+Doorstock helps a garage door repair business run day to day. It tracks parts on the shelf, job quotes, and customer leads, and lets customers book a job online. There is a public website for customers, a dashboard app for the office, and iOS/macOS apps for technicians out on a job. The apps work signed out. Signing in (email and password on jaybulb-api) is only for sharing: the owner starts a shop, hands the crew a six-letter code, and everyone sees the same stock and jobs.
 
 ## How it runs
 
@@ -8,7 +8,7 @@ Doorstock helps a garage door repair business run day to day. It tracks parts on
 
 **Dashboard**: React app (`src/dashboard/src/App.jsx`), localhost:5180 in dev, deployed separately. Authenticated technician/manager logs in with email+password (via Supabase AuthGate), sees parts inventory (localStorage-backed) and job history, can add/edit jobs and parts, export jobs as CSV, download/restore backup.
 
-**iOS/macOS**: native SwiftUI apps (`src/ios/BCGD/`, `src/macos/Sources/`). Sign-in via Apple or Google, then access device-local inventory and job tracker. No cloud sync yet (jobs stay local to device).
+**iOS/macOS**: native SwiftUI apps (`src/ios/BCGD/`, `src/macos/Sources/`), same screen code in both. Each device keeps a full local copy. When it belongs to a shop, `Account.swift` syncs it with jaybulb-api every 30 seconds and on every change: stock counts go up as deltas (`doorstock_adjust`) so two people counting at once both land, other edits are pushed as whole items, and a pull asks only for writes after the last sequence number it saw. Only the owner can delete, reset or restore. The server side is `jaybulb-api/src/doorstock.js`, tested by `jaybulb-api/test/doorstock.mjs`.
 
 ## Web
 
@@ -52,6 +52,8 @@ Doorstock helps a garage door repair business run day to day. It tracks parts on
 | `src/ios/BCGD/Auth.swift` | Apple/Google sign-in, session persistence, account gate view |
 | `src/ios/BCGD/Models.swift` | Decodable Part/Job types, Store (@Observable), color constants, device-local persistence |
 | `src/ios/BCGD/Views.swift` | Dashboard (stats), Inventory (parts list/add/edit), Jobs (job list/add/edit), Settings |
+| `src/ios/BCGD/Today.swift` | Today tab: the day's route (assigned jobs first), Route in Maps, parts to load with shortages |
+| `src/ios/BCGD/Team.swift`, `Account.swift` | Sign in, shop card, join code, sync with jaybulb-api. Jobs sync as JSON, so the assignee field needs no server change |
 
 ## macOS (Doorstock app)
 
@@ -60,6 +62,9 @@ Doorstock helps a garage door repair business run day to day. It tracks parts on
 | `src/macos/Sources/BCGDApp.swift` | App entry point, tab navigation (macOS sidebar), no auth gate (local-only builds assume auth already done) |
 | `src/macos/Sources/Models.swift` | Same as iOS: Part/Job types, Store, colors, persistence |
 | `src/macos/Sources/Views.swift` | Same as iOS: Dashboard, Inventory, Jobs, Settings views |
+| `src/macos/Sources/Today.swift`, `Team.swift`, `Account.swift` | Same files as iOS (kept byte for byte, only BCGDApp.swift differs) |
+
+Screenshots of every screen: `docs/SCREENS.md`. How they connect: `storyboard.svg`.
 
 ## Landing page
 
