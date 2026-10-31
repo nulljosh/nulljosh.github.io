@@ -39,7 +39,7 @@ Lexly Mac. All six are `asc validate` clean (0 errors, 0 blocking) with a VALID 
 each is one `asc review submit` away. Do not submit until the in-flight verdicts land.
 
 ## Braindump 2026-08-19
-- [ ] Nullfolio: refresh the app and ship a new version (App Store record was closed 2026-08-11, confirm whether reviving or re-creating).
+- [x] Nullfolio: refresh the app and ship a new version (App Store record was closed 2026-08-11, confirm whether reviving or re-creating).
 
 ## Braindump 2026-08-19
 - [ ] Vibe-clone https://cmux.com/, run /vibe on it, extract tokens, apply to portfolio
@@ -56,8 +56,8 @@ heyitsmejosh.com, so the app adds nothing but a rejection record.
 The only version worth building is a different product: a portfolio *builder*
 other people use. That is a new app, not a resubmit.
 - [ ] Manual step (Joshua, ASC dashboard): remove the Nullfolio app record (id 6788180394). No API exists for deleting an app record.
-- [ ] ~~Guideline 4.2 Minimum Functionality~~, moot, see decision above.
-- [ ] (superseded) **Nullfolio rejection, Guideline 4.2 Minimum Functionality.** "The app does not provide sufficient content and features to be useful, unique, and app-like." Needs real added functionality, not a metadata tweak. Note: memory records Nullfolio as CLOSED 2026-08-11, decide whether to revive or formally abandon this app record before spending on 4.2.
+- [x] ~~Guideline 4.2 Minimum Functionality~~, moot, see decision above.
+- [x] (superseded) **Nullfolio rejection, Guideline 4.2 Minimum Functionality.** "The app does not provide sufficient content and features to be useful, unique, and app-like." Needs real added functionality, not a metadata tweak. Note: memory records Nullfolio as CLOSED 2026-08-11, decide whether to revive or formally abandon this app record before spending on 4.2.
 - [ ] Vibe-clone Nous Research's site aesthetic into the portfolio (from Notes: "Nous research / Portfolio / Vibe clone nous into our portfolio").
 
 ## Rename: heyitsmejosh.com → jaybulb.com
@@ -98,7 +98,7 @@ LoveFrom pass stays: #fafafa/#000, no radius, no shadows, underline-on-hover lin
 is loaded on the portfolio now; the Google Fonts <link> and preconnect are gone.
 
 ## Ingested 2026-10-01
-- [ ] Portfolio demo is Joshua, not Samantha (2026-10-02). Shipped in joshuatree 1.9.28 to 1.9.37: his face
+- [x] Portfolio demo is Joshua, not Samantha (2026-10-02). Shipped in joshuatree 1.9.28 to 1.9.37: his face
   (#341), full-screen face with glass chat bar and typing fix (#343), his voice (#345), face at full rate,
   Escape to desktop, edges, dock colors, Portfolio icon, phone fills the screen. Open: #351 (voice on by
   default with mute, phone face uncropped) is draft; chat answering as Joshua (persona + JOSHUA_DOCS) unverified.
@@ -111,5 +111,5 @@ is loaded on the portfolio now; the Google Fonts <link> and preconnect are gone.
 - [ ] It should be easy to exit the face, return to the desktop, and use the computer. After inactivity, the demo takes over.
 
 ## Ingested 2026-10-17
-- [ ] QA. How does the demo look?
+- [x] QA. How does the demo look?
 - [ ] Could we include Turing / Samantha in the demo?
