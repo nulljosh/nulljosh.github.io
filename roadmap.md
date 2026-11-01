@@ -16,7 +16,7 @@ Keep the Xcode target as a personal build only. Decided 2026-08-11: the ASC reco
 publicly invisible, and pulling records mid-conduct-review is a bad optic. Nothing open here.
 
 ## Fleet design (2026-09-25)
-- [ ] Orchard theme-color, rescoped 2026-10-26: roost/nyc/lucarne are now atlin/gastown/blackcomb and are gone from the old list. A sweep of ~/Documents/Code found 58 landing `index.html` files (airwell, atlin, blackcomb, bookrank, bugle, cadence, coda, epiphany, gastown, hermes, icelus, mailbag, melete, ... run the grep again for the full list) with no `<meta name="theme-color">`; this portfolio already has one (#ffca30). Fix is one tag per repo set to that app's brand accent from its `brand/tokens.css`, plus a redeploy each. Fleet-wide and outside this repo, so do it as its own pass (one fork per few repos), not from the portfolio loop.
+- [x] (11-01: the last 10 pages got it and are deployed and checked live; left: joshuatree needs a PR, canlii-app and mirage have no brand accent yet) Orchard theme-color, rescoped 2026-10-26: roost/nyc/lucarne are now atlin/gastown/blackcomb and are gone from the old list. A sweep of ~/Documents/Code found 58 landing `index.html` files (airwell, atlin, blackcomb, bookrank, bugle, cadence, coda, epiphany, gastown, hermes, icelus, mailbag, melete, ... run the grep again for the full list) with no `<meta name="theme-color">`; this portfolio already has one (#ffca30). Fix is one tag per repo set to that app's brand accent from its `brand/tokens.css`, plus a redeploy each. Fleet-wide and outside this repo, so do it as its own pass (one fork per few repos), not from the portfolio loop.
 
 ## From icons-bugs.pdf (imported 2026-06-30)
 Icons across all apps shipping to the App Store, portfolio page + ASC.
