@@ -27,7 +27,6 @@ Icons across all apps shipping to the App Store, portfolio page + ASC.
 ## Deferred (2026-07-21)
 - [ ] Custom SVG piece-level animation of the Animoji (e.g. animate.css-style or custom)
 - [ ] Port the Animoji float/animation to iOS app
-- [ ] Automatic project name/URL refresh in the site when a project is renamed, partly solved 2026-10-26: `scripts/sync-projects.py` now keys rows to GitHub repo/labs folder, so renames can't add dupes and dead rows drop. What is still manual: the display name, blurb and price on a renamed row. Original scope note (2026-07-28)
 
 ## App Store submission freeze, LIFTED 2026-08-18
 Freeze lifted 2026-08-18 (Guideline 5.6 suspension expired). Submitted that day and now

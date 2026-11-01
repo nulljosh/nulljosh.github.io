@@ -4,7 +4,7 @@
 Sources are nulljosh's public repos plus the folders of the labs monorepo. Each row is keyed to its
 source, so a renamed subdomain can never add a second row. Rows whose source is archived, gone, or
 quiet for STALE_DAYS are dropped, unless the app is on the App Store. Public repos with a jaybulb.com
-homepage that the list doesn't have yet are added. Curated names, blurbs and prices are left alone."""
+homepage that the list doesn't have yet are added. Curated blurbs and prices are left alone; a renamed repo renames its row in place."""
 import datetime, html, json, re, subprocess, sys
 
 STALE_DAYS = 120
@@ -46,6 +46,14 @@ def key(href, src):
     if sub in src: return sub
     return next((n for n, s in src.items() if s['home'] == href.rstrip('/')), None)
 
+def renamed(href, src):
+    """A row whose repo was renamed: GitHub still answers the old name with the new repo."""
+    m = re.search(r'//([a-z0-9-]+)\.jaybulb\.com', href) or re.search(r'github\.com/nulljosh/([^/"]+)', href)
+    if not m: return None
+    try: new = gh(f'repos/nulljosh/{m.group(1)}')['name']
+    except subprocess.CalledProcessError: return None
+    return new if new != m.group(1) and new in src else None
+
 def main(dry):
     page = open('index.html').read()
     a = page.index('<ul>', page.index('id="apps"')) + 4; b = page.index('</ul>', a)
@@ -56,6 +64,11 @@ def main(dry):
         name = re.search(r'">([^<]+)</a><span>', li).group(1)
         store = 'apps.apple.com' in li
         k = key(href, src)
+        if not k and (k := renamed(href, src)) and src[k]['home']:
+            # keep the curated blurb and price; only the name and the links follow the rename
+            title = k[:1].upper() + k[1:]
+            li = li.replace(href, src[k]['home']).replace(f'">{name}</a>', f'">{title}</a>')
+            log.append(f'~ {name}: renamed to {title}'); name = title
         if k and k in seen: log.append(f'- {name}: duplicate of {k}'); continue
         s = src.get(k) if k else None
         if k: seen.add(k)
@@ -66,7 +79,7 @@ def main(dry):
                 log.append(f'- {name}: quiet since {s["date"]}'); continue
         kept.append(li)
     for n, s in sorted(src.items()):
-        if n in seen or not s['home'] or s['archived'] or s['private'] or not s['about']: continue
+        if n in seen or n in SKIP or not s['home'] or s['archived'] or s['private'] or not s['about']: continue
         if s['date'] and (today - datetime.date.fromisoformat(s['date'])).days > STALE_DAYS: continue
         title = n[:1].upper() + n[1:]
         about = html.escape(s['about'].split('. ')[0].rstrip('.'))
