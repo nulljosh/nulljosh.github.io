@@ -72,7 +72,7 @@ Slow migration, nothing breaks at any step:
 
 ## Link audit 2026-08-24
 
-- [ ] `letterboxd.com/literallyjordan/` (index.html) returns 403 to curl even with a browser UA, likely Letterboxd bot protection rather than a dead profile. Verify in a real browser; only change the link if it actually 404s there. Every other outbound link on index.html returned 200 in this audit.
+- [x] (11-01: profile is live, its RSS feed serves "Letterboxd - Jordan Belfort" while a made-up user 404s; the 403 is bot protection, link kept) `letterboxd.com/literallyjordan/` (index.html) returns 403 to curl even with a browser UA, likely Letterboxd bot protection rather than a dead profile. Verify in a real browser; only change the link if it actually 404s there. Every other outbound link on index.html returned 200 in this audit.
 
 ## From Apple Notes (imported 2026-08-25)
 
