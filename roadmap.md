@@ -16,7 +16,6 @@ Keep the Xcode target as a personal build only. Decided 2026-08-11: the ASC reco
 publicly invisible, and pulling records mid-conduct-review is a bad optic. Nothing open here.
 
 ## Fleet design (2026-09-25)
-- [x] (11-01: the last 10 pages got it and are deployed and checked live; left: joshuatree needs a PR, canlii-app and mirage have no brand accent yet) Orchard theme-color, rescoped 2026-10-26: roost/nyc/lucarne are now atlin/gastown/blackcomb and are gone from the old list. A sweep of ~/Documents/Code found 58 landing `index.html` files (airwell, atlin, blackcomb, bookrank, bugle, cadence, coda, epiphany, gastown, hermes, icelus, mailbag, melete, ... run the grep again for the full list) with no `<meta name="theme-color">`; this portfolio already has one (#ffca30). Fix is one tag per repo set to that app's brand accent from its `brand/tokens.css`, plus a redeploy each. Fleet-wide and outside this repo, so do it as its own pass (one fork per few repos), not from the portfolio loop.
 
 ## From icons-bugs.pdf (imported 2026-06-30)
 Icons across all apps shipping to the App Store, portfolio page + ASC.
@@ -72,7 +71,6 @@ Slow migration, nothing breaks at any step:
 
 ## Link audit 2026-08-24
 
-- [x] (11-01: profile is live, its RSS feed serves "Letterboxd - Jordan Belfort" while a made-up user 404s; the 403 is bot protection, link kept) `letterboxd.com/literallyjordan/` (index.html) returns 403 to curl even with a browser UA, likely Letterboxd bot protection rather than a dead profile. Verify in a real browser; only change the link if it actually 404s there. Every other outbound link on index.html returned 200 in this audit.
 
 ## From Apple Notes (imported 2026-08-25)
 
@@ -100,11 +98,7 @@ is loaded on the portfolio now; the Google Fonts <link> and preconnect are gone.
   default with mute, phone face uncropped) is draft; chat answering as Joshua (persona + JOSHUA_DOCS) unverified.
 
 ## Ingested 2026-10-05
-- [x] (11-01: moot here, jaybulb.com no longer frames the Joshua Tree face demo since v3.0.0, the one-list site; os.html redirects to /. Face work lives in joshuatree) Landing page demo doesn't even play. Should have a skip button too, to skip to the actual demo.
 
 ## Ingested 2026-10-16
-- [x] (11-01: moot here, jaybulb.com no longer frames the Joshua Tree face demo since v3.0.0, the one-list site; os.html redirects to /. Face work lives in joshuatree) The demo needs more QA. I'm not showing up full screen, smiling, or animating my mouth.
-- [x] (11-01: moot here, jaybulb.com no longer frames the Joshua Tree face demo since v3.0.0, the one-list site; os.html redirects to /. Face work lives in joshuatree) It should be easy to exit the face, return to the desktop, and use the computer. After inactivity, the demo takes over.
 
 ## Ingested 2026-10-17
-- [x] (11-01: moot here, jaybulb.com no longer frames the Joshua Tree face demo since v3.0.0, the one-list site; os.html redirects to /. Face work lives in joshuatree) Could we include Turing / Samantha in the demo?
