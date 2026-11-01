@@ -20,7 +20,6 @@ publicly invisible, and pulling records mid-conduct-review is a bad optic. Nothi
 ## From icons-bugs.pdf (imported 2026-06-30)
 Icons across all apps shipping to the App Store, portfolio page + ASC.
 - [ ] Redesign icons that don't match the set's style, rule: icons mostly black/white, color sprinkled in only. Not actionable without a per-icon visual audit; blocked. (Also applies to ASC listing icons, not this repo's orphaned `images/icons/*.svg`, ignore those, they're unused.)
-- [ ] Half the icons missing in App Store Connect across shipping apps, needs per-app visual ASC check, blocked without dashboard/screenshot access.
 
 ## Someday / Explore
 - [ ] "Null folio" idea (from Null folio.pdf, imported 2026-07-21): a folio/resume variant needing a better name, should mirror the main site's style more closely, and wants Animoji-style avatars with animations. Not scoped/actionable yet, needs a naming + design pass before starting.
