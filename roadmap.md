@@ -100,11 +100,11 @@ is loaded on the portfolio now; the Google Fonts <link> and preconnect are gone.
   default with mute, phone face uncropped) is draft; chat answering as Joshua (persona + JOSHUA_DOCS) unverified.
 
 ## Ingested 2026-10-05
-- [ ] Landing page demo doesn't even play. Should have a skip button too, to skip to the actual demo.
+- [x] (11-01: moot here, jaybulb.com no longer frames the Joshua Tree face demo since v3.0.0, the one-list site; os.html redirects to /. Face work lives in joshuatree) Landing page demo doesn't even play. Should have a skip button too, to skip to the actual demo.
 
 ## Ingested 2026-10-16
-- [ ] The demo needs more QA. I'm not showing up full screen, smiling, or animating my mouth.
-- [ ] It should be easy to exit the face, return to the desktop, and use the computer. After inactivity, the demo takes over.
+- [x] (11-01: moot here, jaybulb.com no longer frames the Joshua Tree face demo since v3.0.0, the one-list site; os.html redirects to /. Face work lives in joshuatree) The demo needs more QA. I'm not showing up full screen, smiling, or animating my mouth.
+- [x] (11-01: moot here, jaybulb.com no longer frames the Joshua Tree face demo since v3.0.0, the one-list site; os.html redirects to /. Face work lives in joshuatree) It should be easy to exit the face, return to the desktop, and use the computer. After inactivity, the demo takes over.
 
 ## Ingested 2026-10-17
-- [ ] Could we include Turing / Samantha in the demo?
+- [x] (11-01: moot here, jaybulb.com no longer frames the Joshua Tree face demo since v3.0.0, the one-list site; os.html redirects to /. Face work lives in joshuatree) Could we include Turing / Samantha in the demo?
