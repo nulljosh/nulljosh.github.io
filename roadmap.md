@@ -102,5 +102,4 @@ is loaded on the portfolio now; the Google Fonts <link> and preconnect are gone.
 ## Ingested 2026-10-17
 
 ## Ingested 2026-11-06
-- [ ] Jaybulb needs redesign (more original, custom). Remove stripe info from the list. Just say everything is free or a buck.
-- [ ] Portfolio footer needs dither and scan line effects.
+- [ ] Jaybulb needs redesign (more original, custom).

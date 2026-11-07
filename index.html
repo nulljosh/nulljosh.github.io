@@ -55,7 +55,8 @@ li:first-child{border-top:0}
 .foot-dir ul{list-style:none;padding:0;margin:0}.foot-dir li{display:block;margin:6px 0;padding:0;border:0}
 .foot-dir a{text-decoration:none;border-bottom:2px solid var(--bulb)}
 .foot-meta{margin:0;padding:18px 0;border-top:1px solid var(--band-rule);color:var(--ink-warm);font-size:.8rem}
-.foot-landscape{height:clamp(200px,24vw,380px);margin-top:24px;background:var(--bulb);filter:drop-shadow(0 -6px 10px rgba(120,80,0,.18));-webkit-mask:url(pwa/footer-landscape.svg) center bottom/cover no-repeat;mask:url(pwa/footer-landscape.svg) center bottom/cover no-repeat;pointer-events:none}
+.foot-landscape{position:relative;height:clamp(200px,24vw,380px);margin-top:24px;background:var(--bulb);filter:drop-shadow(0 -6px 10px rgba(120,80,0,.18));-webkit-mask:url(pwa/footer-landscape.svg) center bottom/cover no-repeat;mask:url(pwa/footer-landscape.svg) center bottom/cover no-repeat;pointer-events:none}
+.foot-landscape::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.16) 0 1px,transparent 1px 3px),conic-gradient(rgba(255,255,255,.3) 25%,transparent 0 50%,rgba(255,255,255,.3) 0 75%,transparent 0) 0 0/4px 4px}
 @media(max-width:760px){.foot-landscape{-webkit-mask-position:right bottom;mask-position:right bottom}.foot{padding:40px 20px 0}.foot-band{margin-top:40px}.foot-story{grid-template-columns:1fr}.foot-dir{grid-template-columns:1fr 1fr}.foot-rule{flex-wrap:wrap;white-space:normal}.foot-rule::before{flex-basis:100%;order:-1}}
 </style>
 </head>
@@ -68,7 +69,7 @@ li:first-child{border-top:0}
 </aside>
 <main class="content" id="top">
 <section class="section" id="apps">
-<h2>Everything I make. Buy on the web for $0.99 through Stripe, or get apps from the App Store.</h2>
+<h2>Everything I make. Free or a buck.</h2>
 <ul>
 <li><div class="who"><a href="https://epiphany.jaybulb.com">Epiphany</a><span>Finance dashboard</span></div><span class="price">$1.00</span><a class="button" href="https://apps.apple.com/app/id6779522175">App Store</a></li>
 <li><div class="who"><a href="https://talli.jaybulb.com">Talli</a><span>Benefits and grades tracker</span></div><span class="price">Free</span><a class="button" href="https://apps.apple.com/app/id6782366555">App Store</a></li>
@@ -119,6 +120,8 @@ li:first-child{border-top:0}
 <li><div class="who"><a href="https://brain.jaybulb.com">Brain</a><span>RAG over my notes</span></div><span class="price">On the web</span><a class="button" href="https://brain.jaybulb.com">Open</a></li>
 <li><div class="who"><a href="https://elah.jaybulb.com">Elah</a><span>Nine public domain Bibles, offline, on iPhone, iPad and Mac</span></div><span class="price">On the web</span><a class="button" href="https://elah.jaybulb.com">Open</a></li>
 <li><div class="who"><a href="https://horula.jaybulb.com">Horula</a><span>A clock that does what the iPhone clock does, in a browser tab</span></div><span class="price">On the web</span><a class="button" href="https://horula.jaybulb.com">Open</a></li>
+<li><div class="who"><a href="https://joshemon.jaybulb.com">Joshemon</a><span>A monster-collecting RPG for the Game Boy Advance, written in C</span></div><span class="price">On the web</span><a class="button" href="https://joshemon.jaybulb.com">Open</a></li>
+<li><div class="who"><a href="https://plan.jaybulb.com">Plan</a><span>My next ten years on one page: LECSS, KPU, SFU, UBC</span></div><span class="price">On the web</span><a class="button" href="https://plan.jaybulb.com">Open</a></li>
 <li><div class="who"><a href="https://github.com/nulljosh/labs">Labs</a><span>Small experiments &amp; build-your-owns</span></div><span class="price">Free</span><a class="button" href="https://github.com/nulljosh/labs">GitHub</a></li>
 </ul>
 </section>
