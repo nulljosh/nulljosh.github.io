@@ -1,18 +1,18 @@
 # Architecture
 
-Wordroot is a dictionary with etymology. Look up a word, follow its roots back through Latin, Greek and Old English to Proto-Indo-European. It runs on web, iOS, macOS, Android and desktop (Kotlin) and in a terminal. Every surface reads Wiktionary live. There is no database and no account.
+Eponym is a dictionary with etymology. Look up a word, follow its roots back through Latin, Greek and Old English to Proto-Indo-European. It runs on web, iOS, macOS, Android and desktop (Kotlin) and in a terminal. Every surface reads Wiktionary live. There is no database and no account.
 
 12 interface languages, 30 word languages. One catalog, `i18n/strings.json`, generates the strings for every surface.
 
 ## How it runs
 
-**Web.** The root page is the app: static HTML and JS at wordroot.jaybulb.com. It opens on "word" and, left alone for 10 seconds, types through 120 words until someone touches it. The marketing page lives at `/about`, and `/app` redirects to the root. A lookup fetches definitions from `{edition}.wiktionary.org/api/rest_v1/page/definition/{word}` (your own edition and English together, yours wins) and the wikitext from en.wiktionary.org, which is parsed for `{{inh}}`, `{{der}}` and `{{bor}}` templates. Each ancestor is looked up in turn until a root or the depth limit. Details in [API.md](API.md).
+**Web.** The root page is the app: static HTML and JS at eponym.jaybulb.com. It opens on "word" and, left alone for 10 seconds, types through 120 words until someone touches it. The marketing page lives at `/about`, and `/app` redirects to the root. A lookup fetches definitions from `{edition}.wiktionary.org/api/rest_v1/page/definition/{word}` (your own edition and English together, yours wins) and the wikitext from en.wiktionary.org, which is parsed for `{{inh}}`, `{{der}}` and `{{bor}}` templates. Each ancestor is looked up in turn until a root or the depth limit. Details in [API.md](API.md).
 
 **iOS and macOS.** SwiftUI, one `WindowGroup`. Interface and word language live in `UserDefaults`. Network calls go straight to Wiktionary. Arabic flips the layout.
 
 **Android and desktop.** Compose Multiplatform over a shared Kotlin core that mirrors the JS parsing. Desktop packages as DEB, MSI or DMG.
 
-**Terminal.** A SwiftPM executable: `wordroot-tui etymology` prints the chain.
+**Terminal.** A SwiftPM executable: `eponym-tui etymology` prints the chain.
 
 **Server surface.** Cloudflare Pages Functions expose the same lookup as read-only REST and MCP. Both call one function, `callTool()`, so they cannot disagree.
 
@@ -47,11 +47,14 @@ Wordroot is a dictionary with etymology. Look up a word, follow its roots back t
 | File | What it owns |
 |---|---|
 | `ios/project.yml` | xcodegen spec for the iOS and macOS targets. No checked in xcodeproj |
-| `ios/Sources/WordrootApp.swift` | App entry, settings, layout direction |
+| `ios/Sources/EponymApp.swift` | App entry, settings, layout direction |
 | `ios/Sources/Localized.swift` | Generated string tables. Never hand edit |
+| `ios/Sources/LookUp.swift` | Inbox for words from outside the app, the Shortcuts intent, the Mac Services menu |
+| `ios/Widget/` | Word of the day widget, iPhone and Mac |
+| `ios/Action/` | Look Up in Eponym in the iPhone share sheet. Compiles the app sources with `ACTION_EXTENSION` |
 | `ios/Tests/EtymologyParserTests.swift` | Parser tests: template parsing and no cycles |
-| `Wordroot.icon/` | Icon Composer source for the app icon. `icon.svg` is the flat copy |
-| `ios/ExportOptions.plist`, `ios/Wordroot.entitlements` | Signing and export |
+| `Eponym.icon/` | Icon Composer source for the app icon. `icon.svg` is the flat copy |
+| `ios/ExportOptions.plist`, `ios/Eponym.entitlements` | Signing and export |
 | `metadata/` | App Store listing text pulled with `asc` |
 | `.asc/workflow.json` | `asc workflow run ship-ios` and `ship-mac`: bump, archive, export, upload, submit |
 
