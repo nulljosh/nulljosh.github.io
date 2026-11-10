@@ -22,7 +22,7 @@ Journal is a personal blog built with Jekyll, deployed via GitHub Pages. Posts a
 | `_includes/graphs/` | Dynamic graphs. `streak.html` renders a commit history streak visualization (fetches from GitHub API). |
 | `_config.yml` | Jekyll config. Site title, URL, plugins, theme, build settings, gem dependencies. |
 | `assets/css/main.css` | Main stylesheet. Layout, typography, light/dark theme via CSS variables. |
-| `assets/` | Static assets. CSS, images, fonts. Copied into `_site/` during build. |
+| `assets/` | Static assets. CSS and images. Copied into `_site/` during build. |
 | `index.html` | Home page (alternative to `_layouts/home.html`; may be a redirect or alias). |
 | `year.html` | Yearly archive page. Lists posts grouped by year. |
 | `sw.js` | Service worker for offline support. Caches the blog shell and recent posts. |
@@ -34,7 +34,7 @@ Journal is a personal blog built with Jekyll, deployed via GitHub Pages. Posts a
 | Light/dark mode | CSS variables and media query. `prefers-color-scheme` sets defaults; theme toggle button overrides via `data-theme` attribute on `<html>`. Persisted to `localStorage`. |
 | Typography | System fonts (SF Pro, Helvetica). Responsive sizing. No custom fonts, no Google Fonts. |
 | Responsive | Mobile-first. Flex layout. Adjusts for viewport size. |
-| Colors | Design tokens from the house tokens.css (not duplicated here; could be shared). Blue and neutral tones. |
+| Colors | Design tokens in `brand/tokens.css`, same names as the app repos. Blue and neutral tones. |
 
 ## Build and deployment
 
