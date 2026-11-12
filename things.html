@@ -1,24 +1,58 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Things</title>
-<link rel="icon" href="pwa/favicon.svg">
+<title>Things, by Joshua Trommel</title>
+<meta name="description" content="Everything on my desk. 15 things, one list.">
+<link rel="icon" type="image/svg+xml" href="pwa/favicon.svg">
+<link rel="canonical" href="https://jaybulb.com/things.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jaybulb.com/things.html">
+<meta property="og:title" content="Things, by Joshua Trommel">
+<meta property="og:description" content="Everything on my desk. 15 things, one list.">
+<meta property="og:image" content="https://jaybulb.com/pwa/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffca30">
+<link rel="stylesheet" href="brand/tokens.css?v=20261020">
 <style>
-  :root { color-scheme: light dark; }
-  body { max-width: 40rem; margin: 4rem auto; padding: 0 1.5rem; font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.7; }
-  h1 { font-size: 1.6rem; margin-bottom: 1.5rem; }
-  h2 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; opacity: .55; margin: 2rem 0 .5rem; }
-  ul { list-style: none; padding: 0; margin: 0; }
-  li { padding: .35rem 0; border-bottom: 1px solid #8884; }
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:var(--font);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;line-height:1.5}
+::selection{background:var(--bulb);color:var(--ink)}
+a{color:var(--ink)}
+.sidebar{position:fixed;inset:0 auto 0 0;width:250px;padding:0 25px;background:var(--bulb);display:flex;flex-direction:column}
+.sidebar h1{margin:20px 0 30px;text-align:center;font-weight:400;font-size:2em}
+.sidebar h1 a{text-decoration:none}
+.logo{height:40px;position:relative;top:8px;margin-right:8px}
+.sidebar h2{font-weight:400;font-size:1.3em;margin:0 0 1em}
+.sidebar nav{margin-top:auto;padding-bottom:20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.sidebar nav a{text-decoration:none;letter-spacing:-.5px}
+.content{margin-left:250px;min-width:0;overflow-wrap:anywhere}
+.section{padding:20px 40px 35px;margin-bottom:35px;border-bottom:2px solid var(--bulb);max-width:860px}
+.section h2{font-size:1.25em;font-weight:400;margin:20px 0}
+a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+ul{list-style:none;margin:0;padding:0}
+li{padding:12px 0;border-top:1px solid var(--hairline)}
+li:first-child{border-top:0}
+.who b{font-weight:600}
+.who span{display:block;font-size:.875rem;color:var(--ink-3)}
+.foot{margin:0;padding:0 40px 40px;max-width:860px;color:var(--ink-3);font-size:.8rem}
+@media(max-width:760px){.sidebar{position:static;width:auto;padding:0 20px 14px;overflow-wrap:anywhere}.sidebar nav{margin-top:8px;padding-bottom:0}.sidebar h1{margin:14px 0}.content{margin-left:0}.section{padding:20px}.foot{padding:0 20px 32px}}
 </style>
 </head>
 <body>
-<h1>Things</h1>
-<h2>Tech</h2><ul><li>Mac mini</li><li>Monitor</li><li>Wireless keyboard</li><li>Spare keyboard</li><li>Power bank</li></ul>
-<h2>Audio</h2><ul><li>USB mic</li><li>Desk speakers</li><li>Bluetooth speaker</li><li>Headphones</li></ul>
-<h2>Desk</h2><ul><li>Notebook</li><li>Pencils</li><li>Pens and markers</li></ul>
-<h2>Other</h2><ul><li>Yankees cap</li><li>Massage gun</li><li>Framed print</li></ul>
+<aside class="sidebar">
+<h1><a href="/"><img src="pwa/logo.svg" alt="" class="logo">Jaybulb</a></h1>
+<h2>Everything on my desk.</h2>
+<h2>15 things. No more than I need.</h2>
+<nav><a href="/#apps">Apps</a><a href="https://github.com/nulljosh">GitHub</a><a href="mailto:trommatic@icloud.com">Email</a></nav>
+</aside>
+<main class="content">
+<section class="section"><h2>Computer</h2><ul><li><div class="who"><b>Mac mini</b><span>The whole computer. Smaller than the hat.</span></div></li><li><div class="who"><b>Monitor</b><span>One screen. That is enough.</span></div></li><li><div class="who"><b>Wireless keyboard</b><span>White keys, orange space bar, red Enter.</span></div></li><li><div class="who"><b>Spare keyboard</b><span>Black. Waiting its turn.</span></div></li><li><div class="who"><b>Power bank</b><span>For when the wall is too far.</span></div></li></ul></section>
+<section class="section"><h2>Sound</h2><ul><li><div class="who"><b>USB mic</b><span>I talk, the computer types.</span></div></li><li><div class="who"><b>Desk speakers</b><span>White, with orange cones.</span></div></li><li><div class="who"><b>Bluetooth speaker</b><span>Sits on top of the big one.</span></div></li><li><div class="who"><b>Headphones</b><span>In the case until it gets late.</span></div></li></ul></section>
+<section class="section"><h2>Paper</h2><ul><li><div class="who"><b>Notebook</b><span>Paper first. Screens second.</span></div></li><li><div class="who"><b>Pencils</b><span>Yellow. A pencil for the work.</span></div></li><li><div class="who"><b>Pens and markers</b><span>Black. All of them.</span></div></li></ul></section>
+<section class="section"><h2>The rest</h2><ul><li><div class="who"><b>Yankees cap</b><span>Black. Lives on the desk.</span></div></li><li><div class="who"><b>Massage gun</b><span>For after a long sit.</span></div></li><li><div class="who"><b>Framed print</b><span>On the wall, above the screen.</span></div></li></ul></section>
+<p class="foot">&copy; 2026 Joshua Trommel &middot; Made in Langley, BC &middot; Nothing here tracks you.</p>
+</main>
 </body>
 </html>
