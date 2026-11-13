@@ -103,3 +103,7 @@ is loaded on the portfolio now; the Google Fonts <link> and preconnect are gone.
 
 ## Ingested 2026-11-06
 - [ ] Jaybulb needs redesign (more original, custom).
+
+## Ingested 2026-11-13
+- [ ] Check listed projects. Some are $.99, some are $1. They should all be $1. Or $99, what's better? (Standing rule is $1.)
+- [ ] Portfolio keeps approaching 20 listed projects. See the cleanup item in the labs root roadmap.
