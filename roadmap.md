@@ -107,3 +107,6 @@ is loaded on the portfolio now; the Google Fonts <link> and preconnect are gone.
 ## Ingested 2026-11-13
 - [ ] Check listed projects. Some are $.99, some are $1. They should all be $1. Or $99, what's better? (Standing rule is $1.)
 - [ ] Portfolio keeps approaching 20 listed projects. See the cleanup item in the labs root roadmap.
+
+## Ingested 2026-11-14
+- [ ] (Note "Portfolio") Safari's new auto dark mode makes jaybulb.com look bad (gold hero turns muddy on dark). Declare `color-scheme` and a real dark palette so Safari doesn't recolor. Also the list still says "Nimble Answers". Screenshot: ~/Documents/Code/notes/attachments/2026-11-14/portfolio-1.png
