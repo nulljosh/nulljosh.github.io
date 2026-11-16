@@ -10,7 +10,7 @@ import datetime, html, json, re, subprocess, sys
 STALE_DAYS = 120
 SKIP = {'nulljosh.github.io', 'homebrew-tap', 'labs', 'dotfiles', 'scripts', 'runs', 'launch', 'journal', '.github'}
 # live projects with no GitHub remote yet (see ~/Documents/Code/CLAUDE.md); drop one once it gets a repo
-LOCAL = {'noema', 'gato'}
+LOCAL = {'noema'}
 # subdomain -> source, where they differ
 ALIAS = {'plain': ('plaintxt',), 'swing': ('irisa', 'marmoset')}  # swing is mid-rename; rename the row once the new host serves
 FOLD = re.compile(r'^(Fold |Point links|Move |Merge )')  # monorepo bookkeeping, not real work
