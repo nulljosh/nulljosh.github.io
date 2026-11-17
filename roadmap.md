@@ -109,3 +109,11 @@ is loaded on the portfolio now; the Google Fonts <link> and preconnect are gone.
 - [ ] Portfolio keeps approaching 20 listed projects. See the cleanup item in the labs root roadmap.
 
 ## Ingested 2026-11-14
+
+## Ingested 2026-11-16
+- [ ] (Note "Cadence") Add the Cadence activity graph at the bottom of the portfolio as GitHub green blocks, replacing the standalone Cadence page.
+- [ ] (Note "Brain") Remove Brain from the portfolio: "I don't even know what it is, probably stale."
+- [ ] (Note "Portfolio") Make the portfolio more mobile friendly. Also map it out as an iOS app (not that it needs to be one, just curious). Run a /mobbin pass. Screenshot of jaybulb.com on iPhone: notes/attachments/2026-11-16/22100-1.png.
+- [ ] (Portfolio) More original UI/UX; it is too close to the actual source right now.
+- [ ] (Portfolio) Every list item needs accurate pricing. The screenshot shows Epiphany $1.00, Nimble Answers $0.99, Bugle $0.99, but Epiphany is a $5/month subscription. Make a skill for keeping prices accurate. Merge with the older $.99 vs $1 line above.
+- [ ] (Note "Cleanup") Slim the portfolio the same way as the repos: combine similar projects.
