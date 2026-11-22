@@ -96,7 +96,6 @@ li:first-child{border-top:0}
 <li><div class="who"><a href="https://noema.jaybulb.com">Noema</a><span>Mathematics lab</span></div><span class="price">On the web</span><a class="button" href="https://noema.jaybulb.com">Open</a></li>
 <li><div class="who"><a href="https://vancouvervice.jaybulb.com">Vancouver Vice</a><span>A crime game in the real city</span></div><span class="price">On the web</span><a class="button" href="https://vancouvervice.jaybulb.com">Open</a></li>
 <li><div class="who"><a href="https://tripwire.jaybulb.com">Tripwire</a><span>API drift watcher</span></div><span class="price">On the web</span><a class="button" href="https://tripwire.jaybulb.com">Open</a></li>
-<li><div class="who"><a href="/cadence">Cadence</a><span>Commit-history tracker</span></div><span class="price">On the web</span><a class="button" href="/cadence">Open</a></li>
 <li><div class="who"><a href="https://hormuz.jaybulb.com">Hormuz</a><span>Strait status &amp; oil signals</span></div><span class="price">On the web</span><a class="button" href="https://hormuz.jaybulb.com">Open</a></li>
 <li><div class="who"><a href="https://fieldbook.jaybulb.com">Fieldbook</a><span>89 fields with check questions</span></div><span class="price">On the web</span><a class="button" href="https://fieldbook.jaybulb.com">Open</a></li>
 <li><div class="who"><a href="https://numen.jaybulb.com">Numen</a><span>Free-form calculator</span></div><span class="price">On the web</span><a class="button" href="https://numen.jaybulb.com">Open</a></li>
@@ -140,6 +139,30 @@ li:first-child{border-top:0}
 <div><h3>Writing</h3><ul><li><a href="https://journal.jaybulb.com">Journal</a></li><li><a href="notes/">Notes</a></li><li><a href="things.html">Things</a></li><li><a href="https://bugle.jaybulb.com">Bugle</a></li></ul></div>
 <div><h3>Contact</h3><ul><li><a href="mailto:trommatic@icloud.com">Email</a></li><li><a href="https://secretary.jaybulb.com">Call or text</a></li><li><a href="https://github.com/nulljosh">@nulljosh</a></li><li><a href="#top">Back to top</a></li></ul></div>
 </nav>
+<section class="foot-cadence" id="cadence" aria-label="Commit activity">
+<h3>Cadence</h3><p id="cad-line">Commits across every repo, past year.</p>
+<div id="cad-grid" role="img" aria-label="Commit heatmap"></div>
+<p id="cad-repos"></p>
+</section>
+<style>
+.foot-cadence{margin:32px 0}
+#cad-grid{display:grid;grid-template-rows:repeat(7,1fr);grid-auto-flow:column;grid-auto-columns:1fr;gap:2px;max-width:100%}
+#cad-grid i{aspect-ratio:1;background:currentColor;opacity:.08}
+#cad-repos{opacity:.6}
+</style>
+<script>
+// ponytail: data is baked into cadence/data.json on each deploy (scripts/cadence/build.mjs), so no live API
+fetch('cadence/data.json').then(r=>r.json()).then(({stats,heatmap})=>{
+  const g=document.getElementById('cad-grid'),max=Math.max(1,...Object.values(heatmap)),d=new Date();
+  d.setUTCDate(d.getUTCDate()-364-d.getUTCDay());
+  for(let i=0;i<371;i++,d.setUTCDate(d.getUTCDate()+1)){
+    const k=d.toISOString().slice(0,10),n=heatmap[k]||0,c=document.createElement('i');
+    if(n)c.style.opacity=.25+.75*Math.sqrt(n/max);c.title=k+': '+n;g.append(c);
+  }
+  document.getElementById('cad-line').textContent=stats.total30.toLocaleString()+' commits in 30 days, '+stats.streak+'-day streak, best day '+stats.bestDay+'.';
+  document.getElementById('cad-repos').textContent='Most active: '+Object.entries(stats.perRepo||{}).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([r,n])=>r+' '+n).join(', ');
+}).catch(()=>document.getElementById('cadence').remove());
+</script>
 <p class="foot-meta">&copy; 2026 Joshua Trommel &middot; Made in Langley, BC &middot; Nothing here tracks you.</p>
 </footer>
 <div class="foot-landscape" aria-hidden="true"></div>
