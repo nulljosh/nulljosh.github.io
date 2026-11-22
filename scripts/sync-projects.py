@@ -63,6 +63,7 @@ def main(dry):
         href = re.search(r'class="who"><a href="([^"]+)"', li).group(1)
         name = re.search(r'">([^<]+)</a><span>', li).group(1)
         store = 'apps.apple.com' in li
+        if href.startswith('/'): kept.append(li); continue  # pages on jaybulb.com itself (e.g. /cadence) have no repo
         k = key(href, src)
         if not k and (k := renamed(href, src)) and src[k]['home']:
             # keep the curated blurb and price; only the name and the links follow the rename
