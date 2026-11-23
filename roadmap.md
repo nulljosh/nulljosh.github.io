@@ -117,3 +117,10 @@ is loaded on the portfolio now; the Google Fonts <link> and preconnect are gone.
 - [ ] (Portfolio) More original UI/UX; it is too close to the actual source right now.
 - [ ] (Portfolio) Every list item needs accurate pricing. The screenshot shows Epiphany $1.00, Nimble Answers $0.99, Bugle $0.99, but Epiphany is a $5/month subscription. Make a skill for keeping prices accurate. Merge with the older $.99 vs $1 line above.
 - [ ] (Note "Cleanup") Slim the portfolio the same way as the repos: combine similar projects.
+
+## Ingested 2026-11-23
+
+- [ ] **Portfolio**: Needs GitHub activity type shit
+  - Using cadence
+  - Bump or delete that project?
+  - Screenshots (not yet read): `notes/attachments/2026-11-23/22650-1.png`
